@@ -1,0 +1,200 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.Container {
+    background-color: #000;
+    flex-direction: column;
+    width: 720px;
+}
+
+.FlashingStyle {
+    background-color: #000;
+    position: fixed;
+    width: 720px;
+    height: 960px;
+    z-index: 999;
+}
+
+.PreviewArea {
+    background-color: #FFF;
+    width: 720px;
+    height: 960px;
+    flex-direction: column;
+}
+
+.ModeSwitch {
+    background-color: #000;
+    height: 101.983px;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Spot {
+    background-color: #006cde;
+    margin-top: 7.03px;
+    width: 10.55px;
+    height: 10.55px;
+    border-radius: 5.275px;
+}
+
+.List {
+    flex-direction: row;
+    margin-top: 28.13px;
+    width: 720px;
+    height: 38.63px;
+}
+
+.ListItem {
+    align-items: center;
+    justify-content: center;
+    width: 144px;
+}
+
+.FootBar {
+    background-color: #000;
+    height: 168.8px;
+    width: 720px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ImageStyle {
+    width: 70.33px;
+    height: 70.33px;
+    border-radius: 35.165px;
+}
+
+.AnimationStyle {
+    animation-name: ScaleDraw;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-duration: 500ms;
+}
+
+.Shoot {
+    background-color: #000;
+    margin-left: 84.4px;
+    margin-right: 84.4px;
+    width: 133.63px;
+    height: 133.63px;
+    icon-width: 133.63px;
+    icon-height: 133.63px;
+    border-radius: 66.815px;
+}
+
+.SwitchCameraWrap {
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    position: relative;
+}
+
+.DisableStyle{
+    opacity: 0.4;
+}
+
+.EnableStyle{
+    opacity: 1;
+}
+
+.AnotherLittleButton {
+    background-color: #000;
+    width: 50px;
+    height: 50px;
+    icon-height: 50px;
+    icon-width: 50px;
+    border-radius: 25px;
+}
+
+.SwitchCameraCircle {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: transparent;
+}
+
+.ModeText {
+    color: #FFF;
+}
+
+.ShadowTwo {
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+}
+
+.BorderStyle {
+    border: 3px solid #FFF;
+}
+
+.DialogMain {
+    width: 500px;
+}
+
+.DialogDiv {
+    flex-direction: column;
+    align-items: center;
+}
+
+.DialogTitleText {
+    width: 434px;
+    height: 80px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.InnerBtn {
+    width: 400px;
+    height: 120px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.DialogCancelButton {
+    width: 100%;
+    font-size: 32px;
+}
+
+.DialogDeviceList {
+    width: 434px;
+    max-height: 150px;
+}
+
+.DeviceListItem {
+    width: 434px;
+    height: 80px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.DeviceItemTitle {
+    width: 80%;
+    height: 80px;
+    text-align: start;
+}
+
+@keyframes ScaleDraw {
+    from {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

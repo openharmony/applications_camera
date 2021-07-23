@@ -1,0 +1,110 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.Container {
+    flex-direction: column;
+    width: 720px;
+    background-color: #000;
+    position: relative;
+}
+
+.RemoteTitle {
+    width: 720px;
+    height: 101.983px;
+    justify-content: center;
+    align-items: center;
+}
+
+.RemoteTitleText {
+    font-size: 24.62px;
+    color: #FFF;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+}
+
+.RemoteBar {
+    width: 720px;
+    height: 168.8px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.ShadowTwo {
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+}
+
+.ImageStyle {
+    width: 70.33px;
+    height: 70.33px;
+    border-radius: 35.165px;
+    opacity: .4;
+}
+
+.Shoot {
+    margin-left: 84.4px;
+    margin-right: 84.4px;
+    width: 133.63px;
+    height: 133.63px;
+    icon-width: 133.63px;
+    icon-height: 133.63px;
+    border-radius: 66.815px;
+    background-color: #000;
+}
+
+.SwitchCameraWrap {
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    position: relative;
+}
+
+.AnotherLittleButton {
+    background-color: #000;
+    width: 50px;
+    height: 50px;
+    icon-height: 50px;
+    icon-width: 50px;
+    border-radius: 25px;
+}
+
+.SwitchCameraCircle {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: transparent;
+}
+
+.ShadowTwo {
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+}
+
+.BorderStyle {
+    border: 3px solid #FFF;
+}
+
+.CameraView {
+    width: 720px;
+    height: 960px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #262626;
+}
+
+.CameraViewImage {
+    width: 96px;
+    height: 80px;
+}
