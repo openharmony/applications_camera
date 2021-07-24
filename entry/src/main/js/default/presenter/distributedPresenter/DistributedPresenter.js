@@ -18,16 +18,13 @@ import RouterUtil from '../../common/utils/RouterUtil.js';
 import PageData from '../../common/constants/PageData.js';
 
 const PREVIEW_VIEW = PageData.PREVIEW_PAGE;
-
 let mLogUtil = new LogUtil();
 let mKvStoreModel;
 let mRemoteDeviceModel;
-let mPreviewModel;
 
 export default class DistributedPresenter {
-    constructor(previewModel, kvStoreModel, remoteDeviceModel) {
+    constructor(kvStoreModel, remoteDeviceModel) {
         mLogUtil.cameraInfo('DistributedPresenter constructor begin.');
-        mPreviewModel = previewModel;
         mKvStoreModel = kvStoreModel;
         mRemoteDeviceModel = remoteDeviceModel;
         mKvStoreModel.setOnMessageReceivedListener(mKvStoreModel.messageData().msgFromResponderBack, () => {

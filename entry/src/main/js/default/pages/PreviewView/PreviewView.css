@@ -13,11 +13,7 @@
  * limitations under the License.
  */
 
-.Container {
-    background-color: #000;
-    flex-direction: column;
-    width: 720px;
-}
+@import '../../common/css/CommonPageStyle.css';
 
 .FlashingStyle {
     background-color: #000;
@@ -36,7 +32,7 @@
 
 .ModeSwitch {
     background-color: #000;
-    height: 101.983px;
+    height: 102px;
     width: 100%;
     align-items: center;
     flex-direction: column;
@@ -44,17 +40,17 @@
 
 .Spot {
     background-color: #006cde;
-    margin-top: 7.03px;
-    width: 10.55px;
-    height: 10.55px;
-    border-radius: 5.275px;
+    margin-top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
 }
 
 .List {
     flex-direction: row;
-    margin-top: 28.13px;
+    margin-top: 28px;
     width: 720px;
-    height: 38.63px;
+    height: 38px;
 }
 
 .ListItem {
@@ -65,124 +61,20 @@
 
 .FootBar {
     background-color: #000;
-    height: 168.8px;
+    height: 168px;
     width: 720px;
     justify-content: center;
     align-items: center;
 }
 
 .ImageStyle {
-    width: 70.33px;
-    height: 70.33px;
-    border-radius: 35.165px;
-}
-
-.AnimationStyle {
-    animation-name: ScaleDraw;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 1;
-    animation-duration: 500ms;
-}
-
-.Shoot {
-    background-color: #000;
-    margin-left: 84.4px;
-    margin-right: 84.4px;
-    width: 133.63px;
-    height: 133.63px;
-    icon-width: 133.63px;
-    icon-height: 133.63px;
-    border-radius: 66.815px;
-}
-
-.SwitchCameraWrap {
-    justify-content: center;
-    align-items: center;
     width: 70px;
     height: 70px;
-    position: relative;
-}
-
-.DisableStyle{
-    opacity: 0.4;
-}
-
-.EnableStyle{
-    opacity: 1;
-}
-
-.AnotherLittleButton {
-    background-color: #000;
-    width: 50px;
-    height: 50px;
-    icon-height: 50px;
-    icon-width: 50px;
-    border-radius: 25px;
-}
-
-.SwitchCameraCircle {
-    width: 70px;
-    height: 70px;
-    border-radius: 35px;
-    background-color: transparent;
+    border-radius: 36px;
 }
 
 .ModeText {
     color: #FFF;
-}
-
-.ShadowTwo {
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
-}
-
-.BorderStyle {
-    border: 3px solid #FFF;
-}
-
-.DialogMain {
-    width: 500px;
-}
-
-.DialogDiv {
-    flex-direction: column;
-    align-items: center;
-}
-
-.DialogTitleText {
-    width: 434px;
-    height: 80px;
-    font-size: 32px;
-    font-weight: 600;
-}
-
-.InnerBtn {
-    width: 400px;
-    height: 120px;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.DialogCancelButton {
-    width: 100%;
-    font-size: 32px;
-}
-
-.DialogDeviceList {
-    width: 434px;
-    max-height: 150px;
-}
-
-.DeviceListItem {
-    width: 434px;
-    height: 80px;
-    flex-direction: row;
-    align-items: center;
-}
-
-.DeviceItemTitle {
-    width: 80%;
-    height: 80px;
-    text-align: start;
 }
 
 @keyframes ScaleDraw {

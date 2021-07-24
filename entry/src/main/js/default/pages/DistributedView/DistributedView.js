@@ -25,21 +25,19 @@ let mDistributedPresenter;
 
 export default {
     data: {
-        iconPhoto: '/common/media/take_photo_normal.svg',
+        isTouchPhoto: false,
         isPromptDialogShow: false,
         isDeviceListDialogOpen: false,
     },
     onInit() {
         mLogUtil.cameraInfo('DistributedView onInit begin.');
         mDistributedPresenter = new DistributedPresenter(
-            this.$app.$def.data.previewModel,
             this.$app.$def.data.kvStoreModel,
             this.$app.$def.data.remoteDeviceModel);
         mDistributedPresenter.registerDeviceStateChangeCallback((action, deviceId) => {
-            mLogUtil.cameraInfo('DistributedView registerDeviceStateChangeCallback begin.' + deviceId);
+            mLogUtil.cameraInfo(`DistributedView on device state changed ${deviceId} , action ${action}`);
             switch (action) {
                 case 'OFFLINE':
-                    mLogUtil.cameraInfo('DistributedView registerDeviceStateChangeCallback OFFLINE');
                     if (mDistributedPresenter.getCurrentDeviceId() === deviceId) {
                         this.promptShowDialog();
                         setTimeout(() => {
@@ -68,10 +66,10 @@ export default {
             this.isDeviceListDialogOpen = false;
             return true;
         } else {
-            mLogUtil.cameraInfo('DistributedView Router start.');
+            mLogUtil.cameraInfo('DistributedView Router begin.');
             this.startPreviewView();
             mLogUtil.cameraInfo('DistributedView Router end.');
-            return true
+            return true;
         }
         mLogUtil.cameraInfo('DistributedView onBackPress end.');
     },
@@ -88,23 +86,22 @@ export default {
     onTouchStart() {
         mLogUtil.cameraInfo('onTouchStart begin.');
         mDistributedPresenter.remoteTakePhoto();
-        this.iconPhoto = '/common/media/take_photo_loading.svg';
+        this.isTouchPhoto = true;
         mLogUtil.cameraInfo('onTouchStart end.');
     },
     onTouchEnd() {
         mLogUtil.cameraInfo('onTouchEnd begin.');
-        this.iconPhoto = '/common/media/take_photo_normal.svg';
+        this.isTouchPhoto = false;
         mLogUtil.cameraInfo('onTouchEnd end.');
     },
     remoteSwitchClick(e) {
         mLogUtil.cameraInfo('remoteSwitchClick begin.');
         var inputValue = e.detail.inputValue;
         var event = e.detail.event;
-        mLogUtil.cameraInfo('DistributedView Camera[IndexPage] JSON.stringify inputValue ' + JSON.stringify(inputValue));
-        mLogUtil.cameraInfo('DistributedView Camera[IndexPage] JSON.stringify event ' + JSON.stringify(event));
-        mLogUtil.cameraInfo('DistributedView Camera[IndexPage] event.value ' + event.value);
+        mLogUtil.cameraInfo(`DistributedView Camera inputValue ${JSON.stringify(inputValue)}`);
+        mLogUtil.cameraInfo(`DistributedView Camera event ${JSON.stringify(event)}`);
         if (inputValue === event.value) {
-            mLogUtil.cameraInfo('DistributedView equal')
+            mLogUtil.cameraInfo('DistributedView equal');
             if (event.value === 'localhost') {
                 mDistributedPresenter.setCurrentDeviceId('localhost');
                 this.deviceListDialogCancel();
@@ -120,10 +117,10 @@ export default {
         Prompt.showDialog({
             message: self.$t('strings.network_interruption'),
             buttons:
-                [{
-                    text: self.$t('strings.restore_defaults_dialog_confirm'),
-                    color: '#666666',
-                }],
+            [{
+                text: self.$t('strings.restore_defaults_dialog_confirm'),
+                color: '#666666',
+            }],
             success: function (data) {
                 self.isPromptDialogShow = false;
                 mLogUtil.cameraInfo(`dialog success callback，click button : ${data.index}`);

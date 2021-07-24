@@ -21,12 +21,16 @@ let mLogUtil = new LogUtil();
 let mPreviewModel;
 let mKvStoreModel;
 let mRemoteDeviceModel;
+let mAudioPlayer;
+let mAudioPlayerStatus;
 
 export default class PreviewPresenter {
     constructor(previewModel, kvStoreModel, remoteDeviceModel) {
         mPreviewModel = previewModel;
         mKvStoreModel = kvStoreModel;
         mRemoteDeviceModel = remoteDeviceModel;
+        mAudioPlayer = undefined;
+        mAudioPlayerStatus = 'unCreated';
     }
 
     takePhoto(element) {
@@ -80,26 +84,26 @@ export default class PreviewPresenter {
                 abilityName: paramAbilityName
             },
         }).then(data => {
-            mLogUtil.cameraInfo(`Launcher AceApplication : startAbility : success : ${JSON.stringify(data)}`);
+            mLogUtil.cameraInfo(`startAbility : success : ${JSON.stringify(data)}`);
         }).catch(error => {
-            mLogUtil.cameraInfo(`Launcher AceApplication : startAbility : fail : ${JSON.stringify(error)}`);
+            mLogUtil.cameraInfo(`startAbility : fail : ${JSON.stringify(error)}`);
         });
-        mLogUtil.cameraInfo(`jumpToAlbum    end: ${result}`);
+        mLogUtil.cameraInfo(`jumpToAlbum end: ${result}`);
     }
 
     previewStartedSuccess(element) {
-        mLogUtil.cameraInfo('previewStartedSuccess begin.' + mKvStoreModel.messageData().msgFromResponderReady);
+        mLogUtil.cameraInfo('previewStartedSuccess begin.');
         mKvStoreModel.broadcastMessage(mKvStoreModel.messageData().msgFromResponderReady);
         mKvStoreModel.setOnMessageReceivedListener(
             mKvStoreModel.messageData().msgFromDistributedBack, () => {
-            mLogUtil.cameraInfo('OnMessageReceived, previewBack');
-            FeatureAbility.terminateAbility();
-        });
+                mLogUtil.cameraInfo('OnMessageReceived, previewBack');
+                FeatureAbility.terminateAbility();
+            });
         mKvStoreModel.setOnMessageReceivedListener(
             mKvStoreModel.messageData().msgFromDistributedTakePhoto, () => {
-            mLogUtil.cameraInfo('OnMessageReceived, takePhoto');
-            this.takePhoto(element);
-        });
+                mLogUtil.cameraInfo('OnMessageReceived, takePhoto');
+                this.takePhoto(element);
+            });
         mLogUtil.cameraInfo('previewStartedSuccess end.');
     }
 
@@ -117,7 +121,7 @@ export default class PreviewPresenter {
 
     startRemoteCamera(inputValue, event, deviceList, callback) {
         mLogUtil.cameraInfo('startRemoteCamera begin.');
-        mLogUtil.cameraInfo(`startRemoteCamera ${inputValue} , ${event.value}`);
+        mLogUtil.cameraInfo(`startRemoteCamera ${inputValue}, ${event.value}`);
         mRemoteDeviceModel.setCurrentDeviceId(event.value);
         if (inputValue === event.value) {
             if (event.value === 'localhost') {
@@ -146,10 +150,10 @@ export default class PreviewPresenter {
                     }, 5000);
                     mKvStoreModel.setOnMessageReceivedListener(
                         mKvStoreModel.messageData().msgFromResponderReady, () => {
-                        mLogUtil.cameraInfo('OnMessageReceived, remoteAbilityStarted');
-                        clearTimeout(timer);
-                        callback('remoteCameraStartedSuccess');
-                    });
+                                mLogUtil.cameraInfo('OnMessageReceived, remoteAbilityStarted');
+                                clearTimeout(timer);
+                                callback('remoteCameraStartedSuccess');
+                            });
                 }
             }
         }
@@ -181,13 +185,27 @@ export default class PreviewPresenter {
 
     playSound() {
         mLogUtil.cameraInfo('playSound begin.');
-        var audioPlayer = media.createAudioPlayer();
-        audioPlayer.on('dataLoad', () => {
-            console.info('Camera[PlayerModel] dataLoad callback');
-            audioPlayer.play();
-        });
-        audioPlayer.src = 'file://data/media/audio/capture.ogg';
-        mLogUtil.cameraInfo(`audioPlayer.state: ${audioPlayer.state}`);
+        mLogUtil.cameraInfo(`mAudioPlayerStatus: ${mAudioPlayerStatus}`);
+        switch (mAudioPlayerStatus) {
+            case 'unCreated':
+                if (typeof (mAudioPlayer) === 'undefined') {
+                    mLogUtil.cameraInfo('playSound createAudioPlayer');
+                    mAudioPlayer = media.createAudioPlayer();
+                }
+                mAudioPlayerStatus = 'created';
+                mAudioPlayer.on('dataLoad', () => {
+                    mLogUtil.cameraInfo('playSound dataLoad callback');
+                    mAudioPlayerStatus = 'dataLoaded';
+                    mAudioPlayer.play();
+                });
+                mAudioPlayer.src = 'file://data/media/audio/capture.ogg';
+                break;
+            case 'dataLoaded':
+                mAudioPlayer.play();
+                break;
+            default:
+                break;
+        }
         mLogUtil.cameraInfo('playSound end.');
     }
 }

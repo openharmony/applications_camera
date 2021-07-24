@@ -26,7 +26,6 @@ export default class KvStoreModel {
     kvStore;
 
     constructor() {
-
     }
 
     createKvStore(callback) {
@@ -41,8 +40,8 @@ export default class KvStoreModel {
             let self = this;
             mLogUtil.cameraInfo('Camera[KvStoreModel] createKVManager begin');
             DistributedData.createKVManager(config).then((manager) => {
-                mLogUtil.cameraInfo('Camera[KvStoreModel] createKVManager success, kvManager='
-                + JSON.stringify(manager));
+                mLogUtil.cameraInfo(`Camera[KvStoreModel] createKVManager success, kvManager
+                ${JSON.stringify(manager)}`);
                 self.kvManager = manager;
                 var options = {
                     createIfMissing: true,
@@ -55,7 +54,7 @@ export default class KvStoreModel {
                 };
                 mLogUtil.cameraInfo('Camera[KvStoreModel] kvManager.getKVStore begin');
                 self.kvManager.getKVStore(STORE_ID, options).then((store) => {
-                    mLogUtil.cameraInfo('Camera[KvStoreModel] getKVStore success, kvStore=' + store);
+                    mLogUtil.cameraInfo(`Camera[KvStoreModel] getKVStore success, kvStore=${store}`);
                     self.kvStore = store;
                     callback();
                 });
@@ -69,7 +68,7 @@ export default class KvStoreModel {
 
     broadcastMessage(msg) {
         mLogUtil.cameraInfo('broadcastMessage begin.');
-        mLogUtil.cameraInfo('Camera[KvStoreModel] broadcastMessage ' + msg);
+        mLogUtil.cameraInfo(` Camera[KvStoreModel] broadcastMessage${msg}`);
         let self = this;
         var num = self.getBroadcastId();
         this.createKvStore(() => {
@@ -79,27 +78,27 @@ export default class KvStoreModel {
     }
 
     put(key, value) {
-        mLogUtil.cameraInfo('Camera[KvStoreModel] kvStore.put ' + key + '=' + value);
+        mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.put key ${key},value ${value}`);
         this.kvStore.put(key, value).then((data) => {
             this.kvStore.get(key).then((data) => {
-                mLogUtil.cameraInfo('Camera[KvStoreModel] kvStore.get ' + key + '=' + JSON.stringify(data));
+                mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.get key ${key}, data ${JSON.stringify(data)}`);
             });
-            mLogUtil.cameraInfo('Camera[KvStoreModel] kvStore.put ' + key + ' finished, data=' + JSON.stringify(data));
+            mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.put key ${key}, finished, data ${JSON.stringify(data)}`);
         }).catch((err) => {
-            mLogUtil.cameraError('Camera[KvStoreModel] kvStore.put ' + key + ' failed, ' + JSON.stringify(err));
+            mLogUtil.cameraError(`Camera[KvStoreModel] kvStore.put key ${key}, failed ${JSON.stringify(err)}`);
         });
     }
 
     setOnMessageReceivedListener(msg, callback) {
         mLogUtil.cameraInfo('setOnMessageReceivedListener begin.');
-        mLogUtil.cameraInfo('Camera[KvStoreModel] setOnMessageReceivedListener ' + msg);
+        mLogUtil.cameraInfo(`Camera[KvStoreModel] setOnMessageReceivedListener ${msg}`);
         let self = this;
         this.createKvStore(() => {
             mLogUtil.cameraInfo('Camera[KvStoreModel] kvStore.on(dataChange) begin');
             self.kvStore.on('dataChange', 1, (data) => {
-                mLogUtil.cameraInfo('Camera[KvStoreModel] dataChange, ' + JSON.stringify(data));
-                mLogUtil.cameraInfo('Camera[KvStoreModel] dataChange, insert '
-                + data.insertEntries.length + ' udpate ' + data.updateEntries.length);
+                mLogUtil.cameraInfo(`Camera[KvStoreModel] dataChange, ${JSON.stringify(data)}`);
+                mLogUtil.cameraInfo(`Camera[KvStoreModel] dataChange, insert
+                ${data.insertEntries.length} udpate ${data.updateEntries.length}`);
                 for (let item of data.insertEntries) {
                     if (item.key === msg) {
                         mLogUtil.cameraInfo(`Camera insertEntries receive ${msg} = ${item.value}`);
@@ -148,6 +147,6 @@ export default class KvStoreModel {
         let splitBroadcastDay = broadcastDay.split('-').join('');
         let concatBroadcastId = `${splitBroadcastDay}` + `${splitBroadcastTime}` + `${broadcastRandom}`;
         mLogUtil.cameraInfo('getBroadcastId end.');
-        return concatBroadcastId
+        return concatBroadcastId;
     }
 }

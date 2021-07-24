@@ -39,13 +39,13 @@
                 ontouchstart="onTouchStartPhoto" ontouchend="onTouchEndPhoto" type="circle"
                 icon="/common/media/take_photo_normal.svg"></button>
         <stack class="SwitchCameraWrap {{ whichPage == 'ResponderPreview' ? 'DisableStyle' : '' }}">
-            <button class="AnotherLittleButton ShadowTwo" type="circle" icon="/common/media/small_switch_camera.svg">
+            <button class="SmallSwitchCamera ShadowTwo" type="circle" icon="/common/media/small_switch_camera.svg">
             </button>
             <div if="{{ whichPage == 'ResponderPreview' }}" class="SwitchCameraCircle BorderStyle"></div>
             <div else class="SwitchCameraCircle BorderStyle" onclick="switchCamera"></div>
         </stack>
         <deviceListDialog open-device-list-dialog="{{ isDeviceListDialogOpen }}"
                           @device-list-dialog-cancel="deviceListDialogCancel"
-                          @click-switch-button="swiButtonClick"></deviceListDialog>
+                          @click-switch-button="switchButtonClick"></deviceListDialog>
     </div>
 </div>

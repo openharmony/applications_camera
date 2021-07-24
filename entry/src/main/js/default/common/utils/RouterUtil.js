@@ -15,31 +15,27 @@
 
 import Router from '@system.router';
 
-let RouterUtil = function () {
+let RouterUtil = (function () {
     return {
-
         push: function (uri, params) {
             Router.push({
                 uri: uri,
                 params: params
-            })
+            });
         },
-
         replace: function (uri, params) {
             Router.replace({
                 uri: uri,
                 params: params
-            })
+            });
         },
-
         back: function () {
             Router.back();
         },
-
         clear: function () {
             Router.clear();
         }
-    }
-}();
+    };
+})();
 
 export default RouterUtil;

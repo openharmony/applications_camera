@@ -26,15 +26,15 @@
     </div>
     <div class="RemoteBar">
         <image class="ImageStyle ShadowTwo" src="../../common/media/ic_camera_thumbnail_default_white.svg"></image>
-        <button class="Shoot ShadowTwo" ontouchstart="onTouchStart"
-                ontouchend="onTouchEnd" type="circle" icon="{{ iconPhoto }}"></button>
+        <button class="Shoot ShadowTwo {{ isTouchPhoto ? 'DisableStyle' : 'EnableStyle' }}" ontouchstart="onTouchStart"
+                ontouchend="onTouchEnd" type="circle" icon="/common/media/take_photo_normal.svg"></button>
         <stack class="SwitchCameraWrap">
-            <button class="AnotherLittleButton ShadowTwo" type="circle" icon="/common/media/small_switch_camera.svg">
+            <button class="SmallSwitchCamera ShadowTwo" type="circle" icon="/common/media/small_switch_camera.svg">
             </button>
             <div class="SwitchCameraCircle BorderStyle" onclick="switchCamera"></div>
         </stack>
-        <deviceListDialog  open-device-list-dialog="{{isDeviceListDialogOpen}}"
-                            @device-list-dialog-cancel="deviceListDialogCancel"
-                            @click-switch-button="remoteSwitchClick"></deviceListDialog>
+        <deviceListDialog open-device-list-dialog="{{ isDeviceListDialogOpen }}"
+                          @device-list-dialog-cancel="deviceListDialogCancel"
+                          @click-switch-button="remoteSwitchClick"></deviceListDialog>
     </div>
 </div>

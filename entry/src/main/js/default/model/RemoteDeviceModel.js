@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import Prompt from '@system.prompt';
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 import LogUtil from '../common/utils/LogUtil.js';
 
@@ -22,7 +21,7 @@ let mLogUtil = new LogUtil();
 let cameraDeviceId = 'localhost';
 
 export default class RemoteDeviceModel {
-    deviceList = new Array();
+    deviceList = [];
     callbackForList;
     callbackForStateChange;
     #deviceManager;
@@ -34,11 +33,7 @@ export default class RemoteDeviceModel {
         mLogUtil.cameraInfo('registerDeviceManagerOn begin.');
         let self = this;
         this.#deviceManager.on('deviceStateChange', (data) => {
-            mLogUtil.cameraInfo('deviceStateChange 1.');
-            mLogUtil.cameraInfo('Camera[RemoteDeviceModel] deviceStateChange data=' + data);
-            mLogUtil.cameraInfo('Camera[RemoteDeviceModel] deviceStateChange JSON.stringify data=' + JSON.stringify(data));
-            mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] deviceStateChange JSON.stringify2 data= ${JSON.stringify(data)}`);
-            mLogUtil.cameraInfo('deviceStateChange 2.');
+            mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] deviceStateChange JSON.stringify data= ${JSON.stringify(data)}`);
             switch (data.action) {
                 case 0:
                     self.deviceList[self.deviceList.length] = data.device;
@@ -48,7 +43,7 @@ export default class RemoteDeviceModel {
                 case 2:
                     if (self.deviceList.length > 0) {
                         for (var i = 0; i < self.deviceList.length; i++) {
-                            if (self.deviceList[i].deviceId == data.device.deviceId) {
+                            if (self.deviceList[i].deviceId === data.device.deviceId) {
                                 self.deviceList[i] = data.device;
                                 break;
                             }
@@ -59,9 +54,9 @@ export default class RemoteDeviceModel {
                     break;
                 case 1:
                     if (self.deviceList.length > 0) {
-                        var list = new Array();
+                        var list = [];
                         for (var i = 0; i < self.deviceList.length; i++) {
-                            if (self.deviceList[i].deviceId != data.device.deviceId) {
+                            if (self.deviceList[i].deviceId !== data.device.deviceId) {
                                 list[i] = self.deviceList[i];
                             }
                         }
@@ -78,14 +73,9 @@ export default class RemoteDeviceModel {
         });
         this.#deviceManager.on('deviceFound', (data) => {
             mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] deviceFound data= ${JSON.stringify(data)}`);
-            Prompt.showToast({
-                message: 'deviceFound device=' + JSON.stringify(data.device),
-                duration: 3000,
-            });
             mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] deviceFound self.deviceList= ${self.deviceList}`);
-            mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] deviceFound self.deviceList.length= ${self.deviceList.length}`);
             for (var i = 0; i < self.deviceList.length; i++) {
-                if (self.deviceList[i].deviceId == data.device.deviceId) {
+                if (self.deviceList[i].deviceId === data.device.deviceId) {
                     mLogUtil.cameraInfo('Camera[RemoteDeviceModel] device founded, ignored');
                     return;
                 }
@@ -96,27 +86,15 @@ export default class RemoteDeviceModel {
         });
         this.#deviceManager.on('discoverFail', (data) => {
             mLogUtil.cameraInfo('discoverFail begin.');
-            Prompt.showToast({
-                message: 'discoverFail reason=' + data.reason,
-                duration: 3000,
-            });
             mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] discoverFail data= ${JSON.stringify(data)}`);
         });
         this.#deviceManager.on('authResult', (data) => {
             mLogUtil.cameraInfo('authResult begin.');
-            Prompt.showToast({
-                message: 'authResult data=' + JSON.stringify(data),
-                duration: 3000,
-            });
             mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] authResult data= ${JSON.stringify(data)}`);
         });
         this.#deviceManager.on('serviceDie', () => {
             mLogUtil.cameraInfo('serviceDie begin.');
             self.callbackForStateChange('SERVICEDIE', 0);
-            Prompt.showToast({
-                message: 'serviceDie',
-                duration: 3000,
-            });
             mLogUtil.cameraError('Camera[RemoteDeviceModel] serviceDie');
         });
         SUBSCRIBE_ID = Math.floor(65536 * Math.random());
@@ -129,14 +107,14 @@ export default class RemoteDeviceModel {
             isWakeRemote: true,
             capability: 0
         };
-        mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] startDeviceDiscover ${SUBSCRIBE_ID}`);
-        this.#deviceManager.startDeviceDiscover(info);
+        mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] startDeviceDiscovery ${SUBSCRIBE_ID}`);
+        this.#deviceManager.startDeviceDiscovery(info);
         mLogUtil.cameraInfo('registerDeviceManagerOn end.');
     }
 
     registerDeviceManagerOff() {
         mLogUtil.cameraInfo('registerDeviceManagerOff begin.');
-        this.#deviceManager.stopDeviceDiscover(SUBSCRIBE_ID);
+        this.#deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID);
         this.#deviceManager.off('deviceStateChange');
         this.#deviceManager.off('deviceFound');
         this.#deviceManager.off('discoverFail');
@@ -147,7 +125,7 @@ export default class RemoteDeviceModel {
 
     createDeviceManager(callback) {
         mLogUtil.cameraInfo('createDeviceManager begin.');
-        if (typeof (this.#deviceManager) == 'undefined') {
+        if (typeof (this.#deviceManager) === 'undefined') {
             let self = this;
             deviceManager.createDeviceManager('com.ohos.camera', (error, value) => {
                 if (error) {
@@ -169,14 +147,14 @@ export default class RemoteDeviceModel {
         let self = this;
         this.createDeviceManager(() => {
             self.callbackForList = callback;
-            if (self.#deviceManager == undefined) {
+            if (self.#deviceManager === undefined) {
                 mLogUtil.cameraError('Camera[RemoteDeviceModel] deviceManager has not initialized');
                 self.callbackForList();
                 return;
             }
             var list = self.#deviceManager.getTrustedDeviceListSync();
             mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] getTrustedDeviceListSync end, deviceList= ${JSON.stringify(list)}`);
-            if (typeof (list) != 'undefined' && typeof (list.length) != 'undefined') {
+            if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
                 self.deviceList = list;
             }
             self.callbackForList();
@@ -190,10 +168,10 @@ export default class RemoteDeviceModel {
         mLogUtil.cameraInfo('unregisterDeviceListCallback begin.');
         this.callbackForList = null;
         this.registerDeviceManagerOff();
-        if (this.callbackForStateChange != null) {
+        if (this.callbackForStateChange !== null) {
             this.registerDeviceManagerOn();
         }
-        this.deviceList = new Array();
+        this.deviceList = [];
         mLogUtil.cameraInfo('unregisterDeviceListCallback end.');
     }
 
@@ -202,7 +180,7 @@ export default class RemoteDeviceModel {
         let self = this;
         this.createDeviceManager(() => {
             self.callbackForStateChange = callback;
-            if (self.#deviceManager == undefined) {
+            if (self.#deviceManager === undefined) {
                 mLogUtil.cameraError('Camera[RemoteDeviceModel] deviceManager has not initialized');
                 return;
             }
@@ -216,7 +194,7 @@ export default class RemoteDeviceModel {
         mLogUtil.cameraInfo('unregisterDeviceStateChangeCallback begin.');
         this.callbackForStateChange = null;
         this.registerDeviceManagerOff();
-        if (this.callbackForList != null) {
+        if (this.callbackForList !== null) {
             this.registerDeviceManagerOn();
         }
         mLogUtil.cameraInfo('unregisterDeviceStateChangeCallback end.');
@@ -225,11 +203,11 @@ export default class RemoteDeviceModel {
     setCurrentDeviceId(deviceId) {
         mLogUtil.cameraInfo('setCurrentDeviceId begin.');
         cameraDeviceId = deviceId;
-        mLogUtil.cameraInfo('setCurrentDeviceId end.' + cameraDeviceId);
+        mLogUtil.cameraInfo(`setCurrentDeviceId end.${cameraDeviceId}`);
     }
 
     getCurrentDeviceId() {
-        mLogUtil.cameraInfo('getCurrentDeviceId begin.' + cameraDeviceId);
+        mLogUtil.cameraInfo(`getCurrentDeviceId begin.${cameraDeviceId}`);
         return cameraDeviceId;
     }
 }

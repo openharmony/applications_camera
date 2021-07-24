@@ -2,11 +2,11 @@
     "strings": {
         "photoMode": "拍照",
         "videoMode": "录像",
-        "app_name":    "相机",
+        "app_name": "相机",
         "photo": "拍照",
         "video": "录像",
         "choose_device": "选择设备",
-        "localhost_front": "本机（前置）",
+        "localhost_front": "本机",
         "remote_camera_in_use": "正在使用其他摄像头",
         "network_interruption": "网络中断",
         "remote_camera_started_fail": "对端设备未响应",

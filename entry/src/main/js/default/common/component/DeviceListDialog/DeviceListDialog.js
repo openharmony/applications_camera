@@ -27,15 +27,17 @@ export default {
     },
     data: {
         presentDeviceId: 'localhost',
+        isDeviceListDialogOpen: false,
         deviceList: []
     },
     onInit() {
         mLogUtil.cameraInfo('openDeviceListDialog onInit begin.');
-        this.$watch("openDeviceListDialog", (newV, oldV) => {
-            mLogUtil.cameraInfo('openDeviceListDialog  newV:' + newV + 'oldV:' + oldV);
-            if (newV) {
+        this.$watch('openDeviceListDialog', (newV, oldV) => {
+            mLogUtil.cameraInfo(`openDeviceListDialog newV: ${newV} oldV: ${oldV}`);
+            if (newV && !this.isDeviceListDialogOpen) {
                 this.openDialog();
-            } else {
+            }
+            if (!newV && this.isDeviceListDialogOpen) {
                 this.dismissDialog();
             }
         });
@@ -63,19 +65,20 @@ export default {
         let splitTime = curTime.split(':').join('');
         let curDay = mDateTimeUtil.getDate();
         let splitDay = curDay.split('-').join('');
-        let curListName = `${splitDay}`+`${splitTime}`+`${curRandom}`;
-        mLogUtil.cameraInfo("curListName=" + curListName);
+        let curListName = `${splitDay}` + `${splitTime}` + `${curRandom}`;
         this.deviceList = [{
-                               name: this.$t('strings.localhost_front'),
-                               id: 'localhost',
-                               listName: curListName
-                           }]
+            name: this.$t('strings.localhost_front'),
+            id: 'localhost',
+            listName: curListName
+        }];
         this.$app.$def.data.remoteDeviceModel.registerDeviceListCallback(() => {
             mLogUtil.cameraInfo(`CameraDeviceList on remote device updated,
             count= ${this.$app.$def.data.remoteDeviceModel.deviceList.length}`);
-            var list = new Array();
+            var list = [];
             list[0] = self.deviceList[0];
-            for (let [item, index] of new Map(this.$app.$def.data.remoteDeviceModel.deviceList.map((item, i) => [item, i]))) {
+            for (let [item, index] of new Map(
+                                          this.$app.$def.data.remoteDeviceModel.deviceList.map(
+                                              (item, i) => [item, i]))) {
                 mLogUtil.cameraInfo(`CameraDevice ${index} / ${item.deviceId}
                 deviceName= ${item.deviceName} deviceType= ${item.deviceType}`);
                 list[index + 1] = {
@@ -87,12 +90,14 @@ export default {
             self.deviceList = list;
         });
         this.presentDeviceId = this.$app.$def.data.remoteDeviceModel.getCurrentDeviceId();
-        mLogUtil.cameraInfo('switchCamera presentDeviceId: ' + this.presentDeviceId);
+        mLogUtil.cameraInfo(`switchCamera presentDeviceId: ${this.presentDeviceId}`);
+        this.isDeviceListDialogOpen = true;
         this.$element('ContinueAbilityDialog').show();
         mLogUtil.cameraInfo('openDialog end.');
     },
     cancelDialog() {
         mLogUtil.cameraInfo('cancelDialog begin.');
+        this.isDeviceListDialogOpen = false;
         this.$emit('deviceListDialogCancel');
         this.$app.$def.data.remoteDeviceModel.unregisterDeviceListCallback();
         mLogUtil.cameraInfo('cancelDialog end.');
@@ -105,6 +110,7 @@ export default {
     dismissDialog() {
         mLogUtil.cameraInfo('dismissDialog begin.');
         this.$emit('deviceListDialogCancel');
+        this.isDeviceListDialogOpen = false;
         this.$element('ContinueAbilityDialog').close();
         this.$app.$def.data.remoteDeviceModel.unregisterDeviceListCallback();
         mLogUtil.cameraInfo('dismissDialog end.');

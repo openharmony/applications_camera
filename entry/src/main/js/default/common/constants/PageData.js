@@ -16,6 +16,6 @@
 var PageData = {
     PREVIEW_PAGE: 'pages/PreviewView/PreviewView',
     DISTRIBUTED_PAGE: 'pages/DistributedView/DistributedView'
-}
+};
 
 export default PageData;

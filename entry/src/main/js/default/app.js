@@ -18,7 +18,7 @@ import RemoteDeviceModel from './model/RemoteDeviceModel.js';
 import KvStoreModel from './model/KvStoreModel.js';
 import LogUtil from '../default/common/utils/LogUtil.js';
 
-let logUtil = new LogUtil();
+let mLogUtil = new LogUtil();
 
 export default {
     data: {
@@ -27,9 +27,9 @@ export default {
         kvStoreModel: new KvStoreModel()
     },
     onCreate() {
-        logUtil.cameraInfo('AceApplication onCreate');
+        mLogUtil.cameraInfo('AceApplication onCreate');
     },
     onDestroy() {
-        logUtil.cameraInfo('AceApplication onDestroy');
+        mLogUtil.cameraInfo('AceApplication onDestroy');
     }
 };

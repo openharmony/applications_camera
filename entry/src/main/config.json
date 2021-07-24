@@ -58,20 +58,6 @@
           "autoDesignWidth": false
         }
       }
-    ],
-    "reqPermissions": [
-      {
-        "name": "ohos.permission.CAMERA"
-      },
-      {
-        "name": "ohos.permission.WRITE_USER_STORAGE"
-      },
-      {
-        "name": "ohos.permission.READ_USER_STORAGE"
-      },
-      {
-        "name": "ohos.permission.READ_MEDIA"
-      }
     ]
   }
 }
