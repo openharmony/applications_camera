@@ -12,7 +12,7 @@
 
 ### 架构图<a name="section78574815486"></a>
 
-![](figures/zh-cn_image.png)
+![](figures/camera.png)
 
 ## 目录<a name="section161941989596"></a>
 
@@ -27,9 +27,7 @@
 │                └──default
 │                       ├──common                       # 公共资源文件目录
 │                           ├──component                # 自定义组件目录
-│                                   └──DeviceListDialog # 分布式设备列表弹框组件
-│                           ├──constants                # 常量目录                 
-│                           ├──css                      # 公共样式目录
+│                                   └──DeviceListDialog # 分布式设备列表弹框组件                
 │                           ├──media                    # 图片和音频资源目录
 │                           └──utils                    # 公共工具类目录
 │                       ├──i18n                         # 全球化字符串资源目录
