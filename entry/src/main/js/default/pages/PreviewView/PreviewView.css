@@ -1,0 +1,97 @@
+/*
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@import '../../common/css/CommonPageStyle.css';
+
+.FlashingStyle {
+    background-color: #000;
+    position: fixed;
+    width: 720px;
+    height: 960px;
+    z-index: 999;
+}
+
+.PreviewArea {
+    background-color: #FFF;
+    width: 720px;
+    height: 960px;
+    flex-direction: column;
+}
+
+.ModeSwitch {
+    background-color: #000;
+    height: 102px;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Spot {
+    background-color: #006cde;
+    margin-top: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+}
+
+.List {
+    flex-direction: row;
+    margin-top: 28px;
+    width: 720px;
+    height: 38px;
+}
+
+.ListItem {
+    align-items: center;
+    justify-content: center;
+    width: 144px;
+}
+
+.FootBar {
+    background-color: #000;
+    height: 168px;
+    width: 720px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ImageStyle {
+    width: 70px;
+    height: 70px;
+    border-radius: 36px;
+}
+
+.AnimationStyle {
+    animation-name: ScaleDraw;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-duration: 200ms;
+}
+
+.ModeText {
+    color: #FFF;
+}
+
+@keyframes ScaleDraw {
+    from {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
