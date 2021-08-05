@@ -91,7 +91,7 @@ export default class PreviewPresenter {
         mLogUtil.cameraInfo(`jumpToAlbum end: ${result}`);
     }
 
-    previewStartedSuccess(element) {
+    previewStartedSuccess(element, callback) {
         mLogUtil.cameraInfo('previewStartedSuccess begin.');
         mKvStoreModel.broadcastMessage(mKvStoreModel.messageData().msgFromResponderReady);
         mKvStoreModel.setOnMessageReceivedListener(
@@ -102,7 +102,7 @@ export default class PreviewPresenter {
         mKvStoreModel.setOnMessageReceivedListener(
             mKvStoreModel.messageData().msgFromDistributedTakePhoto, () => {
                 mLogUtil.cameraInfo('OnMessageReceived, takePhoto');
-                this.takePhoto(element);
+                callback();
             });
         mLogUtil.cameraInfo('previewStartedSuccess end.');
     }
@@ -198,7 +198,7 @@ export default class PreviewPresenter {
                     mAudioPlayerStatus = 'dataLoaded';
                     mAudioPlayer.play();
                 });
-                mAudioPlayer.src = 'file://data/media/audio/capture.ogg';
+                mAudioPlayer.src = 'file://system/etc/capture.ogg';
                 break;
             case 'dataLoaded':
                 mAudioPlayer.play();

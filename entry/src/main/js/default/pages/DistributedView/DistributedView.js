@@ -103,7 +103,6 @@ export default {
         if (inputValue === event.value) {
             mLogUtil.cameraInfo('DistributedView equal');
             if (event.value === 'localhost') {
-                mDistributedPresenter.setCurrentDeviceId('localhost');
                 this.deviceListDialogCancel();
                 this.startPreviewView();
             }
@@ -135,6 +134,7 @@ export default {
     startPreviewView() {
         mLogUtil.cameraInfo('DistributedView startPreviewView begin.');
         RouterUtil.replace(PREVIEW_VIEW);
+        mDistributedPresenter.setCurrentDeviceId('localhost');
         mLogUtil.cameraInfo('DistributedView startPreviewView end.');
     }
 };

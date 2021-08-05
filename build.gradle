@@ -2,26 +2,6 @@
 apply plugin: 'com.huawei.ohos.app'
 
 ohos {
-    signingConfigs {
-        debug {
-            storeFile file('D:\\SDK\\keystore\\l2_camera\\camera.p12')
-            storePassword '0000001A2969B82ABEFBB8E985BF6A72857896B88663A6903D01EF23A2B83952009AD6DC180F0D1805B7'
-            keyAlias = 'camera'
-            keyPassword '0000001A478BE4ADDC0E4BDF533CA7D92DB06F5EAB03997F04C12EC5D6E3B1B7932E99DF80F77D24F7AD'
-            signAlg = 'SHA256withECDSA'
-            profile file('D:\\SDK\\keystore\\l2_camera\\SgnedReleasedProfileTemplate.p7b')
-            certpath file('D:\\SDK\\keystore\\l2_camera\\IDE.cer')
-        }
-        release {
-            storeFile file('D:\\SDK\\keystore\\l2_camera\\camera.p12')
-            storePassword '000000160B151C7235CAAFFFFD17E356C55C00424BD7A0726233F1BF87F753B58409C49BD05F'
-            keyAlias = 'camera'
-            keyPassword '00000016AADCBF45E6E1EDDD033E7EBB5DE9027B5FDB2E0DD5C212C55240915D29833B42B183'
-            signAlg = 'SHA256withECDSA'
-            profile file('D:\\SDK\\keystore\\l2_camera\\SgnedReleasedProfileTemplate.p7b')
-            certpath file('D:\\SDK\\keystore\\l2_camera\\IDE.cer')
-        }
-    }
     compileSdkVersion 6
     defaultConfig {
         compatibleSdkVersion 6

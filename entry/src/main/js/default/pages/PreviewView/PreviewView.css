@@ -73,6 +73,13 @@
     border-radius: 36px;
 }
 
+.AnimationStyle {
+    animation-name: ScaleDraw;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-duration: 200ms;
+}
+
 .ModeText {
     color: #FFF;
 }
@@ -81,11 +88,9 @@
     from {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.5);
     }
-
     to {
         transform: scale(1);
     }

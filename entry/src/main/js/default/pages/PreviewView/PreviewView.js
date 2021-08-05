@@ -28,7 +28,7 @@ export default {
     data: {
         isTouchPhoto: false,
         photoUri: '/common/media/ic_camera_thumbnail_default_white.svg',
-        isAnimationState: false,
+        animationClassName: '',
         isShowFlashingState: false,
         whichPage: 'DistributedPreview',
         cameraStatus: 'DistributedPreview',
@@ -70,7 +70,7 @@ export default {
     },
     onShow() {
         mLogUtil.cameraInfo('PreviewView onShow begin.');
-        this.isAnimationState = false;
+        this.animationClassName = '';
         let self = this;
         this.photoUri = '/common/media/ic_camera_thumbnail_default_white.svg';
         mPreviewPresenter.getPhotoUri().then((data) => {
@@ -125,14 +125,22 @@ export default {
         mLogUtil.cameraInfo('PreviewView onNewRequest end.');
     },
     responderPreviewStartedSuccess() {
+        let self = this;
         mLogUtil.cameraInfo('PreviewView responderPreviewStartedSuccess begin.');
         if (this.cameraStatus === 'ResponderPreview') {
-            mPreviewPresenter.previewStartedSuccess(this.$element('CameraId'));
+            mPreviewPresenter.previewStartedSuccess(this.$element('CameraId'), () => {
+                mLogUtil.cameraInfo('responderPreviewStartedSuccess onTouchStartPhoto.');
+                self.onTouchStartPhoto();
+                setTimeout(()=>{
+                    mLogUtil.cameraInfo('responderPreviewStartedSuccess onTouchEndPhoto.');
+                    self.onTouchEndPhoto();
+                }, 200);
+            });
             mPreviewPresenter.registerDeviceStateChangeCallback((action, deviceId) => {
                 mLogUtil.cameraInfo('PreviewView registerDeviceStateChangeCallback begin.');
                 switch (action) {
                     case 'OFFLINE':
-                        this.promptShowDialog(this.$t('strings.network_interruption'));
+                        this.promptShowDialog(self.$t('strings.network_interruption'));
                         setTimeout(() => {
                             featureAbility.terminateAbility();
                         }, 3000);
@@ -163,8 +171,8 @@ export default {
         mPreviewPresenter.takePhoto(this.$element('CameraId')).then((object) => {
             if (object.result === 'success') {
                 this.photoUri = object.photoUri;
-                this.isAnimationState = true;
-                this.isAnimationState = false;
+                this.animationClassName = '';
+                this.animationClassName = 'AnimationStyle';
             }
         });
         this.isTouchPhoto = true;

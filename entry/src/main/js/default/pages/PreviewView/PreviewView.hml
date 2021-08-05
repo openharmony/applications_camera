@@ -34,7 +34,7 @@
     <div class="FootBar">
         <image class="ImageStyle ShadowTwo
       {{ photoUri == '/common/media/ic_camera_thumbnail_default_white.svg' ? '' : 'BorderStyle' }}
-      {{ isAnimationState ? 'AnimationStyle' : '' }}" src="{{ photoUri }}" onclick="jumpToAlbum"></image>
+      {{ animationClassName }}" src="{{ photoUri }}" onclick="jumpToAlbum"></image>
         <button class="Shoot ShadowTwo {{ isTouchPhoto ? 'DisableStyle' : 'EnableStyle' }}" if="{{ photoShootButton }}"
                 ontouchstart="onTouchStartPhoto" ontouchend="onTouchEndPhoto" type="circle"
                 icon="/common/media/take_photo_normal.svg"></button>

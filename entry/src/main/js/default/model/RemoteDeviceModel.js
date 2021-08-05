@@ -134,7 +134,8 @@ export default class RemoteDeviceModel {
                 }
                 self.#deviceManager = value;
                 callback();
-                mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] createDeviceManager callback returned, error= ${error} value= ${value}`);
+                mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] createDeviceManager callback returned,
+                error= ${error} value= ${JSON.stringify(value)}`);
             });
         } else {
             callback();

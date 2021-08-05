@@ -24,7 +24,7 @@ const ALBUMNAME = 'camera';
 export default class PreviewModel {
     getPhotoUri() {
         return new Promise((resolve, reject) => {
-            mLogUtil.cameraInfo('getPhotoUri begin.');
+            mLogUtil.cameraInfo('PreviewModel getPhotoUri begin.');
             const IMAGEARGS = {
                 selections: ALBUMNAME,
                 selectionArgs: ['imagealbum'],
