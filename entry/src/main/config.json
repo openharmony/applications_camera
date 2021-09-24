@@ -38,6 +38,7 @@
             ]
           }
         ],
+        "visible": true,
         "name": "com.ohos.camera.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
