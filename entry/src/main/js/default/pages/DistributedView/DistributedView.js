@@ -94,8 +94,8 @@ export default {
         this.isTouchPhoto = false;
         mLogUtil.cameraInfo('onTouchEnd end.');
     },
-    remoteSwitchClick(e) {
-        mLogUtil.cameraInfo('remoteSwitchClick begin.');
+    deviceListRadioChange(e) {
+        mLogUtil.cameraInfo('deviceListRadioChange begin.');
         var inputValue = e.detail.inputValue;
         var event = e.detail.event;
         mLogUtil.cameraInfo(`DistributedView Camera inputValue ${JSON.stringify(inputValue)}`);
@@ -107,7 +107,7 @@ export default {
                 this.startPreviewView();
             }
         }
-        mLogUtil.cameraInfo('remoteSwitchClick end.');
+        mLogUtil.cameraInfo('deviceListRadioChange end.');
     },
     promptShowDialog() {
         mLogUtil.cameraInfo('promptShowDialog begin.');

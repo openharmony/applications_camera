@@ -50,11 +50,14 @@ export default {
     },
     onRadioChange(value, e) {
         mLogUtil.cameraInfo('radioChange begin.');
-        this.$emit('clickSwitchButton', {
-            inputValue: value,
-            event: e,
-            deviceList: this.deviceList
-        });
+        if (value === e.value) {
+            mLogUtil.cameraInfo('onRadioChange');
+            this.$emit('deviceListRadioChange', {
+                inputValue: value,
+                event: e,
+                deviceList: this.deviceList
+            });
+        }
         mLogUtil.cameraInfo('radioChange end.');
     },
     openDialog() {
@@ -72,8 +75,8 @@ export default {
             listName: curListName
         }];
         this.$app.$def.data.remoteDeviceModel.registerDeviceListCallback(() => {
-            mLogUtil.cameraInfo(`CameraDeviceList on remote device updated,
-            count= ${this.$app.$def.data.remoteDeviceModel.deviceList.length}`);
+            mLogUtil.cameraInfo('CameraDeviceList on remote device updated');
+            mLogUtil.cameraInfo(`count= ${this.$app.$def.data.remoteDeviceModel.deviceList.length}`);
             var list = [];
             list[0] = self.deviceList[0];
             for (let [item, index] of new Map(
