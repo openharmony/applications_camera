@@ -38,12 +38,15 @@
             ]
           }
         ],
+        "visible": true,
         "name": "com.ohos.camera.MainAbility",
         "icon": "$media:icon",
         "description": "$string:mainability_description",
         "label": "$string:app_name",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "standard",
+        "srcPath": "default",
+        "srcLanguage": "js"
       }
     ],
     "js": [

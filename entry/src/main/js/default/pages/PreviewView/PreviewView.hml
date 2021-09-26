@@ -17,35 +17,66 @@
 
 <element name="deviceListDialog" src="../../common/component/DeviceListDialog/DeviceListDialog.hml"></element>
 
-<div class="Container">
-    <div show="{{ isShowFlashingState }}" class="FlashingStyle"></div>
-    <div class="PreviewArea">
-        <camera id="CameraId" style="height : 960px; width : 720px"></camera>
+<stack class="Container">
+    <div class="PreviewArea" style="height : {{ previewHeight }} px; width : 720px;">
+        <camera if="{{ isCreateCamera }}" id="CameraId"
+                style="height : {{ previewHeight }} px; width : 720px;"></camera>
+        <image if="{{ isShowHazyPicture }}" style="height : {{ previewHeight }} px; width : 720px;"
+               class="CameraPic" src="{{ hazyPictureUri }}"></image>
     </div>
-    <div class="ModeSwitch">
-        <list class="List" id="List" ontouchend="listTouchEnd" onscroll="scroll"
+    <div show="{{ isShowFlashingState }}" class="FlashingStyle"></div>
+    <div class="ModeSwitch {{ isSwitchCameraButton ? 'BackgroundBlack' : 'BackgroundNo' }}">
+        <list if="{{ whichPage === 'ResponderPreview' }}" class="List" id="List"
               nitialindex="0" itemcenter="true" scrolleffect="no">
-            <list-item class="ListItem" style="margin-left : 288px;" onclick="jumpToPhoto">
-                <text style="font-size : 24.62px;" class="ModeText ShadowTwo">{{ $t('strings.photoMode') }}</text>
+            <list-item class="ListItem ListItemWidth">
+                <text style="font-weight : {{ photoFontWeight }};"
+                      class="ModeText ShadowTwo">{{ $t('strings.photoMode') }}</text>
             </list-item>
         </list>
-        <div class="Spot ShadowTwo"></div>
+        <list if="{{ whichPage !== 'ResponderPreview' && isVideoShoot }}" class="List" id="List"
+              ontouchend="listTouchEnd" onscroll="scroll" nitialindex="0" itemcenter="true" scrolleffect="no">
+            <list-item class="ListItem" style="margin-left : 288px;" onclick="jumpToPhoto">
+                <text style="font-weight : {{ photoFontWeight }};"
+                      class="ModeText ShadowTwo">{{ $t('strings.photoMode') }}</text>
+            </list-item>
+            <list-item class="ListItem" style="margin-right : 288px;" onclick="jumpToVideo">
+                <text style="font-weight : {{ videoFontWeight }};"
+                      class="ModeText ShadowTwo">{{ $t('strings.videoMode') }}</text>
+            </list-item>
+        </list>
+        <div if="{{ isVideoShoot }}" class="SpotWrap">
+            <div class="Spot ShadowTwo"></div>
+        </div>
     </div>
-    <div class="FootBar">
-        <image class="ImageStyle ShadowTwo
-      {{ photoUri == '/common/media/ic_camera_thumbnail_default_white.svg' ? '' : 'BorderStyle' }}
-      {{ animationClassName }}" src="{{ photoUri }}" onclick="jumpToAlbum"></image>
-        <button class="Shoot ShadowTwo {{ isTouchPhoto ? 'DisableStyle' : 'EnableStyle' }}" if="{{ photoShootButton }}"
+    <div class="FootBar {{ isSwitchCameraButton ? 'BackgroundBlack' : 'BackgroundNo' }}">
+        <stack class="ImageStyle">
+            <div show="{{ isVideoStop && isVideoShootButton }}" class="ImageStyle
+                {{ isVideoStop ? 'CloseRecorderThumbnail' : '' }} {{ animationClassName }}" onclick="jumpToAlbum">
+            </div>
+            <div if="{{ isVideoShoot && ! isVideoStop }}" style="border-radius : 36px;"
+                 class="{{ photoUri === '/common/media/ic_camera_thumbnail_default_white.svg' ? '' : 'BorderStyle' }}">
+                <image class="ImageStyle ShadowTwo {{ animationClassName }}"
+                       src="{{ photoUri }}" onclick="jumpToAlbum"></image>
+            </div>
+        </stack>
+        <button class="Shoot ShadowTwo {{ isTouchPhoto ? 'DisableStyle' : 'EnableStyle' }}"
+                if="{{ isPhotoShootButton }}"
                 ontouchstart="onTouchStartPhoto" ontouchend="onTouchEndPhoto" type="circle"
                 icon="/common/media/take_photo_normal.svg"></button>
-        <stack class="SwitchCameraWrap {{ whichPage == 'ResponderPreview' ? 'DisableStyle' : '' }}">
+        <button class="Shoot ShadowTwo" if="{{ isVideoShootButton }}"
+                ontouchend="onTouchEndVideoStart" type="circle" icon="/common/media/take_video_normal.svg"></button>
+        <button class="Shoot ShadowTwo" if="{{ isVideoStopButton }}" ontouchend="onTouchEndVideoStop" type="circle"
+                icon="/common/media/take_video_stop.svg"></button>
+        <div if="{{ mode === 'video' }}" class="SwitchCameraCircle"></div>
+        <stack if="{{ mode === 'photo' }}"
+               class="SwitchCameraWrap {{ whichPage === 'ResponderPreview' ? 'DisableStyle' : '' }}">
             <button class="SmallSwitchCamera ShadowTwo" type="circle" icon="/common/media/small_switch_camera.svg">
             </button>
-            <div if="{{ whichPage == 'ResponderPreview' }}" class="SwitchCameraCircle BorderStyle"></div>
+            <div if="{{ whichPage === 'ResponderPreview' }}" class="SwitchCameraCircle BorderStyle"></div>
             <div else class="SwitchCameraCircle BorderStyle" onclick="switchCamera"></div>
         </stack>
         <deviceListDialog open-device-list-dialog="{{ isDeviceListDialogOpen }}"
                           @device-list-dialog-cancel="deviceListDialogCancel"
-                          @click-switch-button="switchButtonClick"></deviceListDialog>
+                          @device-list-radio-change="deviceListRadioChange"></deviceListDialog>
     </div>
-</div>
+</stack>

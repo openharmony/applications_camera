@@ -14,15 +14,16 @@
  */
 
 import LogUtil from '../../common/utils/LogUtil.js';
-import FeatureAbility from '@ohos.ability.featureability';
+import featureAbility from '@ohos.ability.featureAbility';
 import media from '@ohos.multimedia.media';
+import mediaLibrary from '@ohos.multimedia.medialibrary';
 
+let mMedia = mediaLibrary.getMediaLibraryHelper();
 let mLogUtil = new LogUtil();
 let mPreviewModel;
 let mKvStoreModel;
 let mRemoteDeviceModel;
 let mAudioPlayer;
-let mAudioPlayerStatus;
 
 export default class PreviewPresenter {
     constructor(previewModel, kvStoreModel, remoteDeviceModel) {
@@ -30,21 +31,26 @@ export default class PreviewPresenter {
         mKvStoreModel = kvStoreModel;
         mRemoteDeviceModel = remoteDeviceModel;
         mAudioPlayer = undefined;
-        mAudioPlayerStatus = 'unCreated';
     }
 
-    takePhoto(element) {
+    takePhoto(element, state) {
         mLogUtil.cameraInfo('takePhoto begin.');
-        this.playSound();
+        if (state) {
+            this.playSound('file://system/etc/capture.ogg');
+        }
+        let photoUri = '';
         return new Promise((resolve, reject) => {
             element.takePhoto({
                 quality: mPreviewModel.getPhotoQuality(),
                 success: (res) => {
                     mLogUtil.cameraInfo(`takePhoto success: ${JSON.stringify(res)}`);
-                    resolve({
-                        result: 'success',
-                        photoUri: res.uri
-                    });
+                    photoUri = res.uri;
+                    if (state) {
+                        resolve({
+                            result: 'success',
+                            photoUri: photoUri
+                        });
+                    }
                 },
                 fail: (res) => {
                     reject({
@@ -53,6 +59,12 @@ export default class PreviewPresenter {
                     mLogUtil.cameraError(`takePhoto fail: ${res.errormsg} ${res.errorcode}`);
                 },
                 complete: (res) => {
+                    if (!state) {
+                        resolve({
+                            result: 'complete',
+                            photoUri: photoUri
+                        });
+                    }
                     mLogUtil.cameraInfo(`takePhoto complete: ${res}`);
                 },
             });
@@ -77,16 +89,16 @@ export default class PreviewPresenter {
         };
         let paramBundleName = 'com.ohos.photos';
         let paramAbilityName = 'com.ohos.photos.MainAbility';
-        let result = FeatureAbility.startAbility({
+        let result = featureAbility.startAbility({
             want: {
                 parameters: actionData,
                 bundleName: paramBundleName,
                 abilityName: paramAbilityName
             },
-        }).then(data => {
+        }).then((data) => {
             mLogUtil.cameraInfo(`startAbility : success : ${JSON.stringify(data)}`);
-        }).catch(error => {
-            mLogUtil.cameraInfo(`startAbility : fail : ${JSON.stringify(error)}`);
+        }).catch((error) => {
+            mLogUtil.cameraError(`startAbility : fail : ${JSON.stringify(error)}`);
         });
         mLogUtil.cameraInfo(`jumpToAlbum end: ${result}`);
     }
@@ -94,16 +106,16 @@ export default class PreviewPresenter {
     previewStartedSuccess(element, callback) {
         mLogUtil.cameraInfo('previewStartedSuccess begin.');
         mKvStoreModel.broadcastMessage(mKvStoreModel.messageData().msgFromResponderReady);
-        mKvStoreModel.setOnMessageReceivedListener(
-            mKvStoreModel.messageData().msgFromDistributedBack, () => {
-                mLogUtil.cameraInfo('OnMessageReceived, previewBack');
-                FeatureAbility.terminateAbility();
+        mKvStoreModel.setOnMessageReceivedListener(mKvStoreModel.messageData().msgFromDistributedBack, () => {
+            mLogUtil.cameraInfo('OnMessageReceived previewBack');
+            featureAbility.terminateSelf((error) => {
+                mLogUtil.cameraError(`previewStartedSuccess terminateSelf finished, error= ${error}`);
             });
-        mKvStoreModel.setOnMessageReceivedListener(
-            mKvStoreModel.messageData().msgFromDistributedTakePhoto, () => {
-                mLogUtil.cameraInfo('OnMessageReceived, takePhoto');
-                callback();
-            });
+        });
+        mKvStoreModel.setOnMessageReceivedListener(mKvStoreModel.messageData().msgFromDistributedTakePhoto, () => {
+            mLogUtil.cameraInfo('OnMessageReceived takePhoto');
+            callback();
+        });
         mLogUtil.cameraInfo('previewStartedSuccess end.');
     }
 
@@ -119,41 +131,84 @@ export default class PreviewPresenter {
         mLogUtil.cameraInfo('remoteReturnBack end.');
     }
 
+    startAbilityContinuation(device, callback) {
+        mLogUtil.cameraInfo(`startAbilityContinuation deviceId= ${device.deviceId} deviceName= ${device.deviceName}`);
+        featureAbility.startAbility({
+            want: {
+                bundleName: 'com.ohos.camera',
+                abilityName: 'com.ohos.camera.MainAbility',
+                deviceId: device.deviceId,
+                parameters: {
+                    request: 'startPhotoBack'
+                }
+            }
+        }).then((data) => {
+            mLogUtil.cameraInfo(`featureAbility.startAbility finished, ${JSON.stringify(data)}`);
+        });
+        let timeOutFlag = false;
+        let startedFailTimer = setTimeout(() => {
+            mLogUtil.cameraInfo('remoteCameraStartedFail');
+            callback('remoteCameraStartedFail');
+            timeOutFlag = true;
+            mRemoteDeviceModel.setCurrentDeviceId('localhost');
+        }, 7000);
+        mKvStoreModel.setOnMessageReceivedListener(mKvStoreModel.messageData().msgFromResponderReady, () => {
+            mLogUtil.cameraInfo('OnMessageReceived, remoteAbilityStarted');
+            clearTimeout(startedFailTimer);
+            if (!timeOutFlag) {
+                callback('remoteCameraStartedSuccess');
+            }
+        });
+    }
+
     startRemoteCamera(inputValue, event, deviceList, callback) {
         mLogUtil.cameraInfo('startRemoteCamera begin.');
         mLogUtil.cameraInfo(`startRemoteCamera ${inputValue}, ${event.value}`);
         mRemoteDeviceModel.setCurrentDeviceId(event.value);
         if (inputValue === event.value) {
             if (event.value === 'localhost') {
+                mLogUtil.cameraInfo('startRemoteCamera radioChange to localhost.');
                 callback('backToLocalhost');
                 return;
             }
             for (let item of deviceList) {
                 if (item.id === event.value) {
-                    let deviceId = item.id;
-                    mLogUtil.cameraInfo(`FeatureAbility.startAbility deviceId= ${deviceId} deviceName= ${item.name}`);
-                    FeatureAbility.startAbility({
-                        want: {
-                            bundleName: 'com.ohos.camera',
-                            abilityName: 'com.ohos.camera.MainAbility',
-                            deviceId: deviceId,
-                            parameters: {
-                                request: 'startPhotoBack'
-                            }
+                    let self = this;
+                    let deviceItemExist = false;
+                    let deviceName = '';
+                    let j = 0;
+                    mLogUtil.cameraInfo(`deviceList.length: ${mRemoteDeviceModel.deviceList.length}`);
+                    for (var i = 0; i < mRemoteDeviceModel.deviceList.length; i++) {
+                        mLogUtil.cameraInfo(`deviceList[i].deviceId: ${mRemoteDeviceModel.deviceList[i].deviceId}`);
+                        if (mRemoteDeviceModel.deviceList[i].deviceId === event.value) {
+                            j = i;
+                            deviceItemExist = true;
+                            break;
                         }
-                    }).then((data) => {
-                        mLogUtil.cameraInfo(`FeatureAbility.startAbility finished, ${JSON.stringify(data)}`);
-                    });
-                    let timer = setTimeout(() => {
-                        callback('remoteCameraStartedFail');
-                        mRemoteDeviceModel.setCurrentDeviceId('localhost');
-                    }, 5000);
-                    mKvStoreModel.setOnMessageReceivedListener(
-                        mKvStoreModel.messageData().msgFromResponderReady, () => {
-                                mLogUtil.cameraInfo('OnMessageReceived, remoteAbilityStarted');
-                                clearTimeout(timer);
-                                callback('remoteCameraStartedSuccess');
-                            });
+                    }
+                    if (!deviceItemExist) {
+                        mLogUtil.cameraError('can not find radioChange device from deviceList');
+                        return;
+                    }
+                    if (mRemoteDeviceModel.deviceTrustedInfo[j]) {
+                        mLogUtil.cameraInfo('radioChange device has been authorized');
+                        self.startAbilityContinuation(mRemoteDeviceModel.deviceList[j], callback);
+                    } else {
+                        deviceName = mRemoteDeviceModel.deviceList[j].deviceName;
+                        mRemoteDeviceModel.authDevice(event.value, () => {
+                            mLogUtil.cameraInfo('radioChange device authorization success');
+                            for (var i = 0; i < mRemoteDeviceModel.deviceList.length; i++) {
+                                if (mRemoteDeviceModel.deviceList[i].deviceName === deviceName) {
+                                    if (mRemoteDeviceModel.deviceTrustedInfo[i]) {
+                                        mLogUtil.cameraInfo('authorization success and startAbilityContinuation');
+                                        self.startAbilityContinuation(mRemoteDeviceModel.deviceList[i], callback);
+                                        break;
+                                    }
+                                }
+                            }
+                        });
+                    }
+                    mLogUtil.cameraInfo('radioChange device authorization end.');
                 }
             }
         }
@@ -183,29 +238,77 @@ export default class PreviewPresenter {
         mLogUtil.cameraInfo('getCurrentDeviceId end.');
     }
 
-    playSound() {
+    playSound(soundUri) {
         mLogUtil.cameraInfo('playSound begin.');
-        mLogUtil.cameraInfo(`mAudioPlayerStatus: ${mAudioPlayerStatus}`);
-        switch (mAudioPlayerStatus) {
-            case 'unCreated':
-                if (typeof (mAudioPlayer) === 'undefined') {
-                    mLogUtil.cameraInfo('playSound createAudioPlayer');
-                    mAudioPlayer = media.createAudioPlayer();
-                }
-                mAudioPlayerStatus = 'created';
-                mAudioPlayer.on('dataLoad', () => {
-                    mLogUtil.cameraInfo('playSound dataLoad callback');
-                    mAudioPlayerStatus = 'dataLoaded';
-                    mAudioPlayer.play();
-                });
-                mAudioPlayer.src = 'file://system/etc/capture.ogg';
-                break;
-            case 'dataLoaded':
+        if (typeof (mAudioPlayer) !== 'undefined' && mAudioPlayer.src === soundUri && mAudioPlayer.state !== 'idle') {
+            mAudioPlayer.play();
+        } else {
+            mLogUtil.cameraInfo('playSound createAudioPlayer');
+            if (typeof (mAudioPlayer) !== 'undefined') {
+                mAudioPlayer.release();
+                mAudioPlayer = undefined;
+            }
+            mAudioPlayer = media.createAudioPlayer();
+            mAudioPlayer.on('dataLoad', () => {
+                mLogUtil.cameraInfo('playSound dataLoad callback');
                 mAudioPlayer.play();
-                break;
-            default:
-                break;
+            });
+            mAudioPlayer.src = soundUri;
         }
         mLogUtil.cameraInfo('playSound end.');
+    }
+
+    startRecorder(element) {
+        mLogUtil.cameraInfo('startRecorder begin.');
+        this.playSound('file://system/etc/record_start.ogg');
+        element.startRecorder();
+        mLogUtil.cameraInfo('startRecorder end.');
+    }
+
+    closeRecorder(element) {
+        mLogUtil.cameraInfo('closeRecorder begin.');
+        this.playSound('file://system/etc/record_stop.ogg');
+        mLogUtil.cameraInfo('closeRecorder after playSound');
+        return new Promise((resolve, reject) => {
+            mLogUtil.cameraInfo('closeRecorder Promise begin.');
+            element.closeRecorder({
+                success: (res) => {
+                    mLogUtil.cameraInfo(`closeRecorder success: ${JSON.stringify(res)}`);
+                    resolve({
+                        result: 'success',
+                        photoUri: res.uri
+                    });
+                    mLogUtil.cameraInfo('closeRecorder Promise success end.');
+                },
+                fail: (res) => {
+                    mLogUtil.cameraError('closeRecorder Promise fail begin.');
+                    reject({
+                        result: 'fail'
+                    });
+                    mLogUtil.cameraError(`closeRecorder fail: ${res.errormsg} ${res.errorcode}`);
+                },
+                complete: (res) => {
+                    mLogUtil.cameraInfo(`closeRecorder complete: ${res}`);
+                },
+            });
+            mLogUtil.cameraInfo('closeRecorder Promise end.');
+        });
+    }
+
+    deleteAlbumAsset() {
+        mLogUtil.cameraInfo('deleteAlbumAsset begin.');
+        let args = {
+            selections: 'camera',
+            selectionArgs: ['imagealbum'],
+        };
+        mMedia.getImageAssets(args, (error, images) => {
+            mLogUtil.cameraInfo(`deleteAlbumAsset images: ${images[0].URI}`);
+            images[0].commitDelete((error, commitFlag) => {
+                if (commitFlag) {
+                    mLogUtil.cameraInfo('deleteAlbumAsset success');
+                }
+            });
+        });
+        mLogUtil.cameraInfo('deleteAlbumAsset end.');
     }
 }
