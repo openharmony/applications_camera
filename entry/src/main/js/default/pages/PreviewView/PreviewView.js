@@ -189,7 +189,6 @@ export default {
         }
         mPreviewPresenter.closeRecorder(this.$element('CameraId')).then((object) => {
             if (object.result === 'success') {
-//                this.photoUri = '/common/media/ic_camera_thumbnail_default_white.svg';
                 this.animationClassName = '';
                 this.animationClassName = 'AnimationStyle';
                 this.animationClassName = '';
@@ -223,7 +222,6 @@ export default {
             self.videoFontWeight = 400;
             self.modeIndex = 0;
             self.isVideoStop = false;
-//            self.setPreviewSize(960, self.newestPicUri);
             self.$element('List').scrollTo({
                 index: self.modeIndex
             });
@@ -242,7 +240,6 @@ export default {
             self.videoFontWeight = 600;
             self.modeIndex = 1;
             self.isVideoStop = false;
-//            self.setPreviewSize(1248);
             self.$element('List').scrollTo({
                 index: self.modeIndex
             });
