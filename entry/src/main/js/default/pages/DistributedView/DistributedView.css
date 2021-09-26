@@ -15,6 +15,12 @@
 
 @import '../../common/css/CommonPageStyle.css';
 
+.DistributedContainer {
+    flex-direction: column;
+    height: 100%;
+    background-color: #000;
+}
+
 .RemoteTitle {
     width: 720px;
     height: 102px;
@@ -55,4 +61,8 @@
 .CameraViewImage {
     width: 96px;
     height: 80px;
+}
+
+.DistributedFooter {
+    flex-direction: column;
 }
