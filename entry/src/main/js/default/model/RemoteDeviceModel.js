@@ -40,59 +40,13 @@ export default class RemoteDeviceModel {
             let deviceItemExist = false;
             switch (data.action) {
                 case 0:
-                    for( let i = 0; i < self.deviceList.length; i++){
-                        if (self.deviceList[i].deviceName === data.device.deviceName) {
-                            mLogUtil.cameraInfo('online device exists in deviceList');
-                            j = i;
-                            deviceItemExist = true;
-                            break;
-                        }
-                    }
-                    if (!deviceItemExist) {
-                        mLogUtil.cameraInfo('online device do not exist in deviceList');
-                        self.deviceList[self.deviceList.length] = data.device;
-                        self.deviceTrustedInfo[self.deviceTrustedInfo.length] = true;
-                        self.callbackForList();
-                    } else if (!self.deviceTrustedInfo[j]) {
-                        mLogUtil.cameraInfo('online device exists in deviceList and not auth');
-                        self.deviceTrustedInfo[j] = true;
-                        self.deviceList[j] = data.device;
-                        if (self.authCallback != null) {
-                            mLogUtil.cameraInfo('authCallback is define');
-                            self.authCallback();
-                            self.authCallback = null;
-                        } else {
-                            mLogUtil.cameraInfo('authCallback is unDefine');
-                        }
-                    }
-                    mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] online, list= ${JSON.stringify(self.deviceList)}`);
+                    self.deviceStateChangeOnLine(self, j, deviceItemExist, data);
                     break;
                 case 2:
-                    if (self.deviceList.length > 0) {
-                        for (var i = 0; i < self.deviceList.length; i++) {
-                            if (self.deviceList[i].deviceId === data.device.deviceId) {
-                                self.deviceList[i] = data.device;
-                                break;
-                            }
-                        }
-                    }
-                    mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] change, list= ${JSON.stringify(self.deviceList)}`);
-                    self.callbackForList();
+                    self.deviceStateChangeReady(self, data);
                     break;
                 case 1:
-                    if (self.deviceList.length > 0) {
-                        for (var i = 0; i < self.deviceList.length; i++) {
-                            if (self.deviceList[i].deviceId === data.device.deviceId) {
-                                mLogUtil.cameraInfo(`RemoteDeviceModel offline deviceId: ${data.device.deviceId}`);
-                                self.deviceList.splice(i, 1);
-                                self.deviceTrustedInfo.splice(i, 1);
-                                self.callbackForStateChange('OFFLINE', data.device.deviceId);
-                                self.callbackForList();
-                                break;
-                            }
-                        }
-                    }
-                    mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] offline, list= ${JSON.stringify(data.device)}`);
+                    self.deviceStateChangeOffLine(self, data);
                     break;
                 default:
                     break;
@@ -125,6 +79,74 @@ export default class RemoteDeviceModel {
             self.callbackForStateChange('SERVICEDIE', 0);
             mLogUtil.cameraError('Camera[RemoteDeviceModel] serviceDie');
         });
+        this.startDeviceDiscovery();
+        mLogUtil.cameraInfo('registerDeviceManagerOn end.');
+    }
+
+    deviceStateChangeOnLine(self, j, deviceItemExist, data) {
+        mLogUtil.cameraInfo('deviceStateChangeOnLine begin.');
+        for( let i = 0; i < self.deviceList.length; i++){
+            if (self.deviceList[i].deviceName === data.device.deviceName) {
+                mLogUtil.cameraInfo('online device exists in deviceList');
+                j = i;
+                deviceItemExist = true;
+                break;
+            }
+        }
+        if (!deviceItemExist) {
+            mLogUtil.cameraInfo('online device do not exist in deviceList');
+            self.deviceList[self.deviceList.length] = data.device;
+            self.deviceTrustedInfo[self.deviceTrustedInfo.length] = true;
+            self.callbackForList();
+        } else if (!self.deviceTrustedInfo[j]) {
+            mLogUtil.cameraInfo('online device exists in deviceList and not auth');
+            self.deviceTrustedInfo[j] = true;
+            self.deviceList[j] = data.device;
+            if (self.authCallback != null) {
+                mLogUtil.cameraInfo('authCallback is define');
+                self.authCallback();
+                self.authCallback = null;
+            } else {
+                mLogUtil.cameraInfo('authCallback is unDefine');
+            }
+        }
+        mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] online, list= ${JSON.stringify(self.deviceList)}`);
+    }
+
+    deviceStateChangeReady(self, data) {
+        mLogUtil.cameraInfo('deviceStateChangeReady begin.');
+        if (self.deviceList.length > 0) {
+            for (var i = 0; i < self.deviceList.length; i++) {
+                if (self.deviceList[i].deviceId === data.device.deviceId) {
+                    self.deviceList[i] = data.device;
+                    break;
+                }
+            }
+        }
+        mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] change, list= ${JSON.stringify(self.deviceList)}`);
+        self.callbackForList();
+        mLogUtil.cameraInfo('deviceStateChangeReady end');
+    }
+
+    deviceStateChangeOffLine(self, data) {
+        mLogUtil.cameraInfo('deviceStateChangeOffLine begin');
+        if (self.deviceList.length > 0) {
+            for (var i = 0; i < self.deviceList.length; i++) {
+                if (self.deviceList[i].deviceId === data.device.deviceId) {
+                    mLogUtil.cameraInfo(`RemoteDeviceModel offline deviceId: ${data.device.deviceId}`);
+                    self.deviceList.splice(i, 1);
+                    self.deviceTrustedInfo.splice(i, 1);
+                    self.callbackForStateChange('OFFLINE', data.device.deviceId);
+                    self.callbackForList();
+                    break;
+                }
+            }
+        }
+        mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] offline, list= ${JSON.stringify(data.device)}`);
+    }
+
+    startDeviceDiscovery() {
+        mLogUtil.cameraInfo('startDeviceDiscovery begin.');
         SUBSCRIBE_ID = Math.floor(65536 * Math.random());
         var info = {
             subscribeId: SUBSCRIBE_ID,
@@ -137,7 +159,7 @@ export default class RemoteDeviceModel {
         };
         mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] startDeviceDiscovery ${SUBSCRIBE_ID}`);
         this.#deviceManager.startDeviceDiscovery(info);
-        mLogUtil.cameraInfo('registerDeviceManagerOn end.');
+        mLogUtil.cameraInfo('startDeviceDiscovery end');
     }
 
     authDevice(deviceId, callback) {

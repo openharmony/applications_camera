@@ -53,9 +53,9 @@ export default class PreviewPresenter {
                     }
                 },
                 fail: (res) => {
-                    reject({
+                    reject(new Error({
                         result: 'fail'
-                    });
+                    }));
                     mLogUtil.cameraError(`takePhoto fail: ${res.errormsg} ${res.errorcode}`);
                 },
                 complete: (res) => {
@@ -162,55 +162,53 @@ export default class PreviewPresenter {
     }
 
     startRemoteCamera(inputValue, event, deviceList, callback) {
-        mLogUtil.cameraInfo('startRemoteCamera begin.');
         mLogUtil.cameraInfo(`startRemoteCamera ${inputValue}, ${event.value}`);
         mRemoteDeviceModel.setCurrentDeviceId(event.value);
-        if (inputValue === event.value) {
-            if (event.value === 'localhost') {
-                mLogUtil.cameraInfo('startRemoteCamera radioChange to localhost.');
-                callback('backToLocalhost');
-                return;
+        if (inputValue !== event.value) {
+            return;
+        }
+        if (event.value === 'localhost') {
+            mLogUtil.cameraInfo('startRemoteCamera radioChange to localhost.');
+            callback('backToLocalhost');
+            return;
+        }
+        if (deviceList.filter(item => item.id === event.value).length === 0) {
+            return;
+        }
+        let self = this;
+        let deviceItemExist = false;
+        let deviceName = '';
+        let j = 0;
+        mLogUtil.cameraInfo(`deviceList.length: ${mRemoteDeviceModel.deviceList.length}`);
+        for (var i = 0; i < mRemoteDeviceModel.deviceList.length; i++) {
+            mLogUtil.cameraInfo(`deviceList[i].deviceId: ${mRemoteDeviceModel.deviceList[i].deviceId}`);
+            if (mRemoteDeviceModel.deviceList[i].deviceId === event.value) {
+                j = i;
+                deviceItemExist = true;
+                break;
             }
-            for (let item of deviceList) {
-                if (item.id === event.value) {
-                    let self = this;
-                    let deviceItemExist = false;
-                    let deviceName = '';
-                    let j = 0;
-                    mLogUtil.cameraInfo(`deviceList.length: ${mRemoteDeviceModel.deviceList.length}`);
-                    for (var i = 0; i < mRemoteDeviceModel.deviceList.length; i++) {
-                        mLogUtil.cameraInfo(`deviceList[i].deviceId: ${mRemoteDeviceModel.deviceList[i].deviceId}`);
-                        if (mRemoteDeviceModel.deviceList[i].deviceId === event.value) {
-                            j = i;
-                            deviceItemExist = true;
+        }
+        if (!deviceItemExist) {
+            mLogUtil.cameraError('can not find radioChange device from deviceList');
+            return;
+        }
+        if (mRemoteDeviceModel.deviceTrustedInfo[j]) {
+            mLogUtil.cameraInfo('radioChange device has been authorized');
+            self.startAbilityContinuation(mRemoteDeviceModel.deviceList[j], callback);
+        } else {
+            deviceName = mRemoteDeviceModel.deviceList[j].deviceName;
+            mRemoteDeviceModel.authDevice(event.value, () => {
+                mLogUtil.cameraInfo('radioChange device authorization success');
+                for (var i = 0; i < mRemoteDeviceModel.deviceList.length; i++) {
+                    if (mRemoteDeviceModel.deviceList[i].deviceName === deviceName) {
+                        if (mRemoteDeviceModel.deviceTrustedInfo[i]) {
+                            mLogUtil.cameraInfo('authorization success and startAbilityContinuation');
+                            self.startAbilityContinuation(mRemoteDeviceModel.deviceList[i], callback);
                             break;
                         }
                     }
-                    if (!deviceItemExist) {
-                        mLogUtil.cameraError('can not find radioChange device from deviceList');
-                        return;
-                    }
-                    if (mRemoteDeviceModel.deviceTrustedInfo[j]) {
-                        mLogUtil.cameraInfo('radioChange device has been authorized');
-                        self.startAbilityContinuation(mRemoteDeviceModel.deviceList[j], callback);
-                    } else {
-                        deviceName = mRemoteDeviceModel.deviceList[j].deviceName;
-                        mRemoteDeviceModel.authDevice(event.value, () => {
-                            mLogUtil.cameraInfo('radioChange device authorization success');
-                            for (var i = 0; i < mRemoteDeviceModel.deviceList.length; i++) {
-                                if (mRemoteDeviceModel.deviceList[i].deviceName === deviceName) {
-                                    if (mRemoteDeviceModel.deviceTrustedInfo[i]) {
-                                        mLogUtil.cameraInfo('authorization success and startAbilityContinuation');
-                                        self.startAbilityContinuation(mRemoteDeviceModel.deviceList[i], callback);
-                                        break;
-                                    }
-                                }
-                            }
-                        });
-                    }
-                    mLogUtil.cameraInfo('radioChange device authorization end.');
                 }
-            }
+            });
         }
         mLogUtil.cameraInfo('startRemoteCamera end.');
     }
@@ -282,9 +280,9 @@ export default class PreviewPresenter {
                 },
                 fail: (res) => {
                     mLogUtil.cameraError('closeRecorder Promise fail begin.');
-                    reject({
+                    reject(new Error({
                         result: 'fail'
-                    });
+                    }));
                     mLogUtil.cameraError(`closeRecorder fail: ${res.errormsg} ${res.errorcode}`);
                 },
                 complete: (res) => {
