@@ -24,6 +24,7 @@ let mPreviewModel;
 let mKvStoreModel;
 let mRemoteDeviceModel;
 let mAudioPlayer;
+let mTimeOutFlag;
 
 export default class PreviewPresenter {
     constructor(previewModel, kvStoreModel, remoteDeviceModel) {
@@ -133,6 +134,20 @@ export default class PreviewPresenter {
 
     startAbilityContinuation(device, callback) {
         mLogUtil.cameraInfo(`startAbilityContinuation deviceId= ${device.deviceId} deviceName= ${device.deviceName}`);
+        mTimeOutFlag = false;
+        let startedFailTimer = setTimeout(() => {
+            mLogUtil.cameraInfo('remoteCameraStartedFail');
+            callback('remoteCameraStartedFail');
+            mTimeOutFlag = true;
+            mRemoteDeviceModel.setCurrentDeviceId('localhost');
+        }, 7000);
+        mKvStoreModel.setOnMessageReceivedListener(mKvStoreModel.messageData().msgFromResponderReady, () => {
+            mLogUtil.cameraInfo('OnMessageReceived, remoteAbilityStarted');
+            clearTimeout(startedFailTimer);
+            if (!mTimeOutFlag) {
+                callback('remoteCameraStartedSuccess');
+            }
+        });
         featureAbility.startAbility({
             want: {
                 bundleName: 'com.ohos.camera',
@@ -144,20 +159,6 @@ export default class PreviewPresenter {
             }
         }).then((data) => {
             mLogUtil.cameraInfo(`featureAbility.startAbility finished, ${JSON.stringify(data)}`);
-        });
-        let timeOutFlag = false;
-        let startedFailTimer = setTimeout(() => {
-            mLogUtil.cameraInfo('remoteCameraStartedFail');
-            callback('remoteCameraStartedFail');
-            timeOutFlag = true;
-            mRemoteDeviceModel.setCurrentDeviceId('localhost');
-        }, 7000);
-        mKvStoreModel.setOnMessageReceivedListener(mKvStoreModel.messageData().msgFromResponderReady, () => {
-            mLogUtil.cameraInfo('OnMessageReceived, remoteAbilityStarted');
-            clearTimeout(startedFailTimer);
-            if (!timeOutFlag) {
-                callback('remoteCameraStartedSuccess');
-            }
         });
     }
 
