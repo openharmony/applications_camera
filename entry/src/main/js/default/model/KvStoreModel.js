@@ -96,23 +96,23 @@ export default class KvStoreModel {
         this.createKvStore(() => {
             mLogUtil.cameraInfo('Camera[KvStoreModel] kvStore.on(dataChange) begin');
             self.kvStore.on('dataChange', 1, (data) => {
-                mLogUtil.cameraInfo(`Camera[KvStoreModel] dataChange, ${JSON.stringify(data)}`);
-                mLogUtil.cameraInfo(`Camera[KvStoreModel] dataChange, insert
-                ${data.insertEntries.length} udpate ${data.updateEntries.length}`);
-                for (let item of data.insertEntries) {
-                    if (item.key === msg) {
-                        mLogUtil.cameraInfo(`Camera insertEntries receive ${msg} = ${item.value}`);
-                        callback();
-                        return;
+                setTimeout(() => {
+                    mLogUtil.cameraInfo(`Camera[KvStoreModel] dataChange, ${JSON.stringify(data)}`);
+                    for (let item of data.insertEntries) {
+                        if (item.key === msg) {
+                            mLogUtil.cameraInfo(`Camera insertEntries receive ${msg} = ${item.value}`);
+                            callback();
+                            return;
+                        }
                     }
-                }
-                for (let prop of data.updateEntries) {
-                    if (prop.key === msg) {
-                        mLogUtil.cameraInfo(`Camera updateEntries receive ${msg} = ${prop.value}`);
-                        callback();
-                        return;
+                    for (let prop of data.updateEntries) {
+                        if (prop.key === msg) {
+                            mLogUtil.cameraInfo(`Camera updateEntries receive ${msg} = ${prop.value}`);
+                            callback();
+                            return;
+                        }
                     }
-                }
+                }, 0);
             });
             mLogUtil.cameraInfo('Camera[KvStoreModel] kvStore.on(dataChange) end');
         });
