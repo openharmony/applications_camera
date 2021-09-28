@@ -18,14 +18,13 @@
 <element name="deviceListDialog" src="../../common/component/DeviceListDialog/DeviceListDialog.hml"></element>
 
 <stack class="Container">
-    <div class="PreviewArea" style="height : {{ previewHeight }} px; width : 720px;">
-        <camera if="{{ isCreateCamera }}" id="CameraId"
-                style="height : {{ previewHeight }} px; width : 720px;"></camera>
+    <div class="PreviewArea">
+        <camera if="{{ isCreateCamera }}" id="CameraId" class="CameraStyle"></camera>
         <image if="{{ isShowHazyPicture }}" style="height : {{ previewHeight }} px; width : 720px;"
                class="CameraPic" src="{{ hazyPictureUri }}"></image>
     </div>
     <div show="{{ isShowFlashingState }}" class="FlashingStyle"></div>
-    <div class="ModeSwitch {{ isSwitchCameraButton ? 'BackgroundBlack' : 'BackgroundNo' }}">
+    <div class="ModeSwitch">
         <list if="{{ whichPage === 'ResponderPreview' }}" class="List" id="List"
               nitialindex="0" itemcenter="true" scrolleffect="no">
             <list-item class="ListItem ListItemWidth">
@@ -35,11 +34,11 @@
         </list>
         <list if="{{ whichPage !== 'ResponderPreview' && isVideoShoot }}" class="List" id="List"
               ontouchend="listTouchEnd" onscroll="scroll" nitialindex="0" itemcenter="true" scrolleffect="no">
-            <list-item class="ListItem" style="margin-left : 288px;" onclick="jumpToPhoto">
+            <list-item class="ListItem ListItemLeft" onclick="jumpToPhoto">
                 <text style="font-weight : {{ photoFontWeight }};"
                       class="ModeText ShadowTwo">{{ $t('strings.photoMode') }}</text>
             </list-item>
-            <list-item class="ListItem" style="margin-right : 288px;" onclick="jumpToVideo">
+            <list-item class="ListItem ListItemRight" onclick="jumpToVideo">
                 <text style="font-weight : {{ videoFontWeight }};"
                       class="ModeText ShadowTwo">{{ $t('strings.videoMode') }}</text>
             </list-item>
@@ -48,13 +47,13 @@
             <div class="Spot ShadowTwo"></div>
         </div>
     </div>
-    <div class="FootBar {{ isSwitchCameraButton ? 'BackgroundBlack' : 'BackgroundNo' }}">
+    <div class="FootBar">
         <stack class="ImageStyle">
             <div show="{{ isVideoStop && isVideoShootButton }}" class="ImageStyle
                 {{ isVideoStop ? 'CloseRecorderThumbnail' : '' }} {{ animationClassName }}" onclick="jumpToAlbum">
             </div>
-            <div if="{{ isVideoShoot && ! isVideoStop }}" style="border-radius : 36px;"
-                 class="{{ photoUri === '/common/media/ic_camera_thumbnail_default_white.svg' ? '' : 'BorderStyle' }}">
+            <div if="{{ isVideoShoot && ! isVideoStop }}" class="ImageWrapStyle
+                     {{ photoUri === '/common/media/ic_camera_thumbnail_default_white.svg' ? '' : 'BorderStyle' }}">
                 <image class="ImageStyle ShadowTwo {{ animationClassName }}"
                        src="{{ photoUri }}" onclick="jumpToAlbum"></image>
             </div>

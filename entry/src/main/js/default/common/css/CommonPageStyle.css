@@ -16,8 +16,6 @@
 .SwitchCameraWrap {
     justify-content: center;
     align-items: center;
-    width: 72px;
-    height: 72px;
     position: relative;
 }
 
@@ -47,12 +45,15 @@
 
 .Container {
     width: 720px;
-/*    background-color: #000;*/
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000;
 }
 
 .Shoot {
-    margin-left: 84px;
-    margin-right: 84px;
+    margin-left: 11.66%;
+    margin-right: 11.66%;
     width: 136px;
     height: 136px;
     icon-width: 136px;
