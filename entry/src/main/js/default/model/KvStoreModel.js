@@ -24,6 +24,7 @@ const STORE_ID = 'camera_kv_store';
 export default class KvStoreModel {
     kvManager;
     kvStore;
+    listenerList = [];
 
     constructor() {
     }
@@ -81,35 +82,52 @@ export default class KvStoreModel {
         mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.put key ${key},value ${value}`);
         this.kvStore.put(key, value).then((data) => {
             this.kvStore.get(key).then((data) => {
-                mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.get key ${key}, data ${JSON.stringify(data)}`);
+                mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.get key ${key},
+                data ${JSON.stringify(data)}`);
             });
-            mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.put key ${key}, finished, data ${JSON.stringify(data)}`);
+            mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.put key ${key}, finished,
+            data ${JSON.stringify(data)}`);
         }).catch((err) => {
-            mLogUtil.cameraError(`Camera[KvStoreModel] kvStore.put key ${key}, failed ${JSON.stringify(err)}`);
+            mLogUtil.cameraError(`Camera[KvStoreModel] kvStore.put key ${key},
+            failed ${JSON.stringify(err)}`);
         });
     }
 
     setOnMessageReceivedListener(msg, callback) {
-        mLogUtil.cameraInfo('setOnMessageReceivedListener begin.');
         mLogUtil.cameraInfo(`Camera[KvStoreModel] setOnMessageReceivedListener ${msg}`);
         let self = this;
         this.createKvStore(() => {
-            mLogUtil.cameraInfo('Camera[KvStoreModel] kvStore.on(dataChange) begin');
+            mLogUtil.cameraInfo(`KvStoreModel createKvStore listenerList= ${JSON.stringify(self.listenerList)}`);
+            if (self.listenerList.length !== 0) {
+                self.listenerList[self.listenerList.length] = {
+                    receivedMsg: msg,
+                    receivedCallback: callback
+                };
+                return;
+            }
+            self.listenerList[0] = {
+                receivedMsg: msg,
+                receivedCallback: callback
+            };
+            mLogUtil.cameraInfo(`Camera[KvStoreModel] kvStore.on(dataChange) ${JSON.stringify(self.listenerList[0])}`);
             self.kvStore.on('dataChange', 1, (data) => {
                 setTimeout(() => {
-                    mLogUtil.cameraInfo(`Camera[KvStoreModel] dataChange, ${JSON.stringify(data)}`);
+                    mLogUtil.cameraInfo(`KvStoreModel dataChange ${JSON.stringify(data)}`);
+                    mLogUtil.cameraInfo(`KvStoreModel dataChange listenerList= ${JSON.stringify(self.listenerList)}`);
                     for (let item of data.insertEntries) {
-                        if (item.key === msg) {
-                            mLogUtil.cameraInfo(`Camera insertEntries receive ${msg} = ${item.value}`);
-                            callback();
-                            return;
+                        for (let prop of self.listenerList) {
+                            if (item.key === prop.receivedMsg) {
+                                mLogUtil.cameraInfo(`Camera insertEntries receive ${prop.msg} = ${item.value}`);
+                                prop.receivedCallback();
+                            }
                         }
                     }
-                    for (let prop of data.updateEntries) {
-                        if (prop.key === msg) {
-                            mLogUtil.cameraInfo(`Camera updateEntries receive ${msg} = ${prop.value}`);
-                            callback();
-                            return;
+                    for (let item of data.updateEntries) {
+                        for (let prop of self.listenerList) {
+                            if (item.key === prop.receivedMsg) {
+                                mLogUtil.cameraInfo(`Camera updateEntries receive ${prop.msg} = ${item.value}`);
+                                prop.receivedCallback();
+                            }
                         }
                     }
                 }, 0);
@@ -121,6 +139,7 @@ export default class KvStoreModel {
 
     setOffMessageReceivedListener() {
         mLogUtil.cameraInfo('setOffMessageReceivedListener begin.');
+        this.listenerList = [];
         mLogUtil.cameraInfo('setOffMessageReceivedListener end.');
     }
 

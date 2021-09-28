@@ -25,14 +25,14 @@
 }
 
 .DialogTitleText {
-    width: 434px;
+    width: 86.8%;
     height: 80px;
     font-size: 32px;
     font-weight: 600;
 }
 
 .InnerBtn {
-    width: 400px;
+    width: 80%;
     height: 120px;
     justify-content: space-around;
     align-items: center;
@@ -44,35 +44,56 @@
 }
 
 .DialogDeviceList {
-    width: 434px;
+    width: 86.8%;
     max-height: 150px;
 }
 
 .DeviceListItem {
-    width: 434px;
+    width: 100%;
     height: 80px;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
 }
 
 .DeviceItemTitle {
     width: 80%;
-    height: 80px;
+    height: 100%;
     text-align: start;
 }
 
-@media screen and (device-type: tablet) and (orientation: landscape) {
+@media screen and (min-aspect-ratio: 1.7) {
+    .DialogMain {
+        width: 220.56px;
+    }
 
-}
+    .DialogTitleText {
+        height: 35.28px;
+        font-size: 14px;
+    }
 
-@media screen and (device-type: wearable) {
+    .InnerBtn {
+        height: 18px;
+    }
 
-}
+    .DialogCancelButton {
+        font-size: 14px;
+    }
 
-@media screen and (device-type: tv) {
+    .DialogDeviceList {
+        max-height: 66.17px;
+    }
 
-}
+    .DeviceListItem {
+        height: 35.28px;
+    }
 
-@media screen and (device-type: phone) and (orientation: landscape) {
+    .DeviceItemTitle {
+        font-size: 13px;
+    }
 
+    .DeviceItemRadio {
+        width: 14px;
+        height: 14px;
+    }
 }
