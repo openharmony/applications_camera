@@ -24,7 +24,7 @@ let mPreviewModel;
 let mKvStoreModel;
 let mRemoteDeviceModel;
 let mAudioPlayer;
-let mTimeOutFlag;
+let mTimeOUtFlag;
 
 export default class PreviewPresenter {
     constructor(previewModel, kvStoreModel, remoteDeviceModel) {
@@ -134,17 +134,17 @@ export default class PreviewPresenter {
 
     startAbilityContinuation(device, callback) {
         mLogUtil.cameraInfo(`startAbilityContinuation deviceId= ${device.deviceId} deviceName= ${device.deviceName}`);
-        mTimeOutFlag = false;
+        mTimeOUtFlag = false;
         let startedFailTimer = setTimeout(() => {
             mLogUtil.cameraInfo('remoteCameraStartedFail');
             callback('remoteCameraStartedFail');
-            mTimeOutFlag = true;
+            mTimeOUtFlag = true;
             mRemoteDeviceModel.setCurrentDeviceId('localhost');
         }, 7000);
         mKvStoreModel.setOnMessageReceivedListener(mKvStoreModel.messageData().msgFromResponderReady, () => {
             mLogUtil.cameraInfo('OnMessageReceived, remoteAbilityStarted');
             clearTimeout(startedFailTimer);
-            if (!mTimeOutFlag) {
+            if (!mTimeOUtFlag) {
                 callback('remoteCameraStartedSuccess');
             }
         });
@@ -182,7 +182,6 @@ export default class PreviewPresenter {
         let j = 0;
         mLogUtil.cameraInfo(`deviceList.length: ${mRemoteDeviceModel.deviceList.length}`);
         for (var i = 0; i < mRemoteDeviceModel.deviceList.length; i++) {
-            mLogUtil.cameraInfo(`deviceList[i].deviceId: ${mRemoteDeviceModel.deviceList[i].deviceId}`);
             if (mRemoteDeviceModel.deviceList[i].deviceId === event.value) {
                 j = i;
                 deviceItemExist = true;

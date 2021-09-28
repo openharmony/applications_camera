@@ -24,6 +24,25 @@
 .PreviewArea {
     display: flex;
     flex-direction: row;
+    width: 720px;
+    height: 960px;
+}
+
+.CameraStyle {
+    width: 720px;
+    height: 960px;
+}
+
+.ListItemLeft {
+    margin-left: 288px;
+}
+
+.ListItemRight {
+    margin-right: 288px;
+}
+
+.ImageWrapStyle {
+    border-radius: 36px;
 }
 
 .CameraPic {
@@ -31,57 +50,63 @@
 }
 
 .ModeSwitch {
+    position: fixed;
+    left: 0;
+    bottom: 175px;
     height: 102px;
     width: 720px;
-    margin-top: 960px;
     align-items: center;
     flex-direction: column;
+    background-color: transparent;
 }
 
 .SpotWrap {
     position: absolute;
     left: 0;
-    top: 74px;
-    width: 720px;
-    height: 10px;
+    top: 72.55%;
+    width: 100%;
+    height: 9.8%;
     justify-content: center;
     align-items: center;
 }
 
 .Spot {
     background-color: #006cde;
-    width: 10px;
-    height: 10px;
+    width: 1.38%;
+    height: 100%;
     border-radius: 6px;
 }
 
 .List {
     flex-direction: row;
-    width: 720px;
-    height: 102px;
+    width: 100%;
+    height: 100%;
 }
 
 .ListItem {
     align-items: center;
     justify-content: center;
-    width: 144px;
+    width: 20%;
 }
 
 .ListItemWidth {
-    width: 720px;
+    width: 100%;
 }
 
 .FootBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     height: 176px;
     width: 720px;
-    margin-top: 1062px;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 }
 
 .ImageStyle {
-    width: 70px;
-    height: 70px;
+    width: 72px;
+    height: 72px;
     border-radius: 36px;
 }
 
@@ -98,15 +123,7 @@
 
 .ModeText {
     color: #FFF;
-    font-size : 24px;
-}
-
-.BackgroundBlack {
-    background-color: #000;
-}
-
-.BackgroundNo {
-    background-color: transparent;
+    font-size: 24px;
 }
 
 @keyframes ScaleDraw {
@@ -116,5 +133,69 @@
 
     to {
         transform: scale(1);
+    }
+}
+
+@media screen and (min-aspect-ratio: 1.7) {
+    .PreviewArea {
+        width: 317.6px;
+        height: 423.5px;
+    }
+
+    .ModeSwitch {
+        bottom: 77.6px;
+        margin-left: 201.2px;
+        width: 317.6px;
+        height: 45px;
+    }
+
+    .ListItemLeft {
+        margin-left: 127.04px;
+    }
+
+    .ListItemRight {
+        margin-right: 127.04px;
+    }
+
+    .ModeText {
+        font-size: 11px;
+    }
+
+    .FootBar {
+        margin-left: 201.2px;
+        width: 317.6px;
+        height: 77.6px;
+    }
+
+    .ImageStyle {
+        width: 31.76px;
+        height: 31.76px;
+        border-radius: 15.88px;
+    }
+
+    .Shoot {
+        width: 60px;
+        height: 60px;
+        icon-width: 60px;
+        icon-height: 60px;
+        border-radius: 30px;
+    }
+
+    .SmallSwitchCamera {
+        width: 21.17px;
+        height: 21.17px;
+        icon-height: 21.17px;
+        icon-width: 21.17px;
+        border-radius: 10.585px;
+    }
+
+    .SwitchCameraCircle {
+        width: 31.76px;
+        height: 31.76px;
+        border-radius: 15.88px;
+    }
+
+    .BorderStyle {
+        border: 2px solid #fff;
     }
 }
