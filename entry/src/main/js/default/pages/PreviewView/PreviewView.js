@@ -50,7 +50,6 @@ export default {
         hazyPictureUri: '',
         isShowHazyPicture: false,
         isInSwitchingPreviewSize: false,
-        isSwitchCameraButton: true,
         isVideoStop: false
     },
     onInit() {
@@ -251,10 +250,10 @@ export default {
         let self = this;
         self.scrollValue += scrollXValue;
         mLogUtil.cameraInfo(`scroll data: scrollValue ${self.scrollValue} stateValue ${stateValue}`);
-        if (self.scrollValue < -70 && stateValue === 1 && self.mode === 'video') {
+        if (self.scrollValue < -50 && stateValue === 1 && self.mode === 'video') {
             self.jumpToPhoto();
         }
-        if (self.scrollValue > 70 && stateValue === 1 && self.mode === 'photo') {
+        if (self.scrollValue > 50 && stateValue === 1 && self.mode === 'photo') {
             self.jumpToVideo();
         }
         if (stateValue === 0) {
@@ -297,11 +296,6 @@ export default {
                     }
                     mPreviewPresenter.deleteAlbumAsset();
                     self.isInSwitchingPreviewSize = false;
-                    if (self.mode === 'photo') {
-                        self.isSwitchCameraButton = true;
-                    } else {
-                        self.isSwitchCameraButton = false;
-                    }
                     mLogUtil.cameraInfo(`PreviewView openCamera previewHeight= ${self.previewHeight}`);
                 }, 1500);
             } else {

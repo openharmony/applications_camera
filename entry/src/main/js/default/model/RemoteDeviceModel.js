@@ -63,7 +63,6 @@ export default class RemoteDeviceModel {
                 }
             }
             mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] deviceFound data.device= ${JSON.stringify(data.device)}`);
-            mLogUtil.cameraInfo(`deviceList information ${JSON.stringify(self.deviceList)} ${self.deviceList.length}`);
             self.deviceList[self.deviceList.length] = data.device;
             mLogUtil.cameraInfo(`deviceList information ${JSON.stringify(self.deviceList)} ${self.deviceList.length}`);
             self.deviceTrustedInfo[self.deviceTrustedInfo.length] = false;
@@ -71,7 +70,6 @@ export default class RemoteDeviceModel {
             mLogUtil.cameraInfo('deviceFound end.');
         });
         this.#deviceManager.on('discoverFail', (data) => {
-            mLogUtil.cameraInfo('discoverFail begin.');
             mLogUtil.cameraInfo(`Camera[RemoteDeviceModel] discoverFail data= ${JSON.stringify(data)}`);
         });
         this.#deviceManager.on('serviceDie', () => {
