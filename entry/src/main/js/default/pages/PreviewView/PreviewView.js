@@ -50,7 +50,27 @@ export default {
         hazyPictureUri: '',
         isShowHazyPicture: false,
         isInSwitchingPreviewSize: false,
-        isVideoStop: false
+        isVideoStop: false,
+        previewAreaWidth: 0,
+        previewAreaHeight: 0,
+        footerWrapMargin: 0,
+        modeSwitchHeight: 0,
+        listItemMargin: 0,
+        modeText: 0,
+        footBarHeight: 0,
+        imageStyleWidth: 0,
+        imageStyleHeight: 0,
+        imageStyleBorderRadius: 0,
+        shootWidth: 0,
+        shootHeight: 0,
+        shootBorderRadius: 0,
+        smallSwitchCameraWidth: 0,
+        smallSwitchCameraHeight: 0,
+        smallSwitchCameraBorderRadius: 0,
+        switchCameraCircleWidth: 0,
+        switchCameraCircleHeight: 0,
+        switchCameraCircleBorderRadius: 0,
+        borderStyleBorder: 0
     },
     onInit() {
         mLogUtil.cameraInfo('PreviewView onInit begin.');
@@ -74,6 +94,30 @@ export default {
             this.responderPreviewStartedSuccess();
         }).catch((error) => {
             mLogUtil.cameraError(`Camera featureAbility.getWant fail ${error}`);
+        });
+        mPreviewPresenter.getPreviewStyle((data) => {
+            mLogUtil.cameraInfo(`PreviewView onInit begin getPreviewStyle= ${JSON.stringify(data)}`);
+            this.previewAreaHeight = data.previewAreaHeight;
+            this.previewAreaWidth = data.previewAreaWidth;
+            this.footerWrapMargin = data.footerWrapMargin;
+            this.modeSwitchHeight = data.modeSwitchHeight;
+            this.listItemMargin = data.listItemMargin;
+            this.modeText = data.modeText;
+            this.footBarHeight = data.footBarHeight;
+            this.imageStyleWidth = data.imageStyleWidth;
+            this.imageStyleHeight = data.imageStyleHeight;
+            this.imageStyleBorderRadius = data.imageStyleBorderRadius;
+            this.shootWidth = data.shootWidth;
+            this.shootHeight = data.shootHeight;
+            this.shootBorderRadius = data.shootBorderRadius;
+            this.smallSwitchCameraWidth = data.smallSwitchCameraWidth;
+            this.smallSwitchCameraHeight = data.smallSwitchCameraHeight;
+            this.smallSwitchCameraBorderRadius = data.smallSwitchCameraBorderRadius;
+            this.switchCameraCircleWidth = data.switchCameraCircleWidth;
+            this.switchCameraCircleHeight = data.switchCameraCircleHeight;
+            this.switchCameraCircleBorderRadius = data.switchCameraCircleBorderRadius;
+            this.borderStyleBorder = data.borderStyleBorder;
+            mLogUtil.cameraInfo(`PreviewView onInit end getPreviewStyle= ${JSON.stringify(data)}`);
         });
         mLogUtil.cameraInfo('PreviewView onInit end.');
     },

@@ -28,10 +28,32 @@ export default {
         isTouchPhoto: false,
         isPromptDialogShow: false,
         isDeviceListDialogOpen: false,
+        previewAreaWidth: 0,
+        previewAreaHeight: 0,
+        cameraViewImageWidth: 0,
+        cameraViewImageHeight: 0,
+        footerWrapMargin: 0,
+        modeSwitchHeight: 0,
+        remoteTitleTextFontSize: 0,
+        footBarHeight: 0,
+        imageStyleWidth: 0,
+        imageStyleHeight: 0,
+        imageStyleBorderRadius: 0,
+        shootWidth: 0,
+        shootHeight: 0,
+        shootBorderRadius: 0,
+        smallSwitchCameraWidth: 0,
+        smallSwitchCameraHeight: 0,
+        smallSwitchCameraBorderRadius: 0,
+        switchCameraCircleWidth: 0,
+        switchCameraCircleHeight: 0,
+        switchCameraCircleBorderRadius: 0,
+        borderStyleBorder: 0
     },
     onInit() {
         mLogUtil.cameraInfo('DistributedView onInit begin.');
         mDistributedPresenter = new DistributedPresenter(
+            this.$app.$def.data.previewModel,
             this.$app.$def.data.kvStoreModel,
             this.$app.$def.data.remoteDeviceModel);
         mDistributedPresenter.registerDeviceStateChangeCallback((action, deviceId) => {
@@ -48,6 +70,31 @@ export default {
                 default:
                     break;
             }
+        });
+        mDistributedPresenter.getPreviewStyle((data) => {
+            mLogUtil.cameraInfo(`PreviewView onInit begin getPreviewStyle= ${JSON.stringify(data)}`);
+            this.previewAreaHeight = data.previewAreaHeight;
+            this.previewAreaWidth = data.previewAreaWidth;
+            this.cameraViewImageWidth = data.cameraViewImageWidth;
+            this.cameraViewImageHeight = data.cameraViewImageHeight;
+            this.footerWrapMargin = data.footerWrapMargin;
+            this.modeSwitchHeight = data.modeSwitchHeight;
+            this.remoteTitleTextFontSize = data.remoteTitleTextFontSize;
+            this.footBarHeight = data.footBarHeight;
+            this.imageStyleWidth = data.imageStyleWidth;
+            this.imageStyleHeight = data.imageStyleHeight;
+            this.imageStyleBorderRadius = data.imageStyleBorderRadius;
+            this.shootWidth = data.shootWidth;
+            this.shootHeight = data.shootHeight;
+            this.shootBorderRadius = data.shootBorderRadius;
+            this.smallSwitchCameraWidth = data.smallSwitchCameraWidth;
+            this.smallSwitchCameraHeight = data.smallSwitchCameraHeight;
+            this.smallSwitchCameraBorderRadius = data.smallSwitchCameraBorderRadius;
+            this.switchCameraCircleWidth = data.switchCameraCircleWidth;
+            this.switchCameraCircleHeight = data.switchCameraCircleHeight;
+            this.switchCameraCircleBorderRadius = data.switchCameraCircleBorderRadius;
+            this.borderStyleBorder = data.borderStyleBorder;
+            mLogUtil.cameraInfo(`PreviewView onInit end getPreviewStyle= ${JSON.stringify(data)}`);
         });
         mLogUtil.cameraInfo('DistributedView onInit end.');
     },
