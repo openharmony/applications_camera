@@ -16,20 +16,24 @@
 -->
 
 <div>
-    <dialog id="ContinueAbilityDialog" class="DialogMain" oncancel="cancelDialog">
+    <dialog if="{{ dialogWidth !== 0 }}" id="ContinueAbilityDialog" style="width : {{ dialogWidth }} px;"
+            class="DialogMain" oncancel="cancelDialog">
         <div class="DialogDiv">
-            <text class="DialogTitleText">{{ $t('strings.choose_device') }}</text>
-            <list class="DialogDeviceList" divider="true">
-                <list-item for="{{ deviceList }}" class="DeviceListItem">
-                    <label class="DeviceItemTitle" target="{{ $item.id }}">{{ $item.name }}</label>
+            <text class="DialogTitleText" style="height : {{ dialogTitleTextHeight }} px;
+                font-size : {{ dialogTitleTextFontSize }} px;">{{ $t('strings.choose_device') }}</text>
+            <list class="DialogDeviceList" divider="true" style="max-height : {{ dialogDeviceListMaxHeight }} px;">
+                <list-item for="{{ deviceList }}" class="DeviceListItem"
+                           style="height : {{ deviceListItemHeight }} px;">
+                    <label class="DeviceItemTitle" target="{{ $item.id }}"
+                           style="font-size : {{ deviceItemTitleFontSize }} px;">{{ $item.name }}</label>
                     <input class="DeviceItemRadio" type="radio" checked="{{ $item.id == presentDeviceId }}"
                            id="{{ $item.id }}"
                            name="{{ $item.listName }}" value="{{ $item.id }}"
                            onchange="onRadioChange({{ $item.id }})"></input>
                 </list-item>
             </list>
-            <div class="InnerBtn">
-                <button class="DialogCancelButton" type="text"
+            <div class="InnerBtn" style="height : {{ innerBtnHeight }} px;">
+                <button class="DialogCancelButton" type="text" style="font-size : {{ dialogCancelButtonFontSize }} px;"
                         value="{{ $t('strings.restore_defaults_dialog_cancel') }}"
                         onclick="onDismissDialogClicked"></button>
             </div>

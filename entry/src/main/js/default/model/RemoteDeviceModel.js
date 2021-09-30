@@ -29,6 +29,7 @@ export default class RemoteDeviceModel {
     #deviceManager;
 
     constructor() {
+
     }
 
     registerDeviceManagerOn() {
@@ -83,7 +84,7 @@ export default class RemoteDeviceModel {
 
     deviceStateChangeOnLine(self, j, deviceItemExist, data) {
         mLogUtil.cameraInfo('deviceStateChangeOnLine begin.');
-        for( let i = 0; i < self.deviceList.length; i++){
+        for (let i = 0; i < self.deviceList.length; i++) {
             if (self.deviceList[i].deviceName === data.device.deviceName) {
                 mLogUtil.cameraInfo('online device exists in deviceList');
                 j = i;
@@ -245,7 +246,7 @@ export default class RemoteDeviceModel {
             mLogUtil.cameraInfo(`getTrustedDeviceListSync end, deviceList= ${JSON.stringify(list)}`);
             if (typeof (list) !== 'undefined' && typeof (list.length) !== 'undefined') {
                 self.deviceList = list;
-                for(let i = 0; i < self.deviceList.length; i++){
+                for (let i = 0; i < self.deviceList.length; i++) {
                     self.deviceTrustedInfo[i] = true;
                 }
                 mLogUtil.cameraInfo(`self.deviceTrustedInfo ${JSON.stringify(self.deviceTrustedInfo)}`);
