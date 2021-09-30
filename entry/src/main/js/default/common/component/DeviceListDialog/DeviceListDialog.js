@@ -28,7 +28,15 @@ export default {
     data: {
         presentDeviceId: 'localhost',
         isDeviceListDialogOpen: false,
-        deviceList: []
+        deviceList: [],
+        dialogWidth: 0,
+        dialogTitleTextHeight: 0,
+        dialogTitleTextFontSize: 0,
+        innerBtnHeight: 0,
+        dialogCancelButtonFontSize: 0,
+        dialogDeviceListMaxHeight: 0,
+        deviceListItemHeight: 0,
+        deviceItemTitleFontSize: 0
     },
     onInit() {
         mLogUtil.cameraInfo('openDeviceListDialog onInit begin.');
@@ -40,6 +48,18 @@ export default {
             if (!newV && this.isDeviceListDialogOpen) {
                 this.dismissDialog();
             }
+        });
+        this.$app.$def.data.previewModel.getDialogStyle((data) => {
+            mLogUtil.cameraInfo(`openDeviceListDialog onInit dialogStyle data= ${JSON.stringify(data)}`);
+            this.dialogWidth = data.dialogWidth;
+            this.dialogTitleTextHeight = data.dialogTitleTextHeight;
+            this.dialogTitleTextFontSize = data.dialogTitleTextFontSize;
+            this.innerBtnHeight = data.innerBtnHeight;
+            this.dialogCancelButtonFontSize = data.dialogCancelButtonFontSize;
+            this.dialogDeviceListMaxHeight = data.dialogDeviceListMaxHeight;
+            this.deviceListItemHeight = data.deviceListItemHeight;
+            this.deviceItemTitleFontSize = data.deviceItemTitleFontSize;
+            mLogUtil.cameraInfo('openDeviceListDialog onInit dialogStyle end');
         });
         mLogUtil.cameraInfo('openDeviceListDialog onInit end.');
     },

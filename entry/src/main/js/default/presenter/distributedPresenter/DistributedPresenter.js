@@ -19,12 +19,14 @@ import PageData from '../../common/constants/PageData.js';
 
 const PREVIEW_VIEW = PageData.PREVIEW_PAGE;
 let mLogUtil = new LogUtil();
+let mPreviewModel
 let mKvStoreModel;
 let mRemoteDeviceModel;
 
 export default class DistributedPresenter {
-    constructor(kvStoreModel, remoteDeviceModel) {
+    constructor(previewModel, kvStoreModel, remoteDeviceModel) {
         mLogUtil.cameraInfo('DistributedPresenter constructor begin.');
+        mPreviewModel = previewModel;
         mKvStoreModel = kvStoreModel;
         mRemoteDeviceModel = remoteDeviceModel;
         mKvStoreModel.setOnMessageReceivedListener(mKvStoreModel.messageData().msgFromResponderBack, () => {
@@ -62,5 +64,11 @@ export default class DistributedPresenter {
     getCurrentDeviceId() {
         mLogUtil.cameraInfo('getCurrentDeviceId begin.');
         return mRemoteDeviceModel.getCurrentDeviceId();
+    }
+
+    getPreviewStyle(callback) {
+        mLogUtil.cameraInfo('DistributedPresenter getPreviewStyle begin.');
+        mPreviewModel.getPreviewStyle(callback);
+        mLogUtil.cameraInfo('DistributedPresenter getPreviewStyle end');
     }
 }
