@@ -15,10 +15,6 @@
 
 @import '../../css/CommonPageStyle.css';
 
-.DialogMain {
-    width: 500px;
-}
-
 .DialogDiv {
     flex-direction: column;
     align-items: center;
@@ -26,31 +22,25 @@
 
 .DialogTitleText {
     width: 86.8%;
-    height: 80px;
-    font-size: 32px;
     font-weight: 600;
 }
 
 .InnerBtn {
     width: 80%;
-    height: 120px;
     justify-content: space-around;
     align-items: center;
 }
 
 .DialogCancelButton {
     width: 100%;
-    font-size: 32px;
 }
 
 .DialogDeviceList {
     width: 86.8%;
-    max-height: 150px;
 }
 
 .DeviceListItem {
     width: 100%;
-    height: 80px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -60,40 +50,4 @@
     width: 80%;
     height: 100%;
     text-align: start;
-}
-
-@media screen and (min-aspect-ratio: 1.7) {
-    .DialogMain {
-        width: 220.56px;
-    }
-
-    .DialogTitleText {
-        height: 35.28px;
-        font-size: 14px;
-    }
-
-    .InnerBtn {
-        height: 18px;
-    }
-
-    .DialogCancelButton {
-        font-size: 14px;
-    }
-
-    .DialogDeviceList {
-        max-height: 66.17px;
-    }
-
-    .DeviceListItem {
-        height: 35.28px;
-    }
-
-    .DeviceItemTitle {
-        font-size: 13px;
-    }
-
-    .DeviceItemRadio {
-        width: 14px;
-        height: 14px;
-    }
 }

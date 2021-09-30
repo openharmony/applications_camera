@@ -309,4 +309,10 @@ export default class PreviewPresenter {
         });
         mLogUtil.cameraInfo('deleteAlbumAsset end.');
     }
+
+    getPreviewStyle(callback) {
+        mLogUtil.cameraInfo('previewPresenter getPreviewStyle begin.');
+        mPreviewModel.getPreviewStyle(callback);
+        mLogUtil.cameraInfo('previewPresenter getPreviewStyle end');
+    }
 }

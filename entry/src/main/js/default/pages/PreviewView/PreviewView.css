@@ -17,32 +17,11 @@
 
 .FlashingStyle {
     background-color: #000;
-    width: 720px;
-    height: 960px;
 }
 
 .PreviewArea {
     display: flex;
     flex-direction: row;
-    width: 720px;
-    height: 960px;
-}
-
-.CameraStyle {
-    width: 720px;
-    height: 960px;
-}
-
-.ListItemLeft {
-    margin-left: 288px;
-}
-
-.ListItemRight {
-    margin-right: 288px;
-}
-
-.ImageWrapStyle {
-    border-radius: 36px;
 }
 
 .CameraPic {
@@ -52,9 +31,6 @@
 .ModeSwitch {
     position: fixed;
     left: 0;
-    bottom: 175px;
-    height: 102px;
-    width: 720px;
     align-items: center;
     flex-direction: column;
     background-color: transparent;
@@ -97,17 +73,9 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 176px;
-    width: 720px;
     justify-content: center;
     align-items: center;
     background-color: transparent;
-}
-
-.ImageStyle {
-    width: 72px;
-    height: 72px;
-    border-radius: 36px;
 }
 
 .CloseRecorderThumbnail {
@@ -123,7 +91,6 @@
 
 .ModeText {
     color: #FFF;
-    font-size: 24px;
 }
 
 @keyframes ScaleDraw {
@@ -133,69 +100,5 @@
 
     to {
         transform: scale(1);
-    }
-}
-
-@media screen and (min-aspect-ratio: 1.7) {
-    .PreviewArea {
-        width: 317.6px;
-        height: 423.5px;
-    }
-
-    .ModeSwitch {
-        bottom: 77.6px;
-        margin-left: 201.2px;
-        width: 317.6px;
-        height: 45px;
-    }
-
-    .ListItemLeft {
-        margin-left: 127.04px;
-    }
-
-    .ListItemRight {
-        margin-right: 127.04px;
-    }
-
-    .ModeText {
-        font-size: 11px;
-    }
-
-    .FootBar {
-        margin-left: 201.2px;
-        width: 317.6px;
-        height: 77.6px;
-    }
-
-    .ImageStyle {
-        width: 31.76px;
-        height: 31.76px;
-        border-radius: 15.88px;
-    }
-
-    .Shoot {
-        width: 60px;
-        height: 60px;
-        icon-width: 60px;
-        icon-height: 60px;
-        border-radius: 30px;
-    }
-
-    .SmallSwitchCamera {
-        width: 21.17px;
-        height: 21.17px;
-        icon-height: 21.17px;
-        icon-width: 21.17px;
-        border-radius: 10.585px;
-    }
-
-    .SwitchCameraCircle {
-        width: 31.76px;
-        height: 31.76px;
-        border-radius: 15.88px;
-    }
-
-    .BorderStyle {
-        border: 2px solid #fff;
     }
 }
