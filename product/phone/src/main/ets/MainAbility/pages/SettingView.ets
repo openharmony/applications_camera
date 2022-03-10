@@ -266,14 +266,14 @@ struct SettingView {
             .borderRadius(16)
             .backgroundColor('#333333')
             .height(40)
-            .width(this.tempGutter * 8)
+            .width(this.tempGutter * 12)
             .onClick(() => {
               router.replace({ uri: "pages/index" })
             })
           }.padding({ top: '14vp', bottom: '14vp' }).margin({ top: '16vp' })
         }.useSizeType({
           xs: { span: 4, offset: 4 },
-          sm: { span: 8, offset: 2 },
+          sm: { span: 4, offset: 4 },
           md: { span: 4, offset: 4 },
           lg: { span: 4, offset: 4 }
         })

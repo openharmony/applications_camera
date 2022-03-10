@@ -58,7 +58,8 @@ export struct CustomDialogView {
                                             }]
 
   public dialogList(name) {
-    if (name === 'Aspect ratio') {3
+    if (name === 'Aspect ratio') {
+      3
       this.dialogData = this.aspectRadioList
     } else {
       this.dialogData = this.videoResolutionList
@@ -85,31 +86,28 @@ export struct CustomDialogView {
           .fontColor('#E6000000')
           .fontWeight(FontWeight.Medium)
           .opacity(0.9)
-          .margin({ left: '24vp', right: '24vp' })
       }
       .width('100%')
       .height(56)
+      .margin({ left: '24vp', right: '24vp' })
 
-      Row() {
-        List() {
-          ForEach(this.dialogList(this.customDialogDetails.setAlias), (item) => {
-            ListItem() {
-              EntryComponent({
-                itemValue: item.itemValue,
-                checkedValue: this.getValue,
-                settingAlias: this.settingAlias,
-                onChange: () => this.onChange()
-              });
-            }
-            .margin({ left: '12vp', right: '12vp' })
-            .width('100%')
-            .height(48);
-          });
-        }
-        .listDirection(Axis.Vertical)
-        .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 })
-        .margin({ left: '24vp', right: '24vp' })
+      List() {
+        ForEach(this.dialogList(this.customDialogDetails.setAlias), (item) => {
+          ListItem() {
+            EntryComponent({
+              itemValue: item.itemValue,
+              checkedValue: this.getValue,
+              settingAlias: this.settingAlias,
+              onChange: () => this.onChange()
+            });
+          }
+          .margin({ left: '12vp', right: '12vp' })
+          .width('100%')
+          .height(48);
+        });
       }
+      .listDirection(Axis.Vertical)
+      .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 })
 
       Button({ type: ButtonType.Normal, stateEffect: true }) {
         Text($r('app.string.cancel'))
@@ -126,6 +124,6 @@ export struct CustomDialogView {
       })
     }
     .margin({ left: '12vp', right: '12vp' })
-    .width('100%')
+    .width('80%')
   }
 }

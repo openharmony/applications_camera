@@ -52,7 +52,8 @@ export default struct EntryComponent {
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
         Text(this.itemValue)
           .fontSize(16)
-          .fontWeight(FontWeight.Medium)
+          .fontWeight(FontWeight.Regular)
+          .margin({ top: '12vp', bottom: '12vp' })
         Radio({ group: 'settingChildren', value: this.itemValue.toString() })
           .width(24)
           .height(24)

@@ -97,10 +97,10 @@ export struct CustomDialogView {
           .fontColor('#E6000000')
           .fontWeight(FontWeight.Medium)
           .opacity(0.9)
-          .margin({ left: '24vp', right: '24vp' })
       }
       .width('100%')
       .height(56)
+      .margin({ left: '24vp', right: '24vp' })
 
       List() {
         ForEach(this.dialogList(this.customDialogDetails.setAlias), (item) => {
@@ -112,25 +112,22 @@ export struct CustomDialogView {
               onChange: () => this.onChange()
             });
           }
+          .width('100%')
           .height(48);
         });
       }
       .listDirection(Axis.Vertical)
       .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 })
-      .margin({ left: '24vp', right: '24vp' })
 
       Button({ type: ButtonType.Normal, stateEffect: true }) {
-        Row() {
-          Text($r('app.string.cancel'))
-            .fontSize('16fp')
-            .fontColor('#0A59F7')
-            .fontWeight(FontWeight.Medium)
-        }
-        .alignItems(VerticalAlign.Center)
-        .height(40)
-        .margin({ top: "8vp" })
+        Text($r('app.string.cancel'))
+          .fontSize('16fp')
+          .fontColor('#1095E8')
+          .fontWeight(FontWeight.Medium)
+          .height(40)
       }
-      .margin({ bottom: '16vp' })
+      .margin({ top: '8vp', bottom: '16vp' })
+      .height(56)
       .backgroundColor(0xffffff)
       .onClick(() => {
         this.controller.close()
