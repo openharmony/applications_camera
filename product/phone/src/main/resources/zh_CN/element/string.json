@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "相机"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "photo_mode",
+      "value": "拍照"
+    },
+    {
+      "name": "video_mode",
+      "value": "录像"
+    },
+    {
+      "name": "settings",
+      "value": "设置"
+    },
+    {
+      "name": "multi_mode",
+      "value": "多机位"
+    },
+    {
+      "name": "aspect_ratio",
+      "value": "照片比例"
+    },
+    {
+      "name": "photo_scale43",
+      "value": "4：3"
+    },
+    {
+      "name": "photo_scale11",
+      "value": "1：1"
+    },
+    {
+      "name": "photo_scale1609",
+      "value": "16：9"
+    },
+    {
+      "name": "video_resolution",
+      "value": "视频分辨率"
+    },
+    {
+      "name": "resolution16091080",
+      "value": "[16:9] 1080p"
+    },
+    {
+      "name": "resolution16091080720",
+      "value": "[16:9] 720p"
+    },
+    {
+      "name": "record_time",
+      "value": "录像时长"
+    },
+    {
+      "name": "record_time_5",
+      "value": "5秒"
+    },
+    {
+      "name": "record_time_10",
+      "value": "10秒"
+    },
+    {
+      "name": "restore_defaults",
+      "value": "恢复默认值"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    }
+  ]
+}

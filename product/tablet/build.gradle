@@ -1,0 +1,32 @@
+apply plugin: 'com.huawei.ohos.hap'
+//For instructions on signature configuration, see https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404#section1112183053510
+ohos {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\sign\\Camera.p12')
+            storePassword '0000001CA548A244AB96919EBF45FC53C3882FA3CE988394F7C7F4372FE19B964095B84FC6CD369184127CB0'
+            keyAlias = 'Camera'
+            keyPassword '0000001C733670CFC10F77D6D3700158387DAE50BCA6B9610B263EC10109E436ED15C53FB82E9514B705D0AA'
+            signAlg = 'SHA256withECDSA'
+            profile file('D:\\sign\\Camera_ohos_Provision.p7b')
+            certpath file('D:\\sign\\Camera.cer')
+        }
+    }
+    compileSdkVersion 8
+    defaultConfig {
+        compatibleSdkVersion 8
+    }
+    buildTypes {
+        release {
+            proguardOpt {
+                proguardEnabled false
+                rulesFiles 'proguard-rules.pro'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    testImplementation 'junit:junit:4.13.1'
+}
