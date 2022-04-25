@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,9 +14,13 @@
  */
 
 import Ability from '@ohos.application.Ability'
+// todo 目前在MainAbility中import其他文件会引用不到，暂时不明白原因，工具链也搞不定，暂时避免在MainAbility中import
+//import {EventBus} from '../../../../../../common/src/main/ets/default/Utils/EventBus.ets'
+//import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager.ets';
 
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
+        // Ability is creating, initialize resources for this ability
         console.info('Camera MainAbility onCreate.')
         globalThis.cameraAbilityContext = this.context
         globalThis.cameraAbilityWant = this.launchWant
@@ -24,11 +28,34 @@ export default class MainAbility extends Ability {
     }
 
     onDestroy() {
+        // Ability is creating, release resources for this ability
         console.info('Camera MainAbility onDestroy.')
     }
 
-    async onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
         console.info('Camera MainAbility onWindowStageCreate.')
+
+        windowStage.getMainWindow().then((win) => {
+            try {
+                win.setLayoutFullScreen(true).then(() => {
+                    console.info('Camera setFullScreen finished.')
+                    win.setSystemBarEnable(['navigation']).then(() => {
+                        console.info('Camera setSystemBarEnable finished.')
+                    })
+                })
+
+                win.setSystemBarProperties({
+                    navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
+                }).then(() => {
+                    console.info('Camera setSystemBarProperties.')
+                })
+
+            } catch (err) {
+                console.info('Camera setFullScreen err: ' + err)
+            }
+        })
+
         if (this.launchWant.uri === 'capture') {
             globalThis.cameraFormParam = {
                 action: 'capture',
@@ -52,7 +79,9 @@ export default class MainAbility extends Ability {
 
     onForeground() {
         console.info('Camera MainAbility onForeground.')
-        globalThis.onForegroundInit()
+        //    let appEventBus = EventBusManager.getMainInstance().getEventBus()
+        //    appEventBus.emit('changeXComponent', [])
+        globalThis?.onForegroundInit && globalThis.onForegroundInit()
     }
 
     onBackground() {

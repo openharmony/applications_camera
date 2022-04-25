@@ -1,0 +1,38 @@
+{
+  "app": {
+    "compileSdkVersion": 9,
+    "compatibleSdkVersion": 9,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "phone",
+      "srcPath": "./product/phone",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    //    {
+    //      "name": "tablet",
+    //      "srcPath": "./product/tablet",
+    //      "targets": [
+    //        {
+    //          "name": "default",
+    //          "applyToProducts": [
+    //            "default"
+    //          ]
+    //        }
+    //      ]
+    //    }
+  ]
+}

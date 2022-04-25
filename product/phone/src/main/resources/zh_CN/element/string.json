@@ -71,6 +71,25 @@
     {
       "name": "cancel",
       "value": "取消"
+    },
+    {
+      "name": "select_camera",
+      "value": "选择摄像头"
+    },
+    {
+      "name": "connected_device",
+      "value": "已连接设备"
+    },
+    {
+      "name": "more_devices",
+      "value": "更多设备"
+    },{
+      "name": "assistive_grid",
+      "value": "参考线"
+    },
+    {
+      "name": "general",
+      "value": "通用"
     }
   ]
 }

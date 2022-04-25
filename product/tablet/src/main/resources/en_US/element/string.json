@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "app_name",
-      "value": "NavigationBar"
+      "value": "Camera"
     },
     {
       "name": "mainability_description",
@@ -42,7 +42,7 @@
     },
     {
       "name": "video_resolution",
-      "value": "Video resolution"
+      "value": "Video Resolution"
     },
     {
       "name": "resolution16091080",
@@ -71,6 +71,25 @@
     {
       "name": "cancel",
       "value": "CANCEL"
+    },
+    {
+      "name": "select_camera",
+      "value": "Select Camera"
+    },
+    {
+      "name": "connected_device",
+      "value": "Connected Device"
+    },
+    {
+      "name": "more_devices",
+      "value": "More Devices"
+    },{
+      "name": "assistive_grid",
+      "value": "Assistive grid"
+    },
+    {
+      "name": "general",
+      "value": "GENERAL"
     }
   ]
 }

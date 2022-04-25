@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-export class PhotoModeParam {
-  public tabBar: string[] = ['', 'flash', 'zoom', 'focus', 'setup']
+import {Constants} from '../../../../../../../featurecommon/src/main/ets/com/ohos/featurecommon/Constants'
 
+export class PhotoModeParam {
+  public readonly tabBar: string[] = ['', 'flash', 'zoom', 'focus', 'setup']
+  public readonly functions: string[] = [Constants.CAPTURE_FUNCTION, Constants.ZOOM_FUNCTION]
 }

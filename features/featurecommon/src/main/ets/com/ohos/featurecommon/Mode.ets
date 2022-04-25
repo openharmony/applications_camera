@@ -15,19 +15,27 @@
 
 import {PhotoMode} from '../../../../../../../photo/src/main/ets/com/ohos/photo/PhotoMode'
 import {VideoMode} from '../../../../../../../video/src/main/ets/com/ohos/video/VideoMode'
+import {MultiMode} from '../../../../../../../multi/src/main/ets/com/ohos/multi/MultiMode'
 
 export class Mode {
+  private TAG: string = '[Mode]:'
   private photoMode: PhotoMode = new PhotoMode()
   private videoMode: VideoMode = new VideoMode()
+  private multiMode: MultiMode = new MultiMode()
 
-  public getParam(mode: string): string[] {
+  public getFunctions(mode: string): string[] {
     switch (mode) {
       case 'PHOTO':
-        return this.photoMode.getTabBarParam()
+        return this.photoMode.getFunctions()
         break;
       case 'VIDEO':
-        return this.videoMode.getTabBarParam()
+        return this.videoMode.getFunctions()
+        break;
+      case 'MULTI':
+        return this.multiMode.getFunctions()
+        break;
       default:
+        return []
     }
   }
 }

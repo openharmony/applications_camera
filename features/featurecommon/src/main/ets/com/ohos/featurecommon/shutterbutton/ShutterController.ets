@@ -14,7 +14,7 @@
  */
 
 export class ShutterController {
-
+  // 资源引用路径是否可以为string类型
   icon: Resource
   width: number
   height: number

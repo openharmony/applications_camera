@@ -1,5 +1,0 @@
-include ':phone', ':tablet', ':wearable', ':common', ':features:featurecommon', ':features:photo', ":features:video"
-
-project(':phone').projectDir = new File('./product/phone')
-project(':tablet').projectDir = new File('./product/tablet')
-project(':wearable').projectDir = new File('./product/wearable')

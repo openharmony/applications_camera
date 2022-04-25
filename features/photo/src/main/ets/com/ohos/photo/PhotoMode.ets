@@ -13,12 +13,20 @@
  * limitations under the License.
  */
 
+import {CLog} from '../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import {PhotoModeParam} from './PhotoModeParam'
+
+const TAG: string = '[PhotoMode]:'
 
 export class PhotoMode {
   private photoModeParam: PhotoModeParam = new PhotoModeParam()
 
   public getTabBarParam(): string[] {
     return this.photoModeParam.tabBar
+  }
+
+  public getFunctions(): string[] {
+    CLog.info(`${TAG} function = ${this.photoModeParam.functions}`)
+    return this.photoModeParam.functions
   }
 }

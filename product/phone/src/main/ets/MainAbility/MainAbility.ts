@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability';
+import Ability from '@ohos.application.Ability'
 
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
+        // Ability is creating, initialize resources for this ability
         console.info('Camera MainAbility onCreate.')
         globalThis.cameraAbilityContext = this.context
         globalThis.cameraAbilityWant = this.launchWant
@@ -24,22 +25,44 @@ export default class MainAbility extends Ability {
     }
 
     onDestroy() {
+        // Ability is creating, release resources for this ability
         console.info('Camera MainAbility onDestroy.')
     }
 
     async onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
         console.info('Camera MainAbility onWindowStageCreate.')
+
+        windowStage.getMainWindow().then((win) => {
+            try {
+                win.setLayoutFullScreen(true).then(() => {
+                    console.info('Camera setFullScreen finished.')
+                    win.setSystemBarEnable(['navigation']).then(() => {
+                        console.info('Camera setSystemBarEnable finished.')
+                    })
+                })
+
+                win.setSystemBarProperties({
+                    navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
+                }).then(() => {
+                    console.info('Camera setSystemBarProperties.')
+                })
+            } catch (err) {
+                console.info('Camera setFullScreen err: ' + err)
+            }
+        })
+
         if (this.launchWant.uri === 'capture') {
             globalThis.cameraFormParam = {
                 action: 'capture',
                 cameraPosition: 'PHOTO',
-                previewImage: 'PHOTO'
+                mode: 'PHOTO'
             }
         } else if (this.launchWant.uri === 'video') {
             globalThis.cameraFormParam = {
                 action: 'video',
                 cameraPosition: 'VIDEO',
-                previewImage: 'VIDEO'
+                mode: 'VIDEO'
             }
         }
 
@@ -53,11 +76,11 @@ export default class MainAbility extends Ability {
 
     onForeground() {
         console.info('Camera MainAbility onForeground.')
-        globalThis.onForegroundInit()
+        globalThis?.onForegroundInit && globalThis.onForegroundInit()
     }
 
     onBackground() {
         console.info('Camera MainAbility onBackground.')
-        globalThis.releaseCamera()
+        globalThis?.releaseCamera && globalThis.releaseCamera()
     }
 }

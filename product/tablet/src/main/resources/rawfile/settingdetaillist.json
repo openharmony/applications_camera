@@ -2,7 +2,7 @@
   {
     "settingIcon": "/res/image/ic_camera_setting_resolution_photo.svg",
     "settingTitle": "",
-    "settingAlias": "photoScale",
+    "settingAlias": "AspectRatio",
     "settingValue": "",
     "settingChildren": [
       {
@@ -19,7 +19,7 @@
   {
     "settingIcon": "/res/image/ic_camera_setting_resolution_video.svg",
     "settingTitle": "",
-    "settingAlias": "videoResolution",
+    "settingAlias": "VideoResolution",
     "settingValue": "",
     "settingChildren": [
       {
@@ -33,7 +33,7 @@
   {
     "settingIcon": "res/image/ic_camera_setting_timer.svg",
     "settingTitle": "",
-    "settingAlias": "recordingSize",
+    "settingAlias": "RecordingSize",
     "settingValue": "",
     "settingChildren": [
       {
