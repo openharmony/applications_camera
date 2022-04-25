@@ -13,79 +13,78 @@
  * limitations under the License.
  */
 
-import {ThumbnailController} from './ThumbnailController.ets'
-import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
+//import ability_featureAbility from '@ohos.ability.featureAbility';
+
+//import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
+import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import GetPixelMap from '../../../../../../../../../common/src/main/ets/default/Camera/GetPixelMap'
+import {ThumbnailController} from './ThumbnailController'
+import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
+import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
+import {EventBus} from '../../../../../../../../../common/src/main/ets/default/Utils/EventBus.ets'
+import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager.ets'
+
+let localState = (state) => {
+  return {
+    thumbnail: state.CameraInitReducer.thumbnail,
+    thumbnailScale: state.UiReducer.thumbnailScale,
+    thumbnailOpacity: state.UiReducer.thumbnailOpacity,
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {}
+}
 
 @Component
 export struct ThumbnailView {
-  @State thumbnail: string = ''
-  @State useThumbnail: boolean = false
-  @State tempBorder: Object = { width: 2, color: 0xffffff, style: BorderStyle.Solid }
-  private defaultIcon: Resource = $r("app.media.ic_camera_thumbnail_default_white")
-  private cameraService = CameraService.getInstance()
-  getPixelMap = new GetPixelMap()
-  thumbnailController = new ThumbnailController()
-  @State scaleValue: number = 1
-  @State tempScaleX: number= 1;
-  @State tempScaleY: number= 1;
-  @State tempOpacity: number= 1;
-  @State @Watch("thumbnailUpdate") isThumbnail: boolean = false
+  private TAG: string = '[ThumbnailView]:'
+  private mConnect: any
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  private thumbnailBorder: Object = {}
 
-  aboutToAppear() {
-    this.cameraService.getThumbnail((thumbnail) => {
-      if (thumbnail != '' && thumbnail != undefined) {
-        this.useThumbnail = true
-        this.thumbnail = thumbnail
-        this.isThumbnail = !this.isThumbnail
-        console.info("ThumbnailView update thumbnail: " + this.thumbnail)
-      } else {
-        this.useThumbnail = false
-        this.tempBorder = {};
-        console.info("ThumbnailView update thumbnail fail: " + this.thumbnail)
-      }
-    })
+  @State state: any = {}
 
-    this.thumbnailController.getParam()
+  private async onThumbnailUpdate(data) {
+    CLog.info(`${this.TAG} onThumbnailUpdate data: ${JSON.stringify(data)} E`)
+    this.state.thumbnail = data.thumbnail
+    this.thumbnailBorder = { width: 1, color: Color.White, style: BorderStyle.Solid }
+    CLog.info(`${this.TAG} onThumbnailUpdate this.state.thumbnail: ${JSON.stringify(this.state.thumbnail)} X`)
   }
 
-  public thumbnailUpdate() {
+  private aboutToAppear() {
+    CLog.info(`${this.TAG} aboutToAppear E`)
+    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    this.appEventBus.on(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
+    CLog.info(`${this.TAG} aboutToAppear X`)
+  }
 
-    this.scaleValue = 1.5
-    this.tempOpacity = 0.0
-    animateTo({ duration: 100, curve: Curve.Sharp }, () => {
-      this.tempOpacity = 1
-    })
-    animateTo({ duration: 300, curve: Curve.Sharp }, () => {
-      this.scaleValue = 1
-    })
+  private aboutToDisappear(): void {
+    CLog.info(`${this.TAG} aboutToDisappear E`)
+    this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
+    this.mConnect.destroy()
+    CLog.info(`${this.TAG} aboutToDisappear X`)
   }
 
   build() {
     Column() {
       Stack() {
-        Image(this.useThumbnail ? this.thumbnail : this.defaultIcon)
-          .width('100%')
-          .aspectRatio(1)
-          .borderRadius(20)
-          .objectFit(ImageFit.Fill)
+        Image(this.state.thumbnail)
+          .width('100%').aspectRatio(1).borderRadius(20).objectFit(ImageFit.Fill)
       }
+      .width('100%').height('100%')
       .onClick(async () => {
-        console.log('startAbility start')
+        CLog.info(`${this.TAG} launch bundle com.ohos.photos`)
         await globalThis.cameraAbilityContext.startAbility({
-          parameters: {uri: 'photodetail'},
-          bundleName: "com.ohos.photos",
-          abilityName: "com.ohos.photos.MainAbility",
+          parameters: { uri: 'photodetail' },
+          bundleName: 'com.ohos.photos',
+          abilityName: 'com.ohos.photos.MainAbility'
         })
       })
-      .width('100%')
-      .height('100%')
     }
-    .borderRadius(20)
-    .border(this.tempBorder)
-    .opacity(this.tempOpacity)
-    .width(40)
-    .aspectRatio(1)
-    .scale({ x: this.scaleValue, y: this.scaleValue })
+    .width(44).aspectRatio(1)
+    .borderRadius(20).border(this.thumbnailBorder)
+    .opacity(this.state.thumbnailOpacity)
+    .scale({ x: this.state.thumbnailScale, y: this.state.thumbnailScale })
   }
 }

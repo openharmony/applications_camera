@@ -11,6 +11,26 @@
     {
       "name": "button_click_background",
       "value": "#DCDCDC"
+    },
+    {
+      "name": "settings_ic_public_back_FFFFFF",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "settings_ic_public_back_DBFFFFFF",
+      "value": "#DBFFFFFF"
+    },
+    {
+      "name": "font_color_FFFFFF",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "font_color_99FFFFFF",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "background_color_333333",
+      "value": "#333333"
     }
   ]
 }

@@ -1,0 +1,35 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+export enum CameraId {
+  FRONT = "FRONT",
+  BACK = "BACK",
+  MULTI_BACK = "MatePad Pro（后置）",
+  MULTI_FRONT = "MatePad Pro（前置）",
+}
+
+export function getCameraId(name: string): CameraId {
+  if (name === "FRONT") {
+    return CameraId.FRONT
+  } else if (name === "BACK") {
+    return CameraId.BACK
+  } else if (name === "MatePad Pro（后置）") {
+    return CameraId.MULTI_BACK
+  } else if (name === "MatePad Pro（前置）") {
+    return CameraId.MULTI_FRONT
+  }
+
+  return CameraId.BACK
+}
