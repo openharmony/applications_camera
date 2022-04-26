@@ -14,23 +14,23 @@
  */
 
 import display from '@ohos.display';
-import {Action} from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import AspectRatio from '../../../../../../common/src/main/ets/default/setting/AspectRatio'
-import {BigText
+import { BigText
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/bigText/BigText'
-import {BigVideoTimer} from './BigVideoTimer'
-import {CameraId, getCameraId} from '../../../../../../common/src/main/ets/default/setting/CameraId'
-import {CameraPlatformCapability
+import { BigVideoTimer } from './BigVideoTimer'
+import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/default/setting/CameraId'
+import { CameraPlatformCapability
 } from '../../../../../../common/src/main/ets/default/Camera/CameraPlatformCapability'
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import DisplayUtil from '../../../../../../common/src/main/ets/default/Utils/DisplayUtil'
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
 import Resolution from '../../../../../../common/src/main/ets/default/setting/Resolution'
-import {SettingsUtil} from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
-import {ShowFlashBlack
+import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import { ShowFlashBlack
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/animate/ShowFlashBlack'
-import {SmallVideoTimer} from './SmallVideoTimer'
-import {ZoomText
+import { SmallVideoTimer } from './SmallVideoTimer'
+import { ZoomText
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/zoomView/ZoomText'
 
 let cameraState = (state) => {
@@ -101,7 +101,7 @@ export struct PreviewAreaLand {
   private TAG: string = '[PreviewAreaLand]:'
   mXComponentController: XComponentController = new XComponentController()
   @Link surfaceId: number
-//  private cameraService = CameraService.getInstance()
+  //  private cameraService = CameraService.getInstance()
   private settingsUtil = SettingsUtil.getInstance()
   private getPhotoValue: Promise<string>
   private getVideoValue: Promise<string>
@@ -196,7 +196,7 @@ export struct PreviewAreaLand {
     }
     if (tempZoom - this.zoomValue >= 0.1 || tempZoom - this.zoomValue <= -0.1) {
       if (tempZoom >= this.minZoomRatio && tempZoom <= this.maxZoomRatio) { //TODO 需要动态取得实际变焦能力范围
-//        this.cameraService.setZoomRatio(tempZoom)
+        //        this.cameraService.setZoomRatio(tempZoom)
         this.state.changeZoomRatio(tempZoom)
         this.zoomValue = tempZoom
         CLog.info(`${this.TAG} this.zoomPercentage=== ${this.zoomPercentage}`)
@@ -221,20 +221,20 @@ export struct PreviewAreaLand {
     this.state.surfacePrepare(surfaceId)
     if (this.curCameraPosition != this.cameraPosition) {
       if (this.cameraPosition === 'ORIGIN') {
-//        await this.cameraService.initCamera(surfaceId, previewImage, mXComponentController)
+        //        await this.cameraService.initCamera(surfaceId, previewImage, mXComponentController)
         this.state.startPreview()
       } else {
-//        await this.cameraService.switchCamera(surfaceId, , mXComponentController)
+        //        await this.cameraService.switchCamera(surfaceId, , mXComponentController)
         this.state.switchCamera(getCameraId(this.cameraPosition), surfaceId)
       }
     } else if (this.curPreviewImage != this.previewImage) {
-//      await this.cameraService.changeMode_(previewImage, surfaceId, mXComponentController)
+      //      await this.cameraService.changeMode_(previewImage, surfaceId, mXComponentController)
       this.state.changeMode(previewImage)
     } else if (this.isStartVideo) {
-//      await this.cameraService.startVideo(surfaceId, mXComponentController)
+      //      await this.cameraService.startVideo(surfaceId, mXComponentController)
       this.isStartVideo = false
     } else {
-//      await this.cameraService.initCamera(surfaceId, previewImage, mXComponentController)
+      //      await this.cameraService.initCamera(surfaceId, previewImage, mXComponentController)
       this.state.startPreview()
     }
     this.curPreviewImage = this.previewImage
@@ -247,15 +247,15 @@ export struct PreviewAreaLand {
     globalThis.releaseCamera = (() => {
       CLog.info(`${this.TAG} globalThis.releaseCamera called`)
       this.state.close()
-//      let cameraService = CameraService.getInstance()
-//      cameraService.releaseVideo()
-//      cameraService.releaseCamera()
+      //      let cameraService = CameraService.getInstance()
+      //      cameraService.releaseVideo()
+      //      cameraService.releaseCamera()
     })
 
-// todo 后续编译问题解决后，优先用事件通知的方式切换XComponent
-//    this.appEventBus.on('changeXComponent', () => {
-//      this.xComponentChangeFlag = !this.xComponentChangeFlag
-//    })
+    // todo 后续编译问题解决后，优先用事件通知的方式切换XComponent
+    //    this.appEventBus.on('changeXComponent', () => {
+    //      this.xComponentChangeFlag = !this.xComponentChangeFlag
+    //    })
 
     globalThis.onForegroundInit = (() => {
       CLog.info(`${this.TAG} globalThis.onForegroundInit called`)
@@ -264,14 +264,14 @@ export struct PreviewAreaLand {
     this.state.initCamera(getCameraId(this.curCameraPosition), this.previewImage)
     this.minZoomRatio = 1
     this.maxZoomRatio = 6
-//    for (let i = 0; i < zoomRatioRange.length; i++) {
-//      if (this.maxZoomRatio < zoomRatioRange[i]) {
-//        this.maxZoomRatio = zoomRatioRange[i]
-//      }
-//      if (this.minZoomRatio > zoomRatioRange[i]) {
-//        this.minZoomRatio = zoomRatioRange[i]
-//      }
-//    }
+    //    for (let i = 0; i < zoomRatioRange.length; i++) {
+    //      if (this.maxZoomRatio < zoomRatioRange[i]) {
+    //        this.maxZoomRatio = zoomRatioRange[i]
+    //      }
+    //      if (this.minZoomRatio > zoomRatioRange[i]) {
+    //        this.minZoomRatio = zoomRatioRange[i]
+    //      }
+    //    }
     CLog.info(`${this.TAG} aboutToAppear end`)
   }
 
@@ -414,7 +414,7 @@ export struct PreviewAreaLand {
             Image($r('app.media.whitePicture'))
               .width(this.XcomponentWidth)
               .height(this.XcomponentHeight)
-            //                .opacity(this.btnOpacity_first)
+                //                .opacity(this.btnOpacity_first)
               .syncLoad(false)
               .scale({ x: this.scaleX, y: 1.0 })
               .rotate({ x: 0, y: 10, z: 0, angle: this.rotateAngle })
@@ -426,7 +426,7 @@ export struct PreviewAreaLand {
             Image($r('app.media.whitePicture'))
               .width(this.XcomponentWidth)
               .height(this.XcomponentHeight)
-            //                .opacity(this.btnOpacity_sec)
+                //                .opacity(this.btnOpacity_sec)
               .syncLoad(false)
               .scale({ x: this.scaleXSec, y: 1.0 })
               .rotate({ x: 0, y: 10, z: 0, angle: this.rotateAngleSec })

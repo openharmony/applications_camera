@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import {CLog} from '../Utils/CLog'
-import {EventBus} from './EventBus'
+import { CLog } from '../Utils/CLog'
+import { EventBus } from './EventBus'
 import EventBusManager from './EventBusManager'
 
 // todo 后续考虑EventBus可能出现的消息堵塞问题

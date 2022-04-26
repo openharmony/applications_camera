@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {Constants} from '../../../../../../../featurecommon/src/main/ets/com/ohos/featurecommon/Constants'
+import { Constants } from '../../../../../../../featurecommon/src/main/ets/com/ohos/featurecommon/Constants'
 
 export class MultiModeParam {
   public readonly functions: string[] = [Constants.CAPTURE_FUNCTION]

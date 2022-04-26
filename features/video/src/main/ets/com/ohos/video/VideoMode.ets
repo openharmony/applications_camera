@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import {CLog} from '../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import {VideoModeParam} from './VideoModeParam'
+import { CLog } from '../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { VideoModeParam } from './VideoModeParam'
 
 const TAG: string = '[VideoMode]:'
 

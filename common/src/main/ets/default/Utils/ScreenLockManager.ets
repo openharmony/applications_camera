@@ -15,10 +15,10 @@
 
 import commonEvent from "@ohos.commonEvent";
 
-import {CLog} from '../Utils/CLog'
-import {CommonEventSubscriber} from "commonEvent/commonEventSubscriber";
-import {debounce} from "./Decorators";
-import {EventBus} from "./EventBus";
+import { CLog } from '../Utils/CLog'
+import { CommonEventSubscriber } from "commonEvent/commonEventSubscriber";
+import { debounce } from "./Decorators";
+import { EventBus } from "./EventBus";
 import EventBusManager from "./EventBusManager";
 
 const SCREEN_COMMON_EVENT_INFO = {

@@ -15,7 +15,7 @@
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
-import {CLog} from '../Utils/CLog'
+import { CLog } from '../Utils/CLog'
 
 export default class GetPixelMap {
   private TAG = '[GetPixelMap]:'

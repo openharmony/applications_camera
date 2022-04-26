@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
-import {CLog} from '../Utils/CLog'
-import {Constants} from './Constants'
-import {EventBus} from './EventBus'
+import { CLog } from '../Utils/CLog'
+import { Constants } from './Constants'
+import { EventBus } from './EventBus'
 import EventBusManager from './EventBusManager'
-import {WorkerManager} from './WorkerManager'
-import {FeatureManager} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/featureservice/FeatureManager'
+import { WorkerManager } from './WorkerManager'
+import { FeatureManager
+} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/featureservice/FeatureManager'
 
 export class CameraWorker {
   private static TAG: string = '[CameraWorker]:'
@@ -26,7 +27,7 @@ export class CameraWorker {
   private workerManager: WorkerManager
 
   constructor() {
-    this.workerManager =new WorkerManager()
+    this.workerManager = new WorkerManager()
     var featureManager = new FeatureManager('PHOTO')
     // 接收UI线程的消息，并继续发送
     this.appEventBus.on('MAIN_TO_WORKER', (msg) => {

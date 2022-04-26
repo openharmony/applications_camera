@@ -14,14 +14,15 @@
  */
 
 export class SettingData {
-    constructor() {
-    }
-    settingTitle?: string | Resource;
-    imagePath?: string | Resource;
-    settingName?: string | Resource;
-    checkedName?: string;
-    settingAlias?: string;
-    selectType?: string;
-    radio?: string;
-    toggle?: string;
+  constructor() {
+  }
+
+  settingTitle?: string | Resource;
+  imagePath?: string | Resource;
+  settingName?: string | Resource;
+  checkedName?: string;
+  settingAlias?: string;
+  selectType?: string;
+  radio?: string;
+  toggle?: string;
 }

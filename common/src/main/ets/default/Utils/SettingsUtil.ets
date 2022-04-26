@@ -14,9 +14,9 @@
  */
 
 import AspectRatio from '../setting/AspectRatio'
-import {CameraId} from '../setting/CameraId'
-import {CLog} from '../Utils/CLog'
-import {Constants} from './Constants'
+import { CameraId } from '../setting/CameraId'
+import { CLog } from '../Utils/CLog'
+import { Constants } from './Constants'
 import DisplayUtil from './DisplayUtil'
 import RdbStoreManager from './RdbStoreManager'
 import Resolution from '../setting/Resolution'
@@ -50,7 +50,7 @@ export class SettingsUtil {
     } else if (settingAlias == Resolution.ALIAS) {
       this.mResolution = itemValue
       needCommit = true
-    } else if(settingAlias == AssistiveGrid.ALIAS){
+    } else if (settingAlias == AssistiveGrid.ALIAS) {
       this.mAssistiveGrid = itemValue
       needCommit = true
     }
@@ -115,11 +115,10 @@ export class SettingsUtil {
     await this.mRdbStoreManager.updateValue(settingItemInfo)
   }
 
-
   private mScreenWidth: number
   private mScreenHeight: number
   private mPlatformCapability
-  private mCameraId : CameraId
+  private mCameraId: CameraId
   private mMode: string
 
   public setCameraPlatformCapability(platformCapability) {

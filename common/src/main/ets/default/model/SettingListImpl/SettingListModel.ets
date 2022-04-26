@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import {CLog} from '../../Utils/CLog'
+import { CLog } from '../../Utils/CLog'
 import AspectRatio from '../../setting/AspectRatio'
 import AssistiveGrid from '../../setting/AssistiveGrid'
 import Resolution from '../../setting/Resolution'
+
 /**
  * app setting homepage service class
  */

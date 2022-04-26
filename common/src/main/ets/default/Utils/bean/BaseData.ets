@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {SettingData} from './SettingData'
+import { SettingData } from './SettingData'
 
 export class BaseData {
   constructor() {

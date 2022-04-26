@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {Action} from '../actions/Action'
+import { Action } from '../actions/Action'
 import image from '@ohos.multimedia.image'
 
 let initState = {

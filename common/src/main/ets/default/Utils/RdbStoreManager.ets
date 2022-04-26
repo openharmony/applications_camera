@@ -15,7 +15,7 @@
 
 import dataRdb from '@ohos.data.rdb';
 
-import {CLog} from '../Utils/CLog'
+import { CLog } from '../Utils/CLog'
 import SettingItemInfo from './SettingItemInfo'
 
 const DB_NAME = 'Camera.db'

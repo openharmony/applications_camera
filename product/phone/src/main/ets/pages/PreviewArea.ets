@@ -15,21 +15,21 @@
 
 import display from '@ohos.display';
 
-import {Action} from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import {BigText
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { BigText
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/bigText/BigText'
-import {CameraId, getCameraId} from '../../../../../../common/src/main/ets/default/setting/CameraId'
-import {CameraPlatformCapability
+import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/default/setting/CameraId'
+import { CameraPlatformCapability
 } from '../../../../../../common/src/main/ets/default/Camera/CameraPlatformCapability'
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
-import {ScreenLockManager} from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
-import {SettingsUtil} from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
-import {ShowFlashBlack
+import { ScreenLockManager } from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
+import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import { ShowFlashBlack
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/animate/ShowFlashBlack'
-import {ZoomText
+import { ZoomText
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/zoomView/ZoomText'
-import {EventBus} from '../../../../../../common/src/main/ets/default/Utils/EventBus'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 
 //let cameraState = (state) => {

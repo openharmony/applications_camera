@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import {Action} from '../actions/Action'
+import { Action } from '../actions/Action'
 
-let initState = {
-}
+let initState = {}
 
 export default function CaptureReducer(state = initState, action: {
   type: string,

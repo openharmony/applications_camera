@@ -18,9 +18,9 @@ import deviceManager from '@ohos.distributedHardware.deviceManager'
 import image from '@ohos.multimedia.image'
 import media from '@ohos.multimedia.media'
 
-import {CameraId} from '../setting/CameraId'
-import {CLog} from '../Utils/CLog'
-import {Constants} from '../Utils/Constants'
+import { CameraId } from '../setting/CameraId'
+import { CLog } from '../Utils/CLog'
+import { Constants } from '../Utils/Constants'
 import GetPixelMap from './GetPixelMap'
 import SaveCameraAsset from './SaveCameraAsset'
 

@@ -13,16 +13,17 @@
  * limitations under the License.
  */
 
-import {CameraSwitchButton
+import { CameraSwitchButton
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/cameraswitcher/CameraSwitchButton'
-//import {CameraService} from '../../../../../../../common/src/main/ets/default/Camera/CameraService';
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import {ShutterButton
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus.ets'
+import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager.ets'
+import { ShutterButton
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/shutterbutton/ShutterButton'
-import {ThumbnailView
+import { ThumbnailView
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/thumbnail/ThumbnailView'
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
-import {Action} from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 
 let footBarState = (state) => {
   return {
@@ -41,6 +42,7 @@ export struct FootBar {
   @State state: any = {}
 
   private mConnect: any
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
 //  @Link previewImage: string
 ////  private cameraService = CameraService.getInstance()
@@ -69,9 +71,24 @@ export struct FootBar {
 //  @State cameraDevice: string = 'phone'
 //  @Link state: any
 
+  private async onRecordStart(data) {
+    CLog.info(`${this.TAG} onRecordStart E`)
+    this.state.isRecording = true
+    CLog.info(`${this.TAG} onRecordStart X`)
+  }
+
+  private async onRecordStop(data) {
+    CLog.info(`${this.TAG} onRecordStop E`)
+    this.state.isRecording = false
+    CLog.info(`${this.TAG} onRecordStop X`)
+  }
+
   public aboutToAppear(): void {
     CLog.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(footBarState, footBarDispatcher)(this.state)
+    this.state.isRecording = false
+    this.appEventBus.on(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
     CLog.info(`${this.TAG} aboutToAppear X`)
 //    if (this.camera`                                                          Service.cameraInfo) {
 //      if (this.cameraService.cameraInfo.length > 1) {
@@ -86,6 +103,8 @@ export struct FootBar {
 
   public aboutToDisappear(): void {
     CLog.info(`${this.TAG} aboutToDisappear E`)
+    this.appEventBus.off(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
     this.mConnect.destroy()
     CLog.info(`${this.TAG} aboutToDisappear X`)
   }
@@ -96,9 +115,14 @@ export struct FootBar {
       alignItems: ItemAlign.Center,
       justifyContent: FlexAlign.Center
     }) {
-      ThumbnailView()
+      if (!this.state.isRecording) {
+        ThumbnailView()
+      } else {
+        Column() {
+        }.width('40').aspectRatio(1)
+      }
       ShutterButton()
-      if (this.state.platformCapability?.mCameraCount > 1) {
+      if (this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording) {
         CameraSwitchButton()
       } else {
         Column() {

@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import fileio from '@ohos.fileio';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import fileio from '@ohos.fileio'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
-import {CLog} from '../Utils/CLog'
-import DateTimeUtil from '../Utils/DateTimeUtil';
+import { CLog } from '../Utils/CLog'
+import DateTimeUtil from '../Utils/DateTimeUtil'
 
 let photoUri;
 
@@ -25,9 +25,10 @@ export default class SaveCameraAsset {
   constructor() {
 
   }
+
   private TAG = '[SaveCameraAsset:] '
   private lastSaveTime: string = ''
-  private saveIndex : number = 0
+  private saveIndex: number = 0
   public videoPrepareFile: any
 
   public getPhotoUri() {

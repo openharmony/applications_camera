@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import {CameraService} from './CameraService'
-import {CameraId} from '../setting/CameraId'
-import {CLog} from '../Utils/CLog'
+import { CameraService } from './CameraService'
+import { CameraId } from '../setting/CameraId'
+import { CLog } from '../Utils/CLog'
 
 export class CameraPlatformCapability {
   private TAG: string = '[CameraPlatformCapability]:'
@@ -62,7 +62,7 @@ export class CameraPlatformCapability {
       this.mZoomRatioRangeMap[id] = { min: 1, max: 6 }
       this.mPhotoPreviewSizeMap[id] = JSON.parse(JSON.stringify(this.mPhotoPreviewSize))
       this.mVideoPreviewSizeMap[id] = JSON.parse(JSON.stringify(this.mVideoPreviewSize))
-      this.mImageSizeMap[id] =  JSON.parse(JSON.stringify(this.mImageSize))
+      this.mImageSizeMap[id] = JSON.parse(JSON.stringify(this.mImageSize))
       this.mVideoFrameSizeMap[id] = JSON.parse(JSON.stringify(this.mVideoFrameSize))
       //      await cameraInput.release()
     }

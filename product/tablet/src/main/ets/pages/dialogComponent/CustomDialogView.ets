@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {CLog} from '../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CLog } from '../../../../../../../common/src/main/ets/default/Utils/CLog'
 import EntryComponent from '../../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/customDialog/dialogComponent/EntryComponent'
 
 @Observed
@@ -66,7 +66,7 @@ export struct CustomDialogView {
     this.settingAlias = this.customDialogDetails.setAlias;
     CLog.info(`${this.TAG} aboutToAppear end`)
   }
-  
+
   private dialogList(name) {
     if (name === 'AspectRatio') {
       this.dialogData = this.aspectRadioList
@@ -96,7 +96,7 @@ export struct CustomDialogView {
               .opacity($r("sys.float.ohos_id_alpha_content_primary"))
           }
           .width('100%')
-            .height(56)
+          .height(56)
 
           List() {
             ForEach(this.dialogList(this.customDialogDetails.setAlias), (item) => {
@@ -109,7 +109,7 @@ export struct CustomDialogView {
                 });
               }
               .width('100%')
-                .height(48)
+              .height(48)
             });
           }
           .listDirection(Axis.Vertical)
@@ -124,26 +124,26 @@ export struct CustomDialogView {
                 .height('100%')
             }
             .width('100%')
-              .height('100%')
-              .backgroundColor(0xffffff)
-              .onClick(() => {
-                this.controller.close()
-              })
+            .height('100%')
+            .backgroundColor(0xffffff)
+            .onClick(() => {
+              this.controller.close()
+            })
           }
           .height(56)
-            .width('100%')
-            .margin({top: 8}).padding({ bottom: '16vp' })
+          .width('100%')
+          .margin({ top: 8 }).padding({ bottom: '16vp' })
         }
         .width('100%')
-          .backgroundColor(Color.White)
-          .padding({ left: '24vp', right: '24vp' })
-          .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
-          .useSizeType({
-            xs: { span: 4, offset: 4 },
-            sm: { span: 4, offset: 4 },
-            md: { span: 4, offset: 4 },
-            lg: { span: 4, offset: 4 }
-          })
+        .backgroundColor(Color.White)
+        .padding({ left: '24vp', right: '24vp' })
+        .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
+        .useSizeType({
+          xs: { span: 4, offset: 4 },
+          sm: { span: 4, offset: 4 },
+          md: { span: 4, offset: 4 },
+          lg: { span: 4, offset: 4 }
+        })
       }.width('100%')
     }
   }

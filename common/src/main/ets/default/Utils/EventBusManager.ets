@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {EventBus} from "./EventBus"
+import { EventBus } from "./EventBus"
 
 export default class EventBusManager {
   // The global eventbus of the application process. Event registration and destruction should be paired

@@ -183,7 +183,7 @@ export class Action {
   public static PrepareSurface(surfaceId: number) {
     return {
       type: Action.ACTION_PREPARE_SURFACE,
-      data: { surfaceId: surfaceId}
+      data: { surfaceId: surfaceId }
     }
   }
 
@@ -227,7 +227,7 @@ export class Action {
   public static UpdateRecordingTimeDisplay(recordingTimeDisplay: string) {
     return {
       type: Action.ACTION_UPDATE_RECORDING_TIME_DISPLAY,
-      data: { recordingTimeDisplay: recordingTimeDisplay}
+      data: { recordingTimeDisplay: recordingTimeDisplay }
     }
   }
 
@@ -561,7 +561,7 @@ export class Action {
   public static DeviceError(info) {
     return {
       type: Action.ACTION_DEVICE_ERROR,
-      data: {info: info}
+      data: { info: info }
     }
   }
 
