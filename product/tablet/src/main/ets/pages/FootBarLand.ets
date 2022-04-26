@@ -13,19 +13,18 @@
  * limitations under the License.
  */
 
-//import {CameraService} from '../../../../../../../common/src/main/ets/default/Camera/CameraService.ets';
-import {CameraSwitchButton
+import { CameraSwitchButton
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/cameraswitcher/CameraSwitchButton'
-import {ControlLand} from './ControlLand'
-import {ShutterButtonLand
+import { ControlLand } from './ControlLand'
+import { ShutterButtonLand
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/shutterbutton/ShutterButtonLand'
-import {ThumbnailView
+import { ThumbnailView
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/thumbnail/ThumbnailView'
 
 @Component
 export struct FootBarLand {
   @Link previewImage: string
-//  private cameraService = CameraService.getInstance()
+  //  private cameraService = CameraService.getInstance()
   @State isVisible: boolean = true
   @Link surfaceId: number
   @Link cameraPosition: string
@@ -54,26 +53,27 @@ export struct FootBarLand {
 
   private aboutToAppear() {
     // todo 这里获取cameraInfo的时机有问题
-//    if (this.cameraService.cameraInfo) {
-//      if (this.cameraService.cameraInfo.length > 1) {
-//        this.isVisible = true
-//      } else {
-//        this.isVisible = false
-//      }
-//    } else {
-      this.isVisible = true
-//    }
+    //    if (this.cameraService.cameraInfo) {
+    //      if (this.cameraService.cameraInfo.length > 1) {
+    //        this.isVisible = true
+    //      } else {
+    //        this.isVisible = false
+    //      }
+    //    } else {
+    this.isVisible = true
+    //    }
   }
 
   build() {
     Flex({
-    direction: FlexDirection.Column,
-    alignItems: ItemAlign.Center,
-    justifyContent: FlexAlign.Center
+      direction: FlexDirection.Column,
+      alignItems: ItemAlign.Center,
+      justifyContent: FlexAlign.Center
     }) {
-      Column(){
+      Column() {
 
       }.width('100%').height(160)
+
       Flex({
         direction: FlexDirection.Column,
         alignItems: ItemAlign.Center,
@@ -93,7 +93,7 @@ export struct FootBarLand {
             isSwitchBackground: $isSwitchBackground,
             videoState: $videoState,
             cameraDevice: $cameraDevice,
-	    state: $state
+            state: $state
           })
         } else {
           Column() {
@@ -102,27 +102,31 @@ export struct FootBarLand {
           .aspectRatio(1)
         }
 
-      ShutterButtonLand({
-        previewImage: $previewImage,
-	state: $state,
-        isThirdPartyCall: $isThirdPartyCall,
-        isStartVideo: $isStartVideo,
-        isBigVideoTimerVisible: $isBigVideoTimerVisible,
-        isSmallVideoTimerVisible: $isSmallVideoTimerVisible,
-        isResumeVideo: $isResumeVideo,
-        iscContinueVideo: $iscContinueVideo,
-        isShowFlashBlack: $isShowFlashBlack,
-        xComponentChangeFlag: $xComponentChangeFlag,
-        videoState: $videoState,
-        XcomponentWidth: $XcomponentWidth,
-        XcomponentHeight: $XcomponentHeight
-      })
+        ShutterButtonLand({
+          previewImage: $previewImage,
+          state: $state,
+          isThirdPartyCall: $isThirdPartyCall,
+          isStartVideo: $isStartVideo,
+          isBigVideoTimerVisible: $isBigVideoTimerVisible,
+          isSmallVideoTimerVisible: $isSmallVideoTimerVisible,
+          isResumeVideo: $isResumeVideo,
+          iscContinueVideo: $iscContinueVideo,
+          isShowFlashBlack: $isShowFlashBlack,
+          xComponentChangeFlag: $xComponentChangeFlag,
+          videoState: $videoState,
+          XcomponentWidth: $XcomponentWidth,
+          XcomponentHeight: $XcomponentHeight
+        })
 
-        ThumbnailView({state: $state})
+        ThumbnailView({ state: $state })
       }
       .width('100%')
-        .height(260)
-        .margin({top: $r("sys.float.ohos_id_text_paragraph_margin_xl"), bottom: $r("sys.float.ohos_id_text_paragraph_margin_xl")})
+      .height(260)
+      .margin({
+        top: $r("sys.float.ohos_id_text_paragraph_margin_xl"),
+        bottom: $r("sys.float.ohos_id_text_paragraph_margin_xl")
+      })
+
       if (this.videoState === "beforeTakeVideo") {
         ControlLand({
           aspectRatio: $aspectRatio,
@@ -139,7 +143,7 @@ export struct FootBarLand {
           curPreviewImage: $curPreviewImage
         })
       } else {
-        Column(){
+        Column() {
 
         }.width('100%').height(160)
       }

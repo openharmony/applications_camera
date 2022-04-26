@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {CLog} from '../Utils/CLog'
+import { CLog } from '../Utils/CLog'
 
 const TAG = '[Decorators]:'
 

@@ -15,9 +15,9 @@
 
 import worker from '@ohos.worker';
 
-import {CLog} from '../Utils/CLog'
-import {Constants} from './Constants'
-import {EventBus} from './EventBus'
+import { CLog } from '../Utils/CLog'
+import { Constants } from './Constants'
+import { EventBus } from './EventBus'
 import EventBusManager from './EventBusManager'
 
 export class AsyncManager {
@@ -92,5 +92,4 @@ export class AsyncManager {
   public onexit(msg: any): void {
 
   }
-
 }

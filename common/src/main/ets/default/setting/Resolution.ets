@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import {CameraPlatformCapability} from '../Camera/CameraPlatformCapability'
-import {CameraId} from './CameraId'
-import {CLog} from '../Utils/CLog'
+import { CameraPlatformCapability } from '../Camera/CameraPlatformCapability'
+import { CameraId } from './CameraId'
+import { CLog } from '../Utils/CLog'
 
 export default class Resolution {
   private static TAG: string = '[Resolution]:'

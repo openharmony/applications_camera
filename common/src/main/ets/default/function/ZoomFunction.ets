@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import {Action} from '../redux/actions/Action'
-import {CLog} from '../Utils/CLog'
-import {Function} from "./Function"
+import { Action } from '../redux/actions/Action'
+import { CLog } from '../Utils/CLog'
+import { Function } from "./Function"
 
 export class ZoomFunction extends Function {
   private TAG: string = '[ZoomFunction]:'

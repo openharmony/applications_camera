@@ -15,9 +15,9 @@
 
 import worker from '@ohos.worker';
 
-import {ActionHandler} from './ActionHandler'
-import {CLog} from '../Utils/CLog'
-import {EventBus} from './EventBus'
+import { ActionHandler } from './ActionHandler'
+import { CLog } from '../Utils/CLog'
+import { EventBus } from './EventBus'
 import EventBusManager from './EventBusManager'
 
 export class WorkerManager {

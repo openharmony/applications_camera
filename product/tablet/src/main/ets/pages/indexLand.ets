@@ -18,17 +18,17 @@ import bundle from '@ohos.bundle';
 import display from '@ohos.display';
 import router from '@system.router';
 
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import {EventBus} from '../../../../../../common/src/main/ets/default/Utils/EventBus'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
-import {FootBarLand} from './FootBarLand'
-import {ModeConfig} from '../common/ModeConfig'
-import {PreviewAreaLand} from './PreviewAreaLand'
+import { FootBarLand } from './FootBarLand'
+import { ModeConfig } from '../common/ModeConfig'
+import { PreviewAreaLand } from './PreviewAreaLand'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/Utils/RdbStoreManager'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
-import {TabBarLand
+import { TabBarLand
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/tabBar/TabBarLand'
-import {ZoomViewLand
+import { ZoomViewLand
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/zoomView/ZoomViewLand'
 
 var mScreenLockManager = new ScreenLockManager()
@@ -78,13 +78,14 @@ struct Index {
   @State permissionFlag: boolean = globalThis.permissionFlag
   @State videoState: string = 'beforeTakeVideo'
   @State footBarWidth: number = globalThis.footBarWidth
+
   private aboutToAppear() {
     CLog.info(this.TAG + ' Camera indexLand aboutToAppear')
     globalThis.curCameraName = '本地（后置）'
     display.getDefaultDisplay().then((dis) => {
       CLog.info(this.TAG + " dis data=" + JSON.stringify(dis))
       //      this.footBarWidth = px2vp(dis.height - 176) * (4 / 3) - 100
-//      globalThis.footBarWidth = px2vp(dis.width) - 270
+      //      globalThis.footBarWidth = px2vp(dis.width) - 270
       globalThis.footBarWidth = px2vp(dis.height) * (4 / 3) - 100
       this.footBarWidth = globalThis.footBarWidth
     })
@@ -248,7 +249,7 @@ struct Index {
               pinchGestureTimer: $pinchGestureTimer,
               onTouchDownTimer: $onTouchDownTimer,
               videoState: $videoState,
-	            state: $state,
+              state: $state,
             })
           }
         }

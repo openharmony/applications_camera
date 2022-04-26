@@ -38,7 +38,7 @@ export struct SmallVideoTimer {
     clearInterval(this.spotTimer)
     clearInterval(this.smallTimer)
     display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height ) * (4 / 3)
+      this.timerPosition = px2vp(dis.height) * (4 / 3)
     })
   }
 
@@ -72,64 +72,65 @@ export struct SmallVideoTimer {
   }
 
   watchIsResumeVideo() {
-    if(this.isResumeVideo) {
+    if (this.isResumeVideo) {
       clearInterval(this.spotTimer)
       clearInterval(this.smallTimer)
     }
   }
 
   watchIscContinueVideo() {
-    if(this.iscContinueVideo) {
+    if (this.iscContinueVideo) {
       this.setIntervalSmallVideoTimer()
     }
   }
 
   build() {
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-          Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}){
-            if(this.isResumeVideo) {
-              Image($r('app.media.ic_video_recording'))
-                .width(12)
-                .height(12)
-                .fillColor(Color.White)
-            }else{
-              if (this.spotVisibility) {
-                Column() {
-                }
-                .width(12)
-                .height(12)
-                .backgroundColor('#FF0000')
-                .borderRadius(6)
-                .visibility(Visibility.Visible)
-              } else {
-                Column() {
-                }
-                .width(12)
-                .height(12)
-                .backgroundColor('#FF0000')
-                .borderRadius(6)
-                .visibility(Visibility.Hidden)
-              }
+    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
+        if (this.isResumeVideo) {
+          Image($r('app.media.ic_video_recording'))
+            .width(12)
+            .height(12)
+            .fillColor(Color.White)
+        } else {
+          if (this.spotVisibility) {
+            Column() {
             }
-            Text(this.showMinute)
-              .margin({ left: 8 })
-              .fontSize('28fp')
-              .fontWeight(FontWeight.Lighter)
-              .fontColor('#FFFFFF')
+            .width(12)
+            .height(12)
+            .backgroundColor('#FF0000')
+            .borderRadius(6)
+            .visibility(Visibility.Visible)
+          } else {
+            Column() {
+            }
+            .width(12)
+            .height(12)
+            .backgroundColor('#FF0000')
+            .borderRadius(6)
+            .visibility(Visibility.Hidden)
           }
-          .layoutWeight(1)
-          Text(":")
-            .fontSize('28fp')
-            .fontWeight(FontWeight.Lighter)
-            .fontColor('#FFFFFF')
-          Text(this.showSecond)
-            .fontSize('28fp')
-            .fontWeight(FontWeight.Lighter)
-            .fontColor('#FFFFFF')
-            .textAlign(TextAlign.Start)
-            .layoutWeight(1)
         }
-      .width(this.timerPosition == 0 ? '100%' : this.timerPosition)
-      .height(48)
+        Text(this.showMinute)
+          .margin({ left: 8 })
+          .fontSize('28fp')
+          .fontWeight(FontWeight.Lighter)
+          .fontColor('#FFFFFF')
+      }
+      .layoutWeight(1)
+
+      Text(":")
+        .fontSize('28fp')
+        .fontWeight(FontWeight.Lighter)
+        .fontColor('#FFFFFF')
+      Text(this.showSecond)
+        .fontSize('28fp')
+        .fontWeight(FontWeight.Lighter)
+        .fontColor('#FFFFFF')
+        .textAlign(TextAlign.Start)
+        .layoutWeight(1)
+    }
+    .width(this.timerPosition == 0 ? '100%' : this.timerPosition)
+    .height(48)
   }
 }

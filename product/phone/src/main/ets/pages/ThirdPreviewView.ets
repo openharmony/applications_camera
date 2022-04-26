@@ -15,8 +15,8 @@
 
 import router from '@system.router';
 
-import {CameraService} from '../../../../../../common/src/main/ets/default/Camera/CameraService'
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CameraService } from '../../../../../../common/src/main/ets/default/Camera/CameraService'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 
 function terminateSelfWithResult(getBundleName, getAbilityName, photoUri) {
   CLog.info(`${this.TAG} terminateSelfWithResult start`)

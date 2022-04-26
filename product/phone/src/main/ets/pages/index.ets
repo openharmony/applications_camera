@@ -18,25 +18,24 @@ import bundle from '@ohos.bundle';
 import display from '@ohos.display';
 import router from '@system.router';
 
-import {BigVideoTimer} from './BigVideoTimer'
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import {Control} from './Control'
-import {EventBus} from '../../../../../../common/src/main/ets/default/Utils/EventBus'
+import { BigVideoTimer } from './BigVideoTimer'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { Control } from './Control'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
-import {FootBar} from './FootBar'
-import {ModeConfig} from '../common/ModeConfig'
-import {PreviewArea} from './PreviewArea'
+import { FootBar } from './FootBar'
+import { ModeConfig } from '../common/ModeConfig'
+import { PreviewArea } from './PreviewArea'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/Utils/RdbStoreManager'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
-import {SmallVideoTimer} from './SmallVideoTimer'
-import {TabBar
+import { SmallVideoTimer } from './SmallVideoTimer'
+import { TabBar
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/tabBar/TabBar'
-import {ZoomView
+import { ZoomView
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/zoomView/ZoomView'
-
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
-import {Action} from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import {CameraWorker} from '../../../../../../common/src/main/ets/default/Utils/CameraWorker'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { CameraWorker } from '../../../../../../common/src/main/ets/default/Utils/CameraWorker'
 
 var mScreenLockManager = new ScreenLockManager()
 var cameraWorker = CameraWorker.getInstance()
@@ -81,9 +80,7 @@ struct Index {
   private TAG: string = '[Index]:'
   private modeConfig: ModeConfig = new ModeConfig()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-
   @State state: any = {}
-
   private mConnect: any
 
   private aboutToAppear() {

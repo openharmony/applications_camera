@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {Action} from '../actions/Action.ets'
+import { Action } from '../actions/Action.ets'
 
 let initState = {
   cameraPosition: 'ORIGIN',

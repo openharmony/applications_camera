@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import {CLog} from '../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import {PhotoModeParam} from './PhotoModeParam'
+import { CLog } from '../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { PhotoModeParam } from './PhotoModeParam'
 
 const TAG: string = '[PhotoMode]:'
 

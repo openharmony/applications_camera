@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import {Action} from '../redux/actions/Action'
-import {CameraId} from '../setting/CameraId'
-import {CameraPlatformCapability} from '../Camera/CameraPlatformCapability'
-import {CLog} from '../Utils/CLog'
-import {Function} from "./Function"
-import {FunctionCallBack} from '../Camera/CameraService'
+import { Action } from '../redux/actions/Action'
+import { CameraId } from '../setting/CameraId'
+import { CameraPlatformCapability } from '../Camera/CameraPlatformCapability'
+import { CLog } from '../Utils/CLog'
+import { Function } from "./Function"
+import { FunctionCallBack } from '../Camera/CameraService'
 
 export class CameraBasicFunction extends Function {
   private TAG: string = '[CameraBasicFunction]:'
@@ -28,23 +28,23 @@ export class CameraBasicFunction extends Function {
   private mCurrentMode: any = null
 
   private functionBackImpl: FunctionCallBack = {
-    onCaptureSuccess: (thumbnail: any): void =>{
+    onCaptureSuccess: (thumbnail: any): void => {
       CLog.info(`${this.TAG} functionBackImpl onCaptureSuccess ${thumbnail}`)
       this.mWorkerManager.postMessage(Action.UpdateThumbnail(thumbnail))
     },
-    onCaptureFailure: (): void =>{
+    onCaptureFailure: (): void => {
       CLog.info(`${this.TAG} functionBackImpl onCaptureFailure`)
       this.mWorkerManager.postMessage(Action.captureError())
     },
-    onRecordSuccess: (thumbnail: any): void =>{
+    onRecordSuccess: (thumbnail: any): void => {
       CLog.info(`${this.TAG} functionBackImpl onRecordSuccess ${thumbnail}`)
       this.mWorkerManager.postMessage(Action.RecordDone(thumbnail))
     },
-    onRecordFailure: (): void =>{
+    onRecordFailure: (): void => {
       CLog.info(`${this.TAG} functionBackImpl onRecordFailure`)
       this.mWorkerManager.postMessage(Action.RecordError())
     },
-    thumbnail: (thumbnail: any): void =>{
+    thumbnail: (thumbnail: any): void => {
       CLog.info(`${this.TAG} functionBackImpl thumbnail ${thumbnail}`)
       this.mWorkerManager.postMessage(Action.UpdateThumbnail(thumbnail))
     }

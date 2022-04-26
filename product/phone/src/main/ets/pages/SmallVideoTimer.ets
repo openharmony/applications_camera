@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
-import {Action} from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import {EventBus} from '../../../../../../common/src/main/ets/default/Utils/EventBus'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 
 let localState = (state) => {
@@ -49,7 +49,6 @@ export struct SmallVideoTimer {
   private timer: number = 0
   private timerTick: number = 0
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-
   @State state: any = {}
 
   private async onRecordPaused(data) {
@@ -86,7 +85,7 @@ export struct SmallVideoTimer {
     this.timer = setInterval(() => {
       this.timerTick++
       if (this.timerTick % 2 === 0) {
-        this.state.updateRecordingTime(this.state.recordingTime+1)
+        this.state.updateRecordingTime(this.state.recordingTime + 1)
         let shownSec = '00'
         let shownMin = '00'
         let sec = this.state.recordingTime % 60

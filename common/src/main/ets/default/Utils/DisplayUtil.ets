@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import {CLog} from '../Utils/CLog'
+import { CLog } from '../Utils/CLog'
 
 export default class DisplayUtil {
   private static TAG: string = '[DisplayUtil]:'
@@ -31,7 +31,7 @@ export default class DisplayUtil {
         displaySize.width = Math.floor(screenWidth)
         displaySize.height = Math.floor(screenWidth / ratio)
       }
-    } else  {
+    } else {
       if (screenWidth / screenHeight > ratio) {
         displaySize.width = Math.floor(screenHeight / ratio)
         displaySize.height = Math.floor(screenHeight)

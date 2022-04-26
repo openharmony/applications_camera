@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import {AsyncManager} from '../Utils/AsyncManager'
+import { AsyncManager } from '../Utils/AsyncManager'
 import EventBusManager from '../Utils/EventBusManager'
-import {CLog} from '../Utils/CLog'
-import {createStore, combineReducers, applyMiddleware} from '../Utils/ohredux/index'
-import {logger} from './middlewares/logger'
-import {ReduxWorkerMiddle} from './middlewares/ReduxWorkerMiddle'
+import { CLog } from '../Utils/CLog'
+import { createStore, combineReducers, applyMiddleware } from '../Utils/ohredux/index'
+import { logger } from './middlewares/logger'
+import { ReduxWorkerMiddle } from './middlewares/ReduxWorkerMiddle'
 import CameraInitReducer from './reducers/CameraInitReducer'
 import ContextReducer from './reducers/ContextReducer'
 import CameraReducer from './reducers/CameraReducer'

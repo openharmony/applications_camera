@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import {Action} from '../actions/Action'
+import { Action } from '../actions/Action'
 
 let initState = {
   uiEnable: true,
   tabItem: ['', 'flash', 'zoom', 'focus', 'setup'],
-  aspectRatio: 3/4,
+  aspectRatio: 3 / 4,
   isBigVideoTimerVisible: false,
   isSmallVideoTimerVisible: false,
   isRecordingSpotVisible: true,

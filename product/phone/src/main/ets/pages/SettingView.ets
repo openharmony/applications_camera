@@ -15,12 +15,12 @@
 
 import router from '@system.router';
 
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
-import {SettingItem
+import { SettingItem
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/settingView/phone/SettingItem'
 import SettingListModel from '../../../../../../common/src/main/ets/default/model/SettingListImpl/SettingListModel';
-import {SettingsUtil} from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
 
 var mScreenLockManager = new ScreenLockManager()
 

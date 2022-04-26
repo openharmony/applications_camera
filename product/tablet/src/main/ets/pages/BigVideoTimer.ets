@@ -30,7 +30,7 @@ export struct BigVideoTimer {
   private aboutToAppear() {
     this.setIntervalBigVideoTime()
     display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height ) * (4 / 3)
+      this.timerPosition = px2vp(dis.height) * (4 / 3)
     })
   }
 
@@ -53,13 +53,13 @@ export struct BigVideoTimer {
   }
 
   watchIsResumeVideo() {
-    if(this.isResumeVideo){
+    if (this.isResumeVideo) {
       clearInterval(this.timer)
     }
   }
 
   watchIscContinueVideo() {
-    if(this.iscContinueVideo && this.bigVideoTime<= 2){
+    if (this.iscContinueVideo && this.bigVideoTime <= 2) {
       this.setIntervalBigVideoTime()
     }
   }
@@ -69,42 +69,42 @@ export struct BigVideoTimer {
   }
 
   build() {
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-          Text('').layoutWeight(1)
-          if(this.isResumeVideo){
-            Image($r('app.media.ic_video_recording'))
-              .width(12)
-              .height(12)
-              .fillColor(Color.White)
-            }else{
-            if (this.spotVisibility) {
-              Column() {
-              }
-              .width(12)
-              .height(12)
-              .backgroundColor('#FF0000')
-              .borderRadius(6)
-              .visibility(Visibility.Visible)
-            } else {
-              Column() {
-              }
-              .width(12)
-              .height(12)
-              .backgroundColor('#FF0000')
-              .borderRadius(6)
-              .visibility(Visibility.Hidden)
-            }
+    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Text('').layoutWeight(1)
+      if (this.isResumeVideo) {
+        Image($r('app.media.ic_video_recording'))
+          .width(12)
+          .height(12)
+          .fillColor(Color.White)
+      } else {
+        if (this.spotVisibility) {
+          Column() {
           }
-          Text(`00:0${this.bigVideoTime}`)
-            .margin({ left: 8, right: 8 })
-            .fontSize('50fp')
-            .fontWeight(FontWeight.Lighter)
-            .fontColor('#FFFFFF')
-            .textAlign(TextAlign.Center)
-          Text('').width(12).height(12)
-          Text('').layoutWeight(1)
+          .width(12)
+          .height(12)
+          .backgroundColor('#FF0000')
+          .borderRadius(6)
+          .visibility(Visibility.Visible)
+        } else {
+          Column() {
+          }
+          .width(12)
+          .height(12)
+          .backgroundColor('#FF0000')
+          .borderRadius(6)
+          .visibility(Visibility.Hidden)
         }
-      .width(this.timerPosition)
-      .height(96)
+      }
+      Text(`00:0${this.bigVideoTime}`)
+        .margin({ left: 8, right: 8 })
+        .fontSize('50fp')
+        .fontWeight(FontWeight.Lighter)
+        .fontColor('#FFFFFF')
+        .textAlign(TextAlign.Center)
+      Text('').width(12).height(12)
+      Text('').layoutWeight(1)
+    }
+    .width(this.timerPosition)
+    .height(96)
   }
 }

@@ -17,13 +17,13 @@
 import router from '@system.router';
 import wantConstant from '@ohos.ability.wantConstant';
 
-import {AsyncManager} from '../../../../../../common/src/main/ets/default/Utils/AsyncManager'
+import { AsyncManager } from '../../../../../../common/src/main/ets/default/Utils/AsyncManager'
 //import {CameraService} from '../../../../../../../common/src/main/ets/default/Camera/CameraService.ets';
-import {changePreviewSize} from '../../../../../../common/src/main/ets/default/redux/actions/ModeChange'
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { changePreviewSize } from '../../../../../../common/src/main/ets/default/redux/actions/ModeChange'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
-import {ModeConfig} from '../common/ModeConfig'
-import {SettingsUtil} from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import { ModeConfig } from '../common/ModeConfig'
+import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
 
 let changeModeState = (state) => {
   return {
@@ -48,7 +48,7 @@ let changeModeDispatch = (dispatch) => {
 export struct ControlLand {
   private TAG: string = '[ControlLand]:'
   scroller: Scroller = new Scroller()
-//  private cameraService = CameraService.getInstance()
+  //  private cameraService = CameraService.getInstance()
   @Link aspectRatio: number
   @Link previewImage: string
   private modeConfig: ModeConfig = new ModeConfig()
@@ -128,17 +128,17 @@ export struct ControlLand {
         break;
     }
 
-//    console.info("ControlLand router.getParams()= " + JSON.stringify(router.getParams()))
-//    if (router.getParams() != undefined) {
-//      console.info("ControlLand scrollTo called")
-//      if (this.previewImage == 'MULTI') {
-//        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 })
-//      } else if (this.previewImage == 'PHOTO') {
-//        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 })
-//      } else {
-//        this.scroller.scrollTo({ xOffset: 0, yOffset: 30 })
-//      }
-//    }
+    //    console.info("ControlLand router.getParams()= " + JSON.stringify(router.getParams()))
+    //    if (router.getParams() != undefined) {
+    //      console.info("ControlLand scrollTo called")
+    //      if (this.previewImage == 'MULTI') {
+    //        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 })
+    //      } else if (this.previewImage == 'PHOTO') {
+    //        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 })
+    //      } else {
+    //        this.scroller.scrollTo({ xOffset: 0, yOffset: 30 })
+    //      }
+    //    }
   }
 
   private aboutToDisappear() {
@@ -250,7 +250,7 @@ export struct ControlLand {
               .fontWeight(FontWeight.Bold)
           }
           .width(64)
-            .height('100%')
+          .height('100%')
         } else if (this.action === 'video') {
           Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Text($r('app.string.video_mode'))
@@ -324,49 +324,50 @@ export struct ControlLand {
             ListItem() {
             }
             .width('100%').height(32)
-          }.opacity(this.opacityValue)
-            .layoutWeight(1)
-            .height(160)
-            .edgeEffect(EdgeEffect.None)
-            .chainAnimation(false)
-            .onScrollIndex((firstIndex: number, lastIndex: number) => {
-              CLog.info(`${this.TAG} first= ${firstIndex}`)
-              CLog.info(`${this.TAG} last= ${lastIndex}`)
-              this.modeIndex = firstIndex
-            })
-            .enabled(this.state.uiEnable)
-            .onTouch((event: TouchEvent) => {
-              if (event.type === TouchType.Up) {
-                CLog.log(`${this.TAG} modeIndex= ${this.modeIndex}`)
-                this.scroller.scrollToIndex(this.modeIndex)
-                if(this.modeIndex === 0){
-                  this.switchToMultiMode()
-                } else if (this.modeIndex === 1) {
-                  this.switchToPhotoMode()
-                } else if (this.modeIndex === 2) {
-                  this.switchToVideoMode()
-                }
+          }
+          .opacity(this.opacityValue)
+          .layoutWeight(1)
+          .height(160)
+          .edgeEffect(EdgeEffect.None)
+          .chainAnimation(false)
+          .onScrollIndex((firstIndex: number, lastIndex: number) => {
+            CLog.info(`${this.TAG} first= ${firstIndex}`)
+            CLog.info(`${this.TAG} last= ${lastIndex}`)
+            this.modeIndex = firstIndex
+          })
+          .enabled(this.state.uiEnable)
+          .onTouch((event: TouchEvent) => {
+            if (event.type === TouchType.Up) {
+              CLog.log(`${this.TAG} modeIndex= ${this.modeIndex}`)
+              this.scroller.scrollToIndex(this.modeIndex)
+              if (this.modeIndex === 0) {
+                this.switchToMultiMode()
+              } else if (this.modeIndex === 1) {
+                this.switchToPhotoMode()
+              } else if (this.modeIndex === 2) {
+                this.switchToVideoMode()
               }
-            })
+            }
+          })
         }
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Center }) {
           Column() {
 
           }
           .borderRadius('4vp')
-            .width('8vp')
-            .height('8vp')
-            .backgroundColor('#1095E8')
+          .width('8vp')
+          .height('8vp')
+          .backgroundColor('#1095E8')
         }
         .width(28)
-          .height(160)
-          .margin({ left: 8 })
+        .height(160)
+        .margin({ left: 8 })
       }
       .width('100%')
-        .height('100%')
+      .height('100%')
     }
     .width(128)
-      .height(160)
-      .zIndex(2)
+    .height(160)
+    .zIndex(2)
   }
 }

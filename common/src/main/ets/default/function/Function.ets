@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import {Action} from '../redux/actions/Action'
-import {CameraService} from '../Camera/CameraService'
-import {EventBus} from '../Utils/EventBus'
+import { Action } from '../redux/actions/Action'
+import { CameraService } from '../Camera/CameraService'
+import { EventBus } from '../Utils/EventBus'
 import EventBusManager from '../Utils/EventBusManager'
-import {WorkerManager} from '../Utils/WorkerManager'
+import { WorkerManager } from '../Utils/WorkerManager'
 
 export abstract class Function {
   protected mCameraService: CameraService = CameraService.getInstance()

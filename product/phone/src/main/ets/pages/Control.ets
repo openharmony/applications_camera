@@ -15,10 +15,10 @@
 
 import display from '@ohos.display'
 
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
-import {Action} from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import {SettingsUtil} from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
 
 let controlState = (state) => {
   return {

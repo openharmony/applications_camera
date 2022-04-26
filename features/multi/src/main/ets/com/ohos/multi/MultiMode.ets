@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import {CLog} from '../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import {MultiModeParam} from './MultiModeParam'
+import { CLog } from '../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { MultiModeParam } from './MultiModeParam'
 
 const TAG: string = '[MultiMode]:'
 

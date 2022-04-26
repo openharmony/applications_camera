@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 
-import {Action} from '../actions/Action.ets'
+import { Action } from '../actions/Action.ets'
 
-let initState = {
-
-}
+let initState = {}
 
 export default function SettingReducer(state = initState, action: {
   type: string,
