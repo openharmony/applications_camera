@@ -13,16 +13,13 @@
  * limitations under the License.
  */
 
-//import ability_featureAbility from '@ohos.ability.featureAbility';
-
-//import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import GetPixelMap from '../../../../../../../../../common/src/main/ets/default/Camera/GetPixelMap'
 import {ThumbnailController} from './ThumbnailController'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
 import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
-import {EventBus} from '../../../../../../../../../common/src/main/ets/default/Utils/EventBus.ets'
-import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager.ets'
+import {EventBus} from '../../../../../../../../../common/src/main/ets/default/Utils/EventBus'
+import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 
 let localState = (state) => {
   return {

@@ -60,28 +60,4 @@ export struct TabBar {
       })
     }.width('100%').height('100%')
   }
-
-//  build() {
-//    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-//      Column() {
-//      }.width('80%').height('100%')
-//
-//      Column() {
-//        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-//          Image($r("app.media.setting")).width(24).height(24)
-//        }.width('100%').height('100%')
-//      }.width('20%').height('100%')
-//      .onClick(() => {
-//        router.replace({
-//          uri: "pages/SettingView",
-//          params: {
-//            position: this.cameraPosition,
-//            mode: this.previewImage
-//          }
-//        })
-//      })
-//    }
-//    .width('100%')
-//    .height('100%')
-//  }
 }

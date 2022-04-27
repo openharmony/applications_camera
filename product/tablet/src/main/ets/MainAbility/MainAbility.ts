@@ -14,9 +14,6 @@
  */
 
 import Ability from '@ohos.application.Ability'
-// todo 目前在MainAbility中import其他文件会引用不到，暂时不明白原因，工具链也搞不定，暂时避免在MainAbility中import
-//import {EventBus} from '../../../../../../common/src/main/ets/default/Utils/EventBus.ets'
-//import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager.ets';
 
 export default class MainAbility extends Ability {
     onCreate(want, launchParam) {
@@ -79,8 +76,6 @@ export default class MainAbility extends Ability {
 
     onForeground() {
         console.info('Camera MainAbility onForeground.')
-        //    let appEventBus = EventBusManager.getMainInstance().getEventBus()
-        //    appEventBus.emit('changeXComponent', [])
         globalThis?.onForegroundInit && globalThis.onForegroundInit()
     }
 

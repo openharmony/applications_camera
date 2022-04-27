@@ -125,6 +125,7 @@ export class CameraBasicFunction extends Function {
   private async switchCamera(data) {
     CLog.info(`${this.TAG} switchCamera ${JSON.stringify(data)} E`)
     this.mCameraId = data.cameraId
+    this.mCameraService.setCameraName(this.mCameraId)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId)
     await this.mCameraService.createPreviewOutput(this.mSurfaceId)

@@ -20,7 +20,7 @@
     "products": [
       {
         "name": "default",
-        "signingConfig": "default",
+        "signingConfig": "default"
       }
     ]
   },
@@ -36,18 +36,6 @@
           ]
         }
       ]
-    },
-    //    {
-    //      "name": "tablet",
-    //      "srcPath": "./product/tablet",
-    //      "targets": [
-    //        {
-    //          "name": "default",
-    //          "applyToProducts": [
-    //            "default"
-    //          ]
-    //        }
-    //      ]
-    //    }
+    }
   ]
 }

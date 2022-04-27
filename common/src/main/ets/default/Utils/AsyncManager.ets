@@ -43,7 +43,7 @@ export class AsyncManager {
     return AppStorage.Get(Constants.APP_KEY_ASYNC_MANAGER);
   }
 
-  //todo 目前worker能力不足，暂时规避
+  //todo 预留实现，待能力稳定后开放
 //  private initWorker(): void {
 //    this.mWorker = new worker.Worker(this.workerUri, {type: 'classic', name: this.workerName})
 //    CLog.info(`${AsyncManager.TAG} build the worker.`)
@@ -63,7 +63,7 @@ export class AsyncManager {
     })
   }
 
-  //todo 目前worker能力不足，暂时规避
+  //todo 预留实现，待能力稳定后开放
 //  // 向worker线程发送消息
 //  public postMessage(msg: any): AsyncManager {
 //    this.mWorker.postMessage(msg)

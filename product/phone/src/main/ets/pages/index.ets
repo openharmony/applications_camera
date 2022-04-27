@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle';
 import display from '@ohos.display';
 import router from '@system.router';
 

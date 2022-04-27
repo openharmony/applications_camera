@@ -77,13 +77,26 @@
       "value": "Select Camera"
     },
     {
-      "name": "connected_device",
-      "value": "Connected Device"
+      "name": "local_device",
+      "value": "Local Devices"
     },
     {
       "name": "more_devices",
       "value": "More Devices"
-    },{
+    },
+    {
+      "name": "local",
+      "value": "Local"
+    },
+    {
+      "name": "front",
+      "value": "（Front）"
+    },
+    {
+      "name": "back",
+      "value": "（Back）"
+    },
+    {
       "name": "assistive_grid",
       "value": "Assistive grid"
     },

@@ -81,7 +81,6 @@ struct Index {
 
   private aboutToAppear() {
     CLog.info(this.TAG + ' Camera indexLand aboutToAppear')
-    globalThis.curCameraName = '本地（后置）'
     display.getDefaultDisplay().then((dis) => {
       CLog.info(this.TAG + " dis data=" + JSON.stringify(dis))
       //      this.footBarWidth = px2vp(dis.height - 176) * (4 / 3) - 100

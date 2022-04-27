@@ -31,7 +31,7 @@ export class WorkerManager {
     this.actionHandler.handleAction(action)
   }
 
-  //todo 目前worker能力不足，暂时规避
+  //todo 预留实现，待能力稳定后开放
 //  // worker线程中通过该方法向UI线程发送消息，消息中包含type和data
 //  public postMessage(msg: any): void {
 //    CLog.info(`${this.TAG} postMessage: ${JSON.stringify(msg)}`)

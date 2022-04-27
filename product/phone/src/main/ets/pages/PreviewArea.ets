@@ -32,69 +32,6 @@ import { ZoomText
 import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 
-//let cameraState = (state) => {
-//  return {
-//    platformCapability: state.CameraInitReducer.platformCapability,
-//    thumbnail: state.CaptureReducer.thumbnail,
-//    uiEnable: state.UiReducer.uiEnable
-//  }
-//}
-//
-//let cameraDispatch = (dispatch) => {
-//  return {
-//    initCamera: (cameraId, mode) => {
-//      dispatch(Action.initCamera(cameraId, mode))
-//    },
-//    surfacePrepare: (surfaceId) => {
-//      dispatch(Action.surfacePrepare(surfaceId))
-//    },
-//    startPreview: () => {
-//      dispatch(Action.startPreview())
-//    },
-//    switchCamera: (cameraId) => {
-//      dispatch(Action.switchCamera(cameraId))
-//    },
-//    changeMode: (mode) => {
-//      dispatch(Action.changeMode(mode))
-//    },
-//    close: () => {
-//      dispatch(Action.close())
-//    },
-//    capture: () => {
-//      dispatch(Action.UiState(false))
-//      dispatch(Action.capture())
-//    },
-//    startRecording: () => {
-//      dispatch(Action.UiState(false))
-//      dispatch(Action.startRecording())
-//    },
-//    pauseRecording: () => {
-//      dispatch(Action.UiState(false))
-//      dispatch(Action.pauseRecording())
-//    },
-//    resumeRecording: () => {
-//      dispatch(Action.UiState(false))
-//      dispatch(Action.resumeRecording())
-//    },
-//    stopRecording: () => {
-//      dispatch(Action.UiState(false))
-//      dispatch(Action.stopRecording())
-//    },
-//    changeImageSize: (imageSize) => {
-//      dispatch(Action.changeImageSize(imageSize))
-//    },
-//    changeVideoSize: (videoSize) => {
-//      dispatch(Action.changeVideoSize(videoSize))
-//    },
-//    changeZoomRatio: (zoomRatio) => {
-//      dispatch(Action.changeZoomRatio(zoomRatio))
-//    },
-//    disableUi: () => {
-//      dispatch(Action.UiState(false))
-//    },
-//  }
-//}
-
 let cameraState = (state) => {
   return {
     mode: state.ModeReducer.mode,
@@ -218,7 +155,6 @@ export struct PreviewArea {
     if (this.state.platformCapability) {
 //      if (!this.state.isShowPreview) {
         this.settingsUtil.loadAllSetting().then(() => {
-//          let platformCapability: CameraPlatformCapability = this.state.platformCapability
           this.settingsUtil.setCameraPlatformCapability(data.platformCapability)
           this.settingsUtil.setCameraId(getCameraId(this.state.curCameraPosition))
           this.settingsUtil.setMode(this.state.curMode)
@@ -238,8 +174,6 @@ export struct PreviewArea {
 
             let xComponentSize = this.settingsUtil.getPreviewDisplaySize()
             CLog.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
-//            this.XcomponentWidth = xComponentSize.width.toString() + 'px'
-//            this.XcomponentHeight = xComponentSize.height.toString() + 'px'
             this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
             //            this.isShowPreview = true
             this.state.updateShowPreviewFlag(true)
@@ -260,9 +194,7 @@ export struct PreviewArea {
     }
     if (Math.abs(tempZoom - this.state.zoomRatio) >= 0.1) {
       if (tempZoom >= this.state.minZoomRatio && tempZoom <= this.state.maxZoomRatio) {
-        // this.cameraService.setZoomRatio(tempZoom)
         this.state.changeZoomRatio(tempZoom)
-//        this.zoomPercentage = this.ratioToPercentage(tempZoom)
         this.state.updateZoomPercentage(this.ratioToPercentage(tempZoom))
       }
     }
@@ -282,21 +214,16 @@ export struct PreviewArea {
     this.state.prepareSurface(surfaceId)
     if (this.state.curCameraPosition != this.state.cameraPosition) {
       if (this.state.cameraPosition === 'ORIGIN') {
-        // await this.cameraService.initCamera(surfaceId, mode, xComponentController)
         CLog.debug(`${this.TAG} doCameraAction call this.state.startPreview()`)
         this.state.startPreview()
       } else {
-        // await this.cameraService.switchCamera(surfaceId, , xComponentController)
         this.state.switchCamera(getCameraId(this.state.cameraPosition), surfaceId)
       }
     } else if (this.state.curMode != this.state.mode) {
-      // await this.cameraService.changeMode_(mode, surfaceId, xComponentController)
       this.state.changeMode(this.state.mode)
     } else if (this.state.isStartVideo) {
-      // await this.cameraService.startVideo(surfaceId, xComponentController)
       this.state.startVideoFlag(false)
     } else {
-      // await this.cameraService.initCamera(surfaceId, mode, xComponentController)
       this.state.startPreview()
     }
     this.state.cameraPositionChanged(this.state.cameraPosition)
@@ -336,19 +263,13 @@ export struct PreviewArea {
     globalThis.releaseCamera = (() => {
       CLog.info(`${this.TAG} globalThis.releaseCamera called`)
       this.state.close()
-      //      let cameraService = CameraService.getInstance()
-      //      cameraService.releaseVideo()
-      //      cameraService.releaseCamera()
     })
 
     globalThis.onForegroundInit = (() => {
       CLog.info(`${this.TAG} globalThis.onForegroundInit called`)
-//      this.xComponentChangeFlag = !this.xComponentChangeFlag
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
     })
     this.state.initCamera(getCameraId(this.state.curCameraPosition), this.state.mode)
-//    this.minZoomRatio = 1
-//    this.maxZoomRatio = 6
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     CLog.info(`${this.TAG} aboutToAppear end`)
   }
@@ -367,7 +288,6 @@ export struct PreviewArea {
   }
 
   private onPageHide() {
-//    this.isStartVideo = false
     this.state.startVideoFlag(false)
   }
 
