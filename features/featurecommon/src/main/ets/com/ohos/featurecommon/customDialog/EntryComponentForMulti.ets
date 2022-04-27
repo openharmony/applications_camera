@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-//import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
+import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
+import {EventBus} from '../../../../../../../../../common/src/main/ets/default/Utils/EventBus'
+import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 
 @Component
@@ -22,41 +24,83 @@ export default struct EntryComponentForMulti {
   @Prop item: string
   @Link cameraPosition: string
   @Link xComponentChangeFlag: boolean
+  @State isLocalDevice: boolean = false
+  @State switchCameraState: boolean = false
+  @State recCameraState: boolean = true
   private onChange: Function
-//  private cameraService = CameraService.getInstance()
-  private curCameraName
+  private cameraService = CameraService.getInstance()
+  private appEventBus = EventBusManager.getMainInstance().getEventBus()
+  private deviceName: string
+  private cameraPositionRes: Resource
+  private curCameraName: string
+  private cameraPositionName: string
 
   private aboutToAppear() {
-//    this.curCameraName = this.cameraService.getCameraName()
+    this.getShowName(this.item)
+    this.curCameraName = this.cameraService.getCameraName()
+    this.appEventBus.on('switchCameraState', (state) => {
+      CLog.info(`${this.TAG} switchCameraState= ${state}`)
+      this.switchCameraState = state
+    })
+    this.appEventBus.on('recCameraState', (state) => {
+      CLog.info(`${this.TAG} recCameraState= ${state}`)
+      this.recCameraState = state
+    })
+  }
+
+  private getShowName(item) {
+    let cameraMap
+    this.cameraPositionName = item.split('_').pop()
+    switch (this.cameraPositionName) {
+      case 'FRONT':
+        this.cameraPositionRes = $r("app.string.front")
+        break;
+      case 'BACK':
+        this.cameraPositionRes = $r("app.string.back")
+        break;
+      default:
+        break;
+    }
+    if (item.split('_').length == 1) {
+      this.isLocalDevice = true
+    } else {
+      cameraMap = this.cameraService.getCameraMap()
+      this.deviceName = cameraMap.get(item).deviceName
+      this.isLocalDevice = false
+    }
   }
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text(this.item)
-        .fontColor('#E6000000')
-        .fontSize($r("sys.float.ohos_id_text_size_body1"))
-        .fontWeight(FontWeight.Regular)
+      Row() {
+        if (this.isLocalDevice) {
+          Text($r("app.string.local"))
+            .fontColor('#E6000000')
+            .fontSize($r("sys.float.ohos_id_text_size_body1"))
+            .fontWeight(FontWeight.Medium)
+        } else {
+          Text(this.deviceName)
+            .fontColor('#E6000000')
+            .fontSize($r("sys.float.ohos_id_text_size_body1"))
+            .fontWeight(FontWeight.Medium)
+        }
+        Text(this.cameraPositionRes)
+          .fontColor('#E6000000')
+          .fontSize($r("sys.float.ohos_id_text_size_body1"))
+          .fontWeight(FontWeight.Medium)
+      }
 
       Radio({ group: 'settingChildren', value: this.item.toString() })
         .width(24)
         .height(24)
-        .checked(this.item.toString() === globalThis.curCameraName)
-        .enabled(true)
+        .borderColor('#1095E8')
+        .checked(this.item === this.curCameraName)
+        .enabled(!this.switchCameraState || this.recCameraState)
         .onClick(() => {
-          CLog.info(this.TAG + ' onChange: ' + this.item)
-          globalThis.curCameraName = this.item
-//          this.cameraService.setCameraName(this.item)
-          if (this.item == '本地（前置）') {
-            this.cameraPosition = 'FRONT'
-          } else if (this.item == '本地（后置）') {
-            this.cameraPosition = 'BACK'
-          } else {
-            this.cameraPosition = this.item
-          }
+          CLog.info(`${this.TAG} onChange: ${this.item}`)
+          this.cameraService.setCameraName(this.item)
+          this.cameraPosition = this.item
           this.xComponentChangeFlag = !this.xComponentChangeFlag
-//          console.info(`EntryComponent onChange itemValue${this.itemValue}`)
-//          this.settingsUtil.setSettingValue(this.settingAlias, this.itemValue)
-          //            console.info("EntryComponent onChange end ")
           this.onChange()
         })
     }

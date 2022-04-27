@@ -46,6 +46,8 @@ export class CameraService {
   private mFileAssetId: number
   private mCameraManager = null
   private mCameraIdMap = new Map()
+  private mCameraMap = new Map()
+  private curCameraName: string
   private mCameraCount = 0
   private mCameraInput = null
   private mCaptureSession = null
@@ -140,6 +142,7 @@ export class CameraService {
         this.mCameraIdMap[CameraId.FRONT] = cameras[0].cameraId
       }
     }
+    this.curCameraName = CameraId.BACK
     CLog.info(`${this.TAG} initCamera invoke X.`)
   }
 
@@ -151,17 +154,26 @@ export class CameraService {
     return this.mCameraIdMap
   }
 
+  public getCameraMap() {
+    return this.mCameraMap
+  }
+
   public getCameraCount() {
     return this.mCameraCount
   }
 
-  public async createCameraInput(cameraId: CameraId) {
+  public async createCameraInput(cameraName: CameraId) {
     CLog.info(`${this.TAG} createCameraInput invoke E.`)
-    this.mCameraId = cameraId
+    this.mCameraId = cameraName
     if (this.mCameraInput) {
       this.mCameraInput.release()
     }
-    let id = this.mCameraIdMap[cameraId]
+    let id
+    if (cameraName == CameraId.FRONT || cameraName == CameraId.BACK) {
+      id = this.mCameraIdMap[cameraName]
+    } else {
+      id = this.mCameraMap.get(cameraName).cameraId
+    }
     CLog.info(`${this.TAG} createCameraInput id = ${id}`)
     this.mCameraInput = await this.mCameraManager.createCameraInput(id)
     CLog.info(`${this.TAG} createCameraInput invoke X.`)
@@ -494,37 +506,66 @@ export class CameraService {
     return this.mThumbnail
   }
 
-  async getDeviceInfo() {
-    CLog.info(`${this.TAG} getDeviceInfo called.`)
-    return ['MatePad Pro（前置）', 'MatePad Pro（后置）']
+  public async getMultiCameraInfo() {
+    CLog.info(`${this.TAG} getMultiCameraInfo called.`)
+    //    return ['MatePad Pro（前置）', 'MatePad Pro（后置）']
     let deviceNames = []
+    let deviceIds = []
+    let cameraMap = new Map()
+    let cameras = await this.getCameraLists()
     deviceManager.createDeviceManager('com.ohos.camera', (err, manager) => {
       if (err) {
         CLog.info(`${this.TAG} deviceManager.createDeviceManager failed.`)
-        return
       }
       CLog.info(`${this.TAG} deviceManager.createDeviceManager success.`)
       let deviceInfoList = manager.getTrustedDeviceListSync()
       CLog.info(`${this.TAG} deviceManager.deviceInfoList: ${JSON.stringify(deviceInfoList)}`)
       if (typeof (deviceInfoList) != undefined && typeof (deviceInfoList.length) != undefined) {
-        CLog.info(`${this.TAG} deviceManager.deviceInfoList[0]: ${JSON.stringify(deviceInfoList[0])}`)
         deviceInfoList.forEach(item => {
-          if (item.deviceName.length > 15) {
-            if (item.deviceType == 0x0C) {
-              item.deviceName = 'PC-' + item.deviceName.slice(8, 12)
-            } else if (item.deviceType == 0x0E) {
-              item.deviceName = 'Phone-' + item.deviceName.slice(8, 12)
-            } else if (item.deviceType == 0x11) {
-              item.deviceName = 'Pad-' + item.deviceName.slice(8, 12)
-            } else {
-              item.deviceName = 'Unknown-' + item.deviceName.slice(8, 12)
+          deviceNames.push(item.deviceName)
+          deviceIds.push(item.deviceId)
+          let hasFront = false
+          let hasBack = false
+          let cameraName
+          for (let i = 0; i < cameras.length; i++) {
+            if (cameras[i].connectionType == 2) {
+              if (cameras[i].cameraId.split('_')[0] == item.deviceId) {
+                if (cameras[i].cameraPosition == 2 && !hasFront) {
+                  cameraName = item.deviceId + '_FRONT'
+                  cameraMap.set(cameraName, {deviceName: item.deviceName, cameraId: cameras[i].cameraId})
+                  CLog.info(`${this.TAG} deviceManager add cameraName: ${cameraName}`)
+                  hasFront = true
+                } else if (cameras[i].cameraPosition == 1 && !hasBack) {
+                  cameraName = item.deviceId + '_BACK'
+                  cameraMap.set(cameraName, {deviceName: item.deviceName, cameraId: cameras[i].cameraId})
+                  CLog.info(`${this.TAG} deviceManager add cameraName: ${cameraName}`)
+                  hasBack = true
+                }
+                if (hasFront && hasBack) {
+                  break
+                }
+              }
             }
           }
-          deviceNames.push(item.deviceName)
         })
+        this.mCameraMap = new Map(cameraMap)
       }
     })
-    return deviceNames
+  }
+
+  private async getCameraLists() {
+    CLog.info(`${this.TAG} getCameraLists called.`)
+    let cameras = await this.mCameraManager.getCameras()
+    return cameras
+  }
+
+  public getCameraName() {
+    return this.curCameraName
+  }
+
+  public setCameraName(name: string) {
+    CLog.info(`${this.TAG} setCameraName ${name}`)
+    this.curCameraName = name
   }
 
   public getPhotoUri() {

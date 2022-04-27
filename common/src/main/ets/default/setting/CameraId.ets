@@ -15,9 +15,7 @@
 
 export enum CameraId {
   FRONT = "FRONT",
-  BACK = "BACK",
-  MULTI_BACK = "MatePad Pro（后置）",
-  MULTI_FRONT = "MatePad Pro（前置）",
+  BACK = "BACK"
 }
 
 export function getCameraId(name: string): CameraId {
@@ -25,10 +23,6 @@ export function getCameraId(name: string): CameraId {
     return CameraId.FRONT
   } else if (name === "BACK") {
     return CameraId.BACK
-  } else if (name === "MatePad Pro（后置）") {
-    return CameraId.MULTI_BACK
-  } else if (name === "MatePad Pro（前置）") {
-    return CameraId.MULTI_FRONT
   }
 
   return CameraId.BACK

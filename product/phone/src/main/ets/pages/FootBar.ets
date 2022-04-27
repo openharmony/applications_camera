@@ -16,8 +16,8 @@
 import { CameraSwitchButton
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/cameraswitcher/CameraSwitchButton'
 import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus.ets'
-import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager.ets'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 import { ShutterButton
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/shutterbutton/ShutterButton'
 import { ThumbnailView
@@ -90,15 +90,6 @@ export struct FootBar {
     this.appEventBus.on(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
     CLog.info(`${this.TAG} aboutToAppear X`)
-//    if (this.camera`                                                          Service.cameraInfo) {
-//      if (this.cameraService.cameraInfo.length > 1) {
-//        this.isVisible = true
-//      } else {
-//        this.isVisible = false
-//      }
-//    } else {
-//      this.isVisible = true
-//    }
   }
 
   public aboutToDisappear(): void {

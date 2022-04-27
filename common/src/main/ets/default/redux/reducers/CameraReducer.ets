@@ -19,7 +19,7 @@ let initState = {
   cameraPosition: 'ORIGIN',
   curCameraPosition: 'BACK',
   cameraId: '',
-  curCameraName: '本地（后置）',
+  curCameraName: 'BACK',
   cameraCount: 0
 }
 
