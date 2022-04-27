@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import {ACTION_CHANGE_PREVIEW_SIZE, ACTION_CHANGE_SHUTTER_BUTTON} from '../actions/ModeChange.ets'
-import {UIDATA_TAB_ITEM} from '../actions/UiData.ets'
+import { ACTION_CHANGE_PREVIEW_SIZE, ACTION_CHANGE_SHUTTER_BUTTON } from '../actions/ModeChange'
+import { UIDATA_TAB_ITEM } from '../actions/UiData'
 
 let initState = {
   number: 154,

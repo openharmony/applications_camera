@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-export class VideoModeParam {
-  public tabBar: string[] = ['', '', 'zoom', 'timer', 'setup']
+import { Constants } from '../../../../../../../featurecommon/src/main/ets/com/ohos/featurecommon/Constants'
 
+export class VideoModeParam {
+  public readonly tabBar: string[] = ['', '', 'zoom', 'timer', 'setup']
+  public readonly functions: string[] = [Constants.RECORDING_FUNCTION, Constants.ZOOM_FUNCTION]
 }

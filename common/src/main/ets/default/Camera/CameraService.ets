@@ -14,620 +14,562 @@
  */
 
 import camera from '@ohos.multimedia.camera'
-import media from '@ohos.multimedia.media'
-import image from '@ohos.multimedia.image'
-import SaveCameraAsset from './SaveCameraAsset'
-import GetPixelMap from './GetPixelMap'
 import deviceManager from '@ohos.distributedHardware.deviceManager'
+import image from '@ohos.multimedia.image'
+import media from '@ohos.multimedia.media'
+
+import { CameraId } from '../setting/CameraId'
+import { CLog } from '../Utils/CLog'
+import { Constants } from '../Utils/Constants'
+import GetPixelMap from './GetPixelMap'
+import SaveCameraAsset from './SaveCameraAsset'
+
+export interface FunctionCallBack {
+  onCaptureSuccess(thumbnail: any): void
+
+  onCaptureFailure(): void
+
+  onRecordSuccess(thumbnail: any): void
+
+  onRecordFailure(): void
+
+  thumbnail(thumbnail: any): void
+}
 
 export class CameraService {
-  private TAG = '[camera]: '
-  private curCameraName: string = '本地（后置）'
-  public SaveCameraAsset = new SaveCameraAsset()
-  public getPixelMap = new GetPixelMap()
-  public previewOutput: any
-  public cameraInfo: any = undefined
-  public cameraInput: any
-  public cameraManager: any = undefined
-  public cameraId: any
-  public photoOutPut: any
-  public captureSession: any
-  public videoOutput: any
-  public videoRecorder: any
-  public thumbnailCallBack: any
-  public captureSuccessCallBack: any
-  public previewId: any
-  public curMode: any
-  public photoResolution: any
-  public videoResolution: any
-  private isSessionRelease: boolean = true
-  private fileAsset: any
-  public cameraListInfo: any
-  private previewSize = [
-    { width: 2048, height: 1536 },
-    { width: 720, height: 720 },
-    { width: 1920, height: 1080 },
-    { width: 1920, height: 1080 },
-    { width: 1920, height: 1080 },
-    { width: 1920, height: 1080 }
-  ]
-  private imageSize = [
-    { width: 2048, height: 1536 },
-    { width: 3120, height: 3120 },
-    { width: 1920, height: 1080 }
-  ]
-  private videoFrameSize = [
-    { width: 1280, height: 720 },
-    { width: 1920, height: 1080 },
-    { width: 3840, height: 2160 }
-  ]
-  private videoProfile = {
-    audioBitrate: 48000,
-    audioChannels: 2,
-    audioCodec: 'audio/mp4a-latm',
-    audioSampleRate: 48000,
-    durationTime: 1000,
-    fileFormat: 'mp4',
-    videoBitrate: 48000,
-    videoCodec: 'video/mp4v-es',
-    videoFrameWidth: 640,
-    videoFrameHeight: 480,
-    videoFrameRate: 30
-  }
-  private videoConfig = {
+  private TAG: string = '[CameraService]:'
+  private static sInstance: CameraService = undefined
+  private mCameraId: CameraId = CameraId.BACK
+  private mSurfaceId = null
+  public mCurrentMode = null
+  private mIsSessionRelease: boolean = true
+  private mFileAssetId: number
+  private mCameraManager = null
+  private mCameraIdMap = new Map()
+  private mCameraMap = new Map()
+  private curCameraName: string
+  private mCameraCount = 0
+  private mCameraInput = null
+  private mCaptureSession = null
+  private mPreviewOutput = null
+  private mPhotoOutPut = null
+  private mVideoOutput = null
+  private mVideoRecorder = null
+  private mThumbnail = null
+  private mIsStartRecording = false
+  private mVideoConfig: any = {
     audioSourceType: 1,
-    videoSourceType: 0,
-    profile: this.videoProfile,
-    url: '',
+    videoSourceType: 1,
+    profile: {
+      audioBitrate: 48000,
+      audioChannels: 2,
+      audioCodec: 'audio/mp4v-es',
+      audioSampleRate: 48000,
+      durationTime: 1000,
+      fileFormat: 'mp4',
+      videoBitrate: 48000,
+      videoCodec: 'video/mp4v-es',
+      videoFrameWidth: 640,
+      videoFrameHeight: 480,
+      videoFrameRate: 30
+    },
+    url: 'file:///data/media/01.mp4',
     orientationHint: 0,
     location: { latitude: 30, longitude: 130 },
     maxSize: 100,
     maxDuration: 500
   }
+  private mCaptureSetting: any = {
+    rotation: 0,
+    quality: 1,
+    location: {
+      latitude: 12.9698,
+      longitude: 77.7500
+    },
+    mirror: false
+  }
+  public mImageSize = {
+    imageWidth: 1920,
+    imageHeight: 1080
+  }
+  public mVideoFrameSize = {
+    frameWidth: 1920,
+    frameHeight: 1080
+  }
+  public mCameraListInfo = null
+  public mSaveCameraAsset = new SaveCameraAsset()
+  public mPixelMap = new GetPixelMap()
+
+  private constructor() {
+  }
 
   public static getInstance(): CameraService {
-    if (!AppStorage.Has('app_key_camera_service')) {
-      AppStorage.SetOrCreate('app_key_camera_service', new CameraService())
-      console.info('build new CameraService.')
+    if (!CameraService.sInstance) {
+      CameraService.sInstance = new CameraService()
     }
-    return AppStorage.Get('app_key_camera_service');
+    return CameraService.sInstance;
   }
 
-  public async initCamera(surfaceId, previewImage) {
-    console.info(`${this.TAG} initCamera is called.`)
-    this.previewId = surfaceId
-    if (this.cameraManager == undefined) {
-      this.cameraManager = await camera.getCameraManager(null)
-      console.info(`${this.TAG} getCameraManager success.`)
+  public async initCamera() {
+    CLog.info(`${this.TAG} initCamera invoke E.`)
+    if (this.mCameraManager) {
+      CLog.info(`${this.TAG} initCamera CameraManager already init.`)
+      return
     }
-    if (this.cameraInfo == undefined) {
-      this.cameraInfo = await this.cameraManager.getCameras()
-      console.info(`${this.TAG} getCameras success.`)
-      for (let i = 0; i < this.cameraInfo.length; i++) {
-        console.info(`${this.TAG} --------------Camera Info-------------`)
-        console.info(`${this.TAG} camera_id: ${this.cameraInfo[i].cameraId}`)
-        console.info(`${this.TAG} cameraPosition: ${this.cameraInfo[i].cameraPosition}`)
-        console.info(`${this.TAG} cameraType: ${this.cameraInfo[i].cameraType}`)
-        console.info(`${this.TAG} connectionType: ${this.cameraInfo[i].connectionType}`)
+
+    this.mCameraManager = await camera.getCameraManager(null)
+    if (!this.mCameraManager) {
+      CLog.error(`${this.TAG} initCamera getCameraManager failed.`)
+      return
+    }
+
+    let cameras = await this.mCameraManager.getCameras()
+    this.mCameraCount = cameras.length
+    if (cameras) {
+      CLog.info(`${this.TAG} getCameras success.`)
+      for (let i = 0; i < cameras.length; i++) {
+        CLog.info(`${this.TAG} --------------Camera Info-------------`)
+        CLog.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
+        CLog.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
+        CLog.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
+        CLog.info(`${this.TAG} connectionType: ${cameras[i].cameraType}`)
       }
-      this.cameraId = this.cameraInfo[0].cameraId
-      await this.calcSupportedSizes()
-    }
-    await this.changeMode_(previewImage, this.previewId)
-  }
-
-  public async startPreview(surfaceId: any, mode) {
-    this.previewId = surfaceId
-    await this.changeMode_(mode, this.previewId)
-  }
-
-  public getPhotoUri() {
-    console.info('getPhotoUri called')
-    return this.SaveCameraAsset.getPhotoUri()
-  }
-
-  public async switchCamera(surfaceId, cameraPosition) {
-    this.previewId = surfaceId
-    console.info('switchCamera called')
-    await this.captureSession.stop()
-    console.info('switchCamera captureSession.stop')
-    await this.cameraInput.release()
-    await this.captureSession.release()
-    this.isSessionRelease = true
-    console.info('switchCamera captureSession.release')
-
-    if (cameraPosition === 'FRONT') {
-      this.cameraId = this.cameraInfo[1].cameraId
-      this.previewSize = [
-        { width: 2048, height: 1536 },
-        { width: 720, height: 720 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-      this.imageSize = [
-        { width: 2048, height: 1536 },
-        { width: 2448, height: 2448 },
-        { width: 1920, height: 1080 }
-      ]
-      this.videoFrameSize = [
-        { width: 1280, height: 720 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-    } else if (cameraPosition === 'BACK') {
-      this.cameraId = this.cameraInfo[0].cameraId
-      this.previewSize = [
-        { width: 2048, height: 1536 },
-        { width: 720, height: 720 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-      this.imageSize = [
-        { width: 2048, height: 1536 },
-        { width: 3120, height: 3120 },
-        { width: 1920, height: 1080 }
-      ]
-      this.videoFrameSize = [
-        { width: 1280, height: 720 },
-        { width: 1920, height: 1080 },
-        { width: 3840, height: 2160 }
-      ]
-    } else if (cameraPosition === 'MatePad Pro（前置）') {
-      this.cameraId = this.cameraInfo[6].cameraId
-      this.previewSize = [
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-      this.imageSize = [
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-      this.videoFrameSize = [
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-    } else if (cameraPosition === 'MatePad Pro（后置）') {
-      this.cameraId = this.cameraInfo[5].cameraId
-      this.previewSize = [
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-      this.imageSize = [
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-      this.videoFrameSize = [
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 },
-        { width: 1920, height: 1080 }
-      ]
-    }
-
-    console.info(`get cameraId= ${this.cameraId}`)
-    this.cameraInput = await this.cameraManager.createCameraInput(this.cameraId)
-    await this.calcSupportedSizes()
-    console.info('switchCamera cameraManager.createCameraInput')
-    await this.changeMode_(this.curMode, this.previewId)
-  }
-
-  public getThumbnail(callback) {
-    this.getPixelMap.getThumbnailInfo(40, 40).then((thumbnail) => {
-      console.info('getPixelMap.getThumbnailInfo called')
-      this.thumbnailCallBack = callback
-      this.thumbnailCallBack(thumbnail)
-    })
-  }
-
-  public changeMode(mode, id) {
-    console.info(`${this.TAG} changeMode() called.`)
-    this.changeMode_(mode, id)
-  }
-
-  public async changeMode_(mode, id) {
-    console.info(`${this.TAG} changeMode_ called.`)
-    this.curMode = mode
-    this.previewId = id
-    if (!this.isSessionRelease) {
-      await this.captureSession.stop()
-      if (this.cameraInput) {
-        await this.cameraInput.release()
+      // TODO 根据底层信息匹配cameraId 目前默认第0个是back， 第1个是front
+      this.mCameraIdMap[CameraId.BACK] = cameras[0].cameraId
+      if (cameras.length > 1) {
+        this.mCameraIdMap[CameraId.FRONT] = cameras[1].cameraId
+      } else {
+        this.mCameraIdMap[CameraId.FRONT] = cameras[0].cameraId
       }
-      console.info(`${this.TAG} captureSession.release() called.`)
-      await this.captureSession.release()
-      console.info(`${this.TAG} captureSession.release() done.`)
-      this.isSessionRelease = true
     }
-    this.captureSession = await camera.createCaptureSession(null)
-    if (this.captureSession) {
-      console.info(`${this.TAG} createCaptureSession success.`)
-      this.isSessionRelease = false
-      console.info(`${this.TAG} this.previewId： ${this.previewId}`)
-      this.previewOutput = await camera.createPreviewOutput(this.previewId)
-      this.cameraInput = await this.cameraManager.createCameraInput(this.cameraId)
-      console.info(`${this.TAG} beginConfig called.`)
-      await this.captureSession.beginConfig()
-      await this.captureSession.addInput(this.cameraInput)
-      await this.captureSession.addOutput(this.previewOutput)
-      switch (mode) {
-        case 'PHOTO':
-          console.info(`${this.TAG} now is PHOTO mode.`)
-          console.info(`${this.TAG} start.`)
-          let imageWidth = this.imageSize[this.photoResolution].width
-          let imageHeight = this.imageSize[this.photoResolution].height
-          let mReceiver = image.createImageReceiver(imageWidth, imageHeight, 4, 8)
-          console.info(`${this.TAG} end.`)
-          let mSurfaceId = await mReceiver.getReceivingSurfaceId()
-          await camera.createPhotoOutput(mSurfaceId).then((res) => {
-            console.info(`${this.TAG} createPhotoOutput called.`)
-            this.photoOutPut = res
-          })
-          this.SaveCameraAsset.saveImage(mReceiver, 40, 40, this.thumbnailCallBack,
-            this.getPixelMap,
-            (() => {
-              this.captureSuccessCallBack()
-            }))
-          await this.captureSession.addOutput(this.photoOutPut)
-          break;
-        case 'VIDEO':
-          console.info(`${this.TAG} now is VIDEO mode.`)
-          break;
-        case 'MULTI':
-          console.info(`${this.TAG} now is MULTI mode.`)
-          let multiImageWidth = this.imageSize[this.photoResolution].width
-          let multiImageHeight = this.imageSize[this.photoResolution].height
-          let multiReceiver = image.createImageReceiver(multiImageWidth, multiImageHeight, 4, 8)
-          let multiSurfaceId = await multiReceiver.getReceivingSurfaceId()
-          await camera.createPhotoOutput(multiSurfaceId).then((res) => {
-            console.info(`${this.TAG} createPhotoOutput called.`)
-            this.photoOutPut = res
-          })
-          this.SaveCameraAsset.saveImage(multiReceiver, 40, 40, this.thumbnailCallBack,
-            this.getPixelMap,
-            (() => {
-              this.captureSuccessCallBack()
-            }))
-          await this.captureSession.addOutput(this.photoOutPut)
-          break;
-        default:
-          break;
-      }
-      await this.captureSession.commitConfig()
-      await this.captureSession.start()
-      console.info(`${this.TAG} changeMode_ finished.`)
+    this.curCameraName = CameraId.BACK
+    CLog.info(`${this.TAG} initCamera invoke X.`)
+  }
+
+  public getCameraManager() {
+    return this.mCameraManager
+  }
+
+  public getCameraIdMap() {
+    return this.mCameraIdMap
+  }
+
+  public getCameraMap() {
+    return this.mCameraMap
+  }
+
+  public getCameraCount() {
+    return this.mCameraCount
+  }
+
+  public async createCameraInput(cameraName: CameraId) {
+    CLog.info(`${this.TAG} createCameraInput invoke E.`)
+    this.mCameraId = cameraName
+    if (this.mCameraInput) {
+      this.mCameraInput.release()
+    }
+    let id
+    if (cameraName == CameraId.FRONT || cameraName == CameraId.BACK) {
+      id = this.mCameraIdMap[cameraName]
     } else {
-      console.info(`${this.TAG} createCaptureSession failed.`)
+      id = this.mCameraMap.get(cameraName).cameraId
     }
-  }
-
-  public async takePicture(callback) {
-    this.captureSuccessCallBack = callback
-    let photoSettings = {
-      rotation: 0,
-      quality: 1,
-      location: {
-        latitude: 12.9698,
-        longitude: 77.7500
-      },
-      mirror: false
-    }
-    console.info(`${this.TAG} takePicture photoSettings ${photoSettings}`)
-    await this.photoOutPut.capture(photoSettings)
-    console.info(`${this.TAG} capture done.`)
-  }
-
-  public async releaseCamera() {
-    console.info(`${this.TAG} releaseCamera called.`)
-    await this.captureSession.stop()
-    console.info(`${this.TAG} cameraInput.release called.`)
-    await this.cameraInput.release()
-    console.info(`${this.TAG} captureSession.release called.`)
-    await this.captureSession.release()
-    this.isSessionRelease = true
-    console.info(`${this.TAG} releaseCamera done.`)
+    CLog.info(`${this.TAG} createCameraInput id = ${id}`)
+    this.mCameraInput = await this.mCameraManager.createCameraInput(id)
+    CLog.info(`${this.TAG} createCameraInput invoke X.`)
   }
 
   public async releaseCameraInput() {
-    await this.cameraInput.release()
-    console.info(`${this.TAG} releaseCameraInput done.`)
+    CLog.info(`${this.TAG} releaseCameraInput invoke E.`)
+    if (this.mCameraInput) {
+      await this.mCameraInput.release()
+      this.mCameraInput = null
+    }
+    CLog.info(`${this.TAG} releaseCameraInput invoke X.`)
+  }
+
+  public async createPreviewOutput(surfaceId: number) {
+    CLog.info(`${this.TAG} createPreviewOutput invoke ${surfaceId} E. `)
+    this.mSurfaceId = surfaceId
+    this.mPreviewOutput = await camera.createPreviewOutput(surfaceId)
+    CLog.info(`${this.TAG} createPreviewOutput invoke ${this.mPreviewOutput} X.`)
   }
 
   public async releasePreviewOutput() {
-    await this.previewOutput.release()
-    console.info(`${this.TAG} releasePreviewOutput done.`)
-  }
-
-  public async releasePhotoOutPut() {
-    await this.photoOutPut.release()
-    console.info(`${this.TAG} releasePhotoOutPut done.`)
-  }
-
-  public async startVideo(id) {
-    this.previewId = id
-    let videoId
-    if (!this.isSessionRelease) {
-      await this.captureSession.stop()
-      await this.cameraInput.release()
-      console.info(`${this.TAG} captureSession.release() called.`)
-      await this.captureSession.release().then(() => {
-        this.SaveCameraAsset.getVideoFd().then(async (fileAssets) => {
-          console.info(`getFileAssets fileAssets: ${fileAssets}`);
-          this.fileAsset = fileAssets[0]
-          let fdNumber = await this.fileAsset.open('Rw')
-          this.videoConfig.url = `fd://${fdNumber.toString()}`
-          console.info(`${this.TAG} videoRecorder.prepare videoConfig.url: ${this.videoConfig.url}`)
-          this.captureSession = await camera.createCaptureSession(null)
-          this.cameraInput = await this.cameraManager.createCameraInput(this.cameraId)
-          if (this.captureSession != null) {
-            console.info(`${this.TAG} createCaptureSession success.`)
-            this.isSessionRelease = false
-            console.info(`${this.TAG} this.previewId： ${this.previewId}`)
-            this.previewOutput = await camera.createPreviewOutput(this.previewId)
-            if (this.videoRecorder) {
-              await this.videoRecorder.release()
-            }
-            await media.createVideoRecorder().then((recorder) => {
-              console.info(`${this.TAG} createVideoRecorder called.`)
-              this.videoRecorder = recorder
-            })
-            if (this.videoRecorder != null) {
-              console.info(`${this.TAG} videoRecorder.prepare called.`)
-              this.videoConfig.profile.videoFrameWidth = this.videoFrameSize[this.videoResolution].width
-              this.videoConfig.profile.videoFrameHeight = this.videoFrameSize[this.videoResolution].height
-              await this.videoRecorder.prepare(this.videoConfig)
-              console.info(`${this.TAG} videoRecorder.prepare succeed.`)
-            } else {
-              console.info(`${this.TAG} createVideoRecorder failed.`)
-            }
-            await this.videoRecorder.getInputSurface().then((resultId) => {
-              console.info(`${this.TAG} getInputSurface called`)
-              videoId = resultId
-              console.info(`${this.TAG} getInputSurface surfaceId: ${JSON.stringify(videoId)}`)
-            })
-            this.videoOutput = await camera.createVideoOutput(videoId)
-
-            await this.captureSession.beginConfig()
-            await this.captureSession.addInput(this.cameraInput)
-            await this.captureSession.addOutput(this.previewOutput)
-            await this.captureSession.addOutput(this.videoOutput)
-            await this.captureSession.commitConfig()
-            await this.captureSession.start().then(async () => {
-              await this.videoOutput.start().then(() => {
-                console.info(`${this.TAG} videoOutput.start()`)
-              })
-              await this.videoRecorder.start().then(() => {
-                console.info(`${this.TAG} videoRecorder.start()`)
-              })
-            })
-          } else {
-            console.info(`${this.TAG} createCaptureSession failed.`)
-          }
-        })
-      })
-      this.isSessionRelease = true
+    CLog.info(`${this.TAG} releasePreviewOutput invoke E.`)
+    if (this.mPreviewOutput) {
+      await this.mPreviewOutput.release()
+      this.mPreviewOutput = null
     }
+    CLog.info(`${this.TAG} releasePreviewOutput invoke X.`)
   }
 
-  public async stopVideo() {
-    console.info(`${this.TAG} stopVideo called.`)
+  public async createPhotoOutput(functionCallback: FunctionCallBack) {
+    CLog.info(`${this.TAG} createPhotoOutput invoke ${this.mImageSize.imageWidth}x${this.mImageSize.imageHeight} E.`)
+    let receiver = image.createImageReceiver(this.mImageSize.imageWidth, this.mImageSize.imageHeight, 4, 8)
+    CLog.info(`${this.TAG} createPhotoOutput receiver: ${receiver}.`)
+    let surfaceId = await receiver.getReceivingSurfaceId()
+    CLog.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
+    this.mPhotoOutPut = await camera.createPhotoOutput(surfaceId)
+    CLog.info(`${this.TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`)
+    this.mSaveCameraAsset.saveImage(receiver, 40, 40, this.mPixelMap, functionCallback)
+    CLog.info(`${this.TAG} createPhotoOutput invoke X.`)
+  }
+
+  public async releasePhotoOutput() {
+    CLog.info(`${this.TAG} releasePhotoOutput invoke E.`)
+    if (this.mPhotoOutPut) {
+      await this.mPhotoOutPut.release()
+      this.mPhotoOutPut = null
+    }
+    CLog.info(`${this.TAG} releasePhotoOutput invoke X.`)
+  }
+
+  public async createSession(surfaceId: number, isVideo: boolean) {
+    CLog.info(`${this.TAG} createSession invoke E.`)
+    this.mSurfaceId = surfaceId
+    this.mCaptureSession = await camera.createCaptureSession(null)
+
+    CLog.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
+    CLog.info(`${this.TAG} createSession beginConfig.`)
+    await this.mCaptureSession.beginConfig()
+    CLog.info(`${this.TAG} createSession addInput.`)
+    await this.mCaptureSession.addInput(this.mCameraInput)
+    if (isVideo) {
+      CLog.info(`${this.TAG} createSession video addOutput.`)
+      await this.mCaptureSession.addOutput(this.mVideoOutput)
+    } else {
+      CLog.info(`${this.TAG} createSession photo addOutput.`)
+      await this.mCaptureSession.addOutput(this.mPhotoOutPut)
+    }
+    CLog.info(`${this.TAG} createSession preview addOutput.`)
+    await this.mCaptureSession.addOutput(this.mPreviewOutput)
+    CLog.info(`${this.TAG} createSession commitConfig.`)
+    await this.mCaptureSession.commitConfig()
+    CLog.info(`${this.TAG} createSession invoke X.`)
+  }
+
+  public async releaseSession() {
+    CLog.info(`${this.TAG} releasePhotoSession invoke E.`)
+    if (this.mCaptureSession) {
+      await this.mCaptureSession.release()
+      this.mCaptureSession = null
+    }
+    CLog.info(`${this.TAG} releasePhotoSession invoke X.`)
+  }
+
+  public async startPreview() {
+    CLog.info(`${this.TAG} startPreview invoke E.`)
+    if (!this.mCaptureSession) {
+      return
+    }
+    await this.mCaptureSession.start()
+    CLog.info(`${this.TAG} startPreview invoke X.`)
+  }
+
+  public async stopPreview() {
+    CLog.info(`${this.TAG} stopPreview invoke E.`)
+    if (!this.mCaptureSession) {
+      return
+    }
+    await this.mCaptureSession.stop()
+    CLog.info(`${this.TAG} stopPreview invoke X.`)
+  }
+
+  public async takePicture() {
+    CLog.info(`${this.TAG} takePicture invoke E.`)
+    if (!this.mCaptureSession) {
+      CLog.info(`${this.TAG} takePicture session is release`)
+      return
+    }
+    if (!this.mPhotoOutPut) {
+      CLog.info(`${this.TAG} takePicture photoOutPut is release`)
+      return
+    }
+    CLog.info(`${this.TAG} takePicture captureSetting ${JSON.stringify(this.mCaptureSetting)}`)
+    await this.mPhotoOutPut.capture(this.mCaptureSetting)
+    CLog.info(`${this.TAG} takePicture invoke X.`)
+  }
+
+  public async createVideoOutput(functionCallBack: FunctionCallBack) {
+    CLog.info(`${this.TAG} createVideoOutput invoke E.`)
+    CLog.info(`${this.TAG} createVideoOutput this.mSurfaceId：saveCameraAsset: ${this.mSaveCameraAsset}`)
+    this.mFileAssetId = await this.mSaveCameraAsset.createVideoFd()
+    this.mVideoConfig.url = `fd://${this.mFileAssetId.toString()}`
+    await media.createVideoRecorder().then((recorder) => {
+      CLog.info(`${this.TAG} createVideoOutput createVideoRecorder record: ${recorder}`)
+      this.mVideoRecorder = recorder
+    })
+    if (this.mVideoRecorder != null) {
+      CLog.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
+      this.mVideoConfig.profile.videoFrameWidth = this.mVideoFrameSize.frameWidth
+      this.mVideoConfig.profile.videoFrameHeight = this.mVideoFrameSize.frameHeight
+      CLog.info(`${this.TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`)
+      await this.mVideoRecorder.prepare(this.mVideoConfig)
+      CLog.info(`${this.TAG} createVideoOutput videoRecorder.prepare succeed.`)
+    } else {
+      CLog.info(`${this.TAG} createVideoOutput createVideoRecorder failed.`)
+      return
+    }
+
+    let videoId = await this.mVideoRecorder.getInputSurface()
+    this.mVideoOutput = await camera.createVideoOutput(videoId)
+    CLog.info(`${this.TAG} createVideoOutput invoke X.`)
+  }
+
+  public async releaseVideoOutput() {
+    CLog.info(`${this.TAG} releaseVideoOutput invoke E.`)
+    if (this.mVideoOutput) {
+      CLog.info(`${this.TAG} releaseVideoOutput start`)
+      await this.mVideoOutput.release()
+      CLog.info(`${this.TAG} releaseVideoOutput end`)
+      this.mVideoOutput = null
+    }
+    CLog.info(`${this.TAG} releaseVideoOutput invoke X.`)
+  }
+
+  public async StartRecording() {
+    CLog.info(`${this.TAG} StartRecording invoke E.`)
+    await this.mVideoOutput.start().then(() => {
+      CLog.info(`${this.TAG} videoOutput.start()`)
+    })
+    await this.mVideoRecorder.start().then(() => {
+      CLog.info(`${this.TAG} videoRecorder.start()`)
+    })
+    this.mIsStartRecording = true
+    CLog.info(`${this.TAG} StartRecording invoke X.`)
+  }
+
+  public async stopRecording() {
+    CLog.info(`${this.TAG} stopRecording invoke E.`)
+    if (!this.mVideoOutput || !this.mVideoRecorder) {
+      CLog.info(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
+              videoRecorder: ${this.mVideoRecorder} .`)
+      return
+    }
+    this.mIsStartRecording = false
+    try {
+      await this.mVideoRecorder.stop()
+    } catch (err) {
+      CLog.info(`${this.TAG} stop videoRecorder ${err}`)
+    }
 
     try {
-      await this.videoRecorder.stop()
+      await this.mVideoOutput.stop()
     } catch (err) {
-      console.info(`${this.TAG} stop videoRecorder ${err}`)
+      CLog.info(`${this.TAG} stop videoOutput ${err}`)
     }
 
-    try {
-      await this.videoOutput.stop()
-    } catch (err) {
-      console.info(`${this.TAG} stop videoOutput ${err}`)
+    if (this.mFileAssetId != undefined) {
+      await this.mSaveCameraAsset.videoPrepareFile.close(this.mFileAssetId)
+      this.mFileAssetId = undefined
+      CLog.info(`${this.TAG} fileAsset.close().`)
     }
 
-    if (this.fileAsset != undefined) {
-      this.fileAsset.close()
-      this.fileAsset = undefined
-      console.info(`${this.TAG} fileAsset.close().`)
-    }
+    let thumbnailPixelMap = await this.mPixelMap.getThumbnailInfo(40, 40)
+
+    // 录像停止时需要重新创建mVideoOutput
+    await this.mCaptureSession.stop()
+    await this.mCaptureSession.beginConfig()
+//    await this.mCaptureSession.removeOutput(this.mVideoOutput)
+
+//    try {
+//      await this.mVideoRecorder.release()
+//      CLog.info(`${this.TAG} stopRecording videoRecorder.release() success.`)
+//      this.mVideoRecorder = undefined
+//    } catch (err) {
+//      CLog.info(`${this.TAG} stopRecording  ${err}`)
+//    }
+//    await this.releaseVideoOutput()
+//    await this.createVideoOutput(null)
+//    await this.mCaptureSession.addOutput(this.mVideoOutput)
+//    await this.mCaptureSession.commitConfig()
+//    await this.mCaptureSession.start()
+
+    await this.releaseVideoOutput()
+    await this.releasePreviewOutput()
+    await this.releaseCameraInput()
+    await this.releaseSession()
+
+    await this.createCameraInput(this.mCameraId)
+    await this.createPreviewOutput(this.mSurfaceId)
+    await this.createVideoOutput(null)
+    await this.createSession(this.mSurfaceId, true)
+    await this.startPreview()
+    CLog.info(`${this.TAG} stopRecording invoke X.`)
+    return thumbnailPixelMap
   }
 
-  public async pauseVideo() {
-    await this.videoOutput.stop()
-    await this.videoRecorder.pause()
+  public async pauseRecording() {
+    CLog.info(`${this.TAG} pauseRecording invoke E.`)
+    if (!this.mVideoOutput || !this.mVideoRecorder) {
+      CLog.info(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
+              videoRecorder: ${this.mVideoRecorder} .`)
+      return
+    }
+    await this.mVideoRecorder.pause()
+    await this.mVideoOutput.stop()
+    CLog.info(`${this.TAG} pauseRecording invoke X.`)
   }
 
-  public async releaseVideo() {
-    console.info(`${this.TAG} releaseVideo called.`)
-    await this.stopVideo()
-    await this.videoRecorder.release().then(() => {
-      console.info(`${this.TAG} videoRecorder.release() success.`)
-      this.videoRecorder = undefined
+  public async resumeRecording() {
+    CLog.info(`${this.TAG} resumeRecording invoke E.`)
+    if (!this.mVideoOutput || !this.mVideoRecorder) {
+      CLog.info(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
+              videoRecorder: ${this.mVideoRecorder} .`)
+      return
+    }
+    await this.mVideoOutput.start().then(() => {
+      CLog.info(`${this.TAG} videoOutput.start()`)
     })
-    await this.videoOutput.release()
+    await this.mVideoRecorder.resume()
+    CLog.info(`${this.TAG} resumeRecording invoke X.`)
   }
 
-  public async resumeVideo() {
-    await this.videoOutput.start().then(() => {
-      console.info(`${this.TAG} videoOutput.start()`)
+  public async releaseRecording() {
+    CLog.info(`${this.TAG} releaseRecording invoke E.`)
+    if (!this.mVideoRecorder) {
+      CLog.info(`${this.TAG} releaseRecording error videoRecorder is null .`)
+      return
+    }
+    if (this.mIsStartRecording) {
+      await this.stopRecording()
+    }
+    await this.mVideoRecorder.release().then(() => {
+      CLog.info(`${this.TAG} videoRecorder.release() success.`)
+      this.mVideoRecorder = undefined
     })
-    await this.videoRecorder.resume()
+    CLog.info(`${this.TAG} releaseRecording invoke X.`)
+  }
+
+  public async releaseCamera() {
+    CLog.info(`${this.TAG} releaseCamera invoke E.`)
+    await this.stopPreview()
+    await this.releaseRecording()
+    await this.releaseCameraInput()
+    await this.releasePreviewOutput()
+    await this.releasePhotoOutput()
+    await this.releaseVideoOutput()
+    await this.releaseSession()
+    CLog.info(`${this.TAG} releaseCamera invoke X.`)
   }
 
   public async setZoomRatio(zoomRatio) {
-    console.info(`setZoomRatio called zoomRatio= ${zoomRatio}`)
-    await this.cameraInput.setZoomRatio(zoomRatio)
+    CLog.info(`${this.TAG} setZoomRatio invoke E.`)
+    if (!this.mCameraInput) {
+      CLog.info(`${this.TAG} setZoomRatio camerainput is release`)
+      return
+    }
+    await this.mCameraInput.setZoomRatio(zoomRatio)
+    CLog.info(`${this.TAG} setZoomRatio invoke X.`)
   }
 
   public async getZoomRatio() {
-    console.info('getZoomRatio called')
-    let zoomRatioValue = await this.cameraInput.getZoomRatio()
-    console.info(`ZoomRatio= ${zoomRatioValue}`)
-    return zoomRatioValue
+    CLog.info(`${this.TAG} getZoomRatio invoke E.`)
+    if (!this.mCameraInput) {
+      CLog.info(`${this.TAG} getZoomRatio camerainput is release`)
+      return
+    }
+    CLog.info(`${this.TAG} getZoomRatio invoke X.`)
+    return await this.mCameraInput.getZoomRatio()
   }
 
-  public async getZoomRatioRange() {
-    console.info('getZoomRatioRange called')
-    let zoomRatioRange = await this.cameraInput.getZoomRatioRange()
-    console.info(`zoomRatioRange= ${zoomRatioRange}`)
-    return zoomRatioRange
+  public async setVideoConfig(videoConfig: any) {
+    CLog.info(`${this.TAG} setVideoConfig invoke E.`)
+    if (videoConfig) {
+      this.mVideoConfig = videoConfig
+    } else {
+      CLog.info(`${this.TAG} setVideoConfig videoConfig is null.`)
+    }
+    CLog.info(`${this.TAG} setVideoConfig invoke X.`)
   }
 
-  public async calcSupportedSizes() {
-    return;
-    let photoSize = await this.cameraInput.getSupportedSizes(2000)
-    console.info("calcSupportedSizes photoSize" + JSON.stringify(photoSize))
-    this.imageSize[0] = this.getMaxSize(photoSize, 4, 3)
-    this.imageSize[1] = this.getMaxSize(photoSize, 1, 1)
-    this.imageSize[2] = this.getMaxSize(photoSize, 16, 9)
-    this.previewSize[0] = this.imageSize[0]
-    this.previewSize[1] = this.imageSize[1]
-    this.previewSize[2] = this.imageSize[2]
-
-    let previewCurSize = await this.cameraInput.getSupportedSizes(1003)
-    console.info("calcSupportedSizes previewCurSize" + JSON.stringify(previewCurSize))
-    this.videoFrameSize[0] = this.getSpecifiedSize(previewCurSize, 1280, 720)
-    this.videoFrameSize[1] = this.getSpecifiedSize(previewCurSize, 1920, 1080)
-    this.videoFrameSize[2] = this.getSpecifiedSize(previewCurSize, 3840, 2160)
-    this.previewSize[3] = this.videoFrameSize[0]
-    this.previewSize[4] = this.videoFrameSize[1]
-    this.previewSize[5] = this.videoFrameSize[2]
+  public async setCaptureSetting(captureSetting: any) {
+    CLog.info(`${this.TAG} setCaptureSetting invoke E.`)
+    if (captureSetting) {
+      this.mCaptureSetting = captureSetting
+    } else {
+      CLog.info(`${this.TAG} setCaptureSetting captureSetting is null.`)
+    }
+    CLog.info(`${this.TAG} setCaptureSetting invoke X.`)
   }
 
-  public getSpecifiedSize(sizeList, width, height) {
-    let specifiedSize = { width: 0, height: 0 }
-    for (let i = 0; i < sizeList.length; i++) {
-      let widthError = sizeList[i].width - width
-      let heightError = sizeList[i].height - height
-      if (widthError <= 4 && widthError >= -4 && heightError <= 4 && heightError >= -4) {
-        if (sizeList[i].width > specifiedSize.width) {
-          specifiedSize = sizeList[i]
-        }
+  public getThumbnail(functionCallBack: FunctionCallBack) {
+    CLog.info(`${this.TAG} getThumbnail invoke E.`)
+    this.mPixelMap.getThumbnailInfo(40, 40).then((thumbnail) => {
+      if (thumbnail != null) {
+        CLog.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
+        functionCallBack.thumbnail(thumbnail)
       }
-    }
-    console.log("getSpecifiedSize specifiedSize = " + JSON.stringify(specifiedSize))
-    return specifiedSize
+    })
+    CLog.info(`${this.TAG} getThumbnail invoke X.`)
+    return this.mThumbnail
   }
 
-  public getMaxSize(sizeList, width, height) {
-    let maxSize = { width: 0, height: 0 }
-    for (let i = 0; i < sizeList.length; i++) {
-      let errorValue = sizeList[i].width * height - sizeList[i].height * width
-      if (errorValue <= 64 && errorValue >= -64) {
-        if (sizeList[i].width > maxSize.width) {
-          maxSize = sizeList[i]
-        }
-      }
-    }
-    return maxSize
-  }
-
-  public getPreviewSize(mode) {
-    let previewSize
-    switch (mode) {
-      case 'PHOTO':
-        previewSize = this.previewSize[this.photoResolution]
-        break;
-      case 'VIDEO':
-        previewSize = this.previewSize[this.videoResolution + 3]
-        break;
-      default:
-        break;
-    }
-    console.log("getPreviewSize" + JSON.stringify(previewSize));
-    return previewSize;
-  }
-
-  public setAspectRatio(aspectRatio) {
-    switch (aspectRatio) {
-      case '4:3':
-        this.photoResolution = 0
-        break;
-      case '1:1':
-        this.photoResolution = 1
-        break;
-      case '16:9':
-        this.photoResolution = 2
-        break;
-      default:
-        this.photoResolution = 0
-        break;
-    }
-  }
-
-  public setVideoResolution(videoResolution) {
-    switch (videoResolution) {
-      case '[16:9] 720p':
-        this.videoResolution = 0
-        break;
-      case '[16:9] 1080p':
-        this.videoResolution = 1
-        break;
-      case '[16:9] 4k':
-        this.videoResolution = 2
-        break;
-      default:
-        this.videoResolution = 0
-        break;
-    }
-  }
-
-  getDeviceInfo() {
-    console.info(`${this.TAG} getDeviceInfo called.`)
-    return ['MatePad Pro（前置）', 'MatePad Pro（后置）']
+  public async getMultiCameraInfo() {
+    CLog.info(`${this.TAG} getMultiCameraInfo called.`)
+    //    return ['MatePad Pro（前置）', 'MatePad Pro（后置）']
     let deviceNames = []
+    let deviceIds = []
+    let cameraMap = new Map()
+    let cameras = await this.getCameraLists()
     deviceManager.createDeviceManager('com.ohos.camera', (err, manager) => {
       if (err) {
-        console.info(`${this.TAG} deviceManager.createDeviceManager failed.`)
-        return
+        CLog.info(`${this.TAG} deviceManager.createDeviceManager failed.`)
       }
-      console.info(`${this.TAG} deviceManager.createDeviceManager success.`)
+      CLog.info(`${this.TAG} deviceManager.createDeviceManager success.`)
       let deviceInfoList = manager.getTrustedDeviceListSync()
-      console.info(`${this.TAG} deviceManager.deviceInfoList: ${JSON.stringify(deviceInfoList)}`)
+      CLog.info(`${this.TAG} deviceManager.deviceInfoList: ${JSON.stringify(deviceInfoList)}`)
       if (typeof (deviceInfoList) != undefined && typeof (deviceInfoList.length) != undefined) {
         deviceInfoList.forEach(item => {
           deviceNames.push(item.deviceName)
+          deviceIds.push(item.deviceId)
+          let hasFront = false
+          let hasBack = false
+          let cameraName
+          for (let i = 0; i < cameras.length; i++) {
+            if (cameras[i].connectionType == 2) {
+              if (cameras[i].cameraId.split('_')[0] == item.deviceId) {
+                if (cameras[i].cameraPosition == 2 && !hasFront) {
+                  cameraName = item.deviceId + '_FRONT'
+                  cameraMap.set(cameraName, {deviceName: item.deviceName, cameraId: cameras[i].cameraId})
+                  CLog.info(`${this.TAG} deviceManager add cameraName: ${cameraName}`)
+                  hasFront = true
+                } else if (cameras[i].cameraPosition == 1 && !hasBack) {
+                  cameraName = item.deviceId + '_BACK'
+                  cameraMap.set(cameraName, {deviceName: item.deviceName, cameraId: cameras[i].cameraId})
+                  CLog.info(`${this.TAG} deviceManager add cameraName: ${cameraName}`)
+                  hasBack = true
+                }
+                if (hasFront && hasBack) {
+                  break
+                }
+              }
+            }
+          }
         })
+        this.mCameraMap = new Map(cameraMap)
       }
     })
-    return deviceNames
   }
 
-  async getCameraLists() {
-    console.info(`${this.TAG} getCameraLists called.`)
-    let cameras = await this.cameraManager.getCameras()
-    this.cameraListInfo = cameras
-    if (cameras) {
-      this.cameraInfo = cameras
-      console.info(`${this.TAG} getCameraLists success.`)
-      for (let i = 0; i < cameras.length; i++) {
-        console.info(`${this.TAG} -----------------CameraInfo--------------`)
-        console.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
-        console.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
-        console.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
-        console.info(`${this.TAG} connectionType: ${cameras[i].connectionType}`)
-      }
-    }
+  private async getCameraLists() {
+    CLog.info(`${this.TAG} getCameraLists called.`)
+    let cameras = await this.mCameraManager.getCameras()
+    return cameras
   }
 
-  getCameraName() {
+  public getCameraName() {
     return this.curCameraName
   }
 
-  setCameraName(name: string) {
-    console.info(this.TAG + 'setCameraName ' + name)
+  public setCameraName(name: string) {
+    CLog.info(`${this.TAG} setCameraName ${name}`)
     this.curCameraName = name
+  }
+
+  public getPhotoUri() {
+    CLog.info(`${this.TAG} getPhotoUri called`)
+    return this.mSaveCameraAsset.getPhotoUri()
   }
 }

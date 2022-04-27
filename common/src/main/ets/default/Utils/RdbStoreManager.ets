@@ -14,9 +14,10 @@
  */
 
 import dataRdb from '@ohos.data.rdb';
-import SettingItemInfo from './SettingItemInfo.ets'
 
-const TAG = 'RdbStoreManager ';
+import { CLog } from '../Utils/CLog'
+import SettingItemInfo from './SettingItemInfo'
+
 const DB_NAME = 'Camera.db'
 const DB_VERSION = 1
 const TABLE_NAME = 'SETTING'
@@ -26,10 +27,11 @@ const CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS SETTING ' +
 'item_value TEXT)'
 
 /**
- * @file db manager
+ * db manager
  */
 export default class RdbStoreManager {
-  private mRdbStore;
+  private TAG: string = '[RdbStoreManager]:'
+  private mRdbStore
 
   private constructor() {
   }
@@ -46,30 +48,30 @@ export default class RdbStoreManager {
   }
 
   public async initRdbConfig() {
-    console.info(TAG + 'initRdbConfig start');
+    CLog.info(this.TAG + 'initRdbConfig start');
     const promise = dataRdb.getRdbStore(globalThis.cameraAbilityContext,
       {
         name: DB_NAME
       }, DB_VERSION);
     promise.then(async (rdbStore) => {
-      console.info(TAG + 'initRdbConfig dataRdb.getRdbStore:' + rdbStore);
+      CLog.info(this.TAG + 'initRdbConfig dataRdb.getRdbStore:' + rdbStore);
       this.mRdbStore = rdbStore;
       this.createTable();
     }).catch((error) => {
-      console.error('RdbStoreManager.initRdbConfig Failed to obtain the rdbStore. Cause: ' + error.message);
+      CLog.error('RdbStoreManager.initRdbConfig Failed to obtain the rdbStore. Cause: ' + error.message);
     });
-    console.info(TAG + 'initRdbConfig end');
+    CLog.info(this.TAG + 'initRdbConfig end');
   }
 
   private async createTable() {
-    console.info(TAG + 'create table start');
-    console.info(TAG + `RdbStoreConfig.CREATE_TABLE: ${CREATE_TABLE}`);
+    CLog.info(this.TAG + 'create table start');
+    CLog.info(this.TAG + `RdbStoreConfig.CREATE_TABLE: ${CREATE_TABLE}`);
     await this.mRdbStore.executeSql(CREATE_TABLE, []);
-    console.info(TAG + 'create table end');
+    CLog.info(this.TAG + 'create table end');
   }
 
   public async getSettingByItem(itemName: string) {
-    console.info(TAG + 'getSettingByItem start');
+    CLog.info(this.TAG + 'getSettingByItem start');
     const resultList: SettingItemInfo[] = [];
     if (this.ifStringIsNull(itemName)) {
       return resultList;
@@ -79,23 +81,23 @@ export default class RdbStoreManager {
       predicates.equalTo('item_name', itemName);
       const resultSet = await this.mRdbStore.query(predicates, []);
       let isLast = resultSet.goToFirstRow();
-      console.info(TAG + `getSettingByItem before isLast: ${isLast}`);
+      CLog.info(this.TAG + `getSettingByItem before isLast: ${isLast}`);
       while (isLast) {
         const itemInfo: SettingItemInfo = new SettingItemInfo()
         itemInfo.itemName = resultSet.getString(resultSet.getColumnIndex('item_name'));
         itemInfo.itemValue = resultSet.getString(resultSet.getColumnIndex('item_value'));
         resultList.push(itemInfo);
         isLast = resultSet.goToNextRow();
-        console.info(TAG + `getSettingByItem while isLast: ${isLast}`);
+        CLog.info(this.TAG + `getSettingByItem while isLast: ${isLast}`);
       }
     } catch (e) {
-      console.info(TAG + 'getSettingByItem error:' + e);
+      CLog.info(this.TAG + 'getSettingByItem error:' + e);
     }
     return resultList;
   }
 
   public async updateValue(settingItemInfo: SettingItemInfo) {
-    console.info(TAG + 'updateValue start');
+    CLog.info(this.TAG + 'updateValue start');
     let result = false;
     try {
       const predicates = new dataRdb.RdbPredicates(TABLE_NAME);
@@ -103,25 +105,25 @@ export default class RdbStoreManager {
       const updateBucket = {
         'item_value': settingItemInfo.itemValue,
       };
-      console.info(TAG + 'updateValue predicates: ' + JSON.stringify(predicates))
-      console.info(TAG + 'mRdbStore.update called.')
+      CLog.info(this.TAG + 'updateValue predicates: ' + JSON.stringify(predicates))
+      CLog.info(this.TAG + 'mRdbStore.update called.')
       let changeRows = await this.mRdbStore.update(updateBucket, predicates);
-      console.info(TAG + 'mRdbStore.update finished.')
+      CLog.info(this.TAG + 'mRdbStore.update finished.')
       if (changeRows == 1) {
-        console.info(TAG + `updateValue updated ok: ${changeRows}`);
+        CLog.info(this.TAG + `updateValue updated ok: ${changeRows}`);
         result = true;
       } else {
-        console.info(TAG + `updateValue updated not effect: ${changeRows}`);
+        CLog.info(this.TAG + `updateValue updated not effect: ${changeRows}`);
         const insertBucket = {
           'item_name': settingItemInfo.itemName,
           'item_value': settingItemInfo.itemValue,
         };
         changeRows = await this.mRdbStore.insert(TABLE_NAME, insertBucket);
-        console.info(TAG + `updateValue insert: ${changeRows}`);
+        CLog.info(this.TAG + `updateValue insert: ${changeRows}`);
         result = (changeRows != -1);
       }
     } catch (e) {
-      console.info(TAG + 'updateValue error:' + e);
+      CLog.info(this.TAG + 'updateValue error:' + e);
     }
     return result;
   }

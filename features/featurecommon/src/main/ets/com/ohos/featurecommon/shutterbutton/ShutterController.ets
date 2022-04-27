@@ -14,7 +14,6 @@
  */
 
 export class ShutterController {
-
   icon: Resource
   width: number
   height: number

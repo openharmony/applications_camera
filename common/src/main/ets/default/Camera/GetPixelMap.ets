@@ -14,33 +14,38 @@
  */
 
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-export default class GetPixelMap {
 
-  public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<string> {
-    console.log("getThumbnailInfoA start")
-    let thumbnail
+import { CLog } from '../Utils/CLog'
+
+export default class GetPixelMap {
+  private TAG = '[GetPixelMap]:'
+
+  public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap> {
+    CLog.log(`${this.TAG} getThumbnailInfo E`)
+    CLog.log(`${this.TAG} getThumbnailInfo width: ${width}, height: ${height}, uri: ${JSON.stringify(uri)}`)
     let fileKeyObj = mediaLibrary.FileKey;
     let fetchOp: any
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    if (uri != undefined) {
-      return uri
-    }
+    CLog.log(`${this.TAG} getThumbnailInfo media: ${media}`)
     fetchOp = {
       selections: `${fileKeyObj.RELATIVE_PATH}=?`,
       selectionArgs: ["Pictures/Camera/"],
       order: fileKeyObj.DATE_ADDED,
     }
 
-    console.log(`fetchOp ${JSON.stringify(fetchOp)}`);
+    CLog.log(`${this.TAG} getThumbnailInfo fetchOp: ${JSON.stringify(fetchOp)}`)
     let fetchFileResult = await media.getFileAssets(fetchOp);
     let count = fetchFileResult.getCount()
-    console.log(`getThumbnailInfo fetchFileResult.getCount: ${count}`)
+    CLog.log(`${this.TAG} getThumbnailInfo fetchFileResult.getCount: ${count}`)
     if (count == 0) {
-      return ''
+      return null
     }
     let lastFileAsset = await fetchFileResult.getLastObject()
-    thumbnail = lastFileAsset.uri
-    console.info(`getThumbnailInfo fileAsset.uri: ${thumbnail}`)
-    return thumbnail;
+    if (lastFileAsset == null) {
+      return null
+    }
+    let thumbnailPixelMap = lastFileAsset.getThumbnail({size: {width: 40, height: 40}})
+    CLog.info(`${this.TAG} getThumbnailInfo thumbnailPixelMap: ${JSON.stringify(thumbnailPixelMap)} X`)
+    return thumbnailPixelMap
   }
 }
