@@ -13,12 +13,20 @@
  * limitations under the License.
  */
 
-import {VideoModeParam} from './VideoModeParam'
+import { CLog } from '../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { VideoModeParam } from './VideoModeParam'
+
+const TAG: string = '[VideoMode]:'
 
 export class VideoMode {
   private videoModeParam: VideoModeParam = new VideoModeParam()
 
   public getTabBarParam(): string[] {
     return this.videoModeParam.tabBar
+  }
+
+  public getFunctions(): string[] {
+    CLog.info(`${TAG} function = ${this.videoModeParam.functions}`)
+    return this.videoModeParam.functions
   }
 }

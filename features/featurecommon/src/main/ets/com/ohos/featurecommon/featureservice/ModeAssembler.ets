@@ -13,37 +13,58 @@
  * limitations under the License.
  */
 
+import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import {Constants} from '../Constants'
+import {Mode} from '../Mode'
+
 export class ModeAssembler {
-  private needAdd: string[]
-  private needDelete: string[]
+  private TAG: string = '[ModeAssembler]:'
+  private mNeedAdd: string[]
+  private mNeedDelete: string[]
+  private mMode = new Mode()
+  private mFunctionsMap: Map<string, any>
 
-  public assembler(preMode: string, currentMode: string): void {
-    let tabBarItem: string[]
-    if (currentMode == null) {
-
-    } else if (preMode != currentMode) {
-
-      if (currentMode == 'VIDEO') {
-        this.needAdd = ['timer']
-        this.needDelete = ['flash', 'focus']
-      } else if (currentMode == 'PHOTO') {
-        this.needDelete = ['timer']
-        this.needAdd = ['flash', 'focus']
-      }
-      this.attachFunction(this.needAdd)
-      this.disattachFunction(this.needDelete)
-    }
+  constructor(functionsMap: Map<string, any>) {
+    this.mFunctionsMap = functionsMap
   }
+  public assembler(preMode: string, currentMode: string): void {
+    CLog.info(`${this.TAG} assembler preMode = ${preMode}  currentMode = ${currentMode} E `)
+    this.mNeedAdd = []
+    this.mNeedDelete = []
+    let preModeFun: string[] = this.mMode.getFunctions(preMode)
+    let currentModeFun: string[] = this.mMode.getFunctions(currentMode)
 
-  private intersect(preItem: string[], currentItem: string[]): void {
-
+    CLog.info(`${this.TAG} assembler preModeFun = ${preModeFun}  currentModeFun = ${currentModeFun}  `)
+    if (!preMode) {
+      this.mNeedAdd = JSON.parse(JSON.stringify(currentModeFun))
+    } else if (preMode != currentMode) {
+      this.mNeedAdd = JSON.parse(JSON.stringify(currentModeFun))
+      for (let fun of preModeFun) {
+        let index = currentModeFun.indexOf(fun)
+          if (index == -1) {
+            this.mNeedDelete.push(fun)
+          } else {
+            this.mNeedAdd.splice(index, 1)
+          }
+      }
+    }
+    CLog.info(`${this.TAG} assembler mNeedAdd = ${this.mNeedAdd}  mNeedDelete = ${this.mNeedDelete}`)
+    this.attachFunction(this.mNeedAdd)
+    this.detachFunction(this.mNeedDelete)
+    CLog.info(`${this.TAG} assembler X`)
   }
 
   private attachFunction(item: string[]): void {
-
+    for (let fun of item) {
+      CLog.info(`${this.TAG} attachFunction fun: ${fun}`)
+      this.mFunctionsMap.get(fun).load()
+    }
   }
 
-  private disattachFunction(item: string[]): void {
-
+  private detachFunction(item: string[]): void {
+    for (let fun of item) {
+      CLog.info(`${this.TAG} disattachFunction fun: ${fun}`)
+      this.mFunctionsMap.get(fun).unload()
+    }
   }
 }

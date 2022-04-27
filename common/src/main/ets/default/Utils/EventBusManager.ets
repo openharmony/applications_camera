@@ -13,13 +13,15 @@
  * limitations under the License.
  */
 
-import {EventBus} from "./EventBus"
+import { EventBus } from "./EventBus"
 
-export class EventBusManager {
-
+export default class EventBusManager {
+  // The global eventbus of the application process. Event registration and destruction should be paired
   private appEventBus: EventBus;
   static sInstance: EventBusManager = undefined;
   static mInstance: EventBusManager = undefined;
+  static wInstance: EventBusManager = undefined;
+  static cInstance: EventBusManager = undefined;
 
   private constructor() {
     this.appEventBus = new EventBus();
@@ -37,6 +39,20 @@ export class EventBusManager {
       EventBusManager.mInstance = new EventBusManager();
     }
     return EventBusManager.mInstance;
+  }
+
+  public static getWorkerInstance(): EventBusManager {
+    if (EventBusManager.wInstance == null) {
+      EventBusManager.wInstance = new EventBusManager();
+    }
+    return EventBusManager.wInstance;
+  }
+
+  public static getCameraInstance(): EventBusManager {
+    if (EventBusManager.cInstance == null) {
+      EventBusManager.cInstance = new EventBusManager();
+    }
+    return EventBusManager.cInstance;
   }
 
   public getEventBus(): EventBus {

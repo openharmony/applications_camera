@@ -13,60 +13,72 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-import fileio from '@ohos.fileio';
-import DateTimeUtil from '../Utils/DateTimeUtil';
+import fileio from '@ohos.fileio'
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+
+import { CLog } from '../Utils/CLog'
+import DateTimeUtil from '../Utils/DateTimeUtil'
+
 let photoUri;
 
 export default class SaveCameraAsset {
   constructor() {
 
   }
-  private TAG = 'image: '
+
+  private TAG = '[SaveCameraAsset:] '
   private lastSaveTime: string = ''
-  private saveIndex : number = 0
+  private saveIndex: number = 0
+  public videoPrepareFile: any
 
   public getPhotoUri() {
-    console.log(`getPhotoUri= ${photoUri}`)
+    CLog.log(`${this.TAG} getPhotoUri= ${photoUri}`)
     return photoUri
   }
 
-  public saveImage(mReceiver, thumbWidth, thumbHeight, thumbCallback, getPixelMap, captureSuccessCallBack) {
+  public saveImage(mReceiver, thumbWidth, thumbHeight, getPixelMap, captureCallBack) {
+    CLog.info(`${this.TAG} saveImage E`)
     let mDateTimeUtil = new DateTimeUtil();
     let fileKeyObj = mediaLibrary.FileKey
     let mediaType = mediaLibrary.MediaType.IMAGE;
     let buffer = new ArrayBuffer(4096)
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    console.log("mediaLibrary.getMediaLibrary success")
+    CLog.info(`${this.TAG} saveImage mediaLibrary.getMediaLibrary media: ${media}`)
 
     mReceiver.on('imageArrival', async () => {
-      console.log("ImageReceiver on called")
+      CLog.log(`${this.TAG} saveImage ImageReceiver on called`)
       let displayName = this.checkName(`IMG_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.jpg'
-      console.log(`saveImage displayName== ${displayName}`)
+      CLog.log(`${this.TAG} saveImage displayName== ${displayName}`)
       mReceiver.readNextImage((err, image) => {
+        CLog.info(`${this.TAG} readNextImage image = ${image} error = ${err}`)
         if (image === undefined) {
-          console.info(`${this.TAG} failed to get valid image`)
+          CLog.info(`${this.TAG} saveImage failed to get valid image`)
           return
         }
         image.getComponent(4, async (errMsg, img) => {
+          CLog.info(`${this.TAG} getComponent img = ${img} errMsg = ${errMsg} E`)
           if (img === undefined) {
-            console.info(`${this.TAG} failed to get valid buffer`)
+            CLog.info(`${this.TAG} getComponent failed to get valid buffer`)
             return
           }
           if (img.byteBuffer) {
+            CLog.info(`${this.TAG} getComponent img.byteBuffer = ${img.byteBuffer}`)
             buffer = img.byteBuffer
           } else {
-            console.info(`${this.TAG} img.byteBuffer is undefined`)
+            CLog.info(`${this.TAG} getComponent img.byteBuffer is undefined`)
           }
           await image.release()
+          CLog.info(`${this.TAG} getComponent  X`)
         })
       })
 
+      CLog.info(`${this.TAG} saveImage getPublicDirectory `)
       let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
       publicPath = `${publicPath}Camera/`
+      CLog.info(`${this.TAG} saveImage publicPath = ${publicPath}`)
       let dataUri = await media.createAsset(mediaType, displayName, publicPath)
       photoUri = dataUri.uri
-      console.info(`${this.TAG} SaveCameraAsset photoUri: ${photoUri}`)
+      CLog.info(`${this.TAG} saveImage photoUri: ${photoUri}`)
 
       if (dataUri !== undefined) {
         let args = dataUri.id.toString()
@@ -74,28 +86,27 @@ export default class SaveCameraAsset {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
         }
-
-        console.log(`fetchOp${JSON.stringify(fetchOp)}`)
+        // 通过id去查找
+        CLog.log(`${this.TAG} saveImage fetchOp${JSON.stringify(fetchOp)}`)
         let fetchFileResult = await media.getFileAssets(fetchOp);
         let fileAsset = await fetchFileResult.getAllObject();
         if (fileAsset != undefined) {
-          console.info("fileAsset is not undefined")
+          CLog.info(`${this.TAG} saveImage fileAsset is not undefined`)
           fileAsset.forEach((dataInfo) => {
-            console.info("fileAsset.forEach called")
-            dataInfo.open('Rw').then((fd) => {
-              console.info("dataInfo.open called")
+            CLog.info(`${this.TAG} saveImage fileAsset.forEach called`)
+            dataInfo.open('Rw').then((fd) => { // RW是读写方式打开文件 获取fd
+              CLog.info(`${this.TAG} saveImage dataInfo.open called`)
               fileio.write(fd, buffer).then(() => {
-                console.info("fileio.write called")
+                CLog.info(`${this.TAG} saveImage fileio.write called`)
                 dataInfo.close(fd).then(() => {
-                  console.info("ataInfo.close called")
-                  captureSuccessCallBack()
+                  CLog.info(`${this.TAG} saveImage ataInfo.close called`)
                   getPixelMap.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
-                    console.info(`${this.TAG} getThumbnailInfo thumbnailInfo: ${thumbnail}`)
-                    thumbCallback(thumbnail)
+                    CLog.info(`${this.TAG} saveImage thumbnailInfo: ${thumbnail}`)
+                    captureCallBack.onCaptureSuccess(thumbnail)
                   })
-                  console.info("==========================fileAsset.close success=======================>");
+                  CLog.info(`${this.TAG} ==========================fileAsset.close success=======================>`);
                 }).catch(error => {
-                  console.info(`close is error ${JSON.stringify(error)}`)
+                  CLog.info(`${this.TAG} saveImage close is error ${JSON.stringify(error)}`)
                 })
               })
             })
@@ -103,30 +114,41 @@ export default class SaveCameraAsset {
         }
       }
     })
+    CLog.info(`${this.TAG} saveImage X`)
   }
 
-  public async getVideoFd(): Promise<any> {
-
+  public async createVideoFd(): Promise<number> {
+    CLog.info(`${this.TAG} getVideoFd E`)
     let mDateTimeUtil = new DateTimeUtil();
     let displayName = this.checkName(`VID_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.mp4'
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
+    CLog.info(`${this.TAG} getVideoFd publicPath: ${media}`)
     let fileKeyObj = mediaLibrary.FileKey;
     let mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
+    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
+    CLog.info(`${this.TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`)
     publicPath = `${publicPath}Camera/`
-    let dataUri = await  media.createAsset(mediaType, displayName, publicPath)
-    if (dataUri !== undefined) {
-      let args = dataUri.id.toString()
-      let fetchOp = {
-        selections: `${fileKeyObj.ID} = ? `,
-        selectionArgs: [args],
+    try {
+      let dataUri = await  media.createAsset(mediaType, displayName, publicPath)
+      if (dataUri !== undefined) {
+        let args = dataUri.id.toString()
+        let fetchOp = {
+          selections: `${fileKeyObj.ID} = ? `,
+          selectionArgs: [args],
+        }
+        // 通过id去查找
+        CLog.log(`${this.TAG} fetchOp= ${JSON.stringify(fetchOp)}`)
+        let fetchFileResult = await media.getFileAssets(fetchOp);
+        CLog.info(`${this.TAG} SaveCameraAsset getFileAssets finished`)
+        this.videoPrepareFile = await fetchFileResult.getFirstObject();
+        CLog.info(`${this.TAG} SaveCameraAsset getFirstObject finished`)
+        let fdNumber = await this.videoPrepareFile.open('Rw')
+        return fdNumber;
       }
-
-      console.log(`fetchOp= ${JSON.stringify(fetchOp)}`)
-      let fetchFileResult = await media.getFileAssets(fetchOp);
-      let fileAssets = await fetchFileResult.getAllObject();
-      return fileAssets;
+    } catch (err) {
+      CLog.info(`${this.TAG} createVideoFd err: ` + err)
     }
+    CLog.info(`${this.TAG} getVideoFd X`)
   }
 
   private checkName(name: string): string {

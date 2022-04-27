@@ -13,54 +13,79 @@
  * limitations under the License.
  */
 
-import router from '@system.router'
+import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
+import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
+
+let localState = (state) => {
+  return {
+    xComponentWidth: state.PreviewReducer.xComponentWidth,
+    xComponentHeight: state.PreviewReducer.xComponentHeight,
+    opacityValue: state.UiReducer.opacityValue
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {
+    updateOpacityValue: (opacityValue) => {
+      dispatch(Action.UpdateOpacityValue(opacityValue))
+    },
+    updateShowFlashBlackFlag: (flag: boolean) => {
+      dispatch(Action.UpdateShowFlashBlackFlag(flag))
+    }
+  }
+}
 
 @Component
 export struct ShowFlashBlack {
-  @State opacityValue: number = 1
-  @Link XcomponentWidth: string;
-  @Link XcomponentHeight: string;
-  @Link isShowFlashBlack: boolean;
+  private TAG: string = '[ShowFlashBlack]:'
+  private mConnect: any
+
+  @Link state: any
+
+  private aboutToAppear() {
+    CLog.info(`${this.TAG} aboutToAppear E`)
+    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    CLog.info(`${this.TAG} aboutToAppear X`)
+  }
+
+  private aboutToDisappear(): void {
+    CLog.info(`${this.TAG} aboutToDisappear E`)
+    this.mConnect.destroy()
+    CLog.info(`${this.TAG} aboutToDisappear X`)
+  }
 
   build() {
     Flex({ direction: FlexDirection.Row }) {
       Row() {
         Shape() {
           Rect()
-            .width(Number(this.XcomponentWidth.split('px')[0]))
-            .height(Number(this.XcomponentHeight.split('px')[0]))
+            .width(Number(this.state.xComponentWidth.split('px')[0]))
+            .height(Number(this.state.xComponentHeight.split('px')[0]))
         }
         .fill(Color.Black)
-        .opacity(this.opacityValue)
+        .opacity(this.state.opacityValue)
         .onAppear(() => {
           animateTo({
             duration: 50,
             delay: 0,
-            onFinish: () => {
-              console.info("isShowFlashBlack111=" + this.isShowFlashBlack)
-              console.info("XcomponentWidth = " + Number(
-                this.XcomponentWidth.split('px')[0]))
-              console.info("XcomponentHeight = " + Number(
-                this.XcomponentHeight.split('px')[0]))
-
-            }
-          }, () => {
-            console.log("onAppear first")
-          })
+            onFinish: () => {}
+          }, () => {})
           animateTo({
             duration: 300,
             curve: Curve.Sharp,
             delay: 50,
             onFinish: () => {
-              this.isShowFlashBlack = false;
-              this.opacityValue = 1;
+              this.state.updateShowFlashBlackFlag(false)
+              this.state.updateOpacityValue(1)
             }
           }, () => {
-            this.opacityValue = 0;
+            this.state.updateOpacityValue(0)
           })
         })
       }
-    }.height(Number(this.XcomponentHeight.split('px')[0]))
-    .width(Number(this.XcomponentWidth.split('px')[0]))
+    }
+    .width(Number(this.state.xComponentWidth.split('px')[0]))
+    .height(Number(this.state.xComponentHeight.split('px')[0]))
   }
 }

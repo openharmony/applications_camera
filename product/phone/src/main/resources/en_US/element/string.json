@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "app_name",
-      "value": "NavigationBar"
+      "value": "Camera"
     },
     {
       "name": "mainability_description",
@@ -26,7 +26,7 @@
     },
     {
       "name": "aspect_ratio",
-      "value": "Aspect ratio"
+      "value": "Aspect Ratio"
     },
     {
       "name": "photo_scale43",
@@ -42,7 +42,7 @@
     },
     {
       "name": "video_resolution",
-      "value": "Video resolution"
+      "value": "Video Resolution"
     },
     {
       "name": "resolution16091080",
@@ -71,6 +71,38 @@
     {
       "name": "cancel",
       "value": "CANCEL"
+    },
+    {
+      "name": "select_camera",
+      "value": "Select Camera"
+    },
+    {
+      "name": "local_device",
+      "value": "Local Device"
+    },
+    {
+      "name": "more_devices",
+      "value": "More Devices"
+    },
+    {
+      "name": "local",
+      "value": "Local"
+    },
+    {
+      "name": "front",
+      "value": "（Front）"
+    },
+    {
+      "name": "back",
+      "value": "（Back）"
+    },
+    {
+      "name": "assistive_grid",
+      "value": "Assistive grid"
+    },
+    {
+      "name": "general",
+      "value": "GENERAL"
     }
   ]
 }

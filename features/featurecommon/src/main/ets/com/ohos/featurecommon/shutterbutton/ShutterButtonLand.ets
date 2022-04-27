@@ -13,13 +13,16 @@
  * limitations under the License.
  */
 
-import {ShutterController} from './ShutterController.ets'
-import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
-import GetPixelMap from '../../../../../../../../../common/src/main/ets/default/Camera/GetPixelMap'
 import router from "@system.router"
+
+//import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
+import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import GetPixelMap from '../../../../../../../../../common/src/main/ets/default/Camera/GetPixelMap'
+import {ShutterController} from './ShutterController'
 
 @Component
 export struct ShutterButtonLand {
+  private TAG: string = '[ShutterButtonLand]:'
   @State icon: Resource = $r("app.media.ic_circled_filled")
   @Link @Watch("modeUpdate") previewImage: string
   width: number
@@ -27,8 +30,9 @@ export struct ShutterButtonLand {
   type: ButtonType
   stateEffect: boolean
   shutterController = new ShutterController()
-  private cameraService = CameraService.getInstance()
+//  private cameraService = CameraService.getInstance()
   getPixelMap = new GetPixelMap()
+  @State isShutterEnable: boolean = true
   @Link videoState: string
   @Link isThirdPartyCall: boolean
   @Link isStartVideo: boolean
@@ -39,14 +43,25 @@ export struct ShutterButtonLand {
   @Link isShowFlashBlack: boolean
   @State tempScale: number = 1
   @Link xComponentChangeFlag: boolean
+  @Link XcomponentWidth: string
+  @Link XcomponentHeight: string
+  @Link state: any
 
+// todo �ܹ��ع�������
   aboutToAppear() {
-    this.shutterController.getParam()
-    this.icon = this.shutterController.icon
-    this.width = this.shutterController.width
-    this.height = this.shutterController.height
-    this.type = this.shutterController.type
-    this.stateEffect = this.shutterController.stateEffect
+    if (this.previewImage === 'VIDEO') {
+      this.icon = $r("app.media.take_video_normal")
+    } else {
+      this.icon = $r("app.media.ic_circled_filled")
+    }
+    this.videoState = 'beforeTakeVideo'
+
+//    this.shutterController.getParam()
+//    this.icon = this.shutterController.icon
+//    this.width = this.shutterController.width
+//    this.height = this.shutterController.height
+//    this.type = this.shutterController.type
+//    this.stateEffect = this.shutterController.stateEffect
   }
 
   modeUpdate() {
@@ -65,11 +80,13 @@ export struct ShutterButtonLand {
           Image(this.icon)
             .width(76)
             .aspectRatio(1)
+	          .enabled(this.state.uiEnable)
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Up) {
                 this.isBigVideoTimerVisible = true
                 this.videoState = 'startTakeVideo'
-                this.xComponentChangeFlag = !this.xComponentChangeFlag
+    //              this.xComponentChangeFlag = !this.xComponentChangeFlag
+                this.state.startRecording()
                 this.isStartVideo = true
               }
             })
@@ -82,6 +99,7 @@ export struct ShutterButtonLand {
             .aspectRatio(1)
             .fillColor(Color.White)
             .scale({ x: this.tempScale, y: this.tempScale, z: this.tempScale })
+            .enabled(this.state.uiEnable)
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 animateTo({
@@ -90,36 +108,46 @@ export struct ShutterButtonLand {
                   delay: 0
                 }, () => {
                   this.tempScale = 0.85
-                  console.info("Down Call Back")
+                  CLog.info(this.TAG + " Down Call Back")
                 })
               } else if (event.type === TouchType.Up) {
+//                this.isShutterEnable = false
                 animateTo({
                   duration: 125,
                   curve: Curve.Sharp,
                   delay: 0,
                   onFinish: () => {
-                    console.info(`this.onFinish= ${this.tempScale}`)
+                    CLog.info(`${this.TAG} this.onFinish= ${this.tempScale}`)
                     this.tempScale = 1
-                    console.info("Up onFinish")
+                    CLog.info(this.TAG + " Up onFinish")
                   }
                 }, () => {
                   this.tempScale = 1
-                  console.info("Up Call Back")
+                  CLog.info(this.TAG + " Up Call Back")
                 })
                 this.isShowFlashBlack = true
-                this.cameraService.takePicture(() => {
-                  if (this.isThirdPartyCall) {
-                    router.push({ uri: "pages/ThirdPreviewView" })
-                  }
-                })
+//                this.cameraService.takePicture(() => {
+//                  this.isShutterEnable = true
+//                  if (this.isThirdPartyCall) {
+//                    console.info('start router to ThirdPreviewView')
+//                    router.push({
+//                      uri: "pages/ThirdPreviewView",
+//                      params: {
+//                        width: this.XcomponentWidth,
+//                        height: this.XcomponentHeight
+//                      }
+//                    })
+//                  }
+//                })
+                this.state.capture()
               }
-              console.info(`event.type=${event.type}`)
+              CLog.info(`${this.TAG} event.type=${event.type}`)
             })
         }
       }
       .width(76)
-      .aspectRatio(1)
-      .margin({ top: 48, bottom: 48 })
+        .aspectRatio(1)
+        .margin({ top: 48, bottom: 48 })
     } else {
       Column() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -129,10 +157,12 @@ export struct ShutterButtonLand {
               .aspectRatio(1)
               .fillColor(Color.White)
               .margin({ bottom: 16 })
+	            .enabled(this.state.uiEnable)
               .onClick(() => {
                 this.isResumeVideo = true
                 this.iscContinueVideo = false
-                this.cameraService.pauseVideo()
+//                this.cameraService.pauseVideo()
+		            this.state.pauseRecording()
                 this.videoState = 'pauseTakeVideo'
               })
           } else if (this.videoState === 'pauseTakeVideo') {
@@ -144,7 +174,8 @@ export struct ShutterButtonLand {
               .onClick(() => {
                 this.isResumeVideo = false
                 this.iscContinueVideo = true
-                this.cameraService.resumeVideo()
+//                this.cameraService.resumeVideo()
+		            this.state.resumeRecording()
                 this.videoState = 'startTakeVideo'
               })
           }
@@ -153,13 +184,15 @@ export struct ShutterButtonLand {
             .aspectRatio(1)
             .fillColor(Color.White)
             .margin({ top: 16 })
+            .enabled(this.state.uiEnable)
             .onClick(() => {
               this.isResumeVideo = false
               this.iscContinueVideo = false
               this.isBigVideoTimerVisible = false
               this.isSmallVideoTimerVisible = false
-              this.cameraService.stopVideo()
-              this.cameraService.releaseVideo()
+//              this.cameraService.stopVideo()
+//              this.cameraService.releaseVideo()
+              this.state.stopRecording()
               this.videoState = 'beforeTakeVideo'
             })
         }
@@ -167,8 +200,8 @@ export struct ShutterButtonLand {
       .width(56)
       .height(120)
       .borderRadius(28)
-      .border({ width: 2, color: 0xffffff, style: BorderStyle.Solid })
-      .margin({ top: 48, bottom: 48 })
+      .border({ width: 1, color: 0xffffff, style: BorderStyle.Solid })
+      .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_xl"), bottom: $r("sys.float.ohos_id_text_paragraph_margin_xl") })
     }
   }
 }

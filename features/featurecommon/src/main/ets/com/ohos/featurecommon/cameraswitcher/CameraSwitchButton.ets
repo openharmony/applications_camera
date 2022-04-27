@@ -13,44 +13,49 @@
  * limitations under the License.
  */
 
-import {CameraSwitchController} from './CameraSwitchController.ets'
-import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
-import MultiCameraDialog from '../customDialog/MultiCameraDialog.ets'
+import {CameraSwitchController} from './CameraSwitchController'
+//import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
+import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import MultiCameraDialog from '../customDialog/MultiCameraDialog'
+import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
+import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
+
+let localState = (state) => {
+  return {
+    mode: state.ModeReducer.mode,
+    uiEnable: state.UiReducer.uiEnable,
+    cameraPosition: state.CameraReducer.cameraPosition,
+    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {
+    changeCameraPosition: (cameraPosition: string) => {
+      dispatch(Action.SetCameraPosition(cameraPosition))
+    }
+  }
+}
 
 @Component
 export struct CameraSwitchButton {
-  @State icon: Resource = $r("app.media.small_switch_camera")
+  private TAG: string = '[CameraSwitchButton]:'
+  private mConnect: any
+  private multiDialogController: CustomDialogController
+
+  icon: Resource = $r('app.media.small_switch_camera')
   width: number
   height: number
   margin: number
   type: ButtonType
   stateEffect: boolean
   cameraSwitchController = new CameraSwitchController()
-  private cameraService = CameraService.getInstance()
-  @Link surfaceId: number
-  @Link cameraPosition: string
-  @Link btnOpacity_first: number
-  @Link btnOpacity_sec: number
-  @Link btnSwitch: boolean
-  @Link btnSwitchSec: boolean
-  @Link xComponentChangeFlag: boolean
-  @Link previewImage: string
-  @Link cameraId: string
-  @Link isSwitchBackground: boolean
-  @State switchAnimationTimer: number = 0
-  multiDialogController: CustomDialogController = new CustomDialogController({
-    builder: MultiCameraDialog({
-      action: this.onAccept,
-      cameraId:$cameraId,
-      cameraPosition:$cameraPosition,
-      xComponentChangeFlag: $xComponentChangeFlag
-    }),
-    autoCancel: true,
-    alignment: DialogAlignment.Center,
-    cancel: this.existView
-  })
 
-  aboutToAppear() {
+  @State state: any = {}
+
+  private aboutToAppear() {
+    CLog.info(`${this.TAG} aboutToAppear E`)
+    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
     this.cameraSwitchController.getParam()
     this.icon = this.cameraSwitchController.icon
     this.width = this.cameraSwitchController.width
@@ -58,54 +63,59 @@ export struct CameraSwitchButton {
     this.margin = this.cameraSwitchController.margin
     this.type = this.cameraSwitchController.type
     this.stateEffect = this.cameraSwitchController.stateEffect
+    this.multiDialogController = new CustomDialogController({
+      builder: MultiCameraDialog(),
+      autoCancel: true,
+      alignment:DialogAlignment.Center,
+      customStyle: true,
+      cancel: this.existView
+    })
+    CLog.info(`${this.TAG} aboutToAppear X`)
+  }
+
+  private aboutToDisappear(): void {
+    CLog.info(`${this.TAG} aboutToDisappear E`)
+    this.mConnect.destroy()
+    CLog.info(`${this.TAG} aboutToDisappear X`)
   }
 
   private openMultiDialog() {
-    console.info('CameraSwitchButton.openMultiDialog called')
+    CLog.info(`${this.TAG} openMultiDialog E`)
     this.multiDialogController.open()
+    CLog.info(`${this.TAG} openMultiDialog X`)
   }
 
-  public existView() {
-
-  }
-  private onAccept() {
-
-  }
+  private existView() {}
 
   build() {
     Column() {
       Stack() {
         Image($r('app.media.small_switch_camera'))
-          .width('67.5%')
-          .aspectRatio(1)
+          .width('67.5%').aspectRatio(1)
           .clip(new Circle({ width: '100%', height: '100%' }))
-        Column() {
-
-        }
-        .border({ width: 2, color: 0xffffff, radius: 20, style: BorderStyle.Solid })
-          .width('100%')
-          .height('100%')
+        Column() {}.width('100%').height('100%')
+          .border({ width: 1, color: Color.White, radius: 20, style: BorderStyle.Solid })
       }
-      .width('100%')
-        .height('100%')
-        .onClick(() => {
-          if (this.previewImage == 'MULTI') {
+      .width('100%').height('100%').enabled(this.state.uiEnable)
+      .onClick(() => {
+        if (this.state.videoState === 'beforeTakeVideo') {
+          if (this.state.mode === 'MULTI') {
             this.openMultiDialog()
           } else {
-            this.xComponentChangeFlag = !this.xComponentChangeFlag
-            if (this.cameraPosition !== 'BACK') {
-              if (this.cameraPosition === 'ORIGIN') {
-                this.cameraPosition = 'FRONT'
+            this.state.disableUi()
+            this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+            if (this.state.cameraPosition !== 'BACK') {
+              if (this.state.cameraPosition === 'ORIGIN') {
+                this.state.changeCameraPosition('FRONT')
               } else {
-                this.cameraPosition = 'BACK'
+                this.state.changeCameraPosition('BACK')
               }
             } else {
-              this.cameraPosition = 'FRONT'
+              this.state.changeCameraPosition('FRONT')
             }
           }
-        })
-    }
-    .width(40)
-      .aspectRatio(1)
+        }
+      })
+    }.width(44).aspectRatio(1)
   }
 }

@@ -13,82 +13,85 @@
  * limitations under the License.
  */
 
-import BaseConfModel from '../../model/common/BaseConfModel.ets'
+import { CLog } from '../../Utils/CLog'
+import AspectRatio from '../../setting/AspectRatio'
+import AssistiveGrid from '../../setting/AssistiveGrid'
+import Resolution from '../../setting/Resolution'
+
 /**
- * @file app setting homepage service class
+ * app setting homepage service class
  */
-
-const FILE_URI = '/data/accounts/account_0/applications/com.ohos.camera'
-+ '/com.ohos.camera/assets/tablet/resources/rawfile/';
-
 export class SettingListModel {
   constructor() {
   }
 
-  setSettingDetialListener() {
-    console.info('settings SettingListModel start');
-    BaseConfModel.getJsonDataBase(FILE_URI.concat('settingdetaillist.json'), baseData => {
-      console.info(`settings SettingListModel getAbilityInfoListener getJsonDataBase: ${JSON.stringify(baseData)}`)
-      let settingsDetailList = this.setTitleDetailValue(baseData);
-      AppStorage.SetOrCreate('settingsDetailList', settingsDetailList);
-      console.info('settings SettingListModel end');
-    });
-  }
-
-  async setSettingListener() {
-    console.info('settings SettingListModel start');
-    BaseConfModel.getJsonDataBase(FILE_URI.concat('settingdetaillist.json'), baseData => {
-      console.info(`settings SettingListModel getAbilityInfoListener getJsonDataBase: ${JSON.stringify(baseData)}`)
-      let settingsList = this.setTitleValue(baseData);
-      AppStorage.SetOrCreate('settingsList', settingsList);
-      console.info('settings SettingListModel end');
-    });
-  }
-
-  setTitleDetailValue(settingsDetailList) {
-    console.info("setTitleValue start")
-    for (let key in settingsDetailList) {
-      let settingAlias = settingsDetailList[key].settingAlias;
-      console.info(`settingAlias ${settingAlias}`)
-      console.info(`key = ${key}`)
-      let value;
-
-      if ('photoScale' === settingAlias || 'Aspect ratio' === settingAlias) {
-        value = $r('app.string.aspect_ratio')
-
-      } else if ('videoResolution' === settingAlias || 'Video resolution' === settingAlias) {
-        value = $r('app.string.video_resolution');
-
-      } else if ('dateAndTimeTab' === settingAlias) {
-
-      } else {
-        value = ""
-      }
-      settingsDetailList[key].settingTitle = value;
+  private settingsList = [
+    {
+      settingTitle: $r('app.string.photo_mode'),
+      settingChildren: [{
+                          imagePath: $r("app.media.ic_camera_setting_resolution_photo"),
+                          settingName: $r('app.string.aspect_ratio'),
+                          checkedName: "4:3",
+                          settingAlias: AspectRatio.ALIAS,
+                          selectType: "radio",
+                          radio: [{
+                                    "itemValue": "4:3"
+                                  },
+                                  {
+                                    "itemValue": "1:1"
+                                  },
+                                  {
+                                    "itemValue": "16:9"
+                                  }]
+                        }
+      ]
+    }, {
+      settingTitle: $r('app.string.video_mode'),
+      settingChildren: [{
+                          imagePath: $r("app.media.ic_camera_setting_resolution_video"),
+                          settingName: $r('app.string.video_resolution'),
+                          settingAlias: Resolution.ALIAS,
+                          checkedName: "[16:9] 720p",
+                          selectType: "radio",
+                          radio: [{
+                                    "itemValue": "[16:9] 4k"
+                                  },
+                                  {
+                                    "itemValue": "[16:9] 1080p"
+                                  },
+                                  {
+                                    "itemValue": "[16:9] 720p"
+                                  }]
+                        }]
+    }, {
+      settingTitle: $r('app.string.general'),
+      settingChildren: [{
+                          imagePath: $r("app.media.ic_camera_setting_resolution_video"),
+                          settingName: $r('app.string.assistive_grid'),
+                          settingAlias: AssistiveGrid.ALIAS,
+                          checkedName: false,
+                          selectType: "toggle",
+                          toggle: true
+                        }, {
+                          imagePath: $r("app.media.ic_camera_setting_resolution_video"),
+                          settingName: $r('app.string.video_resolution'),
+                          settingAlias: Resolution.ALIAS,
+                          checkedName: "[16:9] 720p",
+                          selectType: "radio",
+                          radio: [{
+                                    "itemValue": "[16:9] 1080p"
+                                  },
+                                  {
+                                    "itemValue": "[16:9] 720p"
+                                  }]
+                        }
+      ]
     }
-    console.info(`settings setTitleValue end ==: ${JSON.stringify(settingsDetailList)}`);
-    return settingsDetailList;
-  }
+  ]
 
-  setTitleValue(settingsList) {
-    for (let index = 0; index < settingsList.length; index++) {
-      if (settingsList[index].subtitle === 'PHOTO') {
-        settingsList[index].subtitle = $r('app.string.photo_mode')
-      } else if (settingsList[index].subtitle === 'VIDEO') {
-        settingsList[index].subtitle = $r('app.string.video_mode')
-      }
-      for (let pro = 0; pro < settingsList[index].length; pro++) {
-        if (settingsList[index][pro].settingName === 'Aspect ratio') {
-          settingsList[index][pro].settingName = $r('app.string.aspect_ratio')
-        } else if (settingsList[index][pro].settingName === 'Video resolution') {
-          settingsList[index][pro].settingName = $r('app.string.video_resolution')
-        }
-      }
-    }
-    console.info(`settings setTitleValue ==: ${JSON.stringify(settingsList)}`);
-    return settingsList;
+  getSettingList() {
+    return this.settingsList;
   }
-
 }
 
 let settingListModel = new SettingListModel();

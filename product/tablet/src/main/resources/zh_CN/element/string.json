@@ -71,6 +71,38 @@
     {
       "name": "cancel",
       "value": "取消"
+    },
+    {
+      "name": "select_camera",
+      "value": "选择摄像头"
+    },
+    {
+      "name": "local_device",
+      "value": "本地设备"
+    },
+    {
+      "name": "more_devices",
+      "value": "更多设备"
+    },
+    {
+      "name": "local",
+      "value": "本地"
+    },
+    {
+      "name": "front",
+      "value": "（前置）"
+    },
+    {
+      "name": "back",
+      "value": "（后置）"
+    },
+    {
+      "name": "assistive_grid",
+      "value": "参考线"
+    },
+    {
+      "name": "general",
+      "value": "通用"
     }
   ]
 }
