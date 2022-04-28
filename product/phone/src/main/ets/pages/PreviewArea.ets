@@ -140,15 +140,13 @@ let cameraDispatcher = (dispatch) => {
 
 @Component
 export struct PreviewArea {
-  private TAG: string = '[PreviewArea]:'
-  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  mXComponentController: XComponentController = new XComponentController()
-
   @State state: any = {}
-
+  private TAG: string = '[PreviewArea]:'
   private mConnect: any
   private isShowPreview: boolean = false
   private settingsUtil = SettingsUtil.getInstance()
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  mXComponentController: XComponentController = new XComponentController()
 
   private async onCameraInit(data) {
     CLog.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)

@@ -29,6 +29,7 @@ export struct SmallVideoTimer {
   @Link @Watch("watchIsResumeVideo") isResumeVideo: boolean
   @Link @Watch("watchIscContinueVideo") iscContinueVideo: boolean
   @State timerPosition: number= 0
+  private ASPECT_RATIO: number = 4 / 3
 
   private aboutToAppear() {
     this.setIntervalSmallVideoTimer()
@@ -38,7 +39,7 @@ export struct SmallVideoTimer {
     clearInterval(this.spotTimer)
     clearInterval(this.smallTimer)
     display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height) * (4 / 3)
+      this.timerPosition = px2vp(dis.height) * this.ASPECT_RATIO
     })
   }
 

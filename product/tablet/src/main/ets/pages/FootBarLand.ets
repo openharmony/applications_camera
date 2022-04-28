@@ -24,7 +24,6 @@ import { ThumbnailView
 @Component
 export struct FootBarLand {
   @Link previewImage: string
-  //  private cameraService = CameraService.getInstance()
   @State isVisible: boolean = true
   @Link surfaceId: number
   @Link cameraPosition: string

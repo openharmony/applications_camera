@@ -136,7 +136,7 @@ export struct ControlLand {
     this.scroller.scrollToIndex(1)
     // 发送mode切换的消息
     this.asyncManager.postMessage({ type: 'modeChange', data: 'PHOTO' })
-    this.aspectRatio = ASPECT_RATIO
+    this.aspectRatio = this.ASPECT_RATIO
     this.previewImage = 'PHOTO'
     this.isSmallVideoTimerVisible = false
     this.isBigVideoTimerVisible = false
@@ -158,7 +158,7 @@ export struct ControlLand {
     this.scroller.scrollToIndex(2)
     // 发送mode切换的消息
     this.asyncManager.postMessage({ type: 'modeChange', data: 'VIDEO' })
-    this.aspectRatio = ASPECT_RATIO
+    this.aspectRatio = this.ASPECT_RATIO
     this.previewImage = 'VIDEO'
     this.isSmallVideoTimerVisible = false
     this.isBigVideoTimerVisible = false
@@ -179,7 +179,7 @@ export struct ControlLand {
     this.scroller.scrollToIndex(0)
     // 发送mode切换的消息
     // this.asyncManager.postMessage({ type: 'modeChange', data: 'VIDEO' })
-    this.aspectRatio = ASPECT_RATIO
+    this.aspectRatio = this.ASPECT_RATIO
     this.previewImage = 'MULTI'
     this.isSmallVideoTimerVisible = false
     this.isBigVideoTimerVisible = false

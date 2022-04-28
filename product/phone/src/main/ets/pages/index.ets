@@ -80,6 +80,7 @@ struct Index {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
   private mConnect: any
+  private ASPECT_RATIO: number = 4 / 3
 
   private aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear E`)
@@ -90,7 +91,7 @@ struct Index {
 
     display.getDefaultDisplay().then((dis) => {
       CLog.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`)
-      let footBarHeight = px2vp(dis.width) * (4 / 3) - 100
+      let footBarHeight = px2vp(dis.width) * this.ASPECT_RATIO - 100
       this.state.initFootBarHeight(footBarHeight)
     })
 
