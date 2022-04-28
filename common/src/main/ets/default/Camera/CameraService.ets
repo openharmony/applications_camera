@@ -351,13 +351,13 @@ export class CameraService {
     try {
       await this.mVideoRecorder.stop()
     } catch (err) {
-      CLog.info(`${this.TAG} stop videoRecorder ${err}`)
+      CLog.error(`${this.TAG} stop videoRecorder ${err}`)
     }
 
     try {
       await this.mVideoOutput.stop()
     } catch (err) {
-      CLog.info(`${this.TAG} stop videoOutput ${err}`)
+      CLog.error(`${this.TAG} stop videoOutput ${err}`)
     }
 
     if (this.mFileAssetId != undefined) {

@@ -42,7 +42,7 @@ export struct SetToggle {
         }
       })
     } catch {
-      CLog.info(`${this.TAG} aboutToAppear settingsList ${JSON.stringify(this.settingsList)}`)
+      CLog.error(`${this.TAG} aboutToAppear settingsList ${JSON.stringify(this.settingsList)}`)
       this.generalStatusValue = false
     }
     CLog.info(`${this.TAG} aboutToAppear end`)

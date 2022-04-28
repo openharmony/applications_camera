@@ -106,7 +106,7 @@ export default class SaveCameraAsset {
                   })
                   CLog.info(`${this.TAG} ==========================fileAsset.close success=======================>`);
                 }).catch(error => {
-                  CLog.info(`${this.TAG} saveImage close is error ${JSON.stringify(error)}`)
+                  CLog.error(`${this.TAG} saveImage close is error ${JSON.stringify(error)}`)
                 })
               })
             })
@@ -146,7 +146,7 @@ export default class SaveCameraAsset {
         return fdNumber;
       }
     } catch (err) {
-      CLog.info(`${this.TAG} createVideoFd err: ` + err)
+      CLog.error(`${this.TAG} createVideoFd err: ` + err)
     }
     CLog.info(`${this.TAG} getVideoFd X`)
   }
