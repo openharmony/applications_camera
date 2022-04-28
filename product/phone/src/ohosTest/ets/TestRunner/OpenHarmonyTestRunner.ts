@@ -38,7 +38,7 @@ async function onAbilityCreateCallback() {
 }
 
 async function addAbilityMonitorCallback(err: any) {
-    console.info("addAbilityMonitorCallback : " + JSON.stringify(err))
+    console.error("addAbilityMonitorCallback : " + JSON.stringify(err))
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
@@ -64,9 +64,9 @@ export default class OpenHarmonyTestRunner implements TestRunner {
         console.info('cmd : ' + cmd)
         abilityDelegator.executeShellCommand(cmd,
             (err: any, d: any) => {
-                console.info('executeShellCommand : err : ' + JSON.stringify(err));
-                console.info('executeShellCommand : data : ' + d.stdResult);
-                console.info('executeShellCommand : data : ' + d.exitCode);
+                console.error('executeShellCommand : err : ' + JSON.stringify(err));
+                console.error('executeShellCommand : data : ' + d.stdResult);
+                console.error('executeShellCommand : data : ' + d.exitCode);
             })
         console.info('OpenHarmonyTestRunner onRun end')
     }

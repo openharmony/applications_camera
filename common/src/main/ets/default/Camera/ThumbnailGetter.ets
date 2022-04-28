@@ -42,6 +42,7 @@ export default class ThumbnailGetter {
     }
     let lastFileAsset = await fetchFileResult.getLastObject()
     if (lastFileAsset == null) {
+      CLog.error(`${this.TAG} getThumbnailInfo lastFileAsset is null`)
       return null
     }
     let thumbnailPixelMap = lastFileAsset.getThumbnail({size: {width: 40, height: 40}})
