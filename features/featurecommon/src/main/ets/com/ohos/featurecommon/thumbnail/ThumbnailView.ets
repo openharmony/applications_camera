@@ -14,7 +14,7 @@
  */
 
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import GetPixelMap from '../../../../../../../../../common/src/main/ets/default/Camera/GetPixelMap'
+import ThumbnailGetter from '../../../../../../../../../common/src/main/ets/default/Camera/ThumbnailGetter'
 import {ThumbnailController} from './ThumbnailController'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
 import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'

@@ -36,7 +36,7 @@ export default class SaveCameraAsset {
     return photoUri
   }
 
-  public saveImage(mReceiver, thumbWidth, thumbHeight, getPixelMap, captureCallBack) {
+  public saveImage(mReceiver, thumbWidth, thumbHeight, thumbnailGetter, captureCallBack) {
     CLog.info(`${this.TAG} saveImage E`)
     let mDateTimeUtil = new DateTimeUtil();
     let fileKeyObj = mediaLibrary.FileKey
@@ -100,7 +100,7 @@ export default class SaveCameraAsset {
                 CLog.info(`${this.TAG} saveImage fileio.write called`)
                 dataInfo.close(fd).then(() => {
                   CLog.info(`${this.TAG} saveImage ataInfo.close called`)
-                  getPixelMap.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
+                  thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
                     CLog.info(`${this.TAG} saveImage thumbnailInfo: ${thumbnail}`)
                     captureCallBack.onCaptureSuccess(thumbnail)
                   })
