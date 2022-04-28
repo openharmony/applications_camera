@@ -310,7 +310,7 @@ export class CameraService {
       await this.mVideoRecorder.prepare(this.mVideoConfig)
       CLog.info(`${this.TAG} createVideoOutput videoRecorder.prepare succeed.`)
     } else {
-      CLog.info(`${this.TAG} createVideoOutput createVideoRecorder failed.`)
+      CLog.error(`${this.TAG} createVideoOutput createVideoRecorder failed.`)
       return
     }
 
@@ -345,7 +345,7 @@ export class CameraService {
   public async stopRecording() {
     CLog.info(`${this.TAG} stopRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.info(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
+      CLog.error(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
@@ -405,7 +405,7 @@ export class CameraService {
   public async pauseRecording() {
     CLog.info(`${this.TAG} pauseRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.info(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
+      CLog.error(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
@@ -417,7 +417,7 @@ export class CameraService {
   public async resumeRecording() {
     CLog.info(`${this.TAG} resumeRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.info(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
+      CLog.error(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
@@ -431,7 +431,7 @@ export class CameraService {
   public async releaseRecording() {
     CLog.info(`${this.TAG} releaseRecording invoke E.`)
     if (!this.mVideoRecorder) {
-      CLog.info(`${this.TAG} releaseRecording error videoRecorder is null .`)
+      CLog.error(`${this.TAG} releaseRecording error videoRecorder is null .`)
       return
     }
     if (this.mIsStartRecording) {
