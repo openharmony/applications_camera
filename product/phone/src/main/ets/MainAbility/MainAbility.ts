@@ -48,7 +48,7 @@ export default class MainAbility extends Ability {
                     console.info('Camera setSystemBarProperties.')
                 })
             } catch (err) {
-                console.info('Camera setFullScreen err: ' + err)
+                console.error('Camera setFullScreen err: ' + err)
             }
         })
 
@@ -66,12 +66,11 @@ export default class MainAbility extends Ability {
             }
         }
 
-
         windowStage.setUIContent(this.context, 'pages/index', null)
     }
 
     onWindowStageDestroy() {
-        console.info('Camera MainAbility onWindowStageDestory.')
+        console.info('Camera MainAbility onWindowStageDestroy.')
     }
 
     onForeground() {

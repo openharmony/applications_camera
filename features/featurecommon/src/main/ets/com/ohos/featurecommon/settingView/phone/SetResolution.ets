@@ -58,7 +58,7 @@ export struct SetResolution {
         CLog.log(this.TAG + " this.checkNameList = " + JSON.stringify(this.curCheckName))
       })
     } catch {
-      CLog.info(`${this.TAG} settingsList = ${JSON.stringify(this.settingsList)}`)
+      CLog.error(`${this.TAG} settingsList = ${JSON.stringify(this.settingsList)}`)
     }
   }
 

@@ -49,7 +49,7 @@ export default class MainAbility extends Ability {
                 })
 
             } catch (err) {
-                console.info('Camera setFullScreen err: ' + err)
+                console.error('Camera setFullScreen err: ' + err)
             }
         })
 

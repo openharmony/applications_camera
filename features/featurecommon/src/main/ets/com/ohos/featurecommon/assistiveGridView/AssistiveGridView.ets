@@ -28,16 +28,14 @@ export struct AssistiveGridView {
   @Link displayInfo: Promise<number>
 
   public aboutToAppear() {
-    CLog.log(this.TAG + " XcomponentWidth" + this.XcomponentWidth)
+    CLog.log(this.TAG + " XcomponentWidth" + this.XcomponentWidth+ " XcomponentHeight" + this.XcomponentHeight)
     //横竖屏判断
-    CLog.log(this.TAG + " XcomponentHeight" + this.XcomponentHeight)
-    CLog.log(this.TAG + " displayInfo" + JSON.stringify(displayInfo))
+    CLog.log(this.TAG + " displayInfo:" + JSON.stringify(displayInfo))
 
     this.lineMarginLeft = Number(this.XcomponentHeight.split('px')[0]) / 3
     this.lineMarginTop = Number(this.XcomponentWidth.split('px')[0]) / 3
 
-    CLog.log(this.TAG + " lineMarginTop" + this.lineMarginTop)
-    CLog.log(this.TAG + " lineMarginLeft" + this.lineMarginLeft)
+    CLog.log(this.TAG + " lineMarginTop" + this.lineMarginTop+ " lineMarginLeft" + this.lineMarginLeft)
   }
 
   build() {

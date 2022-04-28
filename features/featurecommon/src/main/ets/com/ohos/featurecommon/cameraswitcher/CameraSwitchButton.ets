@@ -14,7 +14,6 @@
  */
 
 import {CameraSwitchController} from './CameraSwitchController'
-//import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import MultiCameraDialog from '../customDialog/MultiCameraDialog'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
