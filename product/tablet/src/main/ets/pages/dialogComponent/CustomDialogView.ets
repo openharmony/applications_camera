@@ -113,7 +113,8 @@ export struct CustomDialogView {
             });
           }
           .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 }) // 每行之间的分界线
+          .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 })
+
           Column() {
             Button({ type: ButtonType.Normal, stateEffect: true }) {
               Text($r('app.string.cancel'))

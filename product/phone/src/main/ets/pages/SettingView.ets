@@ -101,8 +101,6 @@ struct SettingView {
                 ListItem() {
                   SettingItem({
                     settingsList: $settingsList,
-                    //                    settingsDetailList: $settingsDetailList,
-                    //                    checkNameList: $checkNameList,
                     item: item,
                     index: index
                   })

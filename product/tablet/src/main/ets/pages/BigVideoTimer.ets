@@ -26,11 +26,12 @@ export struct BigVideoTimer {
   @Link @Watch("watchIsResumeVideo") isResumeVideo: boolean
   @Link @Watch("watchIscContinueVideo") iscContinueVideo: boolean
   @State timerPosition: number= 0
+  private ASPECT_RATIO: number = 4 / 3
 
   private aboutToAppear() {
     this.setIntervalBigVideoTime()
     display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height) * (4 / 3)
+      this.timerPosition = px2vp(dis.height) * this.ASPECT_RATIO
     })
   }
 
