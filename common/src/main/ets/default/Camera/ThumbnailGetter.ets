@@ -17,8 +17,8 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
 import { CLog } from '../Utils/CLog'
 
-export default class GetPixelMap {
-  private TAG = '[GetPixelMap]:'
+export default class ThumbnailGetter {
+  private TAG = '[ThumbnailGetter]:'
 
   public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap> {
     CLog.log(`${this.TAG} getThumbnailInfo E`)

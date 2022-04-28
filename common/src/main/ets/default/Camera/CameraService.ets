@@ -21,7 +21,7 @@ import media from '@ohos.multimedia.media'
 import { CameraId } from '../setting/CameraId'
 import { CLog } from '../Utils/CLog'
 import { Constants } from '../Utils/Constants'
-import GetPixelMap from './GetPixelMap'
+import ThumbnailGetter from './ThumbnailGetter'
 import SaveCameraAsset from './SaveCameraAsset'
 
 export interface FunctionCallBack {
@@ -57,6 +57,10 @@ export class CameraService {
   private mVideoRecorder = null
   private mThumbnail = null
   private mIsStartRecording = false
+  private mCameraListInfo = null
+  private mSaveCameraAsset = new SaveCameraAsset()
+  private mThumbnailGetter = new ThumbnailGetter()
+
   private mVideoConfig: any = {
     audioSourceType: 1,
     videoSourceType: 1,
@@ -96,9 +100,7 @@ export class CameraService {
     frameWidth: 1920,
     frameHeight: 1080
   }
-  public mCameraListInfo = null
-  public mSaveCameraAsset = new SaveCameraAsset()
-  public mPixelMap = new GetPixelMap()
+
 
   private constructor() {
   }
@@ -212,7 +214,7 @@ export class CameraService {
     CLog.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
     this.mPhotoOutPut = await camera.createPhotoOutput(surfaceId)
     CLog.info(`${this.TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`)
-    this.mSaveCameraAsset.saveImage(receiver, 40, 40, this.mPixelMap, functionCallback)
+    this.mSaveCameraAsset.saveImage(receiver, 40, 40, this.mThumbnailGetter, functionCallback)
     CLog.info(`${this.TAG} createPhotoOutput invoke X.`)
   }
 
@@ -366,7 +368,7 @@ export class CameraService {
       CLog.info(`${this.TAG} fileAsset.close().`)
     }
 
-    let thumbnailPixelMap = await this.mPixelMap.getThumbnailInfo(40, 40)
+    let thumbnailPixelMap = await this.mThumbnailGetter.getThumbnailInfo(40, 40)
 
     // 录像停止时需要重新创建mVideoOutput
     await this.mCaptureSession.stop()
@@ -496,7 +498,7 @@ export class CameraService {
 
   public getThumbnail(functionCallBack: FunctionCallBack) {
     CLog.info(`${this.TAG} getThumbnail invoke E.`)
-    this.mPixelMap.getThumbnailInfo(40, 40).then((thumbnail) => {
+    this.mThumbnailGetter.getThumbnailInfo(40, 40).then((thumbnail) => {
       if (thumbnail != null) {
         CLog.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
         functionCallBack.thumbnail(thumbnail)
