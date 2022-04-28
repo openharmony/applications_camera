@@ -30,7 +30,6 @@ export class CustomDialogDetails {
 @CustomDialog
 export struct CustomDialogView {
   private TAG: string = '[CustomDialogView]:'
-//  @StorageLink('settingsDetailList') settingsDetailList: any[]= [];
   controller: CustomDialogController
   cancel: () => void
   confirm: () => void
@@ -66,15 +65,6 @@ export struct CustomDialogView {
     this.settingAlias = this.customDialogDetails.setAlias;
     CLog.info(`${this.TAG} aboutToAppear end`)
   }
-
-//  private dialogList(name) {
-//    if (name === 'AspectRatio') {
-//      this.dialogData = this.aspectRadioList
-//    } else {
-//      this.dialogData = this.videoResolutionList
-//    }
-//    return this.dialogData
-//  }
 
   public onChange(): void {
     CLog.info(`${this.TAG} onChange start`)
