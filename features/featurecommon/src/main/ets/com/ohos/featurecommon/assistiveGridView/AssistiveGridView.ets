@@ -57,33 +57,5 @@ export struct AssistiveGridView {
           .columnsTemplate('1fr 1fr 1fr')
           .rowsTemplate('1fr 1fr 1fr')
         }
-//    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween }) {
-//      Stack({ alignContent: Alignment.TopStart }) {
-//        Divider()
-//          .vertical(false)
-//          .strokeWidth(5)
-//          .color(0x2788D9)
-//          .lineCap(LineCapStyle.Round)
-//          .margin({ top: this.lineMarginTop })
-//        Divider()
-//          .vertical(false)
-//          .strokeWidth(5)
-//          .color(0x2788D9)
-//          .lineCap(LineCapStyle.Round)
-//          .margin({ top: this.lineMarginTop * 2 })
-//        Divider()
-//          .vertical(true)
-//          .strokeWidth(5)
-//          .color(0x2788D9)
-//          .lineCap(LineCapStyle.Round)
-//          .margin({ left: this.lineMarginLeft })
-//        Divider()
-//          .vertical(true)
-//          .strokeWidth(5)
-//          .color(0x2788D9)
-//          .lineCap(LineCapStyle.Round)
-//          .margin({ left: this.lineMarginLeft * 2 })
-//      }
-//    }
   }
 }

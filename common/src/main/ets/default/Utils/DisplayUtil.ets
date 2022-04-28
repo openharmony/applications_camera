@@ -17,11 +17,18 @@ import { CLog } from '../Utils/CLog'
 
 export default class DisplayUtil {
   private static TAG: string = '[DisplayUtil]:'
-
-  public static calcSurfaceDisplaySize(screenWidth: number, screenHeight: number, previewWidth: number, previewHeight: number) {
+  /**
+   prepare to replace the real method
+   */
+  private static getDisplaySize(){
     let displaySize = {
       width: 1920, height: 1080
     }
+    return displaySize
+  }
+
+  public static calcSurfaceDisplaySize(screenWidth: number, screenHeight: number, previewWidth: number, previewHeight: number) {
+    let displaySize = getDisplaySize()
     let ratio = previewWidth / previewHeight
     if (screenWidth > screenHeight) {
       if (screenWidth / screenHeight > ratio) {
