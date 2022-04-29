@@ -37,10 +37,10 @@ export class ScreenLockManager {
     this.mSubscriber = await commonEvent.createSubscriber(SCREEN_COMMON_EVENT_INFO);
     commonEvent.subscribe(this.mSubscriber, (err, data) => {
       if (err.code != 0) {
-        CLog.log(`${this.TAG} Can't handle screen change, err: ${JSON.stringify(err)}`);
+        CLog.error(`${this.TAG} Can't handle screen change, err: ${JSON.stringify(err)}`);
         return;
       }
-      CLog.log(`${this.TAG} screenChange, err: ${JSON.stringify(err)} data: ${JSON.stringify(data)}`);
+      CLog.error(`${this.TAG} screenChange, err: ${JSON.stringify(err)} data: ${JSON.stringify(data)}`);
       switch (data.event) {
         case commonEvent.Support.COMMON_EVENT_SCREEN_OFF:
           CLog.log(`${this.TAG} COMMON_EVENT_SCREEN_OFF`)

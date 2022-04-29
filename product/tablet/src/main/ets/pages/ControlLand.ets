@@ -16,9 +16,7 @@
 //import ability_featureAbility from '@ohos.ability.featureAbility';
 import router from '@system.router';
 import wantConstant from '@ohos.ability.wantConstant';
-
 import { AsyncManager } from '../../../../../../common/src/main/ets/default/Utils/AsyncManager'
-//import {CameraService} from '../../../../../../../common/src/main/ets/default/Camera/CameraService.ets';
 import { changePreviewSize } from '../../../../../../common/src/main/ets/default/redux/actions/ModeChange'
 import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
@@ -35,9 +33,9 @@ let changeModeState = (state) => {
 let changeModeDispatch = (dispatch) => {
   return {
     onclickPhoto: () => {
-      CLog.info('[ControlLand]: zhaochong: onclickPhoto1')
+      CLog.info('[ControlLand]: onclickPhoto Start')
       dispatch(changePreviewSize(154))
-      CLog.info('[ControlLand]: zhaochong: onclickPhoto2')
+      CLog.info('[ControlLand]: onclickPhoto End')
     },
     onclickVideo: () => dispatch(changePreviewSize(0))
   }
@@ -48,7 +46,6 @@ let changeModeDispatch = (dispatch) => {
 export struct ControlLand {
   private TAG: string = '[ControlLand]:'
   scroller: Scroller = new Scroller()
-  //  private cameraService = CameraService.getInstance()
   @Link aspectRatio: number
   @Link previewImage: string
   private modeConfig: ModeConfig = new ModeConfig()
@@ -76,6 +73,7 @@ export struct ControlLand {
   @Link xComponentChangeFlag: boolean
   @State initIndex: number = 1
   @State modeIndex: number = 0
+  private ASPECT_RATIO: number = 4 / 3
   private settingsUtil = SettingsUtil.getInstance()
 
   private aboutToAppear() {
@@ -99,64 +97,46 @@ export struct ControlLand {
     switch (this.previewImage) {
       case 'MULTI':
         this.initIndex = 0
-        this.photoFontWeight = FontWeight.Regular
-        this.videoFontWeight = FontWeight.Regular
-        this.multiFontWeight = FontWeight.Bold
-        this.photoFontSize = this.notCheckFontSize
-        this.videoFontSize = this.notCheckFontSize
-        this.multiFontSize = this.checkFontSize
+        this.setFontStyle(FontWeight.Regular, FontWeight.Regular, FontWeight.Bold,
+          this.notCheckFontSize, this.notCheckFontSize, this.checkFontSize)
         break;
       case 'PHOTO':
         this.initIndex = 1
-        this.photoFontWeight = FontWeight.Bold
-        this.videoFontWeight = FontWeight.Regular
-        this.multiFontWeight = FontWeight.Regular
-        this.photoFontSize = this.checkFontSize
-        this.videoFontSize = this.notCheckFontSize
-        this.multiFontSize = this.notCheckFontSize
+        this.setFontStyle(FontWeight.Bold, FontWeight.Regular, FontWeight.Regular,
+          this.checkFontSize, this.notCheckFontSize, this.notCheckFontSize)
         break;
       case 'VIDEO':
         this.initIndex = 2
-        this.photoFontWeight = FontWeight.Regular
-        this.videoFontWeight = FontWeight.Bold
-        this.multiFontWeight = FontWeight.Regular
-        this.photoFontSize = this.notCheckFontSize
-        this.videoFontSize = this.checkFontSize
-        this.multiFontSize = this.notCheckFontSize
+        this.setFontStyle(FontWeight.Regular, FontWeight.Bold, FontWeight.Regular,
+          this.notCheckFontSize, this.checkFontSize, this.notCheckFontSize)
         break;
       default:
         break;
     }
-
-    //    console.info("ControlLand router.getParams()= " + JSON.stringify(router.getParams()))
-    //    if (router.getParams() != undefined) {
-    //      console.info("ControlLand scrollTo called")
-    //      if (this.previewImage == 'MULTI') {
-    //        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 })
-    //      } else if (this.previewImage == 'PHOTO') {
-    //        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 })
-    //      } else {
-    //        this.scroller.scrollTo({ xOffset: 0, yOffset: 30 })
-    //      }
-    //    }
   }
 
   private aboutToDisappear() {
     this.connect.destroy()
   }
 
+  private setFontStyle(photoFontWeight, videoFontWeight, multiFontWeight,
+                       photoFontSize, videoFontSize, multiFontSize) {
+    this.photoFontWeight = photoFontWeight
+    this.videoFontWeight = videoFontWeight
+    this.multiFontWeight = multiFontWeight
+    this.photoFontSize = photoFontSize
+    this.videoFontSize = videoFontSize
+    this.multiFontSize = multiFontSize
+  }
+
   public switchToPhotoMode() {
     this.state.onclickPhoto()
-    this.photoFontWeight = FontWeight.Bold
-    this.videoFontWeight = FontWeight.Regular
-    this.multiFontWeight = FontWeight.Regular
-    this.photoFontSize = this.checkFontSize
-    this.videoFontSize = this.notCheckFontSize
-    this.multiFontSize = this.notCheckFontSize
+    this.setFontStyle(FontWeight.Bold, FontWeight.Regular, FontWeight.Regular,
+      this.checkFontSize, this.notCheckFontSize, this.notCheckFontSize)
     this.scroller.scrollToIndex(1)
     // 发送mode切换的消息
     this.asyncManager.postMessage({ type: 'modeChange', data: 'PHOTO' })
-    this.aspectRatio = 4 / 3
+    this.aspectRatio = this.ASPECT_RATIO
     this.previewImage = 'PHOTO'
     this.isSmallVideoTimerVisible = false
     this.isBigVideoTimerVisible = false
@@ -169,24 +149,16 @@ export struct ControlLand {
       this.state.disableUi()
       this.xComponentChangeFlag = !this.xComponentChangeFlag
     }
-    // if (this.cameraPosition !== this.previewImage) {
-    //   this.cameraPosition = this.cameraPosition !== 'PHOTO' ? 'PHOTO' : 'VIDEO'
-    // }
-    // this.cameraService.changeMode(this.previewImage)
   }
 
   public switchToVideoMode() {
     this.state.onclickVideo()
-    this.photoFontWeight = FontWeight.Regular
-    this.videoFontWeight = FontWeight.Bold
-    this.multiFontWeight = FontWeight.Regular
-    this.photoFontSize = this.notCheckFontSize
-    this.videoFontSize = this.checkFontSize
-    this.multiFontSize = this.notCheckFontSize
+    this.setFontStyle(FontWeight.Regular, FontWeight.Bold, FontWeight.Regular,
+      this.notCheckFontSize, this.checkFontSize, this.notCheckFontSize)
     this.scroller.scrollToIndex(2)
     // 发送mode切换的消息
     this.asyncManager.postMessage({ type: 'modeChange', data: 'VIDEO' })
-    this.aspectRatio = 4 / 3
+    this.aspectRatio = this.ASPECT_RATIO
     this.previewImage = 'VIDEO'
     this.isSmallVideoTimerVisible = false
     this.isBigVideoTimerVisible = false
@@ -199,23 +171,15 @@ export struct ControlLand {
       this.state.disableUi()
       this.xComponentChangeFlag = !this.xComponentChangeFlag
     }
-    // if (this.cameraPosition !== this.previewImage) {
-    //   this.cameraPosition = this.cameraPosition !== 'VIDEO' ? 'VIDEO' : 'PHOTO'
-    // }
-    // this.cameraService.changeMode(this.previewImage)
   }
 
   public switchToMultiMode() {
-    this.photoFontWeight = FontWeight.Regular
-    this.videoFontWeight = FontWeight.Regular
-    this.multiFontWeight = FontWeight.Bold
-    this.photoFontSize = this.notCheckFontSize
-    this.videoFontSize = this.notCheckFontSize
-    this.multiFontSize = this.checkFontSize
+    this.setFontStyle(FontWeight.Regular, FontWeight.Regular, FontWeight.Bold,
+      this.notCheckFontSize, this.notCheckFontSize, this.checkFontSize)
     this.scroller.scrollToIndex(0)
     // 发送mode切换的消息
     // this.asyncManager.postMessage({ type: 'modeChange', data: 'VIDEO' })
-    this.aspectRatio = 4 / 3
+    this.aspectRatio = this.ASPECT_RATIO
     this.previewImage = 'MULTI'
     this.isSmallVideoTimerVisible = false
     this.isBigVideoTimerVisible = false
@@ -231,10 +195,6 @@ export struct ControlLand {
       this.state.disableUi()
       this.xComponentChangeFlag = !this.xComponentChangeFlag
     }
-    // if (this.cameraPosition !== this.previewImage) {
-    //   this.cameraPosition = this.cameraPosition !== 'VIDEO' ? 'VIDEO' : 'PHOTO'
-    // }
-    // this.cameraService.changeMode(this.previewImage)
   }
 
   build() {

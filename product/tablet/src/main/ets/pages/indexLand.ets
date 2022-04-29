@@ -78,14 +78,13 @@ struct Index {
   @State permissionFlag: boolean = globalThis.permissionFlag
   @State videoState: string = 'beforeTakeVideo'
   @State footBarWidth: number = globalThis.footBarWidth
+  private ASPECT_RATIO: number = 4 / 3
 
   private aboutToAppear() {
     CLog.info(this.TAG + ' Camera indexLand aboutToAppear')
     display.getDefaultDisplay().then((dis) => {
       CLog.info(this.TAG + " dis data=" + JSON.stringify(dis))
-      //      this.footBarWidth = px2vp(dis.height - 176) * (4 / 3) - 100
-      //      globalThis.footBarWidth = px2vp(dis.width) - 270
-      globalThis.footBarWidth = px2vp(dis.height) * (4 / 3) - 100
+      globalThis.footBarWidth = px2vp(dis.height) * this.ASPECT_RATIO - 100
       this.footBarWidth = globalThis.footBarWidth
     })
     if (!this.permissionFlag) {

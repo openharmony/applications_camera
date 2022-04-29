@@ -74,6 +74,7 @@ export default class RdbStoreManager {
     CLog.info(this.TAG + 'getSettingByItem start');
     const resultList: SettingItemInfo[] = [];
     if (this.ifStringIsNull(itemName)) {
+      CLog.warn(this.TAG + 'itemName is null');
       return resultList;
     }
     try {
@@ -129,9 +130,6 @@ export default class RdbStoreManager {
   }
 
   private ifStringIsNull(str) {
-    if (str == undefined || str == '' || str == null) {
-      return true;
-    }
-    return false;
+    return (str == undefined || str == '' || str == null)
   }
 }

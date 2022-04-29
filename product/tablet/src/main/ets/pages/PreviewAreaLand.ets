@@ -196,7 +196,6 @@ export struct PreviewAreaLand {
     }
     if (tempZoom - this.zoomValue >= 0.1 || tempZoom - this.zoomValue <= -0.1) {
       if (tempZoom >= this.minZoomRatio && tempZoom <= this.maxZoomRatio) { //TODO 需要动态取得实际变焦能力范围
-        //        this.cameraService.setZoomRatio(tempZoom)
         this.state.changeZoomRatio(tempZoom)
         this.zoomValue = tempZoom
         CLog.info(`${this.TAG} this.zoomPercentage=== ${this.zoomPercentage}`)

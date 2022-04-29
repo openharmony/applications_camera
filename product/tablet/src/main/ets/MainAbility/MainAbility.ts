@@ -71,7 +71,7 @@ export default class MainAbility extends Ability {
     }
 
     onWindowStageDestroy() {
-        console.info('Camera MainAbility onWindowStageDestory.')
+        console.info('Camera MainAbility onWindowStageDestroy.')
     }
 
     onForeground() {

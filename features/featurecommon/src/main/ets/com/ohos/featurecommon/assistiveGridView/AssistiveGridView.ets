@@ -14,7 +14,7 @@
  */
 
 import display from '@ohos.display';
-import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CLog } from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 
 @Component
 export struct AssistiveGridView {
@@ -28,62 +28,32 @@ export struct AssistiveGridView {
   @Link displayInfo: Promise<number>
 
   public aboutToAppear() {
-    CLog.log(this.TAG + " XcomponentWidth" + this.XcomponentWidth+ " XcomponentHeight" + this.XcomponentHeight)
-    //横竖屏判断
+    CLog.log(this.TAG + " XcomponentWidth" + this.XcomponentWidth + " XcomponentHeight" + this.XcomponentHeight)
     CLog.log(this.TAG + " displayInfo:" + JSON.stringify(displayInfo))
 
     this.lineMarginLeft = Number(this.XcomponentHeight.split('px')[0]) / 3
     this.lineMarginTop = Number(this.XcomponentWidth.split('px')[0]) / 3
 
-    CLog.log(this.TAG + " lineMarginTop" + this.lineMarginTop+ " lineMarginLeft" + this.lineMarginLeft)
+    CLog.log(this.TAG + " lineMarginTop" + this.lineMarginTop + " lineMarginLeft" + this.lineMarginLeft)
   }
 
   build() {
-
-        Row({ space: 5 }) {
-          Grid() {
-            ForEach(this.Number, (item: string) => {
-              ForEach(this.Number, (item: string) => {
-                GridItem() {
-                  Text('')
-                    .borderWidth(1)
-                    .width('100%')
-                    .height('100%')
-                    .borderColor(Color.White)
-                }.opacity(0.5)
-              }, item => item)
-            }, item => item)
-          }
-          .columnsTemplate('1fr 1fr 1fr')
-          .rowsTemplate('1fr 1fr 1fr')
-        }
-//    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceBetween }) {
-//      Stack({ alignContent: Alignment.TopStart }) {
-//        Divider()
-//          .vertical(false)
-//          .strokeWidth(5)
-//          .color(0x2788D9)
-//          .lineCap(LineCapStyle.Round)
-//          .margin({ top: this.lineMarginTop })
-//        Divider()
-//          .vertical(false)
-//          .strokeWidth(5)
-//          .color(0x2788D9)
-//          .lineCap(LineCapStyle.Round)
-//          .margin({ top: this.lineMarginTop * 2 })
-//        Divider()
-//          .vertical(true)
-//          .strokeWidth(5)
-//          .color(0x2788D9)
-//          .lineCap(LineCapStyle.Round)
-//          .margin({ left: this.lineMarginLeft })
-//        Divider()
-//          .vertical(true)
-//          .strokeWidth(5)
-//          .color(0x2788D9)
-//          .lineCap(LineCapStyle.Round)
-//          .margin({ left: this.lineMarginLeft * 2 })
-//      }
-//    }
+    Row({ space: 5 }) {
+      Grid() {
+        ForEach(this.Number, (item: string) => {
+          ForEach(this.Number, (item: string) => {
+            GridItem() {
+              Text('')
+                .borderWidth(1)
+                .width('100%')
+                .height('100%')
+                .borderColor(Color.White)
+            }.opacity(0.5)
+          }, item => item)
+        }, item => item)
+      }
+      .columnsTemplate('1fr 1fr 1fr')
+      .rowsTemplate('1fr 1fr 1fr')
+    }
   }
 }
