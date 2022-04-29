@@ -24,7 +24,6 @@ import { ThumbnailView
 @Component
 export struct FootBarLand {
   @Link previewImage: string
-  //  private cameraService = CameraService.getInstance()
   @State isVisible: boolean = true
   @Link surfaceId: number
   @Link cameraPosition: string
@@ -52,16 +51,7 @@ export struct FootBarLand {
   @State cameraDevice: string = 'tablet'
 
   private aboutToAppear() {
-    // todo 这里获取cameraInfo的时机有问题
-    //    if (this.cameraService.cameraInfo) {
-    //      if (this.cameraService.cameraInfo.length > 1) {
-    //        this.isVisible = true
-    //      } else {
-    //        this.isVisible = false
-    //      }
-    //    } else {
     this.isVisible = true
-    //    }
   }
 
   build() {

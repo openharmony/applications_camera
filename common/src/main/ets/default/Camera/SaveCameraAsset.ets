@@ -15,7 +15,6 @@
 
 import fileio from '@ohos.fileio'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-
 import { CLog } from '../Utils/CLog'
 import DateTimeUtil from '../Utils/DateTimeUtil'
 
@@ -36,7 +35,7 @@ export default class SaveCameraAsset {
     return photoUri
   }
 
-  public saveImage(mReceiver, thumbWidth, thumbHeight, getPixelMap, captureCallBack) {
+  public saveImage(mReceiver, thumbWidth, thumbHeight, thumbnailGetter, captureCallBack) {
     CLog.info(`${this.TAG} saveImage E`)
     let mDateTimeUtil = new DateTimeUtil();
     let fileKeyObj = mediaLibrary.FileKey
@@ -50,7 +49,7 @@ export default class SaveCameraAsset {
       let displayName = this.checkName(`IMG_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.jpg'
       CLog.log(`${this.TAG} saveImage displayName== ${displayName}`)
       mReceiver.readNextImage((err, image) => {
-        CLog.info(`${this.TAG} readNextImage image = ${image} error = ${err}`)
+        CLog.error(`${this.TAG} readNextImage image = ${image} error = ${err}`)
         if (image === undefined) {
           CLog.info(`${this.TAG} saveImage failed to get valid image`)
           return
@@ -58,7 +57,7 @@ export default class SaveCameraAsset {
         image.getComponent(4, async (errMsg, img) => {
           CLog.info(`${this.TAG} getComponent img = ${img} errMsg = ${errMsg} E`)
           if (img === undefined) {
-            CLog.info(`${this.TAG} getComponent failed to get valid buffer`)
+            CLog.error(`${this.TAG} getComponent failed to get valid buffer`)
             return
           }
           if (img.byteBuffer) {
@@ -100,7 +99,7 @@ export default class SaveCameraAsset {
                 CLog.info(`${this.TAG} saveImage fileio.write called`)
                 dataInfo.close(fd).then(() => {
                   CLog.info(`${this.TAG} saveImage ataInfo.close called`)
-                  getPixelMap.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
+                  thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
                     CLog.info(`${this.TAG} saveImage thumbnailInfo: ${thumbnail}`)
                     captureCallBack.onCaptureSuccess(thumbnail)
                   })
@@ -112,6 +111,8 @@ export default class SaveCameraAsset {
             })
           });
         }
+      } else {
+        CLog.error(`${this.TAG} dataUri is null`)
       }
     })
     CLog.info(`${this.TAG} saveImage X`)

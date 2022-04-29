@@ -17,7 +17,7 @@ import router from "@system.router"
 
 //import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import GetPixelMap from '../../../../../../../../../common/src/main/ets/default/Camera/GetPixelMap'
+import ThumbnailGetter from '../../../../../../../../../common/src/main/ets/default/Camera/ThumbnailGetter'
 import {ShutterController} from './ShutterController'
 
 @Component
@@ -31,7 +31,7 @@ export struct ShutterButtonLand {
   stateEffect: boolean
   shutterController = new ShutterController()
 //  private cameraService = CameraService.getInstance()
-  getPixelMap = new GetPixelMap()
+  thumbnailGetter = new ThumbnailGetter()
   @State isShutterEnable: boolean = true
   @Link videoState: string
   @Link isThirdPartyCall: boolean

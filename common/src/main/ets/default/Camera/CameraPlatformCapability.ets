@@ -52,19 +52,16 @@ export class CameraPlatformCapability {
 
   public async init() {
     CLog.info(`${this.TAG} init E.`)
-//    let cameraInfoMap = this.mCameraService.getCameraIdMap()
     this.mCameraCount = CameraService.getInstance().getCameraCount()
     var cameraIds = [CameraId.BACK, CameraId.FRONT]
     for (let id of cameraIds) {
-      //      let cameraInput = await this.mCameraManager.createCameraInput(cameraInfoMap.get(id).cameraId)
-      //      let zoomRange = await cameraInput.getZoomRatioRange()
+
       // TODO 从底层获取支持的能力
       this.mZoomRatioRangeMap[id] = { min: 1, max: 6 }
       this.mPhotoPreviewSizeMap[id] = JSON.parse(JSON.stringify(this.mPhotoPreviewSize))
       this.mVideoPreviewSizeMap[id] = JSON.parse(JSON.stringify(this.mVideoPreviewSize))
       this.mImageSizeMap[id] = JSON.parse(JSON.stringify(this.mImageSize))
       this.mVideoFrameSizeMap[id] = JSON.parse(JSON.stringify(this.mVideoFrameSize))
-      //      await cameraInput.release()
     }
 
     CLog.info(`${this.TAG} init mZoomRatioRangeMap = ${JSON.stringify(this.mZoomRatioRangeMap)} `)

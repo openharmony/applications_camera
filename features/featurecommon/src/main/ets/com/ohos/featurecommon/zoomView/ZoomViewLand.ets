@@ -154,18 +154,6 @@ export struct ZoomViewLand {
     }
   }
 
-//  public photoZoomDetailUpdate() {
-//    clearTimeout(this.photoZoomDetailsTimer)
-//    if (this.isPhotoZoomDetails && !this.isPressScrollDetailPhotoButton) {
-//      this.photoZoomDetailsTimer = setTimeout(() => {
-//        if (this.isPhotoZoomDetails && !this.isPressScrollDetailPhotoButton) {
-//          this.isPhotoZoomDetails = false
-//          this.getZoomPhotoPosition()
-//        }
-//      }, 3000)
-//    }
-//  }
-
   public getZoomPhotoPosition() {
     this.offsetYPhoto = (1 - this.zoomPercentage) * (this.photoZoomHeight - 32)
   }
@@ -174,28 +162,13 @@ export struct ZoomViewLand {
     return (Math.log2(ratio) - Math.log2(this.minZoomRatio)) / (Math.log2(this.maxZoomRatio) - Math.log2(this.minZoomRatio))
   }
 
-//  public getCurrentZoomDetailPosition() {
-//    let currentZoomDetailPosition = 0
-//    if(this.offsetYPhotoDetails === 0){
-//      let zoomPercentage = this.ratioToPercentage(this.zoomValue)
-//      this.offsetYPhotoDetails = (1 - zoomPercentage) * this.detailPhotoHeight
-//      currentZoomDetailPosition = (1 - zoomPercentage) * this.detailPhotoHeight
-//    }else{
-//      currentZoomDetailPosition = this.offsetYPhotoDetails
-//    }
-//    return currentZoomDetailPosition
-//  }
-
   public onPercentageUpdate(percentage) {
     CLog.info(`${this.TAG} onPercentageUpdate called percentage= ${percentage}`)
     let tempZoom = this.percentageToRatio(percentage)
 
     if ((tempZoom - this.zoomValue >= 0.1) || (tempZoom - this.zoomValue <= -0.1)) {
       if (tempZoom >= this.minZoomRatio && tempZoom <= this.maxZoomRatio) { // TODO 需要动态取得实际变焦能力范围
-//        this.cameraService.setZoomRatio(tempZoom)
-//	this.state.changeZoomRatio(tempZoom)
         this.zoomValue = tempZoom
-        //        this.zoomPercentage = percentage
       }
     }
   }

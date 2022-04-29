@@ -140,20 +140,17 @@ let cameraDispatcher = (dispatch) => {
 
 @Component
 export struct PreviewArea {
-  private TAG: string = '[PreviewArea]:'
-  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  mXComponentController: XComponentController = new XComponentController()
-
   @State state: any = {}
-
+  private TAG: string = '[PreviewArea]:'
   private mConnect: any
   private isShowPreview: boolean = false
   private settingsUtil = SettingsUtil.getInstance()
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  mXComponentController: XComponentController = new XComponentController()
 
   private async onCameraInit(data) {
     CLog.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
     if (this.state.platformCapability) {
-//      if (!this.state.isShowPreview) {
         this.settingsUtil.loadAllSetting().then(() => {
           this.settingsUtil.setCameraPlatformCapability(data.platformCapability)
           this.settingsUtil.setCameraId(getCameraId(this.state.curCameraPosition))
@@ -175,11 +172,9 @@ export struct PreviewArea {
             let xComponentSize = this.settingsUtil.getPreviewDisplaySize()
             CLog.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
             this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
-            //            this.isShowPreview = true
             this.state.updateShowPreviewFlag(true)
           })
         })
-//      }
     }
     CLog.info(`${this.TAG} onCameraInit isShowPreview = ${this.state.isShowPreview}  X`)
   }
