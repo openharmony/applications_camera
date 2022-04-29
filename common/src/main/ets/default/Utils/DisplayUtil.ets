@@ -28,7 +28,7 @@ export default class DisplayUtil {
   }
 
   public static calcSurfaceDisplaySize(screenWidth: number, screenHeight: number, previewWidth: number, previewHeight: number) {
-    let displaySize = getDisplaySize()
+    let displaySize = this.getDisplaySize()
     if(previewWidth == 0 || previewHeight == 0){
       CLog.error(`${this.TAG} previewWidth or previewHeight is 0 `)
       return displaySize
