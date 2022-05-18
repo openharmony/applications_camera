@@ -171,7 +171,7 @@ export struct ShutterButton {
       }
       .width(120).height(56).borderRadius(28)
       .border({ width: 1, color: Color.White, style: BorderStyle.Solid })
-      .margin({ left: 26, right: 26 })
+      .margin({ left: 24, right: 24 })
     }
   }
 }
