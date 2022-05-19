@@ -154,18 +154,22 @@ struct Index {
   build() {
     Stack({ alignContent: Alignment.Top }) {
       if (this.state.permissionFlag) {
-        PreviewArea()
         Stack() {
-//          if (this.state.videoState === "beforeTakeVideo") {
-//            TabBar()
-//          }
+          PreviewArea() // 预览层
+        }.width('100%').position({ x: '0', y: '48' })
+        Stack() {
+          if (this.state.videoState === "beforeTakeVideo") {
+            TabBar()
+          }
           if (this.state.isSmallVideoTimerVisible) {
             SmallVideoTimer()
           }
         }.width('100%').height(48).position({ x: '0', y: '0' })
-        if (this.state.isBigVideoTimerVisible) {
-          BigVideoTimer()
-        }
+        Stack() {
+          if (this.state.isBigVideoTimerVisible) {
+            BigVideoTimer()
+          }
+        }.width('100%').position({ x: '0', y: '48' })
         Stack({ alignContent: Alignment.Bottom }) {
           Column() {
             if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
@@ -176,7 +180,7 @@ struct Index {
             }
             FootBar()
           }
-        }.width('100%').height(254).position({ y: this.state.footBarHeight })
+        }.width('100%').height(302).position({ y: this.state.footBarHeight })
       }
     }.width('100%').height('100%').backgroundColor('#000')
   }
