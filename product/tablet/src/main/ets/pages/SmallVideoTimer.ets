@@ -15,123 +15,125 @@
 
 import display from '@ohos.display';
 
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+
+let localState = (state) => {
+  return {
+    recordingTime: state.RecordReducer.recordingTime,
+    recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
+    isRecordingPaused: state.RecordReducer.isRecordingPaused,
+    isRecordingSpotVisible: state.UiReducer.isRecordingSpotVisible,
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {
+    updateSpotVisible: (visible: boolean) => {
+      dispatch(Action.UpdateRecordingSpotVisible(visible))
+    },
+    updateRecordingTime: (recordingTime: number) => {
+      dispatch(Action.UpdateRecordingTime(recordingTime))
+    },
+    updateRecordingTimeDisplay: (timeDisplay: string) => {
+      dispatch(Action.UpdateRecordingTimeDisplay(timeDisplay))
+    }
+  }
+}
+
 @Component
 export struct SmallVideoTimer {
-  @State smallVideoTime: string = '00:03'
-  @State spotVisibility: boolean = true
-  @State smallTimer: number = 0
-  @State spotTimer: number = 0
-  @Provide showSecond: string = '03'
-  @Provide showMinute: string = '00'
-  @State originSecond: number = 3
-  @State second: number = 3
-  @State minute: number = 0
-  @Link @Watch("watchIsResumeVideo") isResumeVideo: boolean
-  @Link @Watch("watchIscContinueVideo") iscContinueVideo: boolean
+  private TAG: string = '[SmallVideoTimer]'
+  private mConnect: any
+  private timer: number = 0
+  private timerTick: number = 0
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  @State state: any = {}
+
   @State timerPosition: number= 0
-  private ASPECT_RATIO: number = 4 / 3
 
-  private aboutToAppear() {
-    this.setIntervalSmallVideoTimer()
+  private async onRecordPaused(data) {
+    CLog.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
+    clearInterval(this.timer)
+    CLog.info(`${this.TAG} onRecordPaused X`)
   }
 
-  private aboutToDisappear() {
-    clearInterval(this.spotTimer)
-    clearInterval(this.smallTimer)
+  private async onRecordResumed(data) {
+    CLog.info(`${this.TAG} onRecordResumed E`)
+    this.setIntervalTimer()
+    CLog.info(`${this.TAG} onRecordResumed timer id: ${this.timer} X`)
+  }
+
+  private aboutToAppear(): void {
+    CLog.info(`${this.TAG} aboutToAppear E`)
+    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    this.setIntervalTimer()
     display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height) * this.ASPECT_RATIO
+      this.timerPosition = px2vp(dis.height) * (4 / 3)
     })
+    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    CLog.info(`${this.TAG} aboutToAppear X`)
   }
 
-  setIntervalSmallVideoTimer() {
-    clearInterval(this.smallTimer);
-    this.smallTimer = setInterval(() => {
-      this.second++;
-      this.originSecond++;
-      if (this.second < 10) {
-        this.showSecond = `0${this.second}`;
-      } else if (this.second < 60) {
-        this.showSecond = this.second.toString();
-      } else {
-        this.showSecond = '00';
-        this.second = 0;
-      }
-      if (this.originSecond > 59) {
-        this.minute = Math.floor(this.originSecond / 60);
-        if (this.minute < 10) {
-          this.showMinute = `0${this.minute}`;
+  private aboutToDisappear(): void {
+    CLog.info(`${this.TAG} aboutToDisappear E`)
+    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    clearInterval(this.timer)
+    this.mConnect.destroy()
+    CLog.info(`${this.TAG} aboutToDisappear X`)
+  }
+
+  private setIntervalTimer() {
+    this.timer = setInterval(() => {
+      this.timerTick++
+      if (this.timerTick % 2 === 0) {
+        this.state.updateRecordingTime(this.state.recordingTime + 1)
+        let shownSec = '00'
+        let shownMin = '00'
+        let sec = this.state.recordingTime % 60
+        if (sec < 10) {
+          shownSec = `0${sec}`
         } else {
-          this.showMinute = this.minute.toString();
+          shownSec = `${sec}`
         }
+        let minute = Math.floor(this.state.recordingTime / 60)
+        if (minute < 10) {
+          shownMin = `0${minute}`
+        } else {
+          shownMin = `${minute}`
+        }
+        this.state.updateRecordingTimeDisplay(`${shownMin}:${shownSec}`)
       }
-      this.smallVideoTime = `${this.showMinute}:${this.showSecond}`;
-    }, 1000);
-    clearInterval(this.spotTimer)
-    this.spotTimer = setInterval(() => {
-      this.spotVisibility = !this.spotVisibility
+      this.state.updateSpotVisible(!this.state.isRecordingSpotVisible)
     }, 500)
-  }
-
-  watchIsResumeVideo() {
-    if (this.isResumeVideo) {
-      clearInterval(this.spotTimer)
-      clearInterval(this.smallTimer)
-    }
-  }
-
-  watchIscContinueVideo() {
-    if (this.iscContinueVideo) {
-      this.setIntervalSmallVideoTimer()
-    }
   }
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
-        if (this.isResumeVideo) {
-          Image($r('app.media.ic_video_recording'))
-            .width(12)
-            .height(12)
-            .fillColor(Color.White)
+        if (this.state.isRecordingPaused) {
+          Image($r('app.media.ic_video_recording')).width(12).height(12).fillColor(Color.White)
         } else {
-          if (this.spotVisibility) {
+          if (this.state.isRecordingSpotVisible) {
             Column() {
-            }
-            .width(12)
-            .height(12)
-            .backgroundColor('#FF0000')
-            .borderRadius(6)
-            .visibility(Visibility.Visible)
+            }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Visible)
           } else {
             Column() {
-            }
-            .width(12)
-            .height(12)
-            .backgroundColor('#FF0000')
-            .borderRadius(6)
-            .visibility(Visibility.Hidden)
+            }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Hidden)
           }
         }
-        Text(this.showMinute)
-          .margin({ left: 8 })
-          .fontSize('28fp')
-          .fontWeight(FontWeight.Lighter)
-          .fontColor('#FFFFFF')
-      }
-      .layoutWeight(1)
-
-      Text(":")
-        .fontSize('28fp')
-        .fontWeight(FontWeight.Lighter)
-        .fontColor('#FFFFFF')
-      Text(this.showSecond)
-        .fontSize('28fp')
-        .fontWeight(FontWeight.Lighter)
-        .fontColor('#FFFFFF')
-        .textAlign(TextAlign.Start)
-        .layoutWeight(1)
-    }
-    .width(this.timerPosition == 0 ? '100%' : this.timerPosition)
-    .height(48)
+        Text(`${this.state.recordingTimeDisplay.split(':')[0]}`).margin({ left: 8 }).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
+        //TODO 需要确认UX样式
+//        Text(this.showMinute).margin({ left: 8 }).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
+      }.layoutWeight(1)
+      Text(":").fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
+      Text(`${this.state.recordingTimeDisplay.split(':')[1]}`).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
+//      Text(this.showSecond).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
+    }.width(this.timerPosition == 0 ? '100%' : this.timerPosition).height(48)
   }
 }

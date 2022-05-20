@@ -151,6 +151,6 @@ export struct BigVideoTimer {
           Text('').layoutWeight(1)
         }
       }
-    }.width('100%').height(96).position({ x: '0', y: '0' })
+    }.width('100%').height(96).position({ x: 0, y: 48 })
   }
 }

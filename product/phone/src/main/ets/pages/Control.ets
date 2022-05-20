@@ -19,11 +19,13 @@ import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import getStore from '../../../../../../common/src/main/ets/default/redux/store'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import wantConstant from '@ohos.ability.wantConstant';
 
 let controlState = (state) => {
   return {
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     action: state.ContextReducer.action,
+    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
     uiEnable: state.UiReducer.uiEnable,
     modeIndex: state.UiReducer.modeIndex,
     multiFontWeight: state.UiReducer.multiFontWeight,
@@ -34,6 +36,7 @@ let controlState = (state) => {
     videoFontSize: state.UiReducer.videoFontSize,
     modeBarItemWidth: state.UiReducer.modeBarItemWidth,
     mode: state.ModeReducer.mode,
+    isShowMoreList: state.UiReducer.isShowMoreList
   }
 }
 
@@ -49,6 +52,21 @@ let controlDispatcher = (dispatch) => {
     },
     updateModeBarItemWidth: (width: number) => {
       dispatch(Action.UpdateModeBarItemWidth(width))
+    },
+    updateShowMoreList: (isShowMoreList) => {
+      dispatch(Action.UpdateShowMoreList(isShowMoreList))
+    },
+    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
+      dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
+    },
+    thirdPartyCall: (isThirdPartyCall: boolean) => {
+      dispatch(Action.thirdPartyCall(isThirdPartyCall))
+    },
+    initAction: (action: string) => {
+      dispatch(Action.InitAction(action))
+    },
+    InitMode: (mode: string) => {
+      dispatch(Action.InitMode(mode))
     }
   }
 }
@@ -71,6 +89,15 @@ export struct Control {
       this.state.updateModeBarItemWidth(width)
       CLog.info(`${this.TAG} width: ${width}, modeBarItemWidth: ${this.state.modeBarItemWidth}`)
     })
+    let startWant = globalThis.cameraAbilityWant
+    CLog.info(`${this.TAG}  Camera MainAbility onCreate uri: ${startWant.uri}`)
+    if (startWant.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
+      CLog.info(`${this.TAG} ACTION_IMAGE_CAPTURE called`)
+      this.state.thirdPartyCall(true)
+    } else if (startWant.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
+      CLog.info(`${this.TAG} ACTION_VIDEO_CAPTURE called`)
+      this.state.thirdPartyCall(true)
+    }
     CLog.info(`${this.TAG} aboutToAppear X`)
   }
 
@@ -82,10 +109,18 @@ export struct Control {
 
   private changeToMode(modeIndex: number) {
     CLog.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
-    this.scroller.scrollToIndex(modeIndex)
-    CLog.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
-    this.state.changeToMode(this.modeArray[modeIndex])
-    this.state.updateControlFontStyle(this.modeArray[modeIndex])
+    if (modeIndex !== this.state.modeIndex) {
+//      if (modeIndex === 3) {
+//        this.state.updateShowMoreList(true)
+//      } else {
+//        this.closeMoreListView()
+//      }
+      this.scroller.scrollToIndex(modeIndex)
+      CLog.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
+      this.state.changeToMode(this.modeArray[modeIndex])
+      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      this.state.updateControlFontStyle(this.modeArray[modeIndex])
+    }
     CLog.debug(`${this.TAG} changeToMode X`)
   }
 
@@ -105,10 +140,16 @@ export struct Control {
     }
   }
 
+  private closeMoreListView() {
+    if (this.state.isShowMoreList) {
+      this.state.updateShowMoreList(false)
+    }
+  }
+
   build() {
     Column() {
       Stack({ alignContent: Alignment.BottomStart }) {
-        if (this.state.isThirdPartyCall || this.state.action === 'capture') {
+        if (this.state.isThirdPartyCall && this.state.action === 'capture') {
           Row() {
             Text($r('app.string.photo_mode'))
               .width('100%').height('100%')
@@ -116,7 +157,7 @@ export struct Control {
               .fontWeight(FontWeight.Bold)
               .textAlign(TextAlign.Center)
           }.width('100%').height('100%')
-        } else if (this.state.action === 'video') {
+        } else if (this.state.isThirdPartyCall && this.state.action === 'video') {
           Row() {
             Text($r('app.string.video_mode'))
               .width('100%').height('100%')
@@ -128,6 +169,7 @@ export struct Control {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
             ListItem() {}.width(54).height('100%')
             ListItem() {}.width(54).height('100%')
+//            ListItem() {}.width(54).height('100%')
             ListItem() {}.width(this.state.modeBarItemWidth).height('100%')
             ListItem() {
               Text($r('app.string.multi_mode'))
@@ -162,9 +204,21 @@ export struct Control {
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(2) })
             }.width(54).height('100%')
+//            ListItem() {
+//              Text($r('app.string.more_list'))
+//                .width('100%')
+//                .height('100%')
+//                .fontColor('#fff')
+//                .fontSize(this.getModeFontSize(3))
+//                .fontWeight(this.getModeFontWeight(3))
+//                .textAlign(TextAlign.Center)
+//                .enabled(this.state.uiEnable)
+//                .onClick(() => { this.changeToMode(3) })
+//            }.width(54).height('100%')
             ListItem() {}.width(this.state.modeBarItemWidth).height('100%')
             ListItem() {}.width(54).height('100%')
             ListItem() {}.width(54).height('100%')
+//            ListItem() {}.width(54).height('100%')
           }
           .width('100%').height('100%')
           .listDirection(Axis.Horizontal)

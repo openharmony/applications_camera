@@ -14,6 +14,7 @@
  */
 
 import {CameraSwitchController} from './CameraSwitchController'
+//import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import MultiCameraDialog from '../customDialog/MultiCameraDialog'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
@@ -25,14 +26,19 @@ let localState = (state) => {
     uiEnable: state.UiReducer.uiEnable,
     cameraPosition: state.CameraReducer.cameraPosition,
     xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
+    videoState: state.RecordReducer.videoState,
   }
 }
 
 let localDispatcher = (dispatch) => {
   return {
     changeCameraPosition: (cameraPosition: string) => {
+      dispatch(Action.UiState(false))
       dispatch(Action.SetCameraPosition(cameraPosition))
-    }
+    },
+    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
+      dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
+    },
   }
 }
 
@@ -97,11 +103,13 @@ export struct CameraSwitchButton {
       }
       .width('100%').height('100%').enabled(this.state.uiEnable)
       .onClick(() => {
+        CLog.info(`${this.TAG} onClick invoke E`)
+        CLog.info(`${this.TAG} this.state.videoState: ${this.state.videoState}, this.state.mode: ${this.state.mode}`)
+        CLog.info(`${this.TAG} this.state.cameraPosition: ${this.state.cameraPosition}`)
         if (this.state.videoState === 'beforeTakeVideo') {
           if (this.state.mode === 'MULTI') {
             this.openMultiDialog()
           } else {
-            this.state.disableUi()
             this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
             if (this.state.cameraPosition !== 'BACK') {
               if (this.state.cameraPosition === 'ORIGIN') {
@@ -114,6 +122,7 @@ export struct CameraSwitchButton {
             }
           }
         }
+        CLog.info(`${this.TAG} onClick invoke X`)
       })
     }.width(44).aspectRatio(1)
   }

@@ -136,6 +136,6 @@ export struct SmallVideoTimer {
           Text('').layoutWeight(1)
         }
       }
-    }.width('100%').height('100%')
+    }.width('100%').height(48).position({ x: 0, y: 68 })
   }
 }

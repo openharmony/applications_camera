@@ -16,6 +16,8 @@
 import display from '@ohos.display';
 
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { AssistiveGridView
+} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/assistiveGridView/AssistiveGridView'
 import { BigText
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/bigText/BigText'
 import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/default/setting/CameraId'
@@ -29,8 +31,12 @@ import { ShowFlashBlack
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/animate/ShowFlashBlack'
 import { ZoomText
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/zoomView/ZoomText'
+import {BigVideoTimer} from './BigVideoTimer'
+import {SmallVideoTimer} from './SmallVideoTimer'
+import {TimeLapseView} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/timeLapseView/TimeLapseView'
 import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+import { GeoLocation } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/geolocation/GeoLocation'
 
 let cameraState = (state) => {
   return {
@@ -57,6 +63,12 @@ let cameraState = (state) => {
     aspectRatio: state.UiReducer.aspectRatio,
     platformCapability: state.CameraInitReducer.platformCapability,
     videoState: state.RecordReducer.videoState,
+    isShowZoomText: state.UiReducer.isShowZoomText,
+    isShowtimeLapse: state.UiReducer.isShowtimeLapse,
+    isBigVideoTimerVisible: state.UiReducer.isBigVideoTimerVisible,
+    isSmallVideoTimerVisible: state.UiReducer.isSmallVideoTimerVisible,
+    footBarHeight: state.ContextReducer.footBarHeight,
+    isAssGridViewShow: state.UiReducer.isAssGridViewShow
   }
 }
 
@@ -73,10 +85,6 @@ let cameraDispatcher = (dispatch) => {
     },
     updateZoomPercentage: (zoomPercentage: number) => {
       dispatch(Action.UpdateZoomPercentage(zoomPercentage))
-    },
-    changeMode: (mode: string) => {
-      dispatch(Action.ChangeMode(mode))
-      dispatch(Action.UpdateShowBigTextFlag(true))
     },
     prepareSurface: (surfaceId: number) => {
       dispatch(Action.PrepareSurface(surfaceId))
@@ -134,23 +142,43 @@ let cameraDispatcher = (dispatch) => {
       dispatch(Action.UpdateVideoState('beforeTakeVideo'))
       dispatch(Action.UpdateBigVideoTimerVisible(false))
       dispatch(Action.UpdateSmallVideoTimerVisible(false))
+    },
+    changeTimeLapse: (isShowtimeLapse: boolean) => {
+      dispatch(Action.changeTimeLapse(isShowtimeLapse))
+    },
+    capture: () => {
+      dispatch(Action.UpdateShowFlashBlackFlag(true))
+      dispatch(Action.capture())
+    },
+    startRecording: () => {
+      dispatch(Action.startRecording())
+      dispatch(Action.UpdateVideoState('startTakeVideo'))
+      dispatch(Action.UpdateBigVideoTimerVisible(true))
+    },
+    assistiveGridView: (isViewShow) => {
+      dispatch(Action.assistiveGridView(isViewShow))
     }
   }
 }
 
 @Component
 export struct PreviewArea {
-  @State state: any = {}
   private TAG: string = '[PreviewArea]:'
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  mXComponentController: XComponentController = new XComponentController()
+
+  @State state: any = {}
+
   private mConnect: any
   private isShowPreview: boolean = false
   private settingsUtil = SettingsUtil.getInstance()
-  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  mXComponentController: XComponentController = new XComponentController()
+  private pinchGestureTimer: number
+  private baseZoom: number
 
   private async onCameraInit(data) {
     CLog.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
     if (this.state.platformCapability) {
+//      if (!this.state.isShowPreview) {
         this.settingsUtil.loadAllSetting().then(() => {
           this.settingsUtil.setCameraPlatformCapability(data.platformCapability)
           this.settingsUtil.setCameraId(getCameraId(this.state.curCameraPosition))
@@ -162,6 +190,11 @@ export struct PreviewArea {
           let videoSize = this.settingsUtil.getVideoSize()
           this.state.changeVideoSize(videoSize)
 
+          let isAssGridViewShow = this.settingsUtil.getAssistiveGrid()
+          this.state.assistiveGridView(isAssGridViewShow)
+
+          GeoLocation.getInstance().on()
+
           display.getDefaultDisplay().then((dis) => {
             let screenHeight = dis.height - 176
             let screenWidth = dis.width
@@ -172,9 +205,11 @@ export struct PreviewArea {
             let xComponentSize = this.settingsUtil.getPreviewDisplaySize()
             CLog.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
             this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
+            //            this.isShowPreview = true
             this.state.updateShowPreviewFlag(true)
           })
         })
+//      }
     }
     CLog.info(`${this.TAG} onCameraInit isShowPreview = ${this.state.isShowPreview}  X`)
   }
@@ -214,12 +249,12 @@ export struct PreviewArea {
       } else {
         this.state.switchCamera(getCameraId(this.state.cameraPosition), surfaceId)
       }
-    } else if (this.state.curMode != this.state.mode) {
-      this.state.changeMode(this.state.mode)
     } else if (this.state.isStartVideo) {
       this.state.startVideoFlag(false)
     } else {
-      this.state.startPreview()
+      if (this.state.curMode === this.state.mode) {
+        this.state.startPreview()
+      }
     }
     this.state.cameraPositionChanged(this.state.cameraPosition)
     CLog.debug(`${this.TAG} doCameraAction X`)
@@ -275,6 +310,7 @@ export struct PreviewArea {
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
     this.appEventBus.off(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.mConnect.destroy()
+    GeoLocation.getInstance().off()
     globalThis.releaseCamera()
   }
 
@@ -284,6 +320,54 @@ export struct PreviewArea {
 
   private onPageHide() {
     this.state.startVideoFlag(false)
+  }
+
+  private pinchGestureStart(event: GestureEvent) {
+    CLog.info(`${this.TAG} pinchGestureStart E`)
+    if (this.state.mode != 'MULTI') {
+      clearTimeout(this.pinchGestureTimer)
+      this.state.updateIsShowZoomText(true)
+      this.baseZoom = this.state.zoomRatio
+    }
+    CLog.info(`${this.TAG} track debug pinchGestureStart X`)
+  }
+
+  private pinchGestureUpdate(event: GestureEvent) {
+    CLog.info(`${this.TAG} pinchGestureUpdate E`)
+    if (this.state.mode != 'MULTI') {
+      let zoomRatio = event.scale + this.baseZoom - 1
+      if (zoomRatio > 6) {
+        zoomRatio = 6
+      }
+      if (zoomRatio < 1) {
+        zoomRatio = 1
+      }
+      this.state.changeZoomRatio(zoomRatio)
+    }
+    CLog.info(`${this.TAG} pinchGestureUpdate X`)
+  }
+
+  private pinchGestureEnd(event: GestureEvent) {
+    CLog.info(`${this.TAG} pinchGestureEnd E`)
+    if (this.state.mode != 'MULTI') {
+      this.pinchGestureTimer = setTimeout(() => {
+        this.state.updateIsShowZoomText(false)
+      }, 3000)
+    }
+    CLog.info(`${this.TAG} pinchGestureEnd X`)
+  }
+
+  private onPreviewClicked() {
+    CLog.info(`${this.TAG} click preview called`)
+    CLog.info(`${this.TAG} click preview isShowtimeLapse= ${this.state.isShowtimeLapse}`)
+    CLog.info(`${this.TAG} click preview state.mode= ${this.state.mode}`)
+    if (this.state.mode === 'PHOTO' && this.state.isShowtimeLapse) {
+      this.state.changeTimeLapse(false)
+      this.state.capture()
+    } else if (this.state.mode === 'VIDEO' && this.state.isShowtimeLapse) {
+      this.state.changeTimeLapse(false)
+      this.state.startRecording()
+    }
   }
 
   build() {
@@ -305,6 +389,13 @@ export struct PreviewArea {
             })
             .width(this.state.xComponentWidth)
             .height(this.state.xComponentHeight)
+            .animation({
+              duration: 1000,
+              curve: Curve.Sharp,
+              delay: 10,
+              iterations: 1,
+              playMode: PlayMode.Normal
+            })
           } else {
             XComponent({
               id: '',
@@ -320,6 +411,13 @@ export struct PreviewArea {
               })
               .width(this.state.xComponentWidth)
               .height(this.state.xComponentHeight)
+              .animation({
+                duration: 1000,
+                curve: Curve.Sharp,
+                delay: 10,
+                iterations: 1,
+                playMode: PlayMode.Normal
+              })
           }
 
           if (this.state.isSwitchBackground) {
@@ -373,6 +471,33 @@ export struct PreviewArea {
             .height('100%')
             .padding({ bottom: '30vp' })
           }
+
+          if (this.state.xComponentChangeFlag ) {
+            if(this.state.isAssGridViewShow === '1' && this.state.mode !=='MORE')
+            {
+              AssistiveGridView()
+            }
+          } else {
+            if(this.state.isAssGridViewShow === '1' && this.state.mode !=='MORE')
+            {
+              AssistiveGridView()
+            }
+          }
+
+          if (this.state.isSmallVideoTimerVisible) {
+            SmallVideoTimer()
+          }
+
+          if (this.state.isBigVideoTimerVisible) {
+            BigVideoTimer()
+          }
+
+          if (this.state.isShowtimeLapse) {
+            Column() {
+              TimeLapseView()
+            }
+            .width('100%').height(150).position({x: 0, y: (this.state.footBarHeight - 100)})
+          }
         }
         .width('100%')
         .height('100%')
@@ -383,42 +508,15 @@ export struct PreviewArea {
     .margin({ top: 0 })
     .backgroundColor('#000')
     .gesture(
-      PinchGesture({
-        fingers: 2, // 触发捏合的最少手指数,最小为2,最大为5
-        distance: 1 // 最小识别距离,单位vp
-      })
-      .onActionStart((event: GestureEvent) => {
-        CLog.info(`${this.TAG} Pinch start`)
-        if (this.state.mode !== "MULTI") {
-          this.state.updateIsShowZoomText(true)
-          this.state.updateIsPhotoZoomDetails(true)
-          this.state.updateBaseZoom(this.state.zoomRatio)
-          clearTimeout(this.state.pinchGestureTimerId)
-          clearTimeout(this.state.onTouchDownTimerId)
-        }
-      })
-      .onActionUpdate((event: GestureEvent) => {
-        CLog.info(`${this.TAG} Pinch update E, event.scale = ${event.scale}`)
-        if (this.state.mode !== "MULTI") {
-          this.onScaleUpdate(event.scale)
-          this.state.updateIsPinchGesture(true)
-        }
-        CLog.info(`${this.TAG} Pinch update X, fixed event.scale = ${Number(event.scale.toFixed(1))}`)
-      })
-      .onActionEnd((event: GestureEvent) => {
-        CLog.info(`${this.TAG} Pinch end E`)
-        if (this.state.mode !== "MULTI") {
-          this.state.updateIsPinchGesture(false)
-          clearTimeout(this.state.pinchGestureTimerId)
-          clearTimeout(this.state.onTouchDownTimerId)
-          let timerId = setTimeout(() => {
-            this.state.updateIsShowZoomText(false)
-            this.state.updateIsPhotoZoomDetails(false)
-          }, 3000)
-          this.state.updatePinchGestureTimerId(timerId)
-        }
-        CLog.info(`${this.TAG} Pinch end X, fixed event.scale = ${Number(event.scale.toFixed(1))}`)
-      })
+      GestureGroup(
+        GestureMode.Parallel,
+        TapGesture({ fingers: 1, count: 1 })
+          .onAction(this.onPreviewClicked.bind(this)),
+        PinchGesture({ fingers: 2, distance: 1})
+          .onActionStart(this.pinchGestureStart.bind(this))
+          .onActionUpdate(this.pinchGestureUpdate.bind(this))
+          .onActionEnd(this.pinchGestureEnd.bind(this))
+      )
     )
   }
 }

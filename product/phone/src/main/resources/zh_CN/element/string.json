@@ -25,6 +25,10 @@
       "value": "多机位"
     },
     {
+      "name": "more_list",
+      "value": "更多"
+    },
+    {
       "name": "aspect_ratio",
       "value": "照片比例"
     },
@@ -43,6 +47,30 @@
     {
       "name": "video_resolution",
       "value": "视频分辨率"
+    },
+    {
+      "name": "timer",
+      "value": "定时拍摄"
+    },
+    {
+      "name": "already_off",
+      "value": "已关闭"
+    },
+    {
+      "name": "off",
+      "value": "关闭"
+    },
+    {
+      "name": "timer_2_seconds",
+      "value": "2 秒"
+    },
+    {
+      "name": "timer_5_seconds",
+      "value": "5 秒"
+    },
+    {
+      "name": "timer_10_seconds",
+      "value": "10 秒"
     },
     {
       "name": "resolution16091080",
@@ -103,6 +131,34 @@
     {
       "name": "general",
       "value": "通用"
+    },
+    {
+      "name": "sound_mute",
+      "value": "拍摄静音"
+    },
+    {
+      "name": "save_geo_location",
+      "value": "记录地理位置信息"
+    },
+    {
+      "name": "self_mirror",
+      "value": "自拍镜像"
+    },
+    {
+      "name": "video_codec",
+      "value": "高效视频格式"
+    },
+    {
+      "name": "video_codec_desp",
+      "value": "可节省约35%空间，您可能在其他设备上无法播放此格式视频"
+    },
+    {
+      "name": "geo_location_desp",
+      "value": "用于记录照片或视频拍摄地点信息"
+    },
+    {
+      "name": "self_mirror_desp",
+      "value": "仅在前置自拍时生效"
     }
   ]
 }

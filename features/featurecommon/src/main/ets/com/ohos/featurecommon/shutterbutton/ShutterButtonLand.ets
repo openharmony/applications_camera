@@ -15,193 +15,205 @@
 
 import router from "@system.router"
 
-//import {CameraService} from '../../../../../../../../../common/src/main/ets/default/Camera/CameraService'
-import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import ThumbnailGetter from '../../../../../../../../../common/src/main/ets/default/Camera/ThumbnailGetter'
-import {ShutterController} from './ShutterController'
+import { Action } from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { CLog } from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { EventBus } from '../../../../../../../../../common/src/main/ets/default/Utils/EventBus'
+import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
+import { SettingsUtil } from '../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+
+let localState = (state) => {
+  return {
+    uiEnable: state.UiReducer.uiEnable,
+    shutterIcon: state.UiReducer.shutterIcon,
+    captureBtnScale: state.UiReducer.captureBtnScale,
+    videoState: state.RecordReducer.videoState,
+    mode: state.ModeReducer.mode,
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {
+    updateSmallVideoTimerVisible: (visible: boolean) => {
+      dispatch(Action.UpdateSmallVideoTimerVisible(visible))
+    },
+    updateCaptureBtnScale: (scale: number) => {
+      dispatch(Action.UpdateCaptureBtnScale(scale))
+    },
+    updateShutterIcon: (icon: Resource) => {
+      dispatch(Action.UpdateShutterIcon(icon))
+    },
+    capture: () => {
+      dispatch(Action.UpdateShowFlashBlackFlag(true))
+      dispatch(Action.capture())
+    },
+    startRecording: () => {
+      dispatch(Action.startRecording())
+      dispatch(Action.UpdateVideoState('startTakeVideo'))
+      dispatch(Action.UpdateBigVideoTimerVisible(true))
+    },
+    pauseRecording: () => {
+      dispatch(Action.pauseRecording())
+      dispatch(Action.UpdateVideoState('pauseTakeVideo'))
+    },
+    resumeRecording: () => {
+      dispatch(Action.resumeRecording())
+      dispatch(Action.UpdateVideoState('startTakeVideo'))
+    },
+    stopRecording: () => {
+      dispatch(Action.stopRecording())
+      dispatch(Action.UpdateVideoState('beforeTakeVideo'))
+      dispatch(Action.UpdateBigVideoTimerVisible(false))
+      dispatch(Action.UpdateSmallVideoTimerVisible(false))
+    },
+    changeTimeLapse: (isShowtimeLapse: boolean) => {
+      dispatch(Action.changeTimeLapse(isShowtimeLapse))
+    }
+  }
+}
 
 @Component
 export struct ShutterButtonLand {
   private TAG: string = '[ShutterButtonLand]:'
-  @State icon: Resource = $r("app.media.ic_circled_filled")
-  @Link @Watch("modeUpdate") previewImage: string
+  private mConnect: any
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  private settingsUtil = SettingsUtil.getInstance()
+
   width: number
   height: number
   type: ButtonType
   stateEffect: boolean
-  shutterController = new ShutterController()
-//  private cameraService = CameraService.getInstance()
-  thumbnailGetter = new ThumbnailGetter()
-  @State isShutterEnable: boolean = true
-  @Link videoState: string
-  @Link isThirdPartyCall: boolean
-  @Link isStartVideo: boolean
-  @Link isBigVideoTimerVisible: boolean
-  @Link isSmallVideoTimerVisible: boolean
-  @Link isResumeVideo: boolean
-  @Link iscContinueVideo: boolean
-  @Link isShowFlashBlack: boolean
-  @State tempScale: number = 1
-  @Link xComponentChangeFlag: boolean
-  @Link XcomponentWidth: string
-  @Link XcomponentHeight: string
-  @Link state: any
 
-// todo �ܹ��ع�������
-  aboutToAppear() {
-    if (this.previewImage === 'VIDEO') {
-      this.icon = $r("app.media.take_video_normal")
-    } else {
-      this.icon = $r("app.media.ic_circled_filled")
-    }
-    this.videoState = 'beforeTakeVideo'
+  @State state: any = {}
 
-//    this.shutterController.getParam()
-//    this.icon = this.shutterController.icon
-//    this.width = this.shutterController.width
-//    this.height = this.shutterController.height
-//    this.type = this.shutterController.type
-//    this.stateEffect = this.shutterController.stateEffect
+//  @State icon: Resource = $r("app.media.ic_circled_filled")
+//  @Link @Watch("modeUpdate") previewImage: string
+//  width: number
+//  height: number
+//  type: ButtonType
+//  stateEffect: boolean
+//  shutterController = new ShutterController()
+////  private cameraService = CameraService.getInstance()
+//  getPixelMap = new GetPixelMap()
+//  @State isShutterEnable: boolean = true
+//  @Link videoState: string
+//  @Link isThirdPartyCall: boolean
+//  @Link isStartVideo: boolean
+//  @Link isBigVideoTimerVisible: boolean
+//  @Link isSmallVideoTimerVisible: boolean
+//  @Link isResumeVideo: boolean
+//  @Link iscContinueVideo: boolean
+//  @Link isShowFlashBlack: boolean
+//  @State tempScale: number = 1
+//  @Link xComponentChangeFlag: boolean
+//  @Link XcomponentWidth: string
+//  @Link XcomponentHeight: string
+//  @Link state: any
+
+  private aboutToAppear(): void {
+    CLog.debug(`${this.TAG} aboutToAppear E`)
+    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    this.appEventBus.on(Action.ACTION_CHANGE_MODE, this.changeShutterIcon.bind(this))
+    this.appEventBus.on(Action.ACTION_START_PREVIEW, this.changeShutterIcon.bind(this))
+    CLog.debug(`${this.TAG} aboutToAppear X`)
   }
 
-  modeUpdate() {
-    if (this.previewImage === 'VIDEO') {
-      this.icon = $r("app.media.take_video_normal")
+  private aboutToDisappear(): void {
+    CLog.debug(`${this.TAG} aboutToDisappear E`)
+    this.appEventBus.off(Action.ACTION_CHANGE_MODE, this.changeShutterIcon.bind(this))
+    this.appEventBus.off(Action.ACTION_START_PREVIEW, this.changeShutterIcon.bind(this))
+    this.mConnect.destroy()
+    CLog.debug(`${this.TAG} aboutToDisappear X`)
+  }
+
+  private async changeShutterIcon(data) {
+    CLog.debug(`${this.TAG} resetShutterIcon E`)
+    if ((data.mode || this.state.mode) === 'PHOTO') {
+      this.state.updateShutterIcon($r('app.media.ic_circled_filled'))
+    } else if ((data.mode || this.state.mode) === 'VIDEO') {
+      this.state.updateShutterIcon($r('app.media.take_video_normal'))
     } else {
-      this.icon = $r("app.media.ic_circled_filled")
+      this.state.updateShutterIcon($r('app.media.ic_circled_filled'))
     }
-    this.videoState = 'beforeTakeVideo'
+    CLog.debug(`${this.TAG} resetShutterIcon X`)
   }
 
   build() {
-    if (this.videoState === 'beforeTakeVideo') {
+    if (this.state.videoState === 'beforeTakeVideo') {
       Stack({alignContent: Alignment.Center}) {
-        if (this.previewImage === 'VIDEO'){
-          Image(this.icon)
-            .width(76)
-            .aspectRatio(1)
-	          .enabled(this.state.uiEnable)
+        if (this.state.mode === 'VIDEO'){
+          Image(this.state.shutterIcon)
+            .width(76).aspectRatio(1).enabled(this.state.uiEnable)
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Up) {
-                this.isBigVideoTimerVisible = true
-                this.videoState = 'startTakeVideo'
-    //              this.xComponentChangeFlag = !this.xComponentChangeFlag
-                this.state.startRecording()
-                this.isStartVideo = true
+                let timerLapse = this.settingsUtil.getTimeLapse()
+                CLog.log(`${this.TAG} startRecording getValue= ${JSON.stringify(timerLapse)}`)
+                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify($r('app.string.off'))) {
+                  this.state.changeTimeLapse(true)
+                } else {
+                  this.state.startRecording()
+                }
               }
             })
         } else {
-          Image($r("app.media.ic_circled")).fillColor(Color.White)
-            .width(76)
-            .aspectRatio(1)
-          Image(this.icon)
-            .width(54)
-            .aspectRatio(1)
-            .fillColor(Color.White)
-            .scale({ x: this.tempScale, y: this.tempScale, z: this.tempScale })
+          Image($r("app.media.ic_circled")).fillColor(Color.White).width(76).aspectRatio(1)
+          Image(this.state.shutterIcon).width(54).aspectRatio(1).fillColor(Color.White)
+            .scale({ x: this.state.captureBtnScale, y: this.state.captureBtnScale, z: this.state.captureBtnScale })
             .enabled(this.state.uiEnable)
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
-                animateTo({
-                  duration: 125,
-                  curve: Curve.Sharp,
-                  delay: 0
-                }, () => {
-                  this.tempScale = 0.85
-                  CLog.info(this.TAG + " Down Call Back")
-                })
+                animateTo(
+                  { duration: 125, curve: Curve.Sharp, delay: 0 },
+                  () => { this.state.updateCaptureBtnScale(0.85) })
               } else if (event.type === TouchType.Up) {
-//                this.isShutterEnable = false
-                animateTo({
-                  duration: 125,
-                  curve: Curve.Sharp,
-                  delay: 0,
-                  onFinish: () => {
-                    CLog.info(`${this.TAG} this.onFinish= ${this.tempScale}`)
-                    this.tempScale = 1
-                    CLog.info(this.TAG + " Up onFinish")
-                  }
-                }, () => {
-                  this.tempScale = 1
-                  CLog.info(this.TAG + " Up Call Back")
-                })
-                this.isShowFlashBlack = true
-//                this.cameraService.takePicture(() => {
-//                  this.isShutterEnable = true
-//                  if (this.isThirdPartyCall) {
-//                    console.info('start router to ThirdPreviewView')
-//                    router.push({
-//                      uri: "pages/ThirdPreviewView",
-//                      params: {
-//                        width: this.XcomponentWidth,
-//                        height: this.XcomponentHeight
-//                      }
-//                    })
-//                  }
-//                })
-                this.state.capture()
+                animateTo(
+                  { duration: 125, curve: Curve.Sharp, delay: 0,
+                    onFinish: () => { this.state.updateCaptureBtnScale(1) }},
+                  () => { this.state.updateCaptureBtnScale(1) })
+                let timerLapse = this.settingsUtil.getTimeLapse()
+                CLog.log(`${this.TAG} startRecording getValue= ${JSON.stringify(timerLapse)}`)
+                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify($r('app.string.off'))) {
+                  this.state.changeTimeLapse(true)
+                } else {
+                  this.state.capture()
+                }
               }
-              CLog.info(`${this.TAG} event.type=${event.type}`)
             })
         }
-      }
-      .width(76)
-        .aspectRatio(1)
-        .margin({ top: 48, bottom: 48 })
+      }.width(76).aspectRatio(1).margin({ top: 48, bottom: 48 })
     } else {
       Column() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-          if (this.videoState === 'startTakeVideo') {
-            Image($r('app.media.ic_video_recording'))
-              .width(20)
-              .aspectRatio(1)
-              .fillColor(Color.White)
-              .margin({ bottom: 16 })
-	            .enabled(this.state.uiEnable)
-              .onClick(() => {
-                this.isResumeVideo = true
-                this.iscContinueVideo = false
-//                this.cameraService.pauseVideo()
-		            this.state.pauseRecording()
-                this.videoState = 'pauseTakeVideo'
-              })
-          } else if (this.videoState === 'pauseTakeVideo') {
-            Image($r('app.media.ic_video_pause'))
-              .width(20)
-              .aspectRatio(1)
-              .fillColor('#ff0000')
-              .margin({ bottom: 16 })
-              .onClick(() => {
-                this.isResumeVideo = false
-                this.iscContinueVideo = true
-//                this.cameraService.resumeVideo()
-		            this.state.resumeRecording()
-                this.videoState = 'startTakeVideo'
-              })
-          }
           Image($r('app.media.ic_video_end'))
-            .width(20)
-            .aspectRatio(1)
-            .fillColor(Color.White)
-            .margin({ top: 16 })
+            .width(20).aspectRatio(1).fillColor(Color.White)
+            .margin({ bottom: 16 })
             .enabled(this.state.uiEnable)
             .onClick(() => {
-              this.isResumeVideo = false
-              this.iscContinueVideo = false
-              this.isBigVideoTimerVisible = false
-              this.isSmallVideoTimerVisible = false
-//              this.cameraService.stopVideo()
-//              this.cameraService.releaseVideo()
               this.state.stopRecording()
-              this.videoState = 'beforeTakeVideo'
             })
+          if (this.state.videoState === 'startTakeVideo') {
+            Image($r('app.media.ic_video_recording'))
+              .width(20).aspectRatio(1).fillColor(Color.White)
+              .margin({ top: 16 })
+              .enabled(this.state.uiEnable)
+              .onClick(() => {
+                this.state.pauseRecording()
+              })
+          } else if (this.state.videoState === 'pauseTakeVideo') {
+            Image($r('app.media.ic_video_pause')).width(20).aspectRatio(1).fillColor(Color.Red)
+              .margin({ top: 16 })
+              .enabled(this.state.uiEnable)
+              .onClick(() => {
+                this.state.resumeRecording()
+              })
+          }
         }
       }
       .width(56)
       .height(120)
       .borderRadius(28)
       .border({ width: 1, color: 0xffffff, style: BorderStyle.Solid })
-      .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_xl"), bottom: $r("sys.float.ohos_id_text_paragraph_margin_xl") })
+      .margin({ top: 26, bottom: 26 })
     }
   }
 }

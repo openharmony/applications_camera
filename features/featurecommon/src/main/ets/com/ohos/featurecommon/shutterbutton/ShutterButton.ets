@@ -21,6 +21,7 @@ import getStore from '../../../../../../../../../common/src/main/ets/default/red
 import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
 import {EventBus} from '../../../../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+import {SettingsUtil} from '../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
 
 let localState = (state) => {
   return {
@@ -66,6 +67,9 @@ let localDispatcher = (dispatch) => {
       dispatch(Action.UpdateBigVideoTimerVisible(false))
       dispatch(Action.UpdateSmallVideoTimerVisible(false))
     },
+    changeTimeLapse: (isShowtimeLapse: boolean) => {
+      dispatch(Action.changeTimeLapse(isShowtimeLapse))
+    }
   }
 }
 
@@ -74,6 +78,7 @@ export struct ShutterButton {
   private TAG: string = '[ShutterButton]:'
   private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  private settingsUtil = SettingsUtil.getInstance()
 
   width: number
   height: number
@@ -100,9 +105,9 @@ export struct ShutterButton {
 
   private async changeShutterIcon(data) {
     CLog.debug(`${this.TAG} resetShutterIcon E`)
-    if ((data.mode || this.state.mode) === 'PHOTO') {
+    if (data.mode === 'PHOTO') {
       this.state.updateShutterIcon($r('app.media.ic_circled_filled'))
-    } else if ((data.mode || this.state.mode) === 'VIDEO') {
+    } else if (data.mode === 'VIDEO') {
       this.state.updateShutterIcon($r('app.media.take_video_normal'))
     } else {
       this.state.updateShutterIcon($r('app.media.ic_circled_filled'))
@@ -118,7 +123,15 @@ export struct ShutterButton {
             .width(76).aspectRatio(1).enabled(this.state.uiEnable)
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Up) {
-                this.state.startRecording()
+                let timerLapse = this.settingsUtil.getTimeLapse()
+                CLog.log(`${this.TAG} ShutterButton startRecording getValue= ${JSON.stringify(timerLapse)}`)
+                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify($r('app.string.off'))) {
+                  CLog.log('ShutterButton startRecording changeTimeLapse called')
+                  this.state.changeTimeLapse(true)
+                } else {
+                  CLog.log('ShutterButton startRecording changeTimeLapse not called')
+                  this.state.startRecording()
+                }
               }
             })
         } else {
@@ -136,7 +149,15 @@ export struct ShutterButton {
                   { duration: 125, curve: Curve.Sharp, delay: 0,
                     onFinish: () => { this.state.updateCaptureBtnScale(1) }},
                   () => { this.state.updateCaptureBtnScale(1) })
-                this.state.capture()
+                let timerLapse = this.settingsUtil.getTimeLapse()
+                CLog.log(`${this.TAG} ShutterButton startRecording getValue= ${JSON.stringify(timerLapse)}`)
+                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify($r('app.string.off'))) {
+                  CLog.log('ShutterButton startRecording changeTimeLapse called')
+                  this.state.changeTimeLapse(true)
+                } else {
+                  CLog.log('ShutterButton startRecording changeTimeLapse not called')
+                  this.state.capture()
+                }
               }
             })
         }

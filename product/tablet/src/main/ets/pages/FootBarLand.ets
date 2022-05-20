@@ -15,43 +15,92 @@
 
 import { CameraSwitchButton
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/cameraswitcher/CameraSwitchButton'
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import { ControlLand } from './ControlLand'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 import { ShutterButtonLand
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/shutterbutton/ShutterButtonLand'
 import { ThumbnailView
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/thumbnail/ThumbnailView'
+import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+
+let footBarLandState = (state) => {
+  return {
+    platformCapability: state.CameraInitReducer.platformCapability,
+    videoState: state.RecordReducer.videoState,
+  }
+}
+
+let footBarLandDispatcher = (dispatch) => {
+  return {}
+}
 
 @Component
 export struct FootBarLand {
-  @Link previewImage: string
-  @State isVisible: boolean = true
-  @Link surfaceId: number
-  @Link cameraPosition: string
-  @Link isThirdPartyCall: boolean
-  @Link isBigVideoTimerVisible: boolean
-  @Link isSmallVideoTimerVisible: boolean
-  @Link isResumeVideo: boolean
-  @Link iscContinueVideo: boolean
-  @Link isShowFlashBlack: boolean
-  @Link btnSwitch: boolean
-  @Link btnSwitchSec: boolean
-  @Link btnOpacity_first: number
-  @Link btnOpacity_sec: number
-  @Link xComponentChangeFlag: boolean
-  @Link cameraId: string
-  @Link isStartVideo: boolean
-  @Link isSwitchBackground: boolean
-  @Link videoState: string
-  @Link XcomponentWidth: string
-  @Link XcomponentHeight: string
-  @Link aspectRatio: number
-  @Link state: any
-  @Link action: string
-  @Link curPreviewImage: string
-  @State cameraDevice: string = 'tablet'
+  private TAG: string = '[FootBarLand]:'
 
-  private aboutToAppear() {
-    this.isVisible = true
+  @State state: any = {}
+
+  private mConnect: any
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+
+//  @Link previewImage: string
+//  //  private cameraService = CameraService.getInstance()
+//  @State isVisible: boolean = true
+//  @Link surfaceId: number
+//  @Link cameraPosition: string
+//  @Link isThirdPartyCall: boolean
+//  @Link isBigVideoTimerVisible: boolean
+//  @Link isSmallVideoTimerVisible: boolean
+//  @Link isResumeVideo: boolean
+//  @Link iscContinueVideo: boolean
+//  @Link isShowFlashBlack: boolean
+//  @Link btnSwitch: boolean
+//  @Link btnSwitchSec: boolean
+//  @Link btnOpacity_first: number
+//  @Link btnOpacity_sec: number
+//  @Link xComponentChangeFlag: boolean
+//  @Link cameraId: string
+//  @Link isStartVideo: boolean
+//  @Link isSwitchBackground: boolean
+//  @Link videoState: string
+//  @Link XcomponentWidth: string
+//  @Link XcomponentHeight: string
+//  @Link aspectRatio: number
+//  @Link state: any
+//  @Link action: string
+//  @Link curPreviewImage: string
+//  @State cameraDevice: string = 'tablet'
+
+  private async onRecordStart(data) {
+    CLog.info(`${this.TAG} onRecordStart E`)
+    this.state.isRecording = true
+    CLog.info(`${this.TAG} onRecordStart X`)
+  }
+
+  private async onRecordStop(data) {
+    CLog.info(`${this.TAG} onRecordStop E`)
+    this.state.isRecording = false
+    CLog.info(`${this.TAG} onRecordStop X`)
+  }
+
+  private aboutToAppear(): void {
+    CLog.info(`${this.TAG} aboutToAppear E`)
+    this.mConnect = getStore().connect(footBarLandState, footBarLandDispatcher)(this.state)
+    this.state.isRecording = false
+    this.appEventBus.on(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
+    CLog.info(`${this.TAG} aboutToAppear X`)
+  }
+
+  private aboutToDisappear(): void {
+    CLog.info(`${this.TAG} aboutToDisappear E`)
+    this.appEventBus.off(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
+    this.mConnect.destroy()
+    CLog.info(`${this.TAG} aboutToDisappear X`)
   }
 
   build() {
@@ -60,86 +109,33 @@ export struct FootBarLand {
       alignItems: ItemAlign.Center,
       justifyContent: FlexAlign.Center
     }) {
-      Column() {
-
-      }.width('100%').height(160)
-
+      Column() {}.width('100%').height(160)
       Flex({
         direction: FlexDirection.Column,
         alignItems: ItemAlign.Center,
         justifyContent: FlexAlign.Center
       }) {
-        if (this.isVisible) {
-          CameraSwitchButton({
-            surfaceId: $surfaceId,
-            cameraPosition: $cameraPosition,
-            btnSwitch: $btnSwitch,
-            btnSwitchSec: $btnSwitchSec,
-            btnOpacity_first: $btnOpacity_first,
-            btnOpacity_sec: $btnOpacity_sec,
-            xComponentChangeFlag: $xComponentChangeFlag,
-            previewImage: $previewImage,
-            cameraId: $cameraId,
-            isSwitchBackground: $isSwitchBackground,
-            videoState: $videoState,
-            cameraDevice: $cameraDevice,
-            state: $state
-          })
+        if (this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording) {
+          CameraSwitchButton()
         } else {
           Column() {
-          }
-          .width('40')
-          .aspectRatio(1)
+          }.width('40').aspectRatio(1)
         }
-
-        ShutterButtonLand({
-          previewImage: $previewImage,
-          state: $state,
-          isThirdPartyCall: $isThirdPartyCall,
-          isStartVideo: $isStartVideo,
-          isBigVideoTimerVisible: $isBigVideoTimerVisible,
-          isSmallVideoTimerVisible: $isSmallVideoTimerVisible,
-          isResumeVideo: $isResumeVideo,
-          iscContinueVideo: $iscContinueVideo,
-          isShowFlashBlack: $isShowFlashBlack,
-          xComponentChangeFlag: $xComponentChangeFlag,
-          videoState: $videoState,
-          XcomponentWidth: $XcomponentWidth,
-          XcomponentHeight: $XcomponentHeight
-        })
-
-        ThumbnailView({ state: $state })
-      }
-      .width('100%')
-      .height(260)
-      .margin({
+        ShutterButtonLand()
+        if (!this.state.isRecording) {
+          ThumbnailView()
+        }
+      }.width('100%').height(260).margin({
         top: $r("sys.float.ohos_id_text_paragraph_margin_xl"),
         bottom: $r("sys.float.ohos_id_text_paragraph_margin_xl")
       })
 
-      if (this.videoState === "beforeTakeVideo") {
-        ControlLand({
-          aspectRatio: $aspectRatio,
-          previewImage: $previewImage,
-          state: $state,
-          isSmallVideoTimerVisible: $isSmallVideoTimerVisible,
-          isBigVideoTimerVisible: $isBigVideoTimerVisible,
-          isThirdPartyCall: $isThirdPartyCall,
-          cameraPosition: $cameraPosition,
-          XcomponentWidth: $XcomponentWidth,
-          XcomponentHeight: $XcomponentHeight,
-          action: $action,
-          xComponentChangeFlag: $xComponentChangeFlag,
-          curPreviewImage: $curPreviewImage
-        })
+      if (this.state.videoState === "beforeTakeVideo") {
+        ControlLand()
       } else {
         Column() {
-
         }.width('100%').height(160)
       }
-    }
-    .width(128)
-    .height('100%')
-    .zIndex(1)
+    }.width(128).height('100%')
   }
 }

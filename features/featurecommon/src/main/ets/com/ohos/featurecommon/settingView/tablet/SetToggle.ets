@@ -14,9 +14,9 @@
  */
 
 import AssistiveGrid from '../../../../../../../../../../common/src/main/ets/default/setting/AssistiveGrid'
-import {CLog} from '../../../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import {SettingsUtil} from '../../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
-import {SettingData}  from '../../../../../../../../../../common/src/main/ets/default/Utils/bean/SettingData'
+import { CLog } from '../../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { SettingsUtil } from '../../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import { SettingData }  from '../../../../../../../../../../common/src/main/ets/default/Utils/bean/SettingData'
 
 @Component
 export struct SetToggle {
@@ -24,7 +24,7 @@ export struct SetToggle {
   @Link settingsList: any[]
   @State isOn: boolean = false;
   private itemValue: SettingData
-  private getAssistiveGridStatus: Promise<string>
+  private getToggleStatus: Promise<string>
   private WH_100_100: string = "100%";
   private settingsUtil = SettingsUtil.getInstance()
   @State generalStatusValue: boolean = false
@@ -32,17 +32,17 @@ export struct SetToggle {
   aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear start`)
     try {
-      this.getAssistiveGridStatus = this.settingsUtil.getSettingValue(this.itemValue.settingAlias)
-      this.getAssistiveGridStatus.then((vData) => {
+      this.getToggleStatus = this.settingsUtil.getSettingValue(this.itemValue.settingAlias)
+      this.getToggleStatus.then((vData) => {
         CLog.info(`${this.TAG} aboutToAppear start ${JSON.stringify(vData)}`)
-        if (Number(vData) == 1) {
+        if (vData === "1") {
           this.generalStatusValue = true
         } else {
           this.generalStatusValue = false
         }
       })
     } catch {
-      CLog.error(`${this.TAG} aboutToAppear settingsList ${JSON.stringify(this.settingsList)}`)
+      CLog.info(`${this.TAG} aboutToAppear settingsList ${JSON.stringify(this.settingsList)}`)
       this.generalStatusValue = false
     }
     CLog.info(`${this.TAG} aboutToAppear end`)
@@ -52,38 +52,54 @@ export struct SetToggle {
     Row() {
       Flex({
         direction: FlexDirection.Row,
-        alignItems: ItemAlign.Center,
-        justifyContent: FlexAlign.SpaceBetween
+        alignItems: ItemAlign.Center
       }) {
-        Row() {
-          Image(this.itemValue.imagePath)
-            .width(24)
-            .height(24)
-            .fillColor("#FFFFFF")
-          Text(this.itemValue.settingName)
-            .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
-            .fontColor("#FFFFFF")
-            .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
-            .fontWeight(FontWeight.Regular)
+        Column() {
+          Row() {
+            Image(this.itemValue.imagePath)
+              .width(24)
+              .height(24)
+              .fillColor("#FFFFFF")
+            Text(this.itemValue.settingName)
+              .fontColor("#FFFFFF")
+              .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
+              .fontWeight(FontWeight.Regular)
+              .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
+          }
+
+          if (this.itemValue?.description) {
+            Row() {
+              Text(this.itemValue.description)
+                .fontColor("#FFFFFF")
+                .fontSize($r("sys.float.ohos_id_text_size_body2"))
+                .fontWeight(FontWeight.Regular)
+                .opacity($r("sys.float.ohos_id_alpha_content_secondary"))
+            }.margin({
+              top: $r("sys.float.ohos_id_text_margin_vertical"),
+              left: 40 })
+          }
         }
+        .layoutWeight(1)
+        .alignItems(HorizontalAlign.Start)
 
         Row() {
           Toggle({ type: ToggleType.Switch, isOn: this.generalStatusValue })
-            .width(50)
-            .height(40)
+            .width(36)
+            .height(20)
             .onChange((isOn: boolean) => {
+              CLog.info(this.TAG + ' SettingItemToggle onChange for Wlan Enable:' + isOn);
               this.isOn = new Boolean(isOn).valueOf();
-              let setToggle = 0;
+              let setToggle: string = "0";
               if (this.isOn) {
-                setToggle = 1
+                setToggle = "1"
               } else {
-                setToggle = 0
+                setToggle = "0"
               }
               this.settingsUtil.setSettingValue(this.itemValue.settingAlias, setToggle)
             })
         }
+        .margin({ left: $r("sys.float.ohos_id_card_margin_end") })
       }
-      .height(64)
       .padding({ left: 12, right: 12, top: 4, bottom: 4 })
     }
     .margin({
@@ -91,6 +107,5 @@ export struct SetToggle {
       bottom: $r("sys.float.ohos_id_text_paragraph_margin_xs")
     })
     .width(this.WH_100_100)
-    .height(56)
   }
 }
