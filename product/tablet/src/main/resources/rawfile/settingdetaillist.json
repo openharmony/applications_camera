@@ -1,0 +1,54 @@
+[
+  {
+    "settingIcon": "/res/image/ic_camera_setting_resolution_photo.svg",
+    "settingTitle": "",
+    "settingAlias": "AspectRatio",
+    "settingValue": "",
+    "settingChildren": [
+      {
+        "itemValue": "4:3"
+      },
+      {
+        "itemValue": "1:1"
+      },
+      {
+        "itemValue": "16:9"
+      }
+    ]
+  },
+  {
+    "settingIcon": "/res/image/ic_camera_setting_resolution_video.svg",
+    "settingTitle": "",
+    "settingAlias": "VideoResolution",
+    "settingValue": "",
+    "settingChildren": [
+      {
+        "itemValue": "[16:9] 1080p"
+      },
+      {
+        "itemValue": "[16:9] 720p"
+      }
+    ]
+  },
+  {
+    "settingIcon": "res/image/ic_camera_setting_timer.svg",
+    "settingTitle": "",
+    "settingAlias": "RecordingSize",
+    "settingValue": "",
+    "settingChildren": [
+      {
+        "itemValue": "5秒"
+      },
+      {
+        "itemValue": "10秒"
+      }
+    ]
+  },
+  {
+    "settingIcon": "/res/image/ic_system_back.svg",
+    "settingTitle": "",
+    "settingAlias": "back",
+    "settingValue": "",
+    "settingChildren": []
+  }
+]

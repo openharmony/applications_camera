@@ -1,0 +1,108 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "Camera"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "photo_mode",
+      "value": "PHOTO"
+    },
+    {
+      "name": "video_mode",
+      "value": "VIDEO"
+    },
+    {
+      "name": "multi_mode",
+      "value": "MULTI-CAM"
+    },
+    {
+      "name": "settings",
+      "value": "Setting"
+    },
+    {
+      "name": "aspect_ratio",
+      "value": "Aspect Ratio"
+    },
+    {
+      "name": "photo_scale43",
+      "value": "4：3"
+    },
+    {
+      "name": "photo_scale11",
+      "value": "1：1"
+    },
+    {
+      "name": "photo_scale1609",
+      "value": "16：9"
+    },
+    {
+      "name": "video_resolution",
+      "value": "Video Resolution"
+    },
+    {
+      "name": "resolution16091080",
+      "value": "[16:9] 1080p"
+    },
+    {
+      "name": "resolution16091080720",
+      "value": "[16:9] 720p"
+    },
+    {
+      "name": "record_time",
+      "value": "Record Time"
+    },
+    {
+      "name": "record_time_5",
+      "value": "5 seconds"
+    },
+    {
+      "name": "record_time_10",
+      "value": "10 seconds"
+    },
+    {
+      "name": "restore_defaults",
+      "value": "RESTORE DEFAULTS"
+    },
+    {
+      "name": "cancel",
+      "value": "CANCEL"
+    },
+    {
+      "name": "select_camera",
+      "value": "Select Camera"
+    },
+    {
+      "name": "local_device",
+      "value": "Local Device"
+    },
+    {
+      "name": "more_devices",
+      "value": "More Devices"
+    },
+    {
+      "name": "local",
+      "value": "Local"
+    },
+    {
+      "name": "front",
+      "value": "（Front）"
+    },
+    {
+      "name": "back",
+      "value": "（Back）"
+    },
+    {
+      "name": "assistive_grid",
+      "value": "Assistive grid"
+    },
+    {
+      "name": "general",
+      "value": "GENERAL"
+    }
+  ]
+}
