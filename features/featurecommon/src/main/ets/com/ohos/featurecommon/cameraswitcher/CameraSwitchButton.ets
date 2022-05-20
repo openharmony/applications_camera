@@ -98,8 +98,8 @@ export struct CameraSwitchButton {
         Image($r('app.media.small_switch_camera'))
           .width('67.5%').aspectRatio(1)
           .clip(new Circle({ width: '100%', height: '100%' }))
-        Column() {}.width('100%').height('100%')
-          .border({ width: 1, color: Color.White, radius: 20, style: BorderStyle.Solid })
+        Column() {}.width(44).height(44)
+          .border({ width: 1, color: Color.White, radius: 22, style: BorderStyle.Solid })
       }
       .width('100%').height('100%').enabled(this.state.uiEnable)
       .onClick(() => {
