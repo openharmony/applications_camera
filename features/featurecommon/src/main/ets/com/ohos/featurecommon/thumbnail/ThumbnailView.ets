@@ -14,18 +14,25 @@
  */
 
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import ThumbnailGetter from '../../../../../../../../../common/src/main/ets/default/Camera/ThumbnailGetter'
+import GetPixelMap from '../../../../../../../../../common/src/main/ets/default/Camera/GetPixelMap'
 import {ThumbnailController} from './ThumbnailController'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
 import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
 import {EventBus} from '../../../../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+import router from '@system.router'
 
 let localState = (state) => {
   return {
     thumbnail: state.CameraInitReducer.thumbnail,
-    thumbnailScale: state.UiReducer.thumbnailScale,
-    thumbnailOpacity: state.UiReducer.thumbnailOpacity,
+    videoUri: state.CameraInitReducer.videoUri,
+    mode: state.ModeReducer.mode,
+    resourceUri: state.CameraInitReducer.resourceUri,
+    isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+    xComponentWidth: state.PreviewReducer.xComponentWidth,
+    xComponentHeight: state.PreviewReducer.xComponentHeight,
+    scaleValue: 1,
+    tempOpacity: 1
   }
 }
 
@@ -41,24 +48,58 @@ export struct ThumbnailView {
   private thumbnailBorder: Object = {}
 
   @State state: any = {}
+  @State hasThumbnail: boolean = false
 
   private async onThumbnailUpdate(data) {
     CLog.info(`${this.TAG} onThumbnailUpdate data: ${JSON.stringify(data)} E`)
     this.state.thumbnail = data.thumbnail
-    this.thumbnailBorder = { width: 1, color: Color.White, style: BorderStyle.Solid }
+    this.hasThumbnail = data.thumbnail == null ? false : true
+    this.state.scaleValue = 1.5
+    this.state.tempOpacity = 0.0
+    animateTo({ duration: 100, curve: Curve.Sharp }, () => {
+      this.state.tempOpacity = 1
+    })
+    animateTo({ duration: 300, curve: Curve.Sharp }, () => {
+      this.state.scaleValue = 1
+    })
+    CLog.info(`${this.TAG} onThumbnailUpdate resourceUri= ${JSON.stringify(this.state.resourceUri)} E`)
+    CLog.info(`${this.TAG} onThumbnailUpdate isThirdPartyCall= ${this.state.isThirdPartyCall} E`)
+    CLog.info(`${this.TAG} onThumbnailUpdate videoUri= ${this.state.videoUri} E`)
+    if (this.state.isThirdPartyCall) {
+      CLog.info(`${this.TAG} onThumbnailUpdate start router to ThirdPreviewView`)
+      router.push({
+        uri: "pages/ThirdPreviewView",
+        params: {
+          width: this.state.xComponentWidth,
+          height: this.state.xComponentHeight,
+          mode: this.state.mode,
+          uri: this.state.resourceUri,
+          videoUri: this.state.videoUri
+        }
+      })
+    }
     CLog.info(`${this.TAG} onThumbnailUpdate this.state.thumbnail: ${JSON.stringify(this.state.thumbnail)} X`)
+  }
+
+  private async onThumbnailLoad(data) {
+    CLog.info(`${this.TAG} onThumbnailLoad data: ${JSON.stringify(data)} E`)
+    this.state.thumbnail = data.thumbnail
+    this.thumbnailBorder = { width: 1, color: Color.White, style: BorderStyle.Solid }
+    CLog.info(`${this.TAG} onThumbnailLoad this.state.thumbnail: ${JSON.stringify(this.state.thumbnail)} X`)
   }
 
   private aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
+    this.appEventBus.on(Action.ACTION_LOAD_THUMBNAIL, this.onThumbnailLoad.bind(this))
     CLog.info(`${this.TAG} aboutToAppear X`)
   }
 
   private aboutToDisappear(): void {
     CLog.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
+    this.appEventBus.off(Action.ACTION_LOAD_THUMBNAIL, this.onThumbnailLoad.bind(this))
     this.mConnect.destroy()
     CLog.info(`${this.TAG} aboutToDisappear X`)
   }
@@ -70,6 +111,7 @@ export struct ThumbnailView {
           .width('100%').aspectRatio(1).borderRadius(20).objectFit(ImageFit.Fill)
       }
       .width('100%').height('100%')
+      .enabled(this.hasThumbnail)
       .onClick(async () => {
         CLog.info(`${this.TAG} launch bundle com.ohos.photos`)
         await globalThis.cameraAbilityContext.startAbility({
@@ -81,7 +123,7 @@ export struct ThumbnailView {
     }
     .width(44).aspectRatio(1)
     .borderRadius(20).border(this.thumbnailBorder)
-    .opacity(this.state.thumbnailOpacity)
-    .scale({ x: this.state.thumbnailScale, y: this.state.thumbnailScale })
+    .opacity(this.state.tempOpacity)
+    .scale({ x: this.state.scaleValue, y: this.state.scaleValue })
   }
 }

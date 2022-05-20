@@ -17,6 +17,8 @@ import router from "@system.router"
 
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
+//import { TabBarOther } from './TabBarPhone/TabBarOther'
+//import { TabBarSame } from './TabBarPhone/TabBarSame'
 
 let tabBarState = (state) => {
   return {}
@@ -29,26 +31,29 @@ let tabBarDispatcher = (dispatcher) => {
 @Component
 export struct TabBar {
   private TAG: string = '[TabBar]'
-//  @Link previewImage: string
-//  @Link cameraPosition: string
   @State state: any = {}
   private mConnect: any
 
   private aboutToAppear(): void {
-    CLog.info(`${this.TAG} aboutToAppear E`)
+    CLog.info(`${this.TAG} aboutToAppear invoke E`)
     this.mConnect = getStore().connect(tabBarState, tabBarDispatcher)(this.state)
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    CLog.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   private aboutToDisappear(): void {
-    CLog.info(`${this.TAG} aboutToDisappear E`)
+    CLog.info(`${this.TAG} aboutToDisappear invoke E`)
     this.mConnect.destroy()
-    CLog.info(`${this.TAG} aboutToDisappear X`)
+    CLog.info(`${this.TAG} aboutToDisappear invoke X`)
   }
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Column() {}.width('80%').height('100%')
+      Column() {
+//        TabBarOther()
+      }.width('40%').height('100%')
+      Column() {
+//        TabBarSame()
+      }.width('40%').height('100%')
       Column() {
         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
           Image($r('app.media.setting')).width(24).height(24)

@@ -13,94 +13,135 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
+import router from '@system.router'
 
-import { CameraService } from '../../../../../../common/src/main/ets/default/Camera/CameraService'
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-
-function terminateSelfWithResult(getBundleName, getAbilityName, photoUri) {
-  CLog.info(`${this.TAG} terminateSelfWithResult start`)
-  let abilityResult = {
-    "resultCode": 200,
-    "want": {
-      "parameters": {
-        "imagePath": photoUri
-      },
-      "bundleName": getBundleName,
-      "abilityName": getAbilityName
-    }
-  };
-
-  globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
-    if (error) {
-      CLog.error(`${this.TAG} Operation failed. Cause: ${error}`);
-      return;
-    }
-    CLog.info(`${this.TAG} Operation succeeded: ${data}`);
-  });
-}
+import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
 
 @Entry
 @Component
 struct ThirdPreviewView {
   private TAG: string = '[ThirdPreviewView]:'
-  private getBundleName: string;
-  private getAbilityName: string;
   private photoWidth: string
   private photoHeight: string
-  public cameraService = CameraService.getInstance()
-  @State photoUri: string = ''
+  private photoUri: string
+  private videoUri: string
+  private mode: string
+  @State controls: boolean = false
+  @State isShowVideoButton: boolean = true
+  myVideoController: VideoController = new VideoController()
 
   aboutToAppear() {
-    let photoSize = router.getParams()
-    this.photoWidth = photoSize.width
-    this.photoHeight = photoSize.height
-    this.photoUri = this.cameraService.getPhotoUri()
-    this.getBundleName = globalThis.cameraAbilityWant.bundleName
-    this.getAbilityName = globalThis.cameraAbilityWant.abilityName
+    let routerParams = router.getParams()
+    this.photoWidth = routerParams.width.toString()
+    CLog.info(`${this.TAG} aboutToAppear photoWidth= ${this.photoWidth} E`)
+    this.photoHeight = routerParams.height.toString()
+    CLog.info(`${this.TAG} aboutToAppear photoHeight= ${this.photoHeight} E`)
+    this.photoUri = routerParams.uri.toString()
+    CLog.info(`${this.TAG} aboutToAppear photoUri= ${this.photoUri} E`)
+    this.mode = routerParams.mode.toString()
+    CLog.info(`${this.TAG} aboutToAppear mode= ${this.mode} E`)
+    this.videoUri = routerParams.videoUri.toString()
+    CLog.info(`${this.TAG} aboutToAppear videoUri= ${this.videoUri} E`)
+    CLog.info(`${this.TAG} aboutToAppear X`)
+  }
+
+  terminateSelfWithResult(resourceUri) {
+    CLog.info(`${this.TAG} terminateSelfWithResult start`)
+    let abilityResult = {
+      "resultCode": 200,
+      "want": {
+        "parameters": {
+          "imagePath": resourceUri
+        },
+        "bundleName": "com.ohos.camera",
+        "abilityName": "com.ohos.camera.MainAbility"
+      }
+    };
+
+    globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
+      if (error) {
+        CLog.error(`${this.TAG} Operation failed. Cause: ${error}`);
+        return;
+      }
+      CLog.info(`${this.TAG} Operation succeeded: ${data}`);
+    });
+  }
+
+  private getVideoPlayIcon() {
+    if (vp2px(1) >= 1 && vp2px(1) < 2) {
+      return $r('app.media.ic_video_play_btn_hdpi')
+    } else if (vp2px(1) == 2) {
+      return $r('app.media.ic_video_play_btn_xhdpi')
+    } else if (vp2px(1) == 3) {
+      return $r('app.media.ic_video_play_btn_xxhdpi')
+    } else {
+      return $r('app.media.ic_video_play_btn_xxxhdpi')
+    }
   }
 
   build() {
-    Stack() {
-      Column() {
-        Image(this.photoUri)
-          .width('100%')
-          .height('100%')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Stack() {
+        if (this.mode === "PHOTO") {
+          Column() {
+            Image(this.photoUri)
+              .width('100%')
+              .height('100%')
+          }
+          .width(this.photoWidth)
+          .height(this.photoHeight)
+        } else {
+          Video({
+            src: this.videoUri,
+            previewUri: `${this.videoUri}/thumbnail/${this.photoWidth.split("px")[0]}/${this.photoHeight.split("px")[0]}`,
+            controller: this.myVideoController
+          })
+            .controls(this.controls)
+            .objectFit(ImageFit.Contain)
+            .width(this.photoWidth)
+            .height(this.photoHeight)
+            .onClick(() => {
+              this.controls = !this.controls
+            })
+            .onFinish(() => {
+              this.controls = true;
+            })
+            .zIndex(1)
+          if(this.isShowVideoButton) {
+            Column() {
+              Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+                Image(this.getVideoPlayIcon()).objectFit(ImageFit.Contain).width(56).height(56)
+                  .onClick(() => {
+                    this.myVideoController.start()
+                    this.isShowVideoButton = false
+                  })
+              }
+            }.zIndex(2)
+          }
+        }
       }
       .width(this.photoWidth)
       .height(this.photoHeight)
-
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-        Column() {
-          Flex({
-            direction: FlexDirection.Row,
-            alignItems: ItemAlign.Center,
-            justifyContent: FlexAlign.SpaceBetween
-          }) {
-            Image($r('app.media.ic_system_cancel'))
-              .width(24)
-              .aspectRatio(1)
-              .onClick(() => {
-                router.back()
-              })
-            Image($r('app.media.ic_system_confirm'))
-              .width(24)
-              .aspectRatio(1)
-              .onClick(() => {
-                terminateSelfWithResult(this.getBundleName, this.getAbilityName, this.photoUri)
-              })
-          }
-        }
-        .width('100%')
-        .height(48)
-        .margin({ top: '24vp' })
-        .padding({ top: '12vp', left: '24vp', right: '24vp' })
-      }
-      .width('100%')
-      .height('100%')
-    }
-    .width('100%')
-    .height('100%')
-    .backgroundColor('#000')
+      Flex({
+        direction: FlexDirection.Row,
+        alignItems: ItemAlign.Center,
+        justifyContent: FlexAlign.SpaceBetween
+      }) {
+        Image($r('app.media.ic_system_cancel'))
+          .width(24)
+          .aspectRatio(1)
+          .onClick(() => {
+            router.back()
+          })
+        Image($r('app.media.ic_system_confirm'))
+          .width(24)
+          .aspectRatio(1)
+          .onClick(() => {
+            this.terminateSelfWithResult(this.mode === "PHOTO" ? this.photoUri : this.videoUri)
+          })
+      }.width('100%').height(48).margin({ top: '24vp' })
+      .padding({ top: '12vp', left: '24vp', right: '24vp' })
+      .position({x:0, y:0})
+    }.width('100%').height('100%').backgroundColor('#000')
   }
 }
