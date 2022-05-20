@@ -36,6 +36,18 @@
           ]
         }
       ]
+    },
+	{
+      "name": "tablet",
+      "srcPath": "./product/tablet",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
