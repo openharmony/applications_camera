@@ -21,6 +21,10 @@
       "value": "MULTI-CAM"
     },
     {
+      "name": "more_list",
+      "value": "MORE"
+    },
+    {
       "name": "settings",
       "value": "Setting"
     },
@@ -43,6 +47,30 @@
     {
       "name": "video_resolution",
       "value": "Video Resolution"
+    },
+    {
+      "name": "timer",
+      "value": "Timer"
+    },
+    {
+      "name": "already_off",
+      "value": "Off"
+    },
+    {
+      "name": "off",
+      "value": "Off"
+    },
+    {
+      "name": "timer_2_seconds",
+      "value": "2 seconds"
+    },
+    {
+      "name": "timer_5_seconds",
+      "value": "5 seconds"
+    },
+    {
+      "name": "timer_10_seconds",
+      "value": "10 seconds"
     },
     {
       "name": "resolution16091080",
@@ -103,6 +131,34 @@
     {
       "name": "general",
       "value": "GENERAL"
+    },
+    {
+      "name": "sound_mute",
+      "value": "Mute"
+    },
+    {
+      "name": "save_geo_location",
+      "value": "Tag photos and videos with location information"
+    },
+    {
+      "name": "self_mirror",
+      "value": "Mirror reflection"
+    },
+    {
+      "name": "video_codec",
+      "value": "High performance video codec"
+    },
+    {
+      "name": "video_codec_desp",
+      "value": "Reduce 35% storage usage, you may not play the video on other devices."
+    },
+    {
+      "name": "geo_location_desp",
+      "value": "Tag photos and videos with location information"
+    },
+    {
+      "name": "self_mirror_desp",
+      "value": "Front camera only"
     }
   ]
 }

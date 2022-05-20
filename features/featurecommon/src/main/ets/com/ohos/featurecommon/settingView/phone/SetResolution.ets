@@ -58,7 +58,7 @@ export struct SetResolution {
         CLog.log(this.TAG + " this.checkNameList = " + JSON.stringify(this.curCheckName))
       })
     } catch {
-      CLog.error(`${this.TAG} settingsList = ${JSON.stringify(this.settingsList)}`)
+      CLog.info(`${this.TAG} settingsList = ${JSON.stringify(this.settingsList)}`)
     }
   }
 
@@ -74,6 +74,13 @@ export struct SetResolution {
     }
     CLog.info(`${this.TAG} aboutToAppear settingsList ${JSON.stringify(this.settingsList)}`)
     CLog.info(`${this.TAG} aboutToAppear X`)
+  }
+
+  public formatCurCheckName(name) {
+    if (JSON.stringify(name) === JSON.stringify($r('app.string.off'))) {
+      name = $r('app.string.already_off')
+    }
+    return name
   }
 
   build() {
@@ -96,7 +103,7 @@ export struct SetResolution {
         }
 
         Row() {
-          Text(this.curCheckName)
+          Text(this.formatCurCheckName(this.curCheckName))
             .fontColor($r('app.color.font_color_FFFFFF'))
             .fontSize($r("sys.float.ohos_id_text_size_body2"))
             .fontWeight(FontWeight.Regular)
@@ -130,6 +137,7 @@ export struct SetResolution {
     this.customDialogDetails.childrenList = itemValue.radio;
     this.customDialogDetails.settingTitle = itemValue.settingName;
     this.customDialogDetails.setAlias = itemValue.settingAlias;
+    CLog.info(`${this.TAG} childrenList: ${JSON.stringify(itemValue.radio)}`)
     this.CustomDialogView.open()
     CLog.info(`${this.TAG} openDetailsDialog end`)
   }

@@ -14,26 +14,27 @@
  */
 
 import display from '@ohos.display';
-import router from '@system.router';
 
-import { BigVideoTimer } from './BigVideoTimer'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { CameraWorker } from '../../../../../../common/src/main/ets/default/Utils/CameraWorker'
 import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import { Control } from './Control'
 import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 import { FootBar } from './FootBar'
+import getStore from '../../../../../../common/src/main/ets/default/redux/store'
 import { ModeConfig } from '../common/ModeConfig'
+import { MoreList
+} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/moreList/moreList'
+import { PlaySound
+} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/playSound/playSound'
 import { PreviewArea } from './PreviewArea'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/Utils/RdbStoreManager'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
-import { SmallVideoTimer } from './SmallVideoTimer'
 import { TabBar
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/tabBar/TabBar'
 import { ZoomView
 } from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/zoomView/ZoomView'
-import getStore from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { CameraWorker } from '../../../../../../common/src/main/ets/default/Utils/CameraWorker'
 
 var mScreenLockManager = new ScreenLockManager()
 var cameraWorker = CameraWorker.getInstance()
@@ -42,12 +43,11 @@ let indexState = (state) => {
   return {
     footBarHeight: state.ContextReducer.footBarHeight,
     permissionFlag: state.ContextReducer.permissionFlag,
-    action: state.ContextReducer.action,
     mode: state.ModeReducer.mode,
     curMode: state.ModeReducer.curMode,
-    isBigVideoTimerVisible: state.UiReducer.isBigVideoTimerVisible,
-    isSmallVideoTimerVisible: state.UiReducer.isSmallVideoTimerVisible,
+    isShowtimeLapse: state.UiReducer.isShowtimeLapse,
     videoState: state.RecordReducer.videoState,
+    isShowMoreList: state.UiReducer.isShowMoreList
   }
 }
 
@@ -68,6 +68,9 @@ let indexDispatcher = (dispatch) => {
     },
     initMode: (mode: string) => {
       dispatch(Action.InitMode(mode))
+    },
+    changeTimeLapse: (isShowtimeLapse: boolean) => {
+      dispatch(Action.changeTimeLapse(isShowtimeLapse))
     }
   }
 }
@@ -79,8 +82,8 @@ struct Index {
   private modeConfig: ModeConfig = new ModeConfig()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
+  private mPlaySound: PlaySound = PlaySound.getInstance()
   private mConnect: any
-  private ASPECT_RATIO: number = 4 / 3
 
   private aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear E`)
@@ -91,7 +94,7 @@ struct Index {
 
     display.getDefaultDisplay().then((dis) => {
       CLog.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`)
-      let footBarHeight = px2vp(dis.width) * this.ASPECT_RATIO - 100
+      let footBarHeight = px2vp(dis.width) * (4 / 3) - 100
       this.state.initFootBarHeight(footBarHeight)
     })
 
@@ -102,7 +105,9 @@ struct Index {
         "ohos.permission.WRITE_MEDIA",
         "ohos.permission.CAMERA",
         "ohos.permission.MICROPHONE",
-        "ohos.permission.DISTRIBUTED_DATASYNC"
+        "ohos.permission.DISTRIBUTED_DATASYNC",
+        "ohos.permission.LOCATION",
+        "ohos.permission.LOCATION_IN_BACKGROUND"
       ]
       CLog.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
       globalThis.cameraAbilityContext.requestPermissionsFromUser(permissionList).then((data) => {
@@ -131,12 +136,6 @@ struct Index {
       globalThis.cameraFormParam = undefined
     }
 
-    CLog.info(this.TAG + " router.getParams()= " + JSON.stringify(router.getParams()))
-    if (router.getParams() != undefined) {
-      this.state.initCameraPosition(router.getParams().position)
-      this.state.initMode(router.getParams().mode)
-    }
-
     CLog.info(`${this.TAG} aboutToAppear X`)
   }
 
@@ -151,36 +150,53 @@ struct Index {
     CLog.info(`${this.TAG} aboutToDisappear X`)
   }
 
+  private onBackPress() {
+    CLog.info(`${this.TAG} onBackPress E`)
+    CLog.info(`${this.TAG} onBackPress E isShowtimeLapse= ${this.state.isShowtimeLapse}`)
+    if (this.state.isShowtimeLapse) {
+      this.state.changeTimeLapse(false)
+      CLog.info(`${this.TAG} onBackPress X`)
+      return true
+    } else {
+      CLog.info(`${this.TAG} onBackPress X`)
+      return false
+    }
+  }
+
+  private onPageHide(): void {
+    CLog.info(`${this.TAG} onPageHide E`)
+    CLog.info(`${this.TAG} onPageHide E isShowtimeLapse= ${this.state.isShowtimeLapse}`)
+    this.state.changeTimeLapse(false)
+    CLog.info(`${this.TAG} onPageHide E`)
+  }
+
   build() {
     Stack({ alignContent: Alignment.Top }) {
       if (this.state.permissionFlag) {
         Stack() {
-          PreviewArea() // 预览层
+          PreviewArea()
         }.width('100%').position({ x: '0', y: '48' })
         Stack() {
-          if (this.state.videoState === "beforeTakeVideo") {
+          if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse) {
             TabBar()
           }
-          if (this.state.isSmallVideoTimerVisible) {
-            SmallVideoTimer()
-          }
         }.width('100%').height(48).position({ x: '0', y: '0' })
-        Stack() {
-          if (this.state.isBigVideoTimerVisible) {
-            BigVideoTimer()
-          }
-        }.width('100%').position({ x: '0', y: '48' })
-        Stack({ alignContent: Alignment.Bottom }) {
-          Column() {
-            if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
-              ZoomView()
+        if(this.state.isShowMoreList){
+          MoreList()
+        }
+        if (!this.state.isShowtimeLapse) {
+          Stack({alignContent: Alignment.Bottom}) {
+            Column() {
+              if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
+                ZoomView()
+              }
+              if (this.state.videoState === "beforeTakeVideo") {
+                Control()
+              }
+              FootBar()
             }
-            if (this.state.videoState === "beforeTakeVideo") {
-              Control()
-            }
-            FootBar()
-          }
-        }.width('100%').height(302).position({ y: this.state.footBarHeight })
+          }.width('100%').height(302).position({ y: this.state.footBarHeight })
+        }
       }
     }.width('100%').height('100%').backgroundColor('#000')
   }

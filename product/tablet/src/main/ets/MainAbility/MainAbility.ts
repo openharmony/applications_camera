@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Huawei Device Co., Ltd.
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 import Ability from '@ohos.application.Ability'
 
@@ -49,21 +50,21 @@ export default class MainAbility extends Ability {
                 })
 
             } catch (err) {
-                console.error('Camera setFullScreen err: ' + err)
+                console.info('Camera setFullScreen err: ' + err)
             }
         })
 
-        if (this.launchWant.uri === 'capture') {
+        if (this.launchWant.parameters.uri === 'capture') {
             globalThis.cameraFormParam = {
                 action: 'capture',
                 cameraPosition: 'PHOTO',
-                previewImage: 'PHOTO'
+                mode: 'PHOTO'
             }
-        } else if (this.launchWant.uri === 'video') {
+        } else if (this.launchWant.parameters.uri === 'video') {
             globalThis.cameraFormParam = {
                 action: 'video',
                 cameraPosition: 'VIDEO',
-                previewImage: 'VIDEO'
+                mode: 'VIDEO'
             }
         }
 
@@ -71,7 +72,7 @@ export default class MainAbility extends Ability {
     }
 
     onWindowStageDestroy() {
-        console.info('Camera MainAbility onWindowStageDestroy.')
+        console.info('Camera MainAbility onWindowStageDestory.')
     }
 
     onForeground() {
@@ -81,6 +82,6 @@ export default class MainAbility extends Ability {
 
     onBackground() {
         console.info('Camera MainAbility onBackground.')
-        globalThis.releaseCamera()
+        globalThis?.releaseCamera && globalThis.releaseCamera()
     }
 }

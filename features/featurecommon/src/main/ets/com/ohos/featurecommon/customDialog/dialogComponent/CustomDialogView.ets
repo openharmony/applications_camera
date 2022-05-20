@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import deviceInfo from '@ohos.deviceInfo';
 import {CLog} from '../../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import EntryComponent from './EntryComponent'
 
@@ -30,6 +31,8 @@ export class CustomDialogDetails {
 @CustomDialog
 export struct CustomDialogView {
   private TAG: string = '[CustomDialogView]:'
+//  @StorageLink('settingsDetailList') settingsDetailList: any[]= [];
+  localStyle = { "columns": 4, "offset": 0 }
   controller: CustomDialogController
   cancel: () => void
   confirm: () => void
@@ -38,28 +41,14 @@ export struct CustomDialogView {
   @State getValue: string= "";
   @StorageLink('settingsList') settingsList: any[]= [];
   @State childrenList: Array<any> = [];
-  @State dialogData: Array<any> = [];
-  @State aspectRadioList: Array<any> = [{
-                                          "itemValue": "4:3"
-                                        },
-                                        {
-                                          "itemValue": "1:1"
-                                        },
-                                        {
-                                          "itemValue": "16:9"
-                                        }];
-  @State videoResolutionList: Array<any> = [{
-                                              "itemValue": "[16:9] 4k"
-                                            },
-                                            {
-                                              "itemValue": "[16:9] 1080p"
-                                            },
-                                            {
-                                              "itemValue": "[16:9] 720p"
-                                            }]
 
   async aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear start`)
+    if (deviceInfo.deviceType == 'PAD') {
+      this.localStyle = { "columns": 12, "offset": 4 }
+    } else {
+      this.localStyle = { "columns": 4, "offset": 0 }
+    }
     this.childrenList = this.customDialogDetails.childrenList;
     CLog.info(`${this.TAG} childrenList ${JSON.stringify(this.childrenList)}`)
     this.settingAlias = this.customDialogDetails.setAlias;
@@ -75,7 +64,7 @@ export struct CustomDialogView {
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      GridContainer({ columns: 4, gutter: 12, margin: 24 }) {
+      GridContainer({ columns: this.localStyle.columns, gutter: 12, margin: 24 }) {
         Column() {
           Row() {
             Text(this.customDialogDetails.settingTitle)
@@ -129,10 +118,10 @@ export struct CustomDialogView {
         .padding({ left: '24vp', right: '24vp' })
         .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
         .useSizeType({
-          xs: { span: 4, offset: 0 },
-          sm: { span: 4, offset: 0 },
-          md: { span: 4, offset: 0 },
-          lg: { span: 4, offset: 0 }
+          xs: { span: 4, offset: this.localStyle.offset },
+          sm: { span: 4, offset: this.localStyle.offset },
+          md: { span: 4, offset: this.localStyle.offset },
+          lg: { span: 4, offset: this.localStyle.offset }
         })
       }.width('100%')
     }

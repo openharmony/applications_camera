@@ -48,17 +48,17 @@ export default class MainAbility extends Ability {
                     console.info('Camera setSystemBarProperties.')
                 })
             } catch (err) {
-                console.error('Camera setFullScreen err: ' + err)
+                console.info('Camera setFullScreen err: ' + err)
             }
         })
 
-        if (this.launchWant.uri === 'capture') {
+        if (this.launchWant.parameters.uri === 'capture') {
             globalThis.cameraFormParam = {
                 action: 'capture',
                 cameraPosition: 'PHOTO',
                 mode: 'PHOTO'
             }
-        } else if (this.launchWant.uri === 'video') {
+        } else if (this.launchWant.parameters.uri === 'video') {
             globalThis.cameraFormParam = {
                 action: 'video',
                 cameraPosition: 'VIDEO',
@@ -66,11 +66,12 @@ export default class MainAbility extends Ability {
             }
         }
 
+
         windowStage.setUIContent(this.context, 'pages/index', null)
     }
 
     onWindowStageDestroy() {
-        console.info('Camera MainAbility onWindowStageDestroy.')
+        console.info('Camera MainAbility onWindowStageDestory.')
     }
 
     onForeground() {

@@ -13,47 +13,101 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display';
+import { Action } from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { CLog } from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { SettingsUtil } from '../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
+
+let localState = (state) => {
+  return {
+    mode: state.ModeReducer.mode
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {}
+}
 
 @Component
 export struct AssistiveGridView {
   private TAG: string = '[AssistiveGridView]:'
-  @Link XcomponentWidth: string;
-  @Link XcomponentHeight: string;
-  @Link aspectRatio: number;
-  @State lineMarginTop: number = 0
-  @State lineMarginLeft: number = 0
-  @State Number: String[] = ['0', '1', '2']
-  @Link displayInfo: Promise<number>
+  private curX: number = 0
+  private curY: number = 0
+  private mGlobalAlpha: number = 0.5
+  private mLineWidth: number = 0
+  private mShadowBlur: number = 5
+  private mShadowColor: string = 'argb(#7F000000)'
+  private mShadowOffsetX: number = 0
+  private mShadowOffsetY: number = 0
+  private mStrokeStyle: string = '#FFFFFF'
 
-  public aboutToAppear() {
-    CLog.log(this.TAG + " XcomponentWidth" + this.XcomponentWidth + " XcomponentHeight" + this.XcomponentHeight)
-    CLog.log(this.TAG + " displayInfo:" + JSON.stringify(displayInfo))
+  private scaleLen: number = 4
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  private settingsUtil = SettingsUtil.getInstance()
+  private xCWidth: number = 0
+  private xCHeight: number = 0
+  @State state: any = {}
+  private mConnect: any
 
-    this.lineMarginLeft = Number(this.XcomponentHeight.split('px')[0]) / 3
-    this.lineMarginTop = Number(this.XcomponentWidth.split('px')[0]) / 3
+  private aboutToAppear(): void {
+    CLog.info(`${this.TAG} aboutToAppear invoke E`)
+    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    let xComponentAssSize = this.settingsUtil.getPreviewDisplaySizeForAss(this.state.mode)
+    this.xCWidth = xComponentAssSize.width
+    this.xCHeight = xComponentAssSize.height
+    this.curX = this.xCWidth / 3
+    this.curY = this.xCHeight / 3
 
-    CLog.log(this.TAG + " lineMarginTop" + this.lineMarginTop + " lineMarginLeft" + this.lineMarginLeft)
+    let vp2pxValue = Math.round(vp2px(0.5))
+    if (vp2pxValue < 1) {
+      this.mLineWidth = 1
+    } else {
+      this.mLineWidth = vp2pxValue
+    }
+    CLog.info(`${this.TAG} aboutToAppear vp2pxValue X ${vp2pxValue}`)
+    CLog.info(`${this.TAG} aboutToAppear invoke X ${this.mLineWidth}`)
+  }
+
+  private aboutToDisappear(): void {
+    CLog.info(`${this.TAG} aboutToDisappear invoke E`)
+    this.mConnect.destroy()
+    CLog.info(`${this.TAG} aboutToDisappear invoke X`)
   }
 
   build() {
-    Row({ space: 5 }) {
-      Grid() {
-        ForEach(this.Number, (item: string) => {
-          ForEach(this.Number, (item: string) => {
-            GridItem() {
-              Text('')
-                .borderWidth(1)
-                .width('100%')
-                .height('100%')
-                .borderColor(Color.White)
-            }.opacity(0.5)
-          }, item => item)
-        }, item => item)
-      }
-      .columnsTemplate('1fr 1fr 1fr')
-      .rowsTemplate('1fr 1fr 1fr')
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .onReady(() => {
+          this.context.clearRect(0, 0, this.xCWidth, this.xCHeight);
+          this.drawRuler()
+        })
     }
+    .width(this.xCWidth)
+    .height(this.xCHeight)
+  }
+
+  drawRuler() {
+    this.context.beginPath();
+    this.context.globalAlpha = this.mGlobalAlpha
+    this.context.lineWidth = this.mLineWidth
+    this.context.strokeStyle = this.mStrokeStyle
+    this.context.shadowColor = this.mShadowColor
+    this.context.shadowOffsetX = this.mShadowOffsetX
+    this.context.shadowOffsetY = this.mShadowOffsetY
+    for (let i = 1; i <= this.scaleLen; i++) {
+      if (i <= this.scaleLen / 2) {
+        this.context.moveTo(this.curX * i, 0)
+        this.context.lineTo(this.curX * i, this.xCHeight)
+      } else {
+        let n = Math.floor(i / 2)
+        this.context.moveTo(0, this.curY * n)
+        this.context.lineTo(this.xCWidth * n, this.curY * n)
+      }
+    }
+    this.context.closePath()
+    this.context.stroke()
   }
 }
