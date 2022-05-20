@@ -1,0 +1,25 @@
+[
+  {
+    "subtitle": "PHOTO",
+    "detials": [{
+      "imagepath": "/res/image/ic_camera_setting_resolution_photo.svg",
+      "settingName": "Aspect Ratio",
+      "radio": [{
+        "CheckedName": "4:3",
+        "RadioName": "4:3 (recommended)",
+        "RadioDefault": true
+      }]
+    }]
+  }, {
+  "subtitle": "VIDEO",
+  "detials": [{
+    "imagepath": "/res/image/ic_camera_setting_resolution_video.svg",
+    "settingName": "Video Resolution",
+    "radio": [{
+      "CheckedName": "[16:9] 1080p",
+      "RadioName": "[16:9] 1080p (recommended)",
+      "RadioDefault": true
+    }]
+  }]
+}
+]
