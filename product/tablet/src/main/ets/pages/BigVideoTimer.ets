@@ -15,97 +15,136 @@
 
 import display from '@ohos.display';
 
+import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+
+let localState = (state) => {
+  return {
+    recordingTime: state.RecordReducer.recordingTime,
+    recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
+    isResumeVideo: state.RecordReducer.isResumeVideo,
+    isRecordingSpotVisible: state.UiReducer.isRecordingSpotVisible,
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {
+    updateRecordingTime: (recordingTime: number) => {
+      dispatch(Action.UpdateRecordingTime(recordingTime))
+    },
+    updateSmallVideoTimerVisible: (visible: boolean) => {
+      dispatch(Action.UpdateSmallVideoTimerVisible(visible))
+    },
+    updateBigVideoTimerVisible: (visible: boolean) => {
+      dispatch(Action.UpdateBigVideoTimerVisible(visible))
+    },
+    updateRecordingSpotVisible: (visible: boolean) => {
+      dispatch(Action.UpdateRecordingSpotVisible(visible))
+    },
+    updateRecordingTimeDisplay: (timeDisplay: string) => {
+      dispatch(Action.UpdateRecordingTimeDisplay(timeDisplay))
+    }
+  }
+}
+
 @Component
 export struct BigVideoTimer {
-  @State bigVideoTime: number = 1
-  @State spotVisibility: boolean = true
-  @State timer: number = 0
-  @State timeNumber: number = 0
-  @Link isSmallVideoTimerVisible: boolean
-  @Link isBigVideoTimerVisible: boolean
-  @Link @Watch("watchIsResumeVideo") isResumeVideo: boolean
-  @Link @Watch("watchIscContinueVideo") iscContinueVideo: boolean
-  @State timerPosition: number= 0
-  private ASPECT_RATIO: number = 4 / 3
+  private TAG: string = '[BigVideoTimer]'
+  private mConnect: any
+  private timer: number = 0
+  private timerTick: number = 0
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  @State state: any = {}
 
-  private aboutToAppear() {
-    this.setIntervalBigVideoTime()
-    display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height) * this.ASPECT_RATIO
-    })
+  @State timerPosition: number= 0
+
+  private async onRecordPaused(data) {
+    CLog.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
+    clearInterval(this.timer)
+    CLog.info(`${this.TAG} onRecordPaused X`)
   }
 
-  setIntervalBigVideoTime() {
+  private async onRecordResumed(data) {
+    CLog.info(`${this.TAG} onRecordResumed E`)
+    if (this.state.recordingTime <= 2) {
+      this.setIntervalTimer()
+    }
+    CLog.info(`${this.TAG} onRecordResumed X`)
+  }
+
+  private aboutToAppear(): void {
+    CLog.info(`${this.TAG} aboutToAppear E`)
+    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    this.setIntervalTimer()
+    display.getDefaultDisplay().then((dis) => {
+      this.timerPosition = px2vp(dis.height) * (4 / 3)
+    })
+    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    CLog.info(`${this.TAG} aboutToAppear X`)
+  }
+
+  private aboutToDisappear(): void{
+    CLog.info(`${this.TAG} aboutToDisappear E`)
+    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    CLog.info(`${this.TAG} clearInterval timer id: ${this.timer}`)
+    clearInterval(this.timer)
+    this.mConnect.destroy()
+    CLog.info(`${this.TAG} aboutToDisappear X`)
+  }
+
+  private setIntervalTimer() {
     clearInterval(this.timer)
     this.timer = setInterval(() => {
-      this.timeNumber++
-      if (this.timeNumber % 2 === 0) {
-        if (this.bigVideoTime <= 2) {
-          this.bigVideoTime++
+      this.timerTick++
+      if (this.timerTick % 2 === 0) {
+        this.state.updateRecordingTime(this.state.recordingTime + 1)
+        let shownSec = '00'
+        let shownMin = '00'
+        let sec = this.state.recordingTime % 60
+        if (sec < 10) {
+          shownSec = `0${sec}`
+        } else {
+          shownSec = `${sec}`
         }
-        if (this.bigVideoTime > 2) {
+        let minute = Math.floor(this.state.recordingTime / 60)
+        if (minute < 10) {
+          shownMin = `0${minute}`
+        } else {
+          shownMin = `${minute}`
+        }
+        this.state.updateRecordingTimeDisplay(`${shownMin}:${shownSec}`)
+        if (this.state.recordingTime > 2) {
           clearInterval(this.timer)
-          this.isSmallVideoTimerVisible = true
-          this.isBigVideoTimerVisible = false
+          this.state.updateSmallVideoTimerVisible(true)
+          this.state.updateBigVideoTimerVisible(false)
         }
       }
-      this.spotVisibility = !this.spotVisibility
+      this.state.updateRecordingSpotVisible(!this.state.isRecordingSpotVisible)
     }, 500)
-  }
-
-  watchIsResumeVideo() {
-    if (this.isResumeVideo) {
-      clearInterval(this.timer)
-    }
-  }
-
-  watchIscContinueVideo() {
-    if (this.iscContinueVideo && this.bigVideoTime <= 2) {
-      this.setIntervalBigVideoTime()
-    }
-  }
-
-  private aboutToDisappear() {
-    clearInterval(this.timer)
   }
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('').layoutWeight(1)
-      if (this.isResumeVideo) {
-        Image($r('app.media.ic_video_recording'))
-          .width(12)
-          .height(12)
-          .fillColor(Color.White)
+      if (this.state.isResumeVideo) {
+        Image($r('app.media.ic_video_recording')).width(12).height(12).fillColor(Color.White)
       } else {
-        if (this.spotVisibility) {
+        if (this.state.isRecordingSpotVisible) {
           Column() {
-          }
-          .width(12)
-          .height(12)
-          .backgroundColor('#FF0000')
-          .borderRadius(6)
-          .visibility(Visibility.Visible)
+          }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Visible)
         } else {
           Column() {
-          }
-          .width(12)
-          .height(12)
-          .backgroundColor('#FF0000')
-          .borderRadius(6)
-          .visibility(Visibility.Hidden)
+          }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Hidden)
         }
       }
-      Text(`00:0${this.bigVideoTime}`)
-        .margin({ left: 8, right: 8 })
-        .fontSize('50fp')
-        .fontWeight(FontWeight.Lighter)
-        .fontColor('#FFFFFF')
-        .textAlign(TextAlign.Center)
+      Text(`${this.state.recordingTimeDisplay}`).margin({ left: 8, right: 8 }).fontSize('50fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Center)
       Text('').width(12).height(12)
       Text('').layoutWeight(1)
-    }
-    .width(this.timerPosition)
-    .height(96)
+    }.width(this.timerPosition).height(96)
   }
 }

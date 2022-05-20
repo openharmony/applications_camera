@@ -58,7 +58,7 @@ export struct SetResolution {
         CLog.log(this.TAG + " this.checkNameList = " + JSON.stringify(this.curCheckName))
       })
     } catch {
-      CLog.error(`${this.TAG} error settingsList = ${JSON.stringify(this.settingsList)}`)
+      CLog.info(`${this.TAG} settingsList = ${JSON.stringify(this.settingsList)}`)
     }
   }
 
@@ -71,7 +71,6 @@ export struct SetResolution {
       })
     } catch {
       this.curCheckName = this.itemValue.checkedName
-      CLog.error(`${this.TAG} warn set curCheckName`)
     }
     CLog.info(`${this.TAG} aboutToAppear settingsList ${JSON.stringify(this.settingsList)}`)
     CLog.info(`${this.TAG} aboutToAppear X`)

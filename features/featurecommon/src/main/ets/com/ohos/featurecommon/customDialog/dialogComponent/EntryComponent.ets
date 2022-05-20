@@ -25,7 +25,7 @@ export default struct EntryComponent {
   @Prop itemValue: string;
   @Prop checkedValue: string;
   @Prop settingAlias: string;
-  @State getValue: string = ''
+  private getValue: any
   private onChange: Function
   private settingsUtil = SettingsUtil.getInstance()
 
@@ -35,17 +35,25 @@ export default struct EntryComponent {
       this.getValue = await this.settingsUtil.getSettingValue(this.settingAlias)
       CLog.log(`${this.TAG} EntryComponent.getValue=${this.getValue}`)
     } catch {
-      CLog.error(`${this.TAG} catch this.settingAlias=${this.settingAlias}`)
+      CLog.log(`${this.TAG} catch this.settingAlias=${this.settingAlias}`)
       if (this.settingAlias === 'VideoResolution') {
         this.getValue = '[16:9] 720p'
+      } else if (this.settingAlias === 'Timer') {
+        this.getValue = $r('app.string.off')
       } else {
         this.getValue = '4:3'
       }
-      CLog.error(`${this.TAG} catch this.getValue=${this.getValue}`)
+      CLog.log(`${this.TAG} catch this.getValue=${this.getValue}`)
     }
   }
 
+  private logger(): boolean {
+    CLog.info(`${this.TAG} build`)
+    return true
+  }
+
   build() {
+    if (this.logger()) {
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
         Text(this.itemValue)
           .fontColor('#E6000000')
@@ -56,14 +64,17 @@ export default struct EntryComponent {
           .width(24)
           .height(24)
           .borderColor('#1095E8')
-          .checked(this.itemValue.toString() === this.getValue.toString())
+          .checked(JSON.stringify(this.itemValue) === JSON.stringify(this.getValue))
           .enabled(true)
           .onClick(() => {
-            CLog.info(`${this.TAG} onChange settingAlias:${this.settingAlias}  itemValue:${this.itemValue}`)
+            CLog.info(`${this.TAG} onChange settingAlias${this.settingAlias}`)
+            CLog.info(`${this.TAG} onChange itemValue${this.itemValue}`)
             this.settingsUtil.setSettingValue(this.settingAlias, this.itemValue)
             this.onChange()
           });
       }
+      //      .height(48)
       .width('100%')
+    }
   }
 }

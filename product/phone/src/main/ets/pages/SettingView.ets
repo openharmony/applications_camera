@@ -37,15 +37,15 @@ struct SettingView {
   @State settingsList: any[] = SettingListModel.getSettingList()
   private WH_100_100: string = "100%";
 
-  aboutToAppear() {
-    CLog.info(`${this.TAG} aboutToAppear start`)
+  private aboutToAppear(): void{
+    CLog.info(`${this.TAG} aboutToAppear invoke E`)
     if (router.getParams() != undefined) {
-      this.cameraPosition = router.getParams().position
-      this.previewImage = router.getParams().mode
+      this.cameraPosition = router.getParams().position.toString()
+      this.previewImage = router.getParams().mode.toString()
     }
 
     mScreenLockManager.init()
-    CLog.info(`${this.TAG} aboutToAppear end`)
+    CLog.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   private onBackPress() {
@@ -101,6 +101,8 @@ struct SettingView {
                 ListItem() {
                   SettingItem({
                     settingsList: $settingsList,
+                    //                    settingsDetailList: $settingsDetailList,
+                    //                    checkNameList: $checkNameList,
                     item: item,
                     index: index
                   })
@@ -135,9 +137,7 @@ struct SettingView {
           .backgroundColor($r('app.color.background_color_333333'))
           .height(40)
           .onClick(() => {
-            this.settingsUtil.setSettingValue('AspectRatio', '4:3')
-            this.settingsUtil.setSettingValue('VideoResolution', '[16:9] 720p')
-            this.settingsUtil.setSettingValue('AssistiveGrid', '0')
+            this.settingsUtil.restoreValues()
             router.replace({
               params: {
                 position: this.cameraPosition,
