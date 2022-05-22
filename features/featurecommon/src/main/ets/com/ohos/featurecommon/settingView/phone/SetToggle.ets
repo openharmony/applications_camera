@@ -32,15 +32,11 @@ export struct SetToggle {
   aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear start`)
     try {
-      this.getToggleStatus = this.settingsUtil.getSettingValue(this.itemValue.settingAlias)
-      this.getToggleStatus.then((vData) => {
-        CLog.info(`${this.TAG} aboutToAppear start ${JSON.stringify(vData)}`)
-        if (vData === "1") {
-          this.generalStatusValue = true
-        } else {
-          this.generalStatusValue = false
-        }
-      })
+      if (this.settingsUtil.getSetToggleSettingValue(this.itemValue.settingAlias) === "1") {
+        this.generalStatusValue = true
+      } else {
+        this.generalStatusValue = false
+      }
     } catch {
       CLog.info(`${this.TAG} aboutToAppear settingsList ${JSON.stringify(this.settingsList)}`)
       this.generalStatusValue = false

@@ -21,6 +21,7 @@ import { EventBus } from '../../../../../../../../../common/src/main/ets/default
 import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
 import { SettingsUtil } from '../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import Timer from '../../../../../../../../../common/src/main/ets/default/setting/Timer'
 
 let localState = (state) => {
   return {
@@ -86,30 +87,6 @@ export struct ShutterButtonLand {
 
   @State state: any = {}
 
-//  @State icon: Resource = $r("app.media.ic_circled_filled")
-//  @Link @Watch("modeUpdate") previewImage: string
-//  width: number
-//  height: number
-//  type: ButtonType
-//  stateEffect: boolean
-//  shutterController = new ShutterController()
-////  private cameraService = CameraService.getInstance()
-//  getPixelMap = new GetPixelMap()
-//  @State isShutterEnable: boolean = true
-//  @Link videoState: string
-//  @Link isThirdPartyCall: boolean
-//  @Link isStartVideo: boolean
-//  @Link isBigVideoTimerVisible: boolean
-//  @Link isSmallVideoTimerVisible: boolean
-//  @Link isResumeVideo: boolean
-//  @Link iscContinueVideo: boolean
-//  @Link isShowFlashBlack: boolean
-//  @State tempScale: number = 1
-//  @Link xComponentChangeFlag: boolean
-//  @Link XcomponentWidth: string
-//  @Link XcomponentHeight: string
-//  @Link state: any
-
   private aboutToAppear(): void {
     CLog.debug(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
@@ -148,7 +125,7 @@ export struct ShutterButtonLand {
               if (event.type === TouchType.Up) {
                 let timerLapse = this.settingsUtil.getTimeLapse()
                 CLog.log(`${this.TAG} startRecording getValue= ${JSON.stringify(timerLapse)}`)
-                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify($r('app.string.off'))) {
+                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify(Timer.RESOURCE_OFF)) {
                   this.state.changeTimeLapse(true)
                 } else {
                   this.state.startRecording()
@@ -172,7 +149,7 @@ export struct ShutterButtonLand {
                   () => { this.state.updateCaptureBtnScale(1) })
                 let timerLapse = this.settingsUtil.getTimeLapse()
                 CLog.log(`${this.TAG} startRecording getValue= ${JSON.stringify(timerLapse)}`)
-                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify($r('app.string.off'))) {
+                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify(Timer.RESOURCE_OFF)) {
                   this.state.changeTimeLapse(true)
                 } else {
                   this.state.capture()

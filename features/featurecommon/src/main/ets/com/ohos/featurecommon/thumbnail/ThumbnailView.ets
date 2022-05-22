@@ -14,7 +14,6 @@
  */
 
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
-import GetPixelMap from '../../../../../../../../../common/src/main/ets/default/Camera/GetPixelMap'
 import {ThumbnailController} from './ThumbnailController'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
 import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
@@ -98,7 +97,7 @@ export struct ThumbnailView {
 
   private aboutToDisappear(): void {
     CLog.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
+    this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, null)
     this.appEventBus.off(Action.ACTION_LOAD_THUMBNAIL, this.onThumbnailLoad.bind(this))
     this.mConnect.destroy()
     CLog.info(`${this.TAG} aboutToDisappear X`)

@@ -18,41 +18,38 @@ import { EventBus } from "./EventBus"
 export default class EventBusManager {
   // The global eventbus of the application process. Event registration and destruction should be paired
   private appEventBus: EventBus;
-  static sInstance: EventBusManager = undefined;
-  static mInstance: EventBusManager = undefined;
-  static wInstance: EventBusManager = undefined;
-  static cInstance: EventBusManager = undefined;
 
-  private constructor() {
+  constructor() {
     this.appEventBus = new EventBus();
   }
 
   public static getInstance(): EventBusManager {
-    if (EventBusManager.sInstance == null) {
-      EventBusManager.sInstance = new EventBusManager();
+    if (!globalThis?.sInstanceEventBus) {
+      globalThis.sInstanceEventBus = new EventBusManager();
+      console.info('EventBusManager create a new EventBus')
     }
-    return EventBusManager.sInstance;
+    return globalThis.sInstanceEventBus;
   }
 
   public static getMainInstance(): EventBusManager {
-    if (EventBusManager.mInstance == null) {
-      EventBusManager.mInstance = new EventBusManager();
+    if (!globalThis?.mInstanceEventBus) {
+      globalThis.mInstanceEventBus = new EventBusManager();
     }
-    return EventBusManager.mInstance;
+    return globalThis.mInstanceEventBus;
   }
 
   public static getWorkerInstance(): EventBusManager {
-    if (EventBusManager.wInstance == null) {
-      EventBusManager.wInstance = new EventBusManager();
+    if (!globalThis?.wInstanceEventBus) {
+      globalThis.wInstanceEventBus = new EventBusManager();
     }
-    return EventBusManager.wInstance;
+    return globalThis.wInstanceEventBus;
   }
 
   public static getCameraInstance(): EventBusManager {
-    if (EventBusManager.cInstance == null) {
-      EventBusManager.cInstance = new EventBusManager();
+    if (!globalThis?.cInstanceEventBus) {
+      globalThis.cInstanceEventBus = new EventBusManager();
     }
-    return EventBusManager.cInstance;
+    return globalThis.cInstanceEventBus;
   }
 
   public getEventBus(): EventBus {

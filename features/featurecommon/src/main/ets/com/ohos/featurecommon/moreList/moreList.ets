@@ -75,13 +75,14 @@ export struct MoreList {
 
   private setDirection() {
     switch (deviceInfo.deviceType) {
-      case "default":
-        this.mDirection = PanDirection.Right
+      case 'PAD':
+        this.mDirection = PanDirection.Down
         break
-      case "tablet":
+      case 'tablet':
         this.mDirection = PanDirection.Down
         break
       default:
+        this.mDirection = PanDirection.Right
         break
     }
   }

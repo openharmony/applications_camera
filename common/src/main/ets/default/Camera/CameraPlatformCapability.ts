@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
+import deviceInfo from '@ohos.deviceInfo'
+
 import { CameraId } from '../setting/CameraId'
 import { CLog } from '../Utils/CLog'
 
 export class CameraPlatformCapability {
   private TAG: string = '[CameraPlatformCapability]:'
-  private static sInstance: CameraPlatformCapability = undefined
   public mZoomRatioRangeMap = new Map()
   public mPhotoPreviewSizeMap = new Map()
   public mVideoPreviewSizeMap = new Map()
@@ -51,10 +52,10 @@ export class CameraPlatformCapability {
   }
 
   public static getInstance(): CameraPlatformCapability {
-    if (!CameraPlatformCapability.sInstance) {
-      CameraPlatformCapability.sInstance = new CameraPlatformCapability()
+    if (!globalThis?.sInstanceCapability) {
+      globalThis.sInstanceCapability = new CameraPlatformCapability()
     }
-    return CameraPlatformCapability.sInstance;
+    return globalThis.sInstanceCapability;
   }
 
   public async init() {
@@ -63,10 +64,10 @@ export class CameraPlatformCapability {
 
   public async calcSupportedSizes(cameraInput) {
     CLog.info(`${this.TAG} calcSupportedSizes called.`)
-    let photoSize = await cameraInput.getSupportedSizes(2000) //CAMERA_FORMAT_JPEG
-    if (!photoSize) {
+    if (deviceInfo.deviceType == 'default') {
       return
     }
+    let photoSize = await cameraInput.getSupportedSizes(2000) //CAMERA_FORMAT_JPEG
     let previewCurSize = await cameraInput.getSupportedSizes(1003) //CAMERA_FORMAT_YCRCb_420_SP
     CLog.info(`${this.TAG} calcSupportedSizes photoSize ${JSON.stringify(photoSize)}`)
     CLog.info(`${this.TAG} calcSupportedSizes previewCurSize ${JSON.stringify(previewCurSize)}`)

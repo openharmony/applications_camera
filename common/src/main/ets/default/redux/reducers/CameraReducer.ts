@@ -30,7 +30,7 @@ export default function CameraReducer(state = initState, action: {
   switch (action.type) {
     case Action.ACTION_SET_CAMERA_POSITION:
       return { ...state, cameraPosition: action.data.cameraPosition }
-    case Action.ACTION_CAMERA_POSITION_CHANGED:
+    case Action.ACTION_UPDATE_CAMERA_POSITION:
       return { ...state, curCameraPosition: action.data.cameraPosition }
     default:
       return state;
