@@ -19,9 +19,9 @@ export class SettingData {
 
   settingTitle?: string | Resource;
   imagePath?: string | Resource;
-  settingName?: string | Resource;
-  checkedName?: string;
-  settingAlias?: string;
+  settingName?: Resource;
+  checkedName?: Resource;
+  settingAlias?: Resource;
   selectType?: string;
   radio?: string;
   toggle?: string;

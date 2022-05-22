@@ -13,36 +13,6 @@
  * limitations under the License.
  */
 
-////import ability_featureAbility from '@ohos.ability.featureAbility';
-//import router from '@system.router';
-//import wantConstant from '@ohos.ability.wantConstant';
-//
-//import { AsyncManager } from '../../../../../../common/src/main/ets/default/Utils/AsyncManager'
-////import {CameraService} from '../../../../../../../common/src/main/ets/default/Camera/CameraService.ets';
-//import { changePreviewSize } from '../../../../../../common/src/main/ets/default/redux/actions/ModeChange'
-//import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-//import getStore from '../../../../../../common/src/main/ets/default/redux/store'
-//import { ModeConfig } from '../common/ModeConfig'
-//import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
-//
-//let changeModeState = (state) => {
-//  return {
-//    number: state.ModeChangeReducer.number,
-//    res: state.ModeChangeReducer.res
-//  }
-//}
-//
-//let changeModeDispatch = (dispatch) => {
-//  return {
-//    onclickPhoto: () => {
-//      CLog.info('[ControlLand]: zhaochong: onclickPhoto1')
-//      dispatch(changePreviewSize(154))
-//      CLog.info('[ControlLand]: zhaochong: onclickPhoto2')
-//    },
-//    onclickVideo: () => dispatch(changePreviewSize(0))
-//  }
-//}
-
 import display from '@ohos.display'
 
 import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
@@ -75,8 +45,8 @@ let controlLandState = (state) => {
 let controlLandDispatcher = (dispatch) => {
   return {
     changeToMode: (mode: string) => {
+      dispatch(Action.setMode(mode))
       dispatch(Action.UiState(false))
-      dispatch(Action.ChangeMode(mode))
       dispatch(Action.UpdateShowBigTextFlag(true))
     },
     updateModeIndex: (index: number) => {
@@ -91,14 +61,14 @@ let controlLandDispatcher = (dispatch) => {
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
       dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
     },
-    thirdPartyCall: (isThirdPartyCall: boolean) => {
-      dispatch(Action.thirdPartyCall(isThirdPartyCall))
+    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
+      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
     },
     initAction: (action: string) => {
       dispatch(Action.InitAction(action))
     },
-    InitMode: (mode: string) => {
-      dispatch(Action.InitMode(mode))
+    initMode: (mode: string) => {
+      dispatch(Action.initMode(mode))
     }
   }
 }
@@ -115,38 +85,6 @@ export struct ControlLand {
 
   @State state: any = {}
 
-//  scroller: Scroller = new Scroller()
-//  //  private cameraService = CameraService.getInstance()
-//  @Link aspectRatio: number
-//  @Link previewImage: string
-//  private modeConfig: ModeConfig = new ModeConfig()
-//  private asyncManager: AsyncManager
-//  @Link state: any
-//  private connect: any
-//  @State scrollValue: number = 0
-//  @State photoFontWeight: FontWeight = FontWeight.Bold
-//  @State videoFontWeight: FontWeight = FontWeight.Regular
-//  @State multiFontWeight: FontWeight = FontWeight.Regular
-//  @State notCheckFontSize: Resource = $r("sys.float.ohos_id_text_size_body2") // 未选中
-//  @State checkFontSize: Resource = $r("sys.float.ohos_id_text_size_body1") // 选中
-//  @State photoFontSize: Resource = $r("sys.float.ohos_id_text_size_body1")
-//  @State videoFontSize: Resource = $r("sys.float.ohos_id_text_size_body2")
-//  @State multiFontSize: Resource = $r("sys.float.ohos_id_text_size_body2")
-//  @Link isThirdPartyCall: boolean
-//  @Link action: string
-//  @Link isSmallVideoTimerVisible: boolean
-//  @Link isBigVideoTimerVisible: boolean
-//  @Link cameraPosition: string
-//  @Link XcomponentWidth: string
-//  @Link XcomponentHeight: string
-//  @State opacityValue: number = 1
-//  @Link curPreviewImage: string
-//  @Link xComponentChangeFlag: boolean
-//  @State initIndex: number = 1
-//  @State modeIndex: number = 0
-//  private settingsUtil = SettingsUtil.getInstance()
-
-
   public aboutToAppear(): void {
     CLog.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(controlLandState, controlLandDispatcher)(this.state)
@@ -154,16 +92,25 @@ export struct ControlLand {
       let width = (px2vp(dis.width) - (54 * 5)) / 2
       this.state.updateModeBarItemWidth(width)
       CLog.info(`${this.TAG} width: ${width}, modeBarItemWidth: ${this.state.modeBarItemWidth}`)
-      let startWant = globalThis.cameraAbilityWant
-      CLog.info(`${this.TAG}  Camera MainAbility onCreate uri: ${startWant.uri}`)
-      if (startWant.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
-        CLog.info(`${this.TAG} ACTION_IMAGE_CAPTURE called`)
-        this.state.thirdPartyCall(true)
-      } else if (startWant.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
-        CLog.info(`${this.TAG} ACTION_VIDEO_CAPTURE called`)
-        this.state.thirdPartyCall(true)
-      }
     })
+    let startWantAction = globalThis.cameraAbilityWant.action
+    CLog.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
+    if (!globalThis?.cameraNewWant && startWantAction) {
+      CLog.info(`${this.TAG} thirdParty called`)
+      this.state.thirdPartyCall(true, startWantAction)
+      switch (startWantAction) {
+        case wantConstant.Action.ACTION_IMAGE_CAPTURE:
+          this.state.initMode('PHOTO')
+          this.state.updateModeIndex(1)
+          break
+        case wantConstant.Action.ACTION_VIDEO_CAPTURE:
+          this.state.initMode('VIDEO')
+          this.state.updateModeIndex(2)
+          break
+        default:
+          break
+      }
+    }
     this.appEventBus.on(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
     CLog.info(`${this.TAG} aboutToAppear X`)
   }
@@ -222,7 +169,7 @@ export struct ControlLand {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
-        if (this.state.isThirdPartyCall && this.state.action === 'capture') {
+        if (this.state.isThirdPartyCall && this.state.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.photo_mode'))
 //              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
@@ -230,7 +177,7 @@ export struct ControlLand {
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
           }.layoutWeight(1).height('100%')
-        } else if (this.state.isThirdPartyCall && this.state.action === 'video') {
+        } else if (this.state.isThirdPartyCall && this.state.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.video_mode'))
 //              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})

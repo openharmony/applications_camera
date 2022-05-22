@@ -34,7 +34,7 @@ export default function ContextReducer(state = initState, action: {
     case Action.ACTION_INIT_FOOT_BAR_HEIGHT:
       return { ...state, footBarHeight: action.data.footBarHeight }
     case Action.ACTION_THIRD_PARTY_CALL:
-      return { ...state, isThirdPartyCall: action.data.isThirdPartyCall }
+      return { ...state, isThirdPartyCall: action.data.isThirdPartyCall, action: action.data.action }
     case Action.ACTION_SET_PERMISSION_FLAG:
       return { ...state, permissionFlag: action.data.permissionFlag }
     case Action.ACTION_INIT_ACTION:

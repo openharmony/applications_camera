@@ -43,8 +43,8 @@ let controlState = (state) => {
 let controlDispatcher = (dispatch) => {
   return {
     changeToMode: (mode: string) => {
+      dispatch(Action.setMode(mode))
       dispatch(Action.UiState(false))
-      dispatch(Action.ChangeMode(mode))
       dispatch(Action.UpdateShowBigTextFlag(true))
     },
     updateModeIndex: (index: number) => {
@@ -59,14 +59,14 @@ let controlDispatcher = (dispatch) => {
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
       dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
     },
-    thirdPartyCall: (isThirdPartyCall: boolean) => {
-      dispatch(Action.thirdPartyCall(isThirdPartyCall))
+    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
+      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
     },
     initAction: (action: string) => {
       dispatch(Action.InitAction(action))
     },
-    InitMode: (mode: string) => {
-      dispatch(Action.InitMode(mode))
+    initMode: (mode: string) => {
+      dispatch(Action.initMode(mode))
     }
   }
 }
@@ -89,14 +89,23 @@ export struct Control {
       this.state.updateModeBarItemWidth(width)
       CLog.info(`${this.TAG} width: ${width}, modeBarItemWidth: ${this.state.modeBarItemWidth}`)
     })
-    let startWant = globalThis.cameraAbilityWant
-    CLog.info(`${this.TAG}  Camera MainAbility onCreate uri: ${startWant.uri}`)
-    if (startWant.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
-      CLog.info(`${this.TAG} ACTION_IMAGE_CAPTURE called`)
-      this.state.thirdPartyCall(true)
-    } else if (startWant.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
-      CLog.info(`${this.TAG} ACTION_VIDEO_CAPTURE called`)
-      this.state.thirdPartyCall(true)
+    let startWantAction = globalThis.cameraAbilityWant.action
+    CLog.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
+    if (!globalThis?.cameraNewWant && startWantAction) {
+      CLog.info(`${this.TAG} thirdParty called`)
+      this.state.thirdPartyCall(true, startWantAction)
+      switch (startWantAction) {
+        case wantConstant.Action.ACTION_IMAGE_CAPTURE:
+          this.state.initMode('PHOTO')
+          this.state.updateModeIndex(1)
+          break
+        case wantConstant.Action.ACTION_VIDEO_CAPTURE:
+          this.state.initMode('VIDEO')
+          this.state.updateModeIndex(2)
+          break
+        default:
+          break
+      }
     }
     CLog.info(`${this.TAG} aboutToAppear X`)
   }
@@ -149,7 +158,7 @@ export struct Control {
   build() {
     Column() {
       Stack({ alignContent: Alignment.BottomStart }) {
-        if (this.state.isThirdPartyCall && this.state.action === 'capture') {
+        if (this.state.isThirdPartyCall && this.state.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
           Row() {
             Text($r('app.string.photo_mode'))
               .width('100%').height('100%')
@@ -157,7 +166,7 @@ export struct Control {
               .fontWeight(FontWeight.Bold)
               .textAlign(TextAlign.Center)
           }.width('100%').height('100%')
-        } else if (this.state.isThirdPartyCall && this.state.action === 'video') {
+        } else if (this.state.isThirdPartyCall && this.state.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
           Row() {
             Text($r('app.string.video_mode'))
               .width('100%').height('100%')

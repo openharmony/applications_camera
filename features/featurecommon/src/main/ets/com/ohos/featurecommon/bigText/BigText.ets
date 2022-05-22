@@ -86,7 +86,6 @@ export struct BigText {
     }
     .width('100%')
     .height('96vp')
-//    { y: this.bigTextPositionY }
     //tablet 需要.position， phone不需要
     .position(this.state.bigTextPositionY)
   }

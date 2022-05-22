@@ -27,10 +27,12 @@ export default function ModeReducer(state = initState, action: {
 }) {
   switch (action.type) {
     case Action.ACTION_INIT_MODE:
-      return { ...state, mode: action.data.mode, curMode: action.data.mode }
+      return { ...state, mode: action.data.mode }
     case Action.ACTION_CHANGE_MODE:
       return { ...state, mode: action.data.mode }
-    case Action.ACTION_ON_MODE_CHANGED:
+    case Action.ACTION_SET_MODE:
+      return { ...state, mode: action.data.mode }
+    case Action.ACTION_UPDATE_MODE:
       return { ...state, curMode: action.data.mode }
     case Action.ACTION_SWIPE_MODE:
       return {...state, value: action.data.swipeModeIndex}

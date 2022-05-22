@@ -99,6 +99,7 @@ export class EventBus {
     // once deleting the event will cause this in the following loop this._events moves forward in fn,
     // so it is copied here as a new array
     let _self = this
+    CLog.info(`${this.TAG} emit event = ${JSON.stringify(event)}  ${JSON.stringify(this._events[event])}`)
     if (!_self._events[event]) {
       return
     }

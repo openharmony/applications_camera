@@ -23,7 +23,10 @@ export default class AspectRatio {
   public static readonly ASPECT_RATIO_4_3 = '4:3'
   public static readonly ASPECT_RATIO_1_1 = '1:1'
   public static readonly ASPECT_RATIO_16_9 = '16:9'
-  public static readonly DEFAULT_VALUE = AspectRatio.ASPECT_RATIO_4_3
+  public static readonly DEFAULT_VALUE = $r('app.string.photo_ratio_4_3')
+  public static readonly RESOURCE_RATIO_4_3 = AspectRatio.DEFAULT_VALUE
+  public static readonly RESOURCE_RATIO_1_1 = $r('app.string.photo_ratio_1_1')
+  public static readonly RESOURCE_RATIO_16_9 = $r('app.string.photo_ratio_16_9')
 
   private static getIndex(aspectRatio: string): number {
     if (aspectRatio === AspectRatio.ASPECT_RATIO_4_3) {
@@ -46,5 +49,28 @@ export default class AspectRatio {
     let index = AspectRatio.getIndex(aspectRatio)
     CLog.info(`${this.TAG} getImageSize size = ${JSON.stringify(platform.mImageSize[index])}`)
     return platform.mImageSize[index]
+  }
+
+  public static convertToResource(aspectRatio: string): Resource {
+    switch (aspectRatio) {
+      case AspectRatio.ASPECT_RATIO_4_3:
+        return AspectRatio.RESOURCE_RATIO_4_3
+      case AspectRatio.ASPECT_RATIO_1_1:
+        return AspectRatio.RESOURCE_RATIO_1_1
+      case AspectRatio.ASPECT_RATIO_16_9:
+        return AspectRatio.RESOURCE_RATIO_16_9
+      default:
+        return AspectRatio.DEFAULT_VALUE
+    }
+  }
+
+  public static convertToString(res: Resource): String {
+    if (JSON.stringify(res) === JSON.stringify(AspectRatio.RESOURCE_RATIO_4_3)) {
+      return AspectRatio.ASPECT_RATIO_4_3
+    } else if (JSON.stringify(res) == JSON.stringify(AspectRatio.RESOURCE_RATIO_1_1)) {
+      return AspectRatio.ASPECT_RATIO_1_1
+    } else if (JSON.stringify(res) == JSON.stringify(AspectRatio.RESOURCE_RATIO_16_9)) {
+      return AspectRatio.ASPECT_RATIO_16_9
+    }
   }
 }

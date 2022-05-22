@@ -68,7 +68,7 @@ let indexDispatcher = (dispatch) => {
       dispatch(Action.SetCameraPosition(cameraPosition))
     },
     initMode: (mode: string) => {
-      dispatch(Action.InitMode(mode))
+      dispatch(Action.initMode(mode))
     },
     changeTimeLapse: (isShowtimeLapse: boolean) => {
       dispatch(Action.changeTimeLapse(isShowtimeLapse))

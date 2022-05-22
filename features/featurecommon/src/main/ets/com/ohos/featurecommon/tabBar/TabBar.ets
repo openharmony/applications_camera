@@ -17,8 +17,6 @@ import router from "@system.router"
 
 import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
-//import { TabBarOther } from './TabBarPhone/TabBarOther'
-//import { TabBarSame } from './TabBarPhone/TabBarSame'
 
 let tabBarState = (state) => {
   return {}

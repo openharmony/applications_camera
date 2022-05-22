@@ -15,6 +15,7 @@
 
 import AspectRatio from '../../../../../../../../../../common/src/main/ets/default/setting/AspectRatio'
 import Resolution from '../../../../../../../../../../common/src/main/ets/default/setting/Resolution'
+import Timer from '../../../../../../../../../../common/src/main/ets/default/setting/Timer'
 import {CustomDialogView, CustomDialogDetails} from '../../customDialog/dialogComponent/CustomDialogView'
 import {CLog} from '../../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import {SettingsUtil} from '../../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
@@ -31,7 +32,7 @@ export struct SetResolution {
   private settingsUtil = SettingsUtil.getInstance()
   private setAlias: string= undefined;
 
-  @State curCheckName: string = ""
+  @State curCheckName: Resource = $r("app.string.default_value")
   @Provide customDialogDetails: CustomDialogDetails = {
     confirmCallback: null,
     confirmItem: true,
@@ -50,30 +51,22 @@ export struct SetResolution {
   })
 
   existView() {
-    CLog.info(`${this.TAG} existView start`)
-    try {
-      this.getCheckValue = this.settingsUtil.getSettingValue(this.itemValue.settingAlias)
-      this.getCheckValue.then(vData => {
-        this.curCheckName = vData
-        CLog.log(this.TAG + " this.checkNameList = " + JSON.stringify(this.curCheckName))
-      })
-    } catch {
-      CLog.info(`${this.TAG} settingsList = ${JSON.stringify(this.settingsList)}`)
-    }
+    CLog.info(`${this.TAG} existView E`)
+    this.curCheckName = this.settingsUtil.getSettingValue(this.itemValue.settingAlias)
+    CLog.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
   }
 
   aboutToAppear() {
-    CLog.info(`${this.TAG} aboutToAppear start`)
-    try {
-      this.getCheckValue = this.settingsUtil.getSettingValue(this.itemValue.settingAlias)
-      this.getCheckValue.then(vData => {
-        this.curCheckName = vData
-      })
-    } catch {
-      this.curCheckName = this.itemValue.checkedName
+    CLog.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
+    this.curCheckName = this.settingsUtil.getSettingValue(this.itemValue.settingAlias)
+    CLog.info(`${this.TAG} aboutToAppear curCheckName: ${this.curCheckName} X`)
+  }
+
+  public formatCurCheckName(name) {
+    if (JSON.stringify(name) === JSON.stringify(Timer.DEFAULT_VALUE)) {
+      name = Timer.RESOURCE_OFF_ALREADY
     }
-    CLog.info(`${this.TAG} aboutToAppear settingsList ${JSON.stringify(this.settingsList)}`)
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    return name
   }
 
   build() {
@@ -96,7 +89,7 @@ export struct SetResolution {
         }
 
         Row() {
-          Text(this.curCheckName)
+          Text(this.formatCurCheckName(this.curCheckName))
             .fontColor($r('app.color.font_color_FFFFFF'))
             .fontSize($r("sys.float.ohos_id_text_size_body2"))
             .fontWeight(FontWeight.Regular)

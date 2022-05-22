@@ -33,16 +33,16 @@
       "value": "Aspect Ratio"
     },
     {
-      "name": "photo_scale43",
-      "value": "4：3"
+      "name": "photo_ratio_4_3",
+      "value": "4:3"
     },
     {
-      "name": "photo_scale11",
-      "value": "1：1"
+      "name": "photo_ratio_1_1",
+      "value": "1:1"
     },
     {
-      "name": "photo_scale1609",
-      "value": "16：9"
+      "name": "photo_ratio_16_9",
+      "value": "16:9"
     },
     {
       "name": "video_resolution",
@@ -73,12 +73,16 @@
       "value": "10 seconds"
     },
     {
-      "name": "resolution16091080",
+      "name": "resolution_1620_1080",
       "value": "[16:9] 1080p"
     },
     {
-      "name": "resolution16091080720",
+      "name": "resolution_1280_720",
       "value": "[16:9] 720p"
+    },
+    {
+      "name": "default_value",
+      "value": " "
     },
     {
       "name": "record_time",

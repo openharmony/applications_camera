@@ -14,6 +14,8 @@
  */
 
 import display from '@ohos.display';
+import wantConstant from '@ohos.ability.wantConstant'
+import window from '@ohos.window';
 
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { AssistiveGridView
@@ -101,8 +103,8 @@ let cameraDispatcher = (dispatch) => {
     startVideoFlag: (isStartVideo: boolean) => {
       dispatch(Action.StartVideoFlag(isStartVideo))
     },
-    cameraPositionChanged: (cameraPosition: string) => {
-      dispatch(Action.CameraPositionChanged(cameraPosition))
+    updateCameraPosition: (cameraPosition: string) => {
+      dispatch(Action.updateCameraPosition(cameraPosition))
     },
     changeXComponentSize: (xComponentWidth: string, xComponentHeight: string) => {
       dispatch(Action.ChangeXComponentSize(xComponentWidth, xComponentHeight))
@@ -157,15 +159,31 @@ let cameraDispatcher = (dispatch) => {
     },
     assistiveGridView: (isViewShow) => {
       dispatch(Action.assistiveGridView(isViewShow))
+    },
+    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
+      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
+    },
+    initMode: (mode: string) => {
+      dispatch(Action.initMode(mode))
+    },
+    updateModeIndex: (index: number) => {
+      dispatch(Action.UpdateModeIndex(index))
+    },
+    updateMode: (mode: string) => {
+      dispatch(Action.updateMode(mode))
+    },
+    changeToMode: (mode: string) => {
+      dispatch(Action.ChangeMode(mode))
     }
   }
 }
+
+globalThis.mXComponentController = new XComponentController()
 
 @Component
 export struct PreviewArea {
   private TAG: string = '[PreviewArea]:'
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  mXComponentController: XComponentController = new XComponentController()
 
   @State state: any = {}
 
@@ -181,8 +199,8 @@ export struct PreviewArea {
 //      if (!this.state.isShowPreview) {
         this.settingsUtil.loadAllSetting().then(() => {
           this.settingsUtil.setCameraPlatformCapability(data.platformCapability)
-          this.settingsUtil.setCameraId(getCameraId(this.state.curCameraPosition))
-          this.settingsUtil.setMode(this.state.curMode)
+          this.settingsUtil.setCameraId(getCameraId(this.state.cameraPosition))
+          this.settingsUtil.setMode(this.state.mode)
 
           let imageSize = this.settingsUtil.getImageSize()
           this.state.changeImageSize(imageSize)
@@ -237,10 +255,8 @@ export struct PreviewArea {
 
   private async doCameraAction(surfaceId: number) {
     CLog.debug(`${this.TAG} doCameraAction E`)
-    let size = SettingsUtil.getInstance().getPreviewSize()
-    CLog.info(`${this.TAG} doCameraAction size = ${JSON.stringify(size)}`)
-    let control: any = this.mXComponentController
-    control.setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height })
+    this.settingsUtil.setCameraId(getCameraId(this.state.cameraPosition))
+    this.settingsUtil.setMode(this.state.mode)
     this.state.prepareSurface(surfaceId)
     if (this.state.curCameraPosition != this.state.cameraPosition) {
       if (this.state.cameraPosition === 'ORIGIN') {
@@ -249,20 +265,18 @@ export struct PreviewArea {
       } else {
         this.state.switchCamera(getCameraId(this.state.cameraPosition), surfaceId)
       }
-    } else if (this.state.isStartVideo) {
-      this.state.startVideoFlag(false)
+    } else if (this.state.curMode != this.state.mode) {
+      this.state.changeToMode(this.state.mode)
     } else {
-      if (this.state.curMode === this.state.mode) {
-        this.state.startPreview()
-      }
+      this.state.startPreview()
     }
-    this.state.cameraPositionChanged(this.state.cameraPosition)
+    this.state.updateCameraPosition(this.state.cameraPosition)
+    this.state.updateMode(this.state.mode)
     CLog.debug(`${this.TAG} doCameraAction X`)
   }
 
   private async onModeChanged(data) {
     CLog.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`)
-    this.settingsUtil.setMode(data.mode)
     let xComponentSize = this.settingsUtil.getPreviewDisplaySize()
     this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
     this.state.updateShowPreviewFlag(true)
@@ -271,7 +285,8 @@ export struct PreviewArea {
 
   private async onScreenChange(isScreenOn) {
     CLog.debug(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`)
-    if (isScreenOn) {
+    // the build() can only be called when window is foreground
+    if (isScreenOn && globalThis.cameraWindowStageEvent == window.WindowStageEventType.FOREGROUND) {
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
       this.state.initCamera(getCameraId(this.state.curCameraPosition), this.state.mode)
       this.state.initZoomRatio(1, 6)
@@ -298,6 +313,24 @@ export struct PreviewArea {
     globalThis.onForegroundInit = (() => {
       CLog.info(`${this.TAG} globalThis.onForegroundInit called`)
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.action
+      if (newWantAction) {
+        this.state.thirdPartyCall(true, newWantAction)
+        switch (newWantAction) {
+          case wantConstant.Action.ACTION_IMAGE_CAPTURE:
+            this.state.initMode('PHOTO')
+            this.state.updateModeIndex(1)
+            break
+          case wantConstant.Action.ACTION_VIDEO_CAPTURE:
+            this.state.initMode('VIDEO')
+            this.state.updateModeIndex(2)
+            break
+          default:
+            break
+        }
+      } else {
+        this.state.thirdPartyCall(false, newWantAction)
+      }
     })
     this.state.initCamera(getCameraId(this.state.curCameraPosition), this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
@@ -329,7 +362,7 @@ export struct PreviewArea {
       this.state.updateIsShowZoomText(true)
       this.baseZoom = this.state.zoomRatio
     }
-    CLog.info(`${this.TAG} track debug pinchGestureStart X`)
+    CLog.info(`${this.TAG} pinchGestureStart X`)
   }
 
   private pinchGestureUpdate(event: GestureEvent) {
@@ -379,11 +412,11 @@ export struct PreviewArea {
               id: '',
               type: 'surface',
               libraryname: '',
-              controller: this.mXComponentController
+              controller: globalThis.mXComponentController
             })
             .onLoad(() => {
               CLog.info(`${this.TAG} XComponent onLoad cameraPosition: `)
-              let surfaceId = this.mXComponentController.getXComponentSurfaceId()
+              let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
               this.state.updateSurfaceId(surfaceId)
               this.doCameraAction(surfaceId)
             })
@@ -401,11 +434,11 @@ export struct PreviewArea {
               id: '',
               type: 'surface',
               libraryname: '',
-              controller: this.mXComponentController
+              controller: globalThis.mXComponentController
             })
               .onLoad(() => {
                 CLog.info(`${this.TAG} XComponent onLoad cameraPosition: `)
-                let surfaceId = this.mXComponentController.getXComponentSurfaceId()
+                let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
                 this.state.updateSurfaceId(surfaceId)
                 this.doCameraAction(surfaceId)
               })
