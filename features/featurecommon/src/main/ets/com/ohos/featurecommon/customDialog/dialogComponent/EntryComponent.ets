@@ -18,6 +18,9 @@ import settings from '@ohos.settings';
 import {CLog} from '../../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import SettingListModel from '../../../../../../../../../../common/src/main/ets/default/model/SettingListImpl/SettingListModel';
 import {SettingsUtil} from '../../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil';
+import Timer from '../../../../../../../../../../common/src/main/ets/default/setting/Timer';
+import AspectRatio from '../../../../../../../../../../common/src/main/ets/default/setting/AspectRatio';
+import Resolution from '../../../../../../../../../../common/src/main/ets/default/setting/Resolution';
 
 @Component
 export default struct EntryComponent {
@@ -36,24 +39,18 @@ export default struct EntryComponent {
       CLog.log(`${this.TAG} EntryComponent.getValue=${this.getValue}`)
     } catch {
       CLog.log(`${this.TAG} catch this.settingAlias=${this.settingAlias}`)
-      if (this.settingAlias === 'VideoResolution') {
-        this.getValue = '[16:9] 720p'
-      } else if (this.settingAlias === 'Timer') {
-        this.getValue = $r('app.string.off')
+      if (this.settingAlias === Resolution.ALIAS) {
+        this.getValue = Resolution.DEFAULT_VALUE
+      } else if (this.settingAlias === Timer.ALIAS) {
+        this.getValue = Timer.DEFAULT_VALUE
       } else {
-        this.getValue = '4:3'
+        this.getValue = AspectRatio.DEFAULT_VALUE
       }
-      CLog.log(`${this.TAG} catch this.getValue=${this.getValue}`)
+      CLog.error(`${this.TAG} catch this.getValue=${this.getValue}`)
     }
   }
 
-  private logger(): boolean {
-    CLog.info(`${this.TAG} build`)
-    return true
-  }
-
   build() {
-    if (this.logger()) {
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
         Text(this.itemValue)
           .fontColor('#E6000000')
@@ -67,14 +64,11 @@ export default struct EntryComponent {
           .checked(JSON.stringify(this.itemValue) === JSON.stringify(this.getValue))
           .enabled(true)
           .onClick(() => {
-            CLog.info(`${this.TAG} onChange settingAlias${this.settingAlias}`)
-            CLog.info(`${this.TAG} onChange itemValue${this.itemValue}`)
+            CLog.info(`${this.TAG} onChange settingAlias:${this.settingAlias}  itemValue:${this.itemValue}`)
             this.settingsUtil.setSettingValue(this.settingAlias, this.itemValue)
             this.onChange()
           });
       }
-      //      .height(48)
       .width('100%')
-    }
   }
 }

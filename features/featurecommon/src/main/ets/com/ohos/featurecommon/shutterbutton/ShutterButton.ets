@@ -22,6 +22,7 @@ import {Action} from '../../../../../../../../../common/src/main/ets/default/red
 import {EventBus} from '../../../../../../../../../common/src/main/ets/default/Utils/EventBus'
 import EventBusManager from '../../../../../../../../../common/src/main/ets/default/Utils/EventBusManager'
 import {SettingsUtil} from '../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import Timer from '../../../../../../../../../common/src/main/ets/default/setting/Timer'
 
 let localState = (state) => {
   return {
@@ -125,7 +126,7 @@ export struct ShutterButton {
               if (event.type === TouchType.Up) {
                 let timerLapse = this.settingsUtil.getTimeLapse()
                 CLog.log(`${this.TAG} ShutterButton startRecording getValue= ${JSON.stringify(timerLapse)}`)
-                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify($r('app.string.off'))) {
+                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify(Timer.RESOURCE_OFF)) {
                   CLog.log('ShutterButton startRecording changeTimeLapse called')
                   this.state.changeTimeLapse(true)
                 } else {
@@ -151,7 +152,7 @@ export struct ShutterButton {
                   () => { this.state.updateCaptureBtnScale(1) })
                 let timerLapse = this.settingsUtil.getTimeLapse()
                 CLog.log(`${this.TAG} ShutterButton startRecording getValue= ${JSON.stringify(timerLapse)}`)
-                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify($r('app.string.off'))) {
+                if (timerLapse && JSON.stringify(timerLapse) !== JSON.stringify(Timer.RESOURCE_OFF)) {
                   CLog.log('ShutterButton startRecording changeTimeLapse called')
                   this.state.changeTimeLapse(true)
                 } else {

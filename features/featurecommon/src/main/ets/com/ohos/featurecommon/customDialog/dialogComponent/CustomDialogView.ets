@@ -44,7 +44,7 @@ export struct CustomDialogView {
 
   async aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear start`)
-    if (deviceInfo.deviceType == 'PAD') {
+    if (deviceInfo.deviceType == 'PAD' || deviceInfo.deviceType == 'tablet') {
       this.localStyle = { "columns": 12, "offset": 4 }
     } else {
       this.localStyle = { "columns": 4, "offset": 0 }

@@ -22,16 +22,15 @@ export default class Resolution {
   public static readonly ALIAS = 'VideoResolution'
   public static readonly RESOLUTION_16_9_720P = '[16:9] 720p'
   public static readonly RESOLUTION_16_9_1080P = '[16:9] 1080p'
-  public static readonly RESOLUTION_16_9_4K = '[16:9] 4k'
-  public static readonly DEFAULT_VALUE = Resolution.RESOLUTION_16_9_720P
+  public static readonly DEFAULT_VALUE = $r('app.string.resolution_1280_720')
+  public static readonly RESOURCE_16_9_720P = Resolution.DEFAULT_VALUE
+  public static readonly RESOURCE_16_9_1080P = $r('app.string.resolution_1620_1080')
 
   private static getIndex(resolution: string): number {
     if (resolution === Resolution.RESOLUTION_16_9_720P) {
       return 0
     } else if (resolution === Resolution.RESOLUTION_16_9_1080P) {
       return 1
-    } else if (resolution === Resolution.RESOLUTION_16_9_4K) {
-      return 2
     }
     return 0
   }
@@ -46,5 +45,24 @@ export default class Resolution {
     let index = Resolution.getIndex(resolution)
     CLog.info(`${this.TAG} getVideoFrameSize size = ${JSON.stringify(platform.mVideoFrameSize[index])}`)
     return platform.mVideoFrameSize[index]
+  }
+
+  public static convertToResource(resolution: string): Resource {
+    switch (resolution) {
+      case Resolution.RESOLUTION_16_9_720P:
+        return Resolution.RESOURCE_16_9_720P
+      case Resolution.RESOLUTION_16_9_1080P:
+        return Resolution.RESOURCE_16_9_1080P
+      default:
+        return Resolution.RESOURCE_16_9_720P
+    }
+  }
+
+  public static convertToString(res: Resource): String {
+    if (JSON.stringify(res) === JSON.stringify(Resolution.RESOURCE_16_9_720P)) {
+      return Resolution.RESOLUTION_16_9_720P
+    } else if(JSON.stringify(res) === JSON.stringify(Resolution.RESOURCE_16_9_1080P)) {
+      return Resolution.RESOLUTION_16_9_1080P
+    }
   }
 }

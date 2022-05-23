@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-
 import Ability from '@ohos.application.Ability'
 
 export default class MainAbility extends Ability {
@@ -33,6 +32,10 @@ export default class MainAbility extends Ability {
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
         console.info('Camera MainAbility onWindowStageCreate.')
+        windowStage.on('windowStageEvent', (event) => {
+            console.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
+            globalThis.cameraWindowStageEvent = event
+        })
 
         windowStage.getMainWindow().then((win) => {
             try {
@@ -50,7 +53,7 @@ export default class MainAbility extends Ability {
                 })
 
             } catch (err) {
-                console.info('Camera setFullScreen err: ' + err)
+                console.error('Camera setFullScreen err: ' + err)
             }
         })
 
@@ -72,7 +75,7 @@ export default class MainAbility extends Ability {
     }
 
     onWindowStageDestroy() {
-        console.info('Camera MainAbility onWindowStageDestory.')
+        console.info('Camera MainAbility onWindowStageDestroy.')
     }
 
     onForeground() {
@@ -83,5 +86,10 @@ export default class MainAbility extends Ability {
     onBackground() {
         console.info('Camera MainAbility onBackground.')
         globalThis?.releaseCamera && globalThis.releaseCamera()
+    }
+
+    onNewWant(want) {
+        console.info('Camera MainAbility onNewWant.')
+        globalThis.cameraNewWant = want
     }
 }

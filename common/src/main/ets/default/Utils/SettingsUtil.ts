@@ -33,16 +33,6 @@ import { Voice } from '../setting/Voice'
 export class SettingsUtil {
   private static TAG: string = '[SettingsUtil]:'
   private mRdbStoreManager: RdbStoreManager = RdbStoreManager.getInstance()
-//  private mSettingAliasList = [
-//    AspectRatio.ALIAS,
-//    Resolution.ALIAS,
-//    AssistiveGrid.ALIAS,
-//    Timer.ALIAS,
-//    SelfMirror.ALIAS,
-//    SaveGeoLocation.ALIAS,
-//    VideoCodec.ALIAS,
-//    Voice.ALIAS
-//    ]
   private mSettingsList = [
     AspectRatio,
     Resolution,
@@ -53,8 +43,8 @@ export class SettingsUtil {
     VideoCodec,
     Voice
   ]
-  private mAspectRatio: string
-  private mResolution: string
+  private mAspectRatio: any
+  private mResolution: any
   private mAssistiveGrid: string
   private mIsLoad: boolean = false
   private mTimer: any
@@ -101,20 +91,15 @@ export class SettingsUtil {
       this.mCaptureMute = itemValue
       needCommit = true
     }
+    let value = this.convertToString(settingAlias, itemValue)
     if (needCommit) {
-      this.commit(settingAlias, itemValue)
+      this.commit(settingAlias, value)
     }
   }
 
-  public async getSettingValue(settingAlias) {
-    if (settingAlias == AspectRatio.ALIAS) {
-      return this.mAspectRatio
-    } else if (settingAlias == Resolution.ALIAS) {
-      return this.mResolution
-    } else if (settingAlias == AssistiveGrid.ALIAS) {
+  public getSetToggleSettingValue(settingAlias) {
+    if (settingAlias == AssistiveGrid.ALIAS) {
       return this.mAssistiveGrid
-    } else if (settingAlias == Timer.ALIAS) {
-      return this.mTimer
     } else if (settingAlias == SelfMirror.ALIAS) {
       return this.mSelfMirror
     } else if (settingAlias == SaveGeoLocation.ALIAS) {
@@ -123,6 +108,15 @@ export class SettingsUtil {
       return this.mVideoCodec
     } else if (settingAlias == Voice.ALIAS) {
       return this.mCaptureMute
+    }
+  }
+  public getSettingValue(settingAlias) {
+    if (settingAlias == AspectRatio.ALIAS) {
+      return this.mAspectRatio
+    } else if (settingAlias == Resolution.ALIAS) {
+      return this.mResolution
+    } else if (settingAlias == Timer.ALIAS) {
+      return this.mTimer
     }
     CLog.info(`${SettingsUtil.TAG}  ${settingAlias} don't have setting value`)
   }
@@ -139,7 +133,7 @@ export class SettingsUtil {
           for (let i = 0; i < resultList.length; i++) {
             CLog.info(`${SettingsUtil.TAG} loadAllSetting getSettingValue` + +i + ': ' + resultList[i].itemValue)
           }
-          let value = resultList[0].itemValue
+          let value = this.convertToResource(settingAlias, resultList[0].itemValue)
           if (settingAlias == AspectRatio.ALIAS) {
             this.mAspectRatio = value
           } else if (settingAlias == Resolution.ALIAS) {
@@ -299,5 +293,29 @@ export class SettingsUtil {
 
   public getCaptureMute() {
     return this.mCaptureMute
+  }
+
+  private convertToString (settingAlias, itemValue) {
+    if (settingAlias == AspectRatio.ALIAS) {
+      return AspectRatio.convertToString(itemValue)
+    } else if (settingAlias == Resolution.ALIAS) {
+      return Resolution.convertToString(itemValue)
+    } else if (settingAlias == Timer.ALIAS) {
+      return Timer.convertToString(itemValue)
+    } else {
+      return itemValue
+    }
+  }
+
+  private convertToResource (settingAlias, value) {
+    if (settingAlias == AspectRatio.ALIAS) {
+      return AspectRatio.convertToResource(value)
+    } else if (settingAlias == Resolution.ALIAS) {
+      return Resolution.convertToResource(value)
+    } else if (settingAlias == Timer.ALIAS) {
+      return Timer.convertToResource(value)
+    } else {
+      return value
+    }
   }
 }

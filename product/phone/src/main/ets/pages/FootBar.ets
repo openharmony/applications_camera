@@ -44,33 +44,6 @@ export struct FootBar {
   private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
-//  @Link previewImage: string
-////  private cameraService = CameraService.getInstance()
-//  @State isVisible: boolean = true
-//  @Link surfaceId: number
-//  @Link isThirdPartyCall: boolean;
-//  @Link isBigVideoTimerVisible: boolean
-//  @Link isSmallVideoTimerVisible: boolean
-//  @Link isResumeVideo: boolean
-//  @Link iscContinueVideo: boolean
-//  @Link isShowFlashBlack: boolean
-//  @Link isStartVideo: boolean
-//  @Link cameraId: string
-//
-//
-//  @Link cameraPosition: string
-//  @Link btnSwitch: boolean
-//  @Link btnSwitchSec: boolean
-//  @Link btnOpacity_first: number
-//  @Link btnOpacity_sec: number
-//  @Link xComponentChangeFlag: boolean
-//  @Link isSwitchBackground: boolean
-//  @Link videoState: string
-//  @Link XcomponentWidth: string
-//  @Link XcomponentHeight: string
-//  @State cameraDevice: string = 'phone'
-//  @Link state: any
-
   private async onRecordStart(data) {
     CLog.info(`${this.TAG} onRecordStart E`)
     this.state.isRecording = true
@@ -127,55 +100,4 @@ export struct FootBar {
     .width('100%')
     .padding({ top: 10, bottom: 10})
   }
-
-//  build() {
-//    Flex({
-//      direction: FlexDirection.Row,
-//      alignItems: ItemAlign.Center,
-//      justifyContent: FlexAlign.Center
-//    }) {
-//      ThumbnailView({state: $state})
-//      ShutterButton({
-//        previewImage: $previewImage,
-//        state: $state,
-//        isThirdPartyCall: $isThirdPartyCall,
-//        isStartVideo: $isStartVideo,
-//        isBigVideoTimerVisible: $isBigVideoTimerVisible,
-//        isSmallVideoTimerVisible: $isSmallVideoTimerVisible,
-//        isResumeVideo: $isResumeVideo,
-//        iscContinueVideo: $iscContinueVideo,
-//        isShowFlashBlack: $isShowFlashBlack,
-//        xComponentChangeFlag: $xComponentChangeFlag,
-//        videoState: $videoState,
-//        XcomponentWidth: $XcomponentWidth,
-//        XcomponentHeight: $XcomponentHeight
-//      })
-//      if (this.isVisible) {
-//        CameraSwitchButton({
-//          surfaceId: $surfaceId,
-//          cameraPosition: $cameraPosition,
-//          btnSwitch: $btnSwitch,
-//          btnSwitchSec: $btnSwitchSec,
-//          btnOpacity_first: $btnOpacity_first,
-//          btnOpacity_sec: $btnOpacity_sec,
-//          xComponentChangeFlag: $xComponentChangeFlag,
-//          previewImage: $previewImage,
-//          cameraId: $cameraId,
-//          isSwitchBackground: $isSwitchBackground,
-//          videoState: $videoState,
-//          cameraDevice: $cameraDevice,
-//          state: $state
-//        })
-//      } else {
-//        Column() {
-//        }
-//        .width('40')
-//        .aspectRatio(1)
-//      }
-//    }
-//    .height(96)
-//    .opacity(100)
-//    .width('100%')
-//    .padding({ top: 10, bottom: 10 })
-//  }
 }

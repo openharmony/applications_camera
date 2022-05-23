@@ -17,6 +17,7 @@ import {CLog} from '../../../../../../../../../common/src/main/ets/default/Utils
 import getStore from '../../../../../../../../../common/src/main/ets/default/redux/store'
 import {Action} from '../../../../../../../../../common/src/main/ets/default/redux/actions/Action'
 import {SettingsUtil} from '../../../../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import Timer from '../../../../../../../../../common/src/main/ets/default/setting/Timer'
 
 let localState = (state) => {
   return {
@@ -55,16 +56,16 @@ export struct TimeLapseView {
     CLog.debug(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
     switch(JSON.stringify(this.settingsUtil.getTimeLapse())){
-      case JSON.stringify($r('app.string.off')):
+      case JSON.stringify(Timer.RESOURCE_OFF):
         this.state.timerLapse = -1
         break;
-      case JSON.stringify($r('app.string.timer_2_seconds')):
+      case JSON.stringify(Timer.RESOURCE_TWO_SECONDS):
         this.state.timerLapse = 2
         break;
-      case JSON.stringify($r('app.string.timer_5_seconds')):
+      case JSON.stringify(Timer.RESOURCE_FIVE_SECONDS):
         this.state.timerLapse = 5
         break;
-      case JSON.stringify($r('app.string.timer_10_seconds')):
+      case JSON.stringify(Timer.RESOURCE_TEN_SECONDS):
         this.state.timerLapse = 10
         break;
       default:
