@@ -146,7 +146,7 @@ export struct BigVideoTimer {
             .textAlign(TextAlign.Center)
             .fontSize('50fp')
             .fontColor(Color.White)
-            .fontWeight(FontWeight.Lighter)
+            .fontWeight(300)
           Text('').width(12).height(12)
           Text('').layoutWeight(1)
         }

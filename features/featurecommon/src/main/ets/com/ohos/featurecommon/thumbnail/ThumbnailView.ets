@@ -107,9 +107,9 @@ export struct ThumbnailView {
     Column() {
       Stack() {
         Image(this.state.thumbnail)
-          .width('100%').aspectRatio(1).borderRadius(20).objectFit(ImageFit.Fill)
+          .width('100%').aspectRatio(1).borderRadius(22).objectFit(ImageFit.Fill)
       }
-      .width('100%').height('100%')
+      .width(44).height(44)
       .enabled(this.hasThumbnail)
       .onClick(async () => {
         CLog.info(`${this.TAG} launch bundle com.ohos.photos`)
