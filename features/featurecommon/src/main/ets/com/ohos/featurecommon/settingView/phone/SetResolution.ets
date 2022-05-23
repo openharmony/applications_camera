@@ -123,6 +123,7 @@ export struct SetResolution {
     this.customDialogDetails.childrenList = itemValue.radio;
     this.customDialogDetails.settingTitle = itemValue.settingName;
     this.customDialogDetails.setAlias = itemValue.settingAlias;
+    CLog.info(`${this.TAG} childrenList: ${JSON.stringify(itemValue.radio)}`)
     this.CustomDialogView.open()
     CLog.info(`${this.TAG} openDetailsDialog end`)
   }
