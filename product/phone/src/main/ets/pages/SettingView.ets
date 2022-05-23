@@ -61,7 +61,7 @@ struct SettingView {
 
   build() {
     Column() {
-      GridContainer({ columns: 4, gutter: this.tempGutter }) {
+      GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
         Row() {
           Image($r("app.media.ic_public_back"))
             .width(24)
@@ -90,28 +90,19 @@ struct SettingView {
         })
         .width(this.WH_100_100)
         .height(56)
-        .margin({ left: $r('sys.float.ohos_id_default_padding_start') })
+        .margin({ left: $r("sys.float.ohos_id_max_padding_start") })
       }
 
       GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
-        Row() {
-          Column() {
-            List() {
-              ForEach(this.settingsList, (item, index) => {
-                ListItem() {
-                  SettingItem({
-                    settingsList: $settingsList,
-                    item: item,
-                    index: index
-                  })
-                }
+        List() {
+          ForEach(this.settingsList, (item, index) => {
+            ListItem() {
+              SettingItem({
+                settingsList: $settingsList,
+                item: item,
+                index: index
               })
             }
-          }.useSizeType({
-            xs: { span: 4, offset: 0 },
-            sm: { span: 4, offset: 0 },
-            md: { span: 4, offset: 0 },
-            lg: { span: 4, offset: 0 }
           })
         }
       }
@@ -125,10 +116,10 @@ struct SettingView {
               .fontWeight(FontWeight.Regular)
               .textAlign(TextAlign.Center)
               .useSizeType({
-                xs: { span: 4, offset: 0 },
-                sm: { span: 4, offset: 0 },
-                md: { span: 4, offset: 0 },
-                lg: { span: 4, offset: 0 }
+                xs: { span: 2, offset: 0 },
+                sm: { span: 2, offset: 0 },
+                md: { span: 2, offset: 0 },
+                lg: { span: 2, offset: 0 }
               })
           }
           .borderRadius(30)
