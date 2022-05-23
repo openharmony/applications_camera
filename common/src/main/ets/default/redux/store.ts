@@ -53,11 +53,6 @@ export default function getStore(): {
       ModeReducer,
       SettingReducer,
       UiReducer
-//      CaptureReducer,
-//      CameraInitReducer,
-//      RecordReducer,
-//      ModeChangeReducer,
-//      UiReducer
     }),
     applyMiddleware(logger, ReduxWorkerMiddle)
     )

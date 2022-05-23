@@ -46,34 +46,6 @@ export struct FootBarLand {
   private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
-//  @Link previewImage: string
-//  //  private cameraService = CameraService.getInstance()
-//  @State isVisible: boolean = true
-//  @Link surfaceId: number
-//  @Link cameraPosition: string
-//  @Link isThirdPartyCall: boolean
-//  @Link isBigVideoTimerVisible: boolean
-//  @Link isSmallVideoTimerVisible: boolean
-//  @Link isResumeVideo: boolean
-//  @Link iscContinueVideo: boolean
-//  @Link isShowFlashBlack: boolean
-//  @Link btnSwitch: boolean
-//  @Link btnSwitchSec: boolean
-//  @Link btnOpacity_first: number
-//  @Link btnOpacity_sec: number
-//  @Link xComponentChangeFlag: boolean
-//  @Link cameraId: string
-//  @Link isStartVideo: boolean
-//  @Link isSwitchBackground: boolean
-//  @Link videoState: string
-//  @Link XcomponentWidth: string
-//  @Link XcomponentHeight: string
-//  @Link aspectRatio: number
-//  @Link state: any
-//  @Link action: string
-//  @Link curPreviewImage: string
-//  @State cameraDevice: string = 'tablet'
-
   private async onRecordStart(data) {
     CLog.info(`${this.TAG} onRecordStart E`)
     this.state.isRecording = true

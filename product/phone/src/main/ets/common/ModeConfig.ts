@@ -17,7 +17,6 @@ export class ModeConfig {
   private photoPadding: PaddingData = { top: 48, bottom: 154 }
   private videoPadding: PaddingData = { top: 48, bottom: 0 }
 
-
   public getPaddingConfig(mode: string): PaddingData {
     switch (mode) {
       case 'PHOTO':

@@ -22,7 +22,7 @@ import deviceInfo from '@ohos.deviceInfo'
 import { CameraId } from '../setting/CameraId'
 import { CLog } from '../Utils/CLog'
 import { Constants } from '../Utils/Constants'
-import GetPixelMap from './GetPixelMap'
+import ThumbnailGetter from './ThumbnailGetter'
 import SaveCameraAsset from './SaveCameraAsset'
 import { SettingsUtil } from '../Utils/SettingsUtil'
 import { CameraPlatformCapability } from './CameraPlatformCapability'
@@ -45,7 +45,6 @@ export interface VideoCallBack {
 
 export class CameraService {
   private TAG: string = '[CameraService]:'
-  private static sInstance: CameraService = undefined
   private mCameraId: CameraId = CameraId.BACK
   private mSurfaceId = null
   public mCurrentMode = null
@@ -64,9 +63,13 @@ export class CameraService {
   private mVideoRecorder = null
   private mThumbnail = null
   private mIsStartRecording = false
+  private mCameraListInfo = null
+  private mSaveCameraAsset = new SaveCameraAsset()
+  private mThumbnailGetter = new ThumbnailGetter()
+
   private mVideoConfig: any = {
     audioSourceType: 1,
-    videoSourceType: 0,
+    videoSourceType: 1,
     profile: {
       audioBitrate: 48000,
       audioChannels: 2,
@@ -75,7 +78,7 @@ export class CameraService {
       durationTime: 1000,
       fileFormat: 'mp4',
       videoBitrate: 48000,
-      videoCodec: 'video/avc',
+      videoCodec: 'video/mp4v-es',
       videoFrameWidth: 640,
       videoFrameHeight: 480,
       videoFrameRate: 30
@@ -103,18 +106,16 @@ export class CameraService {
     frameWidth: 1920,
     frameHeight: 1080
   }
-  public mCameraListInfo = null
-  public mSaveCameraAsset = new SaveCameraAsset()
-  public mPixelMap = new GetPixelMap()
+
 
   private constructor() {
   }
 
   public static getInstance(): CameraService {
-    if (!CameraService.sInstance) {
-      CameraService.sInstance = new CameraService()
+    if (!globalThis?.sInstanceCameraService) {
+      globalThis.sInstanceCameraService = new CameraService()
     }
-    return CameraService.sInstance;
+    return globalThis.sInstanceCameraService;
   }
 
   public async initCamera() {
@@ -152,7 +153,8 @@ export class CameraService {
     this.curCameraName = CameraId.BACK
     await this.createCameraInput(CameraId.BACK)
 
-    if (deviceInfo.deviceType == 'PAD') {
+    CLog.info(`${this.TAG} deviceType = ${deviceInfo.deviceType}`)
+    if (deviceInfo.deviceType == 'PAD' || deviceInfo.deviceType == 'tablet') {
       this.mVideoConfig.videoSourceType = 0
       this.mVideoConfig.profile.videoCodec = 'video/avc'
     } else {
@@ -209,6 +211,9 @@ export class CameraService {
   public async createPreviewOutput(surfaceId: number) {
     CLog.info(`${this.TAG} createPreviewOutput invoke ${surfaceId} E. `)
     this.mSurfaceId = surfaceId
+    let size = SettingsUtil.getInstance().getPreviewSize()
+    CLog.info(`${this.TAG} createPreviewOutput size = ${JSON.stringify(size)}`)
+    globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height })
     this.mPreviewOutput = await camera.createPreviewOutput(surfaceId)
     CLog.info(`${this.TAG} createPreviewOutput invoke ${this.mPreviewOutput} X.`)
   }
@@ -230,7 +235,7 @@ export class CameraService {
     CLog.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
     this.mPhotoOutPut = await camera.createPhotoOutput(surfaceId)
     CLog.info(`${this.TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`)
-    this.mSaveCameraAsset.saveImage(receiver, 40, 40, this.mPixelMap, functionCallback)
+    this.mSaveCameraAsset.saveImage(receiver, 40, 40, this.mThumbnailGetter, functionCallback)
     CLog.info(`${this.TAG} createPhotoOutput invoke X.`)
   }
 
@@ -332,7 +337,7 @@ export class CameraService {
       await this.mVideoRecorder.prepare(this.mVideoConfig)
       CLog.info(`${this.TAG} createVideoOutput videoRecorder.prepare succeed.`)
     } else {
-      CLog.info(`${this.TAG} createVideoOutput createVideoRecorder failed.`)
+      CLog.error(`${this.TAG} createVideoOutput createVideoRecorder failed.`)
       return
     }
 
@@ -354,6 +359,7 @@ export class CameraService {
 
   public async StartRecording(functionCallBack: VideoCallBack) {
     CLog.info(`${this.TAG} StartRecording invoke E.`)
+    CLog.info(`${this.TAG} StartRecording codec ${this.mVideoConfig.profile.videoCodec}`)
     await this.mCaptureSession.stop()
     await this.mCaptureSession.beginConfig()
     if (this.mVideoOutput) {
@@ -361,8 +367,11 @@ export class CameraService {
     }
     await this.createVideoOutput(functionCallBack)
     await this.mCaptureSession.addOutput(this.mVideoOutput)
+    CLog.info(`${this.TAG} StartRecording addOutput finished.`)
     await this.mCaptureSession.commitConfig()
+    CLog.info(`${this.TAG} StartRecording commitConfig finished.`)
     await this.mCaptureSession.start()
+    CLog.info(`${this.TAG} StartRecording Session.start finished.`)
     await this.mVideoOutput.start().then(() => {
       CLog.info(`${this.TAG} videoOutput.start()`)
     })
@@ -376,7 +385,7 @@ export class CameraService {
   public async stopRecording() {
     CLog.info(`${this.TAG} stopRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.info(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
+      CLog.error(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
@@ -384,13 +393,13 @@ export class CameraService {
     try {
       await this.mVideoRecorder.stop()
     } catch (err) {
-      CLog.info(`${this.TAG} stop videoRecorder ${err}`)
+      CLog.error(`${this.TAG} stop videoRecorder ${err}`)
     }
 
     try {
       await this.mVideoOutput.stop()
     } catch (err) {
-      CLog.info(`${this.TAG} stop videoOutput ${err}`)
+      CLog.error(`${this.TAG} stop videoOutput ${err}`)
     }
 
     this.mVideoOutput = undefined
@@ -401,7 +410,7 @@ export class CameraService {
       CLog.info(`${this.TAG} fileAsset.close().`)
     }
 
-    let thumbnailPixelMap = await this.mPixelMap.getThumbnailInfo(40, 40)
+    let thumbnailPixelMap = await this.mThumbnailGetter.getThumbnailInfo(40, 40)
     CLog.info(`${this.TAG} stopRecording invoke X.`)
     return thumbnailPixelMap
   }
@@ -409,7 +418,7 @@ export class CameraService {
   public async pauseRecording() {
     CLog.info(`${this.TAG} pauseRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.info(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
+      CLog.error(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
@@ -421,7 +430,7 @@ export class CameraService {
   public async resumeRecording() {
     CLog.info(`${this.TAG} resumeRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.info(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
+      CLog.error(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
@@ -435,7 +444,7 @@ export class CameraService {
   public async releaseRecording() {
     CLog.info(`${this.TAG} releaseRecording invoke E.`)
     if (!this.mVideoRecorder) {
-      CLog.info(`${this.TAG} releaseRecording error videoRecorder is null .`)
+      CLog.error(`${this.TAG} releaseRecording error videoRecorder is null .`)
       return
     }
     if (this.mIsStartRecording) {
@@ -502,7 +511,7 @@ export class CameraService {
 
   public getThumbnail(functionCallBack: FunctionCallBack) {
     CLog.info(`${this.TAG} getThumbnail invoke E.`)
-    this.mPixelMap.getThumbnailInfo(40, 40).then((thumbnail) => {
+    this.mThumbnailGetter.getThumbnailInfo(40, 40).then((thumbnail) => {
       if (thumbnail != null) {
         CLog.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
         functionCallBack.thumbnail(thumbnail)

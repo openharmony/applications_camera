@@ -80,9 +80,9 @@ export class SettingListModel {
 
     private buildPhotoResolutionRadio() {
         let result: RadioItem[] = []
-        result[0] = { "itemValue": "4:3"}
-        result[1] = { "itemValue": "1:1"}
-        result[2] = { "itemValue": "16:9"}
+        result[0] = { "itemValue": AspectRatio.RESOURCE_RATIO_4_3}
+        result[1] = { "itemValue": AspectRatio.RESOURCE_RATIO_1_1}
+        result[2] = { "itemValue": AspectRatio.RESOURCE_RATIO_16_9}
         return result;
     }
 
@@ -108,8 +108,8 @@ export class SettingListModel {
 
     private buildVideoResolutionRadio() {
         let result: RadioItem[] = []
-        result[0] = { "itemValue": "[16:9] 720p"}
-        result[1] = { "itemValue": "[16:9] 1080p"}
+        result[0] = { "itemValue": Resolution.RESOURCE_16_9_720P}
+        result[1] = { "itemValue": Resolution.RESOURCE_16_9_1080P}
         return result;
     }
 
@@ -161,10 +161,10 @@ export class SettingListModel {
 
     private buildTimerRadio() {
         let result: RadioItem[] = []
-        result[0] = { "itemValue": $r('app.string.off') }
-        result[1] = { "itemValue": $r('app.string.timer_2_seconds') }
-        result[2] = { "itemValue": $r('app.string.timer_5_seconds') }
-        result[3] = { "itemValue": $r('app.string.timer_10_seconds') }
+        result[0] = { "itemValue": Timer.RESOURCE_OFF }
+        result[1] = { "itemValue": Timer.RESOURCE_TWO_SECONDS }
+        result[2] = { "itemValue": Timer.RESOURCE_FIVE_SECONDS }
+        result[3] = { "itemValue": Timer.RESOURCE_TEN_SECONDS }
         return result;
     }
 

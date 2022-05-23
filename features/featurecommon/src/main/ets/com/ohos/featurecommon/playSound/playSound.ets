@@ -26,7 +26,6 @@ let mAudioPlayer = undefined
 
 export class PlaySound {
   private TAG: string = '[PlaySound]:'
-  private static sInstance: PlaySound = undefined
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingsUtil = SettingsUtil.getInstance()
   private readonly UNDEFINED = 'undefined'
@@ -41,10 +40,10 @@ export class PlaySound {
   }
 
   public static getInstance(): PlaySound {
-    if (!PlaySound.sInstance) {
-      PlaySound.sInstance = new PlaySound()
+    if (!globalThis?.sInstancePlaySound) {
+      globalThis.sInstancePlaySound = new PlaySound()
     }
-    return PlaySound.sInstance;
+    return globalThis.sInstancePlaySound;
   }
 
   private playRecordStart(data) {

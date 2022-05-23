@@ -20,6 +20,8 @@ export class Action {
   public static readonly ACTION_START_PREVIEW = 'ACTION_START_PREVIEW'
   public static readonly ACTION_SWITCH_CAMERA = 'ACTION_SWITCH_CAMERA'
   public static readonly ACTION_CHANGE_MODE = 'ACTION_CHANGE_MODE'
+  public static readonly ACTION_SET_MODE = 'ACTION_SET_MODE'
+  public static readonly ACTION_UPDATE_MODE = 'ACTION_UPDATE_MODE'
   public static readonly ACTION_CLOSE_CAMERA = 'ACTION_CLOSE_CAMERA'
 
   // Setting 相关
@@ -58,7 +60,7 @@ export class Action {
 
   // Camera
   public static readonly ACTION_SET_CAMERA_POSITION = 'ACTION_SET_CAMERA_POSITION'
-  public static readonly ACTION_CAMERA_POSITION_CHANGED = 'ACTION_CAMERA_POSITION_CHANGED'
+  public static readonly ACTION_UPDATE_CAMERA_POSITION = 'ACTION_UPDATE_CAMERA_POSITION'
 
   // Mode
   public static readonly ACTION_INIT_MODE = 'ACTION_INIT_MODE'
@@ -153,15 +155,15 @@ export class Action {
     }
   }
 
-  public static CameraPositionChanged(cameraPosition: string) {
+  public static updateCameraPosition(cameraPosition: string) {
     return {
-      type: Action.ACTION_CAMERA_POSITION_CHANGED,
+      type: Action.ACTION_UPDATE_CAMERA_POSITION,
       data: { cameraPosition: cameraPosition }
     }
   }
 
   // Mode
-  public static InitMode(mode: string) {
+  public static initMode(mode: string) {
     return {
       type: Action.ACTION_INIT_MODE,
       data: { mode: mode }
@@ -175,6 +177,20 @@ export class Action {
     }
   }
 
+  public static setMode(mode: string) {
+    return {
+      type: Action.ACTION_SET_MODE,
+      data: { mode: mode }
+    }
+  }
+
+  public static updateMode(mode: string) {
+    return {
+      type: Action.ACTION_UPDATE_MODE,
+      data: { mode: mode }
+    }
+  }
+
   public static OnModeChanged(mode: string) {
     return {
       type: Action.ACTION_ON_MODE_CHANGED,
@@ -182,10 +198,10 @@ export class Action {
     }
   }
 
-  public static thirdPartyCall(isThirdPartyCall: boolean) {
+  public static thirdPartyCall(isThirdPartyCall: boolean, action: string) {
     return {
       type: Action.ACTION_THIRD_PARTY_CALL,
-      data: { isThirdPartyCall: isThirdPartyCall }
+      data: { isThirdPartyCall: isThirdPartyCall, action: action }
     }
   }
 

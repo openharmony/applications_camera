@@ -74,6 +74,7 @@ export default class RdbStoreManager {
     CLog.info(this.TAG + 'getSettingByItem start');
     const resultList: SettingItemInfo[] = [];
     if (this.ifStringIsNull(itemName)) {
+      CLog.warn(this.TAG + 'itemName is null');
       return resultList;
     }
     try {
@@ -91,7 +92,7 @@ export default class RdbStoreManager {
         CLog.info(this.TAG + `getSettingByItem while isLast: ${isLast}`);
       }
     } catch (e) {
-      CLog.info(this.TAG + 'getSettingByItem error:' + e);
+      CLog.error(this.TAG + 'getSettingByItem error:' + e);
     }
     return resultList;
   }
@@ -123,15 +124,12 @@ export default class RdbStoreManager {
         result = (changeRows != -1);
       }
     } catch (e) {
-      CLog.info(this.TAG + 'updateValue error:' + e);
+      CLog.error(this.TAG + 'updateValue error:' + e);
     }
     return result;
   }
 
   private ifStringIsNull(str) {
-    if (str == undefined || str == '' || str == null) {
-      return true;
-    }
-    return false;
+    return (str == undefined || str == '' || str == null)
   }
 }
