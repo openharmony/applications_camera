@@ -80,7 +80,7 @@ export struct SettingItem {
           })
         }
         .listDirection(Axis.Vertical)
-        .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 56, endMargin: 12 })
+        .divider({ strokeWidth: 0.5, color: '#33FFFFFF', startMargin: 56, endMargin: 12 })
         .borderRadius($r("sys.float.ohos_id_corner_radius_card"))
         .backgroundColor("#202224")
       }.width(this.WH_100_100)

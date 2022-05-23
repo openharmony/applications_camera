@@ -14,7 +14,7 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import {CLog} from '../../../../../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CLog } from '../../../../../../../../../../common/src/main/ets/default/Utils/CLog'
 import EntryComponent from './EntryComponent'
 
 @Observed
@@ -31,7 +31,7 @@ export class CustomDialogDetails {
 @CustomDialog
 export struct CustomDialogView {
   private TAG: string = '[CustomDialogView]:'
-//  @StorageLink('settingsDetailList') settingsDetailList: any[]= [];
+  //  @StorageLink('settingsDetailList') settingsDetailList: any[]= [];
   localStyle = { "columns": 4, "offset": 0 }
   controller: CustomDialogController
   cancel: () => void
@@ -63,20 +63,20 @@ export struct CustomDialogView {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      GridContainer({ columns: this.localStyle.columns, gutter: 12, margin: 24 }) {
-        Column() {
-          Row() {
-            Text(this.customDialogDetails.settingTitle)
-              .fontSize($r("sys.float.ohos_id_text_size_dialog_tittle"))
-              .fontColor('#E6000000')
-              .opacity(0.9)
-              .fontWeight(FontWeight.Medium)
-              .opacity($r("sys.float.ohos_id_alpha_content_primary"))
-          }
-          .width('100%')
-          .height(56)
+    Flex({ justifyContent: FlexAlign.Center }) {
+      Column() {
+        Row() {
+          Text(this.customDialogDetails.settingTitle)
+            .fontSize($r("sys.float.ohos_id_text_size_dialog_tittle"))
+            .fontColor('#E6000000')
+            .opacity(0.9)
+            .fontWeight(FontWeight.Medium)
+            .opacity($r("sys.float.ohos_id_alpha_content_primary"))
+        }
+        .width('100%')
+        .height(56)
 
+        GridContainer({ columns: this.localStyle.columns, gutter: 12, margin: 12 }) {
           List() {
             ForEach(this.customDialogDetails.childrenList, (item) => {
               ListItem() {
@@ -111,19 +111,20 @@ export struct CustomDialogView {
           }
           .height(56)
           .width('100%')
-          .margin({top: 8}).padding({ bottom: '16vp' })
+          .margin({ top: 8 }).padding({ bottom: '16vp' })
         }
-        .width('100%')
-        .backgroundColor(Color.White)
-        .padding({ left: '24vp', right: '24vp' })
-        .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
-        .useSizeType({
-          xs: { span: 4, offset: this.localStyle.offset },
-          sm: { span: 4, offset: this.localStyle.offset },
-          md: { span: 4, offset: this.localStyle.offset },
-          lg: { span: 4, offset: this.localStyle.offset }
-        })
-      }.width('100%')
+        .width('96%')
+      }
+      .margin({ left: '12vp', right: '12vp', bottom: '16vp' })
+      .backgroundColor(Color.White)
+      .padding({ left: '24vp', right: '24vp' })
+      .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
+      .useSizeType({
+        xs: { span: 4, offset: this.localStyle.offset },
+        sm: { span: 4, offset: this.localStyle.offset },
+        md: { span: 4, offset: this.localStyle.offset },
+        lg: { span: 4, offset: this.localStyle.offset }
+      })
     }
   }
 }

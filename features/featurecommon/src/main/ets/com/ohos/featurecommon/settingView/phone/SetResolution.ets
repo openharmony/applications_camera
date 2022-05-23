@@ -45,7 +45,7 @@ export struct SetResolution {
   CustomDialogView: CustomDialogController = new CustomDialogController({
     builder: CustomDialogView({ cancel: this.existView.bind(this) }),
     autoCancel: true,
-    alignment: DialogAlignment.Center,
+    alignment: DialogAlignment.Bottom,
     cancel: this.existView,
     customStyle: true
   })
@@ -90,7 +90,7 @@ export struct SetResolution {
 
         Row() {
           Text(this.formatCurCheckName(this.curCheckName))
-            .fontColor($r('app.color.font_color_FFFFFF'))
+            .fontColor($r('app.color.font_color_99FFFFFF'))
             .fontSize($r("sys.float.ohos_id_text_size_body2"))
             .fontWeight(FontWeight.Regular)
             .opacity($r('app.float.opacity_6'))
@@ -123,7 +123,6 @@ export struct SetResolution {
     this.customDialogDetails.childrenList = itemValue.radio;
     this.customDialogDetails.settingTitle = itemValue.settingName;
     this.customDialogDetails.setAlias = itemValue.settingAlias;
-    CLog.info(`${this.TAG} childrenList: ${JSON.stringify(itemValue.radio)}`)
     this.CustomDialogView.open()
     CLog.info(`${this.TAG} openDetailsDialog end`)
   }
