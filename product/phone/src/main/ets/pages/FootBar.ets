@@ -83,15 +83,15 @@ export struct FootBar {
         ThumbnailView()
       } else {
         Column() {
-        }.width('40').aspectRatio(1)
+        }.width('44').aspectRatio(1)
       }
       ShutterButton()
-      if (this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording) {
+      if (/* this.state.platformCapability?.mCameraCount > 1 && */!this.state.isRecording) {
         CameraSwitchButton()
       } else {
         Column() {
         }
-        .width('40')
+        .width('44')
         .aspectRatio(1)
       }
     }
