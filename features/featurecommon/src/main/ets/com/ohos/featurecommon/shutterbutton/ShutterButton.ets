@@ -122,6 +122,7 @@ export struct ShutterButton {
         if (this.state.mode === 'VIDEO') {
           Image(this.state.shutterIcon)
             .width(76).aspectRatio(1).enabled(this.state.uiEnable)
+            .shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Up) {
                 let timerLapse = this.settingsUtil.getTimeLapse()
@@ -136,8 +137,9 @@ export struct ShutterButton {
               }
             })
         } else {
-          Image($r('app.media.ic_circled')).fillColor(Color.White)
+          Image($r('app.media.ic_circled')).fillColor(Color.White).shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
           Image(this.state.shutterIcon).width(54).aspectRatio(1).fillColor(Color.White)
+            .shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
             .scale({ x: this.state.captureBtnScale, y: this.state.captureBtnScale, z: this.state.captureBtnScale })
             .enabled(this.state.uiEnable)
             .onTouch((event: TouchEvent) => {
