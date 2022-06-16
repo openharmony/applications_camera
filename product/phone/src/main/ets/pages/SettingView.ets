@@ -14,7 +14,6 @@
  */
 
 import router from '@system.router';
-
 import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
 import { SettingItem
@@ -37,7 +36,7 @@ struct SettingView {
   @State settingsList: any[] = SettingListModel.getSettingList()
   private WH_100_100: string = "100%";
 
-  private aboutToAppear(): void{
+  aboutToAppear(): void{
     CLog.info(`${this.TAG} aboutToAppear invoke E`)
     if (router.getParams() != undefined) {
       this.cameraPosition = router.getParams().position.toString()
@@ -48,7 +47,7 @@ struct SettingView {
     CLog.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
-  private onBackPress() {
+  onBackPress() {
     router.replace({
       params: {
         position: this.cameraPosition,
@@ -60,73 +59,13 @@ struct SettingView {
   }
 
   build() {
-    Column() {
-      GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
-        Row() {
-          Image($r("app.media.ic_public_back"))
-            .width(24)
-            .height(24)
-            .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
-            .onClick(() => {
-              router.replace({
-                params: {
-                  position: this.cameraPosition,
-                  mode: this.previewImage
-                },
-                uri: "pages/index"
-              })
-            })
-          Text($r('app.string.settings'))
-            .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
-            .fontColor($r('app.color.settings_ic_public_back_FFFFFF'))
-            .fontSize($r('sys.float.ohos_id_text_size_headline8'))
-            .fontWeight(FontWeight.Medium)
-        }
-        .useSizeType({
-          xs: { span: 12, offset: 0 },
-          sm: { span: 12, offset: 0 },
-          md: { span: 12, offset: 0 },
-          lg: { span: 12, offset: 0 }
-        })
-        .width(this.WH_100_100)
-        .height(56)
-        .margin({ left: $r("sys.float.ohos_id_max_padding_start") })
-      }
-
-      GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
-        List() {
-          ForEach(this.settingsList, (item, index) => {
-            ListItem() {
-              SettingItem({
-                settingsList: $settingsList,
-                item: item,
-                index: index
-              })
-            }
-          })
-        }
-      }
-
-      GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
-        Row() {
-          Button({ type: ButtonType.Normal, stateEffect: true }) {
-            Text($r('app.string.restore_defaults'))
-              .fontSize($r('sys.float.ohos_id_text_size_button1'))
-              .fontColor($r('app.color.font_color_FFFFFF'))
-              .fontWeight(FontWeight.Regular)
-              .textAlign(TextAlign.Center)
-              .useSizeType({
-                xs: { span: 2, offset: 0 },
-                sm: { span: 2, offset: 0 },
-                md: { span: 2, offset: 0 },
-                lg: { span: 2, offset: 0 }
-              })
-          }
-          .borderRadius(30)
-          .backgroundColor($r('app.color.background_color_333333'))
-          .height(40)
+    Flex({ direction: FlexDirection.Column }) {
+      Row() {
+        Image($r("app.media.ic_public_back"))
+          .width(24)
+          .height(24)
+          .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
           .onClick(() => {
-            this.settingsUtil.restoreValues()
             router.replace({
               params: {
                 position: this.cameraPosition,
@@ -135,8 +74,68 @@ struct SettingView {
               uri: "pages/index"
             })
           })
-        }.margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
+        Text($r('app.string.settings'))
+          .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
+          .fontColor($r('app.color.settings_ic_public_back_FFFFFF'))
+          .fontSize($r('sys.float.ohos_id_text_size_headline8'))
+          .fontWeight(FontWeight.Medium)
       }
+      .padding({ left: 24 })
+      .width(this.WH_100_100)
+      .height(56)
+
+      Scroll() {
+        Column() {
+          GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
+            List() {
+              ForEach(this.settingsList, (item, index) => {
+                ListItem() {
+                  SettingItem({
+                    settingsList: $settingsList,
+                    item: item,
+                    index: index
+                  })
+                }
+              })
+            }
+          }
+          GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
+            Row() {
+              Button({ type: ButtonType.Normal, stateEffect: true }) {
+                Text($r('app.string.restore_defaults'))
+                  .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                  .fontColor($r('app.color.font_color_FFFFFF'))
+                  .fontWeight(FontWeight.Regular)
+                  .textAlign(TextAlign.Center)
+                  .useSizeType({
+                    xs: { span: 2, offset: 0 },
+                    sm: { span: 2, offset: 0 },
+                    md: { span: 2, offset: 0 },
+                    lg: { span: 2, offset: 0 }
+                  })
+              }
+              .borderRadius(30)
+              .backgroundColor($r('app.color.background_color_333333'))
+              .height(40)
+              .onClick(() => {
+                this.settingsUtil.restoreValues()
+                router.replace({
+                  params: {
+                    position: this.cameraPosition,
+                    mode: this.previewImage
+                  },
+                  uri: "pages/index"
+                })
+              })
+            }
+            .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
+          }
+        }
+      }
+      .width(this.WH_100_100)
+      .flexShrink(1)
+      .edgeEffect(EdgeEffect.Spring)
+      
     }
     .height(this.WH_100_100)
     .backgroundColor(Color.Black)

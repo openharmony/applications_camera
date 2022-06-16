@@ -85,7 +85,7 @@ struct Index {
   private mPlaySound: PlaySound = PlaySound.getInstance()
   private mConnect: any
 
-  private aboutToAppear() {
+  aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear E`)
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
@@ -139,18 +139,18 @@ struct Index {
     CLog.info(`${this.TAG} aboutToAppear X`)
   }
 
-  private onPageShow() {
+  onPageShow() {
     console.info("onPageShow this.permissionFlag= " + this.state.permissionFlag + '  globalThis.permissionFlag = ' + globalThis.permissionFlag)
     this.state.setPermissionFlag(globalThis.permissionFlag)
   }
 
-  private aboutToDisappear(): void {
+  aboutToDisappear(): void {
     CLog.info(`${this.TAG} aboutToDisappear E`)
     this.mConnect.destroy()
     CLog.info(`${this.TAG} aboutToDisappear X`)
   }
 
-  private onBackPress() {
+  onBackPress() {
     CLog.info(`${this.TAG} onBackPress E`)
     CLog.info(`${this.TAG} onBackPress E isShowtimeLapse= ${this.state.isShowtimeLapse}`)
     if (this.state.isShowtimeLapse) {
@@ -163,7 +163,7 @@ struct Index {
     }
   }
 
-  private onPageHide(): void {
+  onPageHide(): void {
     CLog.info(`${this.TAG} onPageHide E`)
     CLog.info(`${this.TAG} onPageHide E isShowtimeLapse= ${this.state.isShowtimeLapse}`)
     this.state.changeTimeLapse(false)
