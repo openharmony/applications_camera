@@ -212,6 +212,8 @@ export struct ZoomView {
         .margin({ top: 4 })
         .borderRadius(this.state.zoomBtnRadius)
         .border({ width: 2, color: 0xffffff, style: BorderStyle.Solid })
+        .shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
+        .blur(40)
       }.width(100).height(82).zIndex(2)
       .translate({ x: this.state.isShowZoomText ? this.getZoomButtonOffsetX() : 0 })
       .onTouch(this.zoomButtonOnTouch.bind(this))
@@ -244,6 +246,7 @@ export struct ZoomView {
           Row() {
             if (this.state.mode === 'PHOTO') {
               Column() {}.width(3).height(3).borderRadius(1.5).margin({ right: 4 }).backgroundColor('#ffffff')
+              .shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
             } else {
               Text('-').width(24).height(24).margin({ right: 4 })
                 .fontSize(24).fontWeight(FontWeight.Bold)
@@ -254,9 +257,11 @@ export struct ZoomView {
               Column() {
               }.width(1.5).height(1.5).borderRadius(0.75)
               .opacity(1).margin({ right: 4 }).backgroundColor('#ffffff')
+              .shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
             })
             if (this.state.mode === 'PHOTO') {
               Column() {}.width(3).height(3).borderRadius(1.5).backgroundColor('#ffffff')
+              .shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
             } else {
               Text('+').width(24).height(24)
                 .fontSize(24).fontWeight(FontWeight.Bold)
