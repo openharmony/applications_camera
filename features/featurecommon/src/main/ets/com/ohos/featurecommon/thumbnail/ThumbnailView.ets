@@ -108,6 +108,7 @@ export struct ThumbnailView {
       Stack() {
         Image(this.state.thumbnail)
           .width('100%').aspectRatio(1).borderRadius(22).objectFit(ImageFit.Fill)
+          .shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
       }
       .width(44).height(44)
       .enabled(this.hasThumbnail)

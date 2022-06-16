@@ -55,6 +55,7 @@ export struct TabBar {
       Column() {
         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
           Image($r('app.media.setting')).width(24).height(24)
+            .shadow({ radius: 1, color: '#66000000', offsetX: 0, offsetY: 0 })
         }.width('100%').height('100%')
       }.width('20%').height('100%').onClick(() => {
         router.replace({
