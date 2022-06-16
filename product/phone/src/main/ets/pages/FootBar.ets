@@ -86,7 +86,7 @@ export struct FootBar {
         }.width('44').aspectRatio(1)
       }
       ShutterButton()
-      if (/* this.state.platformCapability?.mCameraCount > 1 && */!this.state.isRecording) {
+      if (this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording) {
         CameraSwitchButton()
       } else {
         Column() {

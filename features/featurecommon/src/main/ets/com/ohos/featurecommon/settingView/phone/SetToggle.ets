@@ -97,12 +97,10 @@ export struct SetToggle {
             })
         }.margin({ left: $r("sys.float.ohos_id_card_margin_end") })
       }
-      .padding({ left: 12, right: 12 })
+      .height("100%")
     }
-    .margin({
-      top: $r("sys.float.ohos_id_text_paragraph_margin_xs"),
-      bottom: $r("sys.float.ohos_id_text_paragraph_margin_xs")
-    })
+    .padding({ left: 12, right: 12 })
+    .height(this.itemValue?.description ? 72 : 56)
     .width(this.WH_100_100)
   }
 }

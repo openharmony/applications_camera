@@ -59,7 +59,7 @@ struct SettingView {
   }
 
   build() {
-    Column() {
+    Flex({ direction: FlexDirection.Column }) {
       Row() {
         Image($r("app.media.ic_public_back"))
           .width(24)
@@ -84,50 +84,58 @@ struct SettingView {
       .width(this.WH_100_100)
       .height(56)
 
-      GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
-        List() {
-          ForEach(this.settingsList, (item, index) => {
-            ListItem() {
-              SettingItem({
-                settingsList: $settingsList,
-                item: item,
-                index: index
+      Scroll() {
+        Column() {
+          GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
+            List() {
+              ForEach(this.settingsList, (item, index) => {
+                ListItem() {
+                  SettingItem({
+                    settingsList: $settingsList,
+                    item: item,
+                    index: index
+                  })
+                }
               })
             }
-          })
+          }
+          GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
+            Row() {
+              Button({ type: ButtonType.Normal, stateEffect: true }) {
+                Text($r('app.string.restore_defaults'))
+                  .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                  .fontColor($r('app.color.font_color_FFFFFF'))
+                  .fontWeight(FontWeight.Regular)
+                  .textAlign(TextAlign.Center)
+                  .useSizeType({
+                    xs: { span: 2, offset: 0 },
+                    sm: { span: 2, offset: 0 },
+                    md: { span: 2, offset: 0 },
+                    lg: { span: 2, offset: 0 }
+                  })
+              }
+              .borderRadius(30)
+              .backgroundColor($r('app.color.background_color_333333'))
+              .height(40)
+              .onClick(() => {
+                this.settingsUtil.restoreValues()
+                router.replace({
+                  params: {
+                    position: this.cameraPosition,
+                    mode: this.previewImage
+                  },
+                  uri: "pages/index"
+                })
+              })
+            }
+            .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
+          }
         }
       }
-
-      GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
-        Row() {
-          Button({ type: ButtonType.Normal, stateEffect: true }) {
-            Text($r('app.string.restore_defaults'))
-              .fontSize($r('sys.float.ohos_id_text_size_button1'))
-              .fontColor($r('app.color.font_color_FFFFFF'))
-              .fontWeight(FontWeight.Regular)
-              .textAlign(TextAlign.Center)
-              .useSizeType({
-                xs: { span: 2, offset: 0 },
-                sm: { span: 2, offset: 0 },
-                md: { span: 2, offset: 0 },
-                lg: { span: 2, offset: 0 }
-              })
-          }
-          .borderRadius(30)
-          .backgroundColor($r('app.color.background_color_333333'))
-          .height(40)
-          .onClick(() => {
-            this.settingsUtil.restoreValues()
-            router.replace({
-              params: {
-                position: this.cameraPosition,
-                mode: this.previewImage
-              },
-              uri: "pages/index"
-            })
-          })
-        }.margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
-      }
+      .width(this.WH_100_100)
+      .flexShrink(1)
+      .edgeEffect(EdgeEffect.Spring)
+      
     }
     .height(this.WH_100_100)
     .backgroundColor(Color.Black)

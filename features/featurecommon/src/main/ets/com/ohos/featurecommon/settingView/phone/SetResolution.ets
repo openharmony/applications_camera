@@ -102,13 +102,9 @@ export struct SetResolution {
             .margin({ left: 4 })
         }
       }
-      .height(64)
-      .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+      .height("100%")
     }
-    .margin({
-      top: $r("sys.float.ohos_id_text_paragraph_margin_xs"),
-      bottom: $r("sys.float.ohos_id_text_paragraph_margin_xs")
-    })
+    .padding({ left: 12, right: 12 })
     .width(this.WH_100_100)
     .height(56)
     .onClick(() => {
