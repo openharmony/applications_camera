@@ -201,7 +201,7 @@ export struct ZoomView {
       Stack({ alignContent: Alignment.Center }) {
         Stack({ alignContent: Alignment.Center }) {
           if (this.state.isShowZoomText && !this.state.showZoomLabelValue) {
-            Stack() {}.width(5).height(5).borderRadius(2.5).backgroundColor('#ffffff')
+            Stack() {}.width(5).height(5).borderRadius(1.5).backgroundColor('#ffffff')
           } else {
             Text(`${Number(this.state.zoomRatio.toFixed(1))}x`)
               .fontColor('#ffffff')

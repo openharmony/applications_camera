@@ -178,7 +178,6 @@ export struct Control {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
             ListItem() {}.width(54).height('100%')
             ListItem() {}.width(54).height('100%')
-//            ListItem() {}.width(54).height('100%')
             ListItem() {}.width(this.state.modeBarItemWidth).height('100%')
             ListItem() {
               Text($r('app.string.multi_mode'))
@@ -194,8 +193,6 @@ export struct Control {
             ListItem() {
               Text($r('app.string.photo_mode'))
                 .width('100%').height('100%')
-//                .fontColor('#fff').fontSize(this.state.photoFontSize)
-//                .fontWeight(this.state.photoFontWeight)
                 .fontColor('#fff').fontSize(this.getModeFontSize(1))
                 .fontWeight(this.getModeFontWeight(1))
                 .textAlign(TextAlign.Center)
@@ -205,29 +202,15 @@ export struct Control {
             ListItem() {
               Text($r('app.string.video_mode'))
                 .width('100%').height('100%')
-//                .fontColor('#fff').fontSize(this.state.videoFontSize)
-//                .fontWeight(this.state.videoFontWeight)
                 .fontColor('#fff').fontSize(this.getModeFontSize(2))
                 .fontWeight(this.getModeFontWeight(2))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(2) })
             }.width(54).height('100%')
-//            ListItem() {
-//              Text($r('app.string.more_list'))
-//                .width('100%')
-//                .height('100%')
-//                .fontColor('#fff')
-//                .fontSize(this.getModeFontSize(3))
-//                .fontWeight(this.getModeFontWeight(3))
-//                .textAlign(TextAlign.Center)
-//                .enabled(this.state.uiEnable)
-//                .onClick(() => { this.changeToMode(3) })
-//            }.width(54).height('100%')
             ListItem() {}.width(this.state.modeBarItemWidth).height('100%')
             ListItem() {}.width(54).height('100%')
             ListItem() {}.width(54).height('100%')
-//            ListItem() {}.width(54).height('100%')
           }
           .width('100%').height('100%')
           .listDirection(Axis.Horizontal)

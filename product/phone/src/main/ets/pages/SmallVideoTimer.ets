@@ -63,7 +63,7 @@ export struct SmallVideoTimer {
     CLog.info(`${this.TAG} onRecordResumed timer id: ${this.timer} X`)
   }
 
-  private aboutToAppear() {
+  aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
@@ -72,7 +72,7 @@ export struct SmallVideoTimer {
     CLog.info(`${this.TAG} aboutToAppear X`)
   }
 
-  private aboutToDisappear(): void {
+  aboutToDisappear(): void {
     CLog.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
     this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
@@ -136,6 +136,6 @@ export struct SmallVideoTimer {
           Text('').layoutWeight(1)
         }
       }
-    }.width('100%').height(48).position({ x: 0, y: 68 })
+    }.width('100%').height(48).position({ x: 0, y: -48 })
   }
 }

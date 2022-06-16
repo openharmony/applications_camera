@@ -299,7 +299,7 @@ export struct PreviewArea {
     CLog.debug(`${this.TAG} onScreenChanged X`)
   }
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     CLog.info(`${this.TAG} PreviewArea aboutToAppear`)
     this.mConnect = getStore().connect(cameraState, cameraDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
@@ -337,7 +337,7 @@ export struct PreviewArea {
     CLog.info(`${this.TAG} aboutToAppear end`)
   }
 
-  private aboutToDisappear(): void {
+  aboutToDisappear(): void {
     CLog.info(`${this.TAG} previewAreaLand aboutToDisappear called`)
     this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
@@ -347,11 +347,11 @@ export struct PreviewArea {
     globalThis.releaseCamera()
   }
 
-  private onBackPress(): void {
+  onBackPress(): void {
     CLog.info(`${this.TAG} previewAreaLand onBackPress called`)
   }
 
-  private onPageHide() {
+  onPageHide() {
     this.state.startVideoFlag(false)
   }
 
