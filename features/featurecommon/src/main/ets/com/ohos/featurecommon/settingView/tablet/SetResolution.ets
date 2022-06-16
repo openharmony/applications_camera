@@ -103,7 +103,7 @@ export struct SetResolution {
         }
       }
       .height(64)
-      .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+      .padding({ left: 12, right: 12 })
     }
     .margin({
       top: $r("sys.float.ohos_id_text_paragraph_margin_xs"),

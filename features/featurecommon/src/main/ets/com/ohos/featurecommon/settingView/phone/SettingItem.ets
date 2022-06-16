@@ -83,6 +83,7 @@ export struct SettingItem {
         .divider({ strokeWidth: 0.5, color: '#33FFFFFF', startMargin: 56, endMargin: 12 })
         .borderRadius($r("sys.float.ohos_id_corner_radius_card"))
         .backgroundColor("#202224")
+        .padding({ top: 4, bottom: 4 })
       }.width(this.WH_100_100)
     }
   }

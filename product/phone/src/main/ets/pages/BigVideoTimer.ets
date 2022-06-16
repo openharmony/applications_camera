@@ -71,7 +71,7 @@ export struct BigVideoTimer {
     CLog.info(`${this.TAG} onRecordResumed X`)
   }
 
-  private aboutToAppear() {
+  aboutToAppear() {
     CLog.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
@@ -80,7 +80,7 @@ export struct BigVideoTimer {
     CLog.info(`${this.TAG} aboutToAppear X`)
   }
 
-  private aboutToDisappear(): void {
+  aboutToDisappear(): void {
     CLog.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
     this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
@@ -151,6 +151,6 @@ export struct BigVideoTimer {
           Text('').layoutWeight(1)
         }
       }
-    }.width('100%').height(96).position({ x: 0, y: 48 })
+    }.width('100%').height(96).position({ x: 0, y: 0 })
   }
 }
