@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 
+import { ActionData } from './Action'
+
 export const UIDATA_TAB_ITEM = 'tabItem'
 
-export function uiDataTabItem(tabItem) {
+export function uiDataTabItem(tabItem): ActionData {
   return {
     type: UIDATA_TAB_ITEM,
     data: tabItem

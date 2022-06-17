@@ -13,17 +13,16 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
+import { ActionData } from '../actions/Action'
 
-let initState = {}
+export type CaptureState = {}
 
-export default function CaptureReducer(state = initState, action: {
-  type: string,
-  data: any
-}) {
+const initState = {}
+
+export default function CaptureReducer(state = initState, action: ActionData): CaptureState {
   switch (action.type) {
-    default:
-      return state;
+  default:
+    return state;
   }
   return state;
 }

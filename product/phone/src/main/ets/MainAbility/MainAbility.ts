@@ -14,82 +14,89 @@
  */
 
 import Ability from '@ohos.application.Ability'
+import window from '@ohos.window'
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        // Ability is creating, initialize resources for this ability
-        console.info('Camera MainAbility onCreate.')
-        globalThis.cameraAbilityContext = this.context
-        globalThis.cameraAbilityWant = this.launchWant
-        globalThis.permissionFlag = false
-    }
+  onCreate(want, launchParam) {
+    // Ability is creating, initialize resources for this ability
+    console.info('Camera MainAbility onCreate.')
+    globalThis.cameraAbilityContext = this.context
+    globalThis.cameraAbilityWant = this.launchWant
+    globalThis.permissionFlag = false
+  }
 
-    onDestroy() {
-        // Ability is creating, release resources for this ability
-        console.info('Camera MainAbility onDestroy.')
-    }
+  onDestroy() {
+    // Ability is creating, release resources for this ability
+    console.info('Camera MainAbility onDestroy.')
+  }
 
-    async onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.info('Camera MainAbility onWindowStageCreate.')
-        windowStage.on('windowStageEvent', (event) => {
-            console.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
-            globalThis.cameraWindowStageEvent = event
+  async onWindowStageCreate(windowStage) {
+    // Main window is created, set main page for this ability
+    console.info('Camera MainAbility onWindowStageCreate.')
+    windowStage.on('windowStageEvent', (event) => {
+      console.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
+      if (event === window.WindowStageEventType.INACTIVE) {
+        globalThis?.stopCameraRecording && globalThis.stopCameraRecording()
+      }
+      globalThis.cameraWindowStageEvent = event
+    })
+
+    windowStage.getMainWindow().then((win) => {
+      try {
+        win.setLayoutFullScreen(true).then(() => {
+          console.info('Camera setFullScreen finished.')
+          win.setSystemBarEnable(['navigation']).then(() => {
+            console.info('Camera setSystemBarEnable finished.')
+          })
         })
 
-        windowStage.getMainWindow().then((win) => {
-            try {
-                win.setLayoutFullScreen(true).then(() => {
-                    console.info('Camera setFullScreen finished.')
-                    win.setSystemBarEnable(['navigation']).then(() => {
-                        console.info('Camera setSystemBarEnable finished.')
-                    })
-                })
-
-                win.setSystemBarProperties({
-                    navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
-                }).then(() => {
-                    console.info('Camera setSystemBarProperties.')
-                })
-            } catch (err) {
-                console.error('Camera setFullScreen err: ' + err)
-            }
+        win.setSystemBarProperties({
+          navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
+        }).then(() => {
+          console.info('Camera setSystemBarProperties.')
         })
 
-        if (this.launchWant.parameters.uri === 'capture') {
-            globalThis.cameraFormParam = {
-                action: 'capture',
-                cameraPosition: 'PHOTO',
-                mode: 'PHOTO'
-            }
-        } else if (this.launchWant.parameters.uri === 'video') {
-            globalThis.cameraFormParam = {
-                action: 'video',
-                cameraPosition: 'VIDEO',
-                mode: 'VIDEO'
-            }
-        }
+        globalThis.keepScreenOn = win
 
+      } catch (err) {
+        console.error('Camera setFullScreen err: ' + err)
+      }
+    })
 
-        windowStage.setUIContent(this.context, 'pages/index', null)
+    if (this.launchWant.parameters.uri === 'capture') {
+      globalThis.cameraFormParam = {
+        action: 'capture',
+        cameraPosition: 'PHOTO',
+        mode: 'PHOTO'
+      }
+    } else if (this.launchWant.parameters.uri === 'video') {
+      globalThis.cameraFormParam = {
+        action: 'video',
+        cameraPosition: 'VIDEO',
+        mode: 'VIDEO'
+      }
     }
 
-    onWindowStageDestroy() {
-        console.info('Camera MainAbility onWindowStageDestroy.')
-    }
 
-    onForeground() {
-        console.info('Camera MainAbility onForeground.')
-        globalThis?.onForegroundInit && globalThis.onForegroundInit()
-    }
+    windowStage.setUIContent(this.context, 'pages/index', null)
+  }
 
-    onBackground() {
-        console.info('Camera MainAbility onBackground.')
-        globalThis?.releaseCamera && globalThis.releaseCamera()
-    }
+  onWindowStageDestroy() {
+    console.info('Camera MainAbility onWindowStageDestroy.')
+  }
 
-    onNewWant(want) {
-        console.info('Camera MainAbility onNewWant.')
-        globalThis.cameraNewWant = want
-    }
+  onForeground() {
+    console.info('Camera MainAbility onForeground.')
+    globalThis?.onForegroundInit && globalThis.onForegroundInit()
+  }
+
+  onBackground() {
+    console.info('Camera MainAbility onBackground.')
+    globalThis?.releaseCamera && globalThis.releaseCamera()
+  }
+
+  onNewWant(want) {
+    console.info('Camera MainAbility onNewWant.')
+    globalThis.cameraNewWant = want
+  }
 }

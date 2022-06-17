@@ -13,40 +13,40 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
-import { CLog } from '../Utils/CLog'
+import { Log } from '../utils/Log'
 
 export default class ThumbnailGetter {
   private TAG = '[ThumbnailGetter]:'
 
-  public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap> {
-    CLog.log(`${this.TAG} getThumbnailInfo E`)
-    CLog.log(`${this.TAG} getThumbnailInfo width: ${width}, height: ${height}, uri: ${JSON.stringify(uri)}`)
-    let fileKeyObj = mediaLibrary.FileKey;
+  public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap | undefined> {
+    Log.log(`${this.TAG} getThumbnailInfo E`)
+    Log.log(`${this.TAG} getThumbnailInfo width: ${width}, height: ${height}, uri: ${JSON.stringify(uri)}`)
+    const fileKeyObj = mediaLibrary.FileKey;
     let fetchOp: any
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    CLog.log(`${this.TAG} getThumbnailInfo media: ${media}`)
+    Log.log(`${this.TAG} getThumbnailInfo media: ${media}`)
     fetchOp = {
       selections: `${fileKeyObj.RELATIVE_PATH}=?`,
-      selectionArgs: ["Pictures/Camera/"],
+      selectionArgs: ['Pictures/Camera/'],
       order: fileKeyObj.DATE_ADDED,
     }
 
-    CLog.log(`${this.TAG} getThumbnailInfo fetchOp: ${JSON.stringify(fetchOp)}`)
-    let fetchFileResult = await media.getFileAssets(fetchOp);
-    let count = fetchFileResult.getCount()
-    CLog.log(`${this.TAG} getThumbnailInfo fetchFileResult.getCount: ${count}`)
+    Log.log(`${this.TAG} getThumbnailInfo fetchOp: ${JSON.stringify(fetchOp)}`)
+    const fetchFileResult = await media.getFileAssets(fetchOp);
+    const count = fetchFileResult.getCount()
+    Log.log(`${this.TAG} getThumbnailInfo fetchFileResult.getCount: ${count}`)
     if (count == 0) {
-      return null
+      return undefined
     }
-    let lastFileAsset = await fetchFileResult.getLastObject()
+    const lastFileAsset = await fetchFileResult.getLastObject()
     if (lastFileAsset == null) {
-      CLog.error(`${this.TAG} getThumbnailInfo lastFileAsset is null`)
-      return null
+      Log.error(`${this.TAG} getThumbnailInfo lastFileAsset is null`)
+      return undefined
     }
-    let thumbnailPixelMap = lastFileAsset.getThumbnail({size: {width: 40, height: 40}})
-    CLog.info(`${this.TAG} getThumbnailInfo thumbnailPixelMap: ${JSON.stringify(thumbnailPixelMap)} X`)
+    const thumbnailPixelMap = lastFileAsset.getThumbnail({width: 40, height: 40})
+    Log.info(`${this.TAG} getThumbnailInfo thumbnailPixelMap: ${JSON.stringify(thumbnailPixelMap)} X`)
     return thumbnailPixelMap
   }
 }
