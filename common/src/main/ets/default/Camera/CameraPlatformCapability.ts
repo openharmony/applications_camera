@@ -57,8 +57,10 @@ export class CameraPlatformCapability {
     return globalThis.sInstanceCapability;
   }
 
-  public async init() {
+  public async init(cameraCount: number) {
     Log.info(`${this.TAG} init E.`)
+    this.mCameraCount = cameraCount
+    Log.info(`${this.TAG} init X.`)
   }
 
   public async calcSupportedSizes(cameraInput) {

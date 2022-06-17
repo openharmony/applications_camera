@@ -115,17 +115,17 @@ export class CameraService {
     return globalThis.sInstanceCameraService;
   }
 
-  public async initCamera() {
+  public async initCamera(): Promise<number> {
     Log.info(`${this.TAG} initCamera invoke E.`)
     if (this.mCameraManager) {
       Log.info(`${this.TAG} initCamera CameraManager already init.`)
-      return
+      return this.mCameraCount
     }
 
     this.mCameraManager = await camera.getCameraManager(globalThis.cameraAbilityContext)
     if (!this.mCameraManager) {
       Log.error(`${this.TAG} initCamera getCameraManager failed.`)
-      return
+      return this.mCameraCount
     }
 
     const cameras = await this.mCameraManager.getCameras()
@@ -158,6 +158,7 @@ export class CameraService {
       this.mVideoConfig.videoSourceType = 1
       this.mVideoConfig.profile.videoCodec = 'video/mp4v-es'
     }
+    return this.mCameraCount
     Log.info(`${this.TAG} initCamera invoke X.`)
   }
 

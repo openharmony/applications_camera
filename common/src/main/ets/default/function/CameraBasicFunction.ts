@@ -54,9 +54,9 @@ export class CameraBasicFunction extends Function {
     Log.info(`${this.TAG} initCamera ${JSON.stringify(data)}  E`)
     this.mCameraId = data.cameraId
     this.mCurrentMode = data.mode
-    await this.mCameraService.initCamera()
+    let mCameraCount = await this.mCameraService.initCamera()
     const platformCapability = CameraPlatformCapability.getInstance()
-    await platformCapability.init()
+    await platformCapability.init(mCameraCount)
     this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability))
     this.mCameraService.getThumbnail(this.functionBackImpl)
     Log.info(`${this.TAG} initCamera X`)

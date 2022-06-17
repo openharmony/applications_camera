@@ -56,7 +56,7 @@ export default class MainAbility extends Ability {
           console.info('Camera setSystemBarProperties.')
         })
 
-        globalThis.keepScreenOn = win
+        globalThis.cameraWinClass = win
 
       } catch (err) {
         console.error('Camera setFullScreen err: ' + err)
