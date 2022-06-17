@@ -14,20 +14,23 @@
  */
 
 import { CameraSwitchButton
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/cameraswitcher/CameraSwitchButton'
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+} from '../../../../../../common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { ShutterButton
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/shutterbutton/ShutterButton'
+} from '../../../../../../common/src/main/ets/default/featurecommon/shutterbutton/ShutterButton'
 import { ThumbnailView
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/thumbnail/ThumbnailView'
-import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+} from '../../../../../../common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
+import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 
-let footBarState = (state) => {
+let footBarState = (state: OhCombinedState) => {
   return {
-    platformCapability: state.CameraInitReducer.platformCapability
+    platformCapability: state.CameraInitReducer.platformCapability,
+    isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+    videoState: state.RecordReducer.videoState,
+    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue
   }
 }
 
@@ -41,36 +44,39 @@ export struct FootBar {
 
   @State state: any = {}
 
-  private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private async onRecordStart(data) {
-    CLog.info(`${this.TAG} onRecordStart E`)
+    Log.info(`${this.TAG} onRecordStart E`)
     this.state.isRecording = true
-    CLog.info(`${this.TAG} onRecordStart X`)
+    Log.info(`${this.TAG} onRecordStart X`)
   }
 
   private async onRecordStop(data) {
-    CLog.info(`${this.TAG} onRecordStop E`)
+    Log.info(`${this.TAG} onRecordStop E`)
     this.state.isRecording = false
-    CLog.info(`${this.TAG} onRecordStop X`)
+    Log.info(`${this.TAG} onRecordStop X`)
   }
 
-  public aboutToAppear(): void {
-    CLog.info(`${this.TAG} aboutToAppear E`)
-    this.mConnect = getStore().connect(footBarState, footBarDispatcher)(this.state)
+  aboutToAppear(): void {
+    Log.info(`${this.TAG} aboutToAppear E`)
+    getStore().connect(footBarState, footBarDispatcher)(this.state)
     this.state.isRecording = false
     this.appEventBus.on(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  public aboutToDisappear(): void {
-    CLog.info(`${this.TAG} aboutToDisappear E`)
+  aboutToDisappear(): void {
+    Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
     this.appEventBus.off(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
-    this.mConnect.destroy()
-    CLog.info(`${this.TAG} aboutToDisappear X`)
+    Log.info(`${this.TAG} aboutToDisappear X`)
+  }
+
+  private isThumbnailViewVisibility() {
+    return !this.state.isRecording && !this.state.isThirdPartyCall &&
+    this.state.videoState !== "startTakeVideo" && this.state.videoState !== "pauseTakeVideo"
   }
 
   build() {
@@ -79,12 +85,9 @@ export struct FootBar {
       alignItems: ItemAlign.Center,
       justifyContent: FlexAlign.Center
     }) {
-      if (!this.state.isRecording) {
+      Column() {
         ThumbnailView()
-      } else {
-        Column() {
-        }.width('44').aspectRatio(1)
-      }
+      }.width(44).aspectRatio(1).visibility(this.isThumbnailViewVisibility() ? Visibility.Visible : Visibility.Hidden)
       ShutterButton()
       if (this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording) {
         CameraSwitchButton()
@@ -99,5 +102,6 @@ export struct FootBar {
     .opacity(100)
     .width('100%')
     .padding({ top: 10, bottom: 10})
+    .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
   }
 }

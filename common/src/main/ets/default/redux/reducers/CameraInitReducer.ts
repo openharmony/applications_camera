@@ -13,31 +13,34 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
-import image from '@ohos.multimedia.image'
+import { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
+import { Action, ActionData } from '../actions/Action'
 
-let initState = {
-  platformCapability: null,
+export type CameraInitState = {
+  platformCapability: CameraPlatformCapability | undefined,
+  thumbnail: Resource,
+  resourceUri: string,
+  videoUri: string
+}
+
+const initState: CameraInitState = {
+  platformCapability: undefined,
   thumbnail: $r('app.media.ic_camera_thumbnail_default_white'),
   resourceUri: '',
   videoUri: ''
 }
 
-export default function CameraInitReducer(state = initState, action: {
-  type: string,
-  data: any
-}) {
+export default function CameraInitReducer(state = initState, action: ActionData): CameraInitState {
   switch (action.type) {
-    case Action.ACTION_INIT_DONE:
-      return { ...state, platformCapability: action.data.platformCapability}
-    case Action.ACTION_UPDATE_THUMBNAIL:
-      return { ...state, thumbnail: action.data.thumbnail, resourceUri: action.data.resourceUri }
-    case Action.ACTION_LOAD_THUMBNAIL:
-      return { ...state, thumbnail: action.data.thumbnail }
-    case Action.ACTION_UPDATE_VIDEO_URI:
-      return { ...state, videoUri: action.data.videoUri }
-    default:
-      return state;
+  case Action.ACTION_INIT_DONE:
+    return { ...state, platformCapability: action.data.platformCapability}
+  case Action.ACTION_UPDATE_THUMBNAIL:
+    return { ...state, thumbnail: action.data.thumbnail, resourceUri: action.data.resourceUri }
+  case Action.ACTION_LOAD_THUMBNAIL:
+    return { ...state, thumbnail: action.data.thumbnail }
+  case Action.ACTION_UPDATE_VIDEO_URI:
+    return { ...state, videoUri: action.data.videoUri }
+  default:
+    return state;
   }
-  return state;
 }

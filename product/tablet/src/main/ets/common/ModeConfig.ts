@@ -20,15 +20,15 @@ export class ModeConfig {
 
   public getPaddingConfig(mode: string): PaddingData {
     switch (mode) {
-      case 'PHOTO':
-        return this.photoPadding
-      case 'VIDEO':
-        return this.videoPadding
+    case 'PHOTO':
+      return this.photoPadding
+    case 'VIDEO':
+      return this.videoPadding
     }
   }
 }
 
 export class PaddingData {
-  top: number = 48
-  bottom: number = 154
+  top = 48
+  bottom = 154
 }

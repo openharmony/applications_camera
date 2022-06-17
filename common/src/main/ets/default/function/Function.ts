@@ -14,10 +14,9 @@
  */
 
 import { Action } from '../redux/actions/Action'
-import { CameraService } from '../Camera/CameraService'
-import { EventBus } from '../Utils/EventBus'
-import EventBusManager from '../Utils/EventBusManager'
-import { WorkerManager } from '../Utils/WorkerManager'
+import { CameraService } from '../camera/CameraService'
+import EventBusManager from '../worker/eventbus/EventBusManager'
+import { WorkerManager } from '../worker/WorkerManager'
 
 export abstract class Function {
   protected mCameraService: CameraService = CameraService.getInstance()
@@ -32,7 +31,7 @@ export abstract class Function {
     this.mWorkerManager.postMessage(Action.UiState(false))
   }
 
-  abstract load(): void;
+  abstract load(): void
 
-  abstract unload(): void;
+  abstract unload(): void
 }

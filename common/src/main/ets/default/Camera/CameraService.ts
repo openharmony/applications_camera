@@ -19,12 +19,11 @@ import image from '@ohos.multimedia.image'
 import media from '@ohos.multimedia.media'
 import deviceInfo from '@ohos.deviceInfo'
 
-import { CameraId } from '../setting/CameraId'
-import { CLog } from '../Utils/CLog'
-import { Constants } from '../Utils/Constants'
+import { CameraId } from '../setting/settingitem/CameraId'
+import { Log } from '../utils/Log'
 import ThumbnailGetter from './ThumbnailGetter'
 import SaveCameraAsset from './SaveCameraAsset'
-import { SettingsUtil } from '../Utils/SettingsUtil'
+import { SettingManager } from '../setting/SettingManager'
 import { CameraPlatformCapability } from './CameraPlatformCapability'
 
 export interface FunctionCallBack {
@@ -44,26 +43,24 @@ export interface VideoCallBack {
 }
 
 export class CameraService {
-  private TAG: string = '[CameraService]:'
+  private TAG = '[CameraService]:'
   private mCameraId: CameraId = CameraId.BACK
-  private mSurfaceId = null
-  public mCurrentMode = null
-  private mIsSessionRelease: boolean = true
-  private mFileAssetId: number
-  private mCameraManager = null
-  private mCameraIdMap = new Map()
+  private mSurfaceId = ''
+  private mIsSessionRelease = true
+  private mFileAssetId = 0
+  private mCameraManager!: camera.CameraManager
+  private mCameraIdMap: Map<CameraId, string> = new Map()
   private mCameraMap = new Map()
-  private curCameraName: string
+  private curCameraName = ''
   private mCameraCount = 0
-  private mCameraInput = null
-  private mCaptureSession = null
-  private mPreviewOutput = null
-  private mPhotoOutPut = null
-  private mVideoOutput = null
-  private mVideoRecorder = null
-  private mThumbnail = null
+  private mCameraInput!: camera.CameraInput
+  private mCaptureSession!: camera.CaptureSession
+  private mPreviewOutput!: camera.PreviewOutput
+  private mPhotoOutPut!: camera.PhotoOutput
+  private mVideoOutput!: camera.VideoOutput
+  private mVideoRecorder!: media.VideoRecorder
+  private mThumbnail!: image.PixelMap
   private mIsStartRecording = false
-  private mCameraListInfo = null
   private mSaveCameraAsset = new SaveCameraAsset()
   private mThumbnailGetter = new ThumbnailGetter()
 
@@ -119,41 +116,41 @@ export class CameraService {
   }
 
   public async initCamera() {
-    CLog.info(`${this.TAG} initCamera invoke E.`)
+    Log.info(`${this.TAG} initCamera invoke E.`)
     if (this.mCameraManager) {
-      CLog.info(`${this.TAG} initCamera CameraManager already init.`)
+      Log.info(`${this.TAG} initCamera CameraManager already init.`)
       return
     }
 
-    this.mCameraManager = await camera.getCameraManager(null)
+    this.mCameraManager = await camera.getCameraManager(globalThis.cameraAbilityContext)
     if (!this.mCameraManager) {
-      CLog.error(`${this.TAG} initCamera getCameraManager failed.`)
+      Log.error(`${this.TAG} initCamera getCameraManager failed.`)
       return
     }
 
-    let cameras = await this.mCameraManager.getCameras()
+    const cameras = await this.mCameraManager.getCameras()
     this.mCameraCount = cameras.length
     if (cameras) {
-      CLog.info(`${this.TAG} getCameras success.`)
+      Log.info(`${this.TAG} getCameras success.`)
       for (let i = 0; i < cameras.length; i++) {
-        CLog.info(`${this.TAG} --------------Camera Info-------------`)
-        CLog.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
-        CLog.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
-        CLog.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
-        CLog.info(`${this.TAG} connectionType: ${cameras[i].cameraType}`)
+        Log.info(`${this.TAG} --------------Camera Info-------------`)
+        Log.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
+        Log.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
+        Log.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
+        Log.info(`${this.TAG} connectionType: ${cameras[i].cameraType}`)
       }
       // TODO 根据底层信息匹配cameraId 目前默认第0个是back， 第1个是front
-      this.mCameraIdMap[CameraId.BACK] = cameras[0].cameraId
+      this.mCameraIdMap.set(CameraId.BACK, cameras[0].cameraId);
       if (cameras.length > 1) {
-        this.mCameraIdMap[CameraId.FRONT] = cameras[1].cameraId
+        this.mCameraIdMap.set(CameraId.FRONT, cameras[1].cameraId);
       } else {
-        this.mCameraIdMap[CameraId.FRONT] = cameras[0].cameraId
+        this.mCameraIdMap.set(CameraId.FRONT, cameras[0].cameraId);
       }
     }
     this.curCameraName = CameraId.BACK
     await this.createCameraInput(CameraId.BACK)
 
-    CLog.info(`${this.TAG} deviceType = ${deviceInfo.deviceType}`)
+    Log.info(`${this.TAG} deviceType = ${deviceInfo.deviceType}`)
     if (deviceInfo.deviceType == 'PAD' || deviceInfo.deviceType == 'tablet') {
       this.mVideoConfig.videoSourceType = 0
       this.mVideoConfig.profile.videoCodec = 'video/avc'
@@ -161,7 +158,7 @@ export class CameraService {
       this.mVideoConfig.videoSourceType = 1
       this.mVideoConfig.profile.videoCodec = 'video/mp4v-es'
     }
-    CLog.info(`${this.TAG} initCamera invoke X.`)
+    Log.info(`${this.TAG} initCamera invoke X.`)
   }
 
   public getCameraManager() {
@@ -181,211 +178,217 @@ export class CameraService {
   }
 
   public async createCameraInput(cameraName: CameraId) {
-    CLog.info(`${this.TAG} createCameraInput invoke E.`)
+    Log.info(`${this.TAG} createCameraInput invoke E.`)
     this.mCameraId = cameraName
     if (this.mCameraInput) {
       this.mCameraInput.release()
     }
     let id
     if (cameraName == CameraId.FRONT || cameraName == CameraId.BACK) {
-      id = this.mCameraIdMap[cameraName]
+      id = this.mCameraIdMap.get(cameraName)
     } else {
       id = this.mCameraMap.get(cameraName).cameraId
     }
-    CLog.info(`${this.TAG} createCameraInput id = ${id}`)
+    Log.info(`${this.TAG} createCameraInput id = ${id}`)
     this.mCameraInput = await this.mCameraManager.createCameraInput(id)
-    let platformCapability = CameraPlatformCapability.getInstance()
+    const platformCapability = CameraPlatformCapability.getInstance()
     await platformCapability.calcSupportedSizes(this.mCameraInput)
-    CLog.info(`${this.TAG} createCameraInput invoke X.`)
+    Log.info(`${this.TAG} createCameraInput invoke X.`)
   }
 
   public async releaseCameraInput() {
-    CLog.info(`${this.TAG} releaseCameraInput invoke E.`)
+    Log.info(`${this.TAG} releaseCameraInput invoke E.`)
     if (this.mCameraInput) {
       await this.mCameraInput.release()
       this.mCameraInput = null
     }
-    CLog.info(`${this.TAG} releaseCameraInput invoke X.`)
+    Log.info(`${this.TAG} releaseCameraInput invoke X.`)
   }
 
-  public async createPreviewOutput(surfaceId: number) {
-    CLog.info(`${this.TAG} createPreviewOutput invoke ${surfaceId} E. `)
+  public async createPreviewOutput(surfaceId: string) {
+    Log.info(`${this.TAG} createPreviewOutput invoke ${surfaceId} E. `)
     this.mSurfaceId = surfaceId
-    let size = SettingsUtil.getInstance().getPreviewSize()
-    CLog.info(`${this.TAG} createPreviewOutput size = ${JSON.stringify(size)}`)
+    const size = SettingManager.getInstance().getPreviewSize()
+    Log.info(`${this.TAG} createPreviewOutput size = ${JSON.stringify(size)}`)
     globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height })
     this.mPreviewOutput = await camera.createPreviewOutput(surfaceId)
-    CLog.info(`${this.TAG} createPreviewOutput invoke ${this.mPreviewOutput} X.`)
+    Log.info(`${this.TAG} createPreviewOutput invoke ${this.mPreviewOutput} X.`)
   }
 
   public async releasePreviewOutput() {
-    CLog.info(`${this.TAG} releasePreviewOutput invoke E.`)
+    Log.info(`${this.TAG} releasePreviewOutput invoke E.`)
     if (this.mPreviewOutput) {
       await this.mPreviewOutput.release()
       this.mPreviewOutput = null
     }
-    CLog.info(`${this.TAG} releasePreviewOutput invoke X.`)
+    Log.info(`${this.TAG} releasePreviewOutput invoke X.`)
   }
 
   public async createPhotoOutput(functionCallback: FunctionCallBack) {
-    CLog.info(`${this.TAG} createPhotoOutput invoke ${this.mImageSize.imageWidth}x${this.mImageSize.imageHeight} E.`)
-    let receiver = image.createImageReceiver(this.mImageSize.imageWidth, this.mImageSize.imageHeight, 4, 8)
-    CLog.info(`${this.TAG} createPhotoOutput receiver: ${receiver}.`)
-    let surfaceId = await receiver.getReceivingSurfaceId()
-    CLog.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
+    Log.info(`${this.TAG} createPhotoOutput invoke ${this.mImageSize.imageWidth}x${this.mImageSize.imageHeight} E.`)
+    const receiver = image.createImageReceiver(this.mImageSize.imageWidth, this.mImageSize.imageHeight, 4, 8)
+    Log.info(`${this.TAG} createPhotoOutput receiver: ${receiver}.`)
+    const surfaceId = await receiver.getReceivingSurfaceId()
+    Log.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
     this.mPhotoOutPut = await camera.createPhotoOutput(surfaceId)
-    CLog.info(`${this.TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`)
+    Log.info(`${this.TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`)
     this.mSaveCameraAsset.saveImage(receiver, 40, 40, this.mThumbnailGetter, functionCallback)
-    CLog.info(`${this.TAG} createPhotoOutput invoke X.`)
+    Log.info(`${this.TAG} createPhotoOutput invoke X.`)
   }
 
   public async releasePhotoOutput() {
-    CLog.info(`${this.TAG} releasePhotoOutput invoke E.`)
+    Log.info(`${this.TAG} releasePhotoOutput invoke E.`)
     if (this.mPhotoOutPut) {
       await this.mPhotoOutPut.release()
       this.mPhotoOutPut = null
     }
-    CLog.info(`${this.TAG} releasePhotoOutput invoke X.`)
+    Log.info(`${this.TAG} releasePhotoOutput invoke X.`)
   }
 
-  public async createSession(surfaceId: number, isVideo: boolean) {
-    CLog.info(`${this.TAG} createSession invoke E.`)
+  public async createSession(surfaceId: string, isVideo: boolean) {
+    Log.info(`${this.TAG} createSession invoke E.`)
     this.mSurfaceId = surfaceId
-    this.mCaptureSession = await camera.createCaptureSession(null)
+    this.mCaptureSession = await camera.createCaptureSession(globalThis.cameraAbilityContext)
 
-    CLog.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
-    CLog.info(`${this.TAG} createSession beginConfig.`)
+    Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
+    Log.info(`${this.TAG} createSession beginConfig.`)
     await this.mCaptureSession.beginConfig()
-    CLog.info(`${this.TAG} createSession addInput.`)
+    Log.info(`${this.TAG} createSession addInput.`)
     await this.mCaptureSession.addInput(this.mCameraInput)
     if (!isVideo) {
-      CLog.info(`${this.TAG} createSession photo addOutput.`)
+      Log.info(`${this.TAG} createSession photo addOutput.`)
       await this.mCaptureSession.addOutput(this.mPhotoOutPut)
     }
-    CLog.info(`${this.TAG} createSession preview addOutput.`)
+    Log.info(`${this.TAG} createSession preview addOutput.`)
     await this.mCaptureSession.addOutput(this.mPreviewOutput)
-    CLog.info(`${this.TAG} createSession commitConfig.`)
+    Log.info(`${this.TAG} createSession commitConfig.`)
     await this.mCaptureSession.commitConfig()
-    CLog.info(`${this.TAG} createSession invoke X.`)
+    Log.info(`${this.TAG} createSession invoke X.`)
   }
 
   public async releaseSession() {
-    CLog.info(`${this.TAG} releasePhotoSession invoke E.`)
+    Log.info(`${this.TAG} releasePhotoSession invoke E.`)
     if (this.mCaptureSession) {
       await this.mCaptureSession.release()
       this.mCaptureSession = null
     }
-    CLog.info(`${this.TAG} releasePhotoSession invoke X.`)
+    Log.info(`${this.TAG} releasePhotoSession invoke X.`)
   }
 
   public async startPreview() {
-    CLog.info(`${this.TAG} startPreview invoke E.`)
+    Log.info(`${this.TAG} startPreview invoke E.`)
     if (!this.mCaptureSession) {
       return
     }
     await this.mCaptureSession.start()
-    CLog.info(`${this.TAG} startPreview invoke X.`)
+    Log.info(`${this.TAG} startPreview invoke X.`)
   }
 
   public async stopPreview() {
-    CLog.info(`${this.TAG} stopPreview invoke E.`)
+    Log.info(`${this.TAG} stopPreview invoke E.`)
     if (!this.mCaptureSession) {
       return
     }
     await this.mCaptureSession.stop()
-    CLog.info(`${this.TAG} stopPreview invoke X.`)
+    Log.info(`${this.TAG} stopPreview invoke X.`)
   }
 
   public async takePicture() {
-    CLog.info(`${this.TAG} takePicture invoke E.`)
+    Log.info(`${this.TAG} takePicture invoke E.`)
     if (!this.mCaptureSession) {
-      CLog.info(`${this.TAG} takePicture session is release`)
+      Log.info(`${this.TAG} takePicture session is release`)
       return
     }
     if (!this.mPhotoOutPut) {
-      CLog.info(`${this.TAG} takePicture photoOutPut is release`)
+      Log.info(`${this.TAG} takePicture photoOutPut is release`)
       return
     }
-    CLog.info(`${this.TAG} takePicture SelfMirror setting: ${SettingsUtil.getInstance().getSelfMirror()}`)
+    Log.info(`${this.TAG} takePicture SelfMirror setting: ${SettingManager.getInstance().getSelfMirror()}`)
     if (this.mCameraId === CameraId.FRONT) {
-      this.mCaptureSetting.mirror = SettingsUtil.getInstance().getSelfMirror()
+      this.mCaptureSetting.mirror = SettingManager.getInstance().getSelfMirror()
     }
-    if (SettingsUtil.getInstance().getCurGeoLocation()) {
-      this.mCaptureSetting.location.latitude = SettingsUtil.getInstance().getCurGeoLocation().latitude
-      this.mCaptureSetting.location.longitude = SettingsUtil.getInstance().getCurGeoLocation().longitude
+    if (SettingManager.getInstance().getCurGeoLocation()) {
+      this.mCaptureSetting.location.latitude = SettingManager.getInstance().getCurGeoLocation().latitude
+      this.mCaptureSetting.location.longitude = SettingManager.getInstance().getCurGeoLocation().longitude
     }
-    CLog.info(`${this.TAG} takePicture captureSetting ${JSON.stringify(this.mCaptureSetting)}`)
-    await this.mPhotoOutPut.capture(this.mCaptureSetting)
-    CLog.info(`${this.TAG} takePicture invoke X.`)
+    Log.info(`${this.TAG} takePicture captureSetting ${JSON.stringify(this.mCaptureSetting)}`)
+    let tempCaptureSetting: any = {
+      rotation: 0,
+      quality: 1
+    }
+    // todo modify the location and mirror config
+    await this.mPhotoOutPut.capture(tempCaptureSetting)
+    Log.info(`${this.TAG} takePicture invoke X.`)
   }
 
   public async createVideoOutput(functionCallBack: VideoCallBack) {
-    CLog.info(`${this.TAG} createVideoOutput invoke E.`)
-    CLog.info(`${this.TAG} createVideoOutput this.mSurfaceId：saveCameraAsset: ${this.mSaveCameraAsset}`)
+    Log.info(`${this.TAG} createVideoOutput invoke E.`)
+    Log.info(`${this.TAG} createVideoOutput this.mSurfaceId：saveCameraAsset: ${this.mSaveCameraAsset}`)
     this.mFileAssetId = await this.mSaveCameraAsset.createVideoFd(functionCallBack)
     this.mVideoConfig.url = `fd://${this.mFileAssetId.toString()}`
     await media.createVideoRecorder().then((recorder) => {
-      CLog.info(`${this.TAG} createVideoOutput createVideoRecorder record: ${recorder}`)
+      Log.info(`${this.TAG} createVideoOutput createVideoRecorder record: ${recorder}`)
       this.mVideoRecorder = recorder
     })
     if (this.mVideoRecorder != null) {
-      CLog.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
+      Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
       this.mVideoConfig.profile.videoFrameWidth = this.mVideoFrameSize.frameWidth
       this.mVideoConfig.profile.videoFrameHeight = this.mVideoFrameSize.frameHeight
-      this.mVideoConfig.profile.videoCodec = SettingsUtil.getInstance().getVideoCodec()
-      CLog.info(`${this.TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`)
+      this.mVideoConfig.profile.videoCodec = SettingManager.getInstance().getVideoCodec()
+      Log.info(`${this.TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`)
       await this.mVideoRecorder.prepare(this.mVideoConfig)
-      CLog.info(`${this.TAG} createVideoOutput videoRecorder.prepare succeed.`)
+      Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare succeed.`)
     } else {
-      CLog.error(`${this.TAG} createVideoOutput createVideoRecorder failed.`)
+      Log.error(`${this.TAG} createVideoOutput createVideoRecorder failed.`)
       return
     }
 
-    let videoId = await this.mVideoRecorder.getInputSurface()
+    const videoId = await this.mVideoRecorder.getInputSurface()
     this.mVideoOutput = await camera.createVideoOutput(videoId)
-    CLog.info(`${this.TAG} createVideoOutput invoke X.`)
+    Log.info(`${this.TAG} createVideoOutput invoke X.`)
   }
 
   public async releaseVideoOutput() {
-    CLog.info(`${this.TAG} releaseVideoOutput invoke E.`)
+    Log.info(`${this.TAG} releaseVideoOutput invoke E.`)
     if (this.mVideoOutput) {
-      CLog.info(`${this.TAG} releaseVideoOutput start`)
+      Log.info(`${this.TAG} releaseVideoOutput start`)
       await this.mVideoOutput.release()
-      CLog.info(`${this.TAG} releaseVideoOutput end`)
+      Log.info(`${this.TAG} releaseVideoOutput end`)
       this.mVideoOutput = null
     }
-    CLog.info(`${this.TAG} releaseVideoOutput invoke X.`)
+    Log.info(`${this.TAG} releaseVideoOutput invoke X.`)
   }
 
   public async StartRecording(functionCallBack: VideoCallBack) {
-    CLog.info(`${this.TAG} StartRecording invoke E.`)
-    CLog.info(`${this.TAG} StartRecording codec ${this.mVideoConfig.profile.videoCodec}`)
+    Log.info(`${this.TAG} StartRecording invoke E.`)
+    Log.info(`${this.TAG} StartRecording codec ${this.mVideoConfig.profile.videoCodec}`)
     await this.mCaptureSession.stop()
     await this.mCaptureSession.beginConfig()
     if (this.mVideoOutput) {
       await this.mCaptureSession.removeOutput(this.mVideoOutput)
+      Log.info(`${this.TAG} old videoOutput has been removed.`)
     }
     await this.createVideoOutput(functionCallBack)
     await this.mCaptureSession.addOutput(this.mVideoOutput)
-    CLog.info(`${this.TAG} StartRecording addOutput finished.`)
+    Log.info(`${this.TAG} StartRecording addOutput finished.`)
     await this.mCaptureSession.commitConfig()
-    CLog.info(`${this.TAG} StartRecording commitConfig finished.`)
+    Log.info(`${this.TAG} StartRecording commitConfig finished.`)
     await this.mCaptureSession.start()
-    CLog.info(`${this.TAG} StartRecording Session.start finished.`)
+    Log.info(`${this.TAG} StartRecording Session.start finished.`)
     await this.mVideoOutput.start().then(() => {
-      CLog.info(`${this.TAG} videoOutput.start()`)
+      Log.info(`${this.TAG} videoOutput.start()`)
     })
     await this.mVideoRecorder.start().then(() => {
-      CLog.info(`${this.TAG} videoRecorder.start()`)
+      Log.info(`${this.TAG} videoRecorder.start()`)
     })
     this.mIsStartRecording = true
-    CLog.info(`${this.TAG} StartRecording invoke X.`)
+    Log.info(`${this.TAG} StartRecording invoke X.`)
   }
 
   public async stopRecording() {
-    CLog.info(`${this.TAG} stopRecording invoke E.`)
+    Log.info(`${this.TAG} stopRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.error(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
+      Log.error(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
@@ -393,72 +396,70 @@ export class CameraService {
     try {
       await this.mVideoRecorder.stop()
     } catch (err) {
-      CLog.error(`${this.TAG} stop videoRecorder ${err}`)
+      Log.error(`${this.TAG} stop videoRecorder ${err}`)
     }
 
     try {
       await this.mVideoOutput.stop()
     } catch (err) {
-      CLog.error(`${this.TAG} stop videoOutput ${err}`)
+      Log.error(`${this.TAG} stop videoOutput ${err}`)
     }
-
-    this.mVideoOutput = undefined
 
     if (this.mFileAssetId != undefined) {
       await this.mSaveCameraAsset.videoPrepareFile.close(this.mFileAssetId)
       this.mFileAssetId = undefined
-      CLog.info(`${this.TAG} fileAsset.close().`)
+      Log.info(`${this.TAG} fileAsset.close().`)
     }
 
-    let thumbnailPixelMap = await this.mThumbnailGetter.getThumbnailInfo(40, 40)
-    CLog.info(`${this.TAG} stopRecording invoke X.`)
+    const thumbnailPixelMap = await this.mThumbnailGetter.getThumbnailInfo(40, 40)
+    Log.info(`${this.TAG} stopRecording invoke X.`)
     return thumbnailPixelMap
   }
 
   public async pauseRecording() {
-    CLog.info(`${this.TAG} pauseRecording invoke E.`)
+    Log.info(`${this.TAG} pauseRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.error(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
+      Log.error(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
     await this.mVideoRecorder.pause()
     await this.mVideoOutput.stop()
-    CLog.info(`${this.TAG} pauseRecording invoke X.`)
+    Log.info(`${this.TAG} pauseRecording invoke X.`)
   }
 
   public async resumeRecording() {
-    CLog.info(`${this.TAG} resumeRecording invoke E.`)
+    Log.info(`${this.TAG} resumeRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
-      CLog.error(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
+      Log.error(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
               videoRecorder: ${this.mVideoRecorder} .`)
       return
     }
     await this.mVideoOutput.start().then(() => {
-      CLog.info(`${this.TAG} videoOutput.start()`)
+      Log.info(`${this.TAG} videoOutput.start()`)
     })
     await this.mVideoRecorder.resume()
-    CLog.info(`${this.TAG} resumeRecording invoke X.`)
+    Log.debug(`${this.TAG} resumeRecording invoke X.`)
   }
 
   public async releaseRecording() {
-    CLog.info(`${this.TAG} releaseRecording invoke E.`)
+    Log.info(`${this.TAG} releaseRecording invoke E.`)
     if (!this.mVideoRecorder) {
-      CLog.error(`${this.TAG} releaseRecording error videoRecorder is null .`)
+      Log.info(`${this.TAG} video recorder has not been created.`)
       return
     }
     if (this.mIsStartRecording) {
       await this.stopRecording()
     }
     await this.mVideoRecorder.release().then(() => {
-      CLog.info(`${this.TAG} videoRecorder.release() success.`)
+      Log.info(`${this.TAG} videoRecorder.release() success.`)
       this.mVideoRecorder = undefined
     })
-    CLog.info(`${this.TAG} releaseRecording invoke X.`)
+    Log.debug(`${this.TAG} releaseRecording invoke X.`)
   }
 
   public async releaseCamera() {
-    CLog.info(`${this.TAG} releaseCamera invoke E.`)
+    Log.info(`${this.TAG} releaseCamera invoke E.`)
     await this.stopPreview()
     await this.releaseRecording()
     await this.releaseCameraInput()
@@ -466,75 +467,73 @@ export class CameraService {
     await this.releasePhotoOutput()
     await this.releaseVideoOutput()
     await this.releaseSession()
-    CLog.info(`${this.TAG} releaseCamera invoke X.`)
+    Log.info(`${this.TAG} releaseCamera invoke X.`)
   }
 
-  public async setZoomRatio(zoomRatio) {
-    CLog.info(`${this.TAG} setZoomRatio invoke E.`)
+  public async setZoomRatio(zoomRatio: number) {
+    Log.info(`${this.TAG} setZoomRatio invoke E.`)
     if (!this.mCameraInput) {
-      CLog.info(`${this.TAG} setZoomRatio camerainput is release`)
+      Log.info(`${this.TAG} setZoomRatio camerainput is release`)
       return
     }
     await this.mCameraInput.setZoomRatio(zoomRatio)
-    CLog.info(`${this.TAG} setZoomRatio invoke X.`)
+    Log.debug(`${this.TAG} setZoomRatio invoke X.`)
   }
 
-  public async getZoomRatio() {
-    CLog.info(`${this.TAG} getZoomRatio invoke E.`)
+  public async getZoomRatio(): Promise<number> {
+    Log.info(`${this.TAG} getZoomRatio invoke E.`)
     if (!this.mCameraInput) {
-      CLog.info(`${this.TAG} getZoomRatio camerainput is release`)
-      return
+      Log.info(`${this.TAG} getZoomRatio camerainput is release`)
+      return 1;
     }
-    CLog.info(`${this.TAG} getZoomRatio invoke X.`)
+    Log.debug(`${this.TAG} getZoomRatio invoke X.`)
     return await this.mCameraInput.getZoomRatio()
   }
 
   public async setVideoConfig(videoConfig: any) {
-    CLog.info(`${this.TAG} setVideoConfig invoke E.`)
+    Log.info(`${this.TAG} setVideoConfig invoke E.`)
     if (videoConfig) {
       this.mVideoConfig = videoConfig
     } else {
-      CLog.info(`${this.TAG} setVideoConfig videoConfig is null.`)
+      Log.info(`${this.TAG} setVideoConfig videoConfig is null.`)
     }
-    CLog.info(`${this.TAG} setVideoConfig invoke X.`)
+    Log.info(`${this.TAG} setVideoConfig invoke X.`)
   }
 
   public async setCaptureSetting(captureSetting: any) {
-    CLog.info(`${this.TAG} setCaptureSetting invoke E.`)
+    Log.info(`${this.TAG} setCaptureSetting invoke E.`)
     if (captureSetting) {
       this.mCaptureSetting = captureSetting
     } else {
-      CLog.info(`${this.TAG} setCaptureSetting captureSetting is null.`)
+      Log.info(`${this.TAG} setCaptureSetting captureSetting is null.`)
     }
-    CLog.info(`${this.TAG} setCaptureSetting invoke X.`)
+    Log.debug(`${this.TAG} setCaptureSetting invoke X.`)
   }
 
   public getThumbnail(functionCallBack: FunctionCallBack) {
-    CLog.info(`${this.TAG} getThumbnail invoke E.`)
+    Log.info(`${this.TAG} getThumbnail invoke E.`)
     this.mThumbnailGetter.getThumbnailInfo(40, 40).then((thumbnail) => {
-      if (thumbnail != null) {
-        CLog.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
-        functionCallBack.thumbnail(thumbnail)
-      }
+      Log.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
+      functionCallBack.thumbnail(thumbnail)
     })
-    CLog.info(`${this.TAG} getThumbnail invoke X.`)
+    Log.debug(`${this.TAG} getThumbnail invoke X.`)
     return this.mThumbnail
   }
 
   public async getMultiCameraInfo() {
-    CLog.info(`${this.TAG} getMultiCameraInfo called.`)
+    Log.info(`${this.TAG} getMultiCameraInfo called.`)
     //    return ['MatePad Pro（前置）', 'MatePad Pro（后置）']
-    let deviceNames = []
-    let deviceIds = []
-    let cameraMap = new Map()
-    let cameras = await this.getCameraLists()
+    const deviceNames = []
+    const deviceIds = []
+    const cameraMap = new Map()
+    const cameras = await this.getCameraLists()
     deviceManager.createDeviceManager('com.ohos.camera', (err, manager) => {
       if (err) {
-        CLog.info(`${this.TAG} deviceManager.createDeviceManager failed.`)
+        Log.info(`${this.TAG} deviceManager.createDeviceManager failed.`)
       }
-      CLog.info(`${this.TAG} deviceManager.createDeviceManager success.`)
-      let deviceInfoList = manager.getTrustedDeviceListSync()
-      CLog.info(`${this.TAG} deviceManager.deviceInfoList: ${JSON.stringify(deviceInfoList)}`)
+      Log.info(`${this.TAG} deviceManager.createDeviceManager success.`)
+      const deviceInfoList = manager.getTrustedDeviceListSync()
+      Log.info(`${this.TAG} deviceManager.deviceInfoList: ${JSON.stringify(deviceInfoList)}`)
       if (typeof (deviceInfoList) != undefined && typeof (deviceInfoList.length) != undefined) {
         deviceInfoList.forEach(item => {
           deviceNames.push(item.deviceName)
@@ -548,12 +547,12 @@ export class CameraService {
                 if (cameras[i].cameraPosition == 2 && !hasFront) {
                   cameraName = item.deviceId + '_FRONT'
                   cameraMap.set(cameraName, {deviceName: item.deviceName, cameraId: cameras[i].cameraId})
-                  CLog.info(`${this.TAG} deviceManager add cameraName: ${cameraName}`)
+                  Log.info(`${this.TAG} deviceManager add cameraName: ${cameraName}`)
                   hasFront = true
                 } else if (cameras[i].cameraPosition == 1 && !hasBack) {
                   cameraName = item.deviceId + '_BACK'
                   cameraMap.set(cameraName, {deviceName: item.deviceName, cameraId: cameras[i].cameraId})
-                  CLog.info(`${this.TAG} deviceManager add cameraName: ${cameraName}`)
+                  Log.info(`${this.TAG} deviceManager add cameraName: ${cameraName}`)
                   hasBack = true
                 }
                 if (hasFront && hasBack) {
@@ -569,22 +568,19 @@ export class CameraService {
   }
 
   private async getCameraLists() {
-    CLog.info(`${this.TAG} getCameraLists called.`)
-    let cameras = await this.mCameraManager.getCameras()
+    const cameras = await this.mCameraManager.getCameras()
     return cameras
   }
 
-  public getCameraName() {
+  public getCameraName(): string {
     return this.curCameraName
   }
 
-  public setCameraName(name: string) {
-    CLog.info(`${this.TAG} setCameraName ${name}`)
+  public setCameraId(name: string) {
     this.curCameraName = name
   }
 
   public getPhotoUri() {
-    CLog.info(`${this.TAG} getPhotoUri called`)
     return this.mSaveCameraAsset.getPhotoUri()
   }
 }

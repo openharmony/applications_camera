@@ -15,7 +15,7 @@
 
 import router from '@system.router'
 
-import {CLog} from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 
 @Entry
 @Component
@@ -33,20 +33,20 @@ struct ThirdPreviewView {
   aboutToAppear() {
     let routerParams = router.getParams()
     this.photoWidth = routerParams.width.toString()
-    CLog.info(`${this.TAG} aboutToAppear photoWidth= ${this.photoWidth} E`)
+    Log.info(`${this.TAG} aboutToAppear photoWidth= ${this.photoWidth} E`)
     this.photoHeight = routerParams.height.toString()
-    CLog.info(`${this.TAG} aboutToAppear photoHeight= ${this.photoHeight} E`)
+    Log.info(`${this.TAG} aboutToAppear photoHeight= ${this.photoHeight} E`)
     this.photoUri = routerParams.uri.toString()
-    CLog.info(`${this.TAG} aboutToAppear photoUri= ${this.photoUri} E`)
+    Log.info(`${this.TAG} aboutToAppear photoUri= ${this.photoUri} E`)
     this.mode = routerParams.mode.toString()
-    CLog.info(`${this.TAG} aboutToAppear mode= ${this.mode} E`)
+    Log.info(`${this.TAG} aboutToAppear mode= ${this.mode} E`)
     this.videoUri = routerParams.videoUri.toString()
-    CLog.info(`${this.TAG} aboutToAppear videoUri= ${this.videoUri} E`)
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    Log.info(`${this.TAG} aboutToAppear videoUri= ${this.videoUri} E`)
+    Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   terminateSelfWithResult(resourceUri) {
-    CLog.info(`${this.TAG} terminateSelfWithResult start`)
+    Log.info(`${this.TAG} terminateSelfWithResult start`)
     let abilityResult = {
       "resultCode": 200,
       "want": {
@@ -60,10 +60,10 @@ struct ThirdPreviewView {
 
     globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
       if (error) {
-        CLog.error(`${this.TAG} Operation failed. Cause: ${error}`);
+        Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
         return;
       }
-      CLog.info(`${this.TAG} Operation succeeded: ${data}`);
+      Log.info(`${this.TAG} Operation succeeded: ${data}`);
     });
   }
 

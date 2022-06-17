@@ -14,29 +14,30 @@
  */
 
 import { Action } from '../redux/actions/Action'
-import { CLog } from '../Utils/CLog'
-import { Function } from "./Function"
+import { Log } from '../utils/Log'
+import { Function } from './Function'
 
 export class CaptureFunction extends Function {
-  private TAG: string = '[CaptureFunction]:'
+  private TAG = '[CaptureFunction]:'
 
-  private async capture() {
-    CLog.info(`${this.TAG} capture E`)
+  private async capture(): Promise<void> {
+    Log.info(`${this.TAG} capture E`)
+    this.disableUi()
     await this.mCameraService.takePicture()
     this.enableUi()
-    CLog.info(`${this.TAG} capture X`)
+    Log.info(`${this.TAG} capture X`)
   }
 
   load(): void{
-    CLog.info(`${this.TAG} load E`)
+    Log.info(`${this.TAG} load E`)
     this.mEventBus.on(Action.ACTION_CAPTURE, this.capture.bind(this))
-    CLog.info(`${this.TAG} load X`)
+    Log.info(`${this.TAG} load X`)
   }
 
   unload(): void {
-    CLog.info(`${this.TAG} unload E`)
-    this.mEventBus.off(Action.ACTION_CAPTURE, null)
-    CLog.info(`${this.TAG} unload X`)
+    Log.info(`${this.TAG} unload E`)
+    this.mEventBus.off(Action.ACTION_CAPTURE, this.capture.bind(this))
+    Log.info(`${this.TAG} unload X`)
 
   }
 }

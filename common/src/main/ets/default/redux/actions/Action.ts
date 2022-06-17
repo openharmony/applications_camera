@@ -13,6 +13,18 @@
  * limitations under the License.
  */
 
+import { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
+import { CameraId } from '../../setting/settingitem/CameraId'
+import { AnyAction } from '../../redux/core/redux'
+
+interface Data {
+ [prop: string]: any;
+}
+
+export interface ActionData extends AnyAction {
+  data: Data
+}
+
 export class Action {
   public static readonly ACTION_INIT = 'ACTION_INIT'
   public static readonly ACTION_INIT_DONE = 'ACTION_INIT_DONE'
@@ -30,6 +42,7 @@ export class Action {
   public static readonly ACTION_CHANGE_ZOOM_RATIO = 'ACTION_CHANGE_ZOOM_RATIO'
   public static readonly ACTION_CHANGE_TIME_LAPSE = 'ACTION_CHANGE_TIME_LAPSE'
   public static readonly ACTION_ASSISTIVE_GRID_VIEW = 'ACTION_ASSISTIVE_GRID_VIEW'
+  public static readonly ACTION_CLOSE_DIALOG = 'ACTION_CLOSE_DIALOG'
 
   // Capture
   public static readonly ACTION_CAPTURE = 'ACTION_CAPTURE'
@@ -38,6 +51,7 @@ export class Action {
   public static readonly ACTION_THUMBNAIL = 'ACTION_THUMBNAIL'
   public static readonly ACTION_UPDATE_THUMBNAIL = 'ACTION_UPDATE_THUMBNAIL'
   public static readonly ACTION_LOAD_THUMBNAIL = 'ACTION_LOAD_THUMBNAIL'
+  public static readonly ACTION_RELOAD_THUMBNAIL = 'ACTION_RELOAD_THUMBNAIL'
 
   // Record
   public static readonly ACTION_RECORD_START = 'ACTION_RECORD_START'
@@ -57,6 +71,7 @@ export class Action {
   public static readonly ACTION_INIT_FOOT_BAR_HEIGHT = 'ACTION_INIT_FOOT_BAR_HEIGHT'
   public static readonly ACTION_SET_PERMISSION_FLAG = 'ACTION_SET_PERMISSION_FLAG'
   public static readonly ACTION_INIT_ACTION = 'ACTION_INIT_ACTION'
+  public static readonly ACTION_KEEP_SCREEN_ON = 'ACTION_KEEP_SCREEN_ON'
 
   // Camera
   public static readonly ACTION_SET_CAMERA_POSITION = 'ACTION_SET_CAMERA_POSITION'
@@ -108,32 +123,46 @@ export class Action {
   public static readonly ACTION_UPDATE_SHOW_MORE_LIST = 'ACTION_UPDATE_SHOW_MORE_LIST'
   public static readonly ACTION_UPDATE_OPACITY_TAB_BAR = 'ACTION_UPDATE_OPACITY_TAB_BAR'
   public static readonly ACTION_SWIPE_MODE = 'ACTION_SWIPE_MODE'
+  public static readonly ACTION_SHOW_ZOOM_LABEL_VALUE = 'ACTION_SHOW_ZOOM_LABEL_VALUE'
 
   // Setting
+  public static CloseDialog(isCloseFlag: boolean): ActionData {
+    return {
+      type: Action.ACTION_CLOSE_DIALOG,
+      data: { isCloseFlag: isCloseFlag }
+    }
+  }
 
   // Context
-  public static InitFootBarWidth(footBarWidth: number) {
+  public static InitFootBarWidth(footBarWidth: number): ActionData {
     return {
       type: Action.ACTION_INIT_FOOT_BAR_WIDTH,
       data: { footBarWidth: footBarWidth }
     }
   }
 
-  public static InitFootBarHeight(footBarHeight: number) {
+  public static InitFootBarHeight(footBarHeight: number): ActionData {
     return {
       type: Action.ACTION_INIT_FOOT_BAR_HEIGHT,
       data: { footBarHeight: footBarHeight }
     }
   }
 
-  public static SetPermissionFlag(permissionFlag: boolean) {
+  public static SetPermissionFlag(permissionFlag: boolean): ActionData {
     return {
       type: Action.ACTION_SET_PERMISSION_FLAG,
       data: { permissionFlag: permissionFlag }
     }
   }
 
-  public static InitAction(action: string) {
+  public static UpdateScreenStatus(isKeepScreenOn: boolean): ActionData {
+    return {
+      type: Action.ACTION_KEEP_SCREEN_ON,
+      data: { isKeepScreenOn: isKeepScreenOn }
+    }
+  }
+
+  public static InitAction(action: string): ActionData {
     return {
       type: Action.ACTION_INIT_ACTION,
       data: { action: action }
@@ -141,21 +170,21 @@ export class Action {
   }
 
   // Camera
-  public static SetCameraPosition(cameraPosition: string) {
+  public static SetCameraPosition(cameraPosition: string): ActionData {
     return {
       type: Action.ACTION_SET_CAMERA_POSITION,
       data: { cameraPosition: cameraPosition }
     }
   }
 
-  public static SwitchCamera(cameraId) {
+  public static SwitchCamera(cameraId: CameraId): ActionData {
     return {
       type: Action.ACTION_SWITCH_CAMERA,
       data: { cameraId: cameraId }
     }
   }
 
-  public static updateCameraPosition(cameraPosition: string) {
+  public static updateCameraPosition(cameraPosition: string): ActionData {
     return {
       type: Action.ACTION_UPDATE_CAMERA_POSITION,
       data: { cameraPosition: cameraPosition }
@@ -163,42 +192,42 @@ export class Action {
   }
 
   // Mode
-  public static initMode(mode: string) {
+  public static initMode(mode: string): ActionData {
     return {
       type: Action.ACTION_INIT_MODE,
       data: { mode: mode }
     }
   }
 
-  public static ChangeMode(mode: string) {
+  public static ChangeMode(mode: string): ActionData {
     return {
       type: Action.ACTION_CHANGE_MODE,
       data: { mode: mode }
     }
   }
 
-  public static setMode(mode: string) {
+  public static setMode(mode: string): ActionData {
     return {
       type: Action.ACTION_SET_MODE,
       data: { mode: mode }
     }
   }
 
-  public static updateMode(mode: string) {
+  public static updateMode(mode: string): ActionData {
     return {
       type: Action.ACTION_UPDATE_MODE,
       data: { mode: mode }
     }
   }
 
-  public static OnModeChanged(mode: string) {
+  public static OnModeChanged(mode: string): ActionData {
     return {
       type: Action.ACTION_ON_MODE_CHANGED,
       data: { mode: mode }
     }
   }
 
-  public static thirdPartyCall(isThirdPartyCall: boolean, action: string) {
+  public static thirdPartyCall(isThirdPartyCall: boolean, action: string): ActionData {
     return {
       type: Action.ACTION_THIRD_PARTY_CALL,
       data: { isThirdPartyCall: isThirdPartyCall, action: action }
@@ -206,42 +235,42 @@ export class Action {
   }
 
   // Preview
-  public static StartPreview() {
+  public static StartPreview(): ActionData {
     return {
       type: Action.ACTION_START_PREVIEW,
       data: {}
     }
   }
 
-  public static UpdateSurfaceId(surfaceId: number) {
+  public static UpdateSurfaceId(surfaceId: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_SURFACE_ID,
       data: { surfaceId: surfaceId }
     }
   }
 
-  public static PrepareSurface(surfaceId: number) {
+  public static PrepareSurface(surfaceId: number): ActionData {
     return {
       type: Action.ACTION_PREPARE_SURFACE,
       data: { surfaceId: surfaceId }
     }
   }
 
-  public static ChangeXComponentSize(xComponentWidth: string, xComponentHeight: string) {
+  public static ChangeXComponentSize(xComponentWidth: string, xComponentHeight: string): ActionData {
     return {
       type: Action.ACTION_CHANGE_X_COMPONENT_SIZE,
       data: { xComponentWidth: xComponentWidth, xComponentHeight: xComponentHeight }
     }
   }
 
-  public static UpdateXComponentChangeFlag(flag: boolean) {
+  public static UpdateXComponentChangeFlag(flag: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG,
       data: { xComponentChangeFlag: flag }
     }
   }
 
-  public static UpdateShowPreviewFlag(isShowPreview: boolean) {
+  public static UpdateShowPreviewFlag(isShowPreview: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_SHOW_PREVIEW_FLAG,
       data: { isShowPreview: isShowPreview }
@@ -250,42 +279,42 @@ export class Action {
 
   // Capture
   // Record
-  public static StartVideoFlag(isStartVideoFlag: boolean) {
+  public static StartVideoFlag(isStartVideoFlag: boolean): ActionData {
     return {
       type: Action.ACTION_START_VIDEO_FLAG,
       data: { isStartVideo: isStartVideoFlag }
     }
   }
 
-  public static UpdateRecordingTime(recordingTime: number) {
+  public static UpdateRecordingTime(recordingTime: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_RECORDING_TIME,
       data: { recordingTime: recordingTime }
     }
   }
 
-  public static UpdateRecordingTimeDisplay(recordingTimeDisplay: string) {
+  public static UpdateRecordingTimeDisplay(recordingTimeDisplay: string): ActionData {
     return {
       type: Action.ACTION_UPDATE_RECORDING_TIME_DISPLAY,
       data: { recordingTimeDisplay: recordingTimeDisplay }
     }
   }
 
-  public static UpdateVideoState(videoState: string) {
+  public static UpdateVideoState(videoState: string): ActionData {
     return {
       type: Action.ACTION_UPDATE_VIDEO_STATE,
       data: { videoState: videoState }
     }
   }
 
-  public static UpdateRecordingPaused(isRecordingPaused: boolean) {
+  public static UpdateRecordingPaused(isRecordingPaused: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_RECORDING_PAUSED,
       data: { isRecordingPaused: isRecordingPaused }
     }
   }
 
-  public static UpdateVideoUri(videoUri: string) {
+  public static UpdateVideoUri(videoUri: string): ActionData {
     return {
       type: Action.ACTION_UPDATE_VIDEO_URI,
       data: { videoUri: videoUri }
@@ -293,175 +322,182 @@ export class Action {
   }
 
   // Ui
-  public static InitZoomRatio(min: number, max: number) {
+  public static InitZoomRatio(min: number, max: number): ActionData {
     return {
       type: Action.ACTION_INIT_ZOOM_RATIO,
       data: { minZoomRatio: min, maxZoomRatio: max }
     }
   }
 
-  public static ChangeZoomRatio(zoomRatio: number) {
+  public static ChangeZoomRatio(zoomRatio: number): ActionData {
     return {
       type: Action.ACTION_CHANGE_ZOOM_RATIO,
       data: { zoomRatio: zoomRatio }
     }
   }
 
-  public static changeTimeLapse(isShowtimeLapse: boolean) {
+  public static changeTimeLapse(isShowtimeLapse: boolean): ActionData {
     return {
       type: Action.ACTION_CHANGE_TIME_LAPSE,
       data: { isShowtimeLapse: isShowtimeLapse}
     }
   }
 
-  public static UpdateZoomPercentage(zoomPercentage: number) {
+  public static UpdateZoomPercentage(zoomPercentage: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_ZOOM_PERCENTAGE,
       data: { zoomPercentage: zoomPercentage }
     }
   }
 
-  public static UpdateShowBigTextFlag(isShowBigText: boolean) {
+  public static UpdateShowBigTextFlag(isShowBigText: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_SHOW_BIG_TEXT_FLAG,
       data: { isShowBigText: isShowBigText }
     }
   }
 
-  public static UpdateShowZoomTextFlag(isShowZoomText: boolean) {
+  public static UpdateShowZoomTextFlag(isShowZoomText: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_SHOW_ZOOM_TEXT_FLAG,
       data: { isShowZoomText: isShowZoomText }
     }
   }
 
-  public static UpdatePhotoZoomDetailsFlag(isPhotoZoomDetails: boolean) {
+  public static UpdateShowZoomLabelValue(flag: boolean): ActionData {
+    return {
+      type: Action.ACTION_SHOW_ZOOM_LABEL_VALUE,
+      data: { showZoomLabelValue: flag }
+    }
+  }
+
+  public static UpdatePhotoZoomDetailsFlag(isPhotoZoomDetails: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_PHOTO_ZOOM_DETAILS_FLAG,
       data: { isPhotoZoomDetails: isPhotoZoomDetails }
     }
   }
 
-  public static UpdateBaseZoom(baseZoom: number) {
+  public static UpdateBaseZoom(baseZoom: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_BASE_ZOOM,
       data: { baseZoom: baseZoom }
     }
   }
 
-  public static UpdatePinchGestureFlag(isPinchGesture: boolean) {
+  public static UpdatePinchGestureFlag(isPinchGesture: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_PINCH_GESTURE_FLAG,
       data: { isPinchGesture: isPinchGesture }
     }
   }
 
-  public static UpdatePinchGestureTimerId(pinchGestureTimerId: number) {
+  public static UpdatePinchGestureTimerId(pinchGestureTimerId: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_PINCH_GESTURE_TIMER_ID,
       data: { pinchGestureTimerId: pinchGestureTimerId }
     }
   }
 
-  public static UpdateModeIndex(modeIndex: number) {
+  public static UpdateModeIndex(modeIndex: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_MODE_INDEX,
       data: { modeIndex: modeIndex }
     }
   }
 
-  public static UpdateSmallVideoTimerVisible(visible: boolean) {
+  public static UpdateSmallVideoTimerVisible(visible: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_SMALL_VIDEO_TIMER_VISIBLE,
       data: { isSmallVideoTimerVisible: visible }
     }
   }
 
-  public static UpdateBigVideoTimerVisible(visible: boolean) {
+  public static UpdateBigVideoTimerVisible(visible: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_BIG_VIDEO_TIMER_VISIBLE,
       data: { isBigVideoTimerVisible: visible }
     }
   }
 
-  public static UpdateRecordingSpotVisible(visible: boolean) {
+  public static UpdateRecordingSpotVisible(visible: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_RECORDING_SPOT_VISIBLE,
       data: { isRecordingSpotVisible: visible }
     }
   }
 
-  public static UpdateOpacityValue(opacityValue: number) {
+  public static UpdateOpacityValue(opacityValue: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_OPACITY_VALUE,
       data: { opacityValue: opacityValue }
     }
   }
 
-  public static UpdateShowPressScrollDetailPhotoButton(isShow: boolean) {
+  public static UpdateShowPressScrollDetailPhotoButton(isShow: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_SHOW_PRESS_SCROLL_DETAIL_PHOTO_BUTTON,
       data: { isShowPressScrollDetailPhotoButton: isShow }
     }
   }
 
-  public static UpdateScrollDetailsBox(value: number) {
+  public static UpdateScrollDetailsBox(value: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_SCROLL_DETAILS_BOX,
       data: { scrollDetailsBox: value }
     }
   }
 
-  public static InitPhotoDetailsOffsetX(offsetX: number) {
+  public static InitPhotoDetailsOffsetX(offsetX: number): ActionData {
     return {
       type: Action.ACTION_INIT_PHOTO_DETAILS_OFFSET_X,
       data: { photoDetailsOffsetXInit: offsetX }
     }
   }
 
-  public static UpdatePhotoDetailsOffsetX(offsetX: number) {
+  public static UpdatePhotoDetailsOffsetX(offsetX: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_PHOTO_DETAILS_OFFSET_X,
       data: { photoDetailsOffsetX: offsetX }
     }
   }
 
-  public static UpdateCaptureBtnScale(scale: number) {
+  public static UpdateCaptureBtnScale(scale: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_CAPTURE_BTN_SCALE,
       data: { captureBtnScale: scale }
     }
   }
 
-  public static UpdateShowFlashBlackFlag(flag: boolean) {
+  public static UpdateShowFlashBlackFlag(flag: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_SHOW_FLASH_BLACK_FLAG,
       data: { isShowFlashBlack: flag }
     }
   }
 
-  public static UpdateShutterIcon(icon: Resource) {
+  public static UpdateShutterIcon(icon: Resource): ActionData {
     return {
       type: Action.ACTION_UPDATE_SHUTTER_ICON,
       data: { shutterIcon: icon }
     }
   }
 
-  public static UpdateBigTextOpacity(opacity: number) {
+  public static UpdateBigTextOpacity(opacity: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_BIG_TEXT_OPACITY,
       data: { bigTextOpacity: opacity }
     }
   }
 
-  public static UpdateModeBarItemWidth(width: number) {
+  public static UpdateModeBarItemWidth(width: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_MODE_BAR_ITEM_WIDTH,
       data: { modeBarItemWidth: width }
     }
   }
 
-  public static UpdateShowTabBarWidth(widthTabBar: String) {
+  public static UpdateShowTabBarWidth(widthTabBar: string): ActionData {
     return {
       type: Action.ACTION_UPDATE_SHOW_TAB_BAR_WIDTH,
       data: { widthTabBar: widthTabBar }
@@ -472,200 +508,206 @@ export class Action {
 
   /********** NEW UI REMAKE END **********/
 
-  public static initCamera(cameraId, mode) {
+  public static initCamera(cameraId: CameraId, mode: string): ActionData {
     return {
       type: Action.ACTION_INIT,
       data: { cameraId: cameraId, mode: mode }
     }
   }
 
-  public static initCameraDone(platformCapability) {
+  public static initCameraDone(platformCapability: CameraPlatformCapability): ActionData {
     return {
       type: Action.ACTION_INIT_DONE,
       data: { platformCapability: platformCapability }
     }
   }
 
-//  public static surfacePrepare(surfaceId) {
-//    return {
-//      type: Action.ACTION_SURFACE_ID_PREPARE,
-//      data: { surfaceId: surfaceId}
-//    }
-//  }
+  //  public static surfacePrepare(surfaceId) {
+  //    return {
+  //      type: Action.ACTION_SURFACE_ID_PREPARE,
+  //      data: { surfaceId: surfaceId}
+  //    }
+  //  }
 
-//  public static startPreview() {
-//    return {
-//      type: Action.ACTION_START_PREVIEW,
-//      data: {}
-//    }
-//  }
+  //  public static startPreview() {
+  //    return {
+  //      type: Action.ACTION_START_PREVIEW,
+  //      data: {}
+  //    }
+  //  }
 
-//  public static switchCamera(cameraId) {
-//    return {
-//      type: Action.ACTION_SWITCH_CAMERA,
-//      data: { cameraId: cameraId }
-//    }
-//  }
+  //  public static switchCamera(cameraId) {
+  //    return {
+  //      type: Action.ACTION_SWITCH_CAMERA,
+  //      data: { cameraId: cameraId }
+  //    }
+  //  }
 
-//  public static changeMode(mode) {
-//    return {
-//      type: Action.ACTION_CHANGE_MODE,
-//      data: { mode: mode }
-//    }
-//  }
+  //  public static changeMode(mode) {
+  //    return {
+  //      type: Action.ACTION_CHANGE_MODE,
+  //      data: { mode: mode }
+  //    }
+  //  }
 
-  public static close() {
+  public static close(): ActionData {
     return {
       type: Action.ACTION_CLOSE_CAMERA,
       data: {}
     }
   }
 
-  public static changeImageSize(imageSize) {
+  public static changeImageSize(imageSize): ActionData {
     return {
       type: Action.ACTION_CHANGE_IMAGE_SIZE,
       data: { imageSize: imageSize }
     }
   }
 
-  public static changeVideoSize(videoSize) {
+  public static changeVideoSize(videoSize): ActionData {
     return {
       type: Action.ACTION_CHANGE_VIDEO_SIZE,
       data: { videoSize: videoSize }
     }
   }
 
-//  public static changeZoomRatio(zoomRatio) {
-//    return {
-//      type: Action.ACTION_CHANGE_ZOOM_RATIO,
-//      data: { zoomRatio: zoomRatio }
-//    }
-//  }
+  //  public static changeZoomRatio(zoomRatio) {
+  //    return {
+  //      type: Action.ACTION_CHANGE_ZOOM_RATIO,
+  //      data: { zoomRatio: zoomRatio }
+  //    }
+  //  }
 
-  public static capture() {
+  public static capture(): ActionData {
     return {
       type: Action.ACTION_CAPTURE,
       data: {}
     }
   }
 
-  public static captureDone(thumbnail) {
+  public static captureDone(thumbnail): ActionData {
     return {
       type: Action.ACTION_THUMBNAIL,
       data: { thumbnail: thumbnail }
     }
   }
 
-  public static captureError() {
+  public static captureError(): ActionData {
     return {
       type: Action.ACTION_CAPTURE_ERROR,
       data: {}
     }
   }
 
-  public static thumbnail(thumbnailUri) {
+  public static thumbnail(thumbnailUri): ActionData {
     return {
       type: Action.ACTION_THUMBNAIL,
       data: { thumbnail: thumbnailUri }
     }
   }
 
-  public static UpdateThumbnail(thumbnailPixelMap, resourceUri) {
+  public static UpdateThumbnail(thumbnailPixelMap, resourceUri): ActionData {
     return {
       type: Action.ACTION_UPDATE_THUMBNAIL,
       data: { thumbnail: thumbnailPixelMap, resourceUri: resourceUri }
     }
   }
 
-  public static LoadThumbnail(thumbnailPixelMap) {
+  public static ReloadThumbnail(): ActionData {
+    return {
+      type: Action.ACTION_RELOAD_THUMBNAIL,
+      data: {}
+    }
+  }
+
+  public static LoadThumbnail(thumbnailPixelMap): ActionData {
     return {
       type: Action.ACTION_LOAD_THUMBNAIL,
       data: { thumbnail: thumbnailPixelMap }
     }
   }
 
-  public static startRecording() {
+  public static startRecording(): ActionData {
     return {
       type: Action.ACTION_RECORD_START,
       data: {}
     }
   }
 
-  public static pauseRecording() {
+  public static pauseRecording(): ActionData {
     return {
       type: Action.ACTION_RECORD_PAUSE,
       data: {}
     }
   }
 
-  public static resumeRecording() {
+  public static resumeRecording(): ActionData {
     return {
       type: Action.ACTION_RECORD_RESUME,
       data: {}
     }
   }
 
-  public static stopRecording() {
+  public static stopRecording(): ActionData {
     return {
       type: Action.ACTION_RECORD_STOP,
       data: {}
     }
   }
 
-  public static RecordDone(thumbnail) {
+  public static RecordDone(thumbnail): ActionData {
     return {
       type: Action.ACTION_RECORD_STOP,
       data: { thumbnail: thumbnail }
     }
   }
 
-  public static RecordError() {
+  public static RecordError(): ActionData {
     return {
       type: Action.ACTION_RECORD_DONE,
       data: {}
     }
   }
 
-  public static DeviceError(info) {
+  public static DeviceError(info): ActionData {
     return {
       type: Action.ACTION_DEVICE_ERROR,
       data: { info: info }
     }
   }
 
-  public static UiState(enable: boolean) {
+  public static UiState(enable: boolean): ActionData {
     return {
       type: Action.ACTION_UI_STATE,
       data: { enable: enable }
     }
   }
 
-  public static assistiveGridView(isAssGridViewShow: number) {
+  public static assistiveGridView(isAssGridViewShow: number): ActionData {
     return {
       type: Action.ACTION_ASSISTIVE_GRID_VIEW,
       data: { isAssGridViewShow: isAssGridViewShow }
     }
   }
 
-  public static UpdateShowMoreList(isShowMoreList: boolean) {
+  public static UpdateShowMoreList(isShowMoreList: boolean): ActionData {
     return {
       type: Action.ACTION_UPDATE_SHOW_MORE_LIST,
       data: { isShowMoreList: isShowMoreList }
     }
   }
 
-  public static UpdateOpacityForTabBar(opacity: number) {
+  public static UpdateOpacityForTabBar(opacity: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_OPACITY_TAB_BAR,
       data: { opacityValueForTabBar: opacity }
     }
   }
 
-  public static swipeChangeMode(swipeModeIndex: number) {
+  public static swipeChangeMode(swipeModeIndex: number): ActionData {
     return {
       type: Action.ACTION_SWIPE_MODE,
       data: { swipeModeIndex: swipeModeIndex }
     }
   }
 }
-

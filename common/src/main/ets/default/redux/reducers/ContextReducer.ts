@@ -13,34 +13,47 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
+import { Action, ActionData } from '../actions/Action'
 
-let initState = {
+export type ContextState = {
+  uiEnable: boolean,
+  deviceHeight: number,
+  footBarWidth: number,
+  footBarHeight: number,
+  isThirdPartyCall: boolean,
+  permissionFlag: boolean,
+  action: string,
+  isKeepScreenOn: boolean
+}
+
+const initState: ContextState = {
+  uiEnable: true,
   deviceHeight: 0,
   footBarWidth: 0,
   footBarHeight: 0,
   isThirdPartyCall: false,
   permissionFlag: false,
-  action: ''
+  action: '',
+  isKeepScreenOn: false
 }
 
-export default function ContextReducer(state = initState, action: {
-  type: string,
-  data: any
-}) {
+export default function ContextReducer(state = initState, action: ActionData): ContextState {
   switch (action.type) {
-    case Action.ACTION_INIT_FOOT_BAR_WIDTH:
-      return { ...state, footBarWidth: action.data.footBarWidth }
-    case Action.ACTION_INIT_FOOT_BAR_HEIGHT:
-      return { ...state, footBarHeight: action.data.footBarHeight }
-    case Action.ACTION_THIRD_PARTY_CALL:
-      return { ...state, isThirdPartyCall: action.data.isThirdPartyCall, action: action.data.action }
-    case Action.ACTION_SET_PERMISSION_FLAG:
-      return { ...state, permissionFlag: action.data.permissionFlag }
-    case Action.ACTION_INIT_ACTION:
-      return { ...state, action: action.data.action }
-    default:
-      return state;
+  case Action.ACTION_UI_STATE:
+    return { ...state, uiEnable: action.data.enable}
+  case Action.ACTION_INIT_FOOT_BAR_WIDTH:
+    return { ...state, footBarWidth: action.data.footBarWidth }
+  case Action.ACTION_INIT_FOOT_BAR_HEIGHT:
+    return { ...state, footBarHeight: action.data.footBarHeight }
+  case Action.ACTION_THIRD_PARTY_CALL:
+    return { ...state, isThirdPartyCall: action.data.isThirdPartyCall, action: action.data.action }
+  case Action.ACTION_SET_PERMISSION_FLAG:
+    return { ...state, permissionFlag: action.data.permissionFlag }
+  case Action.ACTION_INIT_ACTION:
+    return { ...state, action: action.data.action }
+  case Action.ACTION_KEEP_SCREEN_ON:
+    return { ...state, isKeepScreenOn: action.data.isKeepScreenOn }
+  default:
+    return state;
   }
-  return state;
 }
