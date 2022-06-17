@@ -98,6 +98,7 @@ export class Action {
   public static readonly ACTION_UPDATE_VIDEO_URI = 'ACTION_UPDATE_VIDEO_URI'
   // Ui
   public static readonly ACTION_INIT_ZOOM_RATIO = 'ACTION_INIT_ZOOM_RATIO'
+  public static readonly ACTION_RESET_ZOOM_RATIO = 'ACTION_RESET_ZOOM_RATIO'
   public static readonly ACTION_UPDATE_SHOW_BIG_TEXT_FLAG = 'ACTION_UPDATE_SHOW_BIG_TEXT_FLAG'
   public static readonly ACTION_UPDATE_ZOOM_PERCENTAGE = 'ACTION_UPDATE_ZOOM_PERCENTAGE'
   public static readonly ACTION_UPDATE_SHOW_ZOOM_TEXT_FLAG = 'ACTION_UPDATE_SHOW_ZOOM_TEXT_FLAG'
@@ -326,6 +327,13 @@ export class Action {
     return {
       type: Action.ACTION_INIT_ZOOM_RATIO,
       data: { minZoomRatio: min, maxZoomRatio: max }
+    }
+  }
+
+  public static resetZoomRatio(zoomRatio: number): ActionData {
+    return {
+      type: Action.ACTION_RESET_ZOOM_RATIO,
+      data: { zoomRatio: zoomRatio }
     }
   }
 

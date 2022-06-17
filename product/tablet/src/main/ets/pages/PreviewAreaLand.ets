@@ -80,6 +80,9 @@ let cameraDispatcher = (dispatch) => {
     initZoomRatio: (min: number, max: number) => {
       dispatch(Action.InitZoomRatio(min, max))
     },
+    resetZoomRatio: (zoomRatio: number) => {
+      dispatch(Action.resetZoomRatio(zoomRatio))
+    },
     changeZoomRatio: (zoomRatio: number) => {
       dispatch(Action.ChangeZoomRatio(zoomRatio))
     },
@@ -288,7 +291,7 @@ export struct PreviewAreaLand {
     }
     this.state.updateCameraPosition(this.state.cameraPosition)
     this.state.updateMode(this.state.mode)
-    this.state.changeZoomRatio(1)
+    this.state.resetZoomRatio(1)
     Log.debug(`${this.TAG} doCameraAction X`)
   }
 
@@ -514,7 +517,7 @@ export struct PreviewAreaLand {
   private onKeepScreen(data){
     Log.info(`${this.TAG} onKeepScreen E`)
     if (data) {
-      globalThis.keepScreenOn.setKeepScreenOn(data.isKeepScreenOn).then((v) => {
+      globalThis.cameraWinClass.setKeepScreenOn(data.isKeepScreenOn).then((v) => {
         Log.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(v))
       }).catch((err)=>{
         Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));

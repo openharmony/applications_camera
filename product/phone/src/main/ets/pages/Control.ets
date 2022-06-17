@@ -41,7 +41,6 @@ let controlDispatcher = (dispatch) => {
       dispatch(Action.setMode(mode))
       dispatch(Action.UiState(false))
       dispatch(Action.UpdateShowBigTextFlag(true))
-      dispatch(Action.ChangeZoomRatio(1))
     },
     updateModeIndex: (index: number) => {
       dispatch(Action.UpdateModeIndex(index))

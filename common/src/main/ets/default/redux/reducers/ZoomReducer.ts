@@ -46,6 +46,8 @@ export default function ZoomReducer(state = initState, action: ActionData): Zoom
   switch (action.type) {
   case Action.ACTION_CHANGE_ZOOM_RATIO:
     return { ...state, zoomRatio: action.data.zoomRatio }
+  case Action.ACTION_RESET_ZOOM_RATIO:
+    return { ...state, zoomRatio: action.data.zoomRatio }
   case Action.ACTION_INIT_ZOOM_RATIO:
     return { ...state, minZoomRatio: action.data.minZoomRatio, maxZoomRatio: action.data.maxZoomRatio }
   case Action.ACTION_UPDATE_SCROLL_DETAILS_BOX:
