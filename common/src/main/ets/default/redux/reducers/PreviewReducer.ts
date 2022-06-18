@@ -13,33 +13,41 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
+import { Action, ActionData } from '../actions/Action'
 
-let initState = {
+export type PreviewState = {
+  surfaceId: number,
+  xComponentChangeFlag: boolean,
+  xComponentWidth: string,
+  xComponentHeight: string,
+  isShowPreview: boolean,
+  isShowFlashBlack: boolean,
+}
+
+const initState: PreviewState = {
   surfaceId: 0,
   xComponentChangeFlag: true,
   xComponentWidth: '',
   xComponentHeight: '',
-  isShowPreview: false
+  isShowPreview: false,
+  isShowFlashBlack: false,
 }
 
-export default function PreviewReducer(state = initState, action: {
-  type: string,
-  data: any
-}) {
+export default function PreviewReducer(state = initState, action: ActionData): PreviewState {
   switch (action.type) {
-    case Action.ACTION_UPDATE_SURFACE_ID:
-      return { ...state, surfaceId: action.data.surfaceId }
-    case Action.ACTION_PREPARE_SURFACE:
-      return { ...state, surfaceId: action.data.surfaceId }
-    case Action.ACTION_CHANGE_X_COMPONENT_SIZE:
-      return { ...state, xComponentWidth: action.data.xComponentWidth, xComponentHeight: action.data.xComponentHeight}
-    case Action.ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG:
-      return { ...state, xComponentChangeFlag: action.data.xComponentChangeFlag }
-    case Action.ACTION_UPDATE_SHOW_PREVIEW_FLAG:
-      return { ...state, isShowPreview: action.data.isShowPreview }
-    default:
-      return state;
+  case Action.ACTION_UPDATE_SURFACE_ID:
+    return { ...state, surfaceId: action.data.surfaceId }
+  case Action.ACTION_PREPARE_SURFACE:
+    return { ...state, surfaceId: action.data.surfaceId }
+  case Action.ACTION_CHANGE_X_COMPONENT_SIZE:
+    return { ...state, xComponentWidth: action.data.xComponentWidth, xComponentHeight: action.data.xComponentHeight}
+  case Action.ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG:
+    return { ...state, xComponentChangeFlag: action.data.xComponentChangeFlag }
+  case Action.ACTION_UPDATE_SHOW_PREVIEW_FLAG:
+    return { ...state, isShowPreview: action.data.isShowPreview }
+  case Action.ACTION_UPDATE_SHOW_FLASH_BLACK_FLAG:
+    return { ...state, isShowFlashBlack: action.data.isShowFlashBlack }
+  default:
+    return state;
   }
-  return state;
 }

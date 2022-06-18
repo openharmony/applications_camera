@@ -13,22 +13,28 @@
  * limitations under the License.
  */
 
-import { AsyncManager } from '../../Utils/AsyncManager'
-import { CLog } from '../../Utils/CLog'
-import EventBusManager from '../../Utils/EventBusManager'
+import { AsyncManager, Message } from '../../worker/AsyncManager'
+import { Log } from '../../utils/Log'
+import { AnyAction, Dispatch, Middleware, MiddlewareAPI, Store } from '../core/redux'
 
-const TAG: string = '[ReduxWorkerMiddle]:'
+const TAG = '[reduxWorkerMiddle]:'
 
-export const ReduxWorkerMiddle = store => next => action => {
-  let asyncManager = AsyncManager.getInstance()
-  let uiAction = { type: undefined, data: undefined }
+/**
+ * Middleware to emit async operation like switching camera and so on.
+ * 
+ * @param store the created old store
+ * @returns (next: Dispatch) => (action: AnyAction) => anyAction
+ */
+export const reduxWorkerMiddle: Middleware = (store: MiddlewareAPI) => (next: Dispatch) => (action: AnyAction) => {
+  const asyncManager = AsyncManager.getInstance()
+  const uiAction = { type: undefined, data: undefined }
   if (Object.keys(action).length == 2) {
-    asyncManager.postMessage(action)
+    asyncManager.postMessage(action as Message)
   }
   uiAction.type = action.type
   uiAction.data = action.data
   //  EventBusManager.getInstance().getEventBus().emit(action.type, [action.data])
-  let result = next(uiAction)
-  CLog.info(`${TAG} logger: new state ${JSON.stringify(store.getState())}`)
+  const result = next(uiAction)
+  Log.info(`${TAG} logger: new state ${JSON.stringify(store.getState())}`)
   return result
 }

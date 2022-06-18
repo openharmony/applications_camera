@@ -13,31 +13,45 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
+import { Action, ActionData } from '../actions/Action'
 
-let initState = {
-  mode: 'PHOTO',
-  curMode: 'PHOTO',
-  swipeModeIndex: 1
+export type ModeState = {
+  mode: string,
+  curMode: string,
+  isShowBigText: boolean,
+  modeIndex: number,
+  swipeModeIndex: number,
+  isShowMoreList: boolean,
 }
 
-export default function ModeReducer(state = initState, action: {
-  type: string,
-  data: any
-}) {
+const initState: ModeState = {
+  mode: 'PHOTO',
+  curMode: 'PHOTO',
+  isShowBigText: false,
+  modeIndex: 1,
+  swipeModeIndex: 1,
+  isShowMoreList: false,
+}
+
+export default function ModeReducer(state = initState, action: ActionData): ModeState {
   switch (action.type) {
-    case Action.ACTION_INIT_MODE:
-      return { ...state, mode: action.data.mode }
-    case Action.ACTION_CHANGE_MODE:
-      return { ...state, mode: action.data.mode }
-    case Action.ACTION_SET_MODE:
-      return { ...state, mode: action.data.mode }
-    case Action.ACTION_UPDATE_MODE:
-      return { ...state, curMode: action.data.mode }
-    case Action.ACTION_SWIPE_MODE:
-      return {...state, value: action.data.swipeModeIndex}
-    default:
-      return state;
+  case Action.ACTION_INIT_MODE:
+    return { ...state, mode: action.data.mode }
+  case Action.ACTION_CHANGE_MODE:
+    return { ...state, mode: action.data.mode }
+  case Action.ACTION_SET_MODE:
+    return { ...state, mode: action.data.mode }
+  case Action.ACTION_UPDATE_MODE:
+    return { ...state, curMode: action.data.mode }
+  case Action.ACTION_UPDATE_MODE_INDEX:
+    return { ...state, modeIndex: action.data.modeIndex }
+  case Action.ACTION_SWIPE_MODE:
+    return {...state, swipeModeIndex: action.data.swipeModeIndex}
+  case Action.ACTION_UPDATE_SHOW_BIG_TEXT_FLAG:
+    return { ...state, isShowBigText: action.data.isShowBigText }
+  case Action.ACTION_UPDATE_SHOW_MORE_LIST:
+    return {...state, isShowMoreList: action.data.isShowMoreList}
+  default:
+    return state;
   }
-  return state;
 }

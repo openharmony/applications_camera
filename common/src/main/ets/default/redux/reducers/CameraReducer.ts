@@ -13,27 +13,36 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
+import { CameraId } from '../../setting/settingitem/CameraId'
+import { Action, ActionData } from '../actions/Action'
 
-let initState = {
+export type CameraState = {
+  cameraPosition: string,
+  curCameraPosition: string,
+  cameraId: string,
+  curCameraName: string,
+  cameraCount: number,
+  shutterIcon: Resource
+}
+
+const initState: CameraState = {
   cameraPosition: 'ORIGIN',
   curCameraPosition: 'BACK',
   cameraId: '',
   curCameraName: 'BACK',
-  cameraCount: 0
+  cameraCount: 0,
+  shutterIcon: $r('app.media.ic_circled_filled'),
 }
 
-export default function CameraReducer(state = initState, action: {
-  type: string,
-  data: any
-}) {
+export default function CameraReducer(state = initState, action: ActionData): CameraState {
   switch (action.type) {
-    case Action.ACTION_SET_CAMERA_POSITION:
-      return { ...state, cameraPosition: action.data.cameraPosition }
-    case Action.ACTION_UPDATE_CAMERA_POSITION:
-      return { ...state, curCameraPosition: action.data.cameraPosition }
-    default:
-      return state;
+  case Action.ACTION_SET_CAMERA_POSITION:
+    return { ...state, cameraPosition: action.data.cameraPosition }
+  case Action.ACTION_UPDATE_CAMERA_POSITION:
+    return { ...state, curCameraPosition: action.data.cameraPosition }
+  case Action.ACTION_UPDATE_SHUTTER_ICON:
+    return { ...state, shutterIcon: action.data.shutterIcon }
+  default:
+    return state;
   }
-  return state;
 }

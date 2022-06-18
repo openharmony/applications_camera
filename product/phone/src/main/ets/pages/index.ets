@@ -13,41 +13,43 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display';
+import display from '@ohos.display'
 
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { CameraWorker } from '../../../../../../common/src/main/ets/default/Utils/CameraWorker'
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
+import { CameraWorker } from '../../../../../../common/src/main/ets/default/worker/CameraWorker'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import { Control } from './Control'
-import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { FootBar } from './FootBar'
-import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { ModeConfig } from '../common/ModeConfig'
 import { MoreList
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/moreList/moreList'
+} from '../../../../../../common/src/main/ets/default/featurecommon/moreList/moreList'
 import { PlaySound
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/playSound/playSound'
+} from '../../../../../../common/src/main/ets/default/featurecommon/playSound/playSound'
 import { PreviewArea } from './PreviewArea'
-import RdbStoreManager from '../../../../../../common/src/main/ets/default/Utils/RdbStoreManager'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
+import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
+import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { TabBar
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/tabBar/TabBar'
+} from '../../../../../../common/src/main/ets/default/featurecommon/tabBar/TabBar'
 import { ZoomView
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/zoomView/ZoomView'
+} from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomView'
 
 var mScreenLockManager = new ScreenLockManager()
 var cameraWorker = CameraWorker.getInstance()
 
-let indexState = (state) => {
+let indexState = (state: OhCombinedState) => {
   return {
     footBarHeight: state.ContextReducer.footBarHeight,
     permissionFlag: state.ContextReducer.permissionFlag,
     mode: state.ModeReducer.mode,
     curMode: state.ModeReducer.curMode,
-    isShowtimeLapse: state.UiReducer.isShowtimeLapse,
+    isShowtimeLapse: state.SettingReducer.isShowtimeLapse,
     videoState: state.RecordReducer.videoState,
-    isShowMoreList: state.UiReducer.isShowMoreList
+    isShowMoreList: state.ModeReducer.isShowMoreList,
+    isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
   }
 }
 
@@ -71,6 +73,12 @@ let indexDispatcher = (dispatch) => {
     },
     changeTimeLapse: (isShowtimeLapse: boolean) => {
       dispatch(Action.changeTimeLapse(isShowtimeLapse))
+    },
+    stopRecording: () => {
+      dispatch(Action.stopRecording())
+      dispatch(Action.UpdateVideoState('beforeTakeVideo'))
+      dispatch(Action.UpdateBigVideoTimerVisible(false))
+      dispatch(Action.UpdateSmallVideoTimerVisible(false))
     }
   }
 }
@@ -83,18 +91,17 @@ struct Index {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
   private mPlaySound: PlaySound = PlaySound.getInstance()
-  private mConnect: any
 
-  aboutToAppear() {
-    CLog.info(`${this.TAG} aboutToAppear E`)
+  aboutToAppear(): void {
+    Log.info(`${this.TAG} aboutToAppear E`)
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
     mScreenLockManager.init()
-    this.mConnect = getStore().connect(indexState, indexDispatcher)(this.state)
+    getStore().connect(indexState, indexDispatcher)(this.state)
 
     display.getDefaultDisplay().then((dis) => {
-      CLog.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`)
-      let footBarHeight = px2vp(dis.width) * (4 / 3) - 100
+      Log.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`)
+      let footBarHeight = px2vp(dis.width) * (4 / 3) - 160
       this.state.initFootBarHeight(footBarHeight)
     })
 
@@ -109,10 +116,10 @@ struct Index {
         "ohos.permission.LOCATION",
         "ohos.permission.LOCATION_IN_BACKGROUND"
       ]
-      CLog.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
+      Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
       globalThis.cameraAbilityContext.requestPermissionsFromUser(permissionList).then((data) => {
-        CLog.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`)
-        CLog.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`)
+        Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`)
+        Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`)
         let sum = 0
         for (let i = 0; i < data.authResults.length; i++) {
           sum += data.authResults[i]
@@ -124,9 +131,9 @@ struct Index {
           globalThis.permissionFlag = false
           this.state.setPermissionFlag(false)
         }
-        CLog.info(`${this.TAG} request permissions result: ${globalThis.permissionFlag}`)
+        Log.info(`${this.TAG} request permissions result: ${globalThis.permissionFlag}`)
       }, (err) => {
-        CLog.error(`${this.TAG} Failed to start ability err code: ${err.code}`)
+        Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`)
       })
     }
 
@@ -136,38 +143,76 @@ struct Index {
       globalThis.cameraFormParam = undefined
     }
 
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    globalThis.stopCameraRecording = (() => {
+      this.stopCameraRecording()
+    })
+
+    Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  onPageShow() {
+  onPageShow(): void {
     console.info("onPageShow this.permissionFlag= " + this.state.permissionFlag + '  globalThis.permissionFlag = ' + globalThis.permissionFlag)
     this.state.setPermissionFlag(globalThis.permissionFlag)
   }
 
   aboutToDisappear(): void {
-    CLog.info(`${this.TAG} aboutToDisappear E`)
-    this.mConnect.destroy()
-    CLog.info(`${this.TAG} aboutToDisappear X`)
+    Log.info(`${this.TAG} aboutToDisappear E`)
   }
 
-  onBackPress() {
-    CLog.info(`${this.TAG} onBackPress E`)
-    CLog.info(`${this.TAG} onBackPress E isShowtimeLapse= ${this.state.isShowtimeLapse}`)
+  onBackPress(): boolean {
+    Log.info(`${this.TAG} onBackPress E`)
     if (this.state.isShowtimeLapse) {
       this.state.changeTimeLapse(false)
-      CLog.info(`${this.TAG} onBackPress X`)
       return true
+    } else if (this.state.isThirdPartyCall) {
+      this.terminateSelfWithResult()
     } else {
-      CLog.info(`${this.TAG} onBackPress X`)
+      if(this.state.videoState === 'startTakeVideo'){
+        this.state.stopRecording()
+        return true
+      }
+      Log.info(`${this.TAG} onBackPress X`)
       return false
     }
   }
 
   onPageHide(): void {
-    CLog.info(`${this.TAG} onPageHide E`)
-    CLog.info(`${this.TAG} onPageHide E isShowtimeLapse= ${this.state.isShowtimeLapse}`)
-    this.state.changeTimeLapse(false)
-    CLog.info(`${this.TAG} onPageHide E`)
+    Log.info(`${this.TAG} onPageHide E`)
+    this.stopCameraRecording()
+    Log.info(`${this.TAG} onPageHide X`)
+  }
+
+  public stopCameraRecording() {
+    Log.info(`${this.TAG} stopCameraRecording E`)
+    if (this.state.isShowtimeLapse) {
+      this.state.changeTimeLapse(false)
+    }
+    if (this.state.videoState === "startTakeVideo") {
+      this.state.stopRecording()
+    }
+    Log.info(`${this.TAG} stopCameraRecording X`)
+  }
+
+  terminateSelfWithResult() {
+    Log.info(`${this.TAG} terminateSelfWithResult start`)
+    let abilityResult = {
+      "resultCode": 200,
+      "want": {
+        "parameters": {
+          "imagePath": ""
+        },
+        "bundleName": "com.ohos.camera",
+        "abilityName": "com.ohos.camera.MainAbility"
+      }
+    }
+
+    globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
+      if (error) {
+        Log.error(`${this.TAG} Operation failed. Cause: ${error}`)
+        return;
+      }
+      Log.info(`${this.TAG} Operation succeeded: ${data}`)
+    })
   }
 
   build() {
@@ -177,26 +222,25 @@ struct Index {
           PreviewArea()
         }.width('100%').position({ x: '0', y: '48' })
         Stack() {
-          if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse) {
-            TabBar()
+          if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
+//            TabBar()
           }
         }.width('100%').height(48).position({ x: '0', y: '0' })
         if(this.state.isShowMoreList){
           MoreList()
         }
-        if (!this.state.isShowtimeLapse) {
-          Stack({alignContent: Alignment.Bottom}) {
-            Column() {
-              if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
-                ZoomView()
-              }
-              if (this.state.videoState === "beforeTakeVideo") {
-                Control()
-              }
-              FootBar()
+        Stack({alignContent: Alignment.Bottom}) {
+          Column() {
+            if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
+//              ZoomView()
             }
-          }.width('100%').height(302).position({ y: this.state.footBarHeight })
-        }
+            if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
+              Control()
+            }
+            FootBar()
+          }
+        }.width('100%').height(302).position({ y: this.state.footBarHeight })
+          .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
       }
     }.width('100%').height('100%').backgroundColor('#000')
   }

@@ -14,22 +14,24 @@
  */
 
 import { CameraSwitchButton
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/cameraswitcher/CameraSwitchButton'
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
+} from '../../../../../../common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import { ControlLand } from './ControlLand'
-import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { ShutterButtonLand
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/shutterbutton/ShutterButtonLand'
+} from '../../../../../../common/src/main/ets/default/featurecommon/shutterbutton/ShutterButtonLand'
 import { ThumbnailView
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/thumbnail/ThumbnailView'
-import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+} from '../../../../../../common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
+import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 
-let footBarLandState = (state) => {
+let footBarLandState = (state: OhCombinedState) => {
   return {
     platformCapability: state.CameraInitReducer.platformCapability,
     videoState: state.RecordReducer.videoState,
+    isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
   }
 }
 
@@ -42,37 +44,41 @@ export struct FootBarLand {
   private TAG: string = '[FootBarLand]:'
 
   @State state: any = {}
+  @State isRecording: boolean = false
 
-  private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private async onRecordStart(data) {
-    CLog.info(`${this.TAG} onRecordStart E`)
-    this.state.isRecording = true
-    CLog.info(`${this.TAG} onRecordStart X`)
+    Log.info(`${this.TAG} onRecordStart E`)
+    this.isRecording = true
+    Log.info(`${this.TAG} onRecordStart X`)
   }
 
   private async onRecordStop(data) {
-    CLog.info(`${this.TAG} onRecordStop E`)
-    this.state.isRecording = false
-    CLog.info(`${this.TAG} onRecordStop X`)
+    Log.info(`${this.TAG} onRecordStop E`)
+    this.isRecording = false
+    Log.info(`${this.TAG} onRecordStop X`)
   }
 
-  private aboutToAppear(): void {
-    CLog.info(`${this.TAG} aboutToAppear E`)
-    this.mConnect = getStore().connect(footBarLandState, footBarLandDispatcher)(this.state)
-    this.state.isRecording = false
+  aboutToAppear(): void {
+    Log.info(`${this.TAG} aboutToAppear E`)
+    getStore().connect(footBarLandState, footBarLandDispatcher)(this.state)
+    this.isRecording = false
     this.appEventBus.on(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  private aboutToDisappear(): void {
-    CLog.info(`${this.TAG} aboutToDisappear E`)
+  aboutToDisappear(): void {
+    Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
     this.appEventBus.off(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
-    this.mConnect.destroy()
-    CLog.info(`${this.TAG} aboutToDisappear X`)
+    Log.info(`${this.TAG} aboutToDisappear X`)
+  }
+
+  private isThumbnailViewVisibility() {
+    return !this.isRecording && !this.state.isThirdPartyCall &&
+    this.state.videoState !== "startTakeVideo" && this.state.videoState !== "pauseTakeVideo"
   }
 
   build() {
@@ -87,22 +93,22 @@ export struct FootBarLand {
         alignItems: ItemAlign.Center,
         justifyContent: FlexAlign.Center
       }) {
-        if (this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording) {
+        if (this.state.platformCapability?.mCameraCount > 1 && !this.isRecording) {
           CameraSwitchButton()
         } else {
           Column() {
-          }.width('40').aspectRatio(1)
+          }.width('44').aspectRatio(1)
         }
         ShutterButtonLand()
-        if (!this.state.isRecording) {
+        Column() {
           ThumbnailView()
-        }
+        }.width(44).aspectRatio(1).visibility(this.isThumbnailViewVisibility() ? Visibility.Visible : Visibility.Hidden)
       }.width('100%').height(260).margin({
         top: $r("sys.float.ohos_id_text_paragraph_margin_xl"),
         bottom: $r("sys.float.ohos_id_text_paragraph_margin_xl")
       })
 
-      if (this.state.videoState === "beforeTakeVideo") {
+      if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
         ControlLand()
       } else {
         Column() {

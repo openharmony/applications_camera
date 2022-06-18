@@ -14,52 +14,52 @@
  */
 
 import { Action } from '../redux/actions/Action'
-import { CLog } from '../Utils/CLog'
-import { Function } from "./Function"
-import { VideoCallBack } from '../Camera/CameraService'
+import { Log } from '../utils/Log'
+import { Function } from './Function'
+import { VideoCallBack } from '../camera/CameraService'
 
 export class RecordFunction extends Function {
-  private TAG: string = '[RecordFunction]:'
+  private TAG = '[RecordFunction]:'
   private functionBackImpl: VideoCallBack = {
     videoUri: (videoUri: any): void => {
-      CLog.info(`${this.TAG} functionBackImpl videoUri ${videoUri}`)
+      Log.info(`${this.TAG} functionBackImpl videoUri ${videoUri}`)
       this.mWorkerManager.postMessage(Action.UpdateVideoUri(videoUri))
     }
   }
 
   private async startRecording() {
-    CLog.info(`${this.TAG} startRecording E`)
+    Log.info(`${this.TAG} startRecording E`)
     await this.mCameraService.StartRecording(this.functionBackImpl)
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.UpdateRecordingPaused(false))
     this.enableUi()
-    CLog.info(`${this.TAG} startRecording X`)
+    Log.info(`${this.TAG} startRecording X`)
   }
 
   private async pauseRecording() {
-    CLog.info(`${this.TAG} pauseRecording E`)
+    Log.info(`${this.TAG} pauseRecording E`)
     await this.mCameraService.pauseRecording()
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.UpdateRecordingPaused(true))
     this.enableUi()
-    CLog.info(`${this.TAG} pauseRecording X`)
+    Log.info(`${this.TAG} pauseRecording X`)
   }
 
   private async resumeRecording() {
-    CLog.info(`${this.TAG} resumeRecording E`)
+    Log.info(`${this.TAG} resumeRecording E`)
     await this.mCameraService.resumeRecording()
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.UpdateRecordingPaused(false))
     this.enableUi()
-    CLog.info(`${this.TAG} resumeRecording X`)
+    Log.info(`${this.TAG} resumeRecording X`)
   }
 
   private async stopRecording() {
-    CLog.info(`${this.TAG} stopRecording E`)
-    let thumbnailPixelMap = await this.mCameraService.stopRecording()
+    Log.info(`${this.TAG} stopRecording E`)
+    const thumbnailPixelMap = await this.mCameraService.stopRecording()
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.UpdateRecordingTime(0))
@@ -68,7 +68,7 @@ export class RecordFunction extends Function {
     this.mWorkerManager.postMessage(Action.UpdateRecordingPaused(false))
     this.mWorkerManager.postMessage(Action.UpdateThumbnail(thumbnailPixelMap, ''))
     this.enableUi()
-    CLog.info(`${this.TAG} stopRecording X`)
+    Log.info(`${this.TAG} stopRecording X`)
   }
 
   load(): void{

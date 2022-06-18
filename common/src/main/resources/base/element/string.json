@@ -3,6 +3,10 @@
     {
       "name": "commonutil_library",
       "value": "commonutil_library"
+    },
+    {
+      "name": "noticeitem",
+      "value": "noticeitem"
     }
   ]
 }

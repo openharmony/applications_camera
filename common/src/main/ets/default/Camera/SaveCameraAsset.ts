@@ -16,10 +16,12 @@
 import fileio from '@ohos.fileio'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
-import { CLog } from '../Utils/CLog'
-import DateTimeUtil from '../Utils/DateTimeUtil'
+import { Log } from '../utils/Log'
+import DateTimeUtil from '../utils/DateTimeUtil'
+import { FunctionCallBack, VideoCallBack } from './CameraService'
+import ThumbnailGetter from './ThumbnailGetter'
 
-let photoUri;
+let photoUri: string;
 
 export default class SaveCameraAsset {
   constructor() {
@@ -27,132 +29,132 @@ export default class SaveCameraAsset {
   }
 
   private TAG = '[SaveCameraAsset:] '
-  private lastSaveTime: string = ''
-  private saveIndex: number = 0
+  private lastSaveTime = ''
+  private saveIndex = 0
   public videoPrepareFile: any
 
   public getPhotoUri() {
-    CLog.log(`${this.TAG} getPhotoUri= ${photoUri}`)
+    Log.log(`${this.TAG} getPhotoUri= ${photoUri}`)
     return photoUri
   }
 
-  public saveImage(mReceiver, thumbWidth, thumbHeight, thumbnailGetter, captureCallBack) {
-    CLog.info(`${this.TAG} saveImage E`)
-    let mDateTimeUtil = new DateTimeUtil();
-    let fileKeyObj = mediaLibrary.FileKey
-    let mediaType = mediaLibrary.MediaType.IMAGE;
+  public saveImage(mReceiver, thumbWidth: number, thumbHeight: number, thumbnailGetter: ThumbnailGetter, captureCallBack: FunctionCallBack) {
+    Log.info(`${this.TAG} saveImage E`)
+    const mDateTimeUtil = new DateTimeUtil();
+    const fileKeyObj = mediaLibrary.FileKey
+    const mediaType = mediaLibrary.MediaType.IMAGE;
     let buffer = new ArrayBuffer(4096)
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    CLog.info(`${this.TAG} saveImage mediaLibrary.getMediaLibrary media: ${media}`)
+    Log.info(`${this.TAG} saveImage mediaLibrary.getMediaLibrary media: ${media}`)
 
     mReceiver.on('imageArrival', async () => {
-      CLog.log(`${this.TAG} saveImage ImageReceiver on called`)
-      let displayName = this.checkName(`IMG_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.jpg'
-      CLog.log(`${this.TAG} saveImage displayName== ${displayName}`)
+      Log.log(`${this.TAG} saveImage ImageReceiver on called`)
+      const displayName = this.checkName(`IMG_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.jpg'
+      Log.log(`${this.TAG} saveImage displayName== ${displayName}`)
       mReceiver.readNextImage((err, image) => {
-        CLog.error(`${this.TAG} readNextImage image = ${image} error = ${err}`)
+        Log.error(`${this.TAG} readNextImage image = ${image} error = ${err}`)
         if (image === undefined) {
-          CLog.info(`${this.TAG} saveImage failed to get valid image`)
+          Log.info(`${this.TAG} saveImage failed to get valid image`)
           return
         }
         image.getComponent(4, async (errMsg, img) => {
-          CLog.info(`${this.TAG} getComponent img = ${img} errMsg = ${errMsg} E`)
+          Log.info(`${this.TAG} getComponent img = ${img} errMsg = ${errMsg} E`)
           if (img === undefined) {
-            CLog.error(`${this.TAG} getComponent failed to get valid buffer`)
+            Log.error(`${this.TAG} getComponent failed to get valid buffer`)
             return
           }
           if (img.byteBuffer) {
-            CLog.info(`${this.TAG} getComponent img.byteBuffer = ${img.byteBuffer}`)
+            Log.info(`${this.TAG} getComponent img.byteBuffer = ${img.byteBuffer}`)
             buffer = img.byteBuffer
           } else {
-            CLog.info(`${this.TAG} getComponent img.byteBuffer is undefined`)
+            Log.info(`${this.TAG} getComponent img.byteBuffer is undefined`)
           }
           await image.release()
-          CLog.info(`${this.TAG} getComponent  X`)
+          Log.info(`${this.TAG} getComponent  X`)
         })
       })
 
-      CLog.info(`${this.TAG} saveImage getPublicDirectory `)
+      Log.info(`${this.TAG} saveImage getPublicDirectory `)
       let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
       publicPath = `${publicPath}Camera/`
-      CLog.info(`${this.TAG} saveImage publicPath = ${publicPath}`)
-      let dataUri = await media.createAsset(mediaType, displayName, publicPath)
+      Log.info(`${this.TAG} saveImage publicPath = ${publicPath}`)
+      const dataUri = await media.createAsset(mediaType, displayName, publicPath)
       photoUri = dataUri.uri
-      CLog.info(`${this.TAG} saveImage photoUri: ${photoUri}`)
+      Log.info(`${this.TAG} saveImage photoUri: ${photoUri}`)
 
       if (dataUri !== undefined) {
-        let args = dataUri.id.toString()
-        let fetchOp = {
+        const args = dataUri.id.toString()
+        const fetchOp = {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
         }
         // 通过id去查找
-        CLog.log(`${this.TAG} saveImage fetchOp${JSON.stringify(fetchOp)}`)
-        let fetchFileResult = await media.getFileAssets(fetchOp);
-        let fileAsset = await fetchFileResult.getAllObject();
+        Log.log(`${this.TAG} saveImage fetchOp${JSON.stringify(fetchOp)}`)
+        const fetchFileResult = await media.getFileAssets(fetchOp);
+        const fileAsset = await fetchFileResult.getAllObject();
         if (fileAsset != undefined) {
-          CLog.info(`${this.TAG} saveImage fileAsset is not undefined`)
+          Log.info(`${this.TAG} saveImage fileAsset is not undefined`)
           fileAsset.forEach((dataInfo) => {
-            CLog.info(`${this.TAG} saveImage fileAsset.forEach called`)
+            Log.info(`${this.TAG} saveImage fileAsset.forEach called`)
             dataInfo.open('Rw').then((fd) => { // RW是读写方式打开文件 获取fd
-              CLog.info(`${this.TAG} saveImage dataInfo.open called`)
+              Log.info(`${this.TAG} saveImage dataInfo.open called`)
               fileio.write(fd, buffer).then(() => {
-                CLog.info(`${this.TAG} saveImage fileio.write called`)
+                Log.info(`${this.TAG} saveImage fileio.write called`)
                 dataInfo.close(fd).then(() => {
-                  CLog.info(`${this.TAG} saveImage ataInfo.close called`)
+                  Log.info(`${this.TAG} saveImage ataInfo.close called`)
                   thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
-                    CLog.info(`${this.TAG} saveImage thumbnailInfo: ${thumbnail}`)
+                    Log.info(`${this.TAG} saveImage thumbnailInfo: ${thumbnail}`)
                     captureCallBack.onCaptureSuccess(thumbnail, photoUri)
                   })
-                  CLog.info(`${this.TAG} ==========================fileAsset.close success=======================>`);
+                  Log.info(`${this.TAG} ==========================fileAsset.close success=======================>`);
                 }).catch(error => {
-                  CLog.error(`${this.TAG} saveImage close is error ${JSON.stringify(error)}`)
+                  Log.error(`${this.TAG} saveImage close is error ${JSON.stringify(error)}`)
                 })
               })
             })
           });
         }
       } else {
-        CLog.error(`${this.TAG} dataUri is null`)
+        Log.error(`${this.TAG} dataUri is null`)
       }
     })
-    CLog.info(`${this.TAG} saveImage X`)
+    Log.info(`${this.TAG} saveImage X`)
   }
 
-  public async createVideoFd(captureCallBack): Promise<number> {
-    CLog.info(`${this.TAG} getVideoFd E`)
-    let mDateTimeUtil = new DateTimeUtil();
-    let displayName = this.checkName(`VID_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.mp4'
+  public async createVideoFd(captureCallBack: VideoCallBack): Promise<number> {
+    Log.info(`${this.TAG} getVideoFd E`)
+    const mDateTimeUtil = new DateTimeUtil();
+    const displayName = this.checkName(`VID_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.mp4'
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    CLog.info(`${this.TAG} getVideoFd publicPath: ${media}`)
-    let fileKeyObj = mediaLibrary.FileKey;
-    let mediaType = mediaLibrary.MediaType.VIDEO;
+    Log.info(`${this.TAG} getVideoFd publicPath: ${media}`)
+    const fileKeyObj = mediaLibrary.FileKey;
+    const mediaType = mediaLibrary.MediaType.VIDEO;
     let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
-    CLog.info(`${this.TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`)
+    Log.info(`${this.TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`)
     publicPath = `${publicPath}Camera/`
     try {
-      let dataUri = await  media.createAsset(mediaType, displayName, publicPath)
+      const dataUri = await  media.createAsset(mediaType, displayName, publicPath)
       if (dataUri !== undefined) {
-        let args = dataUri.id.toString()
-        let fetchOp = {
+        const args = dataUri.id.toString()
+        const fetchOp = {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
         }
         // 通过id去查找
-        CLog.log(`${this.TAG} fetchOp= ${JSON.stringify(fetchOp)}`)
-        let fetchFileResult = await media.getFileAssets(fetchOp);
-        CLog.info(`${this.TAG} SaveCameraAsset getFileAssets finished`)
+        Log.log(`${this.TAG} fetchOp= ${JSON.stringify(fetchOp)}`)
+        const fetchFileResult = await media.getFileAssets(fetchOp);
+        Log.info(`${this.TAG} SaveCameraAsset getFileAssets finished`)
         this.videoPrepareFile = await fetchFileResult.getFirstObject();
-        let getLastObject = await fetchFileResult.getLastObject()
+        const getLastObject = await fetchFileResult.getLastObject()
         captureCallBack.videoUri(getLastObject.uri)
-        CLog.info(`${this.TAG} SaveCameraAsset getLastObject.uri: ${JSON.stringify(getLastObject.uri)}`)
-        let fdNumber = await this.videoPrepareFile.open('Rw')
+        Log.info(`${this.TAG} SaveCameraAsset getLastObject.uri: ${JSON.stringify(getLastObject.uri)}`)
+        const fdNumber = await this.videoPrepareFile.open('Rw')
         return fdNumber;
       }
     } catch (err) {
-      CLog.error(`${this.TAG} createVideoFd err: ` + err)
+      Log.error(`${this.TAG} createVideoFd err: ` + err)
     }
-    CLog.info(`${this.TAG} getVideoFd X`)
+    Log.info(`${this.TAG} getVideoFd X`)
   }
 
   private checkName(name: string): string {

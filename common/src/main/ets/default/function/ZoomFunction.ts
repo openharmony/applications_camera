@@ -14,27 +14,27 @@
  */
 
 import { Action } from '../redux/actions/Action'
-import { CLog } from '../Utils/CLog'
-import { Function } from "./Function"
+import { Log } from '../utils/Log'
+import { Function } from './Function'
 
 export class ZoomFunction extends Function {
-  private TAG: string = '[ZoomFunction]:'
+  private TAG = '[ZoomFunction]:'
 
   private async changeZoomRatio(data) {
-    CLog.info(`${this.TAG} setZoomRatio ${JSON.stringify(data)}  E`)
+    Log.info(`${this.TAG} setZoomRatio ${JSON.stringify(data)}  E`)
     await this.mCameraService.setZoomRatio(data.zoomRatio)
-    CLog.info(`${this.TAG} setZoomRatio X`)
+    Log.info(`${this.TAG} setZoomRatio X`)
   }
 
   load(): void {
-    CLog.info(`${this.TAG} load E`)
+    Log.info(`${this.TAG} load E`)
     this.mEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, this.changeZoomRatio.bind(this))
-    CLog.info(`${this.TAG} load X`)
+    Log.info(`${this.TAG} load X`)
   }
 
   unload(): void {
-    CLog.info(`${this.TAG} unload E`)
+    Log.info(`${this.TAG} unload E`)
     this.mEventBus.off(Action.ACTION_CHANGE_ZOOM_RATIO, this.changeZoomRatio.bind(this))
-    CLog.info(`${this.TAG} unload X`)
+    Log.info(`${this.TAG} unload X`)
   }
 }

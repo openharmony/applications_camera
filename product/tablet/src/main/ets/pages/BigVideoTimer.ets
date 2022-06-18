@@ -13,20 +13,20 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display';
+import display from '@ohos.display'
 
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 
-let localState = (state) => {
+let localState = (state: OhCombinedState) => {
   return {
     recordingTime: state.RecordReducer.recordingTime,
     recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
-    isResumeVideo: state.RecordReducer.isResumeVideo,
-    isRecordingSpotVisible: state.UiReducer.isRecordingSpotVisible,
+    isRecordingPaused: state.RecordReducer.isRecordingPaused,
+    isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible,
   }
 }
 
@@ -53,7 +53,6 @@ let localDispatcher = (dispatch) => {
 @Component
 export struct BigVideoTimer {
   private TAG: string = '[BigVideoTimer]'
-  private mConnect: any
   private timer: number = 0
   private timerTick: number = 0
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
@@ -62,39 +61,38 @@ export struct BigVideoTimer {
   @State timerPosition: number= 0
 
   private async onRecordPaused(data) {
-    CLog.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
+    Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
     clearInterval(this.timer)
-    CLog.info(`${this.TAG} onRecordPaused X`)
+    Log.info(`${this.TAG} onRecordPaused X`)
   }
 
   private async onRecordResumed(data) {
-    CLog.info(`${this.TAG} onRecordResumed E`)
+    Log.info(`${this.TAG} onRecordResumed E`)
     if (this.state.recordingTime <= 2) {
       this.setIntervalTimer()
     }
-    CLog.info(`${this.TAG} onRecordResumed X`)
+    Log.info(`${this.TAG} onRecordResumed X`)
   }
 
-  private aboutToAppear(): void {
-    CLog.info(`${this.TAG} aboutToAppear E`)
-    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+  aboutToAppear(): void {
+    Log.info(`${this.TAG} aboutToAppear E`)
+    getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
     display.getDefaultDisplay().then((dis) => {
       this.timerPosition = px2vp(dis.height) * (4 / 3)
     })
     this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  private aboutToDisappear(): void{
-    CLog.info(`${this.TAG} aboutToDisappear E`)
+  aboutToDisappear(): void{
+    Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
     this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
-    CLog.info(`${this.TAG} clearInterval timer id: ${this.timer}`)
+    Log.info(`${this.TAG} clearInterval timer id: ${this.timer}`)
     clearInterval(this.timer)
-    this.mConnect.destroy()
-    CLog.info(`${this.TAG} aboutToDisappear X`)
+    Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
   private setIntervalTimer() {
@@ -131,7 +129,7 @@ export struct BigVideoTimer {
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('').layoutWeight(1)
-      if (this.state.isResumeVideo) {
+      if (this.state.isRecordingPaused) {
         Image($r('app.media.ic_video_recording')).width(12).height(12).fillColor(Color.White)
       } else {
         if (this.state.isRecordingSpotVisible) {
