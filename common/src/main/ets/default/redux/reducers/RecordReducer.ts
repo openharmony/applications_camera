@@ -13,36 +13,55 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
+import { Action, ActionData } from '../actions/Action'
 
-let initState = {
+export type RecordState = {
+  useThumbnail: boolean,
+  isResumeVideo: boolean,
+  isContinueVideo: boolean,
+  isStartVideo: boolean,
+  isRecordingPaused: boolean,
+  videoState: string,
+  isBigVideoTimerVisible: boolean,
+  isSmallVideoTimerVisible: boolean,
+  isRecordingSpotVisible: boolean,
+  recordingTime: number,
+  recordingTimeDisplay: string
+}
+
+const initState: RecordState = {
   useThumbnail: false,
   isResumeVideo: false,
   isContinueVideo: false,
   isStartVideo: false,
   isRecordingPaused: false,
   videoState: 'beforeTakeVideo',
+  isBigVideoTimerVisible: false,
+  isSmallVideoTimerVisible: false,
+  isRecordingSpotVisible: true,
   recordingTime: 0,
   recordingTimeDisplay: '00:00'
 }
 
-export default function RecordReducer(state = initState, action: {
-  type: string,
-  data: any
-}) {
+export default function RecordReducer(state = initState, action: ActionData): RecordState {
   switch (action.type) {
-    case Action.ACTION_START_VIDEO_FLAG:
-      return { ...state, isStartVideo: action.data.isStartVideo }
-    case Action.ACTION_UPDATE_RECORDING_TIME:
-      return { ...state, recordingTime: action.data.recordingTime }
-    case Action.ACTION_UPDATE_RECORDING_TIME_DISPLAY:
-      return { ...state, recordingTimeDisplay: action.data.recordingTimeDisplay }
-    case Action.ACTION_UPDATE_VIDEO_STATE:
-      return { ...state, videoState: action.data.videoState }
-    case Action.ACTION_UPDATE_RECORDING_PAUSED:
-      return { ...state, isRecordingPaused: action.data.isRecordingPaused }
-    default:
-      return state;
+  case Action.ACTION_START_VIDEO_FLAG:
+    return { ...state, isStartVideo: action.data.isStartVideo }
+  case Action.ACTION_UPDATE_RECORDING_TIME:
+    return { ...state, recordingTime: action.data.recordingTime }
+  case Action.ACTION_UPDATE_RECORDING_TIME_DISPLAY:
+    return { ...state, recordingTimeDisplay: action.data.recordingTimeDisplay }
+  case Action.ACTION_UPDATE_VIDEO_STATE:
+    return { ...state, videoState: action.data.videoState }
+  case Action.ACTION_UPDATE_RECORDING_PAUSED:
+    return { ...state, isRecordingPaused: action.data.isRecordingPaused }
+  case Action.ACTION_UPDATE_BIG_VIDEO_TIMER_VISIBLE:
+    return { ...state, isBigVideoTimerVisible: action.data.isBigVideoTimerVisible }
+  case Action.ACTION_UPDATE_SMALL_VIDEO_TIMER_VISIBLE:
+    return { ...state, isSmallVideoTimerVisible: action.data.isSmallVideoTimerVisible }
+  case Action.ACTION_UPDATE_RECORDING_SPOT_VISIBLE:
+    return { ...state, isRecordingSpotVisible: action.data.isRecordingSpotVisible }
+  default:
+    return state;
   }
-  return state;
 }

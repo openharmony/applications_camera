@@ -13,53 +13,69 @@
  * limitations under the License.
  */
 
-import { AsyncManager } from '../Utils/AsyncManager'
-import EventBusManager from '../Utils/EventBusManager'
-import { CLog } from '../Utils/CLog'
-import { createStore, combineReducers, applyMiddleware } from '../Utils/ohredux/index'
+import { AsyncManager, Message } from '../worker/AsyncManager'
+import EventBusManager from '../worker/eventbus/EventBusManager'
+import { Log } from '../utils/Log'
+import { createStore, combineReducers, applyMiddleware } from '../redux/core/ohredux/index'
 import { logger } from './middlewares/logger'
-import { ReduxWorkerMiddle } from './middlewares/ReduxWorkerMiddle'
-import CameraInitReducer from './reducers/CameraInitReducer'
-import ContextReducer from './reducers/ContextReducer'
-import CameraReducer from './reducers/CameraReducer'
-import PreviewReducer from './reducers/PreviewReducer'
-import CaptureReducer from './reducers/CaptureReducer'
-import ModeChangeReducer from './reducers/ModeChangeReducer'
-import ModeReducer from './reducers/ModeReducer'
-import SettingReducer from './reducers/SettingReducer'
-import RecordReducer from './reducers/RecordReducer'
-import UiReducer from './reducers/UiReducer'
+import { reduxWorkerMiddle } from './middlewares/reduxWorkerMiddle'
+import CameraInitReducer, { CameraInitState } from './reducers/CameraInitReducer'
+import ContextReducer, { ContextState } from './reducers/ContextReducer'
+import CameraReducer, { CameraState } from './reducers/CameraReducer'
+import PreviewReducer, { PreviewState } from './reducers/PreviewReducer'
+import CaptureReducer, { CaptureState } from './reducers/CaptureReducer'
+import ModeChangeReducer, { ModeChangeState } from './reducers/ModeChangeReducer'
+import ModeReducer, { ModeState } from './reducers/ModeReducer'
+import SettingReducer, { SettingState } from './reducers/SettingReducer'
+import RecordReducer, { RecordState } from './reducers/RecordReducer'
+import ZoomReducer, { ZoomState } from './reducers/ZoomReducer'
+import { ActionData } from './actions/Action'
+import { CombinedState, Dispatch, Unsubscribe } from './core/redux'
+import { MapDispatchProp, MapStateProp } from './core/ohredux/connect'
 
-const TAG: string = '[store]:'
+const TAG = '[store]:'
 const STORE_KEY = 'CAMERA_REDUX_STORE'
 
+export type OhCombinedState = CombinedState<{
+  CameraInitReducer: CameraInitState;
+  ContextReducer: ContextState;
+  CameraReducer: CameraState;
+  PreviewReducer: PreviewState;
+  CaptureReducer: CaptureState;
+  RecordReducer: RecordState;
+  ModeChangeReducer: ModeChangeState;
+  ModeReducer: ModeState
+  SettingReducer: SettingState
+  ZoomReducer: ZoomState
+}>
+
 export default function getStore(): {
-  getState: Function,
-  dispatch: Function,
-  subscribe: Function,
-  connect: Function
-} {
-  CLog.info(`${TAG} store init.`)
+  getState: () => OhCombinedState,
+  dispatch: Dispatch<ActionData>,
+  subscribe: (listener: () => void) => Unsubscribe,
+  connect: (mapStateProp: MapStateProp, mapDispatchProp: MapDispatchProp) => (target: any) => void
+  } {
+  Log.info(`${TAG} store init.`)
   if (!AppStorage.Has(STORE_KEY)) {
-    let store = createStore(
-    combineReducers({
-      CameraInitReducer,
-      ContextReducer,
-      CameraReducer,
-      PreviewReducer,
-      CaptureReducer,
-      RecordReducer,
-      ModeChangeReducer,
-      ModeReducer,
-      SettingReducer,
-      UiReducer
-    }),
-    applyMiddleware(logger, ReduxWorkerMiddle)
+    const store = createStore(
+      combineReducers({
+        CameraInitReducer,
+        ContextReducer,
+        CameraReducer,
+        PreviewReducer,
+        CaptureReducer,
+        RecordReducer,
+        ModeChangeReducer,
+        ModeReducer,
+        SettingReducer,
+        ZoomReducer,
+      }),
+      applyMiddleware(logger, reduxWorkerMiddle)
     )
     AppStorage.SetOrCreate(STORE_KEY, store)
-    AsyncManager.getInstance().onMessage = (msg) => {
-      let action = {type: undefined, data: undefined, tag: 'FROM_WORKER'}
-      CLog.info(`${TAG} store dispatch msg: ${JSON.stringify(msg)}`)
+    AsyncManager.getInstance().onMessage = (msg: Message) => {
+      const action = {type: '', data: undefined, tag: 'FROM_WORKER'}
+      Log.info(`${TAG} store dispatch msg: ${JSON.stringify(msg)}`)
       action.type = msg.type
       action.data = msg.data
       store.dispatch(action)

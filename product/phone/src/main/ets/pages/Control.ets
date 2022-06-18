@@ -15,28 +15,23 @@
 
 import display from '@ohos.display'
 
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
-import wantConstant from '@ohos.ability.wantConstant';
+import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
+import wantConstant from '@ohos.ability.wantConstant'
+import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 
-let controlState = (state) => {
+let controlState = (state: OhCombinedState) => {
   return {
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     action: state.ContextReducer.action,
     xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
-    uiEnable: state.UiReducer.uiEnable,
-    modeIndex: state.UiReducer.modeIndex,
-    multiFontWeight: state.UiReducer.multiFontWeight,
-    photoFontWeight: state.UiReducer.photoFontWeight,
-    videoFontWeight: state.UiReducer.videoFontWeight,
-    multiFontSize: state.UiReducer.multiFontSize,
-    photoFontSize: state.UiReducer.photoFontSize,
-    videoFontSize: state.UiReducer.videoFontSize,
-    modeBarItemWidth: state.UiReducer.modeBarItemWidth,
+    uiEnable: state.ContextReducer.uiEnable,
+    modeIndex: state.ModeReducer.modeIndex,
     mode: state.ModeReducer.mode,
-    isShowMoreList: state.UiReducer.isShowMoreList
+    isShowMoreList: state.ModeReducer.isShowMoreList
   }
 }
 
@@ -49,9 +44,6 @@ let controlDispatcher = (dispatch) => {
     },
     updateModeIndex: (index: number) => {
       dispatch(Action.UpdateModeIndex(index))
-    },
-    updateModeBarItemWidth: (width: number) => {
-      dispatch(Action.UpdateModeBarItemWidth(width))
     },
     updateShowMoreList: (isShowMoreList) => {
       dispatch(Action.UpdateShowMoreList(isShowMoreList))
@@ -74,25 +66,27 @@ let controlDispatcher = (dispatch) => {
 @Component
 export struct Control {
   private TAG: string = '[Control]'
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private scroller: Scroller = new Scroller()
-  private settingsUtil = SettingsUtil.getInstance()
-  private mConnect: any
+  private settingManager = SettingManager.getInstance()
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
 
   @State state: any = {}
+  @State modeBarItemWidth: number = 225
 
-  public aboutToAppear(): void {
-    CLog.info(`${this.TAG} aboutToAppear E`)
-    this.mConnect = getStore().connect(controlState, controlDispatcher)(this.state)
+
+  aboutToAppear(): void {
+    Log.info(`${this.TAG} aboutToAppear E`)
+    getStore().connect(controlState, controlDispatcher)(this.state)
     display.getDefaultDisplay().then((dis) => {
       let width = (px2vp(dis.width) - (54 * 5)) / 2
-      this.state.updateModeBarItemWidth(width)
-      CLog.info(`${this.TAG} width: ${width}, modeBarItemWidth: ${this.state.modeBarItemWidth}`)
+      this.modeBarItemWidth = width
+      Log.info(`${this.TAG} width: ${width}, modeBarItemWidth: ${this.modeBarItemWidth}`)
     })
     let startWantAction = globalThis.cameraAbilityWant.action
-    CLog.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
+    Log.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
     if (!globalThis?.cameraNewWant && startWantAction) {
-      CLog.info(`${this.TAG} thirdParty called`)
+      Log.info(`${this.TAG} thirdParty called`)
       this.state.thirdPartyCall(true, startWantAction)
       switch (startWantAction) {
         case wantConstant.Action.ACTION_IMAGE_CAPTURE:
@@ -107,30 +101,31 @@ export struct Control {
           break
       }
     }
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    this.appEventBus.on(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
+    Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  public aboutToDisappear(): void {
-    CLog.info(`${this.TAG} aboutToDisappear E`)
-    this.mConnect.destroy()
-    CLog.info(`${this.TAG} aboutToDisappear X`)
+  aboutToDisappear(): void {
+    Log.info(`${this.TAG} aboutToDisappear E`)
+    this.appEventBus.off(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
+    Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
   private changeToMode(modeIndex: number) {
-    CLog.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
-    if (modeIndex !== this.state.modeIndex) {
+    Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
+    if (this.modeArray[modeIndex] !== this.state.mode) {
 //      if (modeIndex === 3) {
 //        this.state.updateShowMoreList(true)
 //      } else {
 //        this.closeMoreListView()
 //      }
       this.scroller.scrollToIndex(modeIndex)
-      CLog.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
+      Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
       this.state.updateControlFontStyle(this.modeArray[modeIndex])
     }
-    CLog.debug(`${this.TAG} changeToMode X`)
+    Log.debug(`${this.TAG} changeToMode X`)
   }
 
   private getModeFontSize(modeIndex: number): Resource {
@@ -153,6 +148,10 @@ export struct Control {
     if (this.state.isShowMoreList) {
       this.state.updateShowMoreList(false)
     }
+  }
+
+  private swipeChangeMode(data) {
+    this.changeToMode(data.swipeModeIndex)
   }
 
   build() {
@@ -178,12 +177,11 @@ export struct Control {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
             ListItem() {}.width(54).height('100%')
             ListItem() {}.width(54).height('100%')
-            ListItem() {}.width(this.state.modeBarItemWidth).height('100%')
+//            ListItem() {}.width(54).height('100%')
+            ListItem() {}.width(this.modeBarItemWidth).height('100%')
             ListItem() {
               Text($r('app.string.multi_mode'))
                 .width('100%').height('100%')
-//                .fontColor('#fff').fontSize(this.state.multiFontSize)
-//                .fontWeight(this.state.multiFontWeight)
                 .fontColor('#fff').fontSize(this.getModeFontSize(0))
                 .fontWeight(this.getModeFontWeight(0))
                 .textAlign(TextAlign.Center)
@@ -208,9 +206,21 @@ export struct Control {
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(2) })
             }.width(54).height('100%')
-            ListItem() {}.width(this.state.modeBarItemWidth).height('100%')
+//            ListItem() {
+//              Text($r('app.string.more_list'))
+//                .width('100%')
+//                .height('100%')
+//                .fontColor('#fff')
+//                .fontSize(this.getModeFontSize(3))
+//                .fontWeight(this.getModeFontWeight(3))
+//                .textAlign(TextAlign.Center)
+//                .enabled(this.state.uiEnable)
+//                .onClick(() => { this.changeToMode(3) })
+//            }.width(54).height('100%')
+            ListItem() {}.width(this.modeBarItemWidth).height('100%')
             ListItem() {}.width(54).height('100%')
             ListItem() {}.width(54).height('100%')
+//            ListItem() {}.width(54).height('100%')
           }
           .width('100%').height('100%')
           .listDirection(Axis.Horizontal)
@@ -218,13 +228,13 @@ export struct Control {
           .chainAnimation(false)
           .enabled(this.state.uiEnable)
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
-            CLog.debug(`${this.TAG} Control scroll index first: ${firstIndex}, last: ${lastIndex}`)
+            Log.debug(`${this.TAG} Control scroll index first: ${firstIndex}, last: ${lastIndex}`)
             this.state.updateModeIndex(firstIndex)
-            CLog.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
+            Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Up) {
-              CLog.debug(`${this.TAG} modeIndex == ${this.state.modeIndex}`)
+              Log.debug(`${this.TAG} modeIndex == ${this.state.modeIndex}`)
               this.changeToMode(this.state.modeIndex)
             }
           })

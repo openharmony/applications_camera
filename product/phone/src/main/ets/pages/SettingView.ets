@@ -14,14 +14,31 @@
  */
 
 import router from '@system.router';
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/Utils/ScreenLockManager'
+
+import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
+import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { SettingItem
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/settingView/phone/SettingItem'
-import SettingListModel from '../../../../../../common/src/main/ets/default/model/SettingListImpl/SettingListModel';
-import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+} from '../../../../../../common/src/main/ets/default/featurecommon/settingView/phone/SettingItem'
+import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
+import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
 
 var mScreenLockManager = new ScreenLockManager()
+
+let localState = (state: OhCombinedState) => {
+  return {
+    isCloseFlag: state.SettingReducer.isCloseFlag
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {
+    closeDialog: (isCloseFlag: boolean) => {
+      dispatch(Action.CloseDialog(isCloseFlag))
+    }
+  }
+}
 
 @Entry
 @Component
@@ -29,32 +46,43 @@ struct SettingView {
   private TAG: string = '[SettingView]:'
   private cameraPosition: string
   private previewImage: string
-  private settingsUtil = SettingsUtil.getInstance()
+  private settingManager = SettingManager.getInstance()
   @State checkNameList: Array<string> = ["4:3", "[16:9] 720p"]
+  @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
   @State settingsList: any[] = SettingListModel.getSettingList()
+  @State state: any = {}
   private WH_100_100: string = "100%";
 
   aboutToAppear(): void{
-    CLog.info(`${this.TAG} aboutToAppear invoke E`)
+    Log.info(`${this.TAG} aboutToAppear invoke E`)
     if (router.getParams() != undefined) {
       this.cameraPosition = router.getParams().position.toString()
       this.previewImage = router.getParams().mode.toString()
     }
-
+    getStore().connect(localState, localDispatcher)(this.state)
     mScreenLockManager.init()
-    CLog.info(`${this.TAG} aboutToAppear invoke X`)
+    Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
-  onBackPress() {
-    router.replace({
-      params: {
-        position: this.cameraPosition,
-        mode: this.previewImage
-      },
-      uri: "pages/index"
-    })
+  aboutToDisappear(): void {
+    Log.info(`${this.TAG} aboutToDisappear E`)
+  }
+
+  onBackPress(): boolean {
+    Log.info(`${this.TAG} onBackPress invoke X`)
+    if (this.state.isCloseFlag){
+      this.closeFlag = !this.closeFlag
+    } else {
+      router.replace({
+        params: {
+          position: this.cameraPosition,
+          mode: this.previewImage
+        },
+        uri: "pages/index"
+      })
+    }
     return true;
   }
 
@@ -92,6 +120,7 @@ struct SettingView {
                 ListItem() {
                   SettingItem({
                     settingsList: $settingsList,
+                    closeFlag: $closeFlag,
                     item: item,
                     index: index
                   })
@@ -118,7 +147,7 @@ struct SettingView {
               .backgroundColor($r('app.color.background_color_333333'))
               .height(40)
               .onClick(() => {
-                this.settingsUtil.restoreValues()
+                this.settingManager.restoreValues()
                 router.replace({
                   params: {
                     position: this.cameraPosition,
@@ -135,7 +164,6 @@ struct SettingView {
       .width(this.WH_100_100)
       .flexShrink(1)
       .edgeEffect(EdgeEffect.Spring)
-      
     }
     .height(this.WH_100_100)
     .backgroundColor(Color.Black)

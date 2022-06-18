@@ -13,9 +13,18 @@
  * limitations under the License.
  */
 
-export const logger = store => next => action => {
+import { AnyAction, Dispatch, Middleware, MiddlewareAPI } from '../core/redux'
+
+/**
+ * Middleware to log the behaviors of dispatch.
+ * 
+ * @param store the created old store
+ * @returns (next: Dispatch) => (newDispatch: Dispatch), by input the old dispatch, new dispatch
+ * can be obtained.
+ */
+export const logger: Middleware = (store: MiddlewareAPI) => (next: Dispatch<AnyAction>) => (action: AnyAction) => {
   console.info(`logger: dispatch ${JSON.stringify(action)}, store: ${JSON.stringify(store.getState())}`)
-  let result = next(action)
+  const result = next(action)
   console.info(`logger: new state ${JSON.stringify(store.getState())}`)
   return result
 }

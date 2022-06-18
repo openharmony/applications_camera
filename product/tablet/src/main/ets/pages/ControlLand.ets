@@ -13,32 +13,23 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display'
-
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import getStore from '../../../../../../common/src/main/ets/default/redux/store'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { SettingsUtil } from '../../../../../../common/src/main/ets/default/Utils/SettingsUtil'
+import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
 import wantConstant from '@ohos.ability.wantConstant';
-import { EventBus } from '../../../../../../common/src/main/ets/default/Utils/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/Utils/EventBusManager'
+import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 
-let controlLandState = (state) => {
+let controlLandState = (state: OhCombinedState) => {
   return {
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     action: state.ContextReducer.action,
     xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
-    uiEnable: state.UiReducer.uiEnable,
-    modeIndex: state.UiReducer.modeIndex,
-    multiFontWeight: state.UiReducer.multiFontWeight,
-    photoFontWeight: state.UiReducer.photoFontWeight,
-    videoFontWeight: state.UiReducer.videoFontWeight,
-    multiFontSize: state.UiReducer.multiFontSize,
-    photoFontSize: state.UiReducer.photoFontSize,
-    videoFontSize: state.UiReducer.videoFontSize,
-    modeBarItemWidth: state.UiReducer.modeBarItemWidth,
+    uiEnable: state.ContextReducer.uiEnable,
+    modeIndex: state.ModeReducer.modeIndex,
     mode: state.ModeReducer.mode,
-    isShowMoreList: state.UiReducer.isShowMoreList
+    isShowMoreList: state.ModeReducer.isShowMoreList
   }
 }
 
@@ -51,9 +42,6 @@ let controlLandDispatcher = (dispatch) => {
     },
     updateModeIndex: (index: number) => {
       dispatch(Action.UpdateModeIndex(index))
-    },
-    updateModeBarItemWidth: (width: number) => {
-      dispatch(Action.UpdateModeBarItemWidth(width))
     },
     updateShowMoreList: (isShowMoreList) => {
       dispatch(Action.UpdateShowMoreList(isShowMoreList))
@@ -79,24 +67,19 @@ export struct ControlLand {
   private TAG: string = '[ControlLand]:'
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private scroller: Scroller = new Scroller()
-  private settingsUtil = SettingsUtil.getInstance()
+  private settingManager = SettingManager.getInstance()
   private mConnect: any
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'] //, 'MORE'
 
   @State state: any = {}
 
-  public aboutToAppear(): void {
-    CLog.info(`${this.TAG} aboutToAppear E`)
+  aboutToAppear(): void {
+    Log.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(controlLandState, controlLandDispatcher)(this.state)
-    display.getDefaultDisplay().then((dis) => {
-      let width = (px2vp(dis.width) - (54 * 5)) / 2
-      this.state.updateModeBarItemWidth(width)
-      CLog.info(`${this.TAG} width: ${width}, modeBarItemWidth: ${this.state.modeBarItemWidth}`)
-    })
     let startWantAction = globalThis.cameraAbilityWant.action
-    CLog.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
+    Log.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
     if (!globalThis?.cameraNewWant && startWantAction) {
-      CLog.info(`${this.TAG} thirdParty called`)
+      Log.info(`${this.TAG} thirdParty called`)
       this.state.thirdPartyCall(true, startWantAction)
       switch (startWantAction) {
         case wantConstant.Action.ACTION_IMAGE_CAPTURE:
@@ -112,14 +95,14 @@ export struct ControlLand {
       }
     }
     this.appEventBus.on(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
-    CLog.info(`${this.TAG} aboutToAppear X`)
+    Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  public aboutToDisappear(): void {
-    CLog.info(`${this.TAG} aboutToDisappear E`)
+  aboutToDisappear(): void {
+    Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
     this.mConnect.destroy()
-    CLog.info(`${this.TAG} aboutToDisappear X`)
+    Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
   private closeMoreListView() {
@@ -129,20 +112,20 @@ export struct ControlLand {
   }
   
   private changeToMode(modeIndex: number) {
-    CLog.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
-    if (modeIndex !== this.state.modeIndex) {
+    Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
+    if (this.modeArray[modeIndex] !== this.state.mode) {
 //      if ( modeIndex !== 3 ) {
 //        this.closeMoreListView()
 //      } else {
 //        this.state.updateShowMoreList(true)
 //      }
       this.scroller.scrollToIndex(modeIndex)
-      CLog.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
+      Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
       this.state.updateControlFontStyle(this.modeArray[modeIndex])
     }
-    CLog.debug(`${this.TAG} changeToMode X`)
+    Log.debug(`${this.TAG} changeToMode X`)
   }
 
   private getModeFontSize(modeIndex: number): Resource {
@@ -241,14 +224,14 @@ export struct ControlLand {
           .edgeEffect(EdgeEffect.None)
           .chainAnimation(false)
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
-            CLog.debug(`${this.TAG} Control scroll index first: ${firstIndex}, last: ${lastIndex}`)
+            Log.debug(`${this.TAG} Control scroll index first: ${firstIndex}, last: ${lastIndex}`)
             this.state.updateModeIndex(firstIndex)
-            CLog.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
+            Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
           .enabled(this.state.uiEnable)
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Up) {
-              CLog.debug(`${this.TAG} modeIndex == ${this.state.modeIndex}`)
+              Log.debug(`${this.TAG} modeIndex == ${this.state.modeIndex}`)
               this.changeToMode(this.state.modeIndex)
             }
           })

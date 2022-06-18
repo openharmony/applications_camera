@@ -13,17 +13,29 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
+import { Action, ActionData } from '../actions/Action'
 
-let initState = {}
+export type SettingState = {
+  isAssGridViewShow: string,
+  isShowtimeLapse: boolean,
+  isCloseFlag: boolean
+}
 
-export default function SettingReducer(state = initState, action: {
-  type: string,
-  data: any
-}) {
+const initState = {
+  isAssGridViewShow: '0',
+  isShowtimeLapse: false,
+  isCloseFlag: false
+}
+
+export default function SettingReducer(state = initState, action: ActionData): SettingState {
   switch (action.type) {
-    default:
-      return state;
+  case Action.ACTION_ASSISTIVE_GRID_VIEW:
+    return {...state, isAssGridViewShow: action.data.isAssGridViewShow}
+  case Action.ACTION_CHANGE_TIME_LAPSE:
+    return { ...state, isShowtimeLapse: action.data.isShowtimeLapse}
+  case Action.ACTION_CLOSE_DIALOG:
+    return { ...state, isCloseFlag: action.data.isCloseFlag }
+  default:
+    return state;
   }
-  return state;
 }

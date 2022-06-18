@@ -15,10 +15,9 @@
 
 import worker from '@ohos.worker';
 
-import { CLog } from '../../../../../../common/src/main/ets/default/Utils/CLog'
-import { WorkerManager } from '../../../../../../common/src/main/ets/default/Utils/WorkerManager'
-import { FeatureManager
-} from '../../../../../../features/featurecommon/src/main/ets/com/ohos/featurecommon/featureservice/FeatureManager'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { WorkerManager } from '../../../../../../common/src/main/ets/default/worker/WorkerManager'
+import { FeatureManager } from '../../../../../../features/featureservice/FeatureManager'
 
 const TAG = '[CameraWorker]:'
 const parentPort = worker.parentPort
@@ -27,12 +26,12 @@ var featureManager = new FeatureManager('PHOTO')
 
 
 parentPort.onerror = function (data) {
-    CLog.info(`${TAG} onerror ${data.lineno}, msg = ${data.message}, filename${data.filename}, colno = ${data.colno}`);
+  Log.info(`${TAG} onerror ${data.lineno}, msg = ${data.message}, filename${data.filename}, colno = ${data.colno}`);
 }
 
 // 接收UI线程的消息，并继续发送
 parentPort.onmessage = (msg) => {
-    let action = msg.data
-    CLog.info(`${TAG} action from main thread: ${JSON.stringify(action)}`)
-    workerManager.onMessage(action)
+  let action = msg.data
+  Log.info(`${TAG} action from main thread: ${JSON.stringify(action)}`)
+  workerManager.onMessage(action)
 }
