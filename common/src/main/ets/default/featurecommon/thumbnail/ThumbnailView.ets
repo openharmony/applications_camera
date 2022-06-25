@@ -98,7 +98,7 @@ export struct ThumbnailView {
         Image(this.thumbnail)
           .width('100%').aspectRatio(1).borderRadius(22).objectFit(ImageFit.Fill)
       }
-      .width(44).height(44)
+      .width('100%').height('100%')
       .enabled(this.hasThumbnail)
       .onClick(async () => {
         Log.info(`${this.TAG} launch bundle com.ohos.photos`)
@@ -110,7 +110,7 @@ export struct ThumbnailView {
       })
     }
     .width(44).aspectRatio(1)
-    .borderRadius(20).border(this.thumbnailBorder)
+    .borderRadius(22).border(this.thumbnailBorder)
     .opacity(this.tempOpacity)
     .scale({ x: this.scaleValue, y: this.scaleValue })
   }

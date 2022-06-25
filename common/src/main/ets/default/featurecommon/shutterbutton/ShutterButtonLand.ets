@@ -196,29 +196,29 @@ export struct ShutterButtonLand {
     } else {
       Column() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-          Image($r('app.media.ic_video_end'))
-            .width(20).aspectRatio(1).fillColor(Color.White)
-            .margin({ bottom: 16 })
-            .enabled(this.state.uiEnable)
-            .onClick(() => {
-              this.state.stopRecording()
-            })
           if (this.state.videoState === 'startTakeVideo') {
             Image($r('app.media.ic_video_recording'))
               .width(20).aspectRatio(1).fillColor(Color.White)
-              .margin({ top: 16 })
+              .margin({ bottom: 16 })
               .enabled(this.state.uiEnable)
               .onClick(() => {
                 this.state.pauseRecording()
               })
           } else if (this.state.videoState === 'pauseTakeVideo') {
             Image($r('app.media.ic_video_pause')).width(20).aspectRatio(1).fillColor(Color.Red)
-              .margin({ top: 16 })
+              .margin({ bottom: 16 })
               .enabled(this.state.uiEnable)
               .onClick(() => {
                 this.state.resumeRecording()
               })
           }
+          Image($r('app.media.ic_video_end'))
+            .width(20).aspectRatio(1).fillColor(Color.White)
+            .margin({ top: 16 })
+            .enabled(this.state.uiEnable)
+            .onClick(() => {
+              this.state.stopRecording()
+            })
         }
       }
       .width(56)
