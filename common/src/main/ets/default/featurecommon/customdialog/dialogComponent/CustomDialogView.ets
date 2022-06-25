@@ -81,70 +81,137 @@ export struct CustomDialogView {
   }
 
   build() {
-    Flex({ justifyContent: FlexAlign.Center }) {
-      Column() {
-        Row() {
-          Text(this.customDialogDetails.settingTitle)
-            .fontSize($r("sys.float.ohos_id_text_size_dialog_tittle"))
-            .fontColor('#E6000000')
-            .opacity(0.9)
-            .fontWeight(FontWeight.Medium)
-            .opacity($r("sys.float.ohos_id_alpha_content_primary"))
-        }
-        .width('100%')
-        .height(56)
-
-        GridContainer({ columns: this.localStyle.columns, gutter: 12, margin: 12 }) {
-
-          List() {
-            ForEach(this.customDialogDetails.childrenList, (item) => {
-              ListItem() {
-                EntryComponent({
-                  itemValue: item.itemValue,
-                  checkedValue: this.getValue,
-                  settingAlias: this.settingAlias,
-                  onChange: () => this.onChange()
-                })
-              }
-              .height(48)
-              .width('100%')
-            })
-          }
-          .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 }) // 每行之间的分界线
+    if (deviceInfo.deviceType == 'PAD' || deviceInfo.deviceType == 'tablet') {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        GridContainer({ columns: this.localStyle.columns, gutter: 12, margin: 24 }) {
           Column() {
-            Button({ type: ButtonType.Normal, stateEffect: true }) {
-              Text($r('app.string.cancel'))
-                .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
-                .fontColor('#1095E8')
+            Row() {
+              Text(this.customDialogDetails.settingTitle)
+                .fontSize($r("sys.float.ohos_id_text_size_dialog_tittle"))
+                .fontColor('#E6000000')
+                .opacity(0.9)
                 .fontWeight(FontWeight.Medium)
-                .height('100%')
-                .height('100%')
+                .opacity($r("sys.float.ohos_id_alpha_content_primary"))
             }
             .width('100%')
-            .height('100%')
-            .backgroundColor(0xffffff)
-            .onClick(() => {
-              this.state.closeDialog(false)
-              this.controller.close()
-            })
+            .height(56)
+
+            List() {
+              ForEach(this.customDialogDetails.childrenList, (item) => {
+                ListItem() {
+                  EntryComponent({
+                    itemValue: item.itemValue,
+                    checkedValue: this.getValue,
+                    settingAlias: this.settingAlias,
+                    onChange: () => this.onChange()
+                  })
+                }
+                .height(48)
+                .width('100%')
+              })
+            }
+            .listDirection(Axis.Vertical)
+            .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 }) // 每行之间的分界线
+            Column() {
+              Button({ type: ButtonType.Normal, stateEffect: true }) {
+                Text($r('app.string.cancel'))
+                  .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
+                  .fontColor('#1095E8')
+                  .fontWeight(FontWeight.Medium)
+                  .height('100%')
+                  .height('100%')
+              }
+              .width('100%')
+              .height('100%')
+              .backgroundColor(0xffffff)
+              .onClick(() => {
+                this.state.closeDialog(false)
+                this.controller.close()
+              })
+            }
+            .height(56)
+            .width('100%')
+            .margin({ top: 8 }).padding({ bottom: '16vp' })
           }
-          .height(56)
           .width('100%')
-          .margin({ top: 8 }).padding({ bottom: '16vp' })
-        }
-        .width('96%')
+          .margin({ left: '12vp', right: '12vp', bottom: '16vp' })
+          .backgroundColor(Color.White)
+          .padding({ left: '24vp', right: '24vp' })
+          .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
+          .useSizeType({
+            xs: { span: 4, offset: this.localStyle.offset },
+            sm: { span: 4, offset: this.localStyle.offset },
+            md: { span: 4, offset: this.localStyle.offset },
+            lg: { span: 4, offset: this.localStyle.offset }
+          })
+        }.width('100%')
       }
-      .margin({ left: '12vp', right: '12vp', bottom: '16vp' })
-      .backgroundColor(Color.White)
-      .padding({ left: '24vp', right: '24vp' })
-      .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
-      .useSizeType({
-        xs: { span: 4, offset: this.localStyle.offset },
-        sm: { span: 4, offset: this.localStyle.offset },
-        md: { span: 4, offset: this.localStyle.offset },
-        lg: { span: 4, offset: this.localStyle.offset }
-      })
+    } else {
+      Flex({ justifyContent: FlexAlign.Center }) {
+        Column() {
+          Row() {
+            Text(this.customDialogDetails.settingTitle)
+              .fontSize($r("sys.float.ohos_id_text_size_dialog_tittle"))
+              .fontColor('#E6000000')
+              .opacity(0.9)
+              .fontWeight(FontWeight.Medium)
+              .opacity($r("sys.float.ohos_id_alpha_content_primary"))
+          }
+          .width('100%')
+          .height(56)
+
+          GridContainer({ columns: this.localStyle.columns, gutter: 12, margin: 12 }) {
+
+            List() {
+              ForEach(this.customDialogDetails.childrenList, (item) => {
+                ListItem() {
+                  EntryComponent({
+                    itemValue: item.itemValue,
+                    checkedValue: this.getValue,
+                    settingAlias: this.settingAlias,
+                    onChange: () => this.onChange()
+                  })
+                }
+                .height(48)
+                .width('100%')
+              })
+            }
+            .listDirection(Axis.Vertical)
+            .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 }) // 每行之间的分界线
+            Column() {
+              Button({ type: ButtonType.Normal, stateEffect: true }) {
+                Text($r('app.string.cancel'))
+                  .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
+                  .fontColor('#1095E8')
+                  .fontWeight(FontWeight.Medium)
+                  .height('100%')
+                  .height('100%')
+              }
+              .width('100%')
+              .height('100%')
+              .backgroundColor(0xffffff)
+              .onClick(() => {
+                this.state.closeDialog(false)
+                this.controller.close()
+              })
+            }
+            .height(56)
+            .width('100%')
+            .margin({ top: 8 }).padding({ bottom: '16vp' })
+          }
+          .width('96%')
+        }
+        .margin({ left: '12vp', right: '12vp', bottom: '16vp' })
+        .backgroundColor(Color.White)
+        .padding({ left: '24vp', right: '24vp' })
+        .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
+        .useSizeType({
+          xs: { span: 4, offset: this.localStyle.offset },
+          sm: { span: 4, offset: this.localStyle.offset },
+          md: { span: 4, offset: this.localStyle.offset },
+          lg: { span: 4, offset: this.localStyle.offset }
+        })
+      }
     }
   }
 }

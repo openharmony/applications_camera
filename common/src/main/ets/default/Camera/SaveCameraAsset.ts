@@ -75,8 +75,8 @@ export default class SaveCameraAsset {
       })
 
       Log.info(`${this.TAG} saveImage getPublicDirectory `)
-      let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
-      publicPath = `${publicPath}Camera/`
+      let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA)
+//      publicPath = `${publicPath}Camera/`
       Log.info(`${this.TAG} saveImage publicPath = ${publicPath}`)
       const dataUri = await media.createAsset(mediaType, displayName, publicPath)
       photoUri = dataUri.uri
@@ -129,9 +129,9 @@ export default class SaveCameraAsset {
     Log.info(`${this.TAG} getVideoFd publicPath: ${media}`)
     const fileKeyObj = mediaLibrary.FileKey;
     const mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_IMAGE);
+    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA)
     Log.info(`${this.TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`)
-    publicPath = `${publicPath}Camera/`
+//    publicPath = `${publicPath}Camera/`
     try {
       const dataUri = await  media.createAsset(mediaType, displayName, publicPath)
       if (dataUri !== undefined) {

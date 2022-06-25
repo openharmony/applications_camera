@@ -46,7 +46,7 @@ export struct BigText {
 
   @State state: any = {}
   @State bigTextPositionY: any = {}
-  @State bigTextOpacity: any = 1
+  @State bigTextOpacity: number = 0
 
   public aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)

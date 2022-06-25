@@ -1,0 +1,10 @@
+<div class="card_root_layout">
+        <div class="item_first_container">
+            <div class="button_common" onclick="photoRouter">
+                <image class="button_info" style="object-fit: contain;" src="common/photo.png" />
+            </div>
+            <div class="button_common" onclick="videoRouter">
+                <image class="button_info" style="object-fit: contain;" src="common/video.png" />
+            </div>
+        </div>
+</div>
