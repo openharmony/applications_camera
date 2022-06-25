@@ -92,6 +92,7 @@ struct Index {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
   private mPlaySound: PlaySound = PlaySound.getInstance()
+  @State isPageShown: boolean = false
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -155,7 +156,8 @@ struct Index {
   }
 
   onPageShow(): void {
-    console.info("onPageShow this.permissionFlag= " + this.state.permissionFlag + '  globalThis.permissionFlag = ' + globalThis.permissionFlag)
+    Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
+    this.isPageShown = true
     this.state.setPermissionFlag(globalThis.permissionFlag)
   }
 
@@ -171,7 +173,7 @@ struct Index {
     } else if (this.state.isThirdPartyCall) {
       this.terminateSelfWithResult()
     } else {
-      if(this.state.videoState === 'startTakeVideo'){
+      if(this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo'){
         this.state.stopRecording()
         return true
       }
@@ -182,6 +184,7 @@ struct Index {
 
   onPageHide(): void {
     Log.info(`${this.TAG} onPageHide E`)
+    this.isPageShown = false
     this.stopCameraRecording()
     Log.info(`${this.TAG} onPageHide X`)
   }
@@ -221,17 +224,17 @@ struct Index {
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
-      if (this.state.permissionFlag) {
+      if (this.state.permissionFlag && this.isPageShown) {
         PreviewAreaLand()
         Column() {
           if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
             ZoomViewLand()
           } else {
             Column() {
-            }.width(100).margin({ right: '20vp' })
+            }.width(82).margin({ right: '20vp' })
           }
         }.zIndex(2).position({
-          x: this.state.videoState === "beforeTakeVideo" ? (this.state.footBarWidth - 100) : (this.state.footBarWidth - 42),
+          x: this.state.videoState === "beforeTakeVideo" ? (this.state.footBarWidth - 82) : (this.state.footBarWidth - 42),
           y: 0
         }).height('100%').visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
         Column(){

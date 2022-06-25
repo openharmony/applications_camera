@@ -91,6 +91,7 @@ struct Index {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
   private mPlaySound: PlaySound = PlaySound.getInstance()
+  @State isPageShown: boolean = false
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -151,7 +152,8 @@ struct Index {
   }
 
   onPageShow(): void {
-    console.info("onPageShow this.permissionFlag= " + this.state.permissionFlag + '  globalThis.permissionFlag = ' + globalThis.permissionFlag)
+    Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
+    this.isPageShown = true
     this.state.setPermissionFlag(globalThis.permissionFlag)
   }
 
@@ -167,7 +169,7 @@ struct Index {
     } else if (this.state.isThirdPartyCall) {
       this.terminateSelfWithResult()
     } else {
-      if(this.state.videoState === 'startTakeVideo'){
+      if(this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo'){
         this.state.stopRecording()
         return true
       }
@@ -178,6 +180,7 @@ struct Index {
 
   onPageHide(): void {
     Log.info(`${this.TAG} onPageHide E`)
+    this.isPageShown = false
     this.stopCameraRecording()
     Log.info(`${this.TAG} onPageHide X`)
   }
@@ -217,7 +220,7 @@ struct Index {
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
-      if (this.state.permissionFlag) {
+      if (this.state.permissionFlag && this.isPageShown) {
         Stack() {
           PreviewArea()
         }.width('100%').position({ x: '0', y: '48' })

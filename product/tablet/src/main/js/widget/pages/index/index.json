@@ -1,0 +1,24 @@
+{
+  "data": {
+  },
+  "actions": {
+    "photoRouter": {
+      "action": "router",
+      "bundleName": "com.ohos.camera",
+      "abilityName": "com.ohos.camera.MainAbility",
+      "params": {
+        "uri": "capture",
+        "from": "FA"
+      }
+    },
+    "videoRouter": {
+      "action": "router",
+      "bundleName": "com.ohos.camera",
+      "abilityName": "com.ohos.camera.MainAbility",
+      "params": {
+        "uri": "video",
+        "from": "FA"
+      }
+    }
+  }
+}

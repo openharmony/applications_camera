@@ -203,6 +203,7 @@ export struct PreviewAreaLand {
   @State btnOpacitySec: number = 0
   @State switchBackgroundOpacity: number = 1
   @State isSwitchBackground: boolean = false
+  @State elementWidth: number = 0
 
   private mConnect: any
   private isShowPreview: boolean = false
@@ -232,8 +233,9 @@ export struct PreviewAreaLand {
         GeoLocation.getInstance().on()
 
         display.getDefaultDisplay().then((dis) => {
-          let screenHeight = dis.height - 176
+          let screenHeight = dis.height
           let screenWidth = dis.width
+          this.elementWidth = px2vp(dis.height) * (4 / 3)
 
           this.settingManager.setScreenHeight(screenHeight)
           this.settingManager.setScreenWidth(screenWidth)
@@ -613,7 +615,16 @@ export struct PreviewAreaLand {
 
           if (this.state.isShowZoomText) {
             Stack({ alignContent: Alignment.Top }) {
-              ZoomText({ state: $state })
+              Column() {
+                Column() {
+                  ZoomText({ state: $state })
+                }
+                .width(this.elementWidth)
+                .height('100%')
+              }
+              .width('100%')
+              .height('100%')
+              .alignItems(HorizontalAlign.Start)
             }
             .width('100%')
             .height('96%')
@@ -621,7 +632,16 @@ export struct PreviewAreaLand {
 
           if (this.state.isShowBigText) {
             Stack({ alignContent: Alignment.BottomStart }) {
-              BigText()
+              Column() {
+                Column() {
+                  BigText()
+                }
+                .width(this.elementWidth)
+                .height('100%')
+              }
+              .width('100%')
+              .height('96vp')
+              .alignItems(HorizontalAlign.Start)
             }
             .width('100%')
             .height('100%')
@@ -646,6 +666,7 @@ export struct PreviewAreaLand {
             }
             .width('100%')
             .height('100%')
+            .alignItems(HorizontalAlign.Start)
             .padding({ top: 64 })
           }
           if (this.state.isBigVideoTimerVisible) {
@@ -654,12 +675,13 @@ export struct PreviewAreaLand {
             }
             .width('100%')
             .height('100%')
+            .alignItems(HorizontalAlign.Start)
             .padding({ top: 40 })
           }
           if (this.state.isShowtimeLapse) {
             Column() {
               TimeLapseView()
-            }.width('100%').height(150).position({x: 0, y: 200})
+            }.width(this.elementWidth).height(150).position({x: 0, y: 200})
           }
         }
         .width('100%')
