@@ -26,10 +26,11 @@ export default class ThumbnailGetter {
     const fileKeyObj = mediaLibrary.FileKey;
     let fetchOp: any
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
+    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA)
     Log.log(`${this.TAG} getThumbnailInfo media: ${media}`)
     fetchOp = {
       selections: `${fileKeyObj.RELATIVE_PATH}=?`,
-      selectionArgs: ['Pictures/Camera/'],
+      selectionArgs: [publicPath],
       order: fileKeyObj.DATE_ADDED,
     }
 

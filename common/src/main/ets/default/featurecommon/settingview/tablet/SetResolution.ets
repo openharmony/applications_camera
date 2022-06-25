@@ -66,7 +66,7 @@ export struct SetResolution {
   CustomDialogView: CustomDialogController = new CustomDialogController({
     builder: CustomDialogView({ cancel: this.existView.bind(this) }),
     autoCancel: true,
-    alignment: DialogAlignment.Bottom,
+    alignment: DialogAlignment.Center,
     cancel: this.existView,
     customStyle: true
   })

@@ -31,6 +31,15 @@ function merge(obj: any, props: any) {
   }
 }
 
+// The above merge function with no return should be replaced with this merge, so the state in the
+// arkUI pages marked by @State has explicit type, which has great advantages in coding and debugging.
+function merge1<T, U>(obj: T, props: U): T & U {
+  for (const key in props) {
+    (obj as any)[key] = props[key];
+  }
+  return obj as T & U;
+}
+
 export function connect(store, mapToProps: MapStateProp, mapToDispatch: MapDispatchProp): (state: any) => void {
   return (obj) => {
     console.info(JSON.stringify(store.getState()))
