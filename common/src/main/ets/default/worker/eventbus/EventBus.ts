@@ -72,7 +72,7 @@ export class EventBus {
     * @param event event to handle
     * @param callback event related callback
     */
-  public off(event: string | string[], callback: Callback) {
+  public off(event: string | string[], callback: Callback | undefined) {
     // Array cyclic emptying
     if (Array.isArray(event)) {
       for (let i = 0, l = event.length; i < l; i++) {
@@ -81,6 +81,10 @@ export class EventBus {
       return;
     }
     const callbacks = this.events.get(event);
+    if (callback == undefined) {
+      callbacks?.clear()
+      return
+    }
     let cb = null
     callbacks.forEach((item) => {
       if (item.name === callback.name) {

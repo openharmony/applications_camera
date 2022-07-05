@@ -194,7 +194,7 @@ struct Index {
     if (this.state.isShowtimeLapse) {
       this.state.changeTimeLapse(false)
     }
-    if (this.state.videoState === "startTakeVideo") {
+    if(this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
       this.state.stopRecording()
     }
     Log.info(`${this.TAG} stopCameraRecording X`)
