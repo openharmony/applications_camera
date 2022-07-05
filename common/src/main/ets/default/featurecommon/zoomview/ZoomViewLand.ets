@@ -93,19 +93,21 @@ export struct ZoomViewLand {
   private aboutToAppear(): void {
     this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
+    this.appEventBus.on(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
   }
 
   private aboutToDisappear(): void {
     this.appEventBus.off(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
+    this.appEventBus.off(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
     this.mConnect.destroy()
   }
 
   private lpgOnAction(event: GestureEvent): void {
-    clearTimeout(this.lpgTimer)
-    clearTimeout(this.pgTimer)
+    this.clearTimer()
     this.state.updateShowZoomFlag(true)
     this.baseZoomRatio = this.state.zoomRatio
     this.lpgExp = true
+    this.pgExp = false
     this.triggerRebuildNum = this.triggerRebuildNum + 0.0001
   }
 
@@ -113,7 +115,6 @@ export struct ZoomViewLand {
     this.lpgTimer = setTimeout(() => {
       if (this.lpgExp && !this.pgExp) {
         this.state.updateShowZoomFlag(false)
-        this.offsetY = 0
         this.triggerRebuildNum = this.triggerRebuildNum - 0.0001
       }
       this.lpgExp = false
@@ -121,11 +122,11 @@ export struct ZoomViewLand {
   }
 
   private pgOnActionStart(event: GestureEvent): void {
-    clearTimeout(this.lpgTimer)
-    clearTimeout(this.pgTimer)
+    this.clearTimer()
     this.state.updateShowZoomFlag(true)
     this.baseZoomRatio = this.state.zoomRatio
     this.pgExp = true
+    this.lpgExp = false
   }
 
   private pgOnActionUpdate(event: GestureEvent): void {
@@ -137,7 +138,6 @@ export struct ZoomViewLand {
     this.pgTimer = setTimeout(() => {
       if (this.pgExp && !this.lpgExp) {
         this.state.updateShowZoomFlag(false)
-        this.offsetY = 0
       }
       this.pgExp = false
     }, 3000)
@@ -145,9 +145,10 @@ export struct ZoomViewLand {
 
   private onTouch(event: TouchEvent): void {
     if (event.type === TouchType.Down) {
-      clearTimeout(this.pgTimer)
+      this.clearTimer()
       this.state.updateShowZoomFlag(true)
       this.pgExp = true
+      this.lpgExp = false
 
       let y = event.touches[0].y
       let zoomRatio = this.state.zoomRatio
@@ -182,9 +183,8 @@ export struct ZoomViewLand {
       this.updateZoomRatio()
     } else if (event.type === TouchType.Up) {
       this.pgTimer = setTimeout(() => {
-        if (this.pgExp) {
+        if (this.pgExp && !this.lpgExp) {
           this.state.updateShowZoomFlag(false)
-          this.offsetY = 0
         }
         this.pgExp = false
       }, 3000)
@@ -208,6 +208,19 @@ export struct ZoomViewLand {
     let fullHeight = this.extendCanvasHeight - padding * 2 - this.mainDotRadius * 2
     let offset = (data.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
     this.offsetY = offset
+  }
+
+  private updateZoomState(data): void {
+    this.clearTimer()
+    if (data.videoState === 'beforeTakeVideo') {
+      this.state.updateShowZoomFlag(false)
+      this.pgExp = false
+    }
+  }
+
+  private clearTimer(): void {
+    clearTimeout(this.lpgTimer)
+    clearTimeout(this.pgTimer)
   }
 
   private updateZoomRatio(): void {
