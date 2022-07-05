@@ -87,7 +87,7 @@ export struct ThumbnailView {
 
   private aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, null)
+    this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
     this.appEventBus.off(Action.ACTION_LOAD_THUMBNAIL, this.onThumbnailLoad.bind(this))
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
