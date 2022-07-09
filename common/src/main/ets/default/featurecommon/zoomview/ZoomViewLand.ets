@@ -219,8 +219,12 @@ export struct ZoomViewLand {
   }
 
   private clearTimer(): void {
-    clearTimeout(this.lpgTimer)
-    clearTimeout(this.pgTimer)
+    if (this.pgTimer) {
+      clearTimeout(this.pgTimer)
+    }
+    if (this.lpgTimer) {
+      clearTimeout(this.lpgTimer)
+    }
   }
 
   private updateZoomRatio(): void {
@@ -407,7 +411,7 @@ export struct ZoomViewLand {
 
             this.foldOffCanvasContext.font = `bold ${vp2px(10)}px`
             this.foldOffCanvasContext.textAlign = 'center'
-            this.foldOffCanvasContext.fillText(this.getZoomText(), this.canvasWidth / 2, this.foldCanvasHeight / 2 + vp2px(3))
+            this.foldOffCanvasContext.fillText(this.getZoomText(), this.canvasWidth / 2, this.foldCanvasHeight / 2 + 3)
 
             let fullHeight = this.foldCanvasHeight / 2 - this.mainDotRadius
             let spotCount = (fullHeight - this.mainDotRadius * 2 - this.dotSpacing) / (this.dotSpacing + this.secDotRadius * 2) + 2

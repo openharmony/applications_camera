@@ -18,7 +18,7 @@ export class Voice {
   public static readonly DEFAULT_VALUE = '0'
   public static readonly SOUND = Voice.DEFAULT_VALUE
   public static readonly MUTE = '1'
-  public static readonly RECORD_START_URI = 'file://system/etc/record_start.ogg'
-  public static readonly RECORD_STOP_URI = 'file://system/etc/record_stop.ogg'
-  public static readonly CAPTURE_URI = 'file://system/etc/capture.ogg'
+  public static readonly RECORD_START_URI = '/system/etc/record_start.ogg'
+  public static readonly RECORD_STOP_URI = '/system/etc/record_stop.ogg'
+  public static readonly CAPTURE_URI = '/system/etc/capture.ogg'
 }

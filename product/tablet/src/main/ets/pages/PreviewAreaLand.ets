@@ -217,7 +217,6 @@ export struct PreviewAreaLand {
     if (this.state.platformCapability) {
 //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
-        this.settingManager.setCameraPlatformCapability(data.platformCapability)
         this.settingManager.setCameraId(getCameraId(this.state.cameraPosition))
         this.settingManager.setMode(this.state.mode)
 
