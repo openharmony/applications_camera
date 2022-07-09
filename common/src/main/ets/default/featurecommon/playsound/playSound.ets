@@ -14,6 +14,7 @@
  */
 
 import media from '@ohos.multimedia.media'
+import fileIO from '@ohos.fileio'
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
@@ -22,14 +23,11 @@ import EventBusManager from '../../worker/eventbus/EventBusManager'
 import { SettingManager } from '../../setting/SettingManager'
 import { Voice } from '../../setting/settingitem/Voice'
 
-let mAudioPlayer = undefined
-
 export class PlaySound {
   private TAG: string = '[PlaySound]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
-  private readonly UNDEFINED = 'undefined'
-  private readonly IDLE = 'idle'
+  private fdNumber: number = 0
 
   constructor() {
     this.appEventBus.on(Action.ACTION_RECORD_START, this.playRecordStart.bind(this))
@@ -70,23 +68,31 @@ export class PlaySound {
     Log.debug(`${this.TAG} playCapture invoke X`)
   }
 
-  private playSound(soundUri) {
-    Log.debug(`${this.TAG} playSound invoke E`)
-    if (typeof (mAudioPlayer) !== this.UNDEFINED
-    && mAudioPlayer.src === soundUri && mAudioPlayer.state !== this.IDLE) {
-      mAudioPlayer.play()
-    } else {
-      Log.debug(`${this.TAG} playSound createAudioPlayer`)
-      if (typeof (mAudioPlayer) !== 'undefined') {
-        mAudioPlayer.release()
-        mAudioPlayer = undefined
+  private async playSound(soundUri) {
+    Log.info(`${this.TAG} playSound invoke E`)
+    let fdPath = 'fd://'
+    let audioPlayer = media.createAudioPlayer()
+    audioPlayer.on('dataLoad', () => {
+      audioPlayer.play()
+    })
+    audioPlayer.on('finish', (err, action) => {
+      if (err) {
+        Log.info(`${this.TAG} audioPlayer paly is finish: ${err}`)
+        return
       }
-      mAudioPlayer = media.createAudioPlayer()
-      mAudioPlayer.on('dataLoad', () => {
-        mAudioPlayer.play()
-      })
-      mAudioPlayer.src = soundUri
-    }
-    Log.debug(`${this.TAG} playSound invoke X`)
+      audioPlayer.release()
+      if (this.fdNumber !== 0) {
+        fileIO.closeSync(this.fdNumber)
+        Log.info(`${this.TAG} fileIO closeSync success`)
+      }
+    })
+    await fileIO.open(soundUri).then((fdData) => {
+      fdPath = fdPath + '' + fdData;
+      this.fdNumber = fdData
+    }).catch((err) => {
+      Log.info(`${this.TAG} open soundUri failed, err: ${err}`)
+    })
+    audioPlayer.src = fdPath
+    Log.info(`${this.TAG} playSound invoke ${audioPlayer.src}X`)
   }
 }

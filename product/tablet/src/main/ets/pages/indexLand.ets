@@ -92,7 +92,6 @@ struct Index {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
   private mPlaySound: PlaySound = PlaySound.getInstance()
-  @State isPageShown: boolean = false
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -157,7 +156,6 @@ struct Index {
 
   onPageShow(): void {
     Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
-    this.isPageShown = true
     this.state.setPermissionFlag(globalThis.permissionFlag)
   }
 
@@ -184,7 +182,6 @@ struct Index {
 
   onPageHide(): void {
     Log.info(`${this.TAG} onPageHide E`)
-    this.isPageShown = false
     this.stopCameraRecording()
     Log.info(`${this.TAG} onPageHide X`)
   }
@@ -224,7 +221,7 @@ struct Index {
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
-      if (this.state.permissionFlag && this.isPageShown) {
+      if (this.state.permissionFlag) {
         PreviewAreaLand()
         Column() {
           if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {

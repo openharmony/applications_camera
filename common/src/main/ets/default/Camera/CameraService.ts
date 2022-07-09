@@ -151,12 +151,12 @@ export class CameraService {
     await this.createCameraInput(CameraId.BACK)
 
     Log.info(`${this.TAG} deviceType = ${deviceInfo.deviceType}`)
-    if (deviceInfo.deviceType == 'PAD' || deviceInfo.deviceType == 'tablet') {
-      this.mVideoConfig.videoSourceType = 0
-      this.mVideoConfig.profile.videoCodec = 'video/avc'
-    } else {
+    if (deviceInfo.deviceType == 'default') {
       this.mVideoConfig.videoSourceType = 1
       this.mVideoConfig.profile.videoCodec = 'video/mp4v-es'
+    } else {
+      this.mVideoConfig.videoSourceType = 0
+      this.mVideoConfig.profile.videoCodec = 'video/avc'
     }
     return this.mCameraCount
     Log.info(`${this.TAG} initCamera invoke X.`)
@@ -194,6 +194,7 @@ export class CameraService {
     this.mCameraInput = await this.mCameraManager.createCameraInput(id)
     const platformCapability = CameraPlatformCapability.getInstance()
     await platformCapability.calcSupportedSizes(this.mCameraInput)
+    SettingManager.getInstance().setCameraPlatformCapability(platformCapability)
     Log.info(`${this.TAG} createCameraInput invoke X.`)
   }
 
@@ -226,8 +227,10 @@ export class CameraService {
   }
 
   public async createPhotoOutput(functionCallback: FunctionCallBack) {
-    Log.info(`${this.TAG} createPhotoOutput invoke ${this.mImageSize.imageWidth}x${this.mImageSize.imageHeight} E.`)
-    const receiver = image.createImageReceiver(this.mImageSize.imageWidth, this.mImageSize.imageHeight, 4, 8)
+    Log.info(`${this.TAG} createPhotoOutput invoke E.`)
+    const size = SettingManager.getInstance().getImageSize()
+    Log.info(`${this.TAG} createPhotoOutput size = ${JSON.stringify(size)}`)
+    const receiver = image.createImageReceiver(size.width, size.height, 4, 8)
     Log.info(`${this.TAG} createPhotoOutput receiver: ${receiver}.`)
     const surfaceId = await receiver.getReceivingSurfaceId()
     Log.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
@@ -332,10 +335,12 @@ export class CameraService {
       this.mVideoRecorder = recorder
     })
     if (this.mVideoRecorder != null) {
-      Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
-      this.mVideoConfig.profile.videoFrameWidth = this.mVideoFrameSize.frameWidth
-      this.mVideoConfig.profile.videoFrameHeight = this.mVideoFrameSize.frameHeight
+      const size = SettingManager.getInstance().getVideoSize()
+      Log.info(`${this.TAG} createVideoOutput size = ${JSON.stringify(size)}`)
+      this.mVideoConfig.profile.videoFrameWidth = size.width
+      this.mVideoConfig.profile.videoFrameHeight = size.height
       this.mVideoConfig.profile.videoCodec = SettingManager.getInstance().getVideoCodec()
+      Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
       Log.info(`${this.TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`)
       await this.mVideoRecorder.prepare(this.mVideoConfig)
       Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare succeed.`)
