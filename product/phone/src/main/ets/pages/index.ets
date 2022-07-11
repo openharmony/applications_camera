@@ -14,6 +14,7 @@
  */
 
 import display from '@ohos.display'
+import deviceInfo from '@ohos.deviceInfo'
 
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { CameraWorker } from '../../../../../../common/src/main/ets/default/worker/CameraWorker'
@@ -91,7 +92,6 @@ struct Index {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
   private mPlaySound: PlaySound = PlaySound.getInstance()
-  @State isPageShown: boolean = false
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -102,7 +102,12 @@ struct Index {
 
     display.getDefaultDisplay().then((dis) => {
       Log.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`)
-      let footBarHeight = px2vp(dis.width) * (4 / 3) - 160
+      let footBarHeight
+      if (deviceInfo.deviceType === "default") {
+        footBarHeight = px2vp(dis.width) * (4 / 3) - 160
+      } else {
+        footBarHeight = px2vp(dis.width) * (4 / 3) - 82
+      }
       this.state.initFootBarHeight(footBarHeight)
     })
 
@@ -153,7 +158,6 @@ struct Index {
 
   onPageShow(): void {
     Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
-    this.isPageShown = true
     this.state.setPermissionFlag(globalThis.permissionFlag)
   }
 
@@ -180,7 +184,6 @@ struct Index {
 
   onPageHide(): void {
     Log.info(`${this.TAG} onPageHide E`)
-    this.isPageShown = false
     this.stopCameraRecording()
     Log.info(`${this.TAG} onPageHide X`)
   }
@@ -220,13 +223,15 @@ struct Index {
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
-      if (this.state.permissionFlag && this.isPageShown) {
+      if (this.state.permissionFlag) {
         Stack() {
           PreviewArea()
         }.width('100%').position({ x: '0', y: '48' })
         Stack() {
           if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
-//            TabBar()
+            if (deviceInfo.deviceType !== "default") {
+              TabBar()
+            }
           }
         }.width('100%').height(48).position({ x: '0', y: '0' })
         if(this.state.isShowMoreList){
@@ -235,7 +240,9 @@ struct Index {
         Stack({alignContent: Alignment.Bottom}) {
           Column() {
             if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
-//              ZoomView()
+              if (deviceInfo.deviceType !== "default") {
+                ZoomView()
+              }
             }
             if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
               Control()
