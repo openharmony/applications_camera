@@ -44,12 +44,12 @@ export interface VideoCallBack {
 
 export class CameraService {
   private TAG = '[CameraService]:'
-  private mCameraId: CameraId = CameraId.BACK
+  private mCameraId: string = CameraId.BACK
   private mSurfaceId = ''
   private mIsSessionRelease = true
   private mFileAssetId = 0
   private mCameraManager!: camera.CameraManager
-  private mCameraIdMap: Map<CameraId, string> = new Map()
+  private mCameraIdMap: Map<string, string> = new Map()
   private mCameraMap = new Map()
   private curCameraName = ''
   private mCameraCount = 0
@@ -115,40 +115,32 @@ export class CameraService {
     return globalThis.sInstanceCameraService;
   }
 
-  public async initCamera(): Promise<number> {
+  public async initCamera(cameraId: string): Promise<number> {
     Log.info(`${this.TAG} initCamera invoke E.`)
-    if (this.mCameraManager) {
-      Log.info(`${this.TAG} initCamera CameraManager already init.`)
-      return this.mCameraCount
-    }
-
-    this.mCameraManager = await camera.getCameraManager(globalThis.cameraAbilityContext)
     if (!this.mCameraManager) {
-      Log.error(`${this.TAG} initCamera getCameraManager failed.`)
-      return this.mCameraCount
-    }
-
-    const cameras = await this.mCameraManager.getCameras()
-    this.mCameraCount = cameras.length
-    if (cameras) {
-      Log.info(`${this.TAG} getCameras success.`)
-      for (let i = 0; i < cameras.length; i++) {
-        Log.info(`${this.TAG} --------------Camera Info-------------`)
-        Log.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
-        Log.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
-        Log.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
-        Log.info(`${this.TAG} connectionType: ${cameras[i].cameraType}`)
-      }
-      // TODO 根据底层信息匹配cameraId 目前默认第0个是back， 第1个是front
-      this.mCameraIdMap.set(CameraId.BACK, cameras[0].cameraId);
-      if (cameras.length > 1) {
-        this.mCameraIdMap.set(CameraId.FRONT, cameras[1].cameraId);
-      } else {
-        this.mCameraIdMap.set(CameraId.FRONT, cameras[0].cameraId);
+      this.mCameraManager = await camera.getCameraManager(globalThis.cameraAbilityContext)
+      const cameras = await this.mCameraManager.getCameras()
+      this.mCameraCount = cameras.length
+      if (cameras) {
+        Log.info(`${this.TAG} getCameras success.`)
+        for (let i = 0; i < cameras.length; i++) {
+          Log.info(`${this.TAG} --------------Camera Info-------------`)
+          Log.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
+          Log.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
+          Log.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
+          Log.info(`${this.TAG} connectionType: ${cameras[i].cameraType}`)
+        }
+        // TODO 根据底层信息匹配cameraId 目前默认第0个是back， 第1个是front
+        this.mCameraIdMap.set(CameraId.BACK, cameras[0].cameraId);
+        if (cameras.length > 1) {
+          this.mCameraIdMap.set(CameraId.FRONT, cameras[1].cameraId);
+        } else {
+          this.mCameraIdMap.set(CameraId.FRONT, cameras[0].cameraId);
+        }
       }
     }
-    this.curCameraName = CameraId.BACK
-    await this.createCameraInput(CameraId.BACK)
+    this.curCameraName = cameraId
+    await this.createCameraInput(cameraId)
 
     Log.info(`${this.TAG} deviceType = ${deviceInfo.deviceType}`)
     if (deviceInfo.deviceType == 'default') {
@@ -178,9 +170,10 @@ export class CameraService {
     return this.mCameraCount
   }
 
-  public async createCameraInput(cameraName: CameraId) {
+  public async createCameraInput(cameraName: string) {
     Log.info(`${this.TAG} createCameraInput invoke E.`)
     this.mCameraId = cameraName
+    this.curCameraName = cameraName
     if (this.mCameraInput) {
       this.mCameraInput.release()
     }

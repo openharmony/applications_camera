@@ -21,6 +21,7 @@ export type ContextState = {
   footBarWidth: number,
   footBarHeight: number,
   isThirdPartyCall: boolean,
+  isFaCall: boolean,
   permissionFlag: boolean,
   action: string,
   isKeepScreenOn: boolean
@@ -32,6 +33,7 @@ const initState: ContextState = {
   footBarWidth: 0,
   footBarHeight: 0,
   isThirdPartyCall: false,
+  isFaCall: false,
   permissionFlag: false,
   action: '',
   isKeepScreenOn: false
@@ -47,6 +49,8 @@ export default function ContextReducer(state = initState, action: ActionData): C
     return { ...state, footBarHeight: action.data.footBarHeight }
   case Action.ACTION_THIRD_PARTY_CALL:
     return { ...state, isThirdPartyCall: action.data.isThirdPartyCall, action: action.data.action }
+  case Action.ACTION_FA_CALL:
+    return {...state, isFaCall: action.data.isFaCall}
   case Action.ACTION_SET_PERMISSION_FLAG:
     return { ...state, permissionFlag: action.data.permissionFlag }
   case Action.ACTION_INIT_ACTION:

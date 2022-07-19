@@ -90,7 +90,7 @@ export class SettingListModel {
         result.settingTitle = $r('app.string.video_mode')
         result.settingChildren = []
         result.settingChildren[0] = this.buildVideoResolutionSettingItem()
-        result.settingChildren[1] = this.buildVideoCodecSettingItem()
+//        result.settingChildren[1] = this.buildVideoCodecSettingItem()
         return result;
     }
 
@@ -130,9 +130,9 @@ export class SettingListModel {
         result.settingChildren = []
         result.settingChildren[0] = this.buildAssistiveGridSettingItem()
         result.settingChildren[1] = this.buildTimerSettingItem()
-        result.settingChildren[2] = this.buildSaveGeoLocationSettingItem()
-        result.settingChildren[3] = this.buildSoundMuteSettingItem()
-        result.settingChildren[4] = this.buildSelfMirrorSettingItem()
+//        result.settingChildren[2] = this.buildSaveGeoLocationSettingItem()
+        result.settingChildren[2] = this.buildSoundMuteSettingItem()
+//        result.settingChildren[4] = this.buildSelfMirrorSettingItem()
         return result;
     }
 

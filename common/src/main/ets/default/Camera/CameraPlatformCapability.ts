@@ -70,8 +70,7 @@ export class CameraPlatformCapability {
     }
     const photoSize = await cameraInput.getSupportedSizes(2000) //CAMERA_FORMAT_JPEG
     const previewCurSize = await cameraInput.getSupportedSizes(1003) //CAMERA_FORMAT_YCRCb_420_SP
-    Log.info(`${this.TAG} calcSupportedSizes photoSize ${JSON.stringify(photoSize)}`)
-    Log.info(`${this.TAG} calcSupportedSizes previewCurSize ${JSON.stringify(previewCurSize)}`)
+
     this.mImageSize[0] = this.getMaxSize(photoSize, 4, 3)
     this.mImageSize[1] = this.getMaxSize(photoSize, 1, 1)
     this.mImageSize[2] = this.getMaxSize(photoSize, 16, 9)
@@ -91,23 +90,26 @@ export class CameraPlatformCapability {
     const maxSize = { width: 0, height: 0 }
     const fitList = []
     for (let i = 0; i < sizeList.length; i++) {
-      //      console.info('--getMaxSize size list width: ' + sizeList[i].width + ' height: ' + sizeList[i].height)
+//            console.info('--getMaxSize size list width: ' + sizeList[i].width + ' height: ' + sizeList[i].height)
       const errorValue = sizeList[i].width * height - sizeList[i].height * width
-      if (errorValue <= 16 && errorValue >= -16) {
+      if (errorValue <= 4 && errorValue >= -4) {
         fitList.push(sizeList[i])
       }
     }
-    console.info('getMaxSize fitList.length: ' + fitList.length)
     if (fitList.length == 0) {
+      Log.error(`${this.TAG} calc failed based on the supportedSizesList, try default value.`)
       maxSize.width = 640
       maxSize.height = 480
-      console.info('getMaxSize.width: ' + maxSize.width + ' height: ' + maxSize.height)
+      Log.info(`${this.TAG} -----------SupportedSizes List Start-----------`)
+      for (let i = 0; i < sizeList.length; i++) {
+        Log.info(`${this.TAG} supportedSize width: ${sizeList[i].width} height: ${sizeList[i].height}`)
+      }
+      Log.info(`${this.TAG} -----------SupportedSizes List End-----------`)
       return maxSize
     } else {
       const index = Math.floor(fitList.length / 2)
       maxSize.width = fitList[index].width
       maxSize.height = fitList[index].height
-      console.info('getMaxSize.width: ' + maxSize.width + ' height: ' + maxSize.height)
     }
     return maxSize
   }
@@ -126,10 +128,10 @@ export class CameraPlatformCapability {
       }
     }
     if (specifiedSize.width == 0) {
+      Log.error(`${this.TAG} calc failed based on the supportedSizesList, try default value.`)
       specifiedSize.width = 1920
       specifiedSize.height = 1080
     }
-    console.info('getSpecifiedSize.width: ' + specifiedSize.width + ' height: ' + specifiedSize.height)
     return specifiedSize
   }
 
