@@ -95,7 +95,7 @@ export struct ZoomView {
   private aboutToDisappear(): void {
     this.appEventBus.off(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
     this.appEventBus.off(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
-    this.mConnect.destroy()
+    this.mConnect?.destroy()
   }
 
   private lpgOnAction(event: GestureEvent): void {

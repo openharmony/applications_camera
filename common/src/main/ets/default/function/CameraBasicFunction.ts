@@ -23,7 +23,7 @@ import { FunctionCallBack } from '../camera/CameraService'
 export class CameraBasicFunction extends Function {
   private TAG = '[CameraBasicFunction]:'
 
-  private mCameraId: CameraId = CameraId.BACK
+  private mCameraId: string = CameraId.BACK
   private mSurfaceId = ''
   private mCurrentMode = ''
 
@@ -54,7 +54,7 @@ export class CameraBasicFunction extends Function {
     Log.info(`${this.TAG} initCamera ${JSON.stringify(data)}  E`)
     this.mCameraId = data.cameraId
     this.mCurrentMode = data.mode
-    let mCameraCount = await this.mCameraService.initCamera()
+    let mCameraCount = await this.mCameraService.initCamera(this.mCameraId)
     const platformCapability = CameraPlatformCapability.getInstance()
     await platformCapability.init(mCameraCount)
     this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability))
@@ -89,8 +89,6 @@ export class CameraBasicFunction extends Function {
       this.enableUi()
       return
     }
-    await this.mCameraService.releaseCamera()
-    await this.mCameraService.createCameraInput(this.mCameraId)
     await this.mCameraService.createPreviewOutput(this.mSurfaceId)
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
@@ -106,6 +104,7 @@ export class CameraBasicFunction extends Function {
   private async changeMode(data) {
     Log.info(`${this.TAG} changeMode ${JSON.stringify(data)} E`)
     this.mCurrentMode = data.mode
+    this.mCameraId = this.mCameraId.split('_').pop()
     Log.info(`${this.TAG} this.mCurrentMode = ${this.mCurrentMode}`)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId)

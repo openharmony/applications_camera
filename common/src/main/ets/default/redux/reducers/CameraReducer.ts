@@ -26,7 +26,7 @@ export type CameraState = {
 }
 
 const initState: CameraState = {
-  cameraPosition: 'ORIGIN',
+  cameraPosition: 'BACK',
   curCameraPosition: 'BACK',
   cameraId: '',
   curCameraName: 'BACK',

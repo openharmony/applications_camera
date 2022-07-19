@@ -34,7 +34,7 @@ export struct AssistiveGridView {
   private curX: number = 0
   private curY: number = 0
   private mGlobalAlpha: number = 0.5
-  private mLineWidth: number = 0
+  private mLineWidth: number = 0.5
   private mShadowBlur: number = 5
   private mShadowColor: string = 'argb(#7F000000)'
   private mShadowOffsetX: number = 0
@@ -53,19 +53,11 @@ export struct AssistiveGridView {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
     getStore().connect(localState, localDispatcher)(this.state)
     let xComponentAssSize = this.settingManager.getPreviewDisplaySizeForAss(this.state.mode)
-    this.xCWidth = xComponentAssSize.width
-    this.xCHeight = xComponentAssSize.height
+    this.xCWidth = px2vp(xComponentAssSize.width)
+    this.xCHeight = px2vp(xComponentAssSize.height)
     this.curX = this.xCWidth / 3
     this.curY = this.xCHeight / 3
-
-    let vp2pxValue = Math.round(vp2px(0.5))
-    if (vp2pxValue < 1) {
-      this.mLineWidth = 1
-    } else {
-      this.mLineWidth = vp2pxValue
-    }
-    Log.info(`${this.TAG} aboutToAppear vp2pxValue X ${vp2pxValue}`)
-    Log.info(`${this.TAG} aboutToAppear invoke X ${this.mLineWidth}`)
+    Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   build() {

@@ -195,14 +195,14 @@ export class SettingManager {
   private mScreenWidth: number
   private mScreenHeight: number
   private mPlatformCapability
-  private mCameraId: CameraId
+  private mCameraId: string
   private mMode: string
 
   public setCameraPlatformCapability(platformCapability) {
     this.mPlatformCapability = platformCapability
   }
 
-  public setCameraId(cameraId: CameraId) {
+  public setCameraId(cameraId: string) {
     this.mCameraId = cameraId
   }
 

@@ -17,30 +17,49 @@ import { CameraService } from '../../camera/CameraService'
 import { CameraId } from '../../setting/settingitem/CameraId'
 import { Log } from '../../utils/Log'
 import EntryComponentForMulti from './EntryComponentForMulti'
+import getStore from '../../redux/store'
+import { Action } from '../../redux/actions/Action'
+
+let localState = (state) => {
+  return {
+    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {
+    changeCameraPosition: (cameraPosition: string) => {
+      dispatch(Action.UiState(false))
+      dispatch(Action.SetCameraPosition(cameraPosition))
+    },
+    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
+      dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
+    }
+  }
+}
 
 @CustomDialog
 export default struct MultiCameraDialog {
   private TAG: string = '[MultiCameraDialog]:'
   private cameraService = CameraService.getInstance()
-  @Link cameraId: string
-  @Link cameraPosition: string
-  @Link xComponentChangeFlag: boolean
-  @Link cameraDevice: string
   controller: CustomDialogController
   cancel: () => void
   confirm: () => void
-  private localList = [
+  private localList: string[] = [
     CameraId.FRONT,
     CameraId.BACK
   ]
-  private moreList = []
+  private moreList: string[] = []
   private multiCameraMap = new Map()
+  @State state: any = {}
   @State isShowMore: boolean = false
   @State gridColumns: number = 12
   @State useSizeTypeOffset: number = 4
+  @Link deviceType: string
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear.`)
+    getStore().connect(localState, localDispatcher)(this.state)
     this.cameraService.getMultiCameraInfo().then(() => {
       let cameraMap = new Map(this.cameraService.getCameraMap())
       let keys = cameraMap.keys()
@@ -56,18 +75,20 @@ export default struct MultiCameraDialog {
       }
     })
 
-    if (this.cameraDevice === 'phone') {
+    if (this.deviceType === 'phone' || this .deviceType === 'default') {
       this.gridColumns = 4
       this.useSizeTypeOffset = 0
-    } else if(this.cameraDevice === 'tablet') {
+    } else {
       this.gridColumns = 12
       this.useSizeTypeOffset = 4
     }
   }
 
-  private onChange(): void {
-    this.controller.close()
+  private onChange(item): void {
+    this.state.changeCameraPosition(item)
+    this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
     this.cancel()
+    this.controller.close()
   }
 
   build() {
@@ -100,9 +121,7 @@ export default struct MultiCameraDialog {
               ListItem() {
                 EntryComponentForMulti({
                   item: item,
-                  onChange: () => this.onChange(),
-                  cameraPosition: $cameraPosition,
-                  xComponentChangeFlag: $xComponentChangeFlag
+                  onChange: (data) => this.onChange(data)
                 })
               }
               .width('100%')
@@ -128,9 +147,7 @@ export default struct MultiCameraDialog {
                 ListItem() {
                   EntryComponentForMulti({
                     item: item,
-                    onChange: () => this.onChange(),
-                    cameraPosition: $cameraPosition,
-                    xComponentChangeFlag: $xComponentChangeFlag
+                    onChange: (data) => this.onChange(data)
                   })
                 }
                 .width('100%')
@@ -142,7 +159,7 @@ export default struct MultiCameraDialog {
           }
 
           Column() {
-            Button({ type: ButtonType.Normal, stateEffect: true }) {
+            Button({ type: ButtonType.Capsule, stateEffect: true }) {
               Text($r('app.string.cancel'))
                 .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
                 .fontColor('#1095E8')
@@ -152,7 +169,7 @@ export default struct MultiCameraDialog {
             }
             .width('100%')
             .height('100%')
-            .backgroundColor(0xffffff)
+            .backgroundColor('#00ffffff')
             .onClick(() => {
               this.controller.close()
             })
