@@ -18,6 +18,7 @@ import { CameraSwitchController } from './CameraSwitchController.ts'
 import getStore from '../../redux/store'
 import { Log } from '../../utils/Log'
 import MultiCameraDialog from '../customDialog/MultiCameraDialog'
+import deviceInfo from '@ohos.deviceInfo'
 
 let localState = (state) => {
   return {
@@ -44,7 +45,8 @@ let localDispatcher = (dispatch) => {
 @Component
 export struct CameraSwitchButton {
   private TAG: string = '[CameraSwitchButton]:'
-  private multiDialogController: CustomDialogController
+  @State state: any = {}
+  @State deviceType: string = deviceInfo.deviceType
 
   icon: Resource = $r('app.media.small_switch_camera')
   width: number
@@ -52,9 +54,17 @@ export struct CameraSwitchButton {
   margin: number
   type: ButtonType
   stateEffect: boolean
-  cameraSwitchController = new CameraSwitchController()
-
-  @State state: any = {}
+  cameraSwitchController: CameraSwitchController = new CameraSwitchController()
+  multiDialogController: CustomDialogController = new CustomDialogController({
+    builder: MultiCameraDialog({
+      cancel: this.existView.bind(this),
+      deviceType: $deviceType
+    }),
+    autoCancel: true,
+    alignment:DialogAlignment.Center,
+    customStyle: true,
+    cancel: this.existView
+  })
 
   private aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -66,13 +76,6 @@ export struct CameraSwitchButton {
     this.margin = this.cameraSwitchController.margin
     this.type = this.cameraSwitchController.type
     this.stateEffect = this.cameraSwitchController.stateEffect
-    this.multiDialogController = new CustomDialogController({
-      builder: MultiCameraDialog(),
-      autoCancel: true,
-      alignment:DialogAlignment.Center,
-      customStyle: true,
-      cancel: this.existView
-    })
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
@@ -104,11 +107,7 @@ export struct CameraSwitchButton {
           } else {
             this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
             if (this.state.cameraPosition !== 'BACK') {
-              if (this.state.cameraPosition === 'ORIGIN') {
-                this.state.changeCameraPosition('FRONT')
-              } else {
                 this.state.changeCameraPosition('BACK')
-              }
             } else {
               this.state.changeCameraPosition('FRONT')
             }

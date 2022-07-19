@@ -29,6 +29,7 @@ export class RecordFunction extends Function {
 
   private async startRecording() {
     Log.info(`${this.TAG} startRecording E`)
+    this.disableUi()
     await this.mCameraService.StartRecording(this.functionBackImpl)
     // TODO update video status in State by sending action
     // temp code
@@ -39,6 +40,7 @@ export class RecordFunction extends Function {
 
   private async pauseRecording() {
     Log.info(`${this.TAG} pauseRecording E`)
+    this.disableUi()
     await this.mCameraService.pauseRecording()
     // TODO update video status in State by sending action
     // temp code
@@ -49,6 +51,7 @@ export class RecordFunction extends Function {
 
   private async resumeRecording() {
     Log.info(`${this.TAG} resumeRecording E`)
+    this.disableUi()
     await this.mCameraService.resumeRecording()
     // TODO update video status in State by sending action
     // temp code
@@ -59,6 +62,7 @@ export class RecordFunction extends Function {
 
   private async stopRecording() {
     Log.info(`${this.TAG} stopRecording E`)
+    this.disableUi()
     const thumbnailPixelMap = await this.mCameraService.stopRecording()
     // TODO update video status in State by sending action
     // temp code

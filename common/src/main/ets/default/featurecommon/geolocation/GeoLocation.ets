@@ -39,7 +39,7 @@ export class GeoLocation {
     return GeoLocation.instance
   }
 
-  public on() {
+  public async on() {
     Log.info(`${this.TAG} on E`)
     if (!SettingManager.getInstance().getSaveGeoLocation()) {
       Log.info(`${this.TAG} on geo setting off, X`)
@@ -59,7 +59,7 @@ export class GeoLocation {
     Log.info(`${this.TAG} on X`)
   }
 
-  public off() {
+  public async off() {
     Log.info(`${this.TAG} off E`)
     if (!SettingManager.getInstance().getSaveGeoLocation()) {
       Log.info(`${this.TAG} off geo setting off X`)

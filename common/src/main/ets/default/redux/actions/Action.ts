@@ -81,6 +81,7 @@ export class Action {
   public static readonly ACTION_INIT_MODE = 'ACTION_INIT_MODE'
   public static readonly ACTION_ON_MODE_CHANGED = 'ACTION_ON_MODE_CHANGED'
   public static readonly ACTION_THIRD_PARTY_CALL =  'ACTION_THIRD_PARTY_CALL'
+  public static readonly ACTION_FA_CALL =  'ACTION_FA_CALL'
 
   // Preview
   public static readonly ACTION_UPDATE_SURFACE_ID = 'ACTION_UPDATE_SURFACE_ID'
@@ -232,6 +233,13 @@ export class Action {
     return {
       type: Action.ACTION_THIRD_PARTY_CALL,
       data: { isThirdPartyCall: isThirdPartyCall, action: action }
+    }
+  }
+
+  public static faCall(isFaCall: boolean): ActionData {
+    return {
+      type: Action.ACTION_FA_CALL,
+      data: { isFaCall: isFaCall}
     }
   }
 

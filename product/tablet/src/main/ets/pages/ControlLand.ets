@@ -24,6 +24,7 @@ import EventBusManager from '../../../../../../common/src/main/ets/default/worke
 let controlLandState = (state: OhCombinedState) => {
   return {
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+    isFaCall: state.ContextReducer.isFaCall,
     action: state.ContextReducer.action,
     xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
     uiEnable: state.ContextReducer.uiEnable,
@@ -95,14 +96,13 @@ export struct ControlLand {
       }
     }
     this.appEventBus.on(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
-    this.calledByFa()
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
-    this.mConnect.destroy()
+    this.mConnect?.destroy()
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
@@ -141,119 +141,90 @@ export struct ControlLand {
     this.changeToMode(data.swipeModeIndex)
   }
 
-  private calledByFa(): void {
-    Log.info(`${this.TAG} calledByFa invoke E`)
-    let action: string = ""
-    let uri: string = ""
-
-    if (globalThis?.cameraNewWant) {
-      Log.debug((`${this.TAG} cameraNewWant: ${JSON.stringify(globalThis.cameraNewWant)}`))
-      if (globalThis.cameraNewWant?.parameters?.from) {
-        action = globalThis.cameraNewWant.parameters.from
-      }
-      if (globalThis.cameraNewWant?.parameters?.uri) {
-        uri = globalThis.cameraNewWant.parameters.uri
-      }
-    } else if (globalThis?.cameraAbilityWant) {
-      Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
-      if (globalThis.cameraAbilityWant?.parameters?.from) {
-        action = globalThis.cameraAbilityWant.parameters.from
-      }
-      if (globalThis.cameraAbilityWant?.parameters?.uri) {
-        uri = globalThis.cameraAbilityWant.parameters.uri
-      }
-    } else {
-      return
-    }
-    Log.info(`${this.TAG} action: ${action}  uri: ${uri}`)
-
-    if (action === "FA") {
-      switch (uri) {
-        case "capture":
-          this.state.initMode('PHOTO')
-          this.state.updateModeIndex(1)
-          break
-        case "video":
-          this.state.initMode('VIDEO')
-          this.state.updateModeIndex(2)
-          break
-        default:
-          Log.info(`${this.TAG} FA default`)
-          break
-      }
-    }
-    Log.info(`${this.TAG} calledByFa invoke X`)
-  }
-
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
-        if (this.state.isThirdPartyCall && this.state.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
+        if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO') {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.photo_mode'))
-//              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
+              //              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
               .fontSize($r("sys.float.ohos_id_text_size_body1"))
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
           }.layoutWeight(1).height('100%')
-        } else if (this.state.isThirdPartyCall && this.state.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
+        } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO') {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.video_mode'))
-//              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
+              //              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
               .fontSize($r("sys.float.ohos_id_text_size_body1"))
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
           }.layoutWeight(1).height('100%')
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            ListItem() {}.width('100%').height(32)
-            ListItem() {}.width('100%').height(32)
             ListItem() {
-              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}) {
+            }.width('100%').height(32)
+
+            ListItem() {
+            }.width('100%').height(32)
+
+            ListItem() {
+              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.multi_mode'))
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
-//                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
+                    //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .enabled(this.state.uiEnable)
-                  .onClick(async () => {this.changeToMode(0)})
+                  .onClick(async () => {
+                    this.changeToMode(0)
+                  })
                   .fontWeight(this.getModeFontWeight(0))
               }.width('100%').height('100%')
             }.width('100%').height(32)
+
             ListItem() {
-              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}) {
+              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.photo_mode'))
-//                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
+                  //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)
-                  .onClick(async () => {this.changeToMode(1)})
+                  .onClick(async () => {
+                    this.changeToMode(1)
+                  })
                   .fontWeight(this.getModeFontWeight(1))
               }.width('100%').height('100%')
             }.width('100%').height(32)
+
             ListItem() {
-              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}) {
+              Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.video_mode'))
-//                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
+                  //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)
-                  .onClick(async () => {this.changeToMode(2)})
+                  .onClick(async () => {
+                    this.changeToMode(2)
+                  })
                   .fontWeight(this.getModeFontWeight(2))
               }.width('100%').height('100%')
             }.width('100%').height(32)
-//	          ListItem() {
-//              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}) {
-//                Text($r('app.string.more_list'))
-//                  .fontSize($r("sys.float.ohos_id_text_size_body1"))
-//                  .fontWeight(this.getModeFontWeight(3))
-//                  .fontColor(Color.White)
-//                  .enabled(this.state.uiEnable)
-//                  .onClick(async () => {this.changeToMode(3)})
-//                  .fontWeight(this.getModeFontWeight(3))
-//              }.width('100%').height('100%')
-//            }.width('100%').height(32)
-            ListItem() {}.width('100%').height(32)
-            ListItem() {}.width('100%').height(32)
+            //	          ListItem() {
+            //              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}) {
+            //                Text($r('app.string.more_list'))
+            //                  .fontSize($r("sys.float.ohos_id_text_size_body1"))
+            //                  .fontWeight(this.getModeFontWeight(3))
+            //                  .fontColor(Color.White)
+            //                  .enabled(this.state.uiEnable)
+            //                  .onClick(async () => {this.changeToMode(3)})
+            //                  .fontWeight(this.getModeFontWeight(3))
+            //              }.width('100%').height('100%')
+            //            }.width('100%').height(32)
+            ListItem() {
+            }.width('100%').height(32)
+
+            ListItem() {
+            }.width('100%').height(32)
           }
           .layoutWeight(1)
           .height(160)
@@ -273,8 +244,9 @@ export struct ControlLand {
           })
         }
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Center }) {
-          Column() {}.borderRadius(3).width(6).height(6).backgroundColor('#1095E8')
-//            .shadow({radius: 5, color: 'argb(#7F000000)', offsetX: 0, offsetY: 0})
+          Column() {
+          }.borderRadius(3).width(6).height(6).backgroundColor('#1095E8')
+          //            .shadow({radius: 5, color: 'argb(#7F000000)', offsetX: 0, offsetY: 0})
         }.width(26).height(160).margin({ left: 8 })
       }.width('100%').height('100%')
     }.width(128).height(160).zIndex(2)
