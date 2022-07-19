@@ -1,5 +1,5 @@
 .card_root_layout {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -7,26 +7,17 @@
     background-color: #FAFAFA
 }
 
-.item_first_container {
+.button_container {
+    width: 50%;
+    height: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.button_common {
-    width: 50%;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 .button_info {
-    width: 32vp;
-    height: 32vp;
-    border-radius: 0;
     opacity: .6;
+    icon-width: 32px;
+    icon-height: 32px;
     background-color: #FAFAFA;
-    icon-width: 128px;
-    icon-height: 128px;
 }

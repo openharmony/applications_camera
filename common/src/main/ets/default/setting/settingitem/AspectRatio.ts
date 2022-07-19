@@ -39,13 +39,13 @@ export default class AspectRatio {
     return 0
   }
 
-  public static getPhotoPreviewSize(platform: CameraPlatformCapability, cameraId: CameraId, aspectRatio: Resource) {
+  public static getPhotoPreviewSize(platform: CameraPlatformCapability, cameraId: string, aspectRatio: Resource) {
     const index = AspectRatio.getIndex(aspectRatio)
     Log.info(`${this.TAG} getPhotoPreviewSize size = ${JSON.stringify(platform.mPhotoPreviewSize[index])}`)
     return platform.mPhotoPreviewSize[index]
   }
 
-  public static getImageSize(platform: CameraPlatformCapability, cameraId: CameraId, aspectRatio: Resource) {
+  public static getImageSize(platform: CameraPlatformCapability, cameraId: string, aspectRatio: Resource) {
     const index = AspectRatio.getIndex(aspectRatio)
     Log.info(`${this.TAG} getImageSize size = ${JSON.stringify(platform.mImageSize[index])}`)
     return platform.mImageSize[index]

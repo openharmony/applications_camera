@@ -14,38 +14,38 @@
  */
 
 import { CameraService } from '../../camera/CameraService'
-import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import getStore from '../../redux/store'
 import { Log } from '../../utils/Log'
+
+let localState = (state) => {
+  return {
+    uiEnable: state.ContextReducer.uiEnable
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {}
+}
 
 @Component
 export default struct EntryComponentForMulti {
   private TAG: string = '[EntryComponentForMulti]:'
-  @Prop item: string
-  @Link cameraPosition: string
-  @Link xComponentChangeFlag: boolean
+  @State state: any = {}
   @State isLocalDevice: boolean = false
   @State switchCameraState: boolean = false
   @State recCameraState: boolean = true
+  @Prop item: string
   private onChange: Function
   private cameraService = CameraService.getInstance()
-  private appEventBus = EventBusManager.getMainInstance().getEventBus()
   private deviceName: string
   private cameraPositionRes: Resource
   private curCameraName: string
   private cameraPositionName: string
 
   private aboutToAppear() {
+    getStore().connect(localState, localDispatcher)(this.state)
     this.getShowName(this.item)
     this.curCameraName = this.cameraService.getCameraName()
-    this.appEventBus.on('switchCameraState', (state) => {
-      Log.info(`${this.TAG} switchCameraState= ${state}`)
-      this.switchCameraState = state
-    })
-    this.appEventBus.on('recCameraState', (state) => {
-      Log.info(`${this.TAG} recCameraState= ${state}`)
-      this.recCameraState = state
-    })
   }
 
   private getShowName(item) {
@@ -95,13 +95,10 @@ export default struct EntryComponentForMulti {
         .height(24)
         .borderColor('#1095E8')
         .checked(this.item === this.curCameraName)
-        .enabled(!this.switchCameraState || this.recCameraState)
+        .enabled(this.state.uiEnable)
         .onClick(() => {
           Log.info(`${this.TAG} onChange: ${this.item}`)
-          this.cameraService.setCameraId(this.item)
-          this.cameraPosition = this.item
-          this.xComponentChangeFlag = !this.xComponentChangeFlag
-          this.onChange()
+          this.onChange(this.item)
         })
     }
     .height(48)

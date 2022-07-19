@@ -16,7 +16,6 @@
 import display from '@ohos.display';
 import wantConstant from '@ohos.ability.wantConstant'
 import window from '@ohos.window';
-
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import AspectRatio from '../../../../../../common/src/main/ets/default/setting/settingitem/AspectRatio'
 import { AssistiveGridView
@@ -161,6 +160,9 @@ let cameraDispatcher = (dispatch) => {
     thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
       dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
     },
+    faCall: (isFaCall: boolean) => {
+      dispatch(Action.faCall(isFaCall))
+    },
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
     },
@@ -178,6 +180,9 @@ let cameraDispatcher = (dispatch) => {
     },
     reloadThumbnail: () => {
       dispatch(Action.ReloadThumbnail())
+    },
+    changeCameraPosition: (cameraPosition: string) => {
+      dispatch(Action.SetCameraPosition(cameraPosition))
     }
   }
 }
@@ -188,9 +193,8 @@ globalThis.mXComponentController = new XComponentController()
 export struct PreviewAreaLand {
   private TAG: string = '[PreviewAreaLand]:'
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-
   @State state: any = {}
-  @State aspectRatio: number = 3 / 4
+  @State aspectRatio: number = 4 / 3
   @State btnSwitch: boolean = false
   @State btnSwitchSec: boolean = false
   @State pinchGestureTimerId: number = 0
@@ -204,7 +208,6 @@ export struct PreviewAreaLand {
   @State switchBackgroundOpacity: number = 1
   @State isSwitchBackground: boolean = false
   @State elementWidth: number = 0
-
   private mConnect: any
   private isShowPreview: boolean = false
   private settingManager = SettingManager.getInstance()
@@ -215,9 +218,9 @@ export struct PreviewAreaLand {
   private async onCameraInit(data) {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
     if (this.state.platformCapability) {
-//      if (!this.state.isShowPreview) {
+      //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
-        this.settingManager.setCameraId(getCameraId(this.state.cameraPosition))
+        this.settingManager.setCameraId(this.state.cameraPosition)
         this.settingManager.setMode(this.state.mode)
 
         let imageSize = this.settingManager.getImageSize()
@@ -242,11 +245,11 @@ export struct PreviewAreaLand {
           let xComponentSize = this.settingManager.getPreviewDisplaySize()
           Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
           this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
-//          this.isShowPreview = true
+          //          this.isShowPreview = true
           this.state.updateShowPreviewFlag(true)
         })
       })
-//            }
+      //            }
     }
     Log.info(`${this.TAG} onCameraInit isShowPreview = ${this.state.isShowPreview}  X`)
   }
@@ -261,7 +264,7 @@ export struct PreviewAreaLand {
     }
     if (Math.abs(tempZoom - this.state.zoomRatio) >= 0.1) {
       if (tempZoom >= this.state.minZoomRatio && tempZoom <= this.state.maxZoomRatio) { //TODO 需要动态取得实际变焦能力范围
-//        this.cameraService.setZoomRatio(tempZoom)
+        //        this.cameraService.setZoomRatio(tempZoom)
         this.state.changeZoomRatio(tempZoom)
         this.state.updateZoomPercentage(this.ratioToPercentage(tempZoom))
       }
@@ -275,17 +278,15 @@ export struct PreviewAreaLand {
 
   private async doCameraAction(surfaceId: number) {
     Log.debug(`${this.TAG} doCameraAction E`)
-    this.settingManager.setCameraId(getCameraId(this.state.cameraPosition))
+    this.settingManager.setCameraId(this.state.cameraPosition)
     this.settingManager.setMode(this.state.mode)
     this.state.prepareSurface(surfaceId)
     if (this.state.curCameraPosition != this.state.cameraPosition) {
-      if (this.state.cameraPosition === 'ORIGIN') {
-        Log.debug(`${this.TAG} doCameraAction call this.state.startPreview()`)
-        this.state.startPreview()
-      } else {
-        this.state.switchCamera(getCameraId(this.state.cameraPosition), surfaceId)
-      }
+      this.state.switchCamera(this.state.cameraPosition)
     } else if (this.state.curMode != this.state.mode) {
+      let cameraPosition = this.state.cameraPosition.split('_').pop()
+      this.state.changeCameraPosition(cameraPosition)
+      this.settingManager.setCameraId(cameraPosition)
       this.state.changeToMode(this.state.mode)
     } else {
       this.state.startPreview()
@@ -309,7 +310,7 @@ export struct PreviewAreaLand {
     // the build() can only be called when window is foreground
     if (isScreenOn && globalThis.cameraWindowStageEvent == window.WindowStageEventType.FOREGROUND) {
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-      this.state.initCamera(getCameraId(this.state.curCameraPosition), this.state.mode)
+      this.state.initCamera(this.state.curCameraPosition, this.state.mode)
       this.state.initZoomRatio(1, 6)
     } else {
       if (this.state.videoState === 'startTakeVideo') {
@@ -318,6 +319,51 @@ export struct PreviewAreaLand {
       this.state.close()
     }
     Log.debug(`${this.TAG} onScreenChanged X`)
+  }
+
+  private calledByFa(): void {
+    Log.info(`${this.TAG} calledByFa invoke E`)
+    let action: string = ""
+    let uri: string = ""
+
+    if (globalThis?.cameraNewWant) {
+      Log.debug((`${this.TAG} cameraNewWant: ${JSON.stringify(globalThis.cameraNewWant)}`))
+      if (globalThis.cameraNewWant?.parameters?.from) {
+        action = globalThis.cameraNewWant.parameters.from
+      }
+      if (globalThis.cameraNewWant?.parameters?.uri) {
+        uri = globalThis.cameraNewWant.parameters.uri
+      }
+    } else if (globalThis?.cameraAbilityWant) {
+      Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
+      if (globalThis.cameraAbilityWant?.parameters?.from) {
+        action = globalThis.cameraAbilityWant.parameters.from
+      }
+      if (globalThis.cameraAbilityWant?.parameters?.uri) {
+        uri = globalThis.cameraAbilityWant.parameters.uri
+      }
+    } else {
+      return
+    }
+    Log.info(`${this.TAG} action: ${action}  uri: ${uri}`)
+
+    if (action === "FA") {
+      this.state.faCall(true)
+      switch (uri) {
+        case "capture":
+          this.state.initMode('PHOTO')
+          this.state.updateModeIndex(1)
+          break
+        case "video":
+          this.state.initMode('VIDEO')
+          this.state.updateModeIndex(2)
+          break
+        default:
+          Log.info(`${this.TAG} FA default`)
+          break
+      }
+    }
+    Log.info(`${this.TAG} calledByFa invoke X`)
   }
 
   aboutToAppear(): void {
@@ -335,6 +381,7 @@ export struct PreviewAreaLand {
     globalThis.onForegroundInit = (() => {
       Log.info(`${this.TAG} globalThis.onForegroundInit called`)
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      this.state.initCamera(this.state.curCameraPosition, this.state.mode)
       let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.action
       if (newWantAction) {
         this.state.thirdPartyCall(true, newWantAction)
@@ -352,10 +399,14 @@ export struct PreviewAreaLand {
         }
       } else {
         this.state.thirdPartyCall(false, newWantAction)
+        this.state.faCall(false)
         this.state.reloadThumbnail()
       }
+      this.calledByFa()
     })
-    this.state.initCamera(getCameraId(this.state.curCameraPosition), this.state.mode)
+
+    this.calledByFa()
+    this.state.initCamera(this.state.curCameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     Log.info(`${this.TAG} aboutToAppear X`)
   }
@@ -365,7 +416,7 @@ export struct PreviewAreaLand {
     this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
     this.appEventBus.off(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
-    this.mConnect.destroy()
+    this.mConnect?.destroy()
     GeoLocation.getInstance().off()
     globalThis.releaseCamera()
     Log.info(`${this.TAG} aboutToDisappear X`)
@@ -408,7 +459,7 @@ export struct PreviewAreaLand {
     }, () => {
       Log.info(`${this.TAG} btnSwitchSec callback btnSwitchSec= ${this.btnSwitchSec}`)
       this.rotateAngleSec = 0
-//      this.btnSwitchSec = true
+      //      this.btnSwitchSec = true
     })
   }
 
@@ -515,12 +566,12 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} swipeChangeMode X`)
   }
 
-  private onKeepScreen(data){
+  private onKeepScreen(data) {
     Log.info(`${this.TAG} onKeepScreen E`)
     if (data) {
       globalThis.cameraWinClass.setKeepScreenOn(data.isKeepScreenOn).then((v) => {
         Log.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(v))
-      }).catch((err)=>{
+      }).catch((err) => {
         Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
       });
     }
@@ -594,7 +645,8 @@ export struct PreviewAreaLand {
               .scale({ x: this.scaleX, y: 1.0 })
               .rotate({ x: 0, y: 10, z: 0, angle: this.rotateAngle })
                 // .opacity(this.state.btnOpacity_first)
-              .onComplete(() => { /* this.switchAnimation() */ })
+              .onComplete(() => { /* this.switchAnimation() */
+              })
           }
 
           if (this.btnSwitchSec) {
@@ -605,7 +657,8 @@ export struct PreviewAreaLand {
               .scale({ x: this.scaleX, y: 1.0 })
               .rotate({ x: 0, y: 10, z: 0, angle: this.rotateAngleSec })
                 // .opacity(this.state.btnOpacity_sec)
-              .onComplete(() => { /* this.switchAnimationSec() */ })
+              .onComplete(() => { /* this.switchAnimationSec() */
+              })
           }
 
           if (this.state.isShowFlashBlack) {
@@ -647,14 +700,12 @@ export struct PreviewAreaLand {
             .padding({ bottom: '30vp' })
           }
 
-          if (this.state.xComponentChangeFlag ) {
-            if(this.state.isAssGridViewShow === '1' && this.state.mode !=='MORE')
-            {
+          if (this.state.xComponentChangeFlag) {
+            if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
               AssistiveGridView()
             }
           } else {
-            if(this.state.isAssGridViewShow === '1' && this.state.mode !=='MORE')
-            {
+            if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
               AssistiveGridView()
             }
           }
@@ -680,7 +731,7 @@ export struct PreviewAreaLand {
           if (this.state.isShowtimeLapse) {
             Column() {
               TimeLapseView()
-            }.width(this.elementWidth).height(150).position({x: 0, y: 200})
+            }.width(this.elementWidth).height(150).position({ x: 0, y: 200 })
           }
         }
         .width('100%')
@@ -692,27 +743,27 @@ export struct PreviewAreaLand {
     .margin({ top: 0 })
     .backgroundColor('#000')
     .gesture(
-      GestureGroup(
-        GestureMode.Exclusive,
-        TapGesture({ fingers: 1, count: 1 })
-          .onAction(this.onPreviewClicked.bind(this)),
-        PinchGesture({ fingers: 2, distance: 1})
-          .onActionStart(this.pinchGestureStart.bind(this))
-          .onActionUpdate(this.pinchGestureUpdate.bind(this))
-          .onActionEnd(this.pinchGestureEnd.bind(this)),
-        PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 10 })
-          .onActionEnd(() => {
-            if (!this.state.isThirdPartyCall) {
-              this.swipeChangeMode(1)
-            }
-          }),
-        PanGesture({ fingers: 1, direction: PanDirection.Down, distance: 10 })
-          .onActionEnd(() => {
-            if (!this.state.isThirdPartyCall) {
-              this.swipeChangeMode(-1)
-            }
-          })
-      )
+    GestureGroup(
+      GestureMode.Exclusive,
+    TapGesture({ fingers: 1, count: 1 })
+      .onAction(this.onPreviewClicked.bind(this)),
+    PinchGesture({ fingers: 2, distance: 1 })
+      .onActionStart(this.pinchGestureStart.bind(this))
+      .onActionUpdate(this.pinchGestureUpdate.bind(this))
+      .onActionEnd(this.pinchGestureEnd.bind(this)),
+    PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 10 })
+      .onActionEnd(() => {
+        if (!this.state.isThirdPartyCall) {
+          this.swipeChangeMode(1)
+        }
+      }),
+    PanGesture({ fingers: 1, direction: PanDirection.Down, distance: 10 })
+      .onActionEnd(() => {
+        if (!this.state.isThirdPartyCall) {
+          this.swipeChangeMode(-1)
+        }
+      })
+    )
     )
   }
 }

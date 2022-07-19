@@ -56,7 +56,7 @@ export struct BigText {
 
   public aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.mConnect.destroy()
+    this.mConnect?.destroy()
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 

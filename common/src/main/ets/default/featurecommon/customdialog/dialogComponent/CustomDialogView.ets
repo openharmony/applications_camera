@@ -113,7 +113,7 @@ export struct CustomDialogView {
             .listDirection(Axis.Vertical)
             .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 }) // 每行之间的分界线
             Column() {
-              Button({ type: ButtonType.Normal, stateEffect: true }) {
+              Button({ type: ButtonType.Capsule, stateEffect: true }) {
                 Text($r('app.string.cancel'))
                   .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
                   .fontColor('#1095E8')
@@ -123,7 +123,7 @@ export struct CustomDialogView {
               }
               .width('100%')
               .height('100%')
-              .backgroundColor(0xffffff)
+              .backgroundColor('#00ffffff')
               .onClick(() => {
                 this.state.closeDialog(false)
                 this.controller.close()
@@ -179,7 +179,7 @@ export struct CustomDialogView {
             .listDirection(Axis.Vertical)
             .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 }) // 每行之间的分界线
             Column() {
-              Button({ type: ButtonType.Normal, stateEffect: true }) {
+              Button({ type: ButtonType.Capsule, stateEffect: true }) {
                 Text($r('app.string.cancel'))
                   .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
                   .fontColor('#1095E8')
@@ -189,7 +189,7 @@ export struct CustomDialogView {
               }
               .width('100%')
               .height('100%')
-              .backgroundColor(0xffffff)
+              .backgroundColor('#00ffffff')
               .onClick(() => {
                 this.state.closeDialog(false)
                 this.controller.close()

@@ -35,13 +35,13 @@ export default class Resolution {
     return 0
   }
 
-  public static getVideoPreviewSize(platform: CameraPlatformCapability, cameraId: CameraId, resolution: Resource) {
+  public static getVideoPreviewSize(platform: CameraPlatformCapability, cameraId: string, resolution: Resource) {
     const index = Resolution.getIndex(resolution)
     Log.info(`${this.TAG} getVideoPreviewSize size = ${JSON.stringify(platform.mVideoPreviewSize[index])}`)
     return platform.mVideoPreviewSize[index]
   }
 
-  public static getVideoFrameSize(platform: CameraPlatformCapability, cameraId: CameraId, resolution: Resource) {
+  public static getVideoFrameSize(platform: CameraPlatformCapability, cameraId: string, resolution: Resource) {
     const index = Resolution.getIndex(resolution)
     Log.info(`${this.TAG} getVideoFrameSize size = ${JSON.stringify(platform.mVideoFrameSize[index])}`)
     return platform.mVideoFrameSize[index]
