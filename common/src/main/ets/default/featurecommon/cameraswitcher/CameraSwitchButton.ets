@@ -42,11 +42,14 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+let storageCameraId = AppStorage.Link('storageCameraId')
+
 @Component
 export struct CameraSwitchButton {
   private TAG: string = '[CameraSwitchButton]:'
   @State state: any = {}
   @State deviceType: string = deviceInfo.deviceType
+  @StorageLink('storageCameraId') storageCameraId: string = ''
 
   icon: Resource = $r('app.media.small_switch_camera')
   width: number
@@ -108,8 +111,10 @@ export struct CameraSwitchButton {
             this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
             if (this.state.cameraPosition !== 'BACK') {
                 this.state.changeCameraPosition('BACK')
+                this.storageCameraId = 'BACK'
             } else {
               this.state.changeCameraPosition('FRONT')
+              this.storageCameraId = 'FRONT'
             }
           }
         }

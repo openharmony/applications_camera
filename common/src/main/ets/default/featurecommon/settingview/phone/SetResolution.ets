@@ -121,6 +121,7 @@ export struct SetResolution {
           Text(this.formatCurCheckName(this.curCheckName))
             .fontColor($r('app.color.font_color_99FFFFFF'))
             .fontSize($r("sys.float.ohos_id_text_size_body2"))
+            .opacity(0.6)
             .fontWeight(FontWeight.Regular)
           Image($r("app.media.ic_public_arrow_right"))
             .width(12)
