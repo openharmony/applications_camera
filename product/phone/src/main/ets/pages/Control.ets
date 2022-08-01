@@ -124,7 +124,6 @@ export struct Control {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-      this.state.updateControlFontStyle(this.modeArray[modeIndex])
     }
     Log.debug(`${this.TAG} changeToMode X`)
   }

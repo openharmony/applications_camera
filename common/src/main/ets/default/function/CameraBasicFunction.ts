@@ -52,6 +52,10 @@ export class CameraBasicFunction extends Function {
 
   private async initCamera(data) {
     Log.info(`${this.TAG} initCamera ${JSON.stringify(data)}  E`)
+    let curStorageCameraId = AppStorage.Get<string>('storageCameraId')
+    if (curStorageCameraId) {
+      data.cameraId = curStorageCameraId
+    }
     this.mCameraId = data.cameraId
     this.mCurrentMode = data.mode
     let mCameraCount = await this.mCameraService.initCamera(this.mCameraId)
@@ -96,7 +100,6 @@ export class CameraBasicFunction extends Function {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
-    await this.mCameraService.startPreview()
     this.enableUi()
     Log.info(`${this.TAG} startPreview X`)
   }
@@ -115,7 +118,6 @@ export class CameraBasicFunction extends Function {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
-    await this.mCameraService.startPreview()
     this.mWorkerManager.postMessage(Action.OnModeChanged(this.mCurrentMode))
     this.enableUi()
     Log.info(`${this.TAG} changeMode X`)
@@ -134,7 +136,6 @@ export class CameraBasicFunction extends Function {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
-    await this.mCameraService.startPreview()
     this.enableUi()
     Log.info(`${this.TAG} switchCamera X`)
   }
