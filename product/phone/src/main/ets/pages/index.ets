@@ -51,6 +51,8 @@ let indexState = (state: OhCombinedState) => {
     isShowMoreList: state.ModeReducer.isShowMoreList,
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
+    curCameraPosition: state.CameraReducer.curCameraPosition,
+    isShowPinch: state.ZoomReducer.isShowPinch,
   }
 }
 
@@ -83,6 +85,8 @@ let indexDispatcher = (dispatch) => {
     }
   }
 }
+
+PersistentStorage.PersistProp("storageCameraId", "")
 
 @Entry
 @Component
@@ -159,6 +163,8 @@ struct Index {
   onPageShow(): void {
     Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
     this.state.setPermissionFlag(globalThis.permissionFlag)
+    let curCameraId = AppStorage.Get<string>('storageCameraId')
+    if(curCameraId) this.state.initCameraPosition(curCameraId)
   }
 
   aboutToDisappear(): void {
@@ -228,26 +234,30 @@ struct Index {
           PreviewArea()
         }.width('100%').position({ x: '0', y: '48' })
         Stack() {
-          if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
-            if (deviceInfo.deviceType !== "default") {
-              TabBar()
-            }
+          if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
+            TabBar()
           }
         }.width('100%').height(48).position({ x: '0', y: '0' })
-        if(this.state.isShowMoreList){
+        if(this.state.isShowMoreList && this.state.showZoomLabelValue){
           MoreList()
         }
         Stack({alignContent: Alignment.Bottom}) {
           Column() {
             if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
-              if (deviceInfo.deviceType !== "default") {
-                ZoomView()
+              if (deviceInfo.deviceType !== "default" && this.state.curCameraPosition !== 'FRONT') {
+                Column() {
+                  ZoomView()
+                }.visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
               }
             }
             if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
-              Control()
+              Column(){
+                Control()
+              }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
             }
-            FootBar()
+            Column(){
+              FootBar()
+            }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
           }
         }.width('100%').height(302).position({ y: this.state.footBarHeight })
           .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)

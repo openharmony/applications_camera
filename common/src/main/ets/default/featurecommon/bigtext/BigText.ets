@@ -63,9 +63,9 @@ export struct BigText {
   build() {
     Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.modeResource[this.state.mode])
-        .fontSize(40)
+        .fontSize(60)
         .fontColor(Color.White)
-        .fontWeight(FontWeight.Lighter)
+        .fontWeight(300)
         .textAlign(TextAlign.Center)
         .width('100%')
         .opacity(this.bigTextOpacity)

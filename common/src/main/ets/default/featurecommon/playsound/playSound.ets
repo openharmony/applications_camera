@@ -28,6 +28,7 @@ export class PlaySound {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
   private fdNumber: number = 0
+  private isReleased: boolean = true
 
   constructor() {
     this.appEventBus.on(Action.ACTION_RECORD_START, this.playRecordStart.bind(this))
@@ -83,16 +84,20 @@ export class PlaySound {
       audioPlayer.release()
       if (this.fdNumber !== 0) {
         fileIO.closeSync(this.fdNumber)
+        this.isReleased = true
         Log.info(`${this.TAG} fileIO closeSync success`)
       }
     })
-    await fileIO.open(soundUri).then((fdData) => {
-      fdPath = fdPath + '' + fdData;
-      this.fdNumber = fdData
-    }).catch((err) => {
-      Log.info(`${this.TAG} open soundUri failed, err: ${err}`)
-    })
-    audioPlayer.src = fdPath
-    Log.info(`${this.TAG} playSound invoke ${audioPlayer.src}X`)
+    if (this.isReleased) {
+      this.isReleased = false
+      await fileIO.open(soundUri).then((fdData) => {
+        fdPath = fdPath + '' + fdData;
+        this.fdNumber = fdData
+      }).catch((err) => {
+        Log.info(`${this.TAG} open soundUri failed, err: ${err}`)
+      })
+      audioPlayer.src = fdPath
+    }
+    Log.info(`${this.TAG} playSound invoke X`)
   }
 }

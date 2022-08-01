@@ -174,7 +174,7 @@ export class SettingManager {
       this.mSaveGeoLocation = '1'
     }
     if (!this.mCaptureMute || force) {
-      this.mCaptureMute = Voice.DEFAULT_VALUE
+      this.mCaptureMute = Voice.MUTE
     }
   }
 

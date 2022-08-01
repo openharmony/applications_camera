@@ -16,6 +16,7 @@
 import display from '@ohos.display';
 import wantConstant from '@ohos.ability.wantConstant'
 import window from '@ohos.window';
+import deviceInfo from '@ohos.deviceInfo'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import AspectRatio from '../../../../../../common/src/main/ets/default/setting/settingitem/AspectRatio'
 import { AssistiveGridView
@@ -183,6 +184,9 @@ let cameraDispatcher = (dispatch) => {
     },
     changeCameraPosition: (cameraPosition: string) => {
       dispatch(Action.SetCameraPosition(cameraPosition))
+    },
+    updateShowPinch: (flag: boolean) => {
+      dispatch(Action.updateShowPinch(flag))
     }
   }
 }
@@ -503,14 +507,16 @@ export struct PreviewAreaLand {
 
   private pinchGestureStart(event: GestureEvent) {
     Log.info(`${this.TAG} pinchGestureStart invoke E`)
-    if (this.state.mode != 'MULTI') {
+    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
       clearTimeout(this.pinchGestureTimer)
       this.state.updateIsShowZoomText(true)
+      this.state.updateShowPinch(true)
       this.state.updateShowZoomLabelValue(false)
       this.baseZoom = this.state.zoomRatio
     }
-    if (this.state.mode !== "MULTI") {
+    if (this.state.mode !== "MULTI" && this.state.curCameraPosition !== 'FRONT') {
       this.state.updateIsShowZoomText(true)
+      this.state.updateShowPinch(true)
       this.state.updateIsPhotoZoomDetails(true)
       this.state.updateBaseZoom(this.state.zoomRatio)
       clearTimeout(this.pinchGestureTimerId)
@@ -521,7 +527,7 @@ export struct PreviewAreaLand {
 
   private pinchGestureUpdate(event: GestureEvent) {
     Log.info(`${this.TAG} pinchGestureUpdate invoke E`)
-    if (this.state.mode != 'MULTI') {
+    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
       let zoomRatio = event.scale + this.baseZoom - 1
       if (zoomRatio > 6) {
         zoomRatio = 6
@@ -537,7 +543,8 @@ export struct PreviewAreaLand {
   private pinchGestureEnd(event: GestureEvent) {
     Log.info(`${this.TAG} pinchGestureEnd invoke E`)
     this.state.updateShowZoomLabelValue(true)
-    if (this.state.mode != 'MULTI') {
+    this.state.updateShowPinch(false)
+    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
       this.pinchGestureTimer = setTimeout(() => {
         this.state.updateIsShowZoomText(false)
       }, 2000)
@@ -665,7 +672,7 @@ export struct PreviewAreaLand {
             ShowFlashBlack()
           }
 
-          if (this.state.isShowZoomText) {
+          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default") {
             Stack({ alignContent: Alignment.Top }) {
               Column() {
                 Column() {
@@ -729,9 +736,11 @@ export struct PreviewAreaLand {
             .padding({ top: 40 })
           }
           if (this.state.isShowtimeLapse) {
-            Column() {
-              TimeLapseView()
-            }.width(this.elementWidth).height(150).position({ x: 0, y: 200 })
+            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+              Column() {
+                TimeLapseView()
+              }.width('100%').height(150)
+            }.width(this.elementWidth).height('100%')
           }
         }
         .width('100%')
@@ -753,13 +762,13 @@ export struct PreviewAreaLand {
       .onActionEnd(this.pinchGestureEnd.bind(this)),
     PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 10 })
       .onActionEnd(() => {
-        if (!this.state.isThirdPartyCall) {
+        if (!this.state.isThirdPartyCall && !globalThis.cameraAbilityWant?.parameters?.from) {
           this.swipeChangeMode(1)
         }
       }),
     PanGesture({ fingers: 1, direction: PanDirection.Down, distance: 10 })
       .onActionEnd(() => {
-        if (!this.state.isThirdPartyCall) {
+        if (!this.state.isThirdPartyCall && !globalThis.cameraAbilityWant?.parameters?.from) {
           this.swipeChangeMode(-1)
         }
       })
