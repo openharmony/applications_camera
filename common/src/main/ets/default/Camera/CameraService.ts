@@ -46,7 +46,10 @@ export class CameraService {
   private TAG = '[CameraService]:'
   private mCameraId: string = CameraId.BACK
   private mSurfaceId = ''
-  private mIsSessionRelease = true
+  private mSessionList = []
+  private isSessionCreating: boolean = false
+  private isSessionReleasing: boolean = false
+  private isVideo: boolean = false
   private mFileAssetId = 0
   private mCameraManager!: camera.CameraManager
   private mCameraIdMap: Map<string, string> = new Map()
@@ -194,7 +197,11 @@ export class CameraService {
   public async releaseCameraInput() {
     Log.info(`${this.TAG} releaseCameraInput invoke E.`)
     if (this.mCameraInput) {
-      await this.mCameraInput.release()
+      try {
+        await this.mCameraInput.release()
+      } catch (err) {
+        Log.error(`${this.TAG} releaseCameraInput ${err}`)
+      }
       this.mCameraInput = null
     }
     Log.info(`${this.TAG} releaseCameraInput invoke X.`)
@@ -244,30 +251,53 @@ export class CameraService {
 
   public async createSession(surfaceId: string, isVideo: boolean) {
     Log.info(`${this.TAG} createSession invoke E.`)
+    this.mSessionList.push('CREATE')
     this.mSurfaceId = surfaceId
+    this.isVideo = isVideo
+    if (this.isSessionCreating || this.isSessionReleasing) {
+      return
+    }
+    this.isSessionCreating = true
     this.mCaptureSession = await camera.createCaptureSession(globalThis.cameraAbilityContext)
+    this.isSessionCreating = false
+    if ([...this.mSessionList].pop() === 'RELEASE') {
+      this.releaseSession()
+    }
+    this.mSessionList = []
 
     Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
     Log.info(`${this.TAG} createSession beginConfig.`)
-    await this.mCaptureSession.beginConfig()
+    await this.mCaptureSession?.beginConfig()
     Log.info(`${this.TAG} createSession addInput.`)
-    await this.mCaptureSession.addInput(this.mCameraInput)
+    await this.mCaptureSession?.addInput(this.mCameraInput)
     if (!isVideo) {
       Log.info(`${this.TAG} createSession photo addOutput.`)
-      await this.mCaptureSession.addOutput(this.mPhotoOutPut)
+      await this.mCaptureSession?.addOutput(this.mPhotoOutPut)
     }
     Log.info(`${this.TAG} createSession preview addOutput.`)
-    await this.mCaptureSession.addOutput(this.mPreviewOutput)
+    await this.mCaptureSession?.addOutput(this.mPreviewOutput)
     Log.info(`${this.TAG} createSession commitConfig.`)
-    await this.mCaptureSession.commitConfig()
+    await this.mCaptureSession?.commitConfig()
+    await this.mCaptureSession?.start()
     Log.info(`${this.TAG} createSession invoke X.`)
   }
 
   public async releaseSession() {
     Log.info(`${this.TAG} releasePhotoSession invoke E.`)
+    this.mSessionList.push('RELEASE')
     if (this.mCaptureSession) {
+      if (this.isSessionCreating || this.isSessionReleasing) {
+        return
+      }
+      this.isSessionReleasing = true
+      await this.mCaptureSession.stop()
       await this.mCaptureSession.release()
       this.mCaptureSession = null
+      this.isSessionReleasing = false
+      if ([...this.mSessionList].pop() === 'CREATE') {
+        this.createSession(this.mSurfaceId, this.isVideo)
+      }
+      this.mSessionList = []
     }
     Log.info(`${this.TAG} releasePhotoSession invoke X.`)
   }
@@ -332,7 +362,6 @@ export class CameraService {
       Log.info(`${this.TAG} createVideoOutput size = ${JSON.stringify(size)}`)
       this.mVideoConfig.profile.videoFrameWidth = size.width
       this.mVideoConfig.profile.videoFrameHeight = size.height
-      this.mVideoConfig.profile.videoCodec = SettingManager.getInstance().getVideoCodec()
       Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
       Log.info(`${this.TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`)
       await this.mVideoRecorder.prepare(this.mVideoConfig)
@@ -459,12 +488,11 @@ export class CameraService {
 
   public async releaseCamera() {
     Log.info(`${this.TAG} releaseCamera invoke E.`)
-    await this.stopPreview()
-    await this.releaseRecording()
-    await this.releaseCameraInput()
-    await this.releasePreviewOutput()
-    await this.releasePhotoOutput()
-    await this.releaseVideoOutput()
+    try {
+      await this.releaseRecording()
+    } catch(err) {
+      Log.error(`${this.TAG} releaseRecording: ${err}`)
+    }
     await this.releaseSession()
     Log.info(`${this.TAG} releaseCamera invoke X.`)
   }

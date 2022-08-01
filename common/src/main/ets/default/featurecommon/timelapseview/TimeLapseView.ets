@@ -102,7 +102,7 @@ export struct TimeLapseView {
       Text(this.timerLapse.toString())
         .fontSize(120)
         .fontColor(Color.White)
-        .fontWeight(FontWeight.Lighter)
+        .fontWeight(300)
         .textAlign(TextAlign.Center)
     }.width('100%').height('100%')
   }

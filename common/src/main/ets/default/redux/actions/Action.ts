@@ -126,6 +126,7 @@ export class Action {
   public static readonly ACTION_UPDATE_OPACITY_TAB_BAR = 'ACTION_UPDATE_OPACITY_TAB_BAR'
   public static readonly ACTION_SWIPE_MODE = 'ACTION_SWIPE_MODE'
   public static readonly ACTION_SHOW_ZOOM_LABEL_VALUE = 'ACTION_SHOW_ZOOM_LABEL_VALUE'
+  public static readonly ACTION_UPDATE_SHOW_PINCH = 'ACTION_UPDATE_SHOW_PINCH'
 
   // Setting
   public static CloseDialog(isCloseFlag: boolean): ActionData {
@@ -377,6 +378,13 @@ export class Action {
     return {
       type: Action.ACTION_UPDATE_SHOW_ZOOM_TEXT_FLAG,
       data: { isShowZoomText: isShowZoomText }
+    }
+  }
+
+  public static updateShowPinch(isShowPinch: boolean): ActionData {
+    return {
+      type: Action.ACTION_UPDATE_SHOW_PINCH,
+      data: { isShowPinch: isShowPinch }
     }
   }
 

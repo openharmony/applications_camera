@@ -27,6 +27,7 @@ export type ZoomState = {
   isShowZoomText: boolean,
   isShowPressScrollDetailPhotoButton: boolean,
   showZoomLabelValue: boolean,
+  isShowPinch: boolean,
 }
 
 const initState: ZoomState = {
@@ -38,6 +39,7 @@ const initState: ZoomState = {
   photoDetailsOffsetX: 0,
   photoDetailsOffsetXInit: 0,
   isShowZoomText: false,
+  isShowPinch: false,
   isShowPressScrollDetailPhotoButton: false,
   showZoomLabelValue: true,
 }
@@ -64,6 +66,8 @@ export default function ZoomReducer(state = initState, action: ActionData): Zoom
     return { ...state, isShowPressScrollDetailPhotoButton: action.data.isShowPressScrollDetailPhotoButton }
   case Action.ACTION_SHOW_ZOOM_LABEL_VALUE:
     return { ...state, showZoomLabelValue: action.data.showZoomLabelValue }
+  case Action.ACTION_UPDATE_SHOW_PINCH:
+    return { ...state, isShowPinch: action.data.isShowPinch }
   default:
     return state;
   }

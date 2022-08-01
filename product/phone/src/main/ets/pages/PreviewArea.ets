@@ -16,6 +16,7 @@
 import display from '@ohos.display';
 import wantConstant from '@ohos.ability.wantConstant'
 import window from '@ohos.window';
+import deviceInfo from '@ohos.deviceInfo'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { AssistiveGridView
 } from '../../../../../../common/src/main/ets/default/featurecommon/assistiveGridView/AssistiveGridView'
@@ -181,6 +182,9 @@ let cameraDispatcher = (dispatch) => {
     },
     changeCameraPosition: (cameraPosition: string) => {
       dispatch(Action.SetCameraPosition(cameraPosition))
+    },
+    updateShowPinch: (flag: boolean) => {
+      dispatch(Action.updateShowPinch(flag))
     }
   }
 }
@@ -415,9 +419,10 @@ export struct PreviewArea {
 
   private pinchGestureStart(event: GestureEvent) {
     Log.info(`${this.TAG} pinchGestureStart E`)
-    if (this.state.mode != 'MULTI') {
+    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
       clearTimeout(this.pinchGestureTimer)
       this.state.updateIsShowZoomText(true)
+      this.state.updateShowPinch(true)
       this.state.updateShowZoomLabelValue(false)
       this.baseZoom = this.state.zoomRatio
     }
@@ -426,7 +431,7 @@ export struct PreviewArea {
 
   private pinchGestureUpdate(event: GestureEvent) {
     Log.info(`${this.TAG} pinchGestureUpdate E`)
-    if (this.state.mode != 'MULTI') {
+    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
       let zoomRatio = event.scale + this.baseZoom - 1
       if (zoomRatio > 6) {
         zoomRatio = 6
@@ -441,8 +446,9 @@ export struct PreviewArea {
 
   private pinchGestureEnd(event: GestureEvent) {
     Log.info(`${this.TAG} pinchGestureEnd E`)
-    if (this.state.mode != 'MULTI') {
+    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
       this.state.updateShowZoomLabelValue(true)
+      this.state.updateShowPinch(false)
       this.pinchGestureTimer = setTimeout(() => {
         this.state.updateIsShowZoomText(false)
       }, 2000)
@@ -570,7 +576,7 @@ export struct PreviewArea {
             ShowFlashBlack()
           }
 
-          if (this.state.isShowZoomText) {
+          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default") {
             Stack({ alignContent: Alignment.Top }) {
               ZoomText({ state: $state })
             }
@@ -584,7 +590,7 @@ export struct PreviewArea {
             }
             .width('100%')
             .height('100%')
-            .padding({ bottom: '30vp' })
+            .padding({ bottom: '40vp' })
           }
 
           if (this.state.xComponentChangeFlag) {
@@ -606,10 +612,11 @@ export struct PreviewArea {
           }
 
           if (this.state.isShowtimeLapse) {
-            Column() {
-              TimeLapseView()
+            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+              Column() {
+                TimeLapseView()
+              }.width('100%').height(150)
             }
-            .width('100%').height(150).position({ x: 0, y: (this.state.footBarHeight - 100) })
           }
         }
         .width('100%')
@@ -631,13 +638,13 @@ export struct PreviewArea {
       .onActionEnd(this.pinchGestureEnd.bind(this)),
     PanGesture({ fingers: 1, direction: PanDirection.Left, distance: 10 })
       .onActionEnd(() => {
-        if (!this.state.isThirdPartyCall) {
+        if (!this.state.isThirdPartyCall && !globalThis.cameraAbilityWant?.parameters?.from) {
           this.swipeChangeMode(1)
         }
       }),
     PanGesture({ fingers: 1, direction: PanDirection.Right, distance: 10 })
       .onActionEnd(() => {
-        if (!this.state.isThirdPartyCall) {
+        if (!this.state.isThirdPartyCall && !globalThis.cameraAbilityWant?.parameters?.from) {
           this.swipeChangeMode(-1)
         }
       })

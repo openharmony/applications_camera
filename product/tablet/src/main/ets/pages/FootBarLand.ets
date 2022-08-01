@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import deviceInfo from '@ohos.deviceInfo'
 import { CameraSwitchButton
 } from '../../../../../../common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
@@ -93,7 +94,7 @@ export struct FootBarLand {
         alignItems: ItemAlign.Center,
         justifyContent: FlexAlign.Center
       }) {
-        if (this.state.platformCapability?.mCameraCount > 1 && !this.isRecording) {
+        if (this.state.platformCapability?.mCameraCount > 1 && !this.isRecording && deviceInfo.deviceType !== "default") {
           CameraSwitchButton()
         } else {
           Column() {
