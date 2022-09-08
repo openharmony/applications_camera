@@ -26,10 +26,13 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
     updateShowBigTextFlag: (flag: boolean) => {
-      dispatch(Action.UpdateShowBigTextFlag(flag))
+      dispatch(Action.updateShowBigTextFlag(flag))
     },
+    updateUiState: (state: boolean) => {
+      dispatch(Action.uiState(state))
+    }
 //    updateBigTextOpacity: (opacity: number) => {
-//      dispatch(Action.UpdateBigTextOpacity(opacity))
+//      dispatch(Action.updateBigTextOpacity(opacity))
 //    }
   }
 }
@@ -79,6 +82,7 @@ export struct BigText {
                 delay: 1000,
                 onFinish: () => {
                   this.state.updateShowBigTextFlag(false)
+                  this.state.updateUiState(true)
                 }
               }, () => {
                 this.bigTextOpacity = 0

@@ -56,7 +56,7 @@ export class ScreenLockManager {
     });
   }
 
-  @debounce(debounceTimeout)
+//  @debounce(debounceTimeout)
   notifyScreenEvent(isScreenOn: boolean) {
     this.appEventBus.emit(ScreenLockManager.SCREEN_CHANGE_EVENT, [isScreenOn]);
     Log.log(`${this.TAG} publish ${ScreenLockManager.SCREEN_CHANGE_EVENT} screenState: ${isScreenOn}`);

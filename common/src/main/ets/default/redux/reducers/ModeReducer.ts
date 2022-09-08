@@ -22,6 +22,7 @@ export type ModeState = {
   modeIndex: number,
   swipeModeIndex: number,
   isShowMoreList: boolean,
+  modeChangeDone: boolean,
 }
 
 const initState: ModeState = {
@@ -31,10 +32,13 @@ const initState: ModeState = {
   modeIndex: 1,
   swipeModeIndex: 1,
   isShowMoreList: false,
+  modeChangeDone: false,
 }
 
 export default function ModeReducer(state = initState, action: ActionData): ModeState {
   switch (action.type) {
+  case Action.ACTION_SWIPE_MODE_DONE:
+    return { ...state, modeChangeDone: action.data.modeChangeDone }
   case Action.ACTION_INIT_MODE:
     return { ...state, mode: action.data.mode }
   case Action.ACTION_CHANGE_MODE:

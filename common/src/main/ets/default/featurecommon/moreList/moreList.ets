@@ -59,7 +59,7 @@ export struct MoreList {
                                         "itemValue": "sound_mute"
                                       }]
 
-  private aboutToAppear() {
+  aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.setDirection()

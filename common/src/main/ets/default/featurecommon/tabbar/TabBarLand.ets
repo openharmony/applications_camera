@@ -42,7 +42,7 @@ export struct TabBarLand {
   @State isShowTabBarOther: boolean= false
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
     getStore().connect(tabBarLandState, tabBarLandDispatcher)(this.state)
     Log.info(`${this.TAG} aboutToAppear invoke X`)

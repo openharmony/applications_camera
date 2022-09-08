@@ -40,38 +40,38 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
     updateSmallVideoTimerVisible: (visible: boolean) => {
-      dispatch(Action.UpdateSmallVideoTimerVisible(visible))
+      dispatch(Action.updateSmallVideoTimerVisible(visible))
     },
 //    updateCaptureBtnScale: (scale: number) => {
-//      dispatch(Action.UpdateCaptureBtnScale(scale))
+//      dispatch(Action.updateCaptureBtnScale(scale))
 //    },
     updateShutterIcon: (icon: Resource) => {
-      dispatch(Action.UpdateShutterIcon(icon))
+      dispatch(Action.updateShutterIcon(icon))
     },
     capture: () => {
-      dispatch(Action.UpdateShowFlashBlackFlag(true))
+      dispatch(Action.updateShowFlashBlackFlag(true))
       dispatch(Action.capture())
     },
     startRecording: () => {
       dispatch(Action.startRecording())
-      dispatch(Action.UpdateVideoState('startTakeVideo'))
-      dispatch(Action.UpdateBigVideoTimerVisible(true))
-      dispatch(Action.UpdateScreenStatus(true))
+      dispatch(Action.updateVideoState('startTakeVideo'))
+      dispatch(Action.updateBigVideoTimerVisible(true))
+      dispatch(Action.updateScreenStatus(true))
     },
     pauseRecording: () => {
       dispatch(Action.pauseRecording())
-      dispatch(Action.UpdateVideoState('pauseTakeVideo'))
+      dispatch(Action.updateVideoState('pauseTakeVideo'))
     },
     resumeRecording: () => {
       dispatch(Action.resumeRecording())
-      dispatch(Action.UpdateVideoState('startTakeVideo'))
+      dispatch(Action.updateVideoState('startTakeVideo'))
     },
     stopRecording: () => {
       dispatch(Action.stopRecording())
-      dispatch(Action.UpdateVideoState('beforeTakeVideo'))
-      dispatch(Action.UpdateBigVideoTimerVisible(false))
-      dispatch(Action.UpdateSmallVideoTimerVisible(false))
-      dispatch(Action.UpdateScreenStatus(false))
+      dispatch(Action.updateVideoState('beforeTakeVideo'))
+      dispatch(Action.updateBigVideoTimerVisible(false))
+      dispatch(Action.updateSmallVideoTimerVisible(false))
+      dispatch(Action.updateScreenStatus(false))
     },
     changeTimeLapse: (isShowtimeLapse: boolean) => {
       dispatch(Action.changeTimeLapse(isShowtimeLapse))
@@ -85,15 +85,15 @@ export struct ShutterButtonLand {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
 
-  width: number
-  height: number
+//  width: number
+//  height: number
   type: ButtonType
   stateEffect: boolean
 
   @State state: any = {}
   @State captureBtnScale: number = 1
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     Log.debug(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_CHANGE_MODE, this.changeShutterIcon.bind(this))
@@ -103,7 +103,7 @@ export struct ShutterButtonLand {
     Log.debug(`${this.TAG} aboutToAppear X`)
   }
 
-  private aboutToDisappear(): void {
+  aboutToDisappear(): void {
     Log.debug(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_CHANGE_MODE, this.changeShutterIcon.bind(this))
     this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))

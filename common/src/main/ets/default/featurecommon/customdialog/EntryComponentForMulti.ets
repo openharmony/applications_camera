@@ -34,6 +34,8 @@ export default struct EntryComponentForMulti {
   @State isLocalDevice: boolean = false
   @State switchCameraState: boolean = false
   @State recCameraState: boolean = true
+  @State defaultChecked: boolean = false
+  @Prop localList: string
   @Prop item: string
   private onChange: Function
   private cameraService = CameraService.getInstance()
@@ -42,9 +44,12 @@ export default struct EntryComponentForMulti {
   private curCameraName: string
   private cameraPositionName: string
 
-  private aboutToAppear() {
+  aboutToAppear() {
     getStore().connect(localState, localDispatcher)(this.state)
     this.getShowName(this.item)
+    if(this.localList.split(",").length === 1){
+      this.defaultChecked = true
+    }
     this.curCameraName = this.cameraService.getCameraName()
   }
 
@@ -94,7 +99,7 @@ export default struct EntryComponentForMulti {
         .width(24)
         .height(24)
         .borderColor('#1095E8')
-        .checked(this.item === this.curCameraName)
+        .checked(this.defaultChecked ? true : this.item === this.curCameraName)
         .enabled(this.state.uiEnable)
         .onClick(() => {
           Log.info(`${this.TAG} onChange: ${this.item}`)

@@ -77,7 +77,7 @@ export struct ThumbnailView {
     Log.info(`${this.TAG} onThumbnailLoad this.state.thumbnail: ${JSON.stringify(this.thumbnail)} X`)
   }
 
-  private aboutToAppear() {
+  aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
@@ -85,7 +85,7 @@ export struct ThumbnailView {
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  private aboutToDisappear(): void {
+  aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
     this.appEventBus.off(Action.ACTION_LOAD_THUMBNAIL, this.onThumbnailLoad.bind(this))

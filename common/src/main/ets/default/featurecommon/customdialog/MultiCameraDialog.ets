@@ -29,14 +29,16 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
     changeCameraPosition: (cameraPosition: string) => {
-      dispatch(Action.UiState(false))
-      dispatch(Action.SetCameraPosition(cameraPosition))
+      dispatch(Action.uiState(false))
+      dispatch(Action.setCameraPosition(cameraPosition))
     },
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
+      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     }
   }
 }
+
+let storageCameraId = AppStorage.Link('storageCameraId')
 
 @CustomDialog
 export default struct MultiCameraDialog {
@@ -49,18 +51,19 @@ export default struct MultiCameraDialog {
     CameraId.FRONT,
     CameraId.BACK
   ]
-  private moreList: string[] = []
+  @State private moreList: string[] = []
   private multiCameraMap = new Map()
   @State state: any = {}
   @State isShowMore: boolean = false
   @State gridColumns: number = 12
   @State useSizeTypeOffset: number = 4
   @Link deviceType: string
+  @StorageLink('storageCameraId') storageCameraId: string = ''
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear.`)
     getStore().connect(localState, localDispatcher)(this.state)
-    this.cameraService.getMultiCameraInfo().then(() => {
+    this.cameraService.getMultiCameraInfo(() => {
       let cameraMap = new Map(this.cameraService.getCameraMap())
       let keys = cameraMap.keys()
       this.moreList = [...keys]
@@ -74,7 +77,12 @@ export default struct MultiCameraDialog {
         Log.info(`${this.TAG} getMultiCameraInfo null.`)
       }
     })
-
+    let localCameraInfo = this.cameraService.getLocalCameraMap()
+    if (!localCameraInfo.get('front')) {
+      this.localList.shift()
+    } else if (!localCameraInfo.get('back')) {
+      this.localList.pop()
+    }
     if (this.deviceType === 'phone' || this .deviceType === 'default') {
       this.gridColumns = 4
       this.useSizeTypeOffset = 0
@@ -85,6 +93,12 @@ export default struct MultiCameraDialog {
   }
 
   private onChange(item): void {
+    Log.info(`${this.TAG} MultiCameraPosition ${JSON.stringify(item)}`)
+    if (item.includes('BACK')) {
+      this.storageCameraId = 'BACK'
+    } else if(item.includes('FRONT')) {
+      this.storageCameraId = 'FRONT'
+    }
     this.state.changeCameraPosition(item)
     this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
     this.cancel()
@@ -121,6 +135,7 @@ export default struct MultiCameraDialog {
               ListItem() {
                 EntryComponentForMulti({
                   item: item,
+                  localList: this.localList.toString(),
                   onChange: (data) => this.onChange(data)
                 })
               }
@@ -147,6 +162,7 @@ export default struct MultiCameraDialog {
                 ListItem() {
                   EntryComponentForMulti({
                     item: item,
+                    localList: this.localList.toString(),
                     onChange: (data) => this.onChange(data)
                   })
                 }
