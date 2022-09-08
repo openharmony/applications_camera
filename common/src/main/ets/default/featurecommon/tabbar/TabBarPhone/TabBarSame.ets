@@ -29,7 +29,7 @@ let tabBarMState = (state) => {
 let tabBarMDispatcher = (dispatch) => {
   return {
     updateShowTabBarWidth: (widthTabBar: String) => {
-      dispatch(Action.UpdateShowTabBarWidth(widthTabBar))
+      dispatch(Action.updateShowTabBarWidth(widthTabBar))
     }
   }
 }

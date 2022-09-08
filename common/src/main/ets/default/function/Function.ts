@@ -24,11 +24,11 @@ export abstract class Function {
   protected mEventBus = EventBusManager.getInstance().getEventBus()
 
   protected enableUi() {
-    this.mWorkerManager.postMessage(Action.UiState(true))
+    this.mWorkerManager.postMessage(Action.uiState(true))
   }
 
   protected disableUi() {
-    this.mWorkerManager.postMessage(Action.UiState(false))
+    this.mWorkerManager.postMessage(Action.uiState(false))
   }
 
   abstract load(): void

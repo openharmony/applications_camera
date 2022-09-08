@@ -42,13 +42,13 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
     updateZoomRatio: (zoomRatio: number) => {
-      dispatch(Action.ChangeZoomRatio(zoomRatio))
+      dispatch(Action.changeZoomRatio(zoomRatio))
     },
     updateShowZoomFlag: (flag: boolean) => {
-      dispatch(Action.UpdateShowZoomTextFlag(flag))
+      dispatch(Action.updateShowZoomTextFlag(flag))
     },
     updateShowZoomLabelValue: (flag: boolean) => {
-      dispatch(Action.UpdateShowZoomLabelValue(flag))
+      dispatch(Action.updateShowZoomLabelValue(flag))
     }
   }
 }
@@ -70,7 +70,7 @@ export struct ZoomViewLand {
   private canvasWidth: number = 82
   private notTakeVideoExtCanvasHeight: number = 360
   private takingVideoExtCanvasHeight: number = 196
-  private foldCanvasHeight: number = 105
+  private foldCanvasHeight: number = 94
 
   private touchedOffsetY: number = this.takingVideoExtCanvasHeight / 2
   private startOffsetY: number = 0
@@ -98,13 +98,13 @@ export struct ZoomViewLand {
   private centerDotRadius: number = 2.5
   private dotSpacing: number = 4
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
     this.appEventBus.on(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
   }
 
-  private aboutToDisappear(): void {
+  aboutToDisappear(): void {
     this.appEventBus.off(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
     this.appEventBus.off(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
     this.mConnect?.destroy()
@@ -276,7 +276,7 @@ export struct ZoomViewLand {
     }, 3000)
   }
 
-  private onTouch(event: TouchEvent): void {
+  private mOnTouch(event: TouchEvent): void {
     if (event.type === TouchType.Down) {
       this.clearTimer()
       this.state.updateShowZoomFlag(true)
@@ -332,8 +332,8 @@ export struct ZoomViewLand {
   }
 
   private updateZoomState(data): void {
-    this.clearTimer()
     if (data.videoState === 'beforeTakeVideo') {
+      this.clearTimer()
       this.state.updateShowZoomFlag(false)
       this.pgExp = false
     }
@@ -376,7 +376,7 @@ export struct ZoomViewLand {
   }
 
   private getZoomBtnRadius(): number {
-    if (this.state.isShowZoomText) {
+    if (!this.state.showZoomLabelValue) {
       return 17.25
     } else {
       return 15.25
@@ -448,7 +448,7 @@ export struct ZoomViewLand {
                 .onActionEnd(this.pgOnActionEnd.bind(this))
             )
           )
-          .onTouch(this.onTouch.bind(this))
+          .onTouch(this.mOnTouch.bind(this))
       } else if (this.getCurrentCanvasType() === SHOW_TAKING_VIDEO_CANVAS) {
         Column() {
           Image($r('app.media.ic_camera_public_focus_ev_bright_add'))

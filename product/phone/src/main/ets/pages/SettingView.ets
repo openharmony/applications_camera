@@ -35,7 +35,7 @@ let localState = (state: OhCombinedState) => {
 let localDispatcher = (dispatch) => {
   return {
     closeDialog: (isCloseFlag: boolean) => {
-      dispatch(Action.CloseDialog(isCloseFlag))
+      dispatch(Action.closeDialog(isCloseFlag))
     }
   }
 }

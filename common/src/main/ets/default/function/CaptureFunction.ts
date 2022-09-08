@@ -22,6 +22,7 @@ export class CaptureFunction extends Function {
 
   private async capture(): Promise<void> {
     Log.info(`${this.TAG} capture E`)
+    globalThis.startCaptureTime = new Date().getTime()
     this.disableUi()
     await this.mCameraService.takePicture()
     this.enableUi()

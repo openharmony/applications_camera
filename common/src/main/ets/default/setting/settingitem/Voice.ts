@@ -15,8 +15,8 @@
 
 export class Voice {
   public static readonly ALIAS = 'CaptureMute'
-  public static readonly DEFAULT_VALUE = '0'
-  public static readonly SOUND = Voice.DEFAULT_VALUE
+  public static readonly DEFAULT_VALUE = '1'
+  public static readonly SOUND = '0'
   public static readonly MUTE = '1'
   public static readonly RECORD_START_URI = '/system/etc/record_start.ogg'
   public static readonly RECORD_STOP_URI = '/system/etc/record_stop.ogg'

@@ -33,11 +33,11 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
     changeCameraPosition: (cameraPosition: string) => {
-      dispatch(Action.UiState(false))
-      dispatch(Action.SetCameraPosition(cameraPosition))
+      dispatch(Action.uiState(false))
+      dispatch(Action.setCameraPosition(cameraPosition))
     },
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
+      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
   }
 }
@@ -52,9 +52,9 @@ export struct CameraSwitchButton {
   @StorageLink('storageCameraId') storageCameraId: string = ''
 
   icon: Resource = $r('app.media.small_switch_camera')
-  width: number
-  height: number
-  margin: number
+  mWidth: number
+  mHeight: number
+  mMargin: number
   type: ButtonType
   stateEffect: boolean
   cameraSwitchController: CameraSwitchController = new CameraSwitchController()
@@ -69,14 +69,14 @@ export struct CameraSwitchButton {
     cancel: this.existView
   })
 
-  private aboutToAppear() {
+  aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.cameraSwitchController.getParam()
     this.icon = this.cameraSwitchController.icon
-    this.width = this.cameraSwitchController.width
-    this.height = this.cameraSwitchController.height
-    this.margin = this.cameraSwitchController.margin
+    this.mWidth = this.cameraSwitchController.width
+    this.mHeight = this.cameraSwitchController.height
+    this.mMargin = this.cameraSwitchController.margin
     this.type = this.cameraSwitchController.type
     this.stateEffect = this.cameraSwitchController.stateEffect
     Log.info(`${this.TAG} aboutToAppear X`)
@@ -108,6 +108,7 @@ export struct CameraSwitchButton {
           if (this.state.mode === 'MULTI') {
             this.openMultiDialog()
           } else {
+            globalThis.switchCameraTime = new Date().getTime()
             this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
             if (this.state.cameraPosition !== 'BACK') {
                 this.state.changeCameraPosition('BACK')

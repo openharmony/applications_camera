@@ -31,7 +31,7 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
     closeDialog: (isCloseFlag: boolean) => {
-      dispatch(Action.CloseDialog(isCloseFlag))
+      dispatch(Action.closeDialog(isCloseFlag))
     }
   }
 }
@@ -75,7 +75,7 @@ export struct SetResolution {
     Log.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
   }
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
@@ -119,7 +119,7 @@ export struct SetResolution {
 
         Row() {
           Text(this.formatCurCheckName(this.curCheckName))
-            .fontColor($r('app.color.font_color_99FFFFFF'))
+            .fontColor($r('app.color.font_color_FFFFFF'))
             .fontSize($r("sys.float.ohos_id_text_size_body2"))
             .opacity(0.6)
             .fontWeight(FontWeight.Regular)

@@ -33,13 +33,13 @@ let localState = (state: OhCombinedState) => {
 let localDispatcher = (dispatch) => {
   return {
     updateSpotVisible: (visible: boolean) => {
-      dispatch(Action.UpdateRecordingSpotVisible(visible))
+      dispatch(Action.updateRecordingSpotVisible(visible))
     },
     updateRecordingTime: (recordingTime: number) => {
-      dispatch(Action.UpdateRecordingTime(recordingTime))
+      dispatch(Action.updateRecordingTime(recordingTime))
     },
     updateRecordingTimeDisplay: (timeDisplay: string) => {
-      dispatch(Action.UpdateRecordingTimeDisplay(timeDisplay))
+      dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
     }
   }
 }

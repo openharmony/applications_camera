@@ -32,13 +32,13 @@ export struct ZoomText {
 
   @Link state: any
 
-  private aboutToAppear() {
+  aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  private aboutToDisappear(): void {
+  aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
   }
 
