@@ -98,10 +98,6 @@ export struct SetToggle {
       }
       .padding({ left: 12, right: 12, top: 4, bottom: 4 })
     }
-    .margin({
-      top: $r("sys.float.ohos_id_text_paragraph_margin_xs"),
-      bottom: $r("sys.float.ohos_id_text_paragraph_margin_xs")
-    })
     .height(this.itemValue?.description ? 72 : 56)
     .width(this.WH_100_100)
   }

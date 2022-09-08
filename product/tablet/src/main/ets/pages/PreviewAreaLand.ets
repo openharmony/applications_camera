@@ -41,6 +41,7 @@ import { TimeLapseView } from '../../../../../../common/src/main/ets/default/fea
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
+import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 
 let cameraState = (state: OhCombinedState) => {
   return {
@@ -69,6 +70,7 @@ let cameraState = (state: OhCombinedState) => {
     isSmallVideoTimerVisible: state.RecordReducer.isSmallVideoTimerVisible,
     isAssGridViewShow: state.SettingReducer.isAssGridViewShow,
     isShowFlashBlack: state.PreviewReducer.isShowFlashBlack,
+    modeChangeDone: state.ModeReducer.modeChangeDone,
   }
 }
 
@@ -78,52 +80,52 @@ let cameraDispatcher = (dispatch) => {
       dispatch(Action.initCamera(cameraId, mode))
     },
     initZoomRatio: (min: number, max: number) => {
-      dispatch(Action.InitZoomRatio(min, max))
+      dispatch(Action.initZoomRatio(min, max))
     },
     resetZoomRatio: (zoomRatio: number) => {
       dispatch(Action.resetZoomRatio(zoomRatio))
     },
     changeZoomRatio: (zoomRatio: number) => {
-      dispatch(Action.ChangeZoomRatio(zoomRatio))
+      dispatch(Action.changeZoomRatio(zoomRatio))
     },
     updateZoomPercentage: (zoomPercentage: number) => {
-      dispatch(Action.UpdateZoomPercentage(zoomPercentage))
+      dispatch(Action.updateZoomPercentage(zoomPercentage))
     },
     prepareSurface: (surfaceId: number) => {
-      dispatch(Action.PrepareSurface(surfaceId))
+      dispatch(Action.prepareSurface(surfaceId))
     },
     updateSurfaceId: (surfaceId: number) => {
-      dispatch(Action.UpdateSurfaceId(surfaceId))
+      dispatch(Action.updateSurfaceId(surfaceId))
     },
     startPreview: () => {
-      dispatch(Action.StartPreview())
+      dispatch(Action.startPreview())
     },
     switchCamera: (cameraId: CameraId) => {
-      dispatch(Action.SwitchCamera(cameraId))
+      dispatch(Action.switchCamera(cameraId))
     },
     startVideoFlag: (isStartVideo: boolean) => {
-      dispatch(Action.StartVideoFlag(isStartVideo))
+      dispatch(Action.startVideoFlag(isStartVideo))
     },
     updateCameraPosition: (cameraPosition: string) => {
       dispatch(Action.updateCameraPosition(cameraPosition))
     },
     changeXComponentSize: (xComponentWidth: string, xComponentHeight: string) => {
-      dispatch(Action.ChangeXComponentSize(xComponentWidth, xComponentHeight))
+      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
     },
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
+      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
     updateShowPreviewFlag: (isShowPreview: boolean) => {
-      dispatch(Action.UpdateShowPreviewFlag(isShowPreview))
+      dispatch(Action.updateShowPreviewFlag(isShowPreview))
     },
     updateIsShowZoomText: (isShowZoomText: boolean) => {
-      dispatch(Action.UpdateShowZoomTextFlag(isShowZoomText))
+      dispatch(Action.updateShowZoomTextFlag(isShowZoomText))
     },
     updateIsPhotoZoomDetails: (isPhotoZoomDetails: boolean) => {
-      dispatch(Action.UpdatePhotoZoomDetailsFlag(isPhotoZoomDetails))
+      dispatch(Action.updatePhotoZoomDetailsFlag(isPhotoZoomDetails))
     },
     updateBaseZoom: (zoomRatio: number) => {
-      dispatch(Action.UpdateBaseZoom(zoomRatio))
+      dispatch(Action.updateBaseZoom(zoomRatio))
     },
     changeImageSize: (imageSize) => {
       dispatch(Action.changeImageSize(imageSize))
@@ -136,21 +138,23 @@ let cameraDispatcher = (dispatch) => {
     },
     stopRecording: () => {
       dispatch(Action.stopRecording())
-      dispatch(Action.UpdateVideoState('beforeTakeVideo'))
-      dispatch(Action.UpdateBigVideoTimerVisible(false))
-      dispatch(Action.UpdateSmallVideoTimerVisible(false))
+      dispatch(Action.updateVideoState('beforeTakeVideo'))
+      dispatch(Action.updateBigVideoTimerVisible(false))
+      dispatch(Action.updateSmallVideoTimerVisible(false))
+      dispatch(Action.updateScreenStatus(false))
     },
     changeTimeLapse: (isShowtimeLapse: boolean) => {
       dispatch(Action.changeTimeLapse(isShowtimeLapse))
     },
     capture: () => {
-      dispatch(Action.UpdateShowFlashBlackFlag(true))
+      dispatch(Action.updateShowFlashBlackFlag(true))
       dispatch(Action.capture())
     },
     startRecording: () => {
       dispatch(Action.startRecording())
-      dispatch(Action.UpdateVideoState('startTakeVideo'))
-      dispatch(Action.UpdateBigVideoTimerVisible(true))
+      dispatch(Action.updateVideoState('startTakeVideo'))
+      dispatch(Action.updateBigVideoTimerVisible(true))
+      dispatch(Action.updateScreenStatus(true))
     },
     assistiveGridView: (isViewShow) => {
       dispatch(Action.assistiveGridView(isViewShow))
@@ -168,26 +172,29 @@ let cameraDispatcher = (dispatch) => {
       dispatch(Action.initMode(mode))
     },
     updateModeIndex: (index: number) => {
-      dispatch(Action.UpdateModeIndex(index))
+      dispatch(Action.updateModeIndex(index))
     },
     updateMode: (mode: string) => {
       dispatch(Action.updateMode(mode))
     },
     changeToMode: (mode: string) => {
-      dispatch(Action.ChangeMode(mode))
+      dispatch(Action.changeMode(mode))
     },
     updateShowZoomLabelValue: (flag: boolean) => {
-      dispatch(Action.UpdateShowZoomLabelValue(flag))
+      dispatch(Action.updateShowZoomLabelValue(flag))
     },
     reloadThumbnail: () => {
-      dispatch(Action.ReloadThumbnail())
+      dispatch(Action.reloadThumbnail())
     },
     changeCameraPosition: (cameraPosition: string) => {
-      dispatch(Action.SetCameraPosition(cameraPosition))
+      dispatch(Action.setCameraPosition(cameraPosition))
     },
     updateShowPinch: (flag: boolean) => {
       dispatch(Action.updateShowPinch(flag))
-    }
+    },
+    swipeModeChangeDone: (actionOff) => {
+      dispatch(Action.swipeModeChangeDone(actionOff))
+    },
   }
 }
 
@@ -198,7 +205,7 @@ export struct PreviewAreaLand {
   private TAG: string = '[PreviewAreaLand]:'
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
-  @State aspectRatio: number = 4 / 3
+  @State mAspectRatio: number = 4 / 3
   @State btnSwitch: boolean = false
   @State btnSwitchSec: boolean = false
   @State pinchGestureTimerId: number = 0
@@ -377,6 +384,7 @@ export struct PreviewAreaLand {
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
     this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
+    Log.info('12345678')
     globalThis.releaseCamera = (() => {
       Log.info(`${this.TAG} globalThis.releaseCamera called`)
       this.state.close()
@@ -386,7 +394,7 @@ export struct PreviewAreaLand {
       Log.info(`${this.TAG} globalThis.onForegroundInit called`)
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
       this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-      let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.action
+      let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
       if (newWantAction) {
         this.state.thirdPartyCall(true, newWantAction)
         switch (newWantAction) {
@@ -413,6 +421,7 @@ export struct PreviewAreaLand {
     this.state.initCamera(this.state.curCameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     Log.info(`${this.TAG} aboutToAppear X`)
+    Trace.start(Trace.X_COMPONENT_LIFE)
   }
 
   aboutToDisappear(): void {
@@ -567,8 +576,9 @@ export struct PreviewAreaLand {
 
   private swipeChangeMode(swipe: number) {
     Log.info(`${this.TAG} swipeChangeMode E`)
-    if (this.state.modeIndex + swipe >= 0 && this.state.modeIndex + swipe <= this.modeArray.length - 1) {
+    if (!this.state.modeChangeDone && this.state.modeIndex + swipe >= 0 && this.state.modeIndex + swipe <= this.modeArray.length - 1 && !this.state.isShowtimeLapse) {
       this.state.swipeChangeMode(this.state.modeIndex + swipe)
+      this.state.swipeModeChangeDone(true)
     }
     Log.info(`${this.TAG} swipeChangeMode X`)
   }
@@ -597,6 +607,7 @@ export struct PreviewAreaLand {
               controller: globalThis.mXComponentController
             })
               .onLoad(() => {
+                Trace.end(Trace.X_COMPONENT_LIFE)
                 Log.info(`${this.TAG} XComponent onLoad cameraPosition: `)
                 let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
                 this.state.updateSurfaceId(surfaceId)
@@ -619,6 +630,7 @@ export struct PreviewAreaLand {
               controller: globalThis.mXComponentController
             })
               .onLoad(() => {
+                Trace.end(Trace.X_COMPONENT_LIFE)
                 Log.info(`${this.TAG} XComponent onLoad cameraPosition: `)
                 let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
                 this.state.updateSurfaceId(surfaceId)
@@ -672,7 +684,7 @@ export struct PreviewAreaLand {
             ShowFlashBlack()
           }
 
-          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default") {
+          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default"&&!this.state.isShowtimeLapse) {
             Stack({ alignContent: Alignment.Top }) {
               Column() {
                 Column() {
@@ -704,7 +716,7 @@ export struct PreviewAreaLand {
             }
             .width('100%')
             .height('100%')
-            .padding({ bottom: '30vp' })
+            .padding({ bottom: '46vp' })
           }
 
           if (this.state.xComponentChangeFlag) {
@@ -748,7 +760,7 @@ export struct PreviewAreaLand {
       }
     }
     .height('100%')
-    .aspectRatio(this.aspectRatio)
+    .aspectRatio(this.mAspectRatio)
     .margin({ top: 0 })
     .backgroundColor('#000')
     .gesture(

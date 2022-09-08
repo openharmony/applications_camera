@@ -13,7 +13,10 @@
  * limitations under the License.
  */
 
+import HiLog from "@ohos.hilog"
+
 export class Log {
+  private static readonly DOMAIN = 0x0200
   private static readonly TAG: string = '[CameraApp]'
 
   public static readonly LEVEL_DEBUG = 0;
@@ -26,31 +29,31 @@ export class Log {
 
   public static debug(message: string) {
     if (this.LOG_LEVEL <= this.LEVEL_DEBUG) {
-      console.debug(`${Log.TAG} ` + message)
+      HiLog.debug(this.DOMAIN, this.TAG, message)
     }
   }
 
   public static log(message: string) {
     if (this.LOG_LEVEL <= this.LEVEL_LOG) {
-      console.log(`${Log.TAG} ` + message)
+      HiLog.info(this.DOMAIN, this.TAG, message)
     }
   }
 
   public static info(message: string) {
     if (this.LOG_LEVEL <= this.LEVEL_INFO) {
-      console.info(`${Log.TAG} ` + message)
+      HiLog.info(this.DOMAIN, this.TAG, message)
     }
   }
 
   public static warn(message: string) {
     if (this.LOG_LEVEL <= this.LEVEL_WARN) {
-      console.warn(`${Log.TAG} ` + message)
+      HiLog.warn(this.DOMAIN, this.TAG, message)
     }
   }
 
   public static error(message: string) {
     if (this.LOG_LEVEL <= this.LEVEL_ERROR) {
-      console.error(`${Log.TAG} ` + message)
+      HiLog.error(this.DOMAIN, this.TAG, message)
     }
   }
 }

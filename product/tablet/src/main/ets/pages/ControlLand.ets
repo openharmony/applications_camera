@@ -38,23 +38,23 @@ let controlLandDispatcher = (dispatch) => {
   return {
     changeToMode: (mode: string) => {
       dispatch(Action.setMode(mode))
-      dispatch(Action.UiState(false))
-      dispatch(Action.UpdateShowBigTextFlag(true))
+      dispatch(Action.uiState(false))
+      dispatch(Action.updateShowBigTextFlag(true))
     },
     updateModeIndex: (index: number) => {
-      dispatch(Action.UpdateModeIndex(index))
+      dispatch(Action.updateModeIndex(index))
     },
     updateShowMoreList: (isShowMoreList) => {
-      dispatch(Action.UpdateShowMoreList(isShowMoreList))
+      dispatch(Action.updateShowMoreList(isShowMoreList))
     },
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.UpdateXComponentChangeFlag(xComponentChangeFlag))
+      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
     thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
       dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
     },
     initAction: (action: string) => {
-      dispatch(Action.InitAction(action))
+      dispatch(Action.initAction(action))
     },
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
@@ -71,13 +71,19 @@ export struct ControlLand {
   private settingManager = SettingManager.getInstance()
   private mConnect: any
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'] //, 'MORE'
+  private touchOff: boolean = true
+  private scrollDistance: number = 0
 
   @State state: any = {}
+  @State startScroll: number = 0
+  @State endScroll: number = 0
+  @State index: number = 0
+
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(controlLandState, controlLandDispatcher)(this.state)
-    let startWantAction = globalThis.cameraAbilityWant.action
+    let startWantAction = globalThis.cameraAbilityWant.parameters.action
     Log.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
     if (!globalThis?.cameraNewWant && startWantAction) {
       Log.info(`${this.TAG} thirdParty called`)
@@ -112,15 +118,16 @@ export struct ControlLand {
     }
   }
   
-  private changeToMode(modeIndex: number) {
+  private changeToMode(modeIndex: number, callType?: string) {
     Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
+    this.scroller.scrollToIndex(modeIndex)
+    if (callType === 'begin') return
     if (this.modeArray[modeIndex] !== this.state.mode) {
 //      if ( modeIndex !== 3 ) {
 //        this.closeMoreListView()
 //      } else {
 //        this.state.updateShowMoreList(true)
 //      }
-      this.scroller.scrollToIndex(modeIndex)
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
@@ -138,6 +145,36 @@ export struct ControlLand {
 
   private swipeChangeMode(data) {
     this.changeToMode(data.swipeModeIndex)
+  }
+
+  private scrollSwitchMode(callType: string) {
+    if (this.index == 1 && Math.abs(this.scrollDistance) <= px2vp(20)) {
+      this.changeToMode(1, callType)
+    }
+    if (this.index == 1 && (this.scrollDistance) > px2vp(20)) {
+      this.changeToMode(0, callType)
+    }
+    if (this.index == 1 && (this.scrollDistance) < px2vp(-20)) {
+      this.changeToMode(2, callType)
+    }
+    if (this.index == 0 && (this.scrollDistance > px2vp(-25))) {
+      this.changeToMode(0, callType)
+    }
+    if (this.index == 0 && this.scrollDistance >= px2vp(-50) && this.scrollDistance <= px2vp(-25)) {
+      this.changeToMode(1, callType)
+    }
+    if (this.index == 0 && this.scrollDistance < px2vp(-50)) {
+      this.changeToMode(2, callType)
+    }
+    if (this.index == 2 && (this.scrollDistance < px2vp(25))) {
+      this.changeToMode(2, callType)
+    }
+    if (this.index == 2 && this.scrollDistance >= px2vp(25) && this.scrollDistance <= px2vp(50)) {
+      this.changeToMode(1, callType)
+    }
+    if (this.index == 2 && this.scrollDistance > px2vp(50)) {
+      this.changeToMode(0, callType)
+    }
   }
 
   build() {
@@ -234,11 +271,22 @@ export struct ControlLand {
             this.state.updateModeIndex(firstIndex)
             Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
+          // @ts-ignore
+          .onScrollBegin(() => {
+            if (!this.touchOff) this.scrollSwitchMode('begin')
+          })
           .enabled(this.state.uiEnable)
           .onTouch((event: TouchEvent) => {
+            if (event.type === TouchType.Down) {
+              this.touchOff = true
+              this.index = this.modeArray.indexOf(this.state.mode)
+              this.startScroll = event.touches[0].screenY
+            }
             if (event.type === TouchType.Up) {
-              Log.debug(`${this.TAG} modeIndex == ${this.state.modeIndex}`)
-              this.changeToMode(this.state.modeIndex)
+              this.endScroll = event.touches[0].screenY
+              this.scrollDistance = px2vp(this.endScroll - this.startScroll)
+              this.touchOff = false
+              this.scrollSwitchMode('touch')
             }
           })
         }

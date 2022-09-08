@@ -69,6 +69,8 @@
       {
         "name": "com.ohos.camera.MainAbility",
         "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:startWindowBackground",
         "launchType": "singleton",
         "description": "$string:mainability_description",
         "icon": "$media:icon",

@@ -38,7 +38,7 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
     closeDialog: (isCloseFlag: boolean) => {
-      dispatch(Action.CloseDialog(isCloseFlag))
+      dispatch(Action.closeDialog(isCloseFlag))
     }
   }
 }

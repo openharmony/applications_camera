@@ -32,7 +32,7 @@ export default struct EntryComponent {
   private onChange: Function
   private settingManager = SettingManager.getInstance()
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear calle1d = ${this.settingAlias}`)
     try {
       this.getValue = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.settingAlias)))

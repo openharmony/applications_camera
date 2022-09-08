@@ -27,10 +27,10 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
 //    updateOpacityValue: (opacityValue) => {
-//      dispatch(Action.UpdateOpacityValue(opacityValue))
+//      dispatch(Action.updateOpacityValue(opacityValue))
 //    },
     updateShowFlashBlackFlag: (flag: boolean) => {
-      dispatch(Action.UpdateShowFlashBlackFlag(flag))
+      dispatch(Action.updateShowFlashBlackFlag(flag))
     }
   }
 }
@@ -42,7 +42,7 @@ export struct ShowFlashBlack {
   @State state: any = {}
   @State opacityValue: number = 1
 
-  private aboutToAppear() {
+  aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     Log.info(`${this.TAG} aboutToAppear X`)
