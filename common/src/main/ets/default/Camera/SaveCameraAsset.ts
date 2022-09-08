@@ -20,6 +20,7 @@ import { Log } from '../utils/Log'
 import DateTimeUtil from '../utils/DateTimeUtil'
 import { FunctionCallBack, VideoCallBack } from './CameraService'
 import ThumbnailGetter from './ThumbnailGetter'
+import Trace from '../utils/Trace'
 
 let photoUri: string;
 
@@ -48,6 +49,7 @@ export default class SaveCameraAsset {
     Log.info(`${this.TAG} saveImage mediaLibrary.getMediaLibrary media: ${media}`)
 
     mReceiver.on('imageArrival', async () => {
+      Trace.start(Trace.UPDATE_PHOTO_THUMBNAIL)
       Log.log(`${this.TAG} saveImage ImageReceiver on called`)
       const displayName = this.checkName(`IMG_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.jpg'
       Log.log(`${this.TAG} saveImage displayName== ${displayName}`)
@@ -105,9 +107,11 @@ export default class SaveCameraAsset {
                   thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
                     Log.info(`${this.TAG} saveImage thumbnailInfo: ${thumbnail}`)
                     captureCallBack.onCaptureSuccess(thumbnail, photoUri)
+                    Trace.end(Trace.UPDATE_PHOTO_THUMBNAIL)
                   })
                   Log.info(`${this.TAG} ==========================fileAsset.close success=======================>`);
                 }).catch(error => {
+                  Trace.write(Trace.SAVE_FAIL)
                   Log.error(`${this.TAG} saveImage close is error ${JSON.stringify(error)}`)
                 })
               })

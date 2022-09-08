@@ -31,7 +31,7 @@ export struct TabBar {
   private TAG: string = '[TabBar]'
   @State state: any = {}
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
     getStore().connect(tabBarState, tabBarDispatcher)(this.state)
     Log.info(`${this.TAG} aboutToAppear invoke X`)

@@ -15,23 +15,30 @@
 
 import Ability from '@ohos.application.Ability'
 import window from '@ohos.window';
+import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 
 export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
+    Trace.start(Trace.ABILITY_WHOLE_LIFE)
     console.info('Camera MainAbility onCreate.')
     globalThis.cameraAbilityContext = this.context
     globalThis.cameraAbilityWant = this.launchWant
     globalThis.permissionFlag = false
+    globalThis.cameraStartTime = new Date().getTime()
+    globalThis.cameraStartFlag = true
   }
 
   onDestroy() {
     // Ability is creating, release resources for this ability
+    Trace.end(Trace.ABILITY_WHOLE_LIFE)
+    Trace.end(Trace.APPLICATION_WHOLE_LIFE)
     console.info('Camera MainAbility onDestroy.')
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
+    Trace.start(Trace.ABILITY_VISIBLE_LIFE)
     console.info('Camera MainAbility onWindowStageCreate.')
     windowStage.on('windowStageEvent', (event) => {
       console.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
@@ -81,15 +88,18 @@ export default class MainAbility extends Ability {
   }
 
   onWindowStageDestroy() {
+    Trace.end(Trace.ABILITY_VISIBLE_LIFE)
     console.info('Camera MainAbility onWindowStageDestroy.')
   }
 
   onForeground() {
+    Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onForeground.')
     globalThis?.onForegroundInit && globalThis.onForegroundInit()
   }
 
   onBackground() {
+    Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onBackground.')
     globalThis?.releaseCamera && globalThis.releaseCamera()
   }

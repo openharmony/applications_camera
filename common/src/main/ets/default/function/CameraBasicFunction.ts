@@ -19,6 +19,7 @@ import { CameraPlatformCapability } from '../camera/CameraPlatformCapability'
 import { Log } from '../utils/Log'
 import { Function } from './Function'
 import { FunctionCallBack } from '../camera/CameraService'
+import Trace from '../utils/Trace'
 
 export class CameraBasicFunction extends Function {
   private TAG = '[CameraBasicFunction]:'
@@ -30,7 +31,7 @@ export class CameraBasicFunction extends Function {
   private functionBackImpl: FunctionCallBack = {
     onCaptureSuccess: (thumbnail: any, resourceUri: any): void => {
       Log.info(`${this.TAG} functionBackImpl onCaptureSuccess ${thumbnail}`)
-      this.mWorkerManager.postMessage(Action.UpdateThumbnail(thumbnail, resourceUri))
+      this.mWorkerManager.postMessage(Action.updateThumbnail(thumbnail, resourceUri))
     },
     onCaptureFailure: (): void => {
       Log.info(`${this.TAG} functionBackImpl onCaptureFailure`)
@@ -38,15 +39,15 @@ export class CameraBasicFunction extends Function {
     },
     onRecordSuccess: (thumbnail: any): void => {
       Log.info(`${this.TAG} functionBackImpl onRecordSuccess ${thumbnail}`)
-      this.mWorkerManager.postMessage(Action.RecordDone(thumbnail))
+      this.mWorkerManager.postMessage(Action.recordDone(thumbnail))
     },
     onRecordFailure: (): void => {
       Log.info(`${this.TAG} functionBackImpl onRecordFailure`)
-      this.mWorkerManager.postMessage(Action.RecordError())
+      this.mWorkerManager.postMessage(Action.recordError())
     },
     thumbnail: (thumbnail: any): void => {
       Log.info(`${this.TAG} functionBackImpl thumbnail ${thumbnail}`)
-      this.mWorkerManager.postMessage(Action.LoadThumbnail(thumbnail))
+      this.mWorkerManager.postMessage(Action.loadThumbnail(thumbnail))
     }
   }
 
@@ -105,7 +106,7 @@ export class CameraBasicFunction extends Function {
   }
 
   private async changeMode(data) {
-    Log.info(`${this.TAG} changeMode ${JSON.stringify(data)} E`)
+    Log.info(`${this.TAG} changeMode wxx ${JSON.stringify(data)} E`)
     this.mCurrentMode = data.mode
     this.mCameraId = this.mCameraId.split('_').pop()
     Log.info(`${this.TAG} this.mCurrentMode = ${this.mCurrentMode}`)
@@ -118,8 +119,9 @@ export class CameraBasicFunction extends Function {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
-    this.mWorkerManager.postMessage(Action.OnModeChanged(this.mCurrentMode))
-    this.enableUi()
+    this.mWorkerManager.postMessage(Action.onModeChanged(this.mCurrentMode))
+    this.mWorkerManager.postMessage(Action.swipeModeChangeDone(false))
+//    this.enableUi()
     Log.info(`${this.TAG} changeMode X`)
   }
 
@@ -136,6 +138,9 @@ export class CameraBasicFunction extends Function {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
+    if (new Date().getTime() - globalThis.switchCameraTime > 2000) {
+      Trace.write(Trace.SWITCH_TIMEOUT)
+    }
     this.enableUi()
     Log.info(`${this.TAG} switchCamera X`)
   }
@@ -162,7 +167,6 @@ export class CameraBasicFunction extends Function {
     this.mEventBus.on(Action.ACTION_INIT, this.initCamera.bind(this))
     this.mEventBus.on(Action.ACTION_CHANGE_IMAGE_SIZE, this.imageSize.bind(this))
     this.mEventBus.on(Action.ACTION_CHANGE_VIDEO_SIZE, this.videoSize.bind(this))
-    //    this.mEventBus.on(Action.ACTION_SURFACE_ID_PREPARE, this.onSurfacePrepare.bind(this))
     this.mEventBus.on(Action.ACTION_PREPARE_SURFACE, this.onSurfacePrepare.bind(this))
     this.mEventBus.on(Action.ACTION_START_PREVIEW, this.startPreview.bind(this))
     this.mEventBus.on(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
@@ -177,7 +181,6 @@ export class CameraBasicFunction extends Function {
     this.mEventBus.off(Action.ACTION_INIT, this.initCamera.bind(this))
     this.mEventBus.off(Action.ACTION_CHANGE_IMAGE_SIZE, this.imageSize.bind(this))
     this.mEventBus.off(Action.ACTION_CHANGE_VIDEO_SIZE, this.videoSize.bind(this))
-    //    this.mEventBus.off(Action.ACTION_SURFACE_ID_PREPARE, this.onSurfacePrepare.bind(this))
     this.mEventBus.off(Action.ACTION_PREPARE_SURFACE, this.onSurfacePrepare.bind(this))
     this.mEventBus.off(Action.ACTION_START_PREVIEW, this.startPreview.bind(this))
     this.mEventBus.off(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))

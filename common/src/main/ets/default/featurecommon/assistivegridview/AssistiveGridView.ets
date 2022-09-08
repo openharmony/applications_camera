@@ -49,7 +49,7 @@ export struct AssistiveGridView {
   private xCHeight: number = 0
   @State state: any = {}
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
     getStore().connect(localState, localDispatcher)(this.state)
     let xComponentAssSize = this.settingManager.getPreviewDisplaySizeForAss(this.state.mode)

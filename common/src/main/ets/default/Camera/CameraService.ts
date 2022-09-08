@@ -25,6 +25,7 @@ import ThumbnailGetter from './ThumbnailGetter'
 import SaveCameraAsset from './SaveCameraAsset'
 import { SettingManager } from '../setting/SettingManager'
 import { CameraPlatformCapability } from './CameraPlatformCapability'
+import Trace from '../utils/Trace'
 
 export interface FunctionCallBack {
   onCaptureSuccess(thumbnail: any, resourceUri: any): void
@@ -42,6 +43,8 @@ export interface VideoCallBack {
   videoUri(videoUri: any): void
 }
 
+type Callback = (args?: any) => void
+
 export class CameraService {
   private TAG = '[CameraService]:'
   private mCameraId: string = CameraId.BACK
@@ -53,6 +56,7 @@ export class CameraService {
   private mFileAssetId = 0
   private mCameraManager!: camera.CameraManager
   private mCameraIdMap: Map<string, string> = new Map()
+  private mLocalCameraMap: Map<string, string> = new Map()
   private mCameraMap = new Map()
   private curCameraName = ''
   private mCameraCount = 0
@@ -85,17 +89,12 @@ export class CameraService {
     },
     url: 'file:///data/media/01.mp4',
     orientationHint: 0,
-    location: { latitude: 30, longitude: 130 },
     maxSize: 100,
     maxDuration: 500
   }
   private mCaptureSetting: any = {
     rotation: 0,
     quality: 1,
-    location: {
-      latitude: 12.9698,
-      longitude: 77.7500
-    },
     mirror: false
   }
   public mImageSize = {
@@ -131,7 +130,13 @@ export class CameraService {
           Log.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
           Log.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
           Log.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
-          Log.info(`${this.TAG} connectionType: ${cameras[i].cameraType}`)
+          Log.info(`${this.TAG} connectionType: ${cameras[i].connectionType}`)
+          if(cameras[i].cameraPosition === 2 && cameras[i].connectionType !== 2){
+            this.mLocalCameraMap.set('front', 'true')
+          }
+          if(cameras[i].cameraPosition !== 2 && cameras[i].connectionType !== 2){
+            this.mLocalCameraMap.set('back', 'true')
+          }
         }
         // TODO 根据底层信息匹配cameraId 目前默认第0个是back， 第1个是front
         this.mCameraIdMap.set(CameraId.BACK, cameras[0].cameraId);
@@ -163,6 +168,10 @@ export class CameraService {
 
   public getCameraIdMap() {
     return this.mCameraIdMap
+  }
+
+  public getLocalCameraMap() {
+    return this.mLocalCameraMap
   }
 
   public getCameraMap() {
@@ -261,24 +270,44 @@ export class CameraService {
     this.mCaptureSession = await camera.createCaptureSession(globalThis.cameraAbilityContext)
     this.isSessionCreating = false
     if ([...this.mSessionList].pop() === 'RELEASE') {
-      this.releaseSession()
+      await this.releaseSession()
     }
     this.mSessionList = []
 
     Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
     Log.info(`${this.TAG} createSession beginConfig.`)
-    await this.mCaptureSession?.beginConfig()
-    Log.info(`${this.TAG} createSession addInput.`)
-    await this.mCaptureSession?.addInput(this.mCameraInput)
-    if (!isVideo) {
-      Log.info(`${this.TAG} createSession photo addOutput.`)
-      await this.mCaptureSession?.addOutput(this.mPhotoOutPut)
+    Trace.start(Trace.STREAM_DISTRIBUTION)
+    try {
+      await this.mCaptureSession?.beginConfig()
+      Log.info(`${this.TAG} createSession addInput.`)
+      await this.mCaptureSession?.addInput(this.mCameraInput)
+      if (!isVideo) {
+        Log.info(`${this.TAG} createSession photo addOutput.`)
+        await this.mCaptureSession?.addOutput(this.mPhotoOutPut)
+      }
+      Log.info(`${this.TAG} createSession preview addOutput.`)
+      await this.mCaptureSession?.addOutput(this.mPreviewOutput)
+    } catch(err) {
+      if (err) {
+        Trace.write(Trace.CAMERA_ERROR)
+      }
     }
-    Log.info(`${this.TAG} createSession preview addOutput.`)
-    await this.mCaptureSession?.addOutput(this.mPreviewOutput)
     Log.info(`${this.TAG} createSession commitConfig.`)
-    await this.mCaptureSession?.commitConfig()
+    Trace.start(Trace.OPEN_CAMERA)
+    try {
+      await this.mCaptureSession?.commitConfig()
+    } catch(err) {
+      if (err) {
+        Trace.write(Trace.OPEN_FAIL)
+      }
+    }
+    Trace.end(Trace.OPEN_CAMERA)
+    Trace.end(Trace.STREAM_DISTRIBUTION)
     await this.mCaptureSession?.start()
+    if(globalThis.cameraStartFlag && (new Date().getTime() - globalThis.cameraStartTime) > 2000){
+      Trace.write(Trace.START_TIMEOUT)
+    }
+    globalThis.cameraStartFlag = false
     Log.info(`${this.TAG} createSession invoke X.`)
   }
 
@@ -295,7 +324,7 @@ export class CameraService {
       this.mCaptureSession = null
       this.isSessionReleasing = false
       if ([...this.mSessionList].pop() === 'CREATE') {
-        this.createSession(this.mSurfaceId, this.isVideo)
+        await this.createSession(this.mSurfaceId, this.isVideo)
       }
       this.mSessionList = []
     }
@@ -334,18 +363,28 @@ export class CameraService {
     if (this.mCameraId === CameraId.FRONT) {
       this.mCaptureSetting.mirror = SettingManager.getInstance().getSelfMirror()
     }
-    if (SettingManager.getInstance().getCurGeoLocation()) {
-      this.mCaptureSetting.location.latitude = SettingManager.getInstance().getCurGeoLocation().latitude
-      this.mCaptureSetting.location.longitude = SettingManager.getInstance().getCurGeoLocation().longitude
+    const locationData = SettingManager.getInstance().getCurGeoLocation()
+    if (locationData) {
+      this.mCaptureSetting.location = {
+        latitude: locationData.latitude,
+        longitude: locationData.longitude,
+        altitude: locationData.altitude
+      }
     }
     Log.info(`${this.TAG} takePicture captureSetting ${JSON.stringify(this.mCaptureSetting)}`)
-    let tempCaptureSetting: any = {
-      rotation: 0,
-      quality: 1
-    }
     // todo modify the location and mirror config
-    await this.mPhotoOutPut.capture(tempCaptureSetting)
+    try {
+      await this.mPhotoOutPut.capture(this.mCaptureSetting)
+    } catch(err) {
+      if(err){
+        Trace.write(Trace.CAPTURE_FAIL)
+      }
+    }
     Log.info(`${this.TAG} takePicture invoke X.`)
+    Trace.end(Trace.TAKE_PICTURE)
+    if((new Date().getTime() - globalThis.startCaptureTime) > 2000){
+      Trace.write(Trace.CAPTURE_TIMEOUT)
+    }
   }
 
   public async createVideoOutput(functionCallBack: VideoCallBack) {
@@ -362,6 +401,13 @@ export class CameraService {
       Log.info(`${this.TAG} createVideoOutput size = ${JSON.stringify(size)}`)
       this.mVideoConfig.profile.videoFrameWidth = size.width
       this.mVideoConfig.profile.videoFrameHeight = size.height
+      const locationData = SettingManager.getInstance().getCurGeoLocation()
+      if (locationData) {
+        this.mVideoConfig.location = {
+          latitude: locationData.latitude,
+          longitude: locationData.longitude
+        }
+      }
       Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
       Log.info(`${this.TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`)
       await this.mVideoRecorder.prepare(this.mVideoConfig)
@@ -388,13 +434,18 @@ export class CameraService {
   }
 
   public async StartRecording(functionCallBack: VideoCallBack) {
+    let startRecordingTime = new Date().getTime()
     Log.info(`${this.TAG} StartRecording invoke E.`)
     Log.info(`${this.TAG} StartRecording codec ${this.mVideoConfig.profile.videoCodec}`)
     await this.mCaptureSession.stop()
     await this.mCaptureSession.beginConfig()
     if (this.mVideoOutput) {
-      await this.mCaptureSession.removeOutput(this.mVideoOutput)
-      Log.info(`${this.TAG} old videoOutput has been removed.`)
+      try {
+        await this.mCaptureSession.removeOutput(this.mVideoOutput)
+        Log.info(`${this.TAG} old videoOutput has been removed.`)
+      } catch (err) {
+        Log.error(`${this.TAG} remove videoOutput ${err}`)
+      }
     }
     await this.createVideoOutput(functionCallBack)
     await this.mCaptureSession.addOutput(this.mVideoOutput)
@@ -411,9 +462,14 @@ export class CameraService {
     })
     this.mIsStartRecording = true
     Log.info(`${this.TAG} StartRecording invoke X.`)
+    if(new Date().getTime() - startRecordingTime > 2000){
+      Trace.write(Trace.START_RECORD_TIMEOUT)
+    }
   }
 
   public async stopRecording() {
+    Trace.start(Trace.STOP_RECORDING)
+    let stopRecordingTime = new Date().getTime()
     Log.info(`${this.TAG} stopRecording invoke E.`)
     if (!this.mVideoOutput || !this.mVideoRecorder) {
       Log.error(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
@@ -423,6 +479,7 @@ export class CameraService {
     this.mIsStartRecording = false
     try {
       await this.mVideoRecorder.stop()
+      await this.mVideoRecorder.release()
     } catch (err) {
       Log.error(`${this.TAG} stop videoRecorder ${err}`)
     }
@@ -438,9 +495,14 @@ export class CameraService {
       this.mFileAssetId = undefined
       Log.info(`${this.TAG} fileAsset.close().`)
     }
-
+    Trace.start(Trace.UPDATE_VIDEO_THUMBNAIL)
     const thumbnailPixelMap = await this.mThumbnailGetter.getThumbnailInfo(40, 40)
+    Trace.end(Trace.UPDATE_VIDEO_THUMBNAIL)
     Log.info(`${this.TAG} stopRecording invoke X.`)
+    if(new Date().getTime() - stopRecordingTime > 2000){
+      Trace.write(Trace.FINISH_RECORD_TIMEOUT)
+    }
+    Trace.end(Trace.STOP_RECORDING)
     return thumbnailPixelMap
   }
 
@@ -547,7 +609,7 @@ export class CameraService {
     return this.mThumbnail
   }
 
-  public async getMultiCameraInfo() {
+  public async getMultiCameraInfo(callback: Callback) {
     Log.info(`${this.TAG} getMultiCameraInfo called.`)
     //    return ['MatePad Pro（前置）', 'MatePad Pro（后置）']
     const deviceNames = []
@@ -590,6 +652,7 @@ export class CameraService {
           }
         })
         this.mCameraMap = new Map(cameraMap)
+        callback()
       }
     })
   }

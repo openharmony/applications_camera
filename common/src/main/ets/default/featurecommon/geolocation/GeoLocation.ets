@@ -22,12 +22,12 @@ export class GeoLocation {
   private static instance: GeoLocation
   private mLocation = undefined
   private requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0}
-  private locationChange = (err, location) => {
-    Log.info(`[GeoLocation]: locationChange err: ${err}`)
-    if (!err) {
+  private locationChange = (location) => {//删掉参数err及相关逻辑
+//    Log.info(`[GeoLocation]: locationChange err: ${err}`)
+//    if (!err) {
       Log.info(`[GeoLocation]: locationChange: ${location}`)
       SettingManager.getInstance().setCurGeoLocation(location)
-    }
+//    }
   }
 
   private Constructor() {}
@@ -48,10 +48,12 @@ export class GeoLocation {
     geolocation.isLocationEnabled().then((result) => {
       Log.info(`${this.TAG} isLocationEnabled: ${result}`)
       if (result) {
-        var curRequestInfo = {'priority': 0x203, 'scenario': 0x300,'maxAccuracy': 0}
+        var curRequestInfo = {'priority': 0x203, 'scenario': 0x300, 'maxAccuracy': 1000}
         geolocation.getCurrentLocation(curRequestInfo).then((result) => {
           Log.info(`${this.TAG} on getCurrentLocation result: ${JSON.stringify(result)}`)
           SettingManager.getInstance().setCurGeoLocation(result)
+        }).catch((err) => {
+          Log.info(`${this.TAG} on getCurrentLocation err result: ${JSON.stringify(err)}`)
         })
         geolocation.on('locationChange', this.requestInfo, this.locationChange)
       }

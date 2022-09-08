@@ -59,17 +59,17 @@ let indexState = (state: OhCombinedState) => {
 let indexDispatcher = (dispatch) => {
   return {
     initFootBarHeight: (footBarHeight: number) => {
-      dispatch(Action.InitFootBarHeight(footBarHeight))
+      dispatch(Action.initFootBarHeight(footBarHeight))
     },
     setPermissionFlag: (permissionFlag: boolean) => {
       console.info(`CameraApp setPermissionFlag: ${permissionFlag}`)
-      dispatch(Action.SetPermissionFlag(permissionFlag))
+      dispatch(Action.setPermissionFlag(permissionFlag))
     },
     initAction: (action: string) => {
-      dispatch(Action.InitAction(action))
+      dispatch(Action.initAction(action))
     },
     initCameraPosition: (cameraPosition: string) => {
-      dispatch(Action.SetCameraPosition(cameraPosition))
+      dispatch(Action.setCameraPosition(cameraPosition))
     },
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
@@ -79,9 +79,13 @@ let indexDispatcher = (dispatch) => {
     },
     stopRecording: () => {
       dispatch(Action.stopRecording())
-      dispatch(Action.UpdateVideoState('beforeTakeVideo'))
-      dispatch(Action.UpdateBigVideoTimerVisible(false))
-      dispatch(Action.UpdateSmallVideoTimerVisible(false))
+      dispatch(Action.updateVideoState('beforeTakeVideo'))
+      dispatch(Action.updateBigVideoTimerVisible(false))
+      dispatch(Action.updateSmallVideoTimerVisible(false))
+    },
+    resetRecordingTime: () => {
+      dispatch(Action.updateRecordingTime(0))
+      dispatch(Action.updateRecordingTimeDisplay('00:00'))
     }
   }
 }
@@ -124,7 +128,8 @@ struct Index {
         "ohos.permission.MICROPHONE",
         "ohos.permission.DISTRIBUTED_DATASYNC",
         "ohos.permission.LOCATION",
-        "ohos.permission.LOCATION_IN_BACKGROUND"
+        "ohos.permission.LOCATION_IN_BACKGROUND",
+//        "ohos.permission.APPROXIMATELY_LOCATION"
       ]
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
       globalThis.cameraAbilityContext.requestPermissionsFromUser(permissionList).then((data) => {
@@ -165,6 +170,7 @@ struct Index {
     this.state.setPermissionFlag(globalThis.permissionFlag)
     let curCameraId = AppStorage.Get<string>('storageCameraId')
     if(curCameraId) this.state.initCameraPosition(curCameraId)
+    this.state.resetRecordingTime()
   }
 
   aboutToDisappear(): void {

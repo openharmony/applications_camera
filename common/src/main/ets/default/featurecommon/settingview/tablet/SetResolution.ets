@@ -33,7 +33,7 @@ let localState = (state) => {
 let localDispatcher = (dispatch) => {
   return {
     closeDialog: (isCloseFlag: boolean) => {
-      dispatch(Action.CloseDialog(isCloseFlag))
+      dispatch(Action.closeDialog(isCloseFlag))
     }
   }
 }
@@ -78,7 +78,7 @@ export struct SetResolution {
     Log.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
   }
 
-  private aboutToAppear(): void {
+  aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
     getStore().connect(localState, localDispatcher)(this.state)
     Log.info(`${this.TAG} aboutToAppear this.closeFlag ${this.closeFlag}`)
@@ -123,7 +123,7 @@ export struct SetResolution {
 
         Row() {
           Text(this.formatCurCheckName(this.curCheckName))
-            .fontColor($r('app.color.font_color_99FFFFFF'))
+            .fontColor($r('app.color.font_color_FFFFFF'))
             .fontSize($r("sys.float.ohos_id_text_size_body2"))
             .opacity(0.6)
             .fontWeight(FontWeight.Regular)
@@ -131,7 +131,7 @@ export struct SetResolution {
           Image($r("app.media.ic_public_arrow_right"))
             .width(12)
             .height(24)
-            .fillColor('#66FFFFFF')
+            .fillColor('#FFFFFF')
             .opacity(0.4)
             .opacity($r('app.float.opacity_4'))
             .margin({ left: 4 })
@@ -140,10 +140,6 @@ export struct SetResolution {
       .height(64)
       .padding({ left: 12, right: 12 })
     }
-    .margin({
-      top: $r("sys.float.ohos_id_text_paragraph_margin_xs"),
-      bottom: $r("sys.float.ohos_id_text_paragraph_margin_xs")
-    })
     .width(this.WH_100_100)
     .height(56)
     .onClick(() => {

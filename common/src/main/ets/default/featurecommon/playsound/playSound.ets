@@ -31,10 +31,10 @@ export class PlaySound {
   private isReleased: boolean = true
 
   constructor() {
-    this.appEventBus.on(Action.ACTION_RECORD_START, this.playRecordStart.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.playRecordStop.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.playRecordStart.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_STOP, this.playRecordStop.bind(this))
+//    this.appEventBus.on(Action.ACTION_RECORD_START, this.playRecordStart.bind(this))
+//    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.playRecordStop.bind(this))
+//    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.playRecordStart.bind(this))
+//    this.appEventBus.on(Action.ACTION_RECORD_STOP, this.playRecordStop.bind(this))
     this.appEventBus.on(Action.ACTION_CAPTURE, this.playCapture.bind(this))
   }
 
@@ -76,11 +76,11 @@ export class PlaySound {
     audioPlayer.on('dataLoad', () => {
       audioPlayer.play()
     })
-    audioPlayer.on('finish', (err, action) => {
-      if (err) {
-        Log.info(`${this.TAG} audioPlayer paly is finish: ${err}`)
-        return
-      }
+    audioPlayer.on('finish', () => {//删掉参数err, action及相关逻辑
+//      if (err) {
+//        Log.info(`${this.TAG} audioPlayer paly is finish: ${err}`)
+//        return
+//      }
       audioPlayer.release()
       if (this.fdNumber !== 0) {
         fileIO.closeSync(this.fdNumber)

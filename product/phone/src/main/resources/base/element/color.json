@@ -31,6 +31,10 @@
     {
       "name": "background_color_333333",
       "value": "#333333"
+    },
+    {
+      "name": "startWindowBackground",
+      "value": "#FFFFFF"
     }
   ]
 }

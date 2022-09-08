@@ -23,7 +23,7 @@ export class RecordFunction extends Function {
   private functionBackImpl: VideoCallBack = {
     videoUri: (videoUri: any): void => {
       Log.info(`${this.TAG} functionBackImpl videoUri ${videoUri}`)
-      this.mWorkerManager.postMessage(Action.UpdateVideoUri(videoUri))
+      this.mWorkerManager.postMessage(Action.updateVideoUri(videoUri))
     }
   }
 
@@ -33,7 +33,7 @@ export class RecordFunction extends Function {
     await this.mCameraService.StartRecording(this.functionBackImpl)
     // TODO update video status in State by sending action
     // temp code
-    this.mWorkerManager.postMessage(Action.UpdateRecordingPaused(false))
+    this.mWorkerManager.postMessage(Action.updateRecordingPaused(false))
     this.enableUi()
     Log.info(`${this.TAG} startRecording X`)
   }
@@ -44,7 +44,7 @@ export class RecordFunction extends Function {
     await this.mCameraService.pauseRecording()
     // TODO update video status in State by sending action
     // temp code
-    this.mWorkerManager.postMessage(Action.UpdateRecordingPaused(true))
+    this.mWorkerManager.postMessage(Action.updateRecordingPaused(true))
     this.enableUi()
     Log.info(`${this.TAG} pauseRecording X`)
   }
@@ -55,7 +55,7 @@ export class RecordFunction extends Function {
     await this.mCameraService.resumeRecording()
     // TODO update video status in State by sending action
     // temp code
-    this.mWorkerManager.postMessage(Action.UpdateRecordingPaused(false))
+    this.mWorkerManager.postMessage(Action.updateRecordingPaused(false))
     this.enableUi()
     Log.info(`${this.TAG} resumeRecording X`)
   }
@@ -66,11 +66,11 @@ export class RecordFunction extends Function {
     const thumbnailPixelMap = await this.mCameraService.stopRecording()
     // TODO update video status in State by sending action
     // temp code
-    this.mWorkerManager.postMessage(Action.UpdateRecordingTime(0))
-    this.mWorkerManager.postMessage(Action.UpdateRecordingTimeDisplay('00:00'))
-    this.mWorkerManager.postMessage(Action.UpdateRecordingSpotVisible(false))
-    this.mWorkerManager.postMessage(Action.UpdateRecordingPaused(false))
-    this.mWorkerManager.postMessage(Action.UpdateThumbnail(thumbnailPixelMap, ''))
+    this.mWorkerManager.postMessage(Action.updateRecordingTime(0))
+    this.mWorkerManager.postMessage(Action.updateRecordingTimeDisplay('00:00'))
+    this.mWorkerManager.postMessage(Action.updateRecordingSpotVisible(false))
+    this.mWorkerManager.postMessage(Action.updateRecordingPaused(false))
+    this.mWorkerManager.postMessage(Action.updateThumbnail(thumbnailPixelMap, ''))
     this.enableUi()
     Log.info(`${this.TAG} stopRecording X`)
   }

@@ -1,24 +1,25 @@
 {
-	"license":"ISC",
-	"devDependencies":{},
-	"name":"camera",
-	"ohos":{
-		"org":"huawei",
-		"directoryLevel":"project",
-		"buildTool":"hvigor"
+	"license": "ISC",
+	"devDependencies": {},
+	"name": "camera",
+	"ohos": {
+		"org": "huawei",
+		"directoryLevel": "project",
+		"buildTool": "hvigor"
 	},
-	"description":"example description",
-	"repository":{},
-	"version":"1.0.0",
-	"dependencies":{
-		"@ohos/hvigor-ohos-plugin":"1.0.6",
-		"hypium":"^1.0.0",
-		"@ohos/hvigor":"1.0.6"
-	},
+	"description": "example description",
+	"repository": {},
 	"scripts": {
-		"assembleHap": "hvigor --m module assembleHap",
-		"assembleApp": "hvigor --m project assembleApp",
+		"assembleApp": "hvigor --mode project assembleApp",
+		"assembleHap": "hvigor --mode module assembleHap",
 		"assemblePhone": "hvigor --m module --prop module=phone assembleHap",
 		"assembleTablet": "hvigor --m module --prop module=tablet assembleHap"
+	},
+	"version": "1.0.0",
+	"dependencies": {
+		"@ohos/hvigor-ohos-plugin": "1.1.6",
+		"hypium": "^1.0.0",
+		"@ohos/hvigor": "1.1.6",
+		"@ohos/hypium": "1.0.1"
 	}
 }

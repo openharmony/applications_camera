@@ -31,19 +31,19 @@ let localState = (state: OhCombinedState) => {
 let localDispatcher = (dispatch) => {
   return {
     updateRecordingTime: (recordingTime: number) => {
-      dispatch(Action.UpdateRecordingTime(recordingTime))
+      dispatch(Action.updateRecordingTime(recordingTime))
     },
     updateSmallVideoTimerVisible: (visible: boolean) => {
-      dispatch(Action.UpdateSmallVideoTimerVisible(visible))
+      dispatch(Action.updateSmallVideoTimerVisible(visible))
     },
     updateBigVideoTimerVisible: (visible: boolean) => {
-      dispatch(Action.UpdateBigVideoTimerVisible(visible))
+      dispatch(Action.updateBigVideoTimerVisible(visible))
     },
     updateRecordingSpotVisible: (visible: boolean) => {
-      dispatch(Action.UpdateRecordingSpotVisible(visible))
+      dispatch(Action.updateRecordingSpotVisible(visible))
     },
     updateRecordingTimeDisplay: (timeDisplay: string) => {
-      dispatch(Action.UpdateRecordingTimeDisplay(timeDisplay))
+      dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
     }
   }
 }

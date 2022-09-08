@@ -29,7 +29,7 @@ let tabBarLandState = (state) => {
 let tabBarLandDispatcher = (dispatch) => {
   return {
     updateOpacityForTabBar: (opacityValue) => {
-      dispatch(Action.UpdateOpacityForTabBar(opacityValue))
+      dispatch(Action.updateOpacityForTabBar(opacityValue))
     }
   }
 }
