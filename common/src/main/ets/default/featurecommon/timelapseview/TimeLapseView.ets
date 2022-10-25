@@ -91,7 +91,6 @@ export struct TimeLapseView {
     getStore().connect(localState, localDispatcher)(this.state)
     this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
-    Log.info('12345678')
     switch(JSON.stringify(this.settingManager.getTimeLapse())){
       case JSON.stringify(Timer.RESOURCE_OFF):
         this.timerLapse = -1

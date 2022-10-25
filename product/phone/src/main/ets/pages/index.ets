@@ -129,7 +129,7 @@ struct Index {
         "ohos.permission.DISTRIBUTED_DATASYNC",
         "ohos.permission.LOCATION",
         "ohos.permission.LOCATION_IN_BACKGROUND",
-//        "ohos.permission.APPROXIMATELY_LOCATION"
+        "ohos.permission.APPROXIMATELY_LOCATION"
       ]
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
       globalThis.cameraAbilityContext.requestPermissionsFromUser(permissionList).then((data) => {

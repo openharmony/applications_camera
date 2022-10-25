@@ -26,6 +26,7 @@ import { ThumbnailView
 } from '../../../../../../common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition';
 
 let footBarLandState = (state: OhCombinedState) => {
   return {
@@ -33,6 +34,7 @@ let footBarLandState = (state: OhCombinedState) => {
     videoState: state.RecordReducer.videoState,
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
+    xComponentHeight: state.PreviewReducer.xComponentHeight,
   }
 }
 
@@ -46,6 +48,7 @@ export struct FootBarLand {
 
   @State state: any = {}
   @State isRecording: boolean = false
+  @Link screenSize: any
 
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
@@ -88,7 +91,7 @@ export struct FootBarLand {
       alignItems: ItemAlign.Center,
       justifyContent: FlexAlign.Center
     }) {
-      Column() {}.width('100%').height(160)
+      Column() {}.width('100%').height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height))
       Flex({
         direction: FlexDirection.Column,
         alignItems: ItemAlign.Center,
@@ -100,21 +103,23 @@ export struct FootBarLand {
           Column() {
           }.width('44').aspectRatio(1)
         }
-        ShutterButtonLand()
+        ShutterButtonLand({ screenSize: $screenSize })
         Column() {
           ThumbnailView()
         }.width(44).aspectRatio(1).visibility(this.isThumbnailViewVisibility() ? Visibility.Visible : Visibility.Hidden)
-      }.width('100%').height(260).margin({
-        top: $r("sys.float.ohos_id_text_paragraph_margin_xl"),
-        bottom: $r("sys.float.ohos_id_text_paragraph_margin_xl")
-      })
+      }.width('100%')
+      .height(ComponentPosition.getFootBarHeight(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight))
+      .margin({ top: ComponentPosition.getFootBarMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight),
+        bottom: ComponentPosition.getFootBarMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight) })
+      .position(ComponentPosition.getFootBarPosition(this.state.xComponentHeight))
 
       if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
-        ControlLand()
+        ControlLand({ screenSize: $screenSize })
+        .position(ComponentPosition.getControlPosition(this.state.xComponentHeight))
       } else {
         Column() {
-        }.width('100%').height(160)
+        }.width('100%').height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height))
       }
-    }.width(128).height('100%')
+    }.width(98).height('100%')
   }
 }

@@ -90,7 +90,7 @@ export class SettingListModel {
         result.settingTitle = $r('app.string.video_mode')
         result.settingChildren = []
         result.settingChildren[0] = this.buildVideoResolutionSettingItem()
-        result.settingChildren[1] = this.buildVideoCodecSettingItem()
+//        result.settingChildren[1] = this.buildVideoCodecSettingItem()
         return result;
     }
 

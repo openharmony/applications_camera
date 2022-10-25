@@ -63,6 +63,9 @@
       },
       {
         "name": "ohos.permission.LOCATION_IN_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION"
       }
     ],
     "abilities": [

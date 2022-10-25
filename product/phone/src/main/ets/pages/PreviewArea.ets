@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 
+import router from '@system.router';
 import display from '@ohos.display';
 import wantConstant from '@ohos.ability.wantConstant'
 import window from '@ohos.window';
@@ -207,6 +208,7 @@ export struct PreviewArea {
   @State btnSwitch: boolean = false
   @State btnSwitchSec: boolean = false
   @State isSwitchBackground: boolean = false
+  @State pageType: string = ''
   private isShowPreview: boolean = false
   private settingManager = SettingManager.getInstance()
   private pinchGestureTimer: number
@@ -215,6 +217,9 @@ export struct PreviewArea {
 
   private async onCameraInit(data) {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
+    if (!this.pageType) {
+      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+    }
     if (this.state.platformCapability) {
       //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
@@ -305,7 +310,7 @@ export struct PreviewArea {
     Log.debug(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`)
     // the build() can only be called when window is foreground
     if (isScreenOn && globalThis.cameraWindowStageEvent == window.WindowStageEventType.FOREGROUND) {
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+//      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
       this.state.initCamera(this.state.curCameraPosition, this.state.mode)
       this.state.initZoomRatio(1, 6)
     } else {
@@ -363,7 +368,11 @@ export struct PreviewArea {
   }
 
   aboutToAppear(): void {
-    Log.info(`${this.TAG} PreviewArea aboutToAppear`)
+    Log.info(`${this.TAG} PreviewArea aboutToAppear ${JSON.stringify(router.getParams())}`)
+    let routerParams = router.getParams()
+    if (routerParams && routerParams.pageType) {
+      this.pageType = routerParams.pageType.toString()
+    }
     getStore().connect(cameraState, cameraDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
@@ -375,8 +384,8 @@ export struct PreviewArea {
     })
 
     globalThis.onForegroundInit = (() => {
+      this.pageType = ''
       Log.info(`${this.TAG} globalThis.onForegroundInit called`)
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
       this.state.initCamera(this.state.curCameraPosition, this.state.mode)
       let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
       if (newWantAction) {

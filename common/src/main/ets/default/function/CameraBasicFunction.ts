@@ -27,6 +27,11 @@ export class CameraBasicFunction extends Function {
   private mCameraId: string = CameraId.BACK
   private mSurfaceId = ''
   private mCurrentMode = ''
+  private mSessionList = []
+  private isSessionCreating: boolean = false
+  private isSessionReleasing: boolean = false
+  private initDataCache: any = null
+  public startIdentification: boolean = false
 
   private functionBackImpl: FunctionCallBack = {
     onCaptureSuccess: (thumbnail: any, resourceUri: any): void => {
@@ -51,12 +56,25 @@ export class CameraBasicFunction extends Function {
     }
   }
 
-  private async initCamera(data) {
+  public async initCamera(data, callType?: string) {
+    globalThis.needInitCameraFlag = true
+    if (this.startIdentification) return
+    if (callType) this.startIdentification = true
     Log.info(`${this.TAG} initCamera ${JSON.stringify(data)}  E`)
+    if (globalThis.isClosingFlag) {
+      Log.info(`${this.TAG} initCamera isClosing return`)
+      return
+    }
+    this.mSessionList.push('CREATE')
     let curStorageCameraId = AppStorage.Get<string>('storageCameraId')
     if (curStorageCameraId) {
       data.cameraId = curStorageCameraId
     }
+    this.initDataCache = data
+    if (this.isSessionCreating || this.isSessionReleasing) {
+      return
+    }
+    this.isSessionCreating = true
     this.mCameraId = data.cameraId
     this.mCurrentMode = data.mode
     let mCameraCount = await this.mCameraService.initCamera(this.mCameraId)
@@ -64,6 +82,7 @@ export class CameraBasicFunction extends Function {
     await platformCapability.init(mCameraCount)
     this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability))
     this.mCameraService.getThumbnail(this.functionBackImpl)
+    globalThis.needInitCameraFlag = false
     Log.info(`${this.TAG} initCamera X`)
   }
 
@@ -89,6 +108,10 @@ export class CameraBasicFunction extends Function {
 
   private async startPreview() {
     Log.info(`${this.TAG} startPreview E`)
+    if (globalThis.isClosingFlag) {
+      Log.info(`${this.TAG} startPreview isClosing return `)
+      return
+    }
     if (!this.mSurfaceId) {
       Log.info(`${this.TAG} startPreview error mSurfaceId is null`)
       this.enableUi()
@@ -101,6 +124,11 @@ export class CameraBasicFunction extends Function {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
+    this.isSessionCreating = false
+    if ([...this.mSessionList].pop() === 'RELEASE') {
+      await this.close()
+    }
+    this.mSessionList = []
     this.enableUi()
     Log.info(`${this.TAG} startPreview X`)
   }
@@ -111,7 +139,7 @@ export class CameraBasicFunction extends Function {
     this.mCameraId = this.mCameraId.split('_').pop()
     Log.info(`${this.TAG} this.mCurrentMode = ${this.mCurrentMode}`)
     await this.mCameraService.releaseCamera()
-    await this.mCameraService.createCameraInput(this.mCameraId)
+    await this.mCameraService.createCameraInput(this.mCameraId, 'modeChange')
     await this.mCameraService.createPreviewOutput(this.mSurfaceId)
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
@@ -145,9 +173,28 @@ export class CameraBasicFunction extends Function {
     Log.info(`${this.TAG} switchCamera X`)
   }
 
-  private async close(data) {
-    Log.info(`${this.TAG} close ${JSON.stringify(data)} E`)
+  private async close() {
+    globalThis.isClosingFlag = true
+    this.mSessionList.push('RELEASE')
+    if (this.isSessionCreating || this.isSessionReleasing) {
+      return
+    }
+    this.isSessionReleasing = true
     await this.mCameraService.releaseCamera()
+    this.startIdentification = false
+    this.isSessionReleasing = false
+    globalThis.isClosingFlag = false
+    if ([...this.mSessionList].pop() === 'CREATE') {
+      await this.initCamera(this.initDataCache)
+    }
+    this.mSessionList = []
+
+    if (globalThis.needInitCameraFlag) {
+      globalThis.needInitCameraFlag = false
+      Log.info(`${this.TAG} close needInitCamera`)
+      await this.initCamera(this.initDataCache)
+      await this.startPreview()
+    }
     Log.info(`${this.TAG} close X`)
   }
 
@@ -160,6 +207,13 @@ export class CameraBasicFunction extends Function {
     Log.info(`${this.TAG} loadThumbnail E`)
     this.mCameraService.getThumbnail(this.functionBackImpl)
     Log.info(`${this.TAG} loadThumbnail X`)
+  }
+
+  static getInstance() {
+    if (!globalThis?.cameraBasicMethod) {
+      globalThis.cameraBasicMethod = new CameraBasicFunction()
+    }
+    return globalThis.cameraBasicMethod
   }
 
   load(): void {
