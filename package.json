@@ -1,25 +1,27 @@
 {
-	"license": "ISC",
-	"devDependencies": {},
-	"name": "camera",
-	"ohos": {
-		"org": "huawei",
-		"directoryLevel": "project",
-		"buildTool": "hvigor"
+	"license":"ISC",
+	"devDependencies":{},
+	"name":"camera",
+	"ohos":{
+		"org":"huawei",
+		"directoryLevel":"project",
+		"buildTool":"hvigor"
 	},
-	"description": "example description",
-	"repository": {},
-	"scripts": {
-		"assembleApp": "hvigor --mode project assembleApp",
-		"assembleHap": "hvigor --mode module assembleHap",
-		"assemblePhone": "hvigor --m module --prop module=phone assembleHap",
-		"assembleTablet": "hvigor --m module --prop module=tablet assembleHap"
+	"description":"example description",
+	"repository":{},
+	"scripts":{
+		"assembleApp":"hvigor --mode project assembleApp",
+		"assembleHap":"hvigor --mode module assembleHap",
+		"assemblePhone":"hvigor --m module --prop module=phone assembleHap",
+		"assembleTablet":"hvigor --m module --prop module=tablet assembleHap"
 	},
-	"version": "1.0.0",
-	"dependencies": {
-		"@ohos/hvigor-ohos-plugin": "1.1.6",
-		"hypium": "^1.0.0",
-		"@ohos/hvigor": "1.1.6",
-		"@ohos/hypium": "1.0.1"
+	"version":"1.0.0",
+	"dependencies":{
+		"@ohos/hypium":"1.0.2",
+		"@ohos/hvigor-base":"1.0.6",
+		"@ohos/hvigor-ohos-plugin":"1.2.2",
+		"hypium":"^1.0.0",
+		"@ohos/hvigor":"1.2.2",
+		"@ohos/sdkmanager-common":"^1.1.1"
 	}
 }
