@@ -63,6 +63,9 @@
       },
       {
         "name": "ohos.permission.LOCATION_IN_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION"
       }
     ],
     "abilities": [
@@ -87,7 +90,9 @@
               "ohos.want.action.videoCapture"
             ]
           }
-        ]
+        ],
+        "minWindowHeight": 558,
+        "minWindowWidth": 844,
       }
     ],
     "extensionAbilities": [

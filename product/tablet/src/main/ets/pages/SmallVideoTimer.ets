@@ -52,8 +52,6 @@ export struct SmallVideoTimer {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
 
-  @State timerPosition: number= 0
-
   private async onRecordPaused(data) {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
     clearInterval(this.timer)
@@ -70,9 +68,6 @@ export struct SmallVideoTimer {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
-    display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height) * (4 / 3)
-    })
     this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
@@ -131,8 +126,8 @@ export struct SmallVideoTimer {
 //        Text(this.showMinute).margin({ left: 8 }).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
       }.layoutWeight(1)
       Text(":").fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
-      Text(`${this.state.recordingTimeDisplay.split(':')[1]}`).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
+      Text(`${this.state.recordingTimeDisplay.split(':')[1]}`).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).align(Alignment.Start).layoutWeight(1)
 //      Text(this.showSecond).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
-    }.width(this.timerPosition == 0 ? '100%' : this.timerPosition).height(48)
+    }.width('100%').height(48)
   }
 }

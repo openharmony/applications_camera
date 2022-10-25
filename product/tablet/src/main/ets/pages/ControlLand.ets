@@ -20,6 +20,7 @@ import { SettingManager } from '../../../../../../common/src/main/ets/default/se
 import wantConstant from '@ohos.ability.wantConstant';
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition';
 
 let controlLandState = (state: OhCombinedState) => {
   return {
@@ -30,7 +31,7 @@ let controlLandState = (state: OhCombinedState) => {
     uiEnable: state.ContextReducer.uiEnable,
     modeIndex: state.ModeReducer.modeIndex,
     mode: state.ModeReducer.mode,
-    isShowMoreList: state.ModeReducer.isShowMoreList
+    isShowMoreList: state.ModeReducer.isShowMoreList,
   }
 }
 
@@ -78,6 +79,7 @@ export struct ControlLand {
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0
+  @Link screenSize: any
 
 
   aboutToAppear(): void {
@@ -121,7 +123,7 @@ export struct ControlLand {
   private changeToMode(modeIndex: number, callType?: string) {
     Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
     this.scroller.scrollToIndex(modeIndex)
-    if (callType === 'begin') return
+    if (callType === 'begin') return;
     if (this.modeArray[modeIndex] !== this.state.mode) {
 //      if ( modeIndex !== 3 ) {
 //        this.closeMoreListView()
@@ -198,9 +200,10 @@ export struct ControlLand {
           }.layoutWeight(1).height('100%')
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            ListItem() {
-            }.width('100%').height(32)
-
+            if(ComponentPosition.isUnfoldControl(this.screenSize.width, this.screenSize.height)) {
+              ListItem() {
+              }.width('100%').height(32)
+            }
             ListItem() {
             }.width('100%').height(32)
 
@@ -263,7 +266,7 @@ export struct ControlLand {
             }.width('100%').height(32)
           }
           .layoutWeight(1)
-          .height(160)
+          .height('100%')
           .edgeEffect(EdgeEffect.None)
           .chainAnimation(false)
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
@@ -294,8 +297,8 @@ export struct ControlLand {
           Column() {
           }.borderRadius(3).width(6).height(6).backgroundColor('#1095E8')
           //            .shadow({radius: 5, color: 'argb(#7F000000)', offsetX: 0, offsetY: 0})
-        }.width(26).height(160).margin({ left: 8 })
+        }.width(11).height('100%').margin({ left: 8 })
       }.width('100%').height('100%')
-    }.width(128).height(160).zIndex(2)
+    }.width(98).height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height)).zIndex(2)
   }
 }

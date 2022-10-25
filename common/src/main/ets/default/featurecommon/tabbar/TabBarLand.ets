@@ -49,46 +49,44 @@ export struct TabBarLand {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
-      Flex({ direction: FlexDirection.ColumnReverse, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-          Image($r("app.media.setting")).width(24).height(24)
-            .onClick(() => {
-              router.replace({
-//                params: {
-//                  position: this.cameraPosition,
-//                  mode: this.previewImage
-//                },
-                uri: "pages/SettingView" })
-            })
-        }.width('100%').height('20%')
+    Flex({ direction: FlexDirection.ColumnReverse, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Image($r("app.media.setting")).width(24).height(24)
+          .onClick(() => {
+            router.replace({
+              //                params: {
+              //                  position: this.cameraPosition,
+              //                  mode: this.previewImage
+              //                },
+              uri: "pages/SettingView" })
+          })
+      }.width('100%').height('20%')
 
-//        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-//          TabBarOther()
-//        }.width('100%').height('20%')
-//        .opacity(this.state.opacityValueForTabBar)
-//        .animation({
-//          duration: 2000,
-//          curve: Curve.Sharp,
-//          delay: 0,
-//          iterations: 1,
-//          playMode: PlayMode.Normal
-//        })
-//
-//        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-//          TabBarSame()
-//        }
-//        .position({ y: this.state.widthTabBar })
-//        .width('100%')
-//        .height('20%')
-//        .animation({
-//          duration: 2000,
-//          curve: Curve.Sharp,
-//          delay: 0,
-//          iterations: 1,
-//          playMode: PlayMode.Normal
-//        })
-      }.width('100%').height(360).margin({ bottom: 44 })
-    }.width(48).height('100%').position({ x: 0, y: 0 })
+      //        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      //          TabBarOther()
+      //        }.width('100%').height('20%')
+      //        .opacity(this.state.opacityValueForTabBar)
+      //        .animation({
+      //          duration: 2000,
+      //          curve: Curve.Sharp,
+      //          delay: 0,
+      //          iterations: 1,
+      //          playMode: PlayMode.Normal
+      //        })
+      //
+      //        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      //          TabBarSame()
+      //        }
+      //        .position({ y: this.state.widthTabBar })
+      //        .width('100%')
+      //        .height('20%')
+      //        .animation({
+      //          duration: 2000,
+      //          curve: Curve.Sharp,
+      //          delay: 0,
+      //          iterations: 1,
+      //          playMode: PlayMode.Normal
+      //        })
+    }.width(48).height(360)
   }
 }
