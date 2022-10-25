@@ -31,7 +31,8 @@ let footBarState = (state: OhCombinedState) => {
     platformCapability: state.CameraInitReducer.platformCapability,
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     videoState: state.RecordReducer.videoState,
-    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue
+    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
+    mode: state.ModeReducer.mode
   }
 }
 
@@ -90,7 +91,8 @@ export struct FootBar {
         ThumbnailView()
       }.width(44).aspectRatio(1).visibility(this.isThumbnailViewVisibility() ? Visibility.Visible : Visibility.Hidden)
       ShutterButton()
-      if (this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording && deviceInfo.deviceType !== "default") {
+      if (this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording && this.state.mode === 'MULTI'
+      && deviceInfo.deviceType != 'default') {
         CameraSwitchButton()
       } else {
         Column() {

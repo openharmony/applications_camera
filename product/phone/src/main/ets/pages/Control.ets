@@ -268,10 +268,10 @@ export struct Control {
             if (event.type === TouchType.Down) {
               this.touchOff = true
               this.index = this.modeArray.indexOf(this.state.mode)
-              this.startScroll = event.touches[0].screenY
+              this.startScroll = event.touches[0].screenX
             }
             if (event.type === TouchType.Up) {
-              this.endScroll = event.touches[0].screenY
+              this.endScroll = event.touches[0].screenX
               this.scrollDistance = px2vp(this.endScroll - this.startScroll)
               this.touchOff = false
               this.scrollSwitchMode('touch')

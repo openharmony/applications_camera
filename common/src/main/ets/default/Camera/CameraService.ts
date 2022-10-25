@@ -49,9 +49,6 @@ export class CameraService {
   private TAG = '[CameraService]:'
   private mCameraId: string = CameraId.BACK
   private mSurfaceId = ''
-  private mSessionList = []
-  private isSessionCreating: boolean = false
-  private isSessionReleasing: boolean = false
   private isVideo: boolean = false
   private mFileAssetId = 0
   private mCameraManager!: camera.CameraManager
@@ -70,6 +67,8 @@ export class CameraService {
   private mIsStartRecording = false
   private mSaveCameraAsset = new SaveCameraAsset()
   private mThumbnailGetter = new ThumbnailGetter()
+  private camerasCache: any = null
+  private outputCapability: camera.CameraOutputCapability = null
 
   private mVideoConfig: any = {
     audioSourceType: 1,
@@ -77,12 +76,12 @@ export class CameraService {
     profile: {
       audioBitrate: 48000,
       audioChannels: 2,
-      audioCodec: 'audio/mp4v-es',
+      audioCodec: 'audio/mp4a-latm',
       audioSampleRate: 48000,
       durationTime: 1000,
       fileFormat: 'mp4',
       videoBitrate: 48000,
-      videoCodec: 'video/mp4v-es',
+      videoCodec: 'video/avc',
       videoFrameWidth: 640,
       videoFrameHeight: 480,
       videoFrameRate: 30
@@ -90,7 +89,8 @@ export class CameraService {
     url: 'file:///data/media/01.mp4',
     orientationHint: 0,
     maxSize: 100,
-    maxDuration: 500
+    maxDuration: 500,
+    rotation: 0
   }
   private mCaptureSetting: any = {
     rotation: 0,
@@ -121,7 +121,8 @@ export class CameraService {
     Log.info(`${this.TAG} initCamera invoke E.`)
     if (!this.mCameraManager) {
       this.mCameraManager = await camera.getCameraManager(globalThis.cameraAbilityContext)
-      const cameras = await this.mCameraManager.getCameras()
+      const cameras = await this.mCameraManager.getSupportedCameras()
+      this.camerasCache = cameras
       this.mCameraCount = cameras.length
       if (cameras) {
         Log.info(`${this.TAG} getCameras success.`)
@@ -140,7 +141,7 @@ export class CameraService {
         }
         // TODO 根据底层信息匹配cameraId 目前默认第0个是back， 第1个是front
         this.mCameraIdMap.set(CameraId.BACK, cameras[0].cameraId);
-        if (cameras.length > 1) {
+        if (cameras.length > 1 && cameras[1].connectionType !== 2) {
           this.mCameraIdMap.set(CameraId.FRONT, cameras[1].cameraId);
         } else {
           this.mCameraIdMap.set(CameraId.FRONT, cameras[0].cameraId);
@@ -148,15 +149,13 @@ export class CameraService {
       }
     }
     this.curCameraName = cameraId
-    await this.createCameraInput(cameraId)
+    await this.createCameraInput(cameraId, 'init')
 
     Log.info(`${this.TAG} deviceType = ${deviceInfo.deviceType}`)
     if (deviceInfo.deviceType == 'default') {
       this.mVideoConfig.videoSourceType = 1
-      this.mVideoConfig.profile.videoCodec = 'video/mp4v-es'
     } else {
       this.mVideoConfig.videoSourceType = 0
-      this.mVideoConfig.profile.videoCodec = 'video/avc'
     }
     return this.mCameraCount
     Log.info(`${this.TAG} initCamera invoke X.`)
@@ -182,10 +181,17 @@ export class CameraService {
     return this.mCameraCount
   }
 
-  public async createCameraInput(cameraName: string) {
+  public async createCameraInput(cameraName: string, callType?: string) {
     Log.info(`${this.TAG} createCameraInput invoke E.`)
     this.mCameraId = cameraName
     this.curCameraName = cameraName
+    if (callType === 'modeChange' || callType === 'init') {
+      let targetCamera = this.camerasCache.filter(item=>item.connectionType !== 2)
+      if (targetCamera && targetCamera.length <= 1 && cameraName === 'BACK') {
+        this.curCameraName = 'FRONT'
+        this.mCameraId = 'FRONT'
+      }
+    }
     if (this.mCameraInput) {
       this.mCameraInput.release()
     }
@@ -196,9 +202,13 @@ export class CameraService {
       id = this.mCameraMap.get(cameraName).cameraId
     }
     Log.info(`${this.TAG} createCameraInput id = ${id}`)
-    this.mCameraInput = await this.mCameraManager.createCameraInput(id)
+    let cameras = await this.getCameraLists()
+    let targetCamera = cameras.find(item => item.cameraId === id)
+    this.outputCapability = await this.mCameraManager.getSupportedOutputCapability(targetCamera)
+    this.mCameraInput = await this.mCameraManager.createCameraInput(targetCamera)
+    await this.mCameraInput.open()
     const platformCapability = CameraPlatformCapability.getInstance()
-    await platformCapability.calcSupportedSizes(this.mCameraInput)
+    await platformCapability.calcSupportedSizes(this.mCameraInput, this.outputCapability)
     SettingManager.getInstance().setCameraPlatformCapability(platformCapability)
     Log.info(`${this.TAG} createCameraInput invoke X.`)
   }
@@ -221,8 +231,19 @@ export class CameraService {
     this.mSurfaceId = surfaceId
     const size = SettingManager.getInstance().getPreviewSize()
     Log.info(`${this.TAG} createPreviewOutput size = ${JSON.stringify(size)}`)
-    globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height })
-    this.mPreviewOutput = await camera.createPreviewOutput(surfaceId)
+    globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width , surfaceHeight: size.height })
+    let previewProfiles = this.outputCapability.previewProfiles
+    let previewProfile;
+    if (deviceInfo.deviceType == 'default') {
+      previewProfile = previewProfiles[0]
+    } else if (deviceInfo.deviceType == 'phone') {
+      previewProfile = previewProfiles.find(item => item.size.height < 1080 && item.format === 1003)
+    } else {
+      Log.info(`${this.TAG} previewProfiles length.` + previewProfiles.length)
+      previewProfile = previewProfiles.find(item => item.size.width === size.width
+      && item.size.height === size.height && item.format === 1003)
+    }
+    this.mPreviewOutput = await this.mCameraManager.createPreviewOutput(previewProfile, surfaceId)
     Log.info(`${this.TAG} createPreviewOutput invoke ${this.mPreviewOutput} X.`)
   }
 
@@ -243,7 +264,15 @@ export class CameraService {
     Log.info(`${this.TAG} createPhotoOutput receiver: ${receiver}.`)
     const surfaceId = await receiver.getReceivingSurfaceId()
     Log.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
-    this.mPhotoOutPut = await camera.createPhotoOutput(surfaceId)
+    let photoProfiles = this.outputCapability.photoProfiles
+    let photoProfile;
+    if (deviceInfo.deviceType == 'default') {
+      photoProfile = photoProfiles[0]
+    } else {
+      Log.info(`${this.TAG} videoProfiles length.` + photoProfiles.length)
+      photoProfile = photoProfiles.find(item => item.size.width === size.width && item.size.height === size.height)
+    }
+    this.mPhotoOutPut = await this.mCameraManager.createPhotoOutput(photoProfile, surfaceId)
     Log.info(`${this.TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`)
     this.mSaveCameraAsset.saveImage(receiver, 40, 40, this.mThumbnailGetter, functionCallback)
     Log.info(`${this.TAG} createPhotoOutput invoke X.`)
@@ -260,25 +289,15 @@ export class CameraService {
 
   public async createSession(surfaceId: string, isVideo: boolean) {
     Log.info(`${this.TAG} createSession invoke E.`)
-    this.mSessionList.push('CREATE')
     this.mSurfaceId = surfaceId
     this.isVideo = isVideo
-    if (this.isSessionCreating || this.isSessionReleasing) {
-      return
-    }
-    this.isSessionCreating = true
-    this.mCaptureSession = await camera.createCaptureSession(globalThis.cameraAbilityContext)
-    this.isSessionCreating = false
-    if ([...this.mSessionList].pop() === 'RELEASE') {
-      await this.releaseSession()
-    }
-    this.mSessionList = []
-
+    this.mCaptureSession = await this.mCameraManager.createCaptureSession()
     Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
     Log.info(`${this.TAG} createSession beginConfig.`)
     Trace.start(Trace.STREAM_DISTRIBUTION)
     try {
       await this.mCaptureSession?.beginConfig()
+      await new Promise((resolve) => setTimeout(resolve, 1));
       Log.info(`${this.TAG} createSession addInput.`)
       await this.mCaptureSession?.addInput(this.mCameraInput)
       if (!isVideo) {
@@ -313,20 +332,10 @@ export class CameraService {
 
   public async releaseSession() {
     Log.info(`${this.TAG} releasePhotoSession invoke E.`)
-    this.mSessionList.push('RELEASE')
     if (this.mCaptureSession) {
-      if (this.isSessionCreating || this.isSessionReleasing) {
-        return
-      }
-      this.isSessionReleasing = true
       await this.mCaptureSession.stop()
       await this.mCaptureSession.release()
       this.mCaptureSession = null
-      this.isSessionReleasing = false
-      if ([...this.mSessionList].pop() === 'CREATE') {
-        await this.createSession(this.mSurfaceId, this.isVideo)
-      }
-      this.mSessionList = []
     }
     Log.info(`${this.TAG} releasePhotoSession invoke X.`)
   }
@@ -396,8 +405,8 @@ export class CameraService {
       Log.info(`${this.TAG} createVideoOutput createVideoRecorder record: ${recorder}`)
       this.mVideoRecorder = recorder
     })
+    const size = SettingManager.getInstance().getVideoSize()
     if (this.mVideoRecorder != null) {
-      const size = SettingManager.getInstance().getVideoSize()
       Log.info(`${this.TAG} createVideoOutput size = ${JSON.stringify(size)}`)
       this.mVideoConfig.profile.videoFrameWidth = size.width
       this.mVideoConfig.profile.videoFrameHeight = size.height
@@ -406,6 +415,14 @@ export class CameraService {
         this.mVideoConfig.location = {
           latitude: locationData.latitude,
           longitude: locationData.longitude
+        }
+      }
+      let settingManagerData = SettingManager.getInstance()
+      if (settingManagerData.mScreenWidth < settingManagerData.mScreenHeight) {
+        if (this.curCameraName === 'BACK') {
+          this.mVideoConfig.rotation = 90
+        } else {
+          this.mVideoConfig.rotation = 270
         }
       }
       Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
@@ -417,8 +434,19 @@ export class CameraService {
       return
     }
 
+    let profileVideo;
+    if (deviceInfo.deviceType == 'default') {
+      profileVideo = this.outputCapability.videoProfiles[0]
+    } else {
+      let videoProfiles = this.outputCapability.videoProfiles
+      Log.info(`${this.TAG} videoProfiles length.` + videoProfiles.length)
+      profileVideo = videoProfiles.find(item =>
+      item.size.width === size.width && item.size.height === size.height
+      )
+    }
+
     const videoId = await this.mVideoRecorder.getInputSurface()
-    this.mVideoOutput = await camera.createVideoOutput(videoId)
+    this.mVideoOutput = await this.mCameraManager.createVideoOutput(profileVideo, videoId)
     Log.info(`${this.TAG} createVideoOutput invoke X.`)
   }
 
@@ -444,6 +472,7 @@ export class CameraService {
         await this.mCaptureSession.removeOutput(this.mVideoOutput)
         Log.info(`${this.TAG} old videoOutput has been removed.`)
       } catch (err) {
+        globalThis.startRecordingFlag = false
         Log.error(`${this.TAG} remove videoOutput ${err}`)
       }
     }
@@ -561,22 +590,22 @@ export class CameraService {
 
   public async setZoomRatio(zoomRatio: number) {
     Log.info(`${this.TAG} setZoomRatio invoke E.`)
-    if (!this.mCameraInput) {
-      Log.info(`${this.TAG} setZoomRatio camerainput is release`)
+    if (!this.mCaptureSession) {
+      Log.info(`${this.TAG} setZoomRatio mCaptureSession is release`)
       return
     }
-    await this.mCameraInput.setZoomRatio(zoomRatio)
+    await this.mCaptureSession.setZoomRatio(zoomRatio)
     Log.debug(`${this.TAG} setZoomRatio invoke X.`)
   }
 
   public async getZoomRatio(): Promise<number> {
     Log.info(`${this.TAG} getZoomRatio invoke E.`)
-    if (!this.mCameraInput) {
-      Log.info(`${this.TAG} getZoomRatio camerainput is release`)
+    if (!this.mCaptureSession) {
+      Log.info(`${this.TAG} getZoomRatio mCaptureSession is release`)
       return 1;
     }
     Log.debug(`${this.TAG} getZoomRatio invoke X.`)
-    return await this.mCameraInput.getZoomRatio()
+    return await this.mCaptureSession.getZoomRatio()
   }
 
   public async setVideoConfig(videoConfig: any) {
@@ -658,7 +687,8 @@ export class CameraService {
   }
 
   private async getCameraLists() {
-    const cameras = await this.mCameraManager.getCameras()
+    const cameras = await this.mCameraManager.getSupportedCameras()
+    this.camerasCache = cameras
     return cameras
   }
 

@@ -86,8 +86,6 @@ export struct ShutterButton {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
 
-//  width: number
-//  height: number
   type: ButtonType
   stateEffect: boolean
 

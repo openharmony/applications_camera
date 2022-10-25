@@ -192,8 +192,8 @@ export class SettingManager {
     await this.mRdbStoreManager.updateValue(settingItemInfo)
   }
 
-  private mScreenWidth: number
-  private mScreenHeight: number
+  public mScreenWidth: number
+  public mScreenHeight: number
   private mPlatformCapability
   private mCameraId: string
   private mMode: string
@@ -236,19 +236,6 @@ export class SettingManager {
 
   public getPreviewDisplaySize() {
     const preViewSize = this.getPreviewSize()
-    return DisplayCalculator.calcSurfaceDisplaySize(this.mScreenWidth, this.mScreenHeight, preViewSize.width, preViewSize.height)
-  }
-  
-  public getPreviewSizeForAss(mMode) {
-    if (mMode == 'VIDEO') {
-      return Resolution.getVideoPreviewSize(this.mPlatformCapability, this.mCameraId, this.mResolution)
-    } else {
-      return AspectRatio.getPhotoPreviewSize(this.mPlatformCapability, this.mCameraId, this.mAspectRatio)
-    }
-  }
-  
-  public getPreviewDisplaySizeForAss(mMode) {
-    const preViewSize = this.getPreviewSizeForAss(mMode)
     return DisplayCalculator.calcSurfaceDisplaySize(this.mScreenWidth, this.mScreenHeight, preViewSize.width, preViewSize.height)
   }
 
