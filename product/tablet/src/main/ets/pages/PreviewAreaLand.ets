@@ -38,7 +38,7 @@ import { ShowFlashBlack
 import { SmallVideoTimer } from './SmallVideoTimer'
 import { ZoomText
 } from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomText'
-import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timeLapseView/TimeLapseView'
+import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timeLapseview/TimeLapseView'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
