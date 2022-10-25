@@ -48,6 +48,7 @@ export struct SetResolution {
   private WH_100_100: string = "100%"
   private settingManager = SettingManager.getInstance()
   private setAlias: string= undefined
+  @StorageLink("settingDialogFlag") settingDialogFlag: boolean = true
 
   @State curCheckName: Resource = $r("app.string.default_value")
 
@@ -143,7 +144,13 @@ export struct SetResolution {
     .width(this.WH_100_100)
     .height(56)
     .onClick(() => {
-      this.openDetailsDialog(this.itemValue)
+      if (this.settingDialogFlag) {
+        this.settingDialogFlag = false
+        setTimeout(() => {
+          this.settingDialogFlag = true
+        }, 200)
+        this.openDetailsDialog(this.itemValue)
+      }
     })
   }
 

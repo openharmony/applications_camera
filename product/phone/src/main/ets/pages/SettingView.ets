@@ -78,7 +78,8 @@ struct SettingView {
       router.replace({
         params: {
           position: this.cameraPosition,
-          mode: this.previewImage
+          mode: this.previewImage,
+          pageType: 'route'
         },
         uri: "pages/index"
       })
@@ -97,7 +98,8 @@ struct SettingView {
             router.replace({
               params: {
                 position: this.cameraPosition,
-                mode: this.previewImage
+                mode: this.previewImage,
+                pageType: 'route'
               },
               uri: "pages/index"
             })
@@ -151,7 +153,8 @@ struct SettingView {
                 router.replace({
                   params: {
                     position: this.cameraPosition,
-                    mode: this.previewImage
+                    mode: this.previewImage,
+                    pageType: 'route'
                   },
                   uri: "pages/index"
                 })

@@ -129,6 +129,9 @@ export struct ZoomView {
   }
 
   private lpgOnActionEnd(): void {
+    if (this.lpgTimer) {
+      clearTimeout(this.lpgTimer)
+    }
     this.lpgTimer = setTimeout(() => {
       if (this.lpgExp && !this.pgExp) {
         this.state.updateShowZoomFlag(false)
@@ -264,6 +267,9 @@ export struct ZoomView {
 
   private pgOnActionEnd(event: GestureEvent): void {
     this.state.updateShowZoomLabelValue(true)
+    if (this.pgTimer) {
+      clearTimeout(this.pgTimer)
+    }
     this.pgTimer = setTimeout(() => {
       if (this.pgExp && !this.lpgExp) {
         this.state.updateShowZoomFlag(false)
@@ -297,6 +303,9 @@ export struct ZoomView {
       this.offsetX = (zoomRatio - 1) * this.getZoomOffsetUnit()
       this.updateZoomRatio()
     } else if (event.type === TouchType.Up) {
+      if (this.pgTimer) {
+        clearTimeout(this.pgTimer)
+      }
       this.pgTimer = setTimeout(() => {
         if (this.pgExp && !this.lpgExp) {
           this.state.updateShowZoomFlag(false)
@@ -589,6 +598,6 @@ export struct ZoomView {
           )
           )
       }
-    }.width('100%').height(this.canvasHeight).margin({ bottom: !this.state.showZoomLabelValue ? 154 : 0 })
+    }.width('100%').height(this.canvasHeight).margin({ bottom: !this.state.showZoomLabelValue ? 58 : 0 })
   }
 }

@@ -58,8 +58,6 @@ export struct BigVideoTimer {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
 
-  @State timerPosition: number= 0
-
   private async onRecordPaused(data) {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
     clearInterval(this.timer)
@@ -78,9 +76,6 @@ export struct BigVideoTimer {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
-    display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height) * (4 / 3)
-    })
     this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
@@ -143,6 +138,6 @@ export struct BigVideoTimer {
       Text(`${this.state.recordingTimeDisplay}`).margin({ left: 8, right: 8 }).fontSize('50fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Center)
       Text('').width(12).height(12)
       Text('').layoutWeight(1)
-    }.width(this.timerPosition).height(96)
+    }.width('100%').height(96)
   }
 }

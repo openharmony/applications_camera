@@ -20,7 +20,9 @@ import getStore from '../../redux/store'
 
 let localState = (state) => {
   return {
-    mode: state.ModeReducer.mode
+    mode: state.ModeReducer.mode,
+    xComponentWidth: state.PreviewReducer.xComponentWidth,
+    xComponentHeight: state.PreviewReducer.xComponentHeight,
   }
 }
 
@@ -52,11 +54,6 @@ export struct AssistiveGridView {
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
     getStore().connect(localState, localDispatcher)(this.state)
-    let xComponentAssSize = this.settingManager.getPreviewDisplaySizeForAss(this.state.mode)
-    this.xCWidth = px2vp(xComponentAssSize.width)
-    this.xCHeight = px2vp(xComponentAssSize.height)
-    this.curX = this.xCWidth / 3
-    this.curY = this.xCHeight / 3
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
@@ -66,15 +63,19 @@ export struct AssistiveGridView {
         .width('100%')
         .height('100%')
         .onReady(() => {
-          this.context.clearRect(0, 0, this.xCWidth, this.xCHeight)
+          this.context.clearRect(0, 0, px2vp(parseInt(this.state.xComponentWidth)), px2vp(parseInt(this.state.xComponentHeight)))
           this.drawRuler()
         })
     }
-    .width(this.xCWidth)
-    .height(this.xCHeight)
+    .width(this.state.xComponentWidth)
+    .height(this.state.xComponentWidth)
   }
 
   drawRuler() {
+    let xCWidth = px2vp(parseInt(this.state.xComponentWidth))
+    let xCHeight = px2vp(parseInt(this.state.xComponentHeight))
+    let curX = xCWidth / 3
+    let curY = xCHeight / 3
     this.context.beginPath()
     this.context.globalAlpha = this.mGlobalAlpha
     this.context.lineWidth = this.mLineWidth
@@ -84,12 +85,12 @@ export struct AssistiveGridView {
     this.context.shadowOffsetY = this.mShadowOffsetY
     for (let i = 1; i <= this.scaleLen; i++) {
       if (i <= this.scaleLen / 2) {
-        this.context.moveTo(this.curX * i, 0)
-        this.context.lineTo(this.curX * i, this.xCHeight)
+        this.context.moveTo(curX * i, 0)
+        this.context.lineTo(curX * i, xCHeight)
       } else {
         let n = Math.floor(i / 2)
-        this.context.moveTo(0, this.curY * n)
-        this.context.lineTo(this.xCWidth * n, this.curY * n)
+        this.context.moveTo(0, curY * n)
+        this.context.lineTo(xCWidth * n, curY * n)
       }
     }
     this.context.closePath()

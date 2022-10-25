@@ -29,12 +29,20 @@ export class RecordFunction extends Function {
 
   private async startRecording() {
     Log.info(`${this.TAG} startRecording E`)
+    globalThis.startRecordingFlag = true
     this.disableUi()
     await this.mCameraService.StartRecording(this.functionBackImpl)
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(false))
     this.enableUi()
+
+    globalThis.startRecordingFlag = false
+    Log.info(`${this.TAG} globalThis.stopRecording : ` + globalThis.stopRecordingFlag)
+    if (globalThis.stopRecordingFlag) {
+      this.stopRecording()
+      globalThis.stopRecordingFlag = false
+    }
     Log.info(`${this.TAG} startRecording X`)
   }
 
@@ -62,6 +70,11 @@ export class RecordFunction extends Function {
 
   private async stopRecording() {
     Log.info(`${this.TAG} stopRecording E`)
+
+    Log.info(`${this.TAG} globalThis.startRecording : ${JSON.stringify(globalThis.startRecordingFlag)}`)
+    if (globalThis.startRecordingFlag) {
+      return
+    }
     this.disableUi()
     const thumbnailPixelMap = await this.mCameraService.stopRecording()
     // TODO update video status in State by sending action
