@@ -27,13 +27,13 @@
       {
         "name": "default",
         "material": {
-          "storePassword": "0000001CD3CFF53591B4CF4EEC7591F1063B8F80D87A6AF77441FD3FF2B5595D1064CF5DB810776E5AA1536D",
-          "certpath": "D:/OpenHarmony Project/sign/Sign/camera.cer",
+          "storePassword": "0000001C0C5B705F77AAAC34300BE994B9C49AEE57DD95E8F8FB15DD895C95F1F2B23CCD990B5A6E3ADB430C",
+          "certpath": "signature/camera.cer",
           "keyAlias": "CameraUpdate",
-          "keyPassword": "0000001C119F1602747AC356FAF0C0486D507B08B596F4098B8C6CFCFD5412B2DE708ADAAE28C0778EDBC94A",
-          "profile": "D:/OpenHarmony Project/sign/Sign/camera.p7b",
+          "keyPassword": "0000001C1BDC42DE677C06438AD6AF47658B6488FACC659C0BB73250B922EB6A8E45DACE9BEA61CE5691EB83",
+          "profile": "signature/camera.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "D:/OpenHarmony Project/sign/Sign/camera.p12"
+          "storeFile": "signature/camera.p12"
         }
       }
     ]
