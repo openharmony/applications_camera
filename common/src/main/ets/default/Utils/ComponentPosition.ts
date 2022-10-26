@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import DisplayCalculator from '../setting/displaycalculator';
+import DisplayCalculator from '../setting/Displaycalculator';
 
 export default class ComponentPosition {
   private static shutterButtonWidth: number = 76

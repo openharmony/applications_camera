@@ -20,7 +20,7 @@ import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { SettingItem
-} from '../../../../../../common/src/main/ets/default/featurecommon/settingView/phone/SettingItem'
+} from '../../../../../../common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'
 import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
 

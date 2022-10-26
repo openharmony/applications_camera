@@ -17,7 +17,7 @@ import { Action } from '../../redux/actions/Action'
 import { CameraSwitchController } from './CameraSwitchController.ts'
 import getStore from '../../redux/store'
 import { Log } from '../../utils/Log'
-import MultiCameraDialog from '../customDialog/MultiCameraDialog'
+import MultiCameraDialog from '../customdialog/MultiCameraDialog'
 import deviceInfo from '@ohos.deviceInfo'
 
 let localState = (state) => {
