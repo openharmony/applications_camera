@@ -26,12 +26,12 @@ import { ModeConfig } from '../common/ModeConfig'
 import {MoreList
 } from '../../../../../../common/src/main/ets/default/featurecommon/moreList/moreList'
 import { PlaySound
-} from '../../../../../../common/src/main/ets/default/featurecommon/playSound/playSound'
+} from '../../../../../../common/src/main/ets/default/featurecommon/playsound/playSound'
 import { PreviewAreaLand } from './PreviewAreaLand'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { TabBarLand
-} from '../../../../../../common/src/main/ets/default/featurecommon/tabBar/TabBarLand'
+} from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBarLand'
 import { ZoomViewLand
 } from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomViewLand'
 import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition'

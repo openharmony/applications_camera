@@ -21,9 +21,9 @@ import deviceInfo from '@ohos.deviceInfo'
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import AspectRatio from '../../../../../../common/src/main/ets/default/setting/settingitem/AspectRatio'
 import { AssistiveGridView
-} from '../../../../../../common/src/main/ets/default/featurecommon/assistiveGridView/AssistiveGridView'
+} from '../../../../../../common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
 import { BigText
-} from '../../../../../../common/src/main/ets/default/featurecommon/bigText/BigText'
+} from '../../../../../../common/src/main/ets/default/featurecommon/bigtext/BigText'
 import { BigVideoTimer } from './BigVideoTimer'
 import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/default/setting/settingitem/CameraId'
 import { CameraPlatformCapability
@@ -37,8 +37,8 @@ import { ShowFlashBlack
 } from '../../../../../../common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
 import { SmallVideoTimer } from './SmallVideoTimer'
 import { ZoomText
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomText'
-import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timeLapseview/TimeLapseView'
+} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomText'
+import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'

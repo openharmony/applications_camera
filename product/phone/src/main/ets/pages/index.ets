@@ -28,14 +28,14 @@ import { ModeConfig } from '../common/ModeConfig'
 import { MoreList
 } from '../../../../../../common/src/main/ets/default/featurecommon/moreList/moreList'
 import { PlaySound
-} from '../../../../../../common/src/main/ets/default/featurecommon/playSound/playSound'
+} from '../../../../../../common/src/main/ets/default/featurecommon/playsound/playSound'
 import { PreviewArea } from './PreviewArea'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { TabBar
-} from '../../../../../../common/src/main/ets/default/featurecommon/tabBar/TabBar'
+} from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBar'
 import { ZoomView
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomView'
+} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomView'
 
 var mScreenLockManager = new ScreenLockManager()
 var cameraWorker = CameraWorker.getInstance()
