@@ -15,7 +15,7 @@
 
 import FormExtension from '@ohos.application.FormExtension';
 
-import { Log } from '../../../../../../common/src/main/ets/default/Utils/Log'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 
 export default class FormAbility extends FormExtension {
     private TAG: string = '[FormAbility]'
