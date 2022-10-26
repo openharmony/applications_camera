@@ -93,6 +93,8 @@
         ],
         "minWindowHeight": 558,
         "minWindowWidth": 844,
+        "maxWindowHeight": 800,
+        "maxWindowWidth": 1280
       }
     ],
     "extensionAbilities": [
