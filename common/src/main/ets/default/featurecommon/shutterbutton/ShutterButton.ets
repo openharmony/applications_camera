@@ -96,6 +96,7 @@ export struct ShutterButton {
     getStore().connect(localState, localDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_CHANGE_MODE, this.changeShutterIcon.bind(this))
     this.appEventBus.on(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
+    this.appEventBus.on(Action.ACTION_INIT_MODE, this.changeShutterIcon.bind(this))
     this.refreshIcon(this.state.mode)
     Log.debug(`${this.TAG} aboutToAppear X`)
   }
