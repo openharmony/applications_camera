@@ -24,6 +24,9 @@ export class RecordFunction extends Function {
     videoUri: (videoUri: any): void => {
       Log.info(`${this.TAG} functionBackImpl videoUri ${videoUri}`)
       this.mWorkerManager.postMessage(Action.updateVideoUri(videoUri))
+    },
+    onRecodeError:(data: any): void => {
+      this.mWorkerManager.postMessage(Action.recordError())
     }
   }
 

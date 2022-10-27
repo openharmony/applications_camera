@@ -43,6 +43,7 @@ import { EventBus } from '../../../../../../common/src/main/ets/default/worker/e
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
+import prompt from '@ohos.prompt';
 
 let cameraState = (state: OhCombinedState) => {
   return {
@@ -373,6 +374,21 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} calledByFa invoke X`)
   }
 
+  private async onRecordError() {
+    Log.info(`${this.TAG} onRecordError invoke E`)
+    prompt.showToast({
+      message: "录像异常",
+      duration: 2000,
+      bottom: 1000
+    })
+    if (this.state.videoState === 'startTakeVideo') {
+      this.state.stopRecording()
+    }
+    this.state.close()
+    this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+    Log.info(`${this.TAG} onRecordError invoke X`)
+  }
+
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E ${JSON.stringify(router.getParams())}`)
     let routerParams = router.getParams()
@@ -385,6 +401,7 @@ export struct PreviewAreaLand {
     this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
     this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this))
     globalThis.releaseCamera = (() => {
       Log.info(`${this.TAG} globalThis.releaseCamera called`)
       this.state.close()
