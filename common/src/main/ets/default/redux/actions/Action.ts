@@ -400,7 +400,7 @@ export class Action {
 
   public static recordError(): ActionData {
     return {
-      type: Action.ACTION_RECORD_DONE,
+      type: Action.ACTION_RECORD_ERROR,
       data: {}
     }
   }

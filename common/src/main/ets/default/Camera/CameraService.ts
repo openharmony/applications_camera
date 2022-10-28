@@ -41,6 +41,7 @@ export interface FunctionCallBack {
 
 export interface VideoCallBack {
   videoUri(videoUri: any): void
+  onRecodeError(errorMsg: any): void
 }
 
 type Callback = (args?: any) => void
@@ -400,6 +401,10 @@ export class CameraService {
     Log.info(`${this.TAG} createVideoOutput invoke E.`)
     Log.info(`${this.TAG} createVideoOutput this.mSurfaceId：saveCameraAsset: ${this.mSaveCameraAsset}`)
     this.mFileAssetId = await this.mSaveCameraAsset.createVideoFd(functionCallBack)
+    if (this.mFileAssetId === undefined) {
+      Log.error(`${this.TAG} createVideoOutput error: mFileAssetId undefined`)
+      functionCallBack.onRecodeError(`createVideoOutput error: mFileAssetId undefined`)
+    }
     this.mVideoConfig.url = `fd://${this.mFileAssetId.toString()}`
     await media.createVideoRecorder().then((recorder) => {
       Log.info(`${this.TAG} createVideoOutput createVideoRecorder record: ${recorder}`)
@@ -407,6 +412,12 @@ export class CameraService {
     })
     const size = SettingManager.getInstance().getVideoSize()
     if (this.mVideoRecorder != null) {
+      this.mVideoRecorder.on('error', (error) => {
+        if (error) {
+          Log.error(`${this.TAG} createVideoOutput error: ${error}`)
+          functionCallBack.onRecodeError(`createVideoOutput error: ${error}`)
+        }
+      })
       Log.info(`${this.TAG} createVideoOutput size = ${JSON.stringify(size)}`)
       this.mVideoConfig.profile.videoFrameWidth = size.width
       this.mVideoConfig.profile.videoFrameHeight = size.height
