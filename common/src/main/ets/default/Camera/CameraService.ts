@@ -292,7 +292,9 @@ export class CameraService {
     Log.info(`${this.TAG} createSession invoke E.`)
     this.mSurfaceId = surfaceId
     this.isVideo = isVideo
+    globalThis.isSessionCreating = true
     this.mCaptureSession = await this.mCameraManager.createCaptureSession()
+    globalThis.isSessionCreating = false
     Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
     Log.info(`${this.TAG} createSession beginConfig.`)
     Trace.start(Trace.STREAM_DISTRIBUTION)
