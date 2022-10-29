@@ -12,7 +12,8 @@
   "module": {
     "package": "com.ohos.camera.common",
     "deviceType": [
-      "phone"
+      "default",
+      "tablet"
     ],
     "distro": {
       "deliveryWithInstall": true,

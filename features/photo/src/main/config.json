@@ -12,7 +12,7 @@
   "module": {
     "package": "com.ohos.camera.photo",
     "deviceType": [
-      "phone"
+      "default"
     ],
     "distro": {
       "deliveryWithInstall": true,
