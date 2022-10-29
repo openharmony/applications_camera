@@ -33,7 +33,7 @@ import ScreenLockManager from '../../../../../../common/src/main/ets/default/fea
 import { TabBarLand
 } from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBarLand'
 import { ZoomViewLand
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomViewLand'
+} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomViewLand'
 import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition'
 import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants';
 
