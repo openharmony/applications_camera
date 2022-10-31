@@ -28,7 +28,6 @@ export class CameraBasicFunction extends Function {
   private mSurfaceId = ''
   private mCurrentMode = ''
   private mSessionList = []
-  private isSessionCreating: boolean = false
   private isSessionReleasing: boolean = false
   private initDataCache: any = null
   public startIdentification: boolean = false
@@ -71,10 +70,10 @@ export class CameraBasicFunction extends Function {
       data.cameraId = curStorageCameraId
     }
     this.initDataCache = data
-    if (this.isSessionCreating || this.isSessionReleasing) {
+    if (globalThis.isSessionCreating || this.isSessionReleasing) {
+      Log.info(`${this.TAG} initCamera isSessionCreating or isSessionReleasing return`)
       return
     }
-    this.isSessionCreating = true
     this.mCameraId = data.cameraId
     this.mCurrentMode = data.mode
     let mCameraCount = await this.mCameraService.initCamera(this.mCameraId)
@@ -124,7 +123,6 @@ export class CameraBasicFunction extends Function {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
-    this.isSessionCreating = false
     if ([...this.mSessionList].pop() === 'RELEASE') {
       await this.close()
     }
@@ -176,7 +174,8 @@ export class CameraBasicFunction extends Function {
   private async close() {
     globalThis.isClosingFlag = true
     this.mSessionList.push('RELEASE')
-    if (this.isSessionCreating || this.isSessionReleasing) {
+    if (globalThis.isSessionCreating || this.isSessionReleasing) {
+      Log.info(`${this.TAG} isSessionCreating or isSessionReleasing return`)
       return
     }
     this.isSessionReleasing = true
