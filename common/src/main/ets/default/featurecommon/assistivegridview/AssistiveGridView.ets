@@ -68,7 +68,7 @@ export struct AssistiveGridView {
         })
     }
     .width(this.state.xComponentWidth)
-    .height(this.state.xComponentWidth)
+    .height(this.state.xComponentHeight)
   }
 
   drawRuler() {
