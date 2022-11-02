@@ -17,11 +17,11 @@ import { Action } from '../redux/actions/Action'
 import { CameraId } from '../setting/settingitem/CameraId'
 import { CameraPlatformCapability } from '../camera/CameraPlatformCapability'
 import { Log } from '../utils/Log'
-import { Function } from './Function'
+import { BaseFunction } from './BaseFunction'
 import { FunctionCallBack } from '../camera/CameraService'
 import Trace from '../utils/Trace'
 
-export class CameraBasicFunction extends Function {
+export class CameraBasicFunction extends BaseFunction {
   private TAG = '[CameraBasicFunction]:'
 
   private mCameraId: string = CameraId.BACK

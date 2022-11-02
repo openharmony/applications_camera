@@ -27,10 +27,10 @@
       {
         "name": "default",
         "material": {
-          "storePassword": "0000001C0C5B705F77AAAC34300BE994B9C49AEE57DD95E8F8FB15DD895C95F1F2B23CCD990B5A6E3ADB430C",
+          "storePassword": "0000001C824DD60D00EEC299C301AF273BA7F2628F4ABB6219A64B3B7E2F1A057C04ECFFEC4D39A823668C3A",
           "certpath": "signature/camera.cer",
           "keyAlias": "CameraUpdate",
-          "keyPassword": "0000001C1BDC42DE677C06438AD6AF47658B6488FACC659C0BB73250B922EB6A8E45DACE9BEA61CE5691EB83",
+          "keyPassword": "0000001C98394F127EA70EB764AA8E13D5EE35D789FFD21E29EF81A0B53757F355872DF6B50C026A9469665A",
           "profile": "signature/camera.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "signature/camera.p12"
@@ -62,6 +62,22 @@
           ]
         }
       ]
+    },
+    {
+      "name": "common",
+      "srcPath": "./common",
+    },
+    {
+      "name": "multi",
+      "srcPath": "./features/multi",
+    },
+    {
+      "name": "photo",
+      "srcPath": "./features/photo",
+    },
+    {
+      "name": "video",
+      "srcPath": "./features/video",
     }
   ]
 }
