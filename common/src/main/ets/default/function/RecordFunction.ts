@@ -15,10 +15,10 @@
 
 import { Action } from '../redux/actions/Action'
 import { Log } from '../utils/Log'
-import { Function } from './Function'
+import { BaseFunction } from './BaseFunction'
 import { VideoCallBack } from '../camera/CameraService'
 
-export class RecordFunction extends Function {
+export class RecordFunction extends BaseFunction {
   private TAG = '[RecordFunction]:'
   private functionBackImpl: VideoCallBack = {
     videoUri: (videoUri: any): void => {
