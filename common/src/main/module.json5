@@ -15,12 +15,11 @@
 
 {
   "module": {
-    "package": "com.ohos.camera",
     "name": "common",
     "type": "har",
     "deviceTypes": [
-      "phone",
-    ],
-    "uiSyntax": "ets"
+      "default",
+      "tablet"
+    ]
   }
 }

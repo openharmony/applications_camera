@@ -36,8 +36,8 @@ export default struct EntryComponentForMulti {
   @State recCameraState: boolean = true
   @State defaultChecked: boolean = false
   @State curCameraName: string = ''
-  @Prop localList: string
-  @Prop item: string
+  private localList: string
+  private item: string
   private onChange: Function
   private cameraService = CameraService.getInstance()
   private deviceName: string
