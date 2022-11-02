@@ -1,8 +1,8 @@
 {
 	"license":"ISC",
 	"devDependencies":{},
-	"name":"@ohos/features",
-	"description":"multi mode",
+	"name":"@ohos/video",
+	"description":"video mode",
 	"ohos":{
 		"org":""
 	},
