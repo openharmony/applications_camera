@@ -74,17 +74,21 @@ export struct SetResolution {
 
   existView() {
     Log.info(`${this.TAG} existView E`)
-    this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
-    this.state.closeDialog(false)
-    Log.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
+	if (this.settingManager.getSettingValue(this.itemValue.settingAlias) !== undefined){
+      this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
+      Log.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
+	}
+      this.state.closeDialog(false)
   }
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
     getStore().connect(localState, localDispatcher)(this.state)
     Log.info(`${this.TAG} aboutToAppear this.closeFlag ${this.closeFlag}`)
-    this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
-    Log.info(`${this.TAG} aboutToAppear curCheckName: ${this.curCheckName} X`)
+	if (this.settingManager.getSettingValue(this.itemValue.settingAlias) !== undefined){
+      this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
+      Log.info(`${this.TAG} aboutToAppear curCheckName: ${this.curCheckName} X`)
+	}
   }
 
   public onCloseDialog() {
