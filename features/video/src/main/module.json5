@@ -15,12 +15,11 @@
 
 {
   "module": {
-    "package": "com.ohos.launcher",
-    "name": "common",
+    "name": "video",
     "type": "har",
     "deviceTypes": [
       "default",
-    ],
-    "uiSyntax": "ets"
+      "tablet"
+    ]
   }
 }
