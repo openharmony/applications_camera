@@ -15,9 +15,9 @@
 
 import { Action } from '../redux/actions/Action'
 import { Log } from '../utils/Log'
-import { Function } from './Function'
+import { BaseFunction } from './BaseFunction'
 
-export class CaptureFunction extends Function {
+export class CaptureFunction extends BaseFunction {
   private TAG = '[CaptureFunction]:'
 
   private async capture(): Promise<void> {

@@ -15,12 +15,11 @@
 
 {
   "module": {
-    "package": "com.ohos.launcher",
-    "name": "common",
+    "name": "multi",
     "type": "har",
     "deviceTypes": [
-      "default"
-    ],
-    "uiSyntax": "ets"
+      "default",
+      "tablet"
+    ]
   }
 }
