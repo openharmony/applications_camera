@@ -30,7 +30,6 @@ import { CameraPlatformCapability
 } from '../../../../../../common/src/main/ets/default/camera/CameraPlatformCapability'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import Resolution from '../../../../../../common/src/main/ets/default/setting/settingitem/Resolution'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
 import { ShowFlashBlack
@@ -313,22 +312,6 @@ export struct PreviewAreaLand {
     Log.debug(`${this.TAG} onModeChanged X`)
   }
 
-  private async onScreenChange(isScreenOn) {
-    Log.debug(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`)
-    // the build() can only be called when window is foreground
-    if (isScreenOn && globalThis.cameraWindowStageEvent == window.WindowStageEventType.FOREGROUND) {
-//      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-      this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-      this.state.initZoomRatio(1, 6)
-    } else {
-      if (this.state.videoState === 'startTakeVideo') {
-        this.state.stopRecording()
-      }
-      this.state.close()
-    }
-    Log.debug(`${this.TAG} onScreenChanged X`)
-  }
-
   private calledByFa(): void {
     Log.info(`${this.TAG} calledByFa invoke E`)
     let action: string = ""
@@ -398,12 +381,14 @@ export struct PreviewAreaLand {
     this.mConnect = getStore().connect(cameraState, cameraDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
-    this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
     this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this))
     globalThis.releaseCamera = (() => {
       Log.info(`${this.TAG} globalThis.releaseCamera called`)
+      if (this.state.videoState === 'startTakeVideo') {
+        this.state.stopRecording()
+      }
       this.state.close()
     })
 
@@ -445,7 +430,6 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
-    this.appEventBus.off(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.appEventBus.off("windowSize", this.windowSizeChange.bind(this))
     this.mConnect?.destroy()
     GeoLocation.getInstance().off()
