@@ -18,15 +18,12 @@ import router from '@system.router';
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { SettingItem
 } from '../../../../../../common/src/main/ets/default/featurecommon/settingview/tablet/SettingItem'
 import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager';
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus';
-
-var mScreenLockManager = new ScreenLockManager()
 
 let localState = (state: OhCombinedState) => {
   return {
@@ -68,7 +65,6 @@ struct SettingView {
     }
     getStore().connect(localState, localDispatcher)(this.state)
     this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
-    mScreenLockManager.init()
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 

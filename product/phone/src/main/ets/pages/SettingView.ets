@@ -18,13 +18,10 @@ import router from '@system.router';
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { SettingItem
 } from '../../../../../../common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'
 import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-
-var mScreenLockManager = new ScreenLockManager()
 
 let localState = (state: OhCombinedState) => {
   return {
@@ -62,7 +59,6 @@ struct SettingView {
       this.previewImage = router.getParams().mode.toString()
     }
     getStore().connect(localState, localDispatcher)(this.state)
-    mScreenLockManager.init()
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 

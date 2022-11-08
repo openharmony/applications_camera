@@ -29,7 +29,6 @@ import { PlaySound
 } from '../../../../../../common/src/main/ets/default/featurecommon/playsound/playSound'
 import { PreviewAreaLand } from './PreviewAreaLand'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { TabBarLand
 } from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBarLand'
 import { ZoomViewLand
@@ -37,7 +36,6 @@ import { ZoomViewLand
 import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition'
 import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants';
 
-var mScreenLockManager = new ScreenLockManager()
 var cameraWorker = CameraWorker.getInstance()
 
 let indexState = (state: OhCombinedState) => {
@@ -106,7 +104,6 @@ struct Index {
     Log.info(`${this.TAG} aboutToAppear E`)
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
-    mScreenLockManager.init()
     getStore().connect(indexState, indexDispatcher)(this.state)
     this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
 
