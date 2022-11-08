@@ -158,8 +158,8 @@ export class CameraService {
     } else {
       this.mVideoConfig.videoSourceType = 0
     }
-    return this.mCameraCount
     Log.info(`${this.TAG} initCamera invoke X.`)
+    return this.mCameraCount
   }
 
   public getCameraManager() {
@@ -237,8 +237,6 @@ export class CameraService {
     let previewProfile;
     if (deviceInfo.deviceType == 'default') {
       previewProfile = previewProfiles[0]
-    } else if (deviceInfo.deviceType == 'phone') {
-      previewProfile = previewProfiles.find(item => item.size.height < 1080 && item.format === 1003)
     } else {
       Log.info(`${this.TAG} previewProfiles length.` + previewProfiles.length)
       previewProfile = previewProfiles.find(item => item.size.width === size.width
@@ -459,6 +457,7 @@ export class CameraService {
     }
 
     const videoId = await this.mVideoRecorder.getInputSurface()
+    Log.info(`${this.TAG} createVideoOutput profileVideo =  ${JSON.stringify(profileVideo)}.`)
     this.mVideoOutput = await this.mCameraManager.createVideoOutput(profileVideo, videoId)
     Log.info(`${this.TAG} createVideoOutput invoke X.`)
   }

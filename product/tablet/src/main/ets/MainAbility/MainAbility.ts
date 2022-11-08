@@ -17,10 +17,12 @@ import Ability from '@ohos.application.Ability'
 import window from '@ohos.window';
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
+import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants'
-import display from '@ohos.display';
+
+const debounceTimeout = 500;
 
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
@@ -115,16 +117,19 @@ export default class MainAbility extends Ability {
     console.info('Camera MainAbility onWindowStageDestroy.')
   }
 
+  @debounce(debounceTimeout)
   onForeground() {
     Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onForeground.')
     globalThis?.onForegroundInit && globalThis.onForegroundInit()
   }
 
+  @debounce(debounceTimeout)
   onBackground() {
     Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onBackground.')
     this.cameraBasicFunction.startIdentification = false
+    globalThis.needInitCameraFlag = false
     globalThis?.releaseCamera && globalThis.releaseCamera()
   }
 

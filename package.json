@@ -18,10 +18,7 @@
 	"version":"1.0.0",
 	"dependencies":{
 		"@ohos/hypium":"1.0.2",
-		"@ohos/hvigor-base":"1.0.6",
 		"@ohos/hvigor-ohos-plugin":"1.2.2",
-		"hypium":"^1.0.0",
-		"@ohos/hvigor":"1.2.2",
-		"@ohos/sdkmanager-common":"^1.1.1"
+		"@ohos/hvigor":"1.2.2"
 	}
 }

@@ -31,13 +31,11 @@ import { PlaySound
 } from '../../../../../../common/src/main/ets/default/featurecommon/playsound/playSound'
 import { PreviewArea } from './PreviewArea'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { TabBar
 } from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBar'
 import { ZoomView
 } from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomView'
 
-var mScreenLockManager = new ScreenLockManager()
 var cameraWorker = CameraWorker.getInstance()
 
 let indexState = (state: OhCombinedState) => {
@@ -105,7 +103,6 @@ struct Index {
     Log.info(`${this.TAG} aboutToAppear E`)
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
-    mScreenLockManager.init()
     getStore().connect(indexState, indexDispatcher)(this.state)
 
     display.getDefaultDisplay().then((dis) => {
