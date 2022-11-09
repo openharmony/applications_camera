@@ -14,7 +14,7 @@
  */
 
 import router from '@system.router';
-
+import deviceInfo from '@ohos.deviceInfo';
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
@@ -113,6 +113,7 @@ struct SettingView {
       .padding({ left: 24 })
       .width(this.WH_100_100)
       .height(56)
+      .margin({ top: deviceInfo.deviceType !== 'default' ? 25 : 0 })
 
       Scroll() {
         Column() {
