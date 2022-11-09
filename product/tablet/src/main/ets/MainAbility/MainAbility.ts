@@ -80,10 +80,8 @@ export default class MainAbility extends Ability {
         })
 
         win.on('windowSizeChange', (data) => {
-          if (data.height != 1600) {
-            data.height = data.height - vp2px(43);
-            data.width = data.width - vp2px(8);
-          }
+          data.width = (data.height != 1600) ? px2vp(data.width) - 8 : px2vp(data.width)
+          data.height = (data.height != 1600) ? px2vp(data.height) - 43 : px2vp(data.height)
           AppStorage.SetOrCreate(Constants.APP_KEY_WINDOW_SIZE, data)
           this.appEventBus.emit("windowSize", [data])
         });
