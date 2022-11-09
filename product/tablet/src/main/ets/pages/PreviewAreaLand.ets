@@ -196,6 +196,9 @@ let cameraDispatcher = (dispatch) => {
     },
     swipeModeChangeDone: (actionOff) => {
       dispatch(Action.swipeModeChangeDone(actionOff))
+    },
+    updateShowIndexComponentFlag: (isShow: boolean) => {
+      dispatch(Action.updateShowIndexComponentFlag(isShow))
     }
   }
 }
@@ -250,11 +253,6 @@ export struct PreviewAreaLand {
 
         GeoLocation.getInstance().on()
 
-        this.settingManager.setScreenHeight(vp2px(this.screenSize.height))
-        this.settingManager.setScreenWidth(vp2px(this.screenSize.width))
-        let xComponentSize = this.settingManager.getPreviewDisplaySize()
-        Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
-        this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
         this.state.updateShowPreviewFlag(true)
       })
       //            }
@@ -302,13 +300,13 @@ export struct PreviewAreaLand {
     this.state.updateCameraPosition(this.state.cameraPosition)
     this.state.updateMode(this.state.mode)
     this.state.resetZoomRatio(1)
+    this.resetScreenSize(this.screenSize)
+    this.state.updateShowIndexComponentFlag(true)
     Log.debug(`${this.TAG} doCameraAction X`)
   }
 
   private async onModeChanged(data) {
     Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`)
-    let xComponentSize = this.settingManager.getPreviewDisplaySize()
-    this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
     this.state.updateShowPreviewFlag(true)
     Log.debug(`${this.TAG} onModeChanged X`)
   }
@@ -614,11 +612,15 @@ export struct PreviewAreaLand {
   }
 
   private windowSizeChange(data) {
-    this.settingManager.setScreenHeight(data.height)
-    this.settingManager.setScreenWidth(data.width)
+    this.resetScreenSize(data)
+  }
+
+  private resetScreenSize(size: any) {
+    this.settingManager.setScreenHeight(size.height)
+    this.settingManager.setScreenWidth(size.width)
     let xComponentSize = this.settingManager.getPreviewDisplaySize()
     Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
-    this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
+    this.state.changeXComponentSize(xComponentSize.width.toString() + 'vp', xComponentSize.height.toString() + 'vp')
   }
 
   build() {
