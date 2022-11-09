@@ -90,6 +90,7 @@ export struct ShutterButton {
   stateEffect: boolean
 
   @State state: any = {}
+  @State captureBtnScale: number = 1
 
   aboutToAppear() {
     Log.debug(`${this.TAG} aboutToAppear E`)
@@ -169,18 +170,18 @@ export struct ShutterButton {
         } else {
           Image($r('app.media.ic_circled')).fillColor(Color.White)
           Image(this.state.shutterIcon).width(54).aspectRatio(1).fillColor(Color.White)
-            .scale({ x: this.state.captureBtnScale, y: this.state.captureBtnScale, z: this.state.captureBtnScale })
+            .scale({ x: this.captureBtnScale, y: this.captureBtnScale, z: this.captureBtnScale })
             .enabled(this.state.uiEnable)
             .onTouch((event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 animateTo(
                   { duration: 125, curve: Curve.Sharp, delay: 0 },
-                  () => { this.state.captureBtnScale = 0.85 })
+                  () => { this.captureBtnScale = 0.85 })
               } else if (event.type === TouchType.Up) {
                 animateTo(
                   { duration: 125, curve: Curve.Sharp, delay: 0,
-                    onFinish: () => { this.state.captureBtnScale = 1 }},
-                  () => { this.state.captureBtnScale = 1 })
+                    onFinish: () => { this.captureBtnScale = 1 }},
+                  () => { this.captureBtnScale = 1 })
                 let timerLapse = this.settingManager.getTimeLapse()
                 Log.log(`${this.TAG} ShutterButton startRecording getValue= ${JSON.stringify(timerLapse)}`)
                 if (timerLapse && timerLapse.id !== Timer.RESOURCE_OFF.id) {
@@ -207,6 +208,7 @@ export struct ShutterButton {
           .width(40)
           .padding({ left: 10, right: 10 })
           .margin({ right: 6 })
+          .enabled(this.state.uiEnable)
           .onClick(() => {
             this.state.stopRecording()
           })
@@ -224,6 +226,7 @@ export struct ShutterButton {
           .width(40)
           .padding({ left: 10, right: 10 })
           .margin({ left: 6 })
+          .enabled(this.state.uiEnable)
           .onClick(() => {
               this.state.videoState === 'startTakeVideo' ? this.state.pauseRecording() : this.state.resumeRecording()
           })
