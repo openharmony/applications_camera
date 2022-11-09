@@ -74,6 +74,8 @@ export struct ThumbnailView {
     } else {
       this.thumbnailBorder = {}
     }
+    this.scaleValue = 1
+    this.tempOpacity = 1
     Log.info(`${this.TAG} onThumbnailLoad this.state.thumbnail: ${JSON.stringify(this.thumbnail)} X`)
   }
 
