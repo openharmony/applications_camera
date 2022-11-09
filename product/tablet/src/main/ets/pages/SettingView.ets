@@ -94,7 +94,7 @@ struct SettingView {
   }
 
   private windowSizeChange(data) {
-    this.localStyle =  (data.width >= 1280) ? { "columns": 12, "offset": 0, "span": 8 } :
+    this.localStyle =  (data.width >= px2vp(1280)) ? { "columns": 12, "offset": 0, "span": 8 } :
       { "columns": 8, "offset": 0, "span": 6 }
   }
 
