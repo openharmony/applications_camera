@@ -34,6 +34,7 @@ export class Action {
   public static readonly ACTION_SET_PERMISSION_FLAG = 'ACTION_SET_PERMISSION_FLAG'
   public static readonly ACTION_INIT_ACTION = 'ACTION_INIT_ACTION'
   public static readonly ACTION_KEEP_SCREEN_ON = 'ACTION_KEEP_SCREEN_ON'
+  public static readonly ACTION_UPDATE_SHOW_INDEX_COMPONENT_FLAG = 'ACTION_UPDATE_SHOW_INDEX_COMPONENT_FLAG'
 
   // Camera
   public static readonly ACTION_INIT = 'ACTION_INIT'
@@ -165,6 +166,12 @@ export class Action {
     }
   }
 
+  public static updateShowIndexComponentFlag(showIndexComponentFlag: boolean): ActionData {
+    return {
+      type: Action.ACTION_UPDATE_SHOW_INDEX_COMPONENT_FLAG,
+      data: { showIndexComponentFlag: showIndexComponentFlag }
+    }
+  }
 
   /** CAMERA METHODS LIST **/
 
