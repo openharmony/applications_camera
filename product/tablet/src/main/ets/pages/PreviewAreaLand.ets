@@ -362,7 +362,6 @@ export struct PreviewAreaLand {
     prompt.showToast({
       message: "录像异常",
       duration: 2000,
-      bottom: 1000
     })
     if (this.state.videoState === 'startTakeVideo') {
       this.state.stopRecording()
