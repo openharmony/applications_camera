@@ -82,13 +82,8 @@ export struct FootBar {
   }
 
   private isPhoneSwitchShow(): boolean {
-    return this.state.platformCapability?.mCameraCount > 1 && !this.state.isRecording &&
-    deviceInfo.deviceType !== 'default'
-  }
-
-  private isRKSwitchShow(): boolean {
-    return this.state.platformCapability?.mCameraCount >= 1 && !this.state.isRecording &&
-    deviceInfo.deviceType == 'default' && this.state.mode === 'MULTI'
+    return deviceInfo.deviceType !== 'default' && this.state.platformCapability?.mCameraCount > 1 &&
+    !this.state.isRecording
   }
 
   build() {
@@ -101,7 +96,7 @@ export struct FootBar {
         ThumbnailView()
       }.width(44).aspectRatio(1).visibility(this.isThumbnailViewVisibility() ? Visibility.Visible : Visibility.Hidden)
       ShutterButton()
-      if (this.isPhoneSwitchShow() || this.isRKSwitchShow()) {
+      if (this.isPhoneSwitchShow()) {
         CameraSwitchButton()
       } else {
         Column() {
