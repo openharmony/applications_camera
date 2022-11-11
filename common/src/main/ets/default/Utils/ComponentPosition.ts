@@ -33,8 +33,7 @@ export default class ComponentPosition {
   private static controlItemHeight: number = 32
 
   private static xComponent2vp(lenString: string) {
-    let length: number = parseInt(lenString)
-    return px2vp(length)
+    return parseInt(lenString)
   }
 
   public static previewPosition(screenWidth: number, screenHeight: number, pWidth: string, pHeight: string) {
