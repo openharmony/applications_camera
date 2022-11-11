@@ -31,7 +31,11 @@ let tabBarLandState = (state) => {
 }
 
 let tabBarLandDispatcher = (dispatch) => {
-  return {}
+  return {
+    updateShowIndexComponentFlag: (isShow: boolean) => {
+      dispatch(Action.updateShowIndexComponentFlag(isShow))
+    },
+  }
 }
 
 @Component
@@ -53,6 +57,7 @@ export struct TabBarLand {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Image($r("app.media.setting")).width(24).height(24)
           .onClick(() => {
+            this.state.updateShowIndexComponentFlag(false)
             router.replace({
               //                params: {
               //                  position: this.cameraPosition,
