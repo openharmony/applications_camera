@@ -102,8 +102,12 @@ export default struct EntryComponentForMulti {
         .checked(this.defaultChecked ? true : this.item === this.curCameraName)
         .enabled(this.state.uiEnable)
         .onClick(() => {
-          Log.info(`${this.TAG} onChange: ${this.item}`)
-          this.onChange(this.item)
+          Log.info(`${this.TAG} onChange item: ${this.item}`)
+          if (this.item === this.curCameraName) {
+            Log.info(`${this.TAG} no Change curCameraName: ${this.curCameraName}`)
+          } else {
+            this.onChange(this.item)
+          }
         })
     }
     .height(48)
