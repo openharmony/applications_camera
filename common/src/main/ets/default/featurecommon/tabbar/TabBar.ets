@@ -13,17 +13,20 @@
  * limitations under the License.
  */
 
-import router from "@system.router"
-
 import { Log } from '../../utils/Log'
 import getStore from '../../redux/store'
+import { Action } from '../../redux/actions/Action'
 
 let tabBarState = (state) => {
   return {}
 }
 
-let tabBarDispatcher = (dispatcher) => {
-  return {}
+let tabBarDispatcher = (dispatch) => {
+  return {
+    showSettingView: () => {
+      dispatch(Action.showSettingView(true))
+    },
+  }
 }
 
 @Component
@@ -50,9 +53,7 @@ export struct TabBar {
           Image($r('app.media.setting')).width(24).height(24)
         }.width('100%').height('100%')
       }.width('20%').height('100%').onClick(() => {
-        router.replace({
-          uri: "pages/SettingView"
-        })
+        this.state.showSettingView()
       })
     }.width('100%').height('100%')
   }

@@ -1,7 +1,6 @@
 {
   "src": [
     "pages/index",
-    "pages/SettingView",
     "pages/ThirdPreviewView"
   ]
 }

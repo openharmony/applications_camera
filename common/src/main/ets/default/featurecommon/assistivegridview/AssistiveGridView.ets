@@ -63,7 +63,7 @@ export struct AssistiveGridView {
         .width('100%')
         .height('100%')
         .onReady(() => {
-          this.context.clearRect(0, 0, px2vp(parseInt(this.state.xComponentWidth)), px2vp(parseInt(this.state.xComponentHeight)))
+          this.context.clearRect(0, 0, parseInt(this.state.xComponentWidth), parseInt(this.state.xComponentHeight))
           this.drawRuler()
         })
     }
@@ -72,8 +72,8 @@ export struct AssistiveGridView {
   }
 
   drawRuler() {
-    let xCWidth = px2vp(parseInt(this.state.xComponentWidth))
-    let xCHeight = px2vp(parseInt(this.state.xComponentHeight))
+    let xCWidth = parseInt(this.state.xComponentWidth)
+    let xCHeight = parseInt(this.state.xComponentHeight)
     let curX = xCWidth / 3
     let curY = xCHeight / 3
     this.context.beginPath()

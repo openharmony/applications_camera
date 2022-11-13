@@ -35,6 +35,7 @@ import { ZoomViewLand
 } from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomViewLand'
 import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition'
 import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants';
+import { SettingView } from './SettingView'
 
 var cameraWorker = CameraWorker.getInstance()
 
@@ -54,7 +55,7 @@ let indexState = (state: OhCombinedState) => {
     isShowPinch: state.ZoomReducer.isShowPinch,
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
-    showIndexComponentFlag: state.ContextReducer.showIndexComponentFlag,
+    isShowPageView: state.SettingReducer.isShowSettingView
   }
 }
 
@@ -242,41 +243,39 @@ struct Index {
         PreviewAreaLand({ screenSize: $screenSize })
           .position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
             this.state.xComponentWidth, this.state.xComponentHeight))
-        if (this.state.showIndexComponentFlag) {
-          Column() {
-            if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
-              ZoomViewLand()
-            } else {
-              Column() {
-              }.width(82).margin({ right: '20vp' })
-            }
-          }.zIndex(2).height('100%')
-          .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
-          .visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
-
-          Column() {
-            FootBarLand({ screenSize: $screenSize })
-          }.zIndex(2).height('100%')
-          .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight))
-          .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
-
-          Column() {
-            if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
-              TabBarLand()
-            }
-          }.zIndex(3).visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
-          .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight))
-
-          if (this.state.isShowMoreList) {
+        Column() {
+          if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
+            ZoomViewLand()
+          } else {
             Column() {
-              MoreList()
-            }.zIndex(1).height('100%').width('100%')
-            .visibility(!this.state.isShowtimeLapse && this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
+            }.width(82).margin({ right: '20vp' })
           }
+        }.zIndex(2).height('100%')
+        .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
+        .visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
+        Column(){
+          FootBarLand({ screenSize: $screenSize })
+        }.zIndex(2).height('100%')
+        .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
+          .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+        Column() {
+          if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
+            TabBarLand()
+          }
+        }.zIndex(3).visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
+        .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
+        if (this.state.isShowMoreList) {
+          Column() {
+            MoreList()
+          }.zIndex(1).height('100%').width('100%')
+            .visibility(!this.state.isShowtimeLapse && this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
         }
+      }
+      if (this.state.isShowPageView) {
+        SettingView().width('100%').height('100%').zIndex(4)
       }
     }.width('100%').height('100%').backgroundColor('#000')
   }

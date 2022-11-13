@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
 import deviceInfo from '@ohos.deviceInfo';
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
@@ -22,10 +21,12 @@ import { SettingItem
 } from '../../../../../../common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'
 import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager';
 
 let localState = (state: OhCombinedState) => {
   return {
-    isCloseFlag: state.SettingReducer.isCloseFlag
+    isCloseFlag: state.SettingReducer.isCloseFlag,
+    mode: state.ModeReducer.mode,
   }
 }
 
@@ -33,16 +34,25 @@ let localDispatcher = (dispatch) => {
   return {
     closeDialog: (isCloseFlag: boolean) => {
       dispatch(Action.closeDialog(isCloseFlag))
-    }
+    },
+    hideSettingView: () => {
+      dispatch(Action.showSettingView(false))
+    },
+    changeXComponentSize: (xComponentWidth: string, xComponentHeight: string) => {
+      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
+    },
+    assistiveGridView: (isViewShow) => {
+      dispatch(Action.assistiveGridView(isViewShow))
+    },
+    reStartPreview: () => {
+      dispatch(Action.reStartPreview())
+    },
   }
 }
 
-@Entry
 @Component
-struct SettingView {
+export struct SettingView {
   private TAG: string = '[SettingView]:'
-  private cameraPosition: string
-  private previewImage: string
   private settingManager = SettingManager.getInstance()
   @State checkNameList: Array<string> = ["4:3", "[16:9] 720p"]
   @State closeFlag: boolean = false
@@ -50,20 +60,23 @@ struct SettingView {
   @State tempMargin: number = 12; //两侧间距
   @State settingsList: any[] = SettingListModel.getSettingList()
   @State state: any = {}
+  private mEventBus = EventBusManager.getInstance().getEventBus()
   private WH_100_100: string = "100%";
 
   aboutToAppear(): void{
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    if (router.getParams() != undefined) {
-      this.cameraPosition = router.getParams().position.toString()
-      this.previewImage = router.getParams().mode.toString()
-    }
     getStore().connect(localState, localDispatcher)(this.state)
+    this.mEventBus.on("AspectRatio", this.aspectRatioChange.bind(this))
+    this.mEventBus.on("Resolution", this.resolutionChange.bind(this))
+    this.mEventBus.on("AssistiveGrid", this.assistiveGridChange.bind(this))
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
+    this.mEventBus.off("AspectRatio", this.aspectRatioChange.bind(this))
+    this.mEventBus.off("Resolution", this.resolutionChange.bind(this))
+    this.mEventBus.off("AssistiveGrid", this.assistiveGridChange.bind(this))
   }
 
   onBackPress(): boolean {
@@ -71,16 +84,25 @@ struct SettingView {
     if (this.state.isCloseFlag){
       this.closeFlag = !this.closeFlag
     } else {
-      router.replace({
-        params: {
-          position: this.cameraPosition,
-          mode: this.previewImage,
-          pageType: 'route'
-        },
-        uri: "pages/index"
-      })
+      this.state.hideSettingView()
     }
     return true;
+  }
+
+  private aspectRatioChange(xComponentSize) {
+    if (this.state.mode != 'VIDEO') {
+      this.state.changeXComponentSize(xComponentSize.width.toString() + 'vp', xComponentSize.height.toString() + 'vp')
+      this.state.reStartPreview()
+    }
+  }
+  private resolutionChange(xComponentSize) {
+    if (this.state.mode == 'VIDEO') {
+      this.state.changeXComponentSize(xComponentSize.width.toString() + 'vp', xComponentSize.height.toString() + 'vp')
+      this.state.reStartPreview()
+    }
+  }
+  private assistiveGridChange(mAssistiveGrid) {
+    this.state.assistiveGridView(mAssistiveGrid)
   }
 
   build() {
@@ -91,14 +113,7 @@ struct SettingView {
           .height(24)
           .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
           .onClick(() => {
-            router.replace({
-              params: {
-                position: this.cameraPosition,
-                mode: this.previewImage,
-                pageType: 'route'
-              },
-              uri: "pages/index"
-            })
+            this.state.hideSettingView()
           })
         Text($r('app.string.settings'))
           .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
@@ -147,14 +162,7 @@ struct SettingView {
               .height(40)
               .onClick(() => {
                 this.settingManager.restoreValues()
-                router.replace({
-                  params: {
-                    position: this.cameraPosition,
-                    mode: this.previewImage,
-                    pageType: 'route'
-                  },
-                  uri: "pages/index"
-                })
+                this.state.hideSettingView()
               })
             }
             .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
