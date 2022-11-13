@@ -29,10 +29,12 @@ import SettingItemInfo from '../setting/storage/SettingItemInfo'
 import Timer from '../setting/settingitem/Timer'
 import VideoCodec from '../setting/settingitem/VideoCodec'
 import { Voice } from '../setting/settingitem/Voice'
+import EventBusManager from '../worker/eventbus/EventBusManager';
 
 export class SettingManager {
   private static TAG = '[SettingManager]:'
   private mRdbStoreManager: RdbStoreManager = RdbStoreManager.getInstance()
+  private mEventBus = EventBusManager.getInstance().getEventBus()
   private mSettingsList = [
     AspectRatio,
     Resolution,
@@ -68,12 +70,15 @@ export class SettingManager {
     let needCommit = false
     if (settingAlias == AspectRatio.ALIAS) {
       this.mAspectRatio = itemValue
+      this.mEventBus.emit("AspectRatio", [this.getPreviewDisplaySize()])
       needCommit = true
     } else if (settingAlias == Resolution.ALIAS) {
       this.mResolution = itemValue
+      this.mEventBus.emit("Resolution", [this.getPreviewDisplaySize()])
       needCommit = true
     } else if (settingAlias == AssistiveGrid.ALIAS) {
       this.mAssistiveGrid = itemValue
+      this.mEventBus.emit("AssistiveGrid", [this.mAssistiveGrid])
       needCommit = true
     } else if (settingAlias == Timer.ALIAS) {
       this.mTimer = itemValue

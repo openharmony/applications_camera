@@ -238,15 +238,15 @@ export struct PreviewArea {
         //          GeoLocation.getInstance().on()
 
         display.getDefaultDisplay().then((dis) => {
-          let screenHeight = dis.height - 176
-          let screenWidth = dis.width
+          let screenHeight = px2vp(dis.height - 176)
+          let screenWidth = px2vp(dis.width)
 
           this.settingManager.setScreenHeight(screenHeight)
           this.settingManager.setScreenWidth(screenWidth)
 
           let xComponentSize = this.settingManager.getPreviewDisplaySize()
           Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
-          this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
+          this.state.changeXComponentSize(xComponentSize.width.toString() + 'vp', xComponentSize.height.toString() + 'vp')
           //            this.isShowPreview = true
           this.state.updateShowPreviewFlag(true)
         })
@@ -301,7 +301,7 @@ export struct PreviewArea {
   private async onModeChanged(data) {
     Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`)
     let xComponentSize = this.settingManager.getPreviewDisplaySize()
-    this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
+    this.state.changeXComponentSize(xComponentSize.width.toString() + 'vp', xComponentSize.height.toString() + 'vp')
     this.state.updateShowPreviewFlag(true)
     Log.debug(`${this.TAG} onModeChanged X`)
   }

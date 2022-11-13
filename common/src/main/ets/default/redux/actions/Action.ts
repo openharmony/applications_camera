@@ -34,7 +34,6 @@ export class Action {
   public static readonly ACTION_SET_PERMISSION_FLAG = 'ACTION_SET_PERMISSION_FLAG'
   public static readonly ACTION_INIT_ACTION = 'ACTION_INIT_ACTION'
   public static readonly ACTION_KEEP_SCREEN_ON = 'ACTION_KEEP_SCREEN_ON'
-  public static readonly ACTION_UPDATE_SHOW_INDEX_COMPONENT_FLAG = 'ACTION_UPDATE_SHOW_INDEX_COMPONENT_FLAG'
 
   // Camera
   public static readonly ACTION_INIT = 'ACTION_INIT'
@@ -57,6 +56,7 @@ export class Action {
   // Preview
   public static readonly ACTION_PREPARE_SURFACE = 'ACTION_PREPARE_SURFACE'
   public static readonly ACTION_START_PREVIEW = 'ACTION_START_PREVIEW'
+  public static readonly ACTION_RESTART_PREVIEW = 'ACTION_RESTART_PREVIEW'
   public static readonly ACTION_UPDATE_SURFACE_ID = 'ACTION_UPDATE_SURFACE_ID'
   public static readonly ACTION_CHANGE_X_COMPONENT_SIZE = 'ACTION_CHANGE_X_COMPONENT_SIZE'
   public static readonly ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG = 'ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG'
@@ -127,6 +127,7 @@ export class Action {
   public static readonly ACTION_SHOW_ZOOM_LABEL_VALUE = 'ACTION_SHOW_ZOOM_LABEL_VALUE'
   public static readonly ACTION_UPDATE_SHOW_PINCH = 'ACTION_UPDATE_SHOW_PINCH'
   public static readonly ACTION_CLOSE_DIALOG = 'ACTION_CLOSE_DIALOG'
+  public static readonly ACTION_SHOW_SETTING_VIEW = 'ACTION_SHOW_SETTING_VIEW'
 
 
   /** CONTEXT METHODS LIST **/
@@ -166,12 +167,6 @@ export class Action {
     }
   }
 
-  public static updateShowIndexComponentFlag(showIndexComponentFlag: boolean): ActionData {
-    return {
-      type: Action.ACTION_UPDATE_SHOW_INDEX_COMPONENT_FLAG,
-      data: { showIndexComponentFlag: showIndexComponentFlag }
-    }
-  }
 
   /** CAMERA METHODS LIST **/
 
@@ -282,6 +277,13 @@ export class Action {
   public static startPreview(): ActionData {
     return {
       type: Action.ACTION_START_PREVIEW,
+      data: {}
+    }
+  }
+
+  public static reStartPreview(): ActionData {
+    return {
+      type: Action.ACTION_RESTART_PREVIEW,
       data: {}
     }
   }
@@ -726,6 +728,13 @@ export class Action {
     return {
       type: Action.ACTION_CLOSE_DIALOG,
       data: { isCloseFlag: isCloseFlag }
+    }
+  }
+
+  public static showSettingView(isShowSettingView: boolean): ActionData {
+    return {
+      type: Action.ACTION_SHOW_SETTING_VIEW,
+      data: { isShowSettingView: isShowSettingView }
     }
   }
 }
