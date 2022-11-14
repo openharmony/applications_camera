@@ -110,6 +110,7 @@ struct Index {
     display.getDefaultDisplay().then((dis) => {
       Log.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`)
       let footBarHeight
+      Log.error("testtest:" + px2vp(dis.width))
       if (deviceInfo.deviceType === "default") {
         footBarHeight = px2vp(dis.width) * (4 / 3) - 160
       } else {

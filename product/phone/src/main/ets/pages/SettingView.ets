@@ -142,31 +142,24 @@ export struct SettingView {
               })
             }
           }
-          GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
-            Row() {
-              Button({ type: ButtonType.Normal, stateEffect: true }) {
-                Text($r('app.string.restore_defaults'))
-                  .fontSize($r('sys.float.ohos_id_text_size_button1'))
-                  .fontColor($r('app.color.font_color_FFFFFF'))
-                  .fontWeight(FontWeight.Regular)
-                  .textAlign(TextAlign.Center)
-                  .useSizeType({
-                    xs: { span: 2, offset: 0 },
-                    sm: { span: 2, offset: 0 },
-                    md: { span: 2, offset: 0 },
-                    lg: { span: 2, offset: 0 }
-                  })
-              }
-              .borderRadius(30)
-              .backgroundColor($r('app.color.background_color_333333'))
-              .height(40)
-              .onClick(() => {
-                this.settingManager.restoreValues()
-                this.state.hideSettingView()
-              })
+          Row() {
+            Button({ type: ButtonType.Normal, stateEffect: true }) {
+              Text($r('app.string.restore_defaults'))
+                .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                .fontColor($r('app.color.font_color_FFFFFF'))
+                .fontWeight(FontWeight.Regular)
+                .textAlign(TextAlign.Center)
             }
-            .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
+            .borderRadius(30)
+            .backgroundColor($r('app.color.background_color_333333'))
+            .height(40)
+            .width('52%')
+            .onClick(() => {
+              this.settingManager.restoreValues()
+              this.state.hideSettingView()
+            })
           }
+          .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
         }
       }
       .width(this.WH_100_100)
