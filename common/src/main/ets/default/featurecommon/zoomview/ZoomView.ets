@@ -320,6 +320,12 @@ export struct ZoomView {
     if (this.getCurrentCanvasType() === SHOW_TAKING_VIDEO_CANVAS) {
       return this.touchedOffsetX
     }
+    if (this.offsetX === 0 && this.state.zoomRatio !== 1) {
+      this.offsetX = (this.state.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
+    }
+    if (this.state.zoomRatio === 1 && this.offsetX !== 0) {
+      this.offsetX = 0
+    }
     let padding = this.getPadding()
     let result = this.offsetX + padding + this.mainDotRadius
     if (result > this.notTakeVideoExtCanvasWidth - padding - this.mainDotRadius) {
