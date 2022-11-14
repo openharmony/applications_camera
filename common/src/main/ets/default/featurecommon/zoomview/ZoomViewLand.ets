@@ -323,6 +323,12 @@ export struct ZoomViewLand {
     if (this.getCurrentCanvasType() === SHOW_TAKING_VIDEO_CANVAS) {
       return this.touchedOffsetY
     }
+    if (this.offsetY === 0 && this.state.zoomRatio !== 1) {
+      this.offsetY = (this.state.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
+    }
+    if (this.state.zoomRatio === 1 && this.offsetY !== 0) {
+      this.offsetY = 0
+    }
     let padding = this.getPadding()
     let result = this.notTakeVideoExtCanvasHeight - padding - this.offsetY
     return result

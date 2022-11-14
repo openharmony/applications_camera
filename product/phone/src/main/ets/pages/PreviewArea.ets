@@ -294,7 +294,11 @@ export struct PreviewArea {
     }
     this.state.updateCameraPosition(this.state.cameraPosition)
     this.state.updateMode(this.state.mode)
-    this.state.resetZoomRatio(1)
+    if (globalThis?.keepCameraZoomRatio && globalThis.keepCameraZoomRatio) {
+      globalThis.keepCameraZoomRatio = false
+    } else {
+      this.state.resetZoomRatio(1)
+    }
     Log.debug(`${this.TAG} doCameraAction X`)
   }
 

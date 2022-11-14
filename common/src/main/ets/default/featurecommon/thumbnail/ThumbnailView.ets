@@ -104,6 +104,7 @@ export struct ThumbnailView {
       .enabled(this.hasThumbnail)
       .onClick(async () => {
         Log.info(`${this.TAG} launch bundle com.ohos.photos`)
+        globalThis.keepCameraZoomRatio = true
         await globalThis.cameraAbilityContext.startAbility({
           parameters: { uri: 'photodetail' },
           bundleName: 'com.ohos.photos',
