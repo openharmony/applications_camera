@@ -35,6 +35,7 @@ import { TabBar
 } from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBar'
 import { ZoomView
 } from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomView'
+import { SettingView } from './SettingView'
 
 var cameraWorker = CameraWorker.getInstance()
 
@@ -51,6 +52,7 @@ let indexState = (state: OhCombinedState) => {
     showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
     curCameraPosition: state.CameraReducer.curCameraPosition,
     isShowPinch: state.ZoomReducer.isShowPinch,
+    isShowPageView: state.SettingReducer.isShowSettingView
   }
 }
 
@@ -264,6 +266,9 @@ struct Index {
           }
         }.width('100%').height(302).position({ y: this.state.footBarHeight })
           .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
+      }
+      if (this.state.isShowPageView) {
+        SettingView().width('100%').height('100%')
       }
     }.width('100%').height('100%').backgroundColor('#000')
   }

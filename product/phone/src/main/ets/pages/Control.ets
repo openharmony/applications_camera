@@ -122,11 +122,6 @@ export struct Control {
     this.scroller.scrollToIndex(modeIndex)
     if (callType === 'begin') return
     if (this.modeArray[modeIndex] !== this.state.mode) {
-//      if (modeIndex === 3) {
-//        this.state.updateShowMoreList(true)
-//      } else {
-//        this.closeMoreListView()
-//      }
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
@@ -205,7 +200,6 @@ export struct Control {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
             ListItem() {}.width(54).height('100%')
             ListItem() {}.width(54).height('100%')
-//            ListItem() {}.width(54).height('100%')
             ListItem() {}.width(this.modeBarItemWidth).height('100%')
             ListItem() {
               Text($r('app.string.multi_mode'))
@@ -234,21 +228,9 @@ export struct Control {
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(2) })
             }.width(54).height('100%')
-//            ListItem() {
-//              Text($r('app.string.more_list'))
-//                .width('100%')
-//                .height('100%')
-//                .fontColor('#fff')
-//                .fontSize($r("sys.float.ohos_id_text_size_body1"))
-//                .fontWeight(this.getModeFontWeight(3))
-//                .textAlign(TextAlign.Center)
-//                .enabled(this.state.uiEnable)
-//                .onClick(() => { this.changeToMode(3) })
-//            }.width(54).height('100%')
             ListItem() {}.width(this.modeBarItemWidth).height('100%')
             ListItem() {}.width(54).height('100%')
             ListItem() {}.width(54).height('100%')
-//            ListItem() {}.width(54).height('100%')
           }
           .width('100%').height('100%')
           .listDirection(Axis.Horizontal)

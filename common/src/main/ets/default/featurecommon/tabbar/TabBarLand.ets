@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import router from "@system.router"
-
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
@@ -32,8 +30,8 @@ let tabBarLandState = (state) => {
 
 let tabBarLandDispatcher = (dispatch) => {
   return {
-    updateShowIndexComponentFlag: (isShow: boolean) => {
-      dispatch(Action.updateShowIndexComponentFlag(isShow))
+    showSettingView: () => {
+      dispatch(Action.showSettingView(true))
     },
   }
 }
@@ -57,13 +55,7 @@ export struct TabBarLand {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Image($r("app.media.setting")).width(24).height(24)
           .onClick(() => {
-            this.state.updateShowIndexComponentFlag(false)
-            router.replace({
-              //                params: {
-              //                  position: this.cameraPosition,
-              //                  mode: this.previewImage
-              //                },
-              uri: "pages/SettingView" })
+            this.state.showSettingView()
           })
       }.width('100%').height('20%')
 
