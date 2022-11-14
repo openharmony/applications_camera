@@ -43,9 +43,6 @@ let localDispatcher = (dispatch) => {
     updateSmallVideoTimerVisible: (visible: boolean) => {
       dispatch(Action.updateSmallVideoTimerVisible(visible))
     },
-//    updateCaptureBtnScale: (scale: number) => {
-//      dispatch(Action.updateCaptureBtnScale(scale))
-//    },
     updateShutterIcon: (icon: Resource) => {
       dispatch(Action.updateShutterIcon(icon))
     },

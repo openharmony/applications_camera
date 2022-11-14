@@ -18,13 +18,15 @@ import { Action, ActionData } from '../actions/Action'
 export type SettingState = {
   isAssGridViewShow: string,
   isShowtimeLapse: boolean,
-  isCloseFlag: boolean
+  isCloseFlag: boolean,
+  isShowSettingView: boolean
 }
 
 const initState = {
   isAssGridViewShow: '0',
   isShowtimeLapse: false,
-  isCloseFlag: false
+  isCloseFlag: false,
+  isShowSettingView: false
 }
 
 export default function SettingReducer(state = initState, action: ActionData): SettingState {
@@ -35,6 +37,8 @@ export default function SettingReducer(state = initState, action: ActionData): S
     return { ...state, isShowtimeLapse: action.data.isShowtimeLapse}
   case Action.ACTION_CLOSE_DIALOG:
     return { ...state, isCloseFlag: action.data.isCloseFlag }
+  case Action.ACTION_SHOW_SETTING_VIEW:
+    return { ...state, isShowSettingView: action.data.isShowSettingView }
   default:
     return state;
   }

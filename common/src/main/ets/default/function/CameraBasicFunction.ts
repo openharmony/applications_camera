@@ -131,6 +131,35 @@ export class CameraBasicFunction extends BaseFunction {
     Log.info(`${this.TAG} startPreview X`)
   }
 
+  private async reStartPreview() {
+    Log.info(`${this.TAG} reStartPreview E`)
+    if (globalThis.isClosingFlag) {
+      Log.info(`${this.TAG} reStartPreview isClosing return `)
+      return
+    }
+    if (!this.mSurfaceId) {
+      Log.info(`${this.TAG} reStartPreview error mSurfaceId is null`)
+      this.enableUi()
+      return
+    }
+    this.mCameraService.setCameraId(this.mCameraId)
+    await this.mCameraService.releaseCamera()
+    await this.mCameraService.createCameraInput(this.mCameraId)
+    await this.mCameraService.createPreviewOutput(this.mSurfaceId)
+    if (await this.isVideoMode()) {
+      //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
+    } else {
+      await this.mCameraService.createPhotoOutput(this.functionBackImpl)
+    }
+    await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
+    if ([...this.mSessionList].pop() === 'RELEASE') {
+      await this.close()
+    }
+    this.mSessionList = []
+    this.enableUi()
+    Log.info(`${this.TAG} reStartPreview X`)
+  }
+
   private async changeMode(data) {
     Log.info(`${this.TAG} changeMode wxx ${JSON.stringify(data)} E`)
     this.mCurrentMode = data.mode
@@ -222,6 +251,7 @@ export class CameraBasicFunction extends BaseFunction {
     this.mEventBus.on(Action.ACTION_CHANGE_VIDEO_SIZE, this.videoSize.bind(this))
     this.mEventBus.on(Action.ACTION_PREPARE_SURFACE, this.onSurfacePrepare.bind(this))
     this.mEventBus.on(Action.ACTION_START_PREVIEW, this.startPreview.bind(this))
+    this.mEventBus.on(Action.ACTION_RESTART_PREVIEW, this.reStartPreview.bind(this))
     this.mEventBus.on(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
     this.mEventBus.on(Action.ACTION_SWITCH_CAMERA, this.switchCamera.bind(this))
     this.mEventBus.on(Action.ACTION_CLOSE_CAMERA, this.close.bind(this))
@@ -236,6 +266,7 @@ export class CameraBasicFunction extends BaseFunction {
     this.mEventBus.off(Action.ACTION_CHANGE_VIDEO_SIZE, this.videoSize.bind(this))
     this.mEventBus.off(Action.ACTION_PREPARE_SURFACE, this.onSurfacePrepare.bind(this))
     this.mEventBus.off(Action.ACTION_START_PREVIEW, this.startPreview.bind(this))
+    this.mEventBus.off(Action.ACTION_RESTART_PREVIEW, this.reStartPreview.bind(this))
     this.mEventBus.off(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
     this.mEventBus.off(Action.ACTION_SWITCH_CAMERA, this.switchCamera.bind(this))
     this.mEventBus.off(Action.ACTION_CLOSE_CAMERA, this.close.bind(this))

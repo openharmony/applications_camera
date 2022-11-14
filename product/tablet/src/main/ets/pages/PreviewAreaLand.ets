@@ -195,9 +195,6 @@ let cameraDispatcher = (dispatch) => {
     },
     swipeModeChangeDone: (actionOff) => {
       dispatch(Action.swipeModeChangeDone(actionOff))
-    },
-    updateShowIndexComponentFlag: (isShow: boolean) => {
-      dispatch(Action.updateShowIndexComponentFlag(isShow))
     }
   }
 }
@@ -252,6 +249,7 @@ export struct PreviewAreaLand {
 
         GeoLocation.getInstance().on()
 
+        this.resetScreenSize(this.screenSize)
         this.state.updateShowPreviewFlag(true)
       })
       //            }
@@ -299,13 +297,13 @@ export struct PreviewAreaLand {
     this.state.updateCameraPosition(this.state.cameraPosition)
     this.state.updateMode(this.state.mode)
     this.state.resetZoomRatio(1)
-    this.resetScreenSize(this.screenSize)
-    this.state.updateShowIndexComponentFlag(true)
     Log.debug(`${this.TAG} doCameraAction X`)
   }
 
   private async onModeChanged(data) {
     Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`)
+    let xComponentSize = this.settingManager.getPreviewDisplaySize()
+    this.state.changeXComponentSize(xComponentSize.width.toString() + 'vp', xComponentSize.height.toString() + 'vp')
     this.state.updateShowPreviewFlag(true)
     Log.debug(`${this.TAG} onModeChanged X`)
   }

@@ -43,9 +43,10 @@ export default class ComponentPosition {
   }
 
   public static previewPositionNumber(screenWidth: number, screenHeight: number, previewWidth: number, previewHeight: number) {
-    return (screenWidth == previewWidth) ?
+    let size =  (Math.abs(screenWidth - previewWidth)  < 1) ?
       { x: 0, y: (screenHeight - previewHeight) / 2} :
       { x: (screenWidth - previewWidth) / 2, y: 0 }
+    return size
   }
 
   public static footBarPosition(screenWidth: number, screenHeight: number, pWidth: string, pHeight: string) {
