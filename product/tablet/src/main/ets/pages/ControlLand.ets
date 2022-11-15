@@ -185,7 +185,6 @@ export struct ControlLand {
         if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO') {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.photo_mode'))
-              //              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
               .fontSize($r("sys.float.ohos_id_text_size_body1"))
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
@@ -193,7 +192,6 @@ export struct ControlLand {
         } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO') {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.video_mode'))
-              //              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
               .fontSize($r("sys.float.ohos_id_text_size_body1"))
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
@@ -248,17 +246,6 @@ export struct ControlLand {
                   .fontWeight(this.getModeFontWeight(2))
               }.width('100%').height('100%')
             }.width('100%').height(32)
-            //	          ListItem() {
-            //              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}) {
-            //                Text($r('app.string.more_list'))
-            //                  .fontSize($r("sys.float.ohos_id_text_size_body1"))
-            //                  .fontWeight(this.getModeFontWeight(3))
-            //                  .fontColor(Color.White)
-            //                  .enabled(this.state.uiEnable)
-            //                  .onClick(async () => {this.changeToMode(3)})
-            //                  .fontWeight(this.getModeFontWeight(3))
-            //              }.width('100%').height('100%')
-            //            }.width('100%').height(32)
             ListItem() {
             }.width('100%').height(32)
 
@@ -295,9 +282,9 @@ export struct ControlLand {
         }
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Center }) {
           Column() {
-          }.borderRadius(3).width(6).height(6).backgroundColor('#1095E8')
+          }.borderRadius(3).width(6).height(6).backgroundColor('#007DFF')
           //            .shadow({radius: 5, color: 'argb(#7F000000)', offsetX: 0, offsetY: 0})
-        }.width(11).height('100%').margin({ left: 8 })
+        }.width(18).height('100%').margin({ left: 8 })
       }.width('100%').height('100%')
     }.width(98).height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height)).zIndex(2)
   }

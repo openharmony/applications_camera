@@ -565,7 +565,8 @@ export struct ZoomViewLand {
 
             let fullHeight = this.foldCanvasHeight / 2 - this.mainDotRadius
             let spotCount = (fullHeight - this.mainDotRadius * 2 - this.dotSpacing) / (this.dotSpacing + this.secDotRadius * 2) + 2
-            let spotOffset = this.foldCanvasHeight / 2 + ((this.state.zoomRatio - this.state.minZoomRatio) / (this.state.maxZoomRatio - this.state.minZoomRatio) * fullHeight)
+            let spotOffset = (this.state.zoomRatio === this.state.maxZoomRatio) ? this.foldCanvasHeight / 2 + fullHeight
+                                                                                : this.foldCanvasHeight / 2
             for (let i = 0; i < spotCount; i++) {
               let spotCenter = 0
               let spotRadius = 0

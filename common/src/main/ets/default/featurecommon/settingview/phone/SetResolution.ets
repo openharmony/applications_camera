@@ -131,7 +131,7 @@ export struct SetResolution {
           Image($r("app.media.ic_public_arrow_right"))
             .width(12)
             .height(24)
-            .fillColor('#FFFFFF')
+            .fillColor('#33FFFFFF')
             .opacity(0.4)
             .opacity($r('app.float.opacity_4'))
             .margin({ left: 4 })
