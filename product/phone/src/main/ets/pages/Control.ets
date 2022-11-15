@@ -75,7 +75,8 @@ export struct Control {
   private scrollDistance: number = 0
 
   @State state: any = {}
-  @State modeBarItemWidth: number = 225
+  @State modeBarItemLeftWidth: number = 225
+  @State modeBarItemRightWidth: number = 225
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0
@@ -85,9 +86,8 @@ export struct Control {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(controlState, controlDispatcher)(this.state)
     display.getDefaultDisplay().then((dis) => {
-      let width = (px2vp(dis.width) - (54 * 5)) / 2
-      this.modeBarItemWidth = width
-      Log.info(`${this.TAG} width: ${width}, modeBarItemWidth: ${this.modeBarItemWidth}`)
+      this.modeBarItemLeftWidth = px2vp(dis.width) / 2 - 156
+      this.modeBarItemRightWidth = px2vp(dis.width) / 2 - 148
     })
     let startWantAction = globalThis.cameraAbilityWant.parameters.action
     Log.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
@@ -198,39 +198,39 @@ export struct Control {
           }.width('100%').height('100%')
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            ListItem() {}.width(54).height('100%')
-            ListItem() {}.width(54).height('100%')
-            ListItem() {}.width(this.modeBarItemWidth).height('100%')
+            ListItem() {}.width(64).height('100%')
+            ListItem() {}.width(56).height('100%')
+            ListItem() {}.width(this.modeBarItemLeftWidth).height('100%')
             ListItem() {
               Text($r('app.string.multi_mode'))
                 .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_body1"))
+                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(0))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(0) })
-            }.width(54).height('100%')
+            }.width(72).height('100%')
             ListItem() {
               Text($r('app.string.photo_mode'))
                 .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_body1"))
+                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(1))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(1) })
-            }.width(54).height('100%')
+            }.width(56).height('100%')
             ListItem() {
               Text($r('app.string.video_mode'))
                 .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_body1"))
+                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(2))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(2) })
-            }.width(54).height('100%')
-            ListItem() {}.width(this.modeBarItemWidth).height('100%')
-            ListItem() {}.width(54).height('100%')
-            ListItem() {}.width(54).height('100%')
+            }.width(56).height('100%')
+            ListItem() {}.width(this.modeBarItemRightWidth).height('100%')
+            ListItem() {}.width(64).height('100%')
+            ListItem() {}.width(56).height('100%')
           }
           .width('100%').height('100%')
           .listDirection(Axis.Horizontal)
@@ -261,7 +261,7 @@ export struct Control {
           })
         }
         Column() {
-          Column() {}.width(6).height(6).borderRadius(3).backgroundColor('#1095E8')
+          Column() {}.width(6).height(6).borderRadius(3).backgroundColor('#007DFF')
         }.width('100%').height(18)
       }.width('100%').height(58)
     }
