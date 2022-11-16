@@ -252,7 +252,7 @@ export struct Control {
           })
           .onScroll((scrollOffset: number, scrollState: ScrollState) => {
             if (scrollState === ScrollState.Fling) {
-              this.scrollDistance += scrollOffset
+              this.scrollDistance += px2vp(scrollOffset)
               if (!this.isScroll) {
                 this.isScroll = true
                 this.state.updateListStatus(false)
