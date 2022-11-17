@@ -86,7 +86,10 @@ let indexDispatcher = (dispatch) => {
     resetRecordingTime: () => {
       dispatch(Action.updateRecordingTime(0))
       dispatch(Action.updateRecordingTimeDisplay('00:00'))
-    }
+    },
+    hideSettingView: () => {
+      dispatch(Action.showSettingView(false))
+    },
   }
 }
 
@@ -179,7 +182,10 @@ struct Index {
 
   onBackPress(): boolean {
     Log.info(`${this.TAG} onBackPress E`)
-    if (this.state.isShowtimeLapse) {
+    if (this.state.isShowPageView) {
+      this.state.hideSettingView()
+      return true
+    } else if (this.state.isShowtimeLapse) {
       this.state.changeTimeLapse(false)
       return true
     } else if (this.state.isThirdPartyCall) {
