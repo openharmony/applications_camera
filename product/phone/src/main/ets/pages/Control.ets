@@ -60,7 +60,10 @@ let controlDispatcher = (dispatch) => {
     },
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
-    }
+    },
+    updateListStatus: (enable: boolean) => {
+      dispatch(Action.uiState(enable))
+    },
   }
 }
 
@@ -71,7 +74,7 @@ export struct Control {
   private scroller: Scroller = new Scroller()
   private settingManager = SettingManager.getInstance()
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
-  private touchOff: boolean = true
+  private isScroll: boolean = false
   private scrollDistance: number = 0
 
   @State state: any = {}
@@ -117,14 +120,15 @@ export struct Control {
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
-  private changeToMode(modeIndex: number, callType?: string) {
+  private changeToMode(modeIndex: number) {
     Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
     this.scroller.scrollToIndex(modeIndex)
-    if (callType === 'begin') return
     if (this.modeArray[modeIndex] !== this.state.mode) {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+    } else {
+      this.state.updateListStatus(true)
     }
     Log.debug(`${this.TAG} changeToMode X`)
   }
@@ -147,33 +151,33 @@ export struct Control {
     this.changeToMode(data.swipeModeIndex)
   }
 
-  private scrollSwitchMode(callType: string) {
-    if (this.index == 1 && Math.abs(this.scrollDistance) <= px2vp(20)) {
-      this.changeToMode(1, callType)
+  private scrollSwitchMode() {
+    if (this.index == 1 && Math.abs(this.scrollDistance) <= px2vp(28)) {
+      this.changeToMode(1)
     }
-    if (this.index == 1 && (this.scrollDistance) > px2vp(20)) {
-      this.changeToMode(0, callType)
+    if (this.index == 1 && (this.scrollDistance) > px2vp(28)) {
+      this.changeToMode(2)
     }
-    if (this.index == 1 && (this.scrollDistance) < px2vp(-20)) {
-      this.changeToMode(2, callType)
+    if (this.index == 1 && (this.scrollDistance) < px2vp(-28)) {
+      this.changeToMode(0)
     }
-    if (this.index == 0 && (this.scrollDistance > px2vp(-25))) {
-      this.changeToMode(0, callType)
+    if (this.index == 0 && (this.scrollDistance < px2vp(36))) {
+      this.changeToMode(0)
     }
-    if (this.index == 0 && this.scrollDistance >= px2vp(-50) && this.scrollDistance <= px2vp(-25)) {
-      this.changeToMode(1, callType)
+    if (this.index == 0 && this.scrollDistance <= px2vp(92) && this.scrollDistance >= px2vp(36)) {
+      this.changeToMode(1)
     }
-    if (this.index == 0 && this.scrollDistance < px2vp(-50)) {
-      this.changeToMode(2, callType)
+    if (this.index == 0 && this.scrollDistance > px2vp(92)) {
+      this.changeToMode(2)
     }
-    if (this.index == 2 && (this.scrollDistance < px2vp(25))) {
-      this.changeToMode(2, callType)
+    if (this.index == 2 && (this.scrollDistance > px2vp(-28))) {
+      this.changeToMode(2)
     }
-    if (this.index == 2 && this.scrollDistance >= px2vp(25) && this.scrollDistance <= px2vp(50)) {
-      this.changeToMode(1, callType)
+    if (this.index == 2 && this.scrollDistance <= px2vp(-28) && this.scrollDistance >= px2vp(-92)) {
+      this.changeToMode(1)
     }
-    if (this.index == 2 && this.scrollDistance > px2vp(50)) {
-      this.changeToMode(0, callType)
+    if (this.index == 2 && this.scrollDistance < px2vp(-92)) {
+      this.changeToMode(0)
     }
   }
 
@@ -242,21 +246,29 @@ export struct Control {
             this.state.updateModeIndex(firstIndex)
             Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
-          // @ts-ignore
-          .onScrollBegin(() => {
-            if (!this.touchOff) this.scrollSwitchMode('begin')
+          .onScrollStop(() => {
+            Log.info(`${this.TAG} onScrollStop`)
+            this.scrollSwitchMode()
+          })
+          .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+            if (scrollState === ScrollState.Fling) {
+              this.scrollDistance += px2vp(scrollOffset)
+              if (!this.isScroll) {
+                this.isScroll = true
+                this.state.updateListStatus(false)
+              }
+            }
           })
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
-              this.touchOff = true
+              this.scrollDistance = 0
               this.index = this.modeArray.indexOf(this.state.mode)
               this.startScroll = event.touches[0].screenX
             }
             if (event.type === TouchType.Up) {
               this.endScroll = event.touches[0].screenX
-              this.scrollDistance = px2vp(this.endScroll - this.startScroll)
-              this.touchOff = false
-              this.scrollSwitchMode('touch')
+              this.scrollDistance = px2vp(this.startScroll - this.endScroll)
+              this.isScroll = false
             }
           })
         }
