@@ -259,7 +259,7 @@ export class CameraService {
     Log.info(`${this.TAG} createPhotoOutput invoke E.`)
     const size = SettingManager.getInstance().getImageSize()
     Log.info(`${this.TAG} createPhotoOutput size = ${JSON.stringify(size)}`)
-    const receiver = image.createImageReceiver(size.width, size.height, 4, 8)
+    const receiver = image.createImageReceiver(size.width, size.height, image.ImageFormat.JPEG, 8)
     Log.info(`${this.TAG} createPhotoOutput receiver: ${receiver}.`)
     const surfaceId = await receiver.getReceivingSurfaceId()
     Log.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
