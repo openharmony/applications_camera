@@ -22,6 +22,7 @@ import { SettingManager } from '../../../../../../common/src/main/ets/default/se
 import wantConstant from '@ohos.ability.wantConstant'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 let controlState = (state: OhCombinedState) => {
   return {
@@ -76,6 +77,7 @@ export struct Control {
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
   private isScroll: boolean = false
   private scrollDistance: number = 0
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
   @State state: any = {}
   @State modeBarItemLeftWidth: number = 225
@@ -127,6 +129,8 @@ export struct Control {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
+      this.mPreferencesService.flushMode()
     } else {
       this.state.updateListStatus(true)
     }

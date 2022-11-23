@@ -21,6 +21,7 @@ import wantConstant from '@ohos.ability.wantConstant';
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition';
+import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 let controlLandState = (state: OhCombinedState) => {
   return {
@@ -74,6 +75,7 @@ export struct ControlLand {
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'] //, 'MORE'
   private touchOff: boolean = true
   private scrollDistance: number = 0
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
   @State state: any = {}
   @State startScroll: number = 0
@@ -133,6 +135,8 @@ export struct ControlLand {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
+      this.mPreferencesService.flushMode()
     }
     Log.debug(`${this.TAG} changeToMode X`)
   }
