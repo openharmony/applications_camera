@@ -18,6 +18,7 @@ import window from '@ohos.window'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
 import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
+import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 const debounceTimeout = 500;
 
@@ -42,6 +43,7 @@ export default class MainAbility extends Ability {
     Trace.end(Trace.ABILITY_WHOLE_LIFE)
     Trace.end(Trace.APPLICATION_WHOLE_LIFE)
     this.cameraBasicFunction.startIdentification = false
+    PreferencesService.getInstance().flush()
     console.info('Camera MainAbility onDestroy.')
   }
 
