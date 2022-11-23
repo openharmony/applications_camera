@@ -21,6 +21,7 @@ import { debounce } from '../../../../../../common/src/main/ets/default/featurec
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants'
+import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 const debounceTimeout = 500;
 
@@ -46,6 +47,7 @@ export default class MainAbility extends Ability {
     Trace.end(Trace.ABILITY_WHOLE_LIFE)
     Trace.end(Trace.APPLICATION_WHOLE_LIFE)
     this.cameraBasicFunction.startIdentification = false
+    PreferencesService.getInstance().flush()
     console.info('Camera MainAbility onDestroy.')
   }
 
