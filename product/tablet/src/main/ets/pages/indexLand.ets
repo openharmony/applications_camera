@@ -36,6 +36,8 @@ import { ZoomViewLand
 import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition'
 import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants';
 import { SettingView } from './SettingView'
+import { PreferencesService, PersistType
+} from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 var cameraWorker = CameraWorker.getInstance()
 
@@ -55,7 +57,8 @@ let indexState = (state: OhCombinedState) => {
     isShowPinch: state.ZoomReducer.isShowPinch,
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
-    isShowPageView: state.SettingReducer.isShowSettingView
+    isShowPageView: state.SettingReducer.isShowSettingView,
+    isInitiated: state.ModeReducer.isInitiated
   }
 }
 
@@ -90,6 +93,9 @@ let indexDispatcher = (dispatch) => {
     hideSettingView: () => {
       dispatch(Action.showSettingView(false))
     },
+    updateModeIndex: (index: number) => {
+      dispatch(Action.updateModeIndex(index))
+    }
   }
 }
 
@@ -104,6 +110,8 @@ struct Index {
   @State state: any = {}
   @State screenSize: any = { width: 0, height: 0 }
   private mPlaySound: PlaySound = PlaySound.getInstance()
+  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -162,6 +170,13 @@ struct Index {
         this.screenSize.width = px2vp(dis.width)
         this.screenSize.height = px2vp(dis.height)
       })
+    }
+
+    if (!this.state.isInitiated) {
+      let initIndex = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 1)
+      Log.info(`${this.TAG} initModeIndex: ${initIndex}`)
+      this.state.initMode(this.modeArray[initIndex])
+      this.state.updateModeIndex(initIndex)
     }
 
     Log.info(`${this.TAG} aboutToAppear X`)
