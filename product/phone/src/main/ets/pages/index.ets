@@ -36,6 +36,8 @@ import { TabBar
 import { ZoomView
 } from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomView'
 import { SettingView } from './SettingView'
+import { PreferencesService, PersistType
+} from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 var cameraWorker = CameraWorker.getInstance()
 
@@ -52,7 +54,8 @@ let indexState = (state: OhCombinedState) => {
     showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
     curCameraPosition: state.CameraReducer.curCameraPosition,
     isShowPinch: state.ZoomReducer.isShowPinch,
-    isShowPageView: state.SettingReducer.isShowSettingView
+    isShowPageView: state.SettingReducer.isShowSettingView,
+    isInitiated: state.ModeReducer.isInitiated
   }
 }
 
@@ -90,6 +93,9 @@ let indexDispatcher = (dispatch) => {
     hideSettingView: () => {
       dispatch(Action.showSettingView(false))
     },
+    updateModeIndex: (index: number) => {
+      dispatch(Action.updateModeIndex(index))
+    }
   }
 }
 
@@ -103,6 +109,8 @@ struct Index {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
   private mPlaySound: PlaySound = PlaySound.getInstance()
+  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -164,6 +172,13 @@ struct Index {
     globalThis.stopCameraRecording = (() => {
       this.stopCameraRecording()
     })
+
+    if (!this.state.isInitiated) {
+      let initIndex = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 1)
+      Log.info(`${this.TAG} initModeIndex: ${initIndex}`)
+      this.state.initMode(this.modeArray[initIndex])
+      this.state.updateModeIndex(initIndex)
+    }
 
     Log.info(`${this.TAG} aboutToAppear X`)
   }

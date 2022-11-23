@@ -16,6 +16,7 @@
 import { Action, ActionData } from '../actions/Action'
 
 export type ModeState = {
+  isInitiated: boolean,
   mode: string,
   curMode: string,
   isShowBigText: boolean,
@@ -26,6 +27,7 @@ export type ModeState = {
 }
 
 const initState: ModeState = {
+  isInitiated: false,
   mode: 'PHOTO',
   curMode: 'PHOTO',
   isShowBigText: false,
@@ -40,7 +42,7 @@ export default function ModeReducer(state = initState, action: ActionData): Mode
   case Action.ACTION_SWIPE_MODE_DONE:
     return { ...state, modeChangeDone: action.data.modeChangeDone }
   case Action.ACTION_INIT_MODE:
-    return { ...state, mode: action.data.mode }
+    return { ...state, mode: action.data.mode, isInitiated: true }
   case Action.ACTION_CHANGE_MODE:
     return { ...state, mode: action.data.mode }
   case Action.ACTION_SET_MODE:
