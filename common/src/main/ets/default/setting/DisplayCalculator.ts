@@ -43,7 +43,6 @@ export default class DisplayCalculator {
     }
     Log.info(`${this.TAG} calcSurfaceDisplaySize screenWidth=${screenWidth} screenHeight=${screenHeight} `)
     Log.info(`${this.TAG} calcSurfaceDisplaySize previewWidth=${previewWidth} previewHeight=${previewHeight} displaySize= ${JSON.stringify(displaySize)}`)
-    Log.info(`${this.TAG} calcSurfaceDisplaySize displaySize= ${JSON.stringify(displaySize)}`)
     return displaySize
   }
 }

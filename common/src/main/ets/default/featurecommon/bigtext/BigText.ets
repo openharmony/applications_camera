@@ -48,7 +48,6 @@ export struct BigText {
   }
 
   @State state: any = {}
-  @State bigTextPositionY: any = {}
   @State bigTextOpacity: number = 0
 
   public aboutToAppear() {
@@ -95,7 +94,5 @@ export struct BigText {
     }
     .width('100%')
     .height('96vp')
-    //tablet 需要.position， phone不需要
-    .position(this.bigTextPositionY)
   }
 }

@@ -40,8 +40,8 @@ let controlState = (state: OhCombinedState) => {
 let controlDispatcher = (dispatch) => {
   return {
     changeToMode: (mode: string) => {
-      dispatch(Action.setMode(mode))
       dispatch(Action.uiState(false))
+      dispatch(Action.changeMode(mode))
       dispatch(Action.updateShowBigTextFlag(true))
     },
     updateModeIndex: (index: number) => {
@@ -86,7 +86,6 @@ export struct Control {
   @State endScroll: number = 0
   @State index: number = 0
 
-
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(controlState, controlDispatcher)(this.state)
@@ -128,7 +127,7 @@ export struct Control {
     if (this.modeArray[modeIndex] !== this.state.mode) {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      this.settingManager.setMode(this.state.mode)
       this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
       this.mPreferencesService.flushMode()
     } else {

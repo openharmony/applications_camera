@@ -25,9 +25,9 @@ import Resolution from '../../../setting/settingitem/Resolution'
 @Component
 export default struct EntryComponent {
   private TAG: string = '[EntryComponent]:'
-  @Prop itemValue: string
-  @Prop checkedValue: string
-  @Prop settingAlias: string
+  @State itemValue: string = ''
+  @State checkedValue: string = ''
+  @State settingAlias: string = ''
   private getValue: Resource
   private onChange: Function
   private settingManager = SettingManager.getInstance()

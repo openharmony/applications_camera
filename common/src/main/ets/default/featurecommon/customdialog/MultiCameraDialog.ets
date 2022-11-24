@@ -21,20 +21,17 @@ import getStore from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 
 let localState = (state) => {
-  return {
-    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag
-  }
+  return {}
 }
 
 let localDispatcher = (dispatch) => {
   return {
     changeCameraPosition: (cameraPosition: string) => {
       dispatch(Action.uiState(false))
-      dispatch(Action.setCameraPosition(cameraPosition))
+      dispatch(Action.switchCamera(cameraPosition))
+      dispatch(Action.updateCameraPosition(cameraPosition))
+      dispatch(Action.resetZoomRatio(1))
     },
-    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
-    }
   }
 }
 
@@ -100,7 +97,6 @@ export default struct MultiCameraDialog {
       this.storageCameraId = 'FRONT'
     }
     this.state.changeCameraPosition(item)
-    this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
     this.cancel()
     this.controller.close()
   }
