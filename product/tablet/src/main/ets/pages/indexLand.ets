@@ -261,9 +261,10 @@ struct Index {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       if (this.state.permissionFlag) {
-        PreviewAreaLand({ screenSize: $screenSize })
-          .position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight))
+        Column() {
+          PreviewAreaLand({ screenSize: $screenSize })
+        }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
         Column() {
           if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
             ZoomViewLand()

@@ -38,7 +38,7 @@ let localDispatcher = (dispatch) => {
     hideSettingView: () => {
       dispatch(Action.showSettingView(false))
     },
-    changeXComponentSize: (xComponentWidth: string, xComponentHeight: string) => {
+    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
       dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
     },
     assistiveGridView: (isViewShow) => {
@@ -98,13 +98,13 @@ export struct SettingView {
   }
   private aspectRatioChange(xComponentSize) {
     if (this.state.mode != 'VIDEO') {
-      this.state.changeXComponentSize(xComponentSize.width.toString() + 'vp', xComponentSize.height.toString() + 'vp')
+      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.state.reStartPreview()
     }
   }
   private resolutionChange(xComponentSize) {
     if (this.state.mode == 'VIDEO') {
-      this.state.changeXComponentSize(xComponentSize.width.toString() + 'vp', xComponentSize.height.toString() + 'vp')
+      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.state.reStartPreview()
     }
   }

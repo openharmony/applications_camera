@@ -40,7 +40,7 @@ export struct ThumbnailView {
   private thumbnailBorder: Object = {}
 
   @State state: any = {}
-  @State thumbnail: Resource = $r('app.media.ic_camera_thumbnail_default_white')
+  @State thumbnail: any = $r('app.media.ic_camera_thumbnail_default_white')
   @State hasThumbnail: boolean = false
   @State scaleValue: number = 1
   @State tempOpacity: number = 1

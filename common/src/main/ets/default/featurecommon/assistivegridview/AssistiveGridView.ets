@@ -72,8 +72,8 @@ export struct AssistiveGridView {
   }
 
   drawRuler() {
-    let xCWidth = parseInt(this.state.xComponentWidth)
-    let xCHeight = parseInt(this.state.xComponentHeight)
+    let xCWidth = this.state.xComponentWidth
+    let xCHeight = this.state.xComponentHeight
     let curX = xCWidth / 3
     let curY = xCHeight / 3
     this.context.beginPath()
