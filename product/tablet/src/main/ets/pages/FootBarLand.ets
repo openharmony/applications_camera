@@ -86,17 +86,9 @@ export struct FootBarLand {
   }
 
   build() {
-    Flex({
-      direction: FlexDirection.Column,
-      alignItems: ItemAlign.Center,
-      justifyContent: FlexAlign.Center
-    }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Column() {}.width('100%').height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height))
-      Flex({
-        direction: FlexDirection.Column,
-        alignItems: ItemAlign.Center,
-        justifyContent: FlexAlign.Center
-      }) {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         if (this.state.platformCapability?.mCameraCount > 1 && !this.isRecording && deviceInfo.deviceType !== "default") {
           CameraSwitchButton()
         } else {
@@ -111,11 +103,10 @@ export struct FootBarLand {
       .height(ComponentPosition.getFootBarHeight(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight))
       .margin({ top: ComponentPosition.getFootBarMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight),
         bottom: ComponentPosition.getFootBarMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight) })
-      .position(ComponentPosition.getFootBarPosition(this.state.xComponentHeight))
-
+      .offset(ComponentPosition.getFootBarPosition(this.state.xComponentHeight))
       if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
         ControlLand({ screenSize: $screenSize })
-        .position(ComponentPosition.getControlPosition(this.state.xComponentHeight))
+        .offset({ x: 0, y: 0 })
       } else {
         Column() {
         }.width('100%').height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height))

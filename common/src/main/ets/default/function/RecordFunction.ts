@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Action } from '../redux/actions/Action'
+import { Action, UiStateMode } from '../redux/actions/Action'
 import { Log } from '../utils/Log'
 import { BaseFunction } from './BaseFunction'
 import { VideoCallBack } from '../camera/CameraService'
@@ -33,12 +33,12 @@ export class RecordFunction extends BaseFunction {
   private async startRecording() {
     Log.info(`${this.TAG} startRecording E`)
     globalThis.startRecordingFlag = true
-    this.disableUi()
+    this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     await this.mCameraService.StartRecording(this.functionBackImpl)
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(false))
-    this.enableUi()
+    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
 
     globalThis.startRecordingFlag = false
     Log.info(`${this.TAG} globalThis.stopRecording : ` + globalThis.stopRecordingFlag)
@@ -51,23 +51,23 @@ export class RecordFunction extends BaseFunction {
 
   private async pauseRecording() {
     Log.info(`${this.TAG} pauseRecording E`)
-    this.disableUi()
+    this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     await this.mCameraService.pauseRecording()
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(true))
-    this.enableUi()
+    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     Log.info(`${this.TAG} pauseRecording X`)
   }
 
   private async resumeRecording() {
     Log.info(`${this.TAG} resumeRecording E`)
-    this.disableUi()
+    this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     await this.mCameraService.resumeRecording()
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(false))
-    this.enableUi()
+    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     Log.info(`${this.TAG} resumeRecording X`)
   }
 
@@ -78,7 +78,7 @@ export class RecordFunction extends BaseFunction {
     if (globalThis.startRecordingFlag) {
       return
     }
-    this.disableUi()
+    this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     const thumbnailPixelMap = await this.mCameraService.stopRecording()
     // TODO update video status in State by sending action
     // temp code
@@ -87,7 +87,7 @@ export class RecordFunction extends BaseFunction {
     this.mWorkerManager.postMessage(Action.updateRecordingSpotVisible(false))
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(false))
     this.mWorkerManager.postMessage(Action.updateThumbnail(thumbnailPixelMap, ''))
-    this.enableUi()
+    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     Log.info(`${this.TAG} stopRecording X`)
   }
 

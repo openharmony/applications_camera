@@ -22,6 +22,11 @@ interface Data {
  [prop: string]: any;
 }
 
+export enum UiStateMode {
+  NONE,
+  EXCLUDE_PREVIEW
+}
+
 export interface ActionData extends AnyAction {
   data: Data
 }
@@ -184,7 +189,7 @@ export class Action {
     }
   }
 
-  public static switchCamera(cameraId: CameraId): ActionData {
+  public static switchCamera(cameraId: string): ActionData {
     return {
       type: Action.ACTION_SWITCH_CAMERA,
       data: { cameraId: cameraId }
@@ -295,7 +300,7 @@ export class Action {
     }
   }
 
-  public static changeXComponentSize(xComponentWidth: string, xComponentHeight: string): ActionData {
+  public static changeXComponentSize(xComponentWidth: number, xComponentHeight: number): ActionData {
     return {
       type: Action.ACTION_CHANGE_X_COMPONENT_SIZE,
       data: { xComponentWidth: xComponentWidth, xComponentHeight: xComponentHeight }
@@ -517,7 +522,14 @@ export class Action {
   public static uiState(enable: boolean): ActionData {
     return {
       type: Action.ACTION_UI_STATE,
-      data: { enable: enable }
+      data: { enable: enable, uiStateMode: UiStateMode.NONE }
+    }
+  }
+
+  public static uiStateWithMode(enable: boolean, uiStateMode: UiStateMode): ActionData {
+    return {
+      type: Action.ACTION_UI_STATE,
+      data: { enable: enable, uiStateMode: uiStateMode }
     }
   }
 

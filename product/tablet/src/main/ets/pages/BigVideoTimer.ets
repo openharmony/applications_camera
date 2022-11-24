@@ -58,13 +58,13 @@ export struct BigVideoTimer {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
 
-  private async onRecordPaused(data) {
+  private async onRecordPausedBig(data) {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} onRecordPaused X`)
   }
 
-  private async onRecordResumed(data) {
+  private async onRecordResumedBig(data) {
     Log.info(`${this.TAG} onRecordResumed E`)
     if (this.state.recordingTime <= 2) {
       this.setIntervalTimer()
@@ -76,15 +76,15 @@ export struct BigVideoTimer {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
-    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void{
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
-    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
     Log.info(`${this.TAG} clearInterval timer id: ${this.timer}`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} aboutToDisappear X`)

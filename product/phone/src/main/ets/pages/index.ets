@@ -121,7 +121,6 @@ struct Index {
     display.getDefaultDisplay().then((dis) => {
       Log.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`)
       let footBarHeight
-      Log.error("testtest:" + px2vp(dis.width))
       if (deviceInfo.deviceType === "default") {
         footBarHeight = px2vp(dis.width) * (4 / 3) - 160
       } else {
@@ -259,7 +258,7 @@ struct Index {
       if (this.state.permissionFlag) {
         Stack() {
           PreviewArea()
-        }.width('100%').position({ x: '0', y: '48' })
+        }.width('100%').position({ y: 48 })
         Stack() {
           if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
             TabBar()
@@ -281,6 +280,7 @@ struct Index {
               Column(){
                 Control()
               }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+              .width('100%')
             }
             Column(){
               FootBar()
