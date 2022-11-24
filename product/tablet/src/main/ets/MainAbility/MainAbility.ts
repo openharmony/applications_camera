@@ -21,6 +21,7 @@ import { debounce } from '../../../../../../common/src/main/ets/default/featurec
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log';
 import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 const debounceTimeout = 500;
@@ -31,7 +32,7 @@ export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
     Trace.start(Trace.ABILITY_WHOLE_LIFE)
-    console.info('Camera MainAbility onCreate.')
+    Log.info('Camera MainAbility onCreate.')
     globalThis.cameraAbilityContext = this.context
     globalThis.cameraAbilityWant = this.launchWant
     globalThis.permissionFlag = false
@@ -48,15 +49,15 @@ export default class MainAbility extends Ability {
     Trace.end(Trace.APPLICATION_WHOLE_LIFE)
     this.cameraBasicFunction.startIdentification = false
     PreferencesService.getInstance().flush()
-    console.info('Camera MainAbility onDestroy.')
+    Log.info('Camera MainAbility onDestroy.')
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
     Trace.start(Trace.ABILITY_VISIBLE_LIFE)
-    console.info('Camera MainAbility onWindowStageCreate.')
+    Log.info('Camera MainAbility onWindowStageCreate.')
     windowStage.on('windowStageEvent', (event) => {
-      console.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
+      Log.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
       globalThis.cameraWindowStageEvent = event
       if (event === window.WindowStageEventType.INACTIVE) {
         globalThis.stopRecordingFlag = true
@@ -69,16 +70,16 @@ export default class MainAbility extends Ability {
     windowStage.getMainWindow().then((win) => {
       try {
         win.setLayoutFullScreen(true).then(() => {
-          console.info('Camera setFullScreen finished.')
+          Log.info('Camera setFullScreen finished.')
           win.setSystemBarEnable(['navigation']).then(() => {
-            console.info('Camera setSystemBarEnable finished.')
+            Log.info('Camera setSystemBarEnable finished.')
           })
         })
 
         win.setSystemBarProperties({
           navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
         }).then(() => {
-          console.info('Camera setSystemBarProperties.')
+          Log.info('Camera setSystemBarProperties.')
         })
 
         win.on('windowSizeChange', (data) => {
@@ -91,7 +92,7 @@ export default class MainAbility extends Ability {
         globalThis.cameraWinClass = win
 
       } catch (err) {
-        console.error('Camera setFullScreen err: ' + err)
+        Log.error('Camera setFullScreen err: ' + err)
       }
     })
 
@@ -114,27 +115,31 @@ export default class MainAbility extends Ability {
 
   onWindowStageDestroy() {
     Trace.end(Trace.ABILITY_VISIBLE_LIFE)
-    console.info('Camera MainAbility onWindowStageDestroy.')
+    Log.info('Camera MainAbility onWindowStageDestroy.')
   }
 
   @debounce(debounceTimeout)
   onForeground() {
     Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
-    console.info('Camera MainAbility onForeground.')
-    globalThis?.onForegroundInit && globalThis.onForegroundInit()
+    Log.info('Camera MainAbility onForeground.')
+    if (globalThis?.onForegroundInit) {
+      globalThis.onForegroundInit()
+    } else {
+      Log.info("globalThis.onForegroundInit is null")
+    }
   }
 
   @debounce(debounceTimeout)
   onBackground() {
     Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
-    console.info('Camera MainAbility onBackground.')
+    Log.info('Camera MainAbility onBackground.')
     this.cameraBasicFunction.startIdentification = false
     globalThis.needInitCameraFlag = false
     globalThis?.releaseCamera && globalThis.releaseCamera()
   }
 
   onNewWant(want) {
-    console.info('Camera MainAbility onNewWant.')
+    Log.info('Camera MainAbility onNewWant.')
     globalThis.cameraNewWant = want
   }
 }

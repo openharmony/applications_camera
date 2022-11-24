@@ -28,7 +28,6 @@ let controlLandState = (state: OhCombinedState) => {
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     isFaCall: state.ContextReducer.isFaCall,
     action: state.ContextReducer.action,
-    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
     uiEnable: state.ContextReducer.uiEnable,
     modeIndex: state.ModeReducer.modeIndex,
     mode: state.ModeReducer.mode,
@@ -39,8 +38,9 @@ let controlLandState = (state: OhCombinedState) => {
 let controlLandDispatcher = (dispatch) => {
   return {
     changeToMode: (mode: string) => {
-      dispatch(Action.setMode(mode))
       dispatch(Action.uiState(false))
+      dispatch(Action.updateMode(mode))
+      dispatch(Action.changeMode(mode))
       dispatch(Action.updateShowBigTextFlag(true))
     },
     updateModeIndex: (index: number) => {
@@ -48,9 +48,6 @@ let controlLandDispatcher = (dispatch) => {
     },
     updateShowMoreList: (isShowMoreList) => {
       dispatch(Action.updateShowMoreList(isShowMoreList))
-    },
-    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
     thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
       dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
@@ -60,7 +57,7 @@ let controlLandDispatcher = (dispatch) => {
     },
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
-    }
+    },
   }
 }
 
@@ -127,14 +124,9 @@ export struct ControlLand {
     this.scroller.scrollToIndex(modeIndex)
     if (callType === 'begin') return;
     if (this.modeArray[modeIndex] !== this.state.mode) {
-//      if ( modeIndex !== 3 ) {
-//        this.closeMoreListView()
-//      } else {
-//        this.state.updateShowMoreList(true)
-//      }
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      this.settingManager.setMode(this.state.mode)
       this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
       this.mPreferencesService.flushMode()
     }
@@ -214,7 +206,6 @@ export struct ControlLand {
                 Text($r('app.string.multi_mode'))
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
-                    //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .enabled(this.state.uiEnable)
                   .onClick(async () => {
                     this.changeToMode(0)
@@ -226,7 +217,6 @@ export struct ControlLand {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.photo_mode'))
-                  //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)
@@ -240,7 +230,6 @@ export struct ControlLand {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.video_mode'))
-                  //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)

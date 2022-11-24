@@ -57,7 +57,7 @@ export class CameraBasicFunction extends BaseFunction {
 
   public async initCamera(data, callType?: string) {
     globalThis.needInitCameraFlag = true
-    if (this.startIdentification) return
+    if (this.startIdentification) return;
     if (callType) this.startIdentification = true
     Log.info(`${this.TAG} initCamera ${JSON.stringify(data)}  E`)
     if (globalThis.isClosingFlag) {

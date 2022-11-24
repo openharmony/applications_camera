@@ -52,13 +52,13 @@ export struct SmallVideoTimer {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
 
-  private async onRecordPaused(data) {
+  private async onRecordPausedSmall(data) {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} onRecordPaused X`)
   }
 
-  private async onRecordResumed(data) {
+  private async onRecordResumedSmall(data) {
     Log.info(`${this.TAG} onRecordResumed E`)
     this.setIntervalTimer()
     Log.info(`${this.TAG} onRecordResumed timer id: ${this.timer} X`)
@@ -68,15 +68,15 @@ export struct SmallVideoTimer {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
-    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPausedSmall.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumedSmall.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
-    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPausedSmall.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumedSmall.bind(this))
     clearInterval(this.timer)
     Log.info(`${this.TAG} aboutToDisappear X`)
   }

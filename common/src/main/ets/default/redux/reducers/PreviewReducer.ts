@@ -18,8 +18,8 @@ import { Action, ActionData } from '../actions/Action'
 export type PreviewState = {
   surfaceId: number,
   xComponentChangeFlag: boolean,
-  xComponentWidth: string,
-  xComponentHeight: string,
+  xComponentWidth: number,
+  xComponentHeight: number,
   isShowPreview: boolean,
   isShowFlashBlack: boolean,
 }
@@ -27,8 +27,8 @@ export type PreviewState = {
 const initState: PreviewState = {
   surfaceId: 0,
   xComponentChangeFlag: true,
-  xComponentWidth: '',
-  xComponentHeight: '',
+  xComponentWidth: 0,
+  xComponentHeight: 0,
   isShowPreview: false,
   isShowFlashBlack: false,
 }
