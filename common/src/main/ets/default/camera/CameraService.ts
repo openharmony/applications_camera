@@ -62,6 +62,7 @@ export class CameraService {
   private mCaptureSession!: camera.CaptureSession
   private mPreviewOutput!: camera.PreviewOutput
   private mPhotoOutPut!: camera.PhotoOutput
+  private mImageReceiver!: image.ImageReceiver
   private mVideoOutput!: camera.VideoOutput
   private mVideoRecorder!: media.VideoRecorder
   private mThumbnail!: image.PixelMap
@@ -259,9 +260,9 @@ export class CameraService {
     Log.info(`${this.TAG} createPhotoOutput invoke E.`)
     const size = SettingManager.getInstance().getImageSize()
     Log.info(`${this.TAG} createPhotoOutput size = ${JSON.stringify(size)}`)
-    const receiver = image.createImageReceiver(size.width, size.height, image.ImageFormat.JPEG, 8)
-    Log.info(`${this.TAG} createPhotoOutput receiver: ${receiver}.`)
-    const surfaceId = await receiver.getReceivingSurfaceId()
+    this.mImageReceiver = image.createImageReceiver(size.width, size.height, image.ImageFormat.JPEG, 8)
+    Log.info(`${this.TAG} createPhotoOutput receiver: ${this.mImageReceiver}.`)
+    const surfaceId = await this.mImageReceiver.getReceivingSurfaceId()
     Log.info(`${this.TAG} createPhotoOutput surfaceId: ${surfaceId}.`)
     let photoProfiles = this.outputCapability.photoProfiles
     let photoProfile;
@@ -273,7 +274,7 @@ export class CameraService {
     }
     this.mPhotoOutPut = await this.mCameraManager.createPhotoOutput(photoProfile, surfaceId)
     Log.info(`${this.TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`)
-    this.mSaveCameraAsset.saveImage(receiver, 40, 40, this.mThumbnailGetter, functionCallback)
+    this.mSaveCameraAsset.saveImage(this.mImageReceiver, 40, 40, this.mThumbnailGetter, functionCallback)
     Log.info(`${this.TAG} createPhotoOutput invoke X.`)
   }
 
@@ -282,6 +283,10 @@ export class CameraService {
     if (this.mPhotoOutPut) {
       await this.mPhotoOutPut.release()
       this.mPhotoOutPut = null
+    }
+    if (this.mImageReceiver) {
+      await this.mImageReceiver.release()
+      this.mImageReceiver = null
     }
     Log.info(`${this.TAG} releasePhotoOutput invoke X.`)
   }
@@ -596,6 +601,8 @@ export class CameraService {
     } catch(err) {
       Log.error(`${this.TAG} releaseRecording: ${err}`)
     }
+    await this.releaseVideoOutput()
+    await this.releasePhotoOutput()
     await this.releaseSession()
     Log.info(`${this.TAG} releaseCamera invoke X.`)
   }
