@@ -258,6 +258,11 @@ struct Index {
     this.screenSize = data
   }
 
+  private componentVisibility(condition: boolean): Visibility {
+    return (!this.state.isShowtimeLapse && this.state.xComponentWidth != 0 && condition) ? Visibility.Visible
+                                                                                         : Visibility.Hidden
+  }
+
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       if (this.state.permissionFlag) {
@@ -265,6 +270,7 @@ struct Index {
           PreviewAreaLand({ screenSize: $screenSize })
         }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
           this.state.xComponentWidth, this.state.xComponentHeight))
+
         Column() {
           if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
             ZoomViewLand()
@@ -275,25 +281,27 @@ struct Index {
         }.zIndex(2).height('100%')
         .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
           this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
-        .visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
+        .visibility(this.componentVisibility(!this.state.isShowPinch))
+
         Column(){
           FootBarLand({ screenSize: $screenSize })
         }.zIndex(2).height('100%')
         .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
           this.state.xComponentWidth, this.state.xComponentHeight))
-          .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+        .visibility(this.componentVisibility(this.state.showZoomLabelValue))
+
         Column() {
-          if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
-            TabBarLand()
-          }
-        }.zIndex(3).visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
+          TabBarLand()
+        }.zIndex(3)
+        .visibility(this.componentVisibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue))
         .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
           this.state.xComponentWidth, this.state.xComponentHeight))
+
         if (this.state.isShowMoreList) {
           Column() {
             MoreList()
           }.zIndex(1).height('100%').width('100%')
-            .visibility(!this.state.isShowtimeLapse && this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
+          .visibility(this.componentVisibility(this.state.showZoomLabelValue))
         }
       }
       if (this.state.isShowPageView) {
