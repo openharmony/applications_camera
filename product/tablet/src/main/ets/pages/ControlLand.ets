@@ -58,6 +58,9 @@ let controlLandDispatcher = (dispatch) => {
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
     },
+    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
+      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
+    },
   }
 }
 
@@ -127,6 +130,8 @@ export struct ControlLand {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
       this.settingManager.setMode(this.state.mode)
+      let xComponentSize = this.settingManager.getPreviewDisplaySize()
+      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
       this.mPreferencesService.flushMode()
     }
