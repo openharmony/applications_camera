@@ -222,6 +222,7 @@ export struct PreviewAreaLand {
   @State isSwitchBackground: boolean = false
   @State pageType: string = ''
   @Link screenSize: any
+  @State isShowBlurSize: any = {}
   private mConnect: any
   private isShowPreview: boolean = false
   private settingManager = SettingManager.getInstance()
@@ -308,8 +309,6 @@ export struct PreviewAreaLand {
   private async onModeChanged(data) {
     Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`)
     this.state.changeZoomRatio(1)
-    let xComponentSize = this.settingManager.getPreviewDisplaySize()
-    this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
     this.state.updateShowPreviewFlag(true)
     Log.debug(`${this.TAG} onModeChanged X`)
   }
@@ -421,6 +420,9 @@ export struct PreviewAreaLand {
       this.calledByFa()
     })
 
+    display.getDefaultDisplay().then((dis) => {
+      this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height)}
+    })
     this.calledByFa()
     this.state.initCamera(this.state.curCameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
@@ -727,8 +729,8 @@ export struct PreviewAreaLand {
           }
           if (this.state.showBlur) {
             Column()
-              .width(this.state.xComponentWidth)
-              .height(this.state.xComponentHeight)
+              .width(this.isShowBlurSize.width)
+              .height(this.isShowBlurSize.height)
               .backgroundColor(Color.Black)
               .border({ width: { top: 0.5, bottom: 0.5 }, color: Color.Black })
           }
