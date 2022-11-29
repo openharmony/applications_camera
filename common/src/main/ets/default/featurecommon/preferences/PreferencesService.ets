@@ -52,7 +52,7 @@ export class PreferencesService {
   }
 
   flush(): void {
-    PreferencesService.modeStorage.putSync(this.getModePersistKey(persistType, 'Timestamp'), new Date().getTime())
+    PreferencesService.modeStorage.putSync(this.getModePersistKey(PersistType.FOR_AWHILE, 'Timestamp'), new Date().getTime())
     this.flushMode()
   }
 
