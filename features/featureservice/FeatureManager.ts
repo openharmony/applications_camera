@@ -54,7 +54,7 @@ export class FeatureManager {
 
   private initFunctionsMap(): void {
     Log.info(`${this.TAG} initFunctionsMap invoke E.`)
-    this.mFunctionsMap.set(Constants.CAMERA_BASIC_FUNCTION, new CameraBasicFunction())
+    this.mFunctionsMap.set(Constants.CAMERA_BASIC_FUNCTION, CameraBasicFunction.getInstance())
     this.mFunctionsMap.set(Constants.CAPTURE_FUNCTION, new CaptureFunction())
     this.mFunctionsMap.set(Constants.RECORDING_FUNCTION, new RecordFunction())
     this.mFunctionsMap.set(Constants.ZOOM_FUNCTION, new ZoomFunction())

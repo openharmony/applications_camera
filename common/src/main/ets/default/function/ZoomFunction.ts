@@ -15,9 +15,9 @@
 
 import { Action } from '../redux/actions/Action'
 import { Log } from '../utils/Log'
-import { Function } from './Function'
+import { BaseFunction } from './BaseFunction'
 
-export class ZoomFunction extends Function {
+export class ZoomFunction extends BaseFunction {
   private TAG = '[ZoomFunction]:'
 
   private async changeZoomRatio(data) {

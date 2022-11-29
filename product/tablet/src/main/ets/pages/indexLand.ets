@@ -26,21 +26,23 @@ import { ModeConfig } from '../common/ModeConfig'
 import {MoreList
 } from '../../../../../../common/src/main/ets/default/featurecommon/moreList/moreList'
 import { PlaySound
-} from '../../../../../../common/src/main/ets/default/featurecommon/playSound/playSound'
+} from '../../../../../../common/src/main/ets/default/featurecommon/playsound/playSound'
 import { PreviewAreaLand } from './PreviewAreaLand'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { TabBarLand
-} from '../../../../../../common/src/main/ets/default/featurecommon/tabBar/TabBarLand'
+} from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBarLand'
 import { ZoomViewLand
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomViewLand'
+} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomViewLand'
+import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition'
+import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants';
+import { SettingView } from './SettingView'
+import { PreferencesService, PersistType
+} from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
-var mScreenLockManager = new ScreenLockManager()
 var cameraWorker = CameraWorker.getInstance()
 
 let indexState = (state: OhCombinedState) => {
   return {
-    footBarWidth: state.ContextReducer.footBarWidth,
     permissionFlag: state.ContextReducer.permissionFlag,
     mode: state.ModeReducer.mode,
     curMode: state.ModeReducer.curMode,
@@ -53,14 +55,15 @@ let indexState = (state: OhCombinedState) => {
     showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
     curCameraPosition: state.CameraReducer.curCameraPosition,
     isShowPinch: state.ZoomReducer.isShowPinch,
+    xComponentWidth: state.PreviewReducer.xComponentWidth,
+    xComponentHeight: state.PreviewReducer.xComponentHeight,
+    isShowPageView: state.SettingReducer.isShowSettingView,
+    isInitiated: state.ModeReducer.isInitiated
   }
 }
 
 let indexDispatcher = (dispatch) => {
   return {
-    initFootBarWidth: (footBarWidth: number) => {
-      dispatch(Action.initFootBarWidth(footBarWidth))
-    },
     setPermissionFlag: (permissionFlag: boolean) => {
       console.info(`CameraApp setPermissionFlag: ${permissionFlag}`)
       dispatch(Action.setPermissionFlag(permissionFlag))
@@ -86,6 +89,12 @@ let indexDispatcher = (dispatch) => {
     resetRecordingTime: () => {
       dispatch(Action.updateRecordingTime(0))
       dispatch(Action.updateRecordingTimeDisplay('00:00'))
+    },
+    hideSettingView: () => {
+      dispatch(Action.showSettingView(false))
+    },
+    updateModeIndex: (index: number) => {
+      dispatch(Action.updateModeIndex(index))
     }
   }
 }
@@ -99,23 +108,17 @@ struct Index {
   private modeConfig: ModeConfig = new ModeConfig()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
+  @State screenSize: any = { width: 0, height: 0 }
   private mPlaySound: PlaySound = PlaySound.getInstance()
+  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
-    mScreenLockManager.init()
     getStore().connect(indexState, indexDispatcher)(this.state)
-
-    display.getDefaultDisplay().then((dis) => {
-      Log.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`)
-      //      this.footBarWidth = px2vp(dis.height - 176) * (4 / 3) - 100
-      //      globalThis.footBarWidth = px2vp(dis.width) - 270
-//      let footBarWidth = px2vp(dis.width) - 270
-      let footBarWidth = px2vp(dis.height) * (4 / 3)
-      this.state.initFootBarWidth(footBarWidth)
-    })
+    this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
 
     if (!this.state.permissionFlag) {
       let permissionList: Array<string> = [
@@ -127,7 +130,7 @@ struct Index {
         "ohos.permission.DISTRIBUTED_DATASYNC",
         "ohos.permission.LOCATION",
         "ohos.permission.LOCATION_IN_BACKGROUND",
-//        "ohos.permission.APPROXIMATELY_LOCATION"
+        "ohos.permission.APPROXIMATELY_LOCATION"
       ]
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
       globalThis.cameraAbilityContext.requestPermissionsFromUser(permissionList).then((data) => {
@@ -160,6 +163,22 @@ struct Index {
       this.stopCameraRecording()
     })
 
+    if (AppStorage.Has(Constants.APP_KEY_WINDOW_SIZE)) {
+      this.screenSize = AppStorage.Get(Constants.APP_KEY_WINDOW_SIZE)
+    } else {
+      display.getDefaultDisplay().then((dis) => {
+        this.screenSize.width = px2vp(dis.width)
+        this.screenSize.height = px2vp(dis.height)
+      })
+    }
+
+    if (!this.state.isInitiated) {
+      let initIndex = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 1)
+      Log.info(`${this.TAG} initModeIndex: ${initIndex}`)
+      this.state.initMode(this.modeArray[initIndex])
+      this.state.updateModeIndex(initIndex)
+    }
+
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
@@ -172,12 +191,16 @@ struct Index {
   }
 
   aboutToDisappear(): void {
+    this.appEventBus.off("windowSize", this.windowSizeChange.bind(this))
     Log.info(`${this.TAG} aboutToDisappear E`)
   }
 
   onBackPress(): boolean {
     Log.info(`${this.TAG} onBackPress E`)
-    if (this.state.isShowtimeLapse) {
+    if (this.state.isShowPageView) {
+      this.state.hideSettingView()
+      return true
+    } else if (this.state.isShowtimeLapse) {
       this.state.changeTimeLapse(false)
       return true
     } else if (this.state.isThirdPartyCall) {
@@ -231,10 +254,23 @@ struct Index {
     });
   }
 
+  private windowSizeChange(data) {
+    this.screenSize = data
+  }
+
+  private componentVisibility(condition: boolean): Visibility {
+    return (!this.state.isShowtimeLapse && this.state.xComponentWidth != 0 && condition) ? Visibility.Visible
+                                                                                         : Visibility.Hidden
+  }
+
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       if (this.state.permissionFlag) {
-        PreviewAreaLand()
+        Column() {
+          PreviewAreaLand({ screenSize: $screenSize })
+        }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
+
         Column() {
           if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
             ZoomViewLand()
@@ -242,25 +278,34 @@ struct Index {
             Column() {
             }.width(82).margin({ right: '20vp' })
           }
-        }.zIndex(2).position({
-          x: this.state.videoState === "beforeTakeVideo" ? (this.state.footBarWidth - 82) : (this.state.footBarWidth - 42),
-          y: 0
-        }).height('100%').visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
+        }.zIndex(2).height('100%')
+        .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
+        .visibility(this.componentVisibility(!this.state.isShowPinch))
+
         Column(){
-          FootBarLand()
-        }.zIndex(2).position({ x: (this.state.footBarWidth + 32), y: 0 }).height('100%')
-          .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+          FootBarLand({ screenSize: $screenSize })
+        }.zIndex(2).height('100%')
+        .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
+        .visibility(this.componentVisibility(this.state.showZoomLabelValue))
+
         Column() {
-          if (this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
-            TabBarLand()
-          }
-        }.zIndex(3).visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
-        if(this.state.isShowMoreList){
+          TabBarLand()
+        }.zIndex(3)
+        .visibility(this.componentVisibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue))
+        .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
+
+        if (this.state.isShowMoreList) {
           Column() {
             MoreList()
           }.zIndex(1).height('100%').width('100%')
-            .visibility(!this.state.isShowtimeLapse && this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
+          .visibility(this.componentVisibility(this.state.showZoomLabelValue))
         }
+      }
+      if (this.state.isShowPageView) {
+        SettingView().width('100%').height('100%').zIndex(4)
       }
     }.width('100%').height('100%').backgroundColor('#000')
   }

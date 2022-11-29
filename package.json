@@ -10,16 +10,19 @@
 	"description": "example description",
 	"repository": {},
 	"scripts": {
-		"assembleApp": "hvigor --mode project assembleApp",
-		"assembleHap": "hvigor --mode module assembleHap",
-		"assemblePhone": "hvigor --m module --prop module=phone assembleHap",
-		"assembleTablet": "hvigor --m module --prop module=tablet assembleHap"
+		"tablet": "hvigor --m module --prop module=tablet assembleHap",
+		"phone": "hvigor --m module --prop module=phone assembleHap",
+		"allApp": "hvigor --mode project assembleApp",
+		"loadDependence": "node infra/prepare.js",
+		"allHap": "hvigor --mode module assembleHap"
 	},
 	"version": "1.0.0",
+	"config": {
+		"unsafe-prem": true
+	},
 	"dependencies": {
-		"@ohos/hvigor-ohos-plugin": "1.1.6",
-		"hypium": "^1.0.0",
-		"@ohos/hvigor": "1.1.6",
-		"@ohos/hypium": "1.0.1"
+		"@ohos/hypium": "1.0.3",
+		"@ohos/hvigor-ohos-plugin": "1.3.1",
+		"@ohos/hvigor": "1.3.1"
 	}
 }

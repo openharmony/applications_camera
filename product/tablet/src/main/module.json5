@@ -27,6 +27,12 @@
     "installationFree": false,
     "pages": "$profile:main_pages",
     "uiSyntax": "ets",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "true"
+      }
+    ],
     "requestPermissions": [
       {
         "name": "ohos.permission.REQUIRE_FORM"
@@ -63,6 +69,9 @@
       },
       {
         "name": "ohos.permission.LOCATION_IN_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION"
       }
     ],
     "abilities": [
@@ -87,7 +96,11 @@
               "ohos.want.action.videoCapture"
             ]
           }
-        ]
+        ],
+        "minWindowHeight": 558,
+        "minWindowWidth": 844,
+        "maxWindowHeight": 800,
+        "maxWindowWidth": 1280
       }
     ],
     "extensionAbilities": [

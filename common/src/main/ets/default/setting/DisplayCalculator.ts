@@ -14,6 +14,7 @@
  */
 
 import { Log } from '../utils/Log'
+import deviceInfo from '@ohos.deviceInfo';
 
 export default class DisplayCalculator {
   private static TAG = '[DisplayCalculator]:'
@@ -23,7 +24,7 @@ export default class DisplayCalculator {
       width: 1920, height: 1080
     }
     const ratio = previewWidth / previewHeight
-    if (screenWidth > screenHeight) {
+    if (deviceInfo.deviceType == 'tablet' || screenWidth > screenHeight) {
       if (screenWidth / screenHeight > ratio) {
         displaySize.width = Math.floor(screenHeight * ratio)
         displaySize.height = Math.floor(screenHeight)
@@ -42,7 +43,6 @@ export default class DisplayCalculator {
     }
     Log.info(`${this.TAG} calcSurfaceDisplaySize screenWidth=${screenWidth} screenHeight=${screenHeight} `)
     Log.info(`${this.TAG} calcSurfaceDisplaySize previewWidth=${previewWidth} previewHeight=${previewHeight} displaySize= ${JSON.stringify(displaySize)}`)
-    Log.info(`${this.TAG} calcSurfaceDisplaySize displaySize= ${JSON.stringify(displaySize)}`)
     return displaySize
   }
 }

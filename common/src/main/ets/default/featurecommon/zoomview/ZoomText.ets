@@ -56,6 +56,6 @@ export struct ZoomText {
         .textAlign(TextAlign.Center)
     }
     .width('100%')
-      .height('100%')
+    .height('100%')
   }
 }

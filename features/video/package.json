@@ -1,0 +1,15 @@
+{
+	"license": "ISC",
+	"devDependencies": {},
+	"name": "@ohos/video",
+	"description": "video mode",
+	"ohos": {
+		"org": ""
+	},
+	"repository": {},
+	"type": "module",
+	"version": "1.0.0",
+	"dependencies": {
+		"@ohos/common": "../../common"
+	}
+}

@@ -15,8 +15,8 @@
 
 import { SettingManager } from '../../../setting/SettingManager'
 import { Log } from '../../../utils/Log'
-import { SetResolution } from './SetResolution.ets'
-import { SetToggle } from './SetToggle.ets'
+import { SetResolution } from './SetResolution'
+import { SetToggle } from './SetToggle'
 import { BaseData }  from '../model/BaseData'
 
 @Component

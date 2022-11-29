@@ -13,22 +13,20 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
-
+import deviceInfo from '@ohos.deviceInfo';
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { SettingItem
-} from '../../../../../../common/src/main/ets/default/featurecommon/settingView/phone/SettingItem'
+} from '../../../../../../common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'
 import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-
-var mScreenLockManager = new ScreenLockManager()
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager';
 
 let localState = (state: OhCombinedState) => {
   return {
-    isCloseFlag: state.SettingReducer.isCloseFlag
+    isCloseFlag: state.SettingReducer.isCloseFlag,
+    mode: state.ModeReducer.mode,
   }
 }
 
@@ -36,16 +34,25 @@ let localDispatcher = (dispatch) => {
   return {
     closeDialog: (isCloseFlag: boolean) => {
       dispatch(Action.closeDialog(isCloseFlag))
-    }
+    },
+    hideSettingView: () => {
+      dispatch(Action.showSettingView(false))
+    },
+    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
+      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
+    },
+    assistiveGridView: (isViewShow) => {
+      dispatch(Action.assistiveGridView(isViewShow))
+    },
+    reStartPreview: () => {
+      dispatch(Action.reStartPreview())
+    },
   }
 }
 
-@Entry
 @Component
-struct SettingView {
+export struct SettingView {
   private TAG: string = '[SettingView]:'
-  private cameraPosition: string
-  private previewImage: string
   private settingManager = SettingManager.getInstance()
   @State checkNameList: Array<string> = ["4:3", "[16:9] 720p"]
   @State closeFlag: boolean = false
@@ -53,21 +60,23 @@ struct SettingView {
   @State tempMargin: number = 12; //两侧间距
   @State settingsList: any[] = SettingListModel.getSettingList()
   @State state: any = {}
+  private mEventBus = EventBusManager.getInstance().getEventBus()
   private WH_100_100: string = "100%";
 
   aboutToAppear(): void{
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    if (router.getParams() != undefined) {
-      this.cameraPosition = router.getParams().position.toString()
-      this.previewImage = router.getParams().mode.toString()
-    }
     getStore().connect(localState, localDispatcher)(this.state)
-    mScreenLockManager.init()
+    this.mEventBus.on("AspectRatio", this.aspectRatioChange.bind(this))
+    this.mEventBus.on("Resolution", this.resolutionChange.bind(this))
+    this.mEventBus.on("AssistiveGrid", this.assistiveGridChange.bind(this))
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
+    this.mEventBus.off("AspectRatio", this.aspectRatioChange.bind(this))
+    this.mEventBus.off("Resolution", this.resolutionChange.bind(this))
+    this.mEventBus.off("AssistiveGrid", this.assistiveGridChange.bind(this))
   }
 
   onBackPress(): boolean {
@@ -75,15 +84,25 @@ struct SettingView {
     if (this.state.isCloseFlag){
       this.closeFlag = !this.closeFlag
     } else {
-      router.replace({
-        params: {
-          position: this.cameraPosition,
-          mode: this.previewImage
-        },
-        uri: "pages/index"
-      })
+      this.state.hideSettingView()
     }
     return true;
+  }
+
+  private aspectRatioChange(xComponentSize) {
+    if (this.state.mode != 'VIDEO') {
+      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.state.reStartPreview()
+    }
+  }
+  private resolutionChange(xComponentSize) {
+    if (this.state.mode == 'VIDEO') {
+      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.state.reStartPreview()
+    }
+  }
+  private assistiveGridChange(mAssistiveGrid) {
+    this.state.assistiveGridView(mAssistiveGrid)
   }
 
   build() {
@@ -94,13 +113,7 @@ struct SettingView {
           .height(24)
           .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
           .onClick(() => {
-            router.replace({
-              params: {
-                position: this.cameraPosition,
-                mode: this.previewImage
-              },
-              uri: "pages/index"
-            })
+            this.state.hideSettingView()
           })
         Text($r('app.string.settings'))
           .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
@@ -111,6 +124,7 @@ struct SettingView {
       .padding({ left: 24 })
       .width(this.WH_100_100)
       .height(56)
+      .margin({ top: deviceInfo.deviceType !== 'default' ? 25 : 0 })
 
       Scroll() {
         Column() {
@@ -128,37 +142,24 @@ struct SettingView {
               })
             }
           }
-          GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
-            Row() {
-              Button({ type: ButtonType.Normal, stateEffect: true }) {
-                Text($r('app.string.restore_defaults'))
-                  .fontSize($r('sys.float.ohos_id_text_size_button1'))
-                  .fontColor($r('app.color.font_color_FFFFFF'))
-                  .fontWeight(FontWeight.Regular)
-                  .textAlign(TextAlign.Center)
-                  .useSizeType({
-                    xs: { span: 2, offset: 0 },
-                    sm: { span: 2, offset: 0 },
-                    md: { span: 2, offset: 0 },
-                    lg: { span: 2, offset: 0 }
-                  })
-              }
-              .borderRadius(30)
-              .backgroundColor($r('app.color.background_color_333333'))
-              .height(40)
-              .onClick(() => {
-                this.settingManager.restoreValues()
-                router.replace({
-                  params: {
-                    position: this.cameraPosition,
-                    mode: this.previewImage
-                  },
-                  uri: "pages/index"
-                })
-              })
+          Row() {
+            Button({ type: ButtonType.Normal, stateEffect: true }) {
+              Text($r('app.string.restore_defaults'))
+                .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                .fontColor($r('app.color.font_color_FFFFFF'))
+                .fontWeight(FontWeight.Regular)
+                .textAlign(TextAlign.Center)
             }
-            .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
+            .borderRadius(30)
+            .backgroundColor($r('app.color.background_color_333333'))
+            .height(40)
+            .width('52%')
+            .onClick(() => {
+              this.settingManager.restoreValues()
+              this.state.hideSettingView()
+            })
           }
+          .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
         }
       }
       .width(this.WH_100_100)
