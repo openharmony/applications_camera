@@ -280,30 +280,24 @@ export struct PreviewArea {
   }
 
   private async doCameraAction() {
-    if (!globalThis?.doCameraActionDone || !globalThis.doCameraActionDone) {
-      globalThis.doCameraActionDone = true
-      setTimeout(() => {
-        globalThis.doCameraActionDone = false
-      }, 1000)
-      Log.debug(`${this.TAG} doCameraAction E`)
-      this.settingManager.setCameraId(this.state.cameraPosition)
-      this.settingManager.setMode(this.state.mode)
-      if (this.state.curCameraPosition != this.state.cameraPosition) {
-        this.state.switchCamera(this.state.cameraPosition)
-      } else if (this.state.curMode != this.state.mode) {
-        this.state.changeToMode(this.state.mode)
-      } else {
-        this.state.startPreview()
-      }
-      this.state.updateCameraPosition(this.state.cameraPosition)
-      this.state.updateMode(this.state.mode)
-      if (globalThis?.keepCameraZoomRatio && globalThis.keepCameraZoomRatio) {
-        globalThis.keepCameraZoomRatio = false
-      } else {
-        this.state.changeZoomRatio(1)
-      }
-      Log.debug(`${this.TAG} doCameraAction X`)
+    Log.debug(`${this.TAG} doCameraAction E`)
+    this.settingManager.setCameraId(this.state.cameraPosition)
+    this.settingManager.setMode(this.state.mode)
+    if (this.state.curCameraPosition != this.state.cameraPosition) {
+      this.state.switchCamera(this.state.cameraPosition)
+    } else if (this.state.curMode != this.state.mode) {
+      this.state.changeToMode(this.state.mode)
+    } else {
+      this.state.startPreview()
     }
+    this.state.updateCameraPosition(this.state.cameraPosition)
+    this.state.updateMode(this.state.mode)
+    if (globalThis?.keepCameraZoomRatio && globalThis.keepCameraZoomRatio) {
+      globalThis.keepCameraZoomRatio = false
+    } else {
+      this.state.changeZoomRatio(1)
+    }
+    Log.debug(`${this.TAG} doCameraAction X`)
   }
 
   private async onModeChanged(data) {
