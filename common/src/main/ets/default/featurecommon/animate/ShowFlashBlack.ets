@@ -53,8 +53,8 @@ export struct ShowFlashBlack {
       Row() {
         Shape() {
           Rect()
-            .width(Number(this.state.xComponentWidth.split('px')[0]))
-            .height(Number(this.state.xComponentHeight.split('px')[0]))
+            .width(this.state.xComponentWidth)
+            .height(this.state.xComponentHeight)
         }
         .fill(Color.Black)
         .opacity(this.opacityValue)
@@ -78,7 +78,7 @@ export struct ShowFlashBlack {
         })
       }
     }
-    .width(Number(this.state.xComponentWidth.split('px')[0]))
-    .height(Number(this.state.xComponentHeight.split('px')[0]))
+    .width(this.state.xComponentWidth)
+    .height(this.state.xComponentHeight)
   }
 }

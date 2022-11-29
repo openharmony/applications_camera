@@ -24,7 +24,7 @@ export class Log {
   public static readonly LEVEL_INFO = 2;
   public static readonly LEVEL_WARN = 3;
   public static readonly LEVEL_ERROR = 4;
-  public static LOG_LEVEL = Log.LEVEL_INFO;
+  public static LOG_LEVEL = Log.LEVEL_LOG;
 
 
   public static debug(message: string) {

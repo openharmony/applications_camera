@@ -40,7 +40,7 @@ export struct ThumbnailView {
   private thumbnailBorder: Object = {}
 
   @State state: any = {}
-  @State thumbnail: Resource | PixelMap = $r('app.media.ic_camera_thumbnail_default_white')
+  @State thumbnail: any = $r('app.media.ic_camera_thumbnail_default_white')
   @State hasThumbnail: boolean = false
   @State scaleValue: number = 1
   @State tempOpacity: number = 1
@@ -74,6 +74,8 @@ export struct ThumbnailView {
     } else {
       this.thumbnailBorder = {}
     }
+    this.scaleValue = 1
+    this.tempOpacity = 1
     Log.info(`${this.TAG} onThumbnailLoad this.state.thumbnail: ${JSON.stringify(this.thumbnail)} X`)
   }
 
@@ -102,6 +104,7 @@ export struct ThumbnailView {
       .enabled(this.hasThumbnail)
       .onClick(async () => {
         Log.info(`${this.TAG} launch bundle com.ohos.photos`)
+        globalThis.keepCameraZoomRatio = true
         await globalThis.cameraAbilityContext.startAbility({
           parameters: { uri: 'photodetail' },
           bundleName: 'com.ohos.photos',

@@ -13,10 +13,11 @@
  * limitations under the License.
  */
 
-import { Action, ActionData } from '../actions/Action'
+import { Action, ActionData, UiStateMode } from '../actions/Action'
 
 export type ContextState = {
   uiEnable: boolean,
+  uiStateMode: UiStateMode,
   deviceHeight: number,
   footBarWidth: number,
   footBarHeight: number,
@@ -29,6 +30,7 @@ export type ContextState = {
 
 const initState: ContextState = {
   uiEnable: true,
+  uiStateMode: UiStateMode.NONE,
   deviceHeight: 0,
   footBarWidth: 0,
   footBarHeight: 0,
@@ -42,7 +44,7 @@ const initState: ContextState = {
 export default function ContextReducer(state = initState, action: ActionData): ContextState {
   switch (action.type) {
   case Action.ACTION_UI_STATE:
-    return { ...state, uiEnable: action.data.enable}
+    return { ...state, uiEnable: action.data.enable, uiStateMode: action.data.uiStateMode }
   case Action.ACTION_INIT_FOOT_BAR_WIDTH:
     return { ...state, footBarWidth: action.data.footBarWidth }
   case Action.ACTION_INIT_FOOT_BAR_HEIGHT:

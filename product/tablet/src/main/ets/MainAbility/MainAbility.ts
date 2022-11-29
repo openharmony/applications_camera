@@ -16,57 +16,83 @@
 import Ability from '@ohos.application.Ability'
 import window from '@ohos.window';
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
+import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
+import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
+import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log';
+import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+
+const debounceTimeout = 500;
 
 export default class MainAbility extends Ability {
+  private cameraBasicFunction: any = null
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
     Trace.start(Trace.ABILITY_WHOLE_LIFE)
-    console.info('Camera MainAbility onCreate.')
+    Log.info('Camera MainAbility onCreate.')
     globalThis.cameraAbilityContext = this.context
     globalThis.cameraAbilityWant = this.launchWant
     globalThis.permissionFlag = false
     globalThis.cameraStartTime = new Date().getTime()
     globalThis.cameraStartFlag = true
+    globalThis.stopRecordingFlag = false;
+    this.cameraBasicFunction = CameraBasicFunction.getInstance()
+    this.cameraBasicFunction.initCamera({ cameraId: 'BACK', mode: 'PHOTO' }, 'onCreate')
   }
 
   onDestroy() {
     // Ability is creating, release resources for this ability
     Trace.end(Trace.ABILITY_WHOLE_LIFE)
     Trace.end(Trace.APPLICATION_WHOLE_LIFE)
-    console.info('Camera MainAbility onDestroy.')
+    this.cameraBasicFunction.startIdentification = false
+    PreferencesService.getInstance().flush()
+    Log.info('Camera MainAbility onDestroy.')
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
     Trace.start(Trace.ABILITY_VISIBLE_LIFE)
-    console.info('Camera MainAbility onWindowStageCreate.')
+    Log.info('Camera MainAbility onWindowStageCreate.')
     windowStage.on('windowStageEvent', (event) => {
-      console.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
-      if (event === window.WindowStageEventType.INACTIVE) {
-        globalThis?.stopCameraRecording && globalThis.stopCameraRecording()
-      }
+      Log.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
       globalThis.cameraWindowStageEvent = event
+      if (event === window.WindowStageEventType.INACTIVE) {
+        globalThis.stopRecordingFlag = true
+        globalThis?.stopCameraRecording && globalThis.stopCameraRecording()
+      } else {
+        globalThis.stopRecordingFlag = false
+      }
     })
 
     windowStage.getMainWindow().then((win) => {
       try {
         win.setLayoutFullScreen(true).then(() => {
-          console.info('Camera setFullScreen finished.')
+          Log.info('Camera setFullScreen finished.')
           win.setSystemBarEnable(['navigation']).then(() => {
-            console.info('Camera setSystemBarEnable finished.')
+            Log.info('Camera setSystemBarEnable finished.')
           })
         })
 
         win.setSystemBarProperties({
           navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
         }).then(() => {
-          console.info('Camera setSystemBarProperties.')
+          Log.info('Camera setSystemBarProperties.')
         })
+
+        win.on('windowSizeChange', (data) => {
+          data.width = (data.height != 1600) ? px2vp(data.width) - 8 : px2vp(data.width)
+          data.height = (data.height != 1600) ? px2vp(data.height) - 43 : px2vp(data.height)
+          AppStorage.SetOrCreate(Constants.APP_KEY_WINDOW_SIZE, data)
+          this.appEventBus.emit("windowSize", [data])
+        });
 
         globalThis.cameraWinClass = win
 
       } catch (err) {
-        console.error('Camera setFullScreen err: ' + err)
+        Log.error('Camera setFullScreen err: ' + err)
       }
     })
 
@@ -89,23 +115,31 @@ export default class MainAbility extends Ability {
 
   onWindowStageDestroy() {
     Trace.end(Trace.ABILITY_VISIBLE_LIFE)
-    console.info('Camera MainAbility onWindowStageDestroy.')
+    Log.info('Camera MainAbility onWindowStageDestroy.')
   }
 
+  @debounce(debounceTimeout)
   onForeground() {
     Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
-    console.info('Camera MainAbility onForeground.')
-    globalThis?.onForegroundInit && globalThis.onForegroundInit()
+    Log.info('Camera MainAbility onForeground.')
+    if (globalThis?.onForegroundInit) {
+      globalThis.onForegroundInit()
+    } else {
+      Log.info("globalThis.onForegroundInit is null")
+    }
   }
 
+  @debounce(debounceTimeout)
   onBackground() {
     Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
-    console.info('Camera MainAbility onBackground.')
+    Log.info('Camera MainAbility onBackground.')
+    this.cameraBasicFunction.startIdentification = false
+    globalThis.needInitCameraFlag = false
     globalThis?.releaseCamera && globalThis.releaseCamera()
   }
 
   onNewWant(want) {
-    console.info('Camera MainAbility onNewWant.')
+    Log.info('Camera MainAbility onNewWant.')
     globalThis.cameraNewWant = want
   }
 }

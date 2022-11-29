@@ -13,19 +13,19 @@
  * limitations under the License.
  */
 
-import { Action } from '../redux/actions/Action'
+import { Action, UiStateMode } from '../redux/actions/Action'
 import { Log } from '../utils/Log'
-import { Function } from './Function'
+import { BaseFunction } from './BaseFunction'
 
-export class CaptureFunction extends Function {
+export class CaptureFunction extends BaseFunction {
   private TAG = '[CaptureFunction]:'
 
   private async capture(): Promise<void> {
     Log.info(`${this.TAG} capture E`)
     globalThis.startCaptureTime = new Date().getTime()
-    this.disableUi()
+    this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     await this.mCameraService.takePicture()
-    this.enableUi()
+    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     Log.info(`${this.TAG} capture X`)
   }
 

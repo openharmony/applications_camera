@@ -14,10 +14,10 @@
  */
 
 import { Action } from '../../redux/actions/Action'
-import { CameraSwitchController } from './CameraSwitchController.ts'
+import { CameraSwitchController } from './CameraSwitchController'
 import getStore from '../../redux/store'
 import { Log } from '../../utils/Log'
-import MultiCameraDialog from '../customDialog/MultiCameraDialog'
+import MultiCameraDialog from '../customdialog/MultiCameraDialog'
 import deviceInfo from '@ohos.deviceInfo'
 
 let localState = (state) => {
@@ -34,7 +34,9 @@ let localDispatcher = (dispatch) => {
   return {
     changeCameraPosition: (cameraPosition: string) => {
       dispatch(Action.uiState(false))
-      dispatch(Action.setCameraPosition(cameraPosition))
+      dispatch(Action.switchCamera(cameraPosition))
+      dispatch(Action.updateCameraPosition(cameraPosition))
+      dispatch(Action.resetZoomRatio(1))
     },
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
       dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
@@ -109,10 +111,9 @@ export struct CameraSwitchButton {
             this.openMultiDialog()
           } else {
             globalThis.switchCameraTime = new Date().getTime()
-            this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
             if (this.state.cameraPosition !== 'BACK') {
-                this.state.changeCameraPosition('BACK')
-                this.storageCameraId = 'BACK'
+              this.state.changeCameraPosition('BACK')
+              this.storageCameraId = 'BACK'
             } else {
               this.state.changeCameraPosition('FRONT')
               this.storageCameraId = 'FRONT'
