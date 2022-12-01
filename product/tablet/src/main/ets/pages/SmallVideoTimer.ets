@@ -52,15 +52,13 @@ export struct SmallVideoTimer {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
 
-  @State timerPosition: number= 0
-
-  private async onRecordPaused(data) {
+  private async onRecordPausedSmall(data) {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} onRecordPaused X`)
   }
 
-  private async onRecordResumed(data) {
+  private async onRecordResumedSmall(data) {
     Log.info(`${this.TAG} onRecordResumed E`)
     this.setIntervalTimer()
     Log.info(`${this.TAG} onRecordResumed timer id: ${this.timer} X`)
@@ -70,18 +68,15 @@ export struct SmallVideoTimer {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
-    display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height) * (4 / 3)
-    })
-    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPausedSmall.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumedSmall.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
-    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPausedSmall.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumedSmall.bind(this))
     clearInterval(this.timer)
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
@@ -131,8 +126,8 @@ export struct SmallVideoTimer {
 //        Text(this.showMinute).margin({ left: 8 }).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
       }.layoutWeight(1)
       Text(":").fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
-      Text(`${this.state.recordingTimeDisplay.split(':')[1]}`).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
+      Text(`${this.state.recordingTimeDisplay.split(':')[1]}`).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).align(Alignment.Start).layoutWeight(1)
 //      Text(this.showSecond).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
-    }.width(this.timerPosition == 0 ? '100%' : this.timerPosition).height(48)
+    }.width('100%').height(48)
   }
 }

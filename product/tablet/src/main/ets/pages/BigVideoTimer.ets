@@ -58,15 +58,13 @@ export struct BigVideoTimer {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
 
-  @State timerPosition: number= 0
-
-  private async onRecordPaused(data) {
+  private async onRecordPausedBig(data) {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} onRecordPaused X`)
   }
 
-  private async onRecordResumed(data) {
+  private async onRecordResumedBig(data) {
     Log.info(`${this.TAG} onRecordResumed E`)
     if (this.state.recordingTime <= 2) {
       this.setIntervalTimer()
@@ -78,18 +76,15 @@ export struct BigVideoTimer {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.setIntervalTimer()
-    display.getDefaultDisplay().then((dis) => {
-      this.timerPosition = px2vp(dis.height) * (4 / 3)
-    })
-    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void{
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPaused.bind(this))
-    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumed.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
     Log.info(`${this.TAG} clearInterval timer id: ${this.timer}`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} aboutToDisappear X`)
@@ -143,6 +138,6 @@ export struct BigVideoTimer {
       Text(`${this.state.recordingTimeDisplay}`).margin({ left: 8, right: 8 }).fontSize('50fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Center)
       Text('').width(12).height(12)
       Text('').layoutWeight(1)
-    }.width(this.timerPosition).height(96)
+    }.width('100%').height(96)
   }
 }

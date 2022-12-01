@@ -129,6 +129,9 @@ export struct ZoomView {
   }
 
   private lpgOnActionEnd(): void {
+    if (this.lpgTimer) {
+      clearTimeout(this.lpgTimer)
+    }
     this.lpgTimer = setTimeout(() => {
       if (this.lpgExp && !this.pgExp) {
         this.state.updateShowZoomFlag(false)
@@ -264,6 +267,9 @@ export struct ZoomView {
 
   private pgOnActionEnd(event: GestureEvent): void {
     this.state.updateShowZoomLabelValue(true)
+    if (this.pgTimer) {
+      clearTimeout(this.pgTimer)
+    }
     this.pgTimer = setTimeout(() => {
       if (this.pgExp && !this.lpgExp) {
         this.state.updateShowZoomFlag(false)
@@ -297,6 +303,9 @@ export struct ZoomView {
       this.offsetX = (zoomRatio - 1) * this.getZoomOffsetUnit()
       this.updateZoomRatio()
     } else if (event.type === TouchType.Up) {
+      if (this.pgTimer) {
+        clearTimeout(this.pgTimer)
+      }
       this.pgTimer = setTimeout(() => {
         if (this.pgExp && !this.lpgExp) {
           this.state.updateShowZoomFlag(false)
@@ -310,6 +319,12 @@ export struct ZoomView {
   private getZoomBtnCenterX(): number {
     if (this.getCurrentCanvasType() === SHOW_TAKING_VIDEO_CANVAS) {
       return this.touchedOffsetX
+    }
+    if (this.offsetX === 0 && this.state.zoomRatio !== 1) {
+      this.offsetX = (this.state.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
+    }
+    if (this.state.zoomRatio === 1 && this.offsetX !== 0) {
+      this.offsetX = 0
     }
     let padding = this.getPadding()
     let result = this.offsetX + padding + this.mainDotRadius
@@ -551,7 +566,8 @@ export struct ZoomView {
 
             let fullWidth = this.foldCanvasWidth / 2 - this.mainDotRadius
             let spotCount = (fullWidth - this.mainDotRadius * 2 - this.dotSpacing) / (this.dotSpacing + this.secDotRadius * 2) + 2
-            let spotOffset = this.foldCanvasWidth / 2 - ((this.state.zoomRatio - this.state.minZoomRatio) / (this.state.maxZoomRatio - this.state.minZoomRatio) * fullWidth)
+            let spotOffset = this.state.zoomRatio === this.state.maxZoomRatio ? this.foldCanvasWidth / 2 - fullWidth
+                                                                                : this.foldCanvasWidth / 2
             for (let i = 0; i < spotCount; i++) {
               let spotCenter = 0
               let spotRadius = 0
@@ -589,6 +605,6 @@ export struct ZoomView {
           )
           )
       }
-    }.width('100%').height(this.canvasHeight).margin({ bottom: !this.state.showZoomLabelValue ? 154 : 0 })
+    }.width('100%').height(this.canvasHeight).margin({ bottom: !this.state.showZoomLabelValue ? 58 : 0 })
   }
 }

@@ -13,37 +13,39 @@
  * limitations under the License.
  */
 
+import router from '@system.router';
 import display from '@ohos.display';
 import wantConstant from '@ohos.ability.wantConstant'
 import window from '@ohos.window';
 import deviceInfo from '@ohos.deviceInfo'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { Action, UiStateMode } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import AspectRatio from '../../../../../../common/src/main/ets/default/setting/settingitem/AspectRatio'
 import { AssistiveGridView
-} from '../../../../../../common/src/main/ets/default/featurecommon/assistiveGridView/AssistiveGridView'
+} from '../../../../../../common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
 import { BigText
-} from '../../../../../../common/src/main/ets/default/featurecommon/bigText/BigText'
+} from '../../../../../../common/src/main/ets/default/featurecommon/bigtext/BigText'
 import { BigVideoTimer } from './BigVideoTimer'
 import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/default/setting/settingitem/CameraId'
 import { CameraPlatformCapability
 } from '../../../../../../common/src/main/ets/default/camera/CameraPlatformCapability'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import Resolution from '../../../../../../common/src/main/ets/default/setting/settingitem/Resolution'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
 import { ShowFlashBlack
 } from '../../../../../../common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
 import { SmallVideoTimer } from './SmallVideoTimer'
 import { ZoomText
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomText'
-import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timeLapseView/TimeLapseView'
+} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomText'
+import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
+import prompt from '@ohos.prompt';
 
 let cameraState = (state: OhCombinedState) => {
+  let isShowBlur = !state.ContextReducer.uiEnable && state.ContextReducer.uiStateMode == UiStateMode.NONE
   return {
     mode: state.ModeReducer.mode,
     curMode: state.ModeReducer.curMode,
@@ -71,6 +73,7 @@ let cameraState = (state: OhCombinedState) => {
     isAssGridViewShow: state.SettingReducer.isAssGridViewShow,
     isShowFlashBlack: state.PreviewReducer.isShowFlashBlack,
     modeChangeDone: state.ModeReducer.modeChangeDone,
+    showBlur: isShowBlur
   }
 }
 
@@ -109,7 +112,7 @@ let cameraDispatcher = (dispatch) => {
     updateCameraPosition: (cameraPosition: string) => {
       dispatch(Action.updateCameraPosition(cameraPosition))
     },
-    changeXComponentSize: (xComponentWidth: string, xComponentHeight: string) => {
+    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
       dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
     },
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
@@ -194,7 +197,7 @@ let cameraDispatcher = (dispatch) => {
     },
     swipeModeChangeDone: (actionOff) => {
       dispatch(Action.swipeModeChangeDone(actionOff))
-    },
+    }
   }
 }
 
@@ -205,7 +208,6 @@ export struct PreviewAreaLand {
   private TAG: string = '[PreviewAreaLand]:'
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
-  @State mAspectRatio: number = 4 / 3
   @State btnSwitch: boolean = false
   @State btnSwitchSec: boolean = false
   @State pinchGestureTimerId: number = 0
@@ -218,7 +220,9 @@ export struct PreviewAreaLand {
   @State btnOpacitySec: number = 0
   @State switchBackgroundOpacity: number = 1
   @State isSwitchBackground: boolean = false
-  @State elementWidth: number = 0
+  @State pageType: string = ''
+  @Link screenSize: any
+  @State isShowBlurSize: any = {}
   private mConnect: any
   private isShowPreview: boolean = false
   private settingManager = SettingManager.getInstance()
@@ -245,20 +249,8 @@ export struct PreviewAreaLand {
 
         GeoLocation.getInstance().on()
 
-        display.getDefaultDisplay().then((dis) => {
-          let screenHeight = dis.height
-          let screenWidth = dis.width
-          this.elementWidth = px2vp(dis.height) * (4 / 3)
-
-          this.settingManager.setScreenHeight(screenHeight)
-          this.settingManager.setScreenWidth(screenWidth)
-
-          let xComponentSize = this.settingManager.getPreviewDisplaySize()
-          Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
-          this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
-          //          this.isShowPreview = true
-          this.state.updateShowPreviewFlag(true)
-        })
+        this.resetScreenSize(this.screenSize)
+        this.state.updateShowPreviewFlag(true)
       })
       //            }
     }
@@ -287,49 +279,38 @@ export struct PreviewAreaLand {
     / (Math.log2(this.state.maxZoomRatio) - Math.log2(this.state.minZoomRatio))
   }
 
-  private async doCameraAction(surfaceId: number) {
-    Log.debug(`${this.TAG} doCameraAction E`)
-    this.settingManager.setCameraId(this.state.cameraPosition)
-    this.settingManager.setMode(this.state.mode)
-    this.state.prepareSurface(surfaceId)
-    if (this.state.curCameraPosition != this.state.cameraPosition) {
+  private async doCameraAction() {
+    if (!globalThis?.doCameraActionDone || !globalThis.doCameraActionDone) {
+      globalThis.doCameraActionDone = true
+      setTimeout(() => {
+        globalThis.doCameraActionDone = false
+      }, 1000)
+      Log.debug(`${this.TAG} doCameraAction E`)
+      this.settingManager.setCameraId(this.state.cameraPosition)
+      this.settingManager.setMode(this.state.mode)
+      if (this.state.curCameraPosition != this.state.cameraPosition) {
       this.state.switchCamera(this.state.cameraPosition)
     } else if (this.state.curMode != this.state.mode) {
-      let cameraPosition = this.state.cameraPosition.split('_').pop()
-      this.state.changeCameraPosition(cameraPosition)
-      this.settingManager.setCameraId(cameraPosition)
       this.state.changeToMode(this.state.mode)
     } else {
-      this.state.startPreview()
+        this.state.startPreview()
+      }
+      this.state.updateCameraPosition(this.state.cameraPosition)
+      this.state.updateMode(this.state.mode)
+      if (globalThis?.keepCameraZoomRatio && globalThis.keepCameraZoomRatio) {
+        globalThis.keepCameraZoomRatio = false
+      } else {
+        this.state.changeZoomRatio(1)
+      }
+      Log.debug(`${this.TAG} doCameraAction X`)
     }
-    this.state.updateCameraPosition(this.state.cameraPosition)
-    this.state.updateMode(this.state.mode)
-    this.state.resetZoomRatio(1)
-    Log.debug(`${this.TAG} doCameraAction X`)
   }
 
   private async onModeChanged(data) {
     Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`)
-    let xComponentSize = this.settingManager.getPreviewDisplaySize()
-    this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
+    this.state.changeZoomRatio(1)
     this.state.updateShowPreviewFlag(true)
     Log.debug(`${this.TAG} onModeChanged X`)
-  }
-
-  private async onScreenChange(isScreenOn) {
-    Log.debug(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`)
-    // the build() can only be called when window is foreground
-    if (isScreenOn && globalThis.cameraWindowStageEvent == window.WindowStageEventType.FOREGROUND) {
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-      this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-      this.state.initZoomRatio(1, 6)
-    } else {
-      if (this.state.videoState === 'startTakeVideo') {
-        this.state.stopRecording()
-      }
-      this.state.close()
-    }
-    Log.debug(`${this.TAG} onScreenChanged X`)
   }
 
   private calledByFa(): void {
@@ -377,23 +358,45 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} calledByFa invoke X`)
   }
 
+  private async onRecordError() {
+    Log.info(`${this.TAG} onRecordError invoke E`)
+    prompt.showToast({
+      message: "录像异常",
+      duration: 2000,
+    })
+    if (this.state.videoState === 'startTakeVideo') {
+      this.state.stopRecording()
+    }
+    this.state.close()
+    Log.info(`${this.TAG} onRecordError invoke X`)
+  }
+
   aboutToAppear(): void {
-    Log.info(`${this.TAG} aboutToAppear E`)
+    Log.info(`${this.TAG} aboutToAppear E ${JSON.stringify(router.getParams())}`)
+    let routerParams = router.getParams()
+    if (routerParams && routerParams.pageType) {
+      this.pageType = routerParams.pageType.toString()
+    }
     this.mConnect = getStore().connect(cameraState, cameraDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
-    this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
-    Log.info('12345678')
+    this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this))
     globalThis.releaseCamera = (() => {
       Log.info(`${this.TAG} globalThis.releaseCamera called`)
+      if (this.state.videoState === 'startTakeVideo') {
+        this.state.stopRecording()
+      }
       this.state.close()
     })
 
-    globalThis.onForegroundInit = (() => {
+    globalThis.onForegroundInit = (async () => {
+      this.pageType = ''
       Log.info(`${this.TAG} globalThis.onForegroundInit called`)
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
       this.state.initCamera(this.state.curCameraPosition, this.state.mode)
+      await new Promise((resolve) => setTimeout(resolve, 40))
+      this.doCameraAction()
       let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
       if (newWantAction) {
         this.state.thirdPartyCall(true, newWantAction)
@@ -417,6 +420,9 @@ export struct PreviewAreaLand {
       this.calledByFa()
     })
 
+    display.getDefaultDisplay().then((dis) => {
+      this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height)}
+    })
     this.calledByFa()
     this.state.initCamera(this.state.curCameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
@@ -428,7 +434,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
-    this.appEventBus.off(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
+    this.appEventBus.off("windowSize", this.windowSizeChange.bind(this))
     this.mConnect?.destroy()
     GeoLocation.getInstance().off()
     globalThis.releaseCamera()
@@ -595,57 +601,44 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} onKeepScreen X`)
   }
 
+  private windowSizeChange(data) {
+    this.resetScreenSize(data)
+  }
+
+  private resetScreenSize(size: any) {
+    this.settingManager.setScreenHeight(size.height)
+    this.settingManager.setScreenWidth(size.width)
+    let xComponentSize = this.settingManager.getPreviewDisplaySize()
+    Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
+    this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+  }
+
   build() {
     Column() {
       if (this.state.isShowPreview) {
         Stack() {
-          if (this.state.xComponentChangeFlag) {
-            XComponent({
-              id: '',
-              type: 'surface',
-              libraryname: '',
-              controller: globalThis.mXComponentController
+          XComponent({
+            id: '',
+            type: 'surface',
+            libraryname: '',
+            controller: globalThis.mXComponentController
+          })
+            .onLoad(() => {
+              Trace.end(Trace.X_COMPONENT_LIFE)
+              Log.info(`${this.TAG} XComponent_onLoad`)
+              let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
+              this.state.prepareSurface(surfaceId)
+              this.doCameraAction()
             })
-              .onLoad(() => {
-                Trace.end(Trace.X_COMPONENT_LIFE)
-                Log.info(`${this.TAG} XComponent onLoad cameraPosition: `)
-                let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
-                this.state.updateSurfaceId(surfaceId)
-                this.doCameraAction(surfaceId)
-              })
-              .width(this.state.xComponentWidth)
-              .height(this.state.xComponentHeight)
-              .animation({
-                duration: 100,
-                curve: Curve.Sharp,
-                delay: 0,
-                iterations: 1,
-                playMode: PlayMode.Normal
-              })
-          } else {
-            XComponent({
-              id: '',
-              type: 'surface',
-              libraryname: '',
-              controller: globalThis.mXComponentController
+            .width(this.state.xComponentWidth)
+            .height(this.state.xComponentHeight)
+            .animation({
+              duration: 100,
+              curve: Curve.Sharp,
+              delay: 0,
+              iterations: 1,
+              playMode: PlayMode.Normal
             })
-              .onLoad(() => {
-                Trace.end(Trace.X_COMPONENT_LIFE)
-                Log.info(`${this.TAG} XComponent onLoad cameraPosition: `)
-                let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
-                this.state.updateSurfaceId(surfaceId)
-                this.doCameraAction(surfaceId)
-              })
-              .width(this.state.xComponentWidth)
-              .height(this.state.xComponentHeight)
-              .animation({
-                duration: 100,
-                curve: Curve.Sharp,
-                delay: 0,
-                iterations: 1,
-                playMode: PlayMode.Normal
-              })
-          }
 
           if (this.isSwitchBackground) {
             Column() {
@@ -690,7 +683,7 @@ export struct PreviewAreaLand {
                 Column() {
                   ZoomText({ state: $state })
                 }
-                .width(this.elementWidth)
+                .width('100%')
                 .height('100%')
               }
               .width('100%')
@@ -699,24 +692,6 @@ export struct PreviewAreaLand {
             }
             .width('100%')
             .height('96%')
-          }
-
-          if (this.state.isShowBigText) {
-            Stack({ alignContent: Alignment.BottomStart }) {
-              Column() {
-                Column() {
-                  BigText()
-                }
-                .width(this.elementWidth)
-                .height('100%')
-              }
-              .width('100%')
-              .height('96vp')
-              .alignItems(HorizontalAlign.Start)
-            }
-            .width('100%')
-            .height('100%')
-            .padding({ bottom: '46vp' })
           }
 
           if (this.state.xComponentChangeFlag) {
@@ -736,7 +711,6 @@ export struct PreviewAreaLand {
             .width('100%')
             .height('100%')
             .alignItems(HorizontalAlign.Start)
-            .padding({ top: 64 })
           }
           if (this.state.isBigVideoTimerVisible) {
             Column() {
@@ -745,22 +719,50 @@ export struct PreviewAreaLand {
             .width('100%')
             .height('100%')
             .alignItems(HorizontalAlign.Start)
-            .padding({ top: 40 })
           }
           if (this.state.isShowtimeLapse) {
             Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
               Column() {
                 TimeLapseView()
               }.width('100%').height(150)
-            }.width(this.elementWidth).height('100%')
+            }.width('100%').height('100%')
           }
+          if (this.state.showBlur) {
+            Column()
+              .width(this.isShowBlurSize.width)
+              .height(this.isShowBlurSize.height)
+              .backgroundColor(Color.Black)
+              .border({ width: { top: 0.5, bottom: 0.5 }, color: Color.Black })
+          }
+
+          Stack() {
+            if (this.state.isShowBigText) {
+              Stack({ alignContent: Alignment.BottomStart }) {
+                Column() {
+                  Column() {
+                    BigText()
+                  }
+                  .width('100%')
+                  .height('100%')
+                }
+                .width('100%')
+                .height('96vp')
+                .alignItems(HorizontalAlign.Start)
+              }
+              .width('100%')
+              .height('100%')
+            }
+          }
+          .width(this.screenSize.width > this.screenSize.height ? this.screenSize.height : this.screenSize.width)
+          .height(this.screenSize.height > (this.screenSize.width * 9 / 16) ? (this.screenSize.width * 9 / 16) :
+            this.screenSize.height)
         }
         .width('100%')
         .height('100%')
       }
     }
-    .height('100%')
-    .aspectRatio(this.mAspectRatio)
+    .width(this.state.xComponentWidth)
+    .height(this.state.xComponentHeight)
     .margin({ top: 0 })
     .backgroundColor('#000')
     .gesture(

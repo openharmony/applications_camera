@@ -63,13 +63,13 @@ export class CameraPlatformCapability {
     Log.info(`${this.TAG} init X.`)
   }
 
-  public async calcSupportedSizes(cameraInput) {
-    Log.info(`${this.TAG} calcSupportedSizes called.`)
+  public async calcSupportedSizes(cameraInput, outputCapability) {
+    Log.info(`${this.TAG} calcSupportedSizes start.`)
     if (deviceInfo.deviceType == 'default') {
       return
     }
-    const photoSize = await cameraInput.getSupportedSizes(2000) //CAMERA_FORMAT_JPEG
-    const previewCurSize = await cameraInput.getSupportedSizes(1003) //CAMERA_FORMAT_YCRCb_420_SP
+    const photoSize = outputCapability.photoProfiles //CAMERA_FORMAT_JPEG
+    const previewCurSize = outputCapability.previewProfiles //CAMERA_FORMAT_YCRCb_420_SP
 
     this.mImageSize[0] = this.getMaxSize(photoSize, 4, 3)
     this.mImageSize[1] = this.getMaxSize(photoSize, 1, 1)
@@ -84,14 +84,14 @@ export class CameraPlatformCapability {
     this.mVideoPreviewSize[0] = this.mVideoFrameSize[0]
     this.mVideoPreviewSize[1] = this.mVideoFrameSize[1]
     this.mVideoPreviewSize[2] = this.mVideoFrameSize[2]
+    Log.info(`${this.TAG} calcSupportedSizes end.`)
   }
 
   private getMaxSize(sizeList, width: number, height: number) {
     const maxSize = { width: 0, height: 0 }
     const fitList = []
     for (let i = 0; i < sizeList.length; i++) {
-//            console.info('--getMaxSize size list width: ' + sizeList[i].width + ' height: ' + sizeList[i].height)
-      const errorValue = sizeList[i].width * height - sizeList[i].height * width
+      const errorValue = sizeList[i].size.width * height - sizeList[i].size.height * width
       if (errorValue <= 4 && errorValue >= -4) {
         fitList.push(sizeList[i])
       }
@@ -102,14 +102,14 @@ export class CameraPlatformCapability {
       maxSize.height = 480
       Log.info(`${this.TAG} -----------SupportedSizes List Start-----------`)
       for (let i = 0; i < sizeList.length; i++) {
-        Log.info(`${this.TAG} supportedSize width: ${sizeList[i].width} height: ${sizeList[i].height}`)
+        Log.info(`${this.TAG} supportedSize width: ${sizeList[i].size.width} height: ${sizeList[i].size.height}`)
       }
       Log.info(`${this.TAG} -----------SupportedSizes List End-----------`)
       return maxSize
     } else {
       const index = Math.floor(fitList.length / 2)
-      maxSize.width = fitList[index].width
-      maxSize.height = fitList[index].height
+      maxSize.width = fitList[index].size.width
+      maxSize.height = fitList[index].size.height
     }
     return maxSize
   }
@@ -117,13 +117,12 @@ export class CameraPlatformCapability {
   private getSpecifiedSize(sizeList, width: number, height: number) {
     const specifiedSize = { width: 0, height: 0 }
     for (let i = 0; i < sizeList.length; i++) {
-      //      console.info('--Preview size list width: ' + sizeList[i].width + ' height: ' + sizeList[i].height)
-      const widthError = sizeList[i].width - width
-      const heightError = sizeList[i].height - height
+      const widthError = sizeList[i].size.width - width
+      const heightError = sizeList[i].size.height - height
       if (widthError <= 4 && widthError >= -4 && heightError <= 4 && heightError >= -4) {
-        if (sizeList[i].width > specifiedSize.width) {
-          specifiedSize.width = sizeList[i].width
-          specifiedSize.height = sizeList[i].height
+        if (sizeList[i].size.width > specifiedSize.width) {
+          specifiedSize.width = sizeList[i].size.width
+          specifiedSize.height = sizeList[i].size.height
         }
       }
     }
@@ -135,9 +134,9 @@ export class CameraPlatformCapability {
     return specifiedSize
   }
 
-  public async getZoomRatioRange(cameraInput) {
+  public async getZoomRatioRange(captureSession) {
     Log.info(`${this.TAG} getZoomRatioRange called`)
-    const zoomRatioRange = await cameraInput.getZoomRatioRange()
+    const zoomRatioRange = await captureSession.getZoomRatioRange()
     Log.info(`${this.TAG} zoomRatioRange= ${zoomRatioRange}`)
     return zoomRatioRange
   }

@@ -29,10 +29,12 @@ import SettingItemInfo from '../setting/storage/SettingItemInfo'
 import Timer from '../setting/settingitem/Timer'
 import VideoCodec from '../setting/settingitem/VideoCodec'
 import { Voice } from '../setting/settingitem/Voice'
+import EventBusManager from '../worker/eventbus/EventBusManager';
 
 export class SettingManager {
   private static TAG = '[SettingManager]:'
   private mRdbStoreManager: RdbStoreManager = RdbStoreManager.getInstance()
+  private mEventBus = EventBusManager.getInstance().getEventBus()
   private mSettingsList = [
     AspectRatio,
     Resolution,
@@ -68,12 +70,15 @@ export class SettingManager {
     let needCommit = false
     if (settingAlias == AspectRatio.ALIAS) {
       this.mAspectRatio = itemValue
+      this.mEventBus.emit("AspectRatio", [this.getPreviewDisplaySize()])
       needCommit = true
     } else if (settingAlias == Resolution.ALIAS) {
       this.mResolution = itemValue
+      this.mEventBus.emit("Resolution", [this.getPreviewDisplaySize()])
       needCommit = true
     } else if (settingAlias == AssistiveGrid.ALIAS) {
       this.mAssistiveGrid = itemValue
+      this.mEventBus.emit("AssistiveGrid", [this.mAssistiveGrid])
       needCommit = true
     } else if (settingAlias == Timer.ALIAS) {
       this.mTimer = itemValue
@@ -192,8 +197,8 @@ export class SettingManager {
     await this.mRdbStoreManager.updateValue(settingItemInfo)
   }
 
-  private mScreenWidth: number
-  private mScreenHeight: number
+  public mScreenWidth: number
+  public mScreenHeight: number
   private mPlatformCapability
   private mCameraId: string
   private mMode: string
@@ -236,19 +241,6 @@ export class SettingManager {
 
   public getPreviewDisplaySize() {
     const preViewSize = this.getPreviewSize()
-    return DisplayCalculator.calcSurfaceDisplaySize(this.mScreenWidth, this.mScreenHeight, preViewSize.width, preViewSize.height)
-  }
-  
-  public getPreviewSizeForAss(mMode) {
-    if (mMode == 'VIDEO') {
-      return Resolution.getVideoPreviewSize(this.mPlatformCapability, this.mCameraId, this.mResolution)
-    } else {
-      return AspectRatio.getPhotoPreviewSize(this.mPlatformCapability, this.mCameraId, this.mAspectRatio)
-    }
-  }
-  
-  public getPreviewDisplaySizeForAss(mMode) {
-    const preViewSize = this.getPreviewSizeForAss(mMode)
     return DisplayCalculator.calcSurfaceDisplaySize(this.mScreenWidth, this.mScreenHeight, preViewSize.width, preViewSize.height)
   }
 

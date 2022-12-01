@@ -13,35 +13,37 @@
  * limitations under the License.
  */
 
+import router from '@system.router';
 import display from '@ohos.display';
 import wantConstant from '@ohos.ability.wantConstant'
 import window from '@ohos.window';
 import deviceInfo from '@ohos.deviceInfo'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { Action, UiStateMode } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { AssistiveGridView
-} from '../../../../../../common/src/main/ets/default/featurecommon/assistiveGridView/AssistiveGridView'
+} from '../../../../../../common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
 import { BigText
-} from '../../../../../../common/src/main/ets/default/featurecommon/bigText/BigText'
+} from '../../../../../../common/src/main/ets/default/featurecommon/bigtext/BigText'
 import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/default/setting/settingitem/CameraId'
 import { CameraPlatformCapability
 } from '../../../../../../common/src/main/ets/default/camera/CameraPlatformCapability'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
 import { ShowFlashBlack
 } from '../../../../../../common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
 import { ZoomText
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomText'
+} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomText'
 import { BigVideoTimer } from './BigVideoTimer'
 import { SmallVideoTimer } from './SmallVideoTimer'
-import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timeLapseView/TimeLapseView'
+import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
+import prompt from '@ohos.prompt';
 
 let cameraState = (state: OhCombinedState) => {
+  let isShowBlur = !state.ContextReducer.uiEnable && state.ContextReducer.uiStateMode == UiStateMode.NONE
   return {
     mode: state.ModeReducer.mode,
     curMode: state.ModeReducer.curMode,
@@ -69,6 +71,7 @@ let cameraState = (state: OhCombinedState) => {
     modeIndex: state.ModeReducer.modeIndex,
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     modeChangeDone: state.ModeReducer.modeChangeDone,
+    showBlur: isShowBlur
   }
 }
 
@@ -98,7 +101,7 @@ let cameraDispatcher = (dispatch) => {
     startPreview: () => {
       dispatch(Action.startPreview())
     },
-    switchCamera: (cameraId: CameraId) => {
+    switchCamera: (cameraId: string) => {
       dispatch(Action.switchCamera(cameraId))
     },
     startVideoFlag: (isStartVideo: boolean) => {
@@ -107,7 +110,7 @@ let cameraDispatcher = (dispatch) => {
     updateCameraPosition: (cameraPosition: string) => {
       dispatch(Action.updateCameraPosition(cameraPosition))
     },
-    changeXComponentSize: (xComponentWidth: string, xComponentHeight: string) => {
+    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
       dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
     },
     updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
@@ -207,6 +210,7 @@ export struct PreviewArea {
   @State btnSwitch: boolean = false
   @State btnSwitchSec: boolean = false
   @State isSwitchBackground: boolean = false
+  @State pageType: string = ''
   private isShowPreview: boolean = false
   private settingManager = SettingManager.getInstance()
   private pinchGestureTimer: number
@@ -215,6 +219,9 @@ export struct PreviewArea {
 
   private async onCameraInit(data) {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
+    if (!this.pageType) {
+      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+    }
     if (this.state.platformCapability) {
       //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
@@ -233,15 +240,15 @@ export struct PreviewArea {
         //          GeoLocation.getInstance().on()
 
         display.getDefaultDisplay().then((dis) => {
-          let screenHeight = dis.height - 176
-          let screenWidth = dis.width
+          let screenHeight = px2vp(dis.height - 176)
+          let screenWidth = px2vp(dis.width)
 
           this.settingManager.setScreenHeight(screenHeight)
           this.settingManager.setScreenWidth(screenWidth)
 
           let xComponentSize = this.settingManager.getPreviewDisplaySize()
           Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
-          this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
+          this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
           //            this.isShowPreview = true
           this.state.updateShowPreviewFlag(true)
         })
@@ -272,49 +279,33 @@ export struct PreviewArea {
     / (Math.log2(this.state.maxZoomRatio) - Math.log2(this.state.minZoomRatio))
   }
 
-  private async doCameraAction(surfaceId: number) {
+  private async doCameraAction() {
     Log.debug(`${this.TAG} doCameraAction E`)
     this.settingManager.setCameraId(this.state.cameraPosition)
     this.settingManager.setMode(this.state.mode)
-    this.state.prepareSurface(surfaceId)
     if (this.state.curCameraPosition != this.state.cameraPosition) {
       this.state.switchCamera(this.state.cameraPosition)
     } else if (this.state.curMode != this.state.mode) {
-      let cameraPosition = this.state.cameraPosition.split('_').pop()
-      this.state.changeCameraPosition(cameraPosition)
-      this.settingManager.setCameraId(cameraPosition)
       this.state.changeToMode(this.state.mode)
     } else {
       this.state.startPreview()
     }
     this.state.updateCameraPosition(this.state.cameraPosition)
     this.state.updateMode(this.state.mode)
-    this.state.resetZoomRatio(1)
+    if (globalThis?.keepCameraZoomRatio && globalThis.keepCameraZoomRatio) {
+      globalThis.keepCameraZoomRatio = false
+    } else {
+      this.state.changeZoomRatio(1)
+    }
     Log.debug(`${this.TAG} doCameraAction X`)
   }
 
   private async onModeChanged(data) {
     Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`)
     let xComponentSize = this.settingManager.getPreviewDisplaySize()
-    this.state.changeXComponentSize(xComponentSize.width.toString() + 'px', xComponentSize.height.toString() + 'px')
+    this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
     this.state.updateShowPreviewFlag(true)
     Log.debug(`${this.TAG} onModeChanged X`)
-  }
-
-  private async onScreenChange(isScreenOn) {
-    Log.debug(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`)
-    // the build() can only be called when window is foreground
-    if (isScreenOn && globalThis.cameraWindowStageEvent == window.WindowStageEventType.FOREGROUND) {
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-      this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-      this.state.initZoomRatio(1, 6)
-    } else {
-      if (this.state.videoState === 'startTakeVideo') {
-        this.state.stopRecording()
-      }
-      this.state.close()
-    }
-    Log.debug(`${this.TAG} onScreenChanged X`)
   }
 
   private calledByFa(): void {
@@ -362,22 +353,45 @@ export struct PreviewArea {
     Log.info(`${this.TAG} calledByFa invoke X`)
   }
 
+  private async onRecordError() {
+    Log.info(`${this.TAG} onRecordError invoke E`)
+    prompt.showToast({
+      message: "录像异常",
+      duration: 2000,
+    })
+    if (this.state.videoState === 'startTakeVideo') {
+      this.state.stopRecording()
+    }
+    this.state.close()
+    this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+    Log.info(`${this.TAG} onRecordError invoke X`)
+  }
+
   aboutToAppear(): void {
-    Log.info(`${this.TAG} PreviewArea aboutToAppear`)
+    Log.info(`${this.TAG} PreviewArea aboutToAppear ${JSON.stringify(router.getParams())}`)
+    let routerParams = router.getParams()
+    if (routerParams && routerParams.pageType) {
+      this.pageType = routerParams.pageType.toString()
+    }
     getStore().connect(cameraState, cameraDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
-    this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this))
     globalThis.releaseCamera = (() => {
       Log.info(`${this.TAG} globalThis.releaseCamera called`)
+      if (this.state.videoState === 'startTakeVideo') {
+        this.state.stopRecording()
+      }
       this.state.close()
     })
 
-    globalThis.onForegroundInit = (() => {
+    globalThis.onForegroundInit = (async () => {
+      this.pageType = ''
       Log.info(`${this.TAG} globalThis.onForegroundInit called`)
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
       this.state.initCamera(this.state.curCameraPosition, this.state.mode)
+      await new Promise((resolve) => setTimeout(resolve, 20))
+      this.doCameraAction()
       let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
       if (newWantAction) {
         this.state.thirdPartyCall(true, newWantAction)
@@ -412,7 +426,6 @@ export struct PreviewArea {
     Log.info(`${this.TAG} previewAreaLand aboutToDisappear called`)
     this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
-    this.appEventBus.off(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     GeoLocation.getInstance().off()
     globalThis.releaseCamera()
   }
@@ -502,53 +515,28 @@ export struct PreviewArea {
     Column() {
       if (this.state.isShowPreview) {
         Stack() {
-          if (this.state.xComponentChangeFlag) {
-            XComponent({
-              id: '',
-              type: 'surface',
-              libraryname: '',
-              controller: globalThis.mXComponentController
+          XComponent({
+            id: '',
+            type: 'surface',
+            libraryname: '',
+            controller: globalThis.mXComponentController
+          })
+            .onLoad(() => {
+              Trace.end(Trace.X_COMPONENT_LIFE)
+              Log.info(`${this.TAG} XComponent_onLoad `)
+              let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
+              this.state.prepareSurface(surfaceId)
+              this.doCameraAction()
             })
-              .onLoad(() => {
-                Trace.end(Trace.X_COMPONENT_LIFE)
-                Log.info(`${this.TAG} XComponent onLoad cameraPosition: `)
-                let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
-                this.state.updateSurfaceId(surfaceId)
-                this.doCameraAction(surfaceId)
-              })
-              .width(this.state.xComponentWidth)
-              .height(this.state.xComponentHeight)
-              .animation({
-                duration: 100,
-                curve: Curve.Sharp,
-                delay: 0,
-                iterations: 1,
-                playMode: PlayMode.Normal
-              })
-          } else {
-            XComponent({
-              id: '',
-              type: 'surface',
-              libraryname: '',
-              controller: globalThis.mXComponentController
+            .width(this.state.xComponentWidth)
+            .height(this.state.xComponentHeight)
+            .animation({
+              duration: 100,
+              curve: Curve.Sharp,
+              delay: 0,
+              iterations: 1,
+              playMode: PlayMode.Normal
             })
-              .onLoad(() => {
-                Trace.end(Trace.X_COMPONENT_LIFE)
-                Log.info(`${this.TAG} XComponent onLoad cameraPosition: `)
-                let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
-                this.state.updateSurfaceId(surfaceId)
-                this.doCameraAction(surfaceId)
-              })
-              .width(this.state.xComponentWidth)
-              .height(this.state.xComponentHeight)
-              .animation({
-                duration: 100,
-                curve: Curve.Sharp,
-                delay: 0,
-                iterations: 1,
-                playMode: PlayMode.Normal
-              })
-          }
 
           if (this.isSwitchBackground) {
             Column() {
@@ -557,6 +545,14 @@ export struct PreviewArea {
             .height(this.state.xComponentHeight)
             .backgroundColor('#000')
             .opacity(this.state.switchBackgroundOpacity)
+          }
+
+          if (this.state.showBlur) {
+            Column()
+              .width(this.state.xComponentWidth)
+              .height(this.state.xComponentHeight)
+              .backgroundColor(Color.Black)
+              .border({ width: { top: 0.5, bottom: 0.5 }, color: Color.Black })
           }
 
           if (this.btnSwitch) {
@@ -635,6 +631,7 @@ export struct PreviewArea {
       }
     }
     .height('100%')
+    .width(this.state.xComponentWidth)
     .aspectRatio(this.mAspectRatio)
     .margin({ top: 0 })
     .backgroundColor('#000')

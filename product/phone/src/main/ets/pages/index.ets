@@ -28,16 +28,17 @@ import { ModeConfig } from '../common/ModeConfig'
 import { MoreList
 } from '../../../../../../common/src/main/ets/default/featurecommon/moreList/moreList'
 import { PlaySound
-} from '../../../../../../common/src/main/ets/default/featurecommon/playSound/playSound'
+} from '../../../../../../common/src/main/ets/default/featurecommon/playsound/playSound'
 import { PreviewArea } from './PreviewArea'
 import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { TabBar
-} from '../../../../../../common/src/main/ets/default/featurecommon/tabBar/TabBar'
+} from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBar'
 import { ZoomView
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomView/ZoomView'
+} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomView'
+import { SettingView } from './SettingView'
+import { PreferencesService, PersistType
+} from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
-var mScreenLockManager = new ScreenLockManager()
 var cameraWorker = CameraWorker.getInstance()
 
 let indexState = (state: OhCombinedState) => {
@@ -53,6 +54,8 @@ let indexState = (state: OhCombinedState) => {
     showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
     curCameraPosition: state.CameraReducer.curCameraPosition,
     isShowPinch: state.ZoomReducer.isShowPinch,
+    isShowPageView: state.SettingReducer.isShowSettingView,
+    isInitiated: state.ModeReducer.isInitiated
   }
 }
 
@@ -86,6 +89,12 @@ let indexDispatcher = (dispatch) => {
     resetRecordingTime: () => {
       dispatch(Action.updateRecordingTime(0))
       dispatch(Action.updateRecordingTimeDisplay('00:00'))
+    },
+    hideSettingView: () => {
+      dispatch(Action.showSettingView(false))
+    },
+    updateModeIndex: (index: number) => {
+      dispatch(Action.updateModeIndex(index))
     }
   }
 }
@@ -100,12 +109,13 @@ struct Index {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
   private mPlaySound: PlaySound = PlaySound.getInstance()
+  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
-    mScreenLockManager.init()
     getStore().connect(indexState, indexDispatcher)(this.state)
 
     display.getDefaultDisplay().then((dis) => {
@@ -129,7 +139,7 @@ struct Index {
         "ohos.permission.DISTRIBUTED_DATASYNC",
         "ohos.permission.LOCATION",
         "ohos.permission.LOCATION_IN_BACKGROUND",
-//        "ohos.permission.APPROXIMATELY_LOCATION"
+        "ohos.permission.APPROXIMATELY_LOCATION"
       ]
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
       globalThis.cameraAbilityContext.requestPermissionsFromUser(permissionList).then((data) => {
@@ -162,6 +172,13 @@ struct Index {
       this.stopCameraRecording()
     })
 
+    if (!this.state.isInitiated) {
+      let initIndex = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 1)
+      Log.info(`${this.TAG} initModeIndex: ${initIndex}`)
+      this.state.initMode(this.modeArray[initIndex])
+      this.state.updateModeIndex(initIndex)
+    }
+
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
@@ -179,7 +196,10 @@ struct Index {
 
   onBackPress(): boolean {
     Log.info(`${this.TAG} onBackPress E`)
-    if (this.state.isShowtimeLapse) {
+    if (this.state.isShowPageView) {
+      this.state.hideSettingView()
+      return true
+    } else if (this.state.isShowtimeLapse) {
       this.state.changeTimeLapse(false)
       return true
     } else if (this.state.isThirdPartyCall) {
@@ -238,7 +258,7 @@ struct Index {
       if (this.state.permissionFlag) {
         Stack() {
           PreviewArea()
-        }.width('100%').position({ x: '0', y: '48' })
+        }.width('100%').position({ y: 48 })
         Stack() {
           if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
             TabBar()
@@ -260,6 +280,7 @@ struct Index {
               Column(){
                 Control()
               }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+              .width('100%')
             }
             Column(){
               FootBar()
@@ -267,6 +288,9 @@ struct Index {
           }
         }.width('100%').height(302).position({ y: this.state.footBarHeight })
           .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
+      }
+      if (this.state.isShowPageView) {
+        SettingView().width('100%').height('100%')
       }
     }.width('100%').height('100%').backgroundColor('#000')
   }

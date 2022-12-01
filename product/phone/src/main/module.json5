@@ -26,7 +26,6 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "uiSyntax": "ets",
     "requestPermissions": [
       {
         "name": "ohos.permission.REQUIRE_FORM"
@@ -63,6 +62,9 @@
       },
       {
         "name": "ohos.permission.LOCATION_IN_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION"
       }
     ],
     "abilities": [
@@ -87,7 +89,8 @@
               "ohos.want.action.videoCapture"
             ]
           }
-        ]
+        ],
+        "supportWindowMode": ["fullscreen"]
       }
     ],
     "extensionAbilities": [

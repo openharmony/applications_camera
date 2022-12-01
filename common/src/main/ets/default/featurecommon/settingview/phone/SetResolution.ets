@@ -17,7 +17,7 @@ import { Action } from '../../../redux/actions/Action'
 import AspectRatio from '../../../setting/settingitem/AspectRatio'
 import Resolution from '../../../setting/settingitem/Resolution'
 import Timer from '../../../setting/settingitem/Timer'
-import { CustomDialogView, CustomDialogDetails } from '../../customDialog/dialogComponent/CustomDialogView'
+import { CustomDialogView, CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
 import { Log } from '../../../utils/Log'
 import getStore from '../../../redux/store'
 import { SettingManager } from '../../../setting/SettingManager'
@@ -46,6 +46,7 @@ export struct SetResolution {
   private WH_100_100: string = "100%"
   private settingManager = SettingManager.getInstance()
   private setAlias: string= undefined
+  @StorageLink("settingDialogFlag") settingDialogFlag: boolean = true
 
   @State curCheckName: Resource = $r("app.string.default_value")
 
@@ -70,16 +71,20 @@ export struct SetResolution {
 
   existView() {
     Log.info(`${this.TAG} existView E`)
-    this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
+    if (this.settingManager.getSettingValue(this.itemValue.settingAlias) !== undefined) {
+      this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
+      Log.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
+    }
     this.state.closeDialog(false)
-    Log.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
   }
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
     getStore().connect(localState, localDispatcher)(this.state)
-    this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
-    Log.info(`${this.TAG} aboutToAppear curCheckName: ${this.curCheckName} X`)
+    if (this.settingManager.getSettingValue(this.itemValue.settingAlias) !== undefined) {
+      this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
+      Log.info(`${this.TAG} aboutToAppear curCheckName: ${this.curCheckName} X`)
+    }
   }
 
   public onCloseDialog() {
@@ -126,7 +131,7 @@ export struct SetResolution {
           Image($r("app.media.ic_public_arrow_right"))
             .width(12)
             .height(24)
-            .fillColor('#FFFFFF')
+            .fillColor('#33FFFFFF')
             .opacity(0.4)
             .opacity($r('app.float.opacity_4'))
             .margin({ left: 4 })
@@ -138,7 +143,13 @@ export struct SetResolution {
     .width(this.WH_100_100)
     .height(56)
     .onClick(() => {
-      this.openDetailsDialog(this.itemValue)
+      if (this.settingDialogFlag) {
+        this.settingDialogFlag = false
+        setTimeout(() => {
+          this.settingDialogFlag = true
+        }, 200)
+        this.openDetailsDialog(this.itemValue)
+      }
     })
   }
 
