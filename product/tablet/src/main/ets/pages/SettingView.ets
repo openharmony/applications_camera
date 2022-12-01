@@ -13,22 +13,20 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
-
 import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import { SettingItem
-} from '../../../../../../common/src/main/ets/default/featurecommon/settingView/tablet/SettingItem'
+} from '../../../../../../common/src/main/ets/default/featurecommon/settingview/tablet/SettingItem'
 import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-
-var mScreenLockManager = new ScreenLockManager()
+import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus';
 
 let localState = (state: OhCombinedState) => {
   return {
-    isCloseFlag: state.SettingReducer.isCloseFlag
+    isCloseFlag: state.SettingReducer.isCloseFlag,
+    mode: state.ModeReducer.mode,
   }
 }
 
@@ -36,38 +34,52 @@ let localDispatcher = (dispatch) => {
   return {
     closeDialog: (isCloseFlag: boolean) => {
       dispatch(Action.closeDialog(isCloseFlag))
-    }
+    },
+    hideSettingView: () => {
+      dispatch(Action.showSettingView(false))
+    },
+    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
+      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
+    },
+    assistiveGridView: (isViewShow) => {
+      dispatch(Action.assistiveGridView(isViewShow))
+    },
+    reStartPreview: () => {
+      dispatch(Action.reStartPreview())
+    },
   }
 }
 
-@Entry
 @Component
-struct SettingView {
+export struct SettingView {
   private TAG: string = '[SettingView]:'
-  private cameraPosition: string
-  private previewImage: string
   private settingManager = SettingManager.getInstance()
+  private scroller: Scroller = new Scroller();
   @State checkNameList: Array<string> = ["4:3", "[16:9] 720p"]
   @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
   @State settingsList: any[] = SettingListModel.getSettingList()
   @State state: any = {}
+  @State localStyle: any = { "columns": 12, "offset": 0, "span": 8 }
   private WH_100_100: string = "100%";
+  private mEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   aboutToAppear(): void{
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    if (router.getParams() != undefined) {
-      this.cameraPosition = router.getParams().position.toString()
-      this.previewImage = router.getParams().mode.toString()
-    }
     getStore().connect(localState, localDispatcher)(this.state)
-    mScreenLockManager.init()
+    this.mEventBus.on("windowSize", this.windowSizeChange.bind(this))
+    this.mEventBus.on("AspectRatio", this.aspectRatioChange.bind(this))
+    this.mEventBus.on("Resolution", this.resolutionChange.bind(this))
+    this.mEventBus.on("AssistiveGrid", this.assistiveGridChange.bind(this))
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
+    this.mEventBus.off("AspectRatio", this.aspectRatioChange.bind(this))
+    this.mEventBus.off("Resolution", this.resolutionChange.bind(this))
+    this.mEventBus.off("AssistiveGrid", this.assistiveGridChange.bind(this))
   }
 
   onBackPress(): boolean {
@@ -75,105 +87,105 @@ struct SettingView {
     if (this.state.isCloseFlag){
       this.closeFlag = !this.closeFlag
     } else {
-      router.replace({
-        params: {
-          position: this.cameraPosition,
-          mode: this.previewImage
-        },
-        uri: "pages/indexLand"
-      })
+      this.state.hideSettingView()
     }
     return true;
   }
 
+  private windowSizeChange(data) {
+    this.localStyle =  (data.width >= px2vp(1280)) ? { "columns": 12, "offset": 0, "span": 8 } :
+      { "columns": 8, "offset": 0, "span": 6 }
+  }
+  private aspectRatioChange(xComponentSize) {
+    if (this.state.mode != 'VIDEO') {
+      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.state.reStartPreview()
+    }
+  }
+  private resolutionChange(xComponentSize) {
+    if (this.state.mode == 'VIDEO') {
+      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.state.reStartPreview()
+    }
+  }
+  private assistiveGridChange(mAssistiveGrid) {
+    this.state.assistiveGridView(mAssistiveGrid)
+  }
+
   build() {
     Column() {
-      GridContainer({ columns: 12, gutter: this.tempGutter }) {
-        Row() {
-          Image($r("app.media.ic_public_back"))
-            .width(24)
-            .height(24)
-            .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
-            .onClick(() => {
-              router.replace({
-                params: {
-                  position: this.cameraPosition,
-                  mode: this.previewImage
-                },
-                uri: "pages/indexLand"
-              })
-            })
-          Text($r('app.string.settings'))
-            .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
-            .fontColor($r('app.color.settings_ic_public_back_FFFFFF'))
-            .fontSize($r('sys.float.ohos_id_text_size_headline8'))
-            .fontWeight(FontWeight.Medium)
-        }
-        .useSizeType({
-          xs: { span: 12, offset: 0 },
-          sm: { span: 12, offset: 0 },
-          md: { span: 12, offset: 0 },
-          lg: { span: 12, offset: 0 }
-        })
-        .width(this.WH_100_100)
-        .height(56)
-        .margin({ left: $r('sys.float.ohos_id_default_padding_start') })
+      Row() {
+        Image($r("app.media.ic_public_back"))
+          .width(24)
+          .height(24)
+          .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
+          .onClick(() => {
+            this.state.hideSettingView()
+          })
+        Text($r('app.string.settings'))
+          .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
+          .fontColor($r('app.color.settings_ic_public_back_FFFFFF'))
+          .fontSize($r('sys.float.ohos_id_text_size_headline8'))
+          .fontWeight(FontWeight.Medium)
       }
+      .width(this.WH_100_100)
+      .height(56)
+      .margin({ left: 48 })
 
-      GridContainer({ columns: 12, gutter: this.tempGutter, margin: this.tempMargin }) {
-        Row() {
-          Column() {
-            List() {
-              ForEach(this.settingsList, (item, index) => {
-                ListItem() {
-                  SettingItem({
-                    settingsList: $settingsList,
-                    closeFlag: $closeFlag,
-                    item: item,
-                    index: index
+      Scroll(this.scroller) {
+        Column() {
+          GridContainer({ columns: this.localStyle.columns, gutter: this.tempGutter, margin: this.tempMargin }) {
+            Row() {
+              Column() {
+                List() {
+                  ForEach(this.settingsList, (item, index) => {
+                    ListItem() {
+                      SettingItem({
+                        settingsList: $settingsList,
+                        closeFlag: $closeFlag,
+                        item: item,
+                        index: index
+                      })
+                    }
                   })
                 }
+              }.useSizeType({
+                xs: { span: this.localStyle.span, offset: this.localStyle.offset },
+                sm: { span: this.localStyle.span, offset: this.localStyle.offset },
+                md: { span: this.localStyle.span, offset: this.localStyle.offset },
+                lg: { span: this.localStyle.span, offset: this.localStyle.offset }
               })
             }
-          }.useSizeType({
-            xs: { span: 8, offset: 0 },
-            sm: { span: 8, offset: 0 },
-            md: { span: 8, offset: 0 },
-            lg: { span: 8, offset: 0 }
-          })
+          }
+
+          GridContainer({ columns: 12, gutter: this.tempGutter, margin: this.tempMargin }) {
+            Row() {
+              Button({ type: ButtonType.Normal, stateEffect: true }) {
+                Text($r('app.string.restore_defaults'))
+                  .fontSize($r('sys.float.ohos_id_text_size_button1'))
+                  .fontColor($r('app.color.font_color_FFFFFF'))
+                  .fontWeight(FontWeight.Regular)
+                  .textAlign(TextAlign.Center)
+                  .useSizeType({
+                    xs: { span: 4, offset: 0 },
+                    sm: { span: 4, offset: 0 },
+                    md: { span: 4, offset: 0 },
+                    lg: { span: 4, offset: 0 }
+                  })
+              }
+              .borderRadius(30)
+              .backgroundColor($r('app.color.background_color_333333'))
+              .height(40)
+              .onClick(() => {
+                this.settingManager.restoreValues()
+                this.state.hideSettingView()
+              })
+            }.margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") , bottom: 70 })
+          }
         }
       }
-
-      GridContainer({ columns: 12, gutter: this.tempGutter, margin: this.tempMargin }) {
-        Row() {
-          Button({ type: ButtonType.Normal, stateEffect: true }) {
-            Text($r('app.string.restore_defaults'))
-              .fontSize($r('sys.float.ohos_id_text_size_button1'))
-              .fontColor($r('app.color.font_color_FFFFFF'))
-              .fontWeight(FontWeight.Regular)
-              .textAlign(TextAlign.Center)
-              .useSizeType({
-                xs: { span: 4, offset: 0 },
-                sm: { span: 4, offset: 0 },
-                md: { span: 4, offset: 0 },
-                lg: { span: 4, offset: 0 }
-              })
-          }
-          .borderRadius(30)
-          .backgroundColor($r('app.color.background_color_333333'))
-          .height(40)
-          .onClick(() => {
-            this.settingManager.restoreValues()
-            router.replace({
-              params: {
-                position: this.cameraPosition,
-                mode: this.previewImage
-              },
-              uri: "pages/indexLand"
-            })
-          })
-        }.margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
-      }
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.Off)
     }
     .height(this.WH_100_100)
     .backgroundColor(Color.Black)

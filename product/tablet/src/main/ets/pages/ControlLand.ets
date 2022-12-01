@@ -20,25 +20,27 @@ import { SettingManager } from '../../../../../../common/src/main/ets/default/se
 import wantConstant from '@ohos.ability.wantConstant';
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition';
+import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 let controlLandState = (state: OhCombinedState) => {
   return {
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     isFaCall: state.ContextReducer.isFaCall,
     action: state.ContextReducer.action,
-    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
     uiEnable: state.ContextReducer.uiEnable,
     modeIndex: state.ModeReducer.modeIndex,
     mode: state.ModeReducer.mode,
-    isShowMoreList: state.ModeReducer.isShowMoreList
+    isShowMoreList: state.ModeReducer.isShowMoreList,
   }
 }
 
 let controlLandDispatcher = (dispatch) => {
   return {
     changeToMode: (mode: string) => {
-      dispatch(Action.setMode(mode))
       dispatch(Action.uiState(false))
+      dispatch(Action.updateMode(mode))
+      dispatch(Action.changeMode(mode))
       dispatch(Action.updateShowBigTextFlag(true))
     },
     updateModeIndex: (index: number) => {
@@ -46,9 +48,6 @@ let controlLandDispatcher = (dispatch) => {
     },
     updateShowMoreList: (isShowMoreList) => {
       dispatch(Action.updateShowMoreList(isShowMoreList))
-    },
-    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
     thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
       dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
@@ -58,7 +57,10 @@ let controlLandDispatcher = (dispatch) => {
     },
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
-    }
+    },
+    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
+      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
+    },
   }
 }
 
@@ -73,11 +75,13 @@ export struct ControlLand {
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'] //, 'MORE'
   private touchOff: boolean = true
   private scrollDistance: number = 0
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
   @State state: any = {}
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0
+  @Link screenSize: any
 
 
   aboutToAppear(): void {
@@ -121,16 +125,15 @@ export struct ControlLand {
   private changeToMode(modeIndex: number, callType?: string) {
     Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
     this.scroller.scrollToIndex(modeIndex)
-    if (callType === 'begin') return
+    if (callType === 'begin') return;
     if (this.modeArray[modeIndex] !== this.state.mode) {
-//      if ( modeIndex !== 3 ) {
-//        this.closeMoreListView()
-//      } else {
-//        this.state.updateShowMoreList(true)
-//      }
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      this.settingManager.setMode(this.state.mode)
+      let xComponentSize = this.settingManager.getPreviewDisplaySize()
+      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
+      this.mPreferencesService.flushMode()
     }
     Log.debug(`${this.TAG} changeToMode X`)
   }
@@ -183,7 +186,6 @@ export struct ControlLand {
         if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO') {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.photo_mode'))
-              //              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
               .fontSize($r("sys.float.ohos_id_text_size_body1"))
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
@@ -191,16 +193,16 @@ export struct ControlLand {
         } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO') {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.video_mode'))
-              //              .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
               .fontSize($r("sys.float.ohos_id_text_size_body1"))
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
           }.layoutWeight(1).height('100%')
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            ListItem() {
-            }.width('100%').height(32)
-
+            if(ComponentPosition.isUnfoldControl(this.screenSize.width, this.screenSize.height)) {
+              ListItem() {
+              }.width('100%').height(32)
+            }
             ListItem() {
             }.width('100%').height(32)
 
@@ -209,7 +211,6 @@ export struct ControlLand {
                 Text($r('app.string.multi_mode'))
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
-                    //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .enabled(this.state.uiEnable)
                   .onClick(async () => {
                     this.changeToMode(0)
@@ -221,7 +222,6 @@ export struct ControlLand {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.photo_mode'))
-                  //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)
@@ -235,7 +235,6 @@ export struct ControlLand {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.video_mode'))
-                  //                  .shadow({radius: 2, color: 'rgba(51, 0, 0, 0.2)', offsetX: 0, offsetY: 0})
                   .fontSize($r("sys.float.ohos_id_text_size_body1"))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)
@@ -245,17 +244,6 @@ export struct ControlLand {
                   .fontWeight(this.getModeFontWeight(2))
               }.width('100%').height('100%')
             }.width('100%').height(32)
-            //	          ListItem() {
-            //              Flex({direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}) {
-            //                Text($r('app.string.more_list'))
-            //                  .fontSize($r("sys.float.ohos_id_text_size_body1"))
-            //                  .fontWeight(this.getModeFontWeight(3))
-            //                  .fontColor(Color.White)
-            //                  .enabled(this.state.uiEnable)
-            //                  .onClick(async () => {this.changeToMode(3)})
-            //                  .fontWeight(this.getModeFontWeight(3))
-            //              }.width('100%').height('100%')
-            //            }.width('100%').height(32)
             ListItem() {
             }.width('100%').height(32)
 
@@ -263,7 +251,7 @@ export struct ControlLand {
             }.width('100%').height(32)
           }
           .layoutWeight(1)
-          .height(160)
+          .height('100%')
           .edgeEffect(EdgeEffect.None)
           .chainAnimation(false)
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
@@ -292,10 +280,10 @@ export struct ControlLand {
         }
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Center }) {
           Column() {
-          }.borderRadius(3).width(6).height(6).backgroundColor('#1095E8')
+          }.borderRadius(3).width(6).height(6).backgroundColor('#007DFF')
           //            .shadow({radius: 5, color: 'argb(#7F000000)', offsetX: 0, offsetY: 0})
-        }.width(26).height(160).margin({ left: 8 })
+        }.width(18).height('100%').margin({ left: 8 })
       }.width('100%').height('100%')
-    }.width(128).height(160).zIndex(2)
+    }.width(98).height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height)).zIndex(2)
   }
 }

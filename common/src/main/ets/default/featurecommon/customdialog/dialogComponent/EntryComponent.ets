@@ -25,9 +25,9 @@ import Resolution from '../../../setting/settingitem/Resolution'
 @Component
 export default struct EntryComponent {
   private TAG: string = '[EntryComponent]:'
-  @Prop itemValue: string
-  @Prop checkedValue: string
-  @Prop settingAlias: string
+  @State itemValue: string = ''
+  @State checkedValue: string = ''
+  @State settingAlias: string = ''
   private getValue: Resource
   private onChange: Function
   private settingManager = SettingManager.getInstance()
@@ -60,7 +60,7 @@ export default struct EntryComponent {
         Radio({ group: 'settingChildren', value: this.itemValue.toString() })
           .width(24)
           .height(24)
-          .borderColor('#1095E8')
+          .borderColor('#007DFF')
           .checked(JSON.stringify(this.itemValue) === JSON.stringify(this.getValue))
           .enabled(true)
           .onClick(() => {

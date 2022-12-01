@@ -22,6 +22,11 @@ interface Data {
  [prop: string]: any;
 }
 
+export enum UiStateMode {
+  NONE,
+  EXCLUDE_PREVIEW
+}
+
 export interface ActionData extends AnyAction {
   data: Data
 }
@@ -56,6 +61,7 @@ export class Action {
   // Preview
   public static readonly ACTION_PREPARE_SURFACE = 'ACTION_PREPARE_SURFACE'
   public static readonly ACTION_START_PREVIEW = 'ACTION_START_PREVIEW'
+  public static readonly ACTION_RESTART_PREVIEW = 'ACTION_RESTART_PREVIEW'
   public static readonly ACTION_UPDATE_SURFACE_ID = 'ACTION_UPDATE_SURFACE_ID'
   public static readonly ACTION_CHANGE_X_COMPONENT_SIZE = 'ACTION_CHANGE_X_COMPONENT_SIZE'
   public static readonly ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG = 'ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG'
@@ -126,6 +132,7 @@ export class Action {
   public static readonly ACTION_SHOW_ZOOM_LABEL_VALUE = 'ACTION_SHOW_ZOOM_LABEL_VALUE'
   public static readonly ACTION_UPDATE_SHOW_PINCH = 'ACTION_UPDATE_SHOW_PINCH'
   public static readonly ACTION_CLOSE_DIALOG = 'ACTION_CLOSE_DIALOG'
+  public static readonly ACTION_SHOW_SETTING_VIEW = 'ACTION_SHOW_SETTING_VIEW'
 
 
   /** CONTEXT METHODS LIST **/
@@ -182,7 +189,7 @@ export class Action {
     }
   }
 
-  public static switchCamera(cameraId: CameraId): ActionData {
+  public static switchCamera(cameraId: string): ActionData {
     return {
       type: Action.ACTION_SWITCH_CAMERA,
       data: { cameraId: cameraId }
@@ -279,6 +286,13 @@ export class Action {
     }
   }
 
+  public static reStartPreview(): ActionData {
+    return {
+      type: Action.ACTION_RESTART_PREVIEW,
+      data: {}
+    }
+  }
+
   public static updateSurfaceId(surfaceId: number): ActionData {
     return {
       type: Action.ACTION_UPDATE_SURFACE_ID,
@@ -286,7 +300,7 @@ export class Action {
     }
   }
 
-  public static changeXComponentSize(xComponentWidth: string, xComponentHeight: string): ActionData {
+  public static changeXComponentSize(xComponentWidth: number, xComponentHeight: number): ActionData {
     return {
       type: Action.ACTION_CHANGE_X_COMPONENT_SIZE,
       data: { xComponentWidth: xComponentWidth, xComponentHeight: xComponentHeight }
@@ -400,7 +414,7 @@ export class Action {
 
   public static recordError(): ActionData {
     return {
-      type: Action.ACTION_RECORD_DONE,
+      type: Action.ACTION_RECORD_ERROR,
       data: {}
     }
   }
@@ -508,7 +522,14 @@ export class Action {
   public static uiState(enable: boolean): ActionData {
     return {
       type: Action.ACTION_UI_STATE,
-      data: { enable: enable }
+      data: { enable: enable, uiStateMode: UiStateMode.NONE }
+    }
+  }
+
+  public static uiStateWithMode(enable: boolean, uiStateMode: UiStateMode): ActionData {
+    return {
+      type: Action.ACTION_UI_STATE,
+      data: { enable: enable, uiStateMode: uiStateMode }
     }
   }
 
@@ -719,6 +740,13 @@ export class Action {
     return {
       type: Action.ACTION_CLOSE_DIALOG,
       data: { isCloseFlag: isCloseFlag }
+    }
+  }
+
+  public static showSettingView(isShowSettingView: boolean): ActionData {
+    return {
+      type: Action.ACTION_SHOW_SETTING_VIEW,
+      data: { isShowSettingView: isShowSettingView }
     }
   }
 }

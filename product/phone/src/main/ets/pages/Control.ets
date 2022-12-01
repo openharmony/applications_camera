@@ -22,6 +22,7 @@ import { SettingManager } from '../../../../../../common/src/main/ets/default/se
 import wantConstant from '@ohos.ability.wantConstant'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 let controlState = (state: OhCombinedState) => {
   return {
@@ -39,8 +40,8 @@ let controlState = (state: OhCombinedState) => {
 let controlDispatcher = (dispatch) => {
   return {
     changeToMode: (mode: string) => {
-      dispatch(Action.setMode(mode))
       dispatch(Action.uiState(false))
+      dispatch(Action.changeMode(mode))
       dispatch(Action.updateShowBigTextFlag(true))
     },
     updateModeIndex: (index: number) => {
@@ -60,7 +61,10 @@ let controlDispatcher = (dispatch) => {
     },
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
-    }
+    },
+    updateListStatus: (enable: boolean) => {
+      dispatch(Action.uiState(enable))
+    },
   }
 }
 
@@ -71,23 +75,23 @@ export struct Control {
   private scroller: Scroller = new Scroller()
   private settingManager = SettingManager.getInstance()
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
-  private touchOff: boolean = true
+  private isScroll: boolean = false
   private scrollDistance: number = 0
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
   @State state: any = {}
-  @State modeBarItemWidth: number = 225
+  @State modeBarItemLeftWidth: number = 225
+  @State modeBarItemRightWidth: number = 225
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0
-
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().connect(controlState, controlDispatcher)(this.state)
     display.getDefaultDisplay().then((dis) => {
-      let width = (px2vp(dis.width) - (54 * 5)) / 2
-      this.modeBarItemWidth = width
-      Log.info(`${this.TAG} width: ${width}, modeBarItemWidth: ${this.modeBarItemWidth}`)
+      this.modeBarItemLeftWidth = px2vp(dis.width) / 2 - 156
+      this.modeBarItemRightWidth = px2vp(dis.width) / 2 - 148
     })
     let startWantAction = globalThis.cameraAbilityWant.parameters.action
     Log.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
@@ -117,19 +121,17 @@ export struct Control {
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
-  private changeToMode(modeIndex: number, callType?: string) {
+  private changeToMode(modeIndex: number) {
     Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
     this.scroller.scrollToIndex(modeIndex)
-    if (callType === 'begin') return
     if (this.modeArray[modeIndex] !== this.state.mode) {
-//      if (modeIndex === 3) {
-//        this.state.updateShowMoreList(true)
-//      } else {
-//        this.closeMoreListView()
-//      }
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
+      this.settingManager.setMode(this.state.mode)
+      this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
+      this.mPreferencesService.flushMode()
+    } else {
+      this.state.updateListStatus(true)
     }
     Log.debug(`${this.TAG} changeToMode X`)
   }
@@ -152,33 +154,33 @@ export struct Control {
     this.changeToMode(data.swipeModeIndex)
   }
 
-  private scrollSwitchMode(callType: string) {
-    if (this.index == 1 && Math.abs(this.scrollDistance) <= px2vp(20)) {
-      this.changeToMode(1, callType)
+  private scrollSwitchMode() {
+    if (this.index == 1 && Math.abs(this.scrollDistance) <= px2vp(28)) {
+      this.changeToMode(1)
     }
-    if (this.index == 1 && (this.scrollDistance) > px2vp(20)) {
-      this.changeToMode(0, callType)
+    if (this.index == 1 && (this.scrollDistance) > px2vp(28)) {
+      this.changeToMode(2)
     }
-    if (this.index == 1 && (this.scrollDistance) < px2vp(-20)) {
-      this.changeToMode(2, callType)
+    if (this.index == 1 && (this.scrollDistance) < px2vp(-28)) {
+      this.changeToMode(0)
     }
-    if (this.index == 0 && (this.scrollDistance > px2vp(-25))) {
-      this.changeToMode(0, callType)
+    if (this.index == 0 && (this.scrollDistance < px2vp(36))) {
+      this.changeToMode(0)
     }
-    if (this.index == 0 && this.scrollDistance >= px2vp(-50) && this.scrollDistance <= px2vp(-25)) {
-      this.changeToMode(1, callType)
+    if (this.index == 0 && this.scrollDistance <= px2vp(92) && this.scrollDistance >= px2vp(36)) {
+      this.changeToMode(1)
     }
-    if (this.index == 0 && this.scrollDistance < px2vp(-50)) {
-      this.changeToMode(2, callType)
+    if (this.index == 0 && this.scrollDistance > px2vp(92)) {
+      this.changeToMode(2)
     }
-    if (this.index == 2 && (this.scrollDistance < px2vp(25))) {
-      this.changeToMode(2, callType)
+    if (this.index == 2 && (this.scrollDistance > px2vp(-28))) {
+      this.changeToMode(2)
     }
-    if (this.index == 2 && this.scrollDistance >= px2vp(25) && this.scrollDistance <= px2vp(50)) {
-      this.changeToMode(1, callType)
+    if (this.index == 2 && this.scrollDistance <= px2vp(-28) && this.scrollDistance >= px2vp(-92)) {
+      this.changeToMode(1)
     }
-    if (this.index == 2 && this.scrollDistance > px2vp(50)) {
-      this.changeToMode(0, callType)
+    if (this.index == 2 && this.scrollDistance < px2vp(-92)) {
+      this.changeToMode(0)
     }
   }
 
@@ -203,52 +205,39 @@ export struct Control {
           }.width('100%').height('100%')
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            ListItem() {}.width(54).height('100%')
-            ListItem() {}.width(54).height('100%')
-//            ListItem() {}.width(54).height('100%')
-            ListItem() {}.width(this.modeBarItemWidth).height('100%')
+            ListItem() {}.width(64).height('100%')
+            ListItem() {}.width(56).height('100%')
+            ListItem() {}.width(this.modeBarItemLeftWidth).height('100%')
             ListItem() {
               Text($r('app.string.multi_mode'))
                 .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_body1"))
+                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(0))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(0) })
-            }.width(54).height('100%')
+            }.width(72).height('100%')
             ListItem() {
               Text($r('app.string.photo_mode'))
                 .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_body1"))
+                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(1))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(1) })
-            }.width(54).height('100%')
+            }.width(56).height('100%')
             ListItem() {
               Text($r('app.string.video_mode'))
                 .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_body1"))
+                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(2))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
                 .onClick(() => { this.changeToMode(2) })
-            }.width(54).height('100%')
-//            ListItem() {
-//              Text($r('app.string.more_list'))
-//                .width('100%')
-//                .height('100%')
-//                .fontColor('#fff')
-//                .fontSize($r("sys.float.ohos_id_text_size_body1"))
-//                .fontWeight(this.getModeFontWeight(3))
-//                .textAlign(TextAlign.Center)
-//                .enabled(this.state.uiEnable)
-//                .onClick(() => { this.changeToMode(3) })
-//            }.width(54).height('100%')
-            ListItem() {}.width(this.modeBarItemWidth).height('100%')
-            ListItem() {}.width(54).height('100%')
-            ListItem() {}.width(54).height('100%')
-//            ListItem() {}.width(54).height('100%')
+            }.width(56).height('100%')
+            ListItem() {}.width(this.modeBarItemRightWidth).height('100%')
+            ListItem() {}.width(64).height('100%')
+            ListItem() {}.width(56).height('100%')
           }
           .width('100%').height('100%')
           .listDirection(Axis.Horizontal)
@@ -260,26 +249,34 @@ export struct Control {
             this.state.updateModeIndex(firstIndex)
             Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
-          // @ts-ignore
-          .onScrollBegin(() => {
-            if (!this.touchOff) this.scrollSwitchMode('begin')
+          .onScrollStop(() => {
+            Log.info(`${this.TAG} onScrollStop`)
+            this.scrollSwitchMode()
+          })
+          .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+            if (scrollState === ScrollState.Fling) {
+              this.scrollDistance += px2vp(scrollOffset)
+              if (!this.isScroll) {
+                this.isScroll = true
+                this.state.updateListStatus(false)
+              }
+            }
           })
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
-              this.touchOff = true
+              this.scrollDistance = 0
               this.index = this.modeArray.indexOf(this.state.mode)
-              this.startScroll = event.touches[0].screenY
+              this.startScroll = event.touches[0].screenX
             }
             if (event.type === TouchType.Up) {
-              this.endScroll = event.touches[0].screenY
-              this.scrollDistance = px2vp(this.endScroll - this.startScroll)
-              this.touchOff = false
-              this.scrollSwitchMode('touch')
+              this.endScroll = event.touches[0].screenX
+              this.scrollDistance = px2vp(this.startScroll - this.endScroll)
+              this.isScroll = false
             }
           })
         }
         Column() {
-          Column() {}.width(6).height(6).borderRadius(3).backgroundColor('#1095E8')
+          Column() {}.width(6).height(6).borderRadius(3).backgroundColor('#007DFF')
         }.width('100%').height(18)
       }.width('100%').height(58)
     }

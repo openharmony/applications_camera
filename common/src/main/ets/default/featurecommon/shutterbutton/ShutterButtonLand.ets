@@ -22,6 +22,7 @@ import EventBusManager from '../../worker/eventbus/EventBusManager'
 import getStore from '../../redux/store'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
+import ComponentPosition from '../../utils/ComponentPosition'
 
 let localState = (state) => {
   return {
@@ -84,9 +85,8 @@ export struct ShutterButtonLand {
   private TAG: string = '[ShutterButtonLand]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
+  @Link screenSize: any
 
-//  width: number
-//  height: number
   type: ButtonType
   stateEffect: boolean
 
@@ -192,7 +192,9 @@ export struct ShutterButtonLand {
               }
             })
         }
-      }.width(76).aspectRatio(1).margin({ top: 48, bottom: 48 })
+      }.width(76).aspectRatio(1).margin({
+        top: ComponentPosition.getShutterButtonMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight),
+        bottom: ComponentPosition.getShutterButtonMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight) })
     } else {
       Column() {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

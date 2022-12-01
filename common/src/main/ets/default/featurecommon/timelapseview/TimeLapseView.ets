@@ -20,7 +20,6 @@ import { Action } from '../../redux/actions/Action'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
 import EventBusManager from '../../worker/eventbus/EventBusManager'
-import ScreenLockManager from '../../featurecommon/screenlock/ScreenLockManager'
 
 let localState = (state) => {
   return {
@@ -68,30 +67,10 @@ export struct TimeLapseView {
     Log.info(`${this.TAG} onKeepScreen X`)
   }
 
-
-  private async onScreenChange(isScreenOn) {
-    Log.debug(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`)
-    // the build() can only be called when window is foreground
-    if (isScreenOn && globalThis.cameraWindowStageEvent == window.WindowStageEventType.FOREGROUND) {
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-      this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-      this.state.initZoomRatio(1, 6)
-    } else {
-      if (this.state.videoState === 'startTakeVideo') {
-        this.state.stopRecording()
-      }
-      this.state.close()
-    }
-    Log.debug(`${this.TAG} onScreenChanged X`)
-  }
-
-
   aboutToAppear() {
     Log.debug(`${this.TAG} aboutToAppear E`)
     getStore().connect(localState, localDispatcher)(this.state)
-    this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
-    Log.info('12345678')
     switch(JSON.stringify(this.settingManager.getTimeLapse())){
       case JSON.stringify(Timer.RESOURCE_OFF):
         this.timerLapse = -1
@@ -111,8 +90,6 @@ export struct TimeLapseView {
     }
     Log.info(`${this.TAG} calculate timerLapse= ${this.timerLapse}`)
     if (this.timerLapse > 0) {
-//      this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
-//      this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
       clearInterval(this.timer)
       this.timer = setInterval(() => {
         this.timerLapse --
@@ -135,7 +112,6 @@ export struct TimeLapseView {
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
     clearInterval(this.timer)
-    this.appEventBus.off(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 

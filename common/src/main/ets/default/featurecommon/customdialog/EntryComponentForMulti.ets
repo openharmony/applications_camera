@@ -35,22 +35,22 @@ export default struct EntryComponentForMulti {
   @State switchCameraState: boolean = false
   @State recCameraState: boolean = true
   @State defaultChecked: boolean = false
-  @Prop localList: string
-  @Prop item: string
+  @State curCameraName: string = ''
+  private localList: string
+  private item: string
   private onChange: Function
   private cameraService = CameraService.getInstance()
   private deviceName: string
   private cameraPositionRes: Resource
-  private curCameraName: string
   private cameraPositionName: string
 
   aboutToAppear() {
     getStore().connect(localState, localDispatcher)(this.state)
     this.getShowName(this.item)
-    if(this.localList.split(",").length === 1){
-      this.defaultChecked = true
-    }
     this.curCameraName = this.cameraService.getCameraName()
+    if (this.localList.split(",").length === 1 && this.curCameraName === 'BACK') {
+      this.curCameraName = 'FRONT'
+    }
   }
 
   private getShowName(item) {
@@ -102,8 +102,12 @@ export default struct EntryComponentForMulti {
         .checked(this.defaultChecked ? true : this.item === this.curCameraName)
         .enabled(this.state.uiEnable)
         .onClick(() => {
-          Log.info(`${this.TAG} onChange: ${this.item}`)
-          this.onChange(this.item)
+          Log.info(`${this.TAG} onChange item: ${this.item}`)
+          if (this.item === this.curCameraName) {
+            Log.info(`${this.TAG} no Change curCameraName: ${this.curCameraName}`)
+          } else {
+            this.onChange(this.item)
+          }
         })
     }
     .height(48)
