@@ -29,7 +29,6 @@ let controlState = (state: OhCombinedState) => {
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     isFaCall: state.ContextReducer.isFaCall,
     action: state.ContextReducer.action,
-    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
     uiEnable: state.ContextReducer.uiEnable,
     modeIndex: state.ModeReducer.modeIndex,
     mode: state.ModeReducer.mode,
@@ -49,9 +48,6 @@ let controlDispatcher = (dispatch) => {
     },
     updateShowMoreList: (isShowMoreList) => {
       dispatch(Action.updateShowMoreList(isShowMoreList))
-    },
-    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
     thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
       dispatch(Action.thirdPartyCall(isThirdPartyCall, action))

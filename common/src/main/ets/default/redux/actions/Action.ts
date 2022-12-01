@@ -39,6 +39,7 @@ export class Action {
   public static readonly ACTION_SET_PERMISSION_FLAG = 'ACTION_SET_PERMISSION_FLAG'
   public static readonly ACTION_INIT_ACTION = 'ACTION_INIT_ACTION'
   public static readonly ACTION_KEEP_SCREEN_ON = 'ACTION_KEEP_SCREEN_ON'
+  public static readonly ACTION_UPDATE_INIT_SHOW_FLAG = 'ACTION_UPDATE_INIT_SHOW_FLAG'
 
   // Camera
   public static readonly ACTION_INIT = 'ACTION_INIT'
@@ -64,7 +65,6 @@ export class Action {
   public static readonly ACTION_RESTART_PREVIEW = 'ACTION_RESTART_PREVIEW'
   public static readonly ACTION_UPDATE_SURFACE_ID = 'ACTION_UPDATE_SURFACE_ID'
   public static readonly ACTION_CHANGE_X_COMPONENT_SIZE = 'ACTION_CHANGE_X_COMPONENT_SIZE'
-  public static readonly ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG = 'ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG'
   public static readonly ACTION_UPDATE_SHOW_PREVIEW_FLAG = 'ACTION_UPDATE_SHOW_PREVIEW_FLAG'
 
   // Capture
@@ -169,6 +169,13 @@ export class Action {
     return {
       type: Action.ACTION_KEEP_SCREEN_ON,
       data: { isKeepScreenOn: isKeepScreenOn }
+    }
+  }
+
+  public static updateInitShowFlag(initShowFlag: boolean): ActionData {
+    return {
+      type: Action.ACTION_UPDATE_INIT_SHOW_FLAG,
+      data: { initShowFlag: initShowFlag }
     }
   }
 
@@ -304,14 +311,6 @@ export class Action {
     return {
       type: Action.ACTION_CHANGE_X_COMPONENT_SIZE,
       data: { xComponentWidth: xComponentWidth, xComponentHeight: xComponentHeight }
-    }
-  }
-
-  public static updateXComponentChangeFlag(flag: boolean): ActionData {
-    Trace.start(Trace.X_COMPONENT_LIFE)
-    return {
-      type: Action.ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG,
-      data: { xComponentChangeFlag: flag }
     }
   }
 

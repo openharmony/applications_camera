@@ -74,6 +74,7 @@ export default struct EntryComponent {
       Radio({ group: 'settingChildren', value: this.itemValue.toString() })
         .width(24)
         .height(24)
+        .margin({ right: 14 })
         .borderColor('#007DFF')
         .checked(JSON.stringify(this.itemValue) === JSON.stringify(this.getValue))
         .enabled(true)

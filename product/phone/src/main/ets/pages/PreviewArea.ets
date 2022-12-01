@@ -51,7 +51,6 @@ let cameraState = (state: OhCombinedState) => {
     surfaceId: state.PreviewReducer.surfaceId,
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
-    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
     cameraPosition: state.CameraReducer.cameraPosition,
     curCameraPosition: state.CameraReducer.curCameraPosition,
     minZoomRatio: state.ZoomReducer.minZoomRatio,
@@ -112,9 +111,6 @@ let cameraDispatcher = (dispatch) => {
     },
     changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
       dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
-    },
-    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
     updateShowPreviewFlag: (isShowPreview: boolean) => {
       dispatch(Action.updateShowPreviewFlag(isShowPreview))
@@ -219,9 +215,6 @@ export struct PreviewArea {
 
   private async onCameraInit(data) {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
-    if (!this.pageType) {
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-    }
     if (this.state.platformCapability) {
       //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
@@ -361,7 +354,6 @@ export struct PreviewArea {
       this.state.stopRecording()
     }
     this.state.close()
-    this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
     Log.info(`${this.TAG} onRecordError invoke X`)
   }
 
@@ -598,14 +590,8 @@ export struct PreviewArea {
             .padding({ bottom: '40vp' })
           }
 
-          if (this.state.xComponentChangeFlag) {
-            if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
-              AssistiveGridView()
-            }
-          } else {
-            if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
-              AssistiveGridView()
-            }
+          if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
+            AssistiveGridView()
           }
 
           if (this.state.isSmallVideoTimerVisible) {
