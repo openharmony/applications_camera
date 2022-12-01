@@ -176,7 +176,7 @@ export class CameraBasicFunction extends BaseFunction {
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     this.mWorkerManager.postMessage(Action.onModeChanged(this.mCurrentMode))
     this.mWorkerManager.postMessage(Action.swipeModeChangeDone(false))
-//    this.enableUi()
+    this.enableUi()
     Log.info(`${this.TAG} changeMode X`)
   }
 
