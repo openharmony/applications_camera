@@ -236,7 +236,6 @@ export struct PreviewAreaLand {
       //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
         this.settingManager.setCameraId(this.state.cameraPosition)
-        this.settingManager.setMode(this.state.mode)
 
         let imageSize = this.settingManager.getImageSize()
         this.state.changeImageSize(imageSize)
@@ -287,7 +286,6 @@ export struct PreviewAreaLand {
       }, 1000)
       Log.debug(`${this.TAG} doCameraAction E`)
       this.settingManager.setCameraId(this.state.cameraPosition)
-      this.settingManager.setMode(this.state.mode)
       if (this.state.curCameraPosition != this.state.cameraPosition) {
       this.state.switchCamera(this.state.cameraPosition)
     } else if (this.state.curMode != this.state.mode) {
@@ -608,7 +606,7 @@ export struct PreviewAreaLand {
   private resetScreenSize(size: any) {
     this.settingManager.setScreenHeight(size.height)
     this.settingManager.setScreenWidth(size.width)
-    let xComponentSize = this.settingManager.getPreviewDisplaySize()
+    let xComponentSize = this.settingManager.getPreviewDisplaySize(this.state.mode)
     Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
     this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
   }

@@ -228,10 +228,10 @@ export class CameraService {
     Log.info(`${this.TAG} releaseCameraInput invoke X.`)
   }
 
-  public async createPreviewOutput(surfaceId: string) {
+  public async createPreviewOutput(surfaceId: string, mode: string) {
     Log.info(`${this.TAG} createPreviewOutput invoke ${surfaceId} E. `)
     this.mSurfaceId = surfaceId
-    const size = SettingManager.getInstance().getPreviewSize()
+    const size = SettingManager.getInstance().getPreviewSize(mode)
     Log.info(`${this.TAG} createPreviewOutput size = ${JSON.stringify(size)}`)
     globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width , surfaceHeight: size.height })
     let previewProfiles = this.outputCapability.previewProfiles
