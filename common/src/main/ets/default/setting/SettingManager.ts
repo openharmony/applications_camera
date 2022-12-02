@@ -65,16 +65,16 @@ export class SettingManager {
     return AppStorage.Get(Constants.APP_KEY_SETTINGS_UTILS)
   }
 
-  public setSettingValue(settingAlias, itemValue) {
+  public setSettingValue(settingAlias, itemValue, mode: string) {
     Log.info(`${SettingManager.TAG} settingAlias = ${settingAlias} itemValue= ${itemValue}`)
     let needCommit = false
     if (settingAlias == AspectRatio.ALIAS) {
       this.mAspectRatio = itemValue
-      this.mEventBus.emit("AspectRatio", [this.getPreviewDisplaySize()])
+      this.mEventBus.emit("AspectRatio", [this.getPreviewDisplaySize(mode)])
       needCommit = true
     } else if (settingAlias == Resolution.ALIAS) {
       this.mResolution = itemValue
-      this.mEventBus.emit("Resolution", [this.getPreviewDisplaySize()])
+      this.mEventBus.emit("Resolution", [this.getPreviewDisplaySize(mode)])
       needCommit = true
     } else if (settingAlias == AssistiveGrid.ALIAS) {
       this.mAssistiveGrid = itemValue
@@ -183,9 +183,9 @@ export class SettingManager {
     }
   }
 
-  public restoreValues() {
+  public restoreValues(mode: string) {
     for (let i = 0; i < this.mSettingsList.length; i++) {
-      this.setSettingValue(this.mSettingsList[i].ALIAS, this.mSettingsList[i].DEFAULT_VALUE)
+      this.setSettingValue(this.mSettingsList[i].ALIAS, this.mSettingsList[i].DEFAULT_VALUE, mode)
     }
   }
 
@@ -201,7 +201,6 @@ export class SettingManager {
   public mScreenHeight: number
   private mPlatformCapability
   private mCameraId: string
-  private mMode: string
 
   public setCameraPlatformCapability(platformCapability) {
     this.mPlatformCapability = platformCapability
@@ -209,10 +208,6 @@ export class SettingManager {
 
   public setCameraId(cameraId: string) {
     this.mCameraId = cameraId
-  }
-
-  public setMode(mode: string) {
-    this.mMode = mode
   }
 
   public getImageSize() {
@@ -231,16 +226,16 @@ export class SettingManager {
     this.mScreenHeight = height
   }
 
-  public getPreviewSize() {
-    if (this.mMode == 'VIDEO') {
+  public getPreviewSize(mode: string) {
+    if (mode == 'VIDEO') {
       return Resolution.getVideoPreviewSize(this.mPlatformCapability, this.mCameraId, this.mResolution)
     } else {
       return AspectRatio.getPhotoPreviewSize(this.mPlatformCapability, this.mCameraId, this.mAspectRatio)
     }
   }
 
-  public getPreviewDisplaySize() {
-    const preViewSize = this.getPreviewSize()
+  public getPreviewDisplaySize(mode: string) {
+    const preViewSize = this.getPreviewSize(mode)
     return DisplayCalculator.calcSurfaceDisplaySize(this.mScreenWidth, this.mScreenHeight, preViewSize.width, preViewSize.height)
   }
 

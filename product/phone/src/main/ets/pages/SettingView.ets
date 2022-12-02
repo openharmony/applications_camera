@@ -155,7 +155,7 @@ export struct SettingView {
             .height(40)
             .width('52%')
             .onClick(() => {
-              this.settingManager.restoreValues()
+              this.settingManager.restoreValues(this.state.mode)
               this.state.hideSettingView()
             })
           }

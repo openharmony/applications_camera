@@ -17,7 +17,6 @@ import { Action, ActionData } from '../actions/Action'
 
 export type PreviewState = {
   surfaceId: number,
-  xComponentChangeFlag: boolean,
   xComponentWidth: number,
   xComponentHeight: number,
   isShowPreview: boolean,
@@ -26,7 +25,6 @@ export type PreviewState = {
 
 const initState: PreviewState = {
   surfaceId: 0,
-  xComponentChangeFlag: true,
   xComponentWidth: 0,
   xComponentHeight: 0,
   isShowPreview: false,
@@ -41,8 +39,6 @@ export default function PreviewReducer(state = initState, action: ActionData): P
     return { ...state, surfaceId: action.data.surfaceId }
   case Action.ACTION_CHANGE_X_COMPONENT_SIZE:
     return { ...state, xComponentWidth: action.data.xComponentWidth, xComponentHeight: action.data.xComponentHeight}
-  case Action.ACTION_UPDATE_X_COMPONENT_CHANGE_FLAG:
-    return { ...state, xComponentChangeFlag: action.data.xComponentChangeFlag }
   case Action.ACTION_UPDATE_SHOW_PREVIEW_FLAG:
     return { ...state, isShowPreview: action.data.isShowPreview }
   case Action.ACTION_UPDATE_SHOW_FLASH_BLACK_FLAG:
