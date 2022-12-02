@@ -1,3 +1,4 @@
+//@ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -433,8 +434,8 @@ export class CameraService {
           longitude: locationData.longitude
         }
       }
-      let settingManagerData = SettingManager.getInstance()
-      if (settingManagerData.mScreenWidth < settingManagerData.mScreenHeight) {
+
+      if (deviceInfo.deviceType != 'tablet') {
         if (this.curCameraName === 'BACK') {
           this.mVideoConfig.rotation = 90
         } else {
