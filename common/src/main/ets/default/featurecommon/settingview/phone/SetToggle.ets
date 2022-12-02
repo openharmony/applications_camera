@@ -17,6 +17,17 @@ import AssistiveGrid from '../../../setting/settingitem/AssistiveGrid'
 import { Log } from '../../../utils/Log'
 import { SettingManager } from '../../../setting/SettingManager'
 import { SettingData }  from '../model/SettingData'
+import getStore from '../../../redux/store';
+
+let localState = (state) => {
+  return {
+    mode: state.ModeReducer.mode,
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {}
+}
 
 @Component
 export struct SetToggle {
@@ -28,9 +39,11 @@ export struct SetToggle {
   private WH_100_100: string = "100%"
   private settingManager = SettingManager.getInstance()
   @State generalStatusValue: boolean = false
+  @State state: any = {}
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
+    getStore().connect(localState, localDispatcher)(this.state)
     try {
       if (this.settingManager.getSettingValue(this.itemValue.settingAlias) === "1") {
         this.generalStatusValue = true
@@ -93,7 +106,7 @@ export struct SetToggle {
               } else {
                 setToggle = "0"
               }
-              this.settingManager.setSettingValue(this.itemValue.settingAlias, setToggle)
+              this.settingManager.setSettingValue(this.itemValue.settingAlias, setToggle, this.state.mode)
             })
         }.margin({ left: $r("sys.float.ohos_id_card_margin_end") })
       }

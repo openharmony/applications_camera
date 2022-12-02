@@ -21,6 +21,18 @@ import { SettingManager } from '../../../setting/SettingManager'
 import Timer from '../../../setting/settingitem/Timer'
 import AspectRatio from '../../../setting/settingitem/AspectRatio'
 import Resolution from '../../../setting/settingitem/Resolution'
+import getStore from '../../../redux/store';
+
+let localState = (state) => {
+  return {
+    mode: state.ModeReducer.mode,
+  }
+}
+
+let localDispatcher = (dispatch) => {
+  return {}
+}
+
 
 @Component
 export default struct EntryComponent {
@@ -31,9 +43,11 @@ export default struct EntryComponent {
   private getValue: Resource
   private onChange: Function
   private settingManager = SettingManager.getInstance()
+  @State state: any = {}
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear calle1d = ${this.settingAlias}`)
+    getStore().connect(localState, localDispatcher)(this.state)
     try {
       this.getValue = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.settingAlias)))
       Log.log(`${this.TAG} EntryComponent.getValue=${this.getValue}`)
@@ -51,24 +65,25 @@ export default struct EntryComponent {
   }
 
   build() {
-      Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Text(this.itemValue)
-          .fontColor('#E6000000')
-          .fontSize($r("sys.float.ohos_id_text_size_body1"))
-          .fontWeight(FontWeight.Regular)
+    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+      Text(this.itemValue)
+        .fontColor('#E6000000')
+        .fontSize($r("sys.float.ohos_id_text_size_body1"))
+        .fontWeight(FontWeight.Regular)
 
-        Radio({ group: 'settingChildren', value: this.itemValue.toString() })
-          .width(24)
-          .height(24)
-          .borderColor('#007DFF')
-          .checked(JSON.stringify(this.itemValue) === JSON.stringify(this.getValue))
-          .enabled(true)
-          .onClick(() => {
-            Log.info(`${this.TAG} onChange settingAlias:${this.settingAlias}  itemValue:${this.itemValue}`)
-            this.settingManager.setSettingValue(this.settingAlias, this.itemValue)
-            this.onChange()
-          })
-      }
-      .width('100%')
+      Radio({ group: 'settingChildren', value: this.itemValue.toString() })
+        .width(24)
+        .height(24)
+        .margin({ right: 14 })
+        .borderColor('#007DFF')
+        .checked(JSON.stringify(this.itemValue) === JSON.stringify(this.getValue))
+        .enabled(true)
+        .onClick(() => {
+          Log.info(`${this.TAG} onChange settingAlias:${this.settingAlias}  itemValue:${this.itemValue}`)
+          this.settingManager.setSettingValue(this.settingAlias, this.itemValue, this.state.mode)
+          this.onChange()
+        })
+    }
+    .width('100%')
   }
 }
