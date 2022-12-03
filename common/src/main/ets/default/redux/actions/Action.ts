@@ -196,10 +196,10 @@ export class Action {
     }
   }
 
-  public static switchCamera(cameraId: string): ActionData {
+  public static switchCamera(cameraId: string, curMode?: string): ActionData {
     return {
       type: Action.ACTION_SWITCH_CAMERA,
-      data: { cameraId: cameraId }
+      data: { cameraId: cameraId, curMode: curMode }
     }
   }
 
@@ -286,10 +286,10 @@ export class Action {
     }
   }
 
-  public static startPreview(): ActionData {
+  public static startPreview(zoomRatio?: number): ActionData {
     return {
       type: Action.ACTION_START_PREVIEW,
-      data: {}
+      data: { zoomRatio: zoomRatio }
     }
   }
 
