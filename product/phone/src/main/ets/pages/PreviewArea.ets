@@ -215,9 +215,6 @@ export struct PreviewArea {
 
   private async onCameraInit(data) {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
-    if (!this.pageType) {
-      this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-    }
     if (this.state.platformCapability) {
       //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
@@ -277,10 +274,6 @@ export struct PreviewArea {
   private async doCameraAction() {
     Log.debug(`${this.TAG} doCameraAction E`)
     this.settingManager.setCameraId(this.state.cameraPosition)
-<<<<<<< HEAD
-    this.settingManager.setMode(this.state.mode)
-=======
->>>>>>> master
     if (this.state.curCameraPosition != this.state.cameraPosition) {
       this.state.switchCamera(this.state.cameraPosition)
     } else if (this.state.curMode != this.state.mode) {
@@ -300,11 +293,7 @@ export struct PreviewArea {
 
   private async onModeChanged(data) {
     Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`)
-<<<<<<< HEAD
-    let xComponentSize = this.settingManager.getPreviewDisplaySize()
-=======
     let xComponentSize = this.settingManager.getPreviewDisplaySize(data.mode)
->>>>>>> master
     this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
     this.state.updateShowPreviewFlag(true)
     Log.debug(`${this.TAG} onModeChanged X`)
@@ -365,10 +354,6 @@ export struct PreviewArea {
       this.state.stopRecording()
     }
     this.state.close()
-<<<<<<< HEAD
-    this.state.updateXComponentChangeFlag(!this.state.xComponentChangeFlag)
-=======
->>>>>>> master
     Log.info(`${this.TAG} onRecordError invoke X`)
   }
 

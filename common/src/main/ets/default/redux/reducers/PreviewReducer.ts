@@ -17,10 +17,6 @@ import { Action, ActionData } from '../actions/Action'
 
 export type PreviewState = {
   surfaceId: number,
-<<<<<<< HEAD
-  xComponentChangeFlag: boolean,
-=======
->>>>>>> master
   xComponentWidth: number,
   xComponentHeight: number,
   isShowPreview: boolean,
@@ -29,10 +25,6 @@ export type PreviewState = {
 
 const initState: PreviewState = {
   surfaceId: 0,
-<<<<<<< HEAD
-  xComponentChangeFlag: true,
-=======
->>>>>>> master
   xComponentWidth: 0,
   xComponentHeight: 0,
   isShowPreview: false,

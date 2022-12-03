@@ -70,19 +70,11 @@ export class SettingManager {
     let needCommit = false
     if (settingAlias == AspectRatio.ALIAS) {
       this.mAspectRatio = itemValue
-<<<<<<< HEAD
-      this.mEventBus.emit("AspectRatio", [this.getPreviewDisplaySize()])
-      needCommit = true
-    } else if (settingAlias == Resolution.ALIAS) {
-      this.mResolution = itemValue
-      this.mEventBus.emit("Resolution", [this.getPreviewDisplaySize()])
-=======
       this.mEventBus.emit("AspectRatio", [this.getPreviewDisplaySize(mode)])
       needCommit = true
     } else if (settingAlias == Resolution.ALIAS) {
       this.mResolution = itemValue
       this.mEventBus.emit("Resolution", [this.getPreviewDisplaySize(mode)])
->>>>>>> master
       needCommit = true
     } else if (settingAlias == AssistiveGrid.ALIAS) {
       this.mAssistiveGrid = itemValue
@@ -242,13 +234,8 @@ export class SettingManager {
     }
   }
 
-<<<<<<< HEAD
-  public getPreviewDisplaySize() {
-    const preViewSize = this.getPreviewSize()
-=======
   public getPreviewDisplaySize(mode: string) {
     const preViewSize = this.getPreviewSize(mode)
->>>>>>> master
     return DisplayCalculator.calcSurfaceDisplaySize(this.mScreenWidth, this.mScreenHeight, preViewSize.width, preViewSize.height)
   }
 

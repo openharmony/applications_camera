@@ -85,10 +85,7 @@ export struct ShutterButtonLand {
   private TAG: string = '[ShutterButtonLand]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
-<<<<<<< HEAD
-=======
   private lastTime = 0
->>>>>>> master
   @Link screenSize: any
 
   type: ButtonType

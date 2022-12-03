@@ -177,11 +177,7 @@ export struct SettingView {
               .backgroundColor($r('app.color.background_color_333333'))
               .height(40)
               .onClick(() => {
-<<<<<<< HEAD
-                this.settingManager.restoreValues()
-=======
                 this.settingManager.restoreValues(this.state.mode)
->>>>>>> master
                 this.state.hideSettingView()
               })
             }.margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") , bottom: 70 })

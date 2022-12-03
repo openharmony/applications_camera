@@ -36,12 +36,6 @@ let localDispatcher = (dispatch) => {
       dispatch(Action.switchCamera(cameraPosition))
       dispatch(Action.updateCameraPosition(cameraPosition))
       dispatch(Action.resetZoomRatio(1))
-<<<<<<< HEAD
-    },
-    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
-=======
->>>>>>> master
     },
   }
 }
