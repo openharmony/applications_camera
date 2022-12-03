@@ -99,7 +99,10 @@ export default class ComponentPosition {
       xPosition = screenWidth * 5 / 8 + previewWidth * 3 / 8 - shutterButtonWidth / 4 - this.zoomViewComponentWidth / 2
     }
     let position = { x: xPosition, y: 0 }
+<<<<<<< HEAD:common/src/main/ets/default/Utils/ComponentPosition.ts
     Log.info("test_test_zoomViewPosition:" + JSON.stringify(position))
+=======
+>>>>>>> master:common/src/main/ets/default/utils/ComponentPosition.ts
     return position
   }
 

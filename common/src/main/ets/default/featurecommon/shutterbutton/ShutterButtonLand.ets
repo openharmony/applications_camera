@@ -85,6 +85,10 @@ export struct ShutterButtonLand {
   private TAG: string = '[ShutterButtonLand]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
+<<<<<<< HEAD
+=======
+  private lastTime = 0
+>>>>>>> master
   @Link screenSize: any
 
   type: ButtonType
@@ -187,7 +191,13 @@ export struct ShutterButtonLand {
                 if (timerLapse && timerLapse.id !== Timer.RESOURCE_OFF.id) {
                   this.state.changeTimeLapse(true)
                 } else {
-                  this.state.capture()
+                  let waitTime = 400
+                  let curTime = Date.now();
+                  if (curTime - this.lastTime >= waitTime) {
+                    Log.log(`${this.TAG} throttle invoke time = ${JSON.stringify(curTime - this.lastTime)}`)
+                    this.state.capture()
+                    this.lastTime = curTime;
+                  }
                 }
               }
             })

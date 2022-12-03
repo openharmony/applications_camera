@@ -28,14 +28,40 @@ export class PlaySound {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
   private fdNumber: number = 0
-  private isReleased: boolean = true
+  private fdPath
+  private mAudioPlayer:media.AudioPlayer
 
   constructor() {
-//    this.appEventBus.on(Action.ACTION_RECORD_START, this.playRecordStart.bind(this))
-//    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.playRecordStop.bind(this))
-//    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.playRecordStart.bind(this))
-//    this.appEventBus.on(Action.ACTION_RECORD_STOP, this.playRecordStop.bind(this))
-    this.appEventBus.on(Action.ACTION_CAPTURE, this.playCapture.bind(this))
+   this.appEventBus.on(Action.ACTION_CAPTURE, this.playCapture.bind(this))
+    this.mAudioPlayer = media.createAudioPlayer()
+    this.setAudioCallback()
+  }
+
+  setAudioCallback() {
+    this.mAudioPlayer.on('error', (err) => {
+      Log.info(`${this.TAG} case error called, err is: ${err.message}`)
+      Log.info(`${this.TAG} case error called, status is: ${this.mAudioPlayer.state}`)
+    })
+    this.mAudioPlayer.on('dataLoad', () => {
+      Log.info(`${this.TAG} case dataLoad called, status is: ${this.mAudioPlayer.state}`)
+      if (this.settingManager.getCaptureMute() == Voice.SOUND) {
+        this.mAudioPlayer.play()
+      }
+    })
+    this.mAudioPlayer.on('play', () => {
+      Log.info(`${this.TAG} case play called, status is: ${this.mAudioPlayer.state}`)
+    })
+    this.mAudioPlayer.on('reset', () => {
+      Log.info(`${this.TAG} case reset called, status is: ${this.mAudioPlayer.state}`)
+      this.mAudioPlayer.src = this.fdPath
+    })
+    this.mAudioPlayer.on('finish', () => {
+      Log.info(`${this.TAG} case finish called, status is: ${this.mAudioPlayer.state}`)
+        if (this.fdNumber !== 0) {
+          fileIO.closeSync(this.fdNumber)
+          Log.info(`${this.TAG} fileIO closeSync success`)
+        }
+    })
   }
 
   public static getInstance(): PlaySound {
@@ -71,33 +97,15 @@ export class PlaySound {
 
   private async playSound(soundUri) {
     Log.info(`${this.TAG} playSound invoke E`)
-    let fdPath = 'fd://'
-    let audioPlayer = media.createAudioPlayer()
-    audioPlayer.on('dataLoad', () => {
-      audioPlayer.play()
+    this.fdPath = 'fd://'
+    fileIO.open(Voice.CAPTURE_URI).then((fdData) => {
+      this.fdPath = this.fdPath + '' + fdData
+      this.fdNumber = fdData
+      this.mAudioPlayer.src = this.fdPath
+      this.mAudioPlayer.reset()
+    }).catch((err) => {
+      Log.info(`${this.TAG} open soundUri failed, err: ${err}`)
     })
-    audioPlayer.on('finish', () => {//删掉参数err, action及相关逻辑
-//      if (err) {
-//        Log.info(`${this.TAG} audioPlayer paly is finish: ${err}`)
-//        return
-//      }
-      audioPlayer.release()
-      if (this.fdNumber !== 0) {
-        fileIO.closeSync(this.fdNumber)
-        this.isReleased = true
-        Log.info(`${this.TAG} fileIO closeSync success`)
-      }
-    })
-    if (this.isReleased) {
-      this.isReleased = false
-      await fileIO.open(soundUri).then((fdData) => {
-        fdPath = fdPath + '' + fdData;
-        this.fdNumber = fdData
-      }).catch((err) => {
-        Log.info(`${this.TAG} open soundUri failed, err: ${err}`)
-      })
-      audioPlayer.src = fdPath
-    }
     Log.info(`${this.TAG} playSound invoke X`)
   }
 }

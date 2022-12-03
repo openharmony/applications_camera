@@ -25,7 +25,8 @@ export type ContextState = {
   isFaCall: boolean,
   permissionFlag: boolean,
   action: string,
-  isKeepScreenOn: boolean
+  isKeepScreenOn: boolean,
+  initShowFlag: boolean
 }
 
 const initState: ContextState = {
@@ -38,7 +39,8 @@ const initState: ContextState = {
   isFaCall: false,
   permissionFlag: false,
   action: '',
-  isKeepScreenOn: false
+  isKeepScreenOn: false,
+  initShowFlag: false
 }
 
 export default function ContextReducer(state = initState, action: ActionData): ContextState {
@@ -59,6 +61,8 @@ export default function ContextReducer(state = initState, action: ActionData): C
     return { ...state, action: action.data.action }
   case Action.ACTION_KEEP_SCREEN_ON:
     return { ...state, isKeepScreenOn: action.data.isKeepScreenOn }
+  case Action.ACTION_UPDATE_INIT_SHOW_FLAG:
+    return { ...state, initShowFlag: action.data.initShowFlag }
   default:
     return state;
   }

@@ -58,7 +58,12 @@ let indexState = (state: OhCombinedState) => {
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
     isShowPageView: state.SettingReducer.isShowSettingView,
+<<<<<<< HEAD
     isInitiated: state.ModeReducer.isInitiated
+=======
+    isInitiated: state.ModeReducer.isInitiated,
+    initShowFlag: state.ContextReducer.initShowFlag
+>>>>>>> master
   }
 }
 
@@ -95,6 +100,15 @@ let indexDispatcher = (dispatch) => {
     },
     updateModeIndex: (index: number) => {
       dispatch(Action.updateModeIndex(index))
+<<<<<<< HEAD
+=======
+    },
+    faCall: (isFaCall: boolean) => {
+      dispatch(Action.faCall(isFaCall))
+    },
+    updateInitShowFlag: (initShowFlag: boolean) => {
+      dispatch(Action.updateInitShowFlag(initShowFlag))
+>>>>>>> master
     }
   }
 }
@@ -118,7 +132,10 @@ struct Index {
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
     getStore().connect(indexState, indexDispatcher)(this.state)
+<<<<<<< HEAD
     this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
+=======
+>>>>>>> master
 
     if (!this.state.permissionFlag) {
       let permissionList: Array<string> = [
@@ -183,15 +200,69 @@ struct Index {
   }
 
   onPageShow(): void {
-    Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
+    Log.info(`${this.TAG} onPageShow E this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
     this.state.setPermissionFlag(globalThis.permissionFlag)
     let curCameraId = AppStorage.Get<string>('storageCameraId')
     if(curCameraId) this.state.initCameraPosition(curCameraId)
     this.state.resetRecordingTime()
+    this.calledByFa()
+    Log.info(`${this.TAG} onPageShow X`)
+  }
+
+  private calledByFa(): void {
+    Log.info(`${this.TAG} calledByFa invoke E`)
+    let from: string = ""
+    let uri: string = ""
+
+    if (globalThis?.cameraNewWant) {
+      Log.debug((`${this.TAG} cameraNewWant: ${JSON.stringify(globalThis.cameraNewWant)}`))
+      if (globalThis.cameraNewWant?.parameters?.from) {
+        from = globalThis.cameraNewWant.parameters.from
+      }
+      if (globalThis.cameraNewWant?.parameters?.uri) {
+        uri = globalThis.cameraNewWant.parameters.uri
+      }
+    } else if (globalThis?.cameraAbilityWant) {
+      Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
+      if (globalThis.cameraAbilityWant?.parameters?.from) {
+        from = globalThis.cameraAbilityWant.parameters.from
+      }
+      if (globalThis.cameraAbilityWant?.parameters?.uri) {
+        uri = globalThis.cameraAbilityWant.parameters.uri
+      }
+    } else {
+      return
+    }
+    Log.info(`${this.TAG} from: ${from}  uri: ${uri}`)
+
+    if (from === "FA") {
+      Log.info(`from === "FA"`)
+      this.state.faCall(true)
+      switch (uri) {
+        case "capture":
+          this.state.initMode('PHOTO')
+          this.state.updateModeIndex(1)
+          break
+        case "video":
+          this.state.initMode('VIDEO')
+          this.state.updateModeIndex(2)
+          break
+        default:
+          Log.info(`${this.TAG} FA default`)
+          break
+      }
+    } else {
+      this.state.faCall(false)
+    }
+    Log.info(`${this.TAG} calledByFa invoke X: ${this.state.mode}`)
   }
 
   aboutToDisappear(): void {
+<<<<<<< HEAD
     this.appEventBus.off("windowSize", this.windowSizeChange.bind(this))
+=======
+
+>>>>>>> master
     Log.info(`${this.TAG} aboutToDisappear E`)
   }
 
@@ -218,6 +289,7 @@ struct Index {
   onPageHide(): void {
     Log.info(`${this.TAG} onPageHide E`)
     this.stopCameraRecording()
+    this.state.updateInitShowFlag(false)
     Log.info(`${this.TAG} onPageHide X`)
   }
 
@@ -266,6 +338,7 @@ struct Index {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       if (this.state.permissionFlag) {
+<<<<<<< HEAD
         Column() {
           PreviewAreaLand({ screenSize: $screenSize })
         }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
@@ -302,6 +375,47 @@ struct Index {
             MoreList()
           }.zIndex(1).height('100%').width('100%')
           .visibility(this.componentVisibility(this.state.showZoomLabelValue))
+=======
+        Column() {
+          PreviewAreaLand({ screenSize: $screenSize })
+        }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
+
+        if (!this.state.isShowtimeLapse && this.state.initShowFlag) {
+          Column() {
+            if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
+              ZoomViewLand()
+            } else {
+              Column() {
+              }.width(82).margin({ right: '20vp' })
+            }
+          }.zIndex(2).height('100%')
+          .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
+            this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
+          .visibility(!this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
+
+          Column(){
+            FootBarLand({ screenSize: $screenSize })
+          }.zIndex(2).height('100%')
+          .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
+            this.state.xComponentWidth, this.state.xComponentHeight))
+          .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
+
+          Column() {
+            TabBarLand()
+          }.zIndex(3)
+          .visibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue ? Visibility.Visible
+                                                                                                   : Visibility.Hidden)
+          .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
+            this.state.xComponentWidth, this.state.xComponentHeight))
+
+          if (this.state.isShowMoreList) {
+            Column() {
+              MoreList()
+            }.zIndex(1).height('100%').width('100%')
+            .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
+          }
+>>>>>>> master
         }
       }
       if (this.state.isShowPageView) {
