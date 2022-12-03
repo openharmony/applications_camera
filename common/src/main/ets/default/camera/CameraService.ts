@@ -1,3 +1,4 @@
+//@ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -228,10 +229,10 @@ export class CameraService {
     Log.info(`${this.TAG} releaseCameraInput invoke X.`)
   }
 
-  public async createPreviewOutput(surfaceId: string) {
+  public async createPreviewOutput(surfaceId: string, mode: string) {
     Log.info(`${this.TAG} createPreviewOutput invoke ${surfaceId} E. `)
     this.mSurfaceId = surfaceId
-    const size = SettingManager.getInstance().getPreviewSize()
+    const size = SettingManager.getInstance().getPreviewSize(mode)
     Log.info(`${this.TAG} createPreviewOutput size = ${JSON.stringify(size)}`)
     globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width , surfaceHeight: size.height })
     let previewProfiles = this.outputCapability.previewProfiles
@@ -433,8 +434,13 @@ export class CameraService {
           longitude: locationData.longitude
         }
       }
+<<<<<<< HEAD:common/src/main/ets/default/Camera/CameraService.ts
       let settingManagerData = SettingManager.getInstance()
       if (settingManagerData.mScreenWidth < settingManagerData.mScreenHeight) {
+=======
+
+      if (deviceInfo.deviceType != 'tablet') {
+>>>>>>> master:common/src/main/ets/default/camera/CameraService.ts
         if (this.curCameraName === 'BACK') {
           this.mVideoConfig.rotation = 90
         } else {

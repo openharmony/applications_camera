@@ -53,7 +53,6 @@ let cameraState = (state: OhCombinedState) => {
     surfaceId: state.PreviewReducer.surfaceId,
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
-    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
     cameraPosition: state.CameraReducer.cameraPosition,
     curCameraPosition: state.CameraReducer.curCameraPosition,
     minZoomRatio: state.ZoomReducer.minZoomRatio,
@@ -73,7 +72,12 @@ let cameraState = (state: OhCombinedState) => {
     isAssGridViewShow: state.SettingReducer.isAssGridViewShow,
     isShowFlashBlack: state.PreviewReducer.isShowFlashBlack,
     modeChangeDone: state.ModeReducer.modeChangeDone,
+<<<<<<< HEAD
     showBlur: isShowBlur
+=======
+    showBlur: isShowBlur,
+    isFaCall: state.ContextReducer.isFaCall,
+>>>>>>> master
   }
 }
 
@@ -85,9 +89,6 @@ let cameraDispatcher = (dispatch) => {
     initZoomRatio: (min: number, max: number) => {
       dispatch(Action.initZoomRatio(min, max))
     },
-    resetZoomRatio: (zoomRatio: number) => {
-      dispatch(Action.resetZoomRatio(zoomRatio))
-    },
     changeZoomRatio: (zoomRatio: number) => {
       dispatch(Action.changeZoomRatio(zoomRatio))
     },
@@ -96,9 +97,6 @@ let cameraDispatcher = (dispatch) => {
     },
     prepareSurface: (surfaceId: number) => {
       dispatch(Action.prepareSurface(surfaceId))
-    },
-    updateSurfaceId: (surfaceId: number) => {
-      dispatch(Action.updateSurfaceId(surfaceId))
     },
     startPreview: () => {
       dispatch(Action.startPreview())
@@ -114,9 +112,6 @@ let cameraDispatcher = (dispatch) => {
     },
     changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
       dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
-    },
-    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
     updateShowPreviewFlag: (isShowPreview: boolean) => {
       dispatch(Action.updateShowPreviewFlag(isShowPreview))
@@ -189,14 +184,17 @@ let cameraDispatcher = (dispatch) => {
     reloadThumbnail: () => {
       dispatch(Action.reloadThumbnail())
     },
-    changeCameraPosition: (cameraPosition: string) => {
-      dispatch(Action.setCameraPosition(cameraPosition))
-    },
     updateShowPinch: (flag: boolean) => {
       dispatch(Action.updateShowPinch(flag))
     },
     swipeModeChangeDone: (actionOff) => {
       dispatch(Action.swipeModeChangeDone(actionOff))
+<<<<<<< HEAD
+=======
+    },
+    updateInitShowFlag: (initShowFlag: boolean) => {
+      dispatch(Action.updateInitShowFlag(initShowFlag))
+>>>>>>> master
     }
   }
 }
@@ -236,7 +234,6 @@ export struct PreviewAreaLand {
       //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
         this.settingManager.setCameraId(this.state.cameraPosition)
-        this.settingManager.setMode(this.state.mode)
 
         let imageSize = this.settingManager.getImageSize()
         this.state.changeImageSize(imageSize)
@@ -287,7 +284,10 @@ export struct PreviewAreaLand {
       }, 1000)
       Log.debug(`${this.TAG} doCameraAction E`)
       this.settingManager.setCameraId(this.state.cameraPosition)
+<<<<<<< HEAD
       this.settingManager.setMode(this.state.mode)
+=======
+>>>>>>> master
       if (this.state.curCameraPosition != this.state.cameraPosition) {
       this.state.switchCamera(this.state.cameraPosition)
     } else if (this.state.curMode != this.state.mode) {
@@ -304,6 +304,10 @@ export struct PreviewAreaLand {
       }
       Log.debug(`${this.TAG} doCameraAction X`)
     }
+<<<<<<< HEAD
+=======
+    this.state.updateInitShowFlag(true)
+>>>>>>> master
   }
 
   private async onModeChanged(data) {
@@ -313,6 +317,7 @@ export struct PreviewAreaLand {
     Log.debug(`${this.TAG} onModeChanged X`)
   }
 
+<<<<<<< HEAD
   private calledByFa(): void {
     Log.info(`${this.TAG} calledByFa invoke E`)
     let action: string = ""
@@ -358,6 +363,8 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} calledByFa invoke X`)
   }
 
+=======
+>>>>>>> master
   private async onRecordError() {
     Log.info(`${this.TAG} onRecordError invoke E`)
     prompt.showToast({
@@ -397,6 +404,7 @@ export struct PreviewAreaLand {
       this.state.initCamera(this.state.curCameraPosition, this.state.mode)
       await new Promise((resolve) => setTimeout(resolve, 40))
       this.doCameraAction()
+<<<<<<< HEAD
       let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
       if (newWantAction) {
         this.state.thirdPartyCall(true, newWantAction)
@@ -418,12 +426,18 @@ export struct PreviewAreaLand {
         this.state.reloadThumbnail()
       }
       this.calledByFa()
+=======
+      this.thirdPartyCall()
+>>>>>>> master
     })
 
     display.getDefaultDisplay().then((dis) => {
       this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height)}
     })
+<<<<<<< HEAD
     this.calledByFa()
+=======
+>>>>>>> master
     this.state.initCamera(this.state.curCameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     Log.info(`${this.TAG} aboutToAppear X`)
@@ -602,17 +616,54 @@ export struct PreviewAreaLand {
   }
 
   private windowSizeChange(data) {
+<<<<<<< HEAD
     this.resetScreenSize(data)
+=======
+    Log.info(`{kuiruo} data:${JSON.stringify(data)}, this.screenSize:${JSON.stringify(this.screenSize)}`)
+    if (this.screenSize != data) {
+      this.screenSize = data
+      this.resetScreenSize(data)
+    }
+>>>>>>> master
   }
 
   private resetScreenSize(size: any) {
     this.settingManager.setScreenHeight(size.height)
     this.settingManager.setScreenWidth(size.width)
+<<<<<<< HEAD
     let xComponentSize = this.settingManager.getPreviewDisplaySize()
+=======
+    let xComponentSize = this.settingManager.getPreviewDisplaySize(this.state.mode)
+>>>>>>> master
     Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize))
     this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
   }
 
+<<<<<<< HEAD
+=======
+  private thirdPartyCall() {
+    let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
+    if (newWantAction) {
+      this.state.thirdPartyCall(true, newWantAction)
+      switch (newWantAction) {
+        case wantConstant.Action.ACTION_IMAGE_CAPTURE:
+          this.state.initMode('PHOTO')
+          this.state.updateModeIndex(1)
+          break
+        case wantConstant.Action.ACTION_VIDEO_CAPTURE:
+          this.state.initMode('VIDEO')
+          this.state.updateModeIndex(2)
+          break
+        default:
+          break
+      }
+    } else {
+      this.state.thirdPartyCall(false, newWantAction)
+      this.state.reloadThumbnail()
+    }
+  }
+
+>>>>>>> master
   build() {
     Column() {
       if (this.state.isShowPreview) {
@@ -694,6 +745,7 @@ export struct PreviewAreaLand {
             .height('96%')
           }
 
+<<<<<<< HEAD
           if (this.state.xComponentChangeFlag) {
             if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
               AssistiveGridView()
@@ -702,6 +754,10 @@ export struct PreviewAreaLand {
             if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
               AssistiveGridView()
             }
+=======
+          if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
+            AssistiveGridView()
+>>>>>>> master
           }
 
           if (this.state.isSmallVideoTimerVisible) {
@@ -776,13 +832,13 @@ export struct PreviewAreaLand {
       .onActionEnd(this.pinchGestureEnd.bind(this)),
     PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 10 })
       .onActionEnd(() => {
-        if (!this.state.isThirdPartyCall && !globalThis.cameraAbilityWant?.parameters?.from) {
+        if (!this.state.isThirdPartyCall && !this.state.isFaCall) {
           this.swipeChangeMode(1)
         }
       }),
     PanGesture({ fingers: 1, direction: PanDirection.Down, distance: 10 })
       .onActionEnd(() => {
-        if (!this.state.isThirdPartyCall && !globalThis.cameraAbilityWant?.parameters?.from) {
+        if (!this.state.isThirdPartyCall && !this.state.isFaCall) {
           this.swipeChangeMode(-1)
         }
       })
