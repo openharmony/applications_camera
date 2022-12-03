@@ -71,21 +71,6 @@ export default struct EntryComponent {
         .fontSize($r("sys.float.ohos_id_text_size_body1"))
         .fontWeight(FontWeight.Regular)
 
-<<<<<<< HEAD
-        Radio({ group: 'settingChildren', value: this.itemValue.toString() })
-          .width(24)
-          .height(24)
-          .borderColor('#007DFF')
-          .checked(JSON.stringify(this.itemValue) === JSON.stringify(this.getValue))
-          .enabled(true)
-          .onClick(() => {
-            Log.info(`${this.TAG} onChange settingAlias:${this.settingAlias}  itemValue:${this.itemValue}`)
-            this.settingManager.setSettingValue(this.settingAlias, this.itemValue)
-            this.onChange()
-          })
-      }
-      .width('100%')
-=======
       Radio({ group: 'settingChildren', value: this.itemValue.toString() })
         .width(24)
         .height(24)
@@ -100,6 +85,5 @@ export default struct EntryComponent {
         })
     }
     .width('100%')
->>>>>>> master
   }
 }

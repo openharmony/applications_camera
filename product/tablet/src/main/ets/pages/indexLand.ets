@@ -58,12 +58,8 @@ let indexState = (state: OhCombinedState) => {
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
     isShowPageView: state.SettingReducer.isShowSettingView,
-<<<<<<< HEAD
-    isInitiated: state.ModeReducer.isInitiated
-=======
     isInitiated: state.ModeReducer.isInitiated,
     initShowFlag: state.ContextReducer.initShowFlag
->>>>>>> master
   }
 }
 
@@ -100,15 +96,12 @@ let indexDispatcher = (dispatch) => {
     },
     updateModeIndex: (index: number) => {
       dispatch(Action.updateModeIndex(index))
-<<<<<<< HEAD
-=======
     },
     faCall: (isFaCall: boolean) => {
       dispatch(Action.faCall(isFaCall))
     },
     updateInitShowFlag: (initShowFlag: boolean) => {
       dispatch(Action.updateInitShowFlag(initShowFlag))
->>>>>>> master
     }
   }
 }
@@ -132,10 +125,6 @@ struct Index {
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
     getStore().connect(indexState, indexDispatcher)(this.state)
-<<<<<<< HEAD
-    this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
-=======
->>>>>>> master
 
     if (!this.state.permissionFlag) {
       let permissionList: Array<string> = [
@@ -258,11 +247,7 @@ struct Index {
   }
 
   aboutToDisappear(): void {
-<<<<<<< HEAD
-    this.appEventBus.off("windowSize", this.windowSizeChange.bind(this))
-=======
 
->>>>>>> master
     Log.info(`${this.TAG} aboutToDisappear E`)
   }
 
@@ -326,56 +311,9 @@ struct Index {
     });
   }
 
-  private windowSizeChange(data) {
-    this.screenSize = data
-  }
-
-  private componentVisibility(condition: boolean): Visibility {
-    return (!this.state.isShowtimeLapse && this.state.xComponentWidth != 0 && condition) ? Visibility.Visible
-                                                                                         : Visibility.Hidden
-  }
-
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       if (this.state.permissionFlag) {
-<<<<<<< HEAD
-        Column() {
-          PreviewAreaLand({ screenSize: $screenSize })
-        }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
-          this.state.xComponentWidth, this.state.xComponentHeight))
-
-        Column() {
-          if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
-            ZoomViewLand()
-          } else {
-            Column() {
-            }.width(82).margin({ right: '20vp' })
-          }
-        }.zIndex(2).height('100%')
-        .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
-          this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
-        .visibility(this.componentVisibility(!this.state.isShowPinch))
-
-        Column(){
-          FootBarLand({ screenSize: $screenSize })
-        }.zIndex(2).height('100%')
-        .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
-          this.state.xComponentWidth, this.state.xComponentHeight))
-        .visibility(this.componentVisibility(this.state.showZoomLabelValue))
-
-        Column() {
-          TabBarLand()
-        }.zIndex(3)
-        .visibility(this.componentVisibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue))
-        .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
-          this.state.xComponentWidth, this.state.xComponentHeight))
-
-        if (this.state.isShowMoreList) {
-          Column() {
-            MoreList()
-          }.zIndex(1).height('100%').width('100%')
-          .visibility(this.componentVisibility(this.state.showZoomLabelValue))
-=======
         Column() {
           PreviewAreaLand({ screenSize: $screenSize })
         }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
@@ -415,7 +353,6 @@ struct Index {
             }.zIndex(1).height('100%').width('100%')
             .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
           }
->>>>>>> master
         }
       }
       if (this.state.isShowPageView) {

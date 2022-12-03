@@ -145,11 +145,7 @@ export class CameraBasicFunction extends BaseFunction {
     this.mCameraService.setCameraId(this.mCameraId)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId)
-<<<<<<< HEAD
-    await this.mCameraService.createPreviewOutput(this.mSurfaceId)
-=======
     await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
->>>>>>> master
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
     } else {
@@ -171,11 +167,7 @@ export class CameraBasicFunction extends BaseFunction {
     Log.info(`${this.TAG} this.mCurrentMode = ${this.mCurrentMode}`)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId, 'modeChange')
-<<<<<<< HEAD
-    await this.mCameraService.createPreviewOutput(this.mSurfaceId)
-=======
     await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
->>>>>>> master
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
     } else {

@@ -123,10 +123,6 @@ export struct Control {
     if (this.modeArray[modeIndex] !== this.state.mode) {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
-<<<<<<< HEAD
-      this.settingManager.setMode(this.state.mode)
-=======
->>>>>>> master
       this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
       this.mPreferencesService.flushMode()
     } else {
