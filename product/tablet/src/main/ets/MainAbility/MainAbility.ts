@@ -39,6 +39,7 @@ export default class MainAbility extends Ability {
     globalThis.cameraStartTime = new Date().getTime()
     globalThis.cameraStartFlag = true
     globalThis.stopRecordingFlag = false;
+    globalThis.doOnForeground = false
     this.cameraBasicFunction = CameraBasicFunction.getInstance()
     this.cameraBasicFunction.initCamera({ cameraId: 'BACK', mode: 'PHOTO' }, 'onCreate')
   }
@@ -122,10 +123,11 @@ export default class MainAbility extends Ability {
   onForeground() {
     Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
     Log.info('Camera MainAbility onForeground.')
-    if (globalThis?.onForegroundInit) {
-      globalThis.onForegroundInit()
+    if (globalThis?.doOnForeground && globalThis.doOnForeground) {
+      console.info('Camera MainAbility onForeground.')
+      globalThis?.onForegroundInit && globalThis.onForegroundInit()
     } else {
-      Log.info("globalThis.onForegroundInit is null")
+      globalThis.doOnForeground = true
     }
     Log.info('Camera MainAbility onForeground end.')
   }

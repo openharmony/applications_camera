@@ -38,8 +38,10 @@ import { Constants } from '../../../../../../common/src/main/ets/default/utils/C
 import { SettingView } from './SettingView'
 import { PreferencesService, PersistType
 } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 
 var cameraWorker = CameraWorker.getInstance()
+var mScreenLockManager = new ScreenLockManager()
 
 let indexState = (state: OhCombinedState) => {
   return {
@@ -53,7 +55,7 @@ let indexState = (state: OhCombinedState) => {
     isShowMoreList: state.ModeReducer.isShowMoreList,
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-    curCameraPosition: state.CameraReducer.curCameraPosition,
+    cameraPosition: state.CameraReducer.cameraPosition,
     isShowPinch: state.ZoomReducer.isShowPinch,
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
@@ -125,6 +127,7 @@ struct Index {
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
     getStore().connect(indexState, indexDispatcher)(this.state)
+    mScreenLockManager.init()
 
     if (!this.state.permissionFlag) {
       let permissionList: Array<string> = [
@@ -191,8 +194,9 @@ struct Index {
   onPageShow(): void {
     Log.info(`${this.TAG} onPageShow E this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
     this.state.setPermissionFlag(globalThis.permissionFlag)
-    let curCameraId = AppStorage.Get<string>('storageCameraId')
-    if(curCameraId) this.state.initCameraPosition(curCameraId)
+    let cameraId = AppStorage.Get<string>('storageCameraId')
+    if(cameraId) this.state.initCameraPosition(cameraId)
+    Log.info(`${this.TAG} initCameraPosition ${cameraId}`)
     this.state.resetRecordingTime()
     this.calledByFa()
     Log.info(`${this.TAG} onPageShow X`)
@@ -244,11 +248,6 @@ struct Index {
       this.state.faCall(false)
     }
     Log.info(`${this.TAG} calledByFa invoke X: ${this.state.mode}`)
-  }
-
-  aboutToDisappear(): void {
-
-    Log.info(`${this.TAG} aboutToDisappear E`)
   }
 
   onBackPress(): boolean {
@@ -321,7 +320,7 @@ struct Index {
 
         if (!this.state.isShowtimeLapse && this.state.initShowFlag) {
           Column() {
-            if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
+            if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.cameraPosition !== 'FRONT') {
               ZoomViewLand()
             } else {
               Column() {
