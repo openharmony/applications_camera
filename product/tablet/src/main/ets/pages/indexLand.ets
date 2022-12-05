@@ -104,7 +104,10 @@ let indexDispatcher = (dispatch) => {
     },
     updateInitShowFlag: (initShowFlag: boolean) => {
       dispatch(Action.updateInitShowFlag(initShowFlag))
-    }
+    },
+    resetZoomRatio: () => {
+      dispatch(Action.changeZoomRatio(1))
+    },
   }
 }
 
@@ -170,6 +173,10 @@ struct Index {
 
     globalThis.stopCameraRecording = (() => {
       this.stopCameraRecording()
+    })
+
+    globalThis.resetZoomRatio = (() => {
+      this.state.resetZoomRatio()
     })
 
     if (AppStorage.Has(Constants.APP_KEY_WINDOW_SIZE)) {
@@ -310,6 +317,10 @@ struct Index {
     });
   }
 
+  private componentVisibility(condition: boolean): Visibility {
+    return (!this.state.isShowtimeLapse && this.state.initShowFlag && condition) ? Visibility.Visible : Visibility.Hidden
+  }
+
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       if (this.state.permissionFlag) {
@@ -318,40 +329,37 @@ struct Index {
         }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
           this.state.xComponentWidth, this.state.xComponentHeight))
 
-        if (!this.state.isShowtimeLapse && this.state.initShowFlag) {
-          Column() {
-            if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.cameraPosition !== 'FRONT') {
-              ZoomViewLand()
-            } else {
-              Column() {
-              }.width(82).margin({ right: '20vp' })
-            }
-          }.zIndex(2).height('100%')
-          .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
-          .visibility(!this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
-
-          Column(){
-            FootBarLand({ screenSize: $screenSize })
-          }.zIndex(2).height('100%')
-          .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight))
-          .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
-
-          Column() {
-            TabBarLand()
-          }.zIndex(3)
-          .visibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue ? Visibility.Visible
-                                                                                                   : Visibility.Hidden)
-          .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight))
-
-          if (this.state.isShowMoreList) {
+        Column() {
+          if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.cameraPosition !== 'FRONT') {
+            ZoomViewLand()
+          } else {
             Column() {
-              MoreList()
-            }.zIndex(1).height('100%').width('100%')
-            .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
+            }.width(82).margin({ right: '20vp' })
           }
+        }.zIndex(2).height('100%')
+        .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
+        .visibility(this.componentVisibility(!this.state.isShowPinch))
+
+        Column(){
+          FootBarLand({ screenSize: $screenSize })
+        }.zIndex(2).height('100%')
+        .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
+        .visibility(this.componentVisibility(this.state.showZoomLabelValue))
+
+        Column() {
+          TabBarLand()
+        }.zIndex(3)
+        .visibility(this.componentVisibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue))
+        .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
+          this.state.xComponentWidth, this.state.xComponentHeight))
+
+        if (this.state.isShowMoreList) {
+          Column() {
+            MoreList()
+          }.zIndex(1).height('100%').width('100%')
+          .visibility(this.componentVisibility(this.state.showZoomLabelValue))
         }
       }
       if (this.state.isShowPageView) {
