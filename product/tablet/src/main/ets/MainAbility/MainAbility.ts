@@ -127,6 +127,7 @@ export default class MainAbility extends Ability {
     } else {
       Log.info("globalThis.onForegroundInit is null")
     }
+    Log.info('Camera MainAbility onForeground end.')
   }
 
   @debounce(debounceTimeout)

@@ -25,7 +25,6 @@ let localState = (state) => {
     mode: state.ModeReducer.mode,
     uiEnable: state.ContextReducer.uiEnable,
     cameraPosition: state.CameraReducer.cameraPosition,
-    xComponentChangeFlag: state.PreviewReducer.xComponentChangeFlag,
     videoState: state.RecordReducer.videoState,
   }
 }
@@ -37,9 +36,6 @@ let localDispatcher = (dispatch) => {
       dispatch(Action.switchCamera(cameraPosition))
       dispatch(Action.updateCameraPosition(cameraPosition))
       dispatch(Action.resetZoomRatio(1))
-    },
-    updateXComponentChangeFlag: (xComponentChangeFlag: boolean) => {
-      dispatch(Action.updateXComponentChangeFlag(xComponentChangeFlag))
     },
   }
 }
