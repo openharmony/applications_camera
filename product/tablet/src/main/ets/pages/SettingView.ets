@@ -47,6 +47,9 @@ let localDispatcher = (dispatch) => {
     reStartPreview: () => {
       dispatch(Action.reStartPreview())
     },
+    showBlur:() => {
+      dispatch(Action.uiState(false))
+    }
   }
 }
 
@@ -177,6 +180,7 @@ export struct SettingView {
               .backgroundColor($r('app.color.background_color_333333'))
               .height(40)
               .onClick(() => {
+                this.state.showBlur()
                 this.settingManager.restoreValues(this.state.mode)
                 this.state.hideSettingView()
               })

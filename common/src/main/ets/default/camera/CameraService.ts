@@ -609,13 +609,13 @@ export class CameraService {
   }
 
   public async setZoomRatio(zoomRatio: number) {
-    Log.info(`${this.TAG} setZoomRatio invoke E.`)
+    Log.info(`${this.TAG} setZoomRatio invoke E ${zoomRatio}`)
     if (!this.mCaptureSession) {
       Log.info(`${this.TAG} setZoomRatio mCaptureSession is release`)
       return
     }
     await this.mCaptureSession.setZoomRatio(zoomRatio)
-    Log.debug(`${this.TAG} setZoomRatio invoke X.`)
+    Log.info(`${this.TAG} setZoomRatio invoke X.`)
   }
 
   public async getZoomRatio(): Promise<number> {
@@ -624,7 +624,7 @@ export class CameraService {
       Log.info(`${this.TAG} getZoomRatio mCaptureSession is release`)
       return 1;
     }
-    Log.debug(`${this.TAG} getZoomRatio invoke X.`)
+    Log.info(`${this.TAG} getZoomRatio invoke X.`)
     return await this.mCaptureSession.getZoomRatio()
   }
 
