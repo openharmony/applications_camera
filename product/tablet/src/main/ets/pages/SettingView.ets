@@ -49,7 +49,10 @@ let localDispatcher = (dispatch) => {
     },
     showBlur:() => {
       dispatch(Action.uiState(false))
-    }
+    },
+    resetZoomRatio: () => {
+      dispatch(Action.changeZoomRatio(1))
+    },
   }
 }
 
@@ -182,6 +185,7 @@ export struct SettingView {
               .onClick(() => {
                 this.state.showBlur()
                 this.settingManager.restoreValues(this.state.mode)
+                this.state.resetZoomRatio()
                 this.state.hideSettingView()
               })
             }.margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") , bottom: 70 })

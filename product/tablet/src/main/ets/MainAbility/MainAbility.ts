@@ -29,6 +29,8 @@ const debounceTimeout = 500;
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  private readonly foreRoundCountLimit: number = 1
+  private foreRoundOverCount: number = 0
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
     Trace.start(Trace.ABILITY_WHOLE_LIFE)
@@ -59,6 +61,15 @@ export default class MainAbility extends Ability {
     Log.info('Camera MainAbility onWindowStageCreate.')
     windowStage.on('windowStageEvent', (event) => {
       Log.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
+      if (event === window.WindowStageEventType.FOREGROUND) {
+        if (++this.foreRoundOverCount > 1) {
+          this.foreRoundOverCount = 1
+          Log.info("multi task interface: reset zoomRatio to 1")
+          globalThis?.resetZoomRatio && globalThis.resetZoomRatio()
+        }
+      } else if (event === window.WindowStageEventType.BACKGROUND) {
+        this.foreRoundOverCount--
+      }
       globalThis.cameraWindowStageEvent = event
       if (event === window.WindowStageEventType.INACTIVE) {
         globalThis.stopRecordingFlag = true

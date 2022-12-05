@@ -654,7 +654,7 @@ export class CameraService {
       Log.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
       functionCallBack.thumbnail(thumbnail)
     })
-    Log.debug(`${this.TAG} getThumbnail invoke X.`)
+    Log.info(`${this.TAG} getThumbnail invoke X.`)
     return this.mThumbnail
   }
 
