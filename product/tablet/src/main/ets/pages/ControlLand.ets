@@ -129,8 +129,7 @@ export struct ControlLand {
     if (this.modeArray[modeIndex] !== this.state.mode) {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
       this.state.changeToMode(this.modeArray[modeIndex])
-      this.settingManager.setMode(this.state.mode)
-      let xComponentSize = this.settingManager.getPreviewDisplaySize()
+      let xComponentSize = this.settingManager.getPreviewDisplaySize(this.state.mode)
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
       this.mPreferencesService.flushMode()

@@ -116,7 +116,7 @@ export class CameraBasicFunction extends BaseFunction {
       this.enableUi()
       return
     }
-    await this.mCameraService.createPreviewOutput(this.mSurfaceId)
+    await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
     } else {
@@ -145,7 +145,7 @@ export class CameraBasicFunction extends BaseFunction {
     this.mCameraService.setCameraId(this.mCameraId)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId)
-    await this.mCameraService.createPreviewOutput(this.mSurfaceId)
+    await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
     } else {
@@ -167,7 +167,7 @@ export class CameraBasicFunction extends BaseFunction {
     Log.info(`${this.TAG} this.mCurrentMode = ${this.mCurrentMode}`)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId, 'modeChange')
-    await this.mCameraService.createPreviewOutput(this.mSurfaceId)
+    await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
     } else {
@@ -176,7 +176,7 @@ export class CameraBasicFunction extends BaseFunction {
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     this.mWorkerManager.postMessage(Action.onModeChanged(this.mCurrentMode))
     this.mWorkerManager.postMessage(Action.swipeModeChangeDone(false))
-//    this.enableUi()
+    this.enableUi()
     Log.info(`${this.TAG} changeMode X`)
   }
 
@@ -186,7 +186,7 @@ export class CameraBasicFunction extends BaseFunction {
     this.mCameraService.setCameraId(this.mCameraId)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId)
-    await this.mCameraService.createPreviewOutput(this.mSurfaceId)
+    await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)
     } else {
