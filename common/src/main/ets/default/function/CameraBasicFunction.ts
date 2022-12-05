@@ -59,7 +59,7 @@ export class CameraBasicFunction extends BaseFunction {
     globalThis.needInitCameraFlag = true
     if (this.startIdentification) return;
     if (callType) this.startIdentification = true
-    Log.info(`${this.TAG} initCamera ${JSON.stringify(data)}  E`)
+    Log.info(`${this.TAG} initCamera data:${JSON.stringify(data)}  E`)
     if (globalThis.isClosingFlag) {
       Log.info(`${this.TAG} initCamera isClosing return`)
       return
@@ -69,6 +69,7 @@ export class CameraBasicFunction extends BaseFunction {
     if (curStorageCameraId) {
       data.cameraId = curStorageCameraId
     }
+    Log.info(`${this.TAG} initData:${JSON.stringify(data)} `)
     this.initDataCache = data
     if (globalThis.isSessionCreating || this.isSessionReleasing) {
       Log.info(`${this.TAG} initCamera isSessionCreating or isSessionReleasing return`)
@@ -105,7 +106,7 @@ export class CameraBasicFunction extends BaseFunction {
     Log.info(`${this.TAG} onSurfacePrepare X`)
   }
 
-  private async startPreview() {
+  private async startPreview(data?) {
     Log.info(`${this.TAG} startPreview E`)
     if (globalThis.isClosingFlag) {
       Log.info(`${this.TAG} startPreview isClosing return `)
@@ -125,6 +126,9 @@ export class CameraBasicFunction extends BaseFunction {
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     if ([...this.mSessionList].pop() === 'RELEASE') {
       await this.close()
+    }
+    if (data && data?.zoomRatio && data.zoomRatio !== 1) {
+      await this.mCameraService.setZoomRatio(data.zoomRatio)
     }
     this.mSessionList = []
     this.enableUi()
@@ -186,6 +190,9 @@ export class CameraBasicFunction extends BaseFunction {
     this.mCameraService.setCameraId(this.mCameraId)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId)
+    if (data?.curMode && data.curMode !== undefined && data.curMode !== this.mCurrentMode){
+      this.mCurrentMode = data.curMode
+    }
     await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
     if (await this.isVideoMode()) {
       //      await this.mCameraService.createVideoOutput(this.functionBackImpl)

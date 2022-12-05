@@ -29,7 +29,6 @@ let localDispatcher = (dispatch) => {
     changeCameraPosition: (cameraPosition: string) => {
       dispatch(Action.uiState(false))
       dispatch(Action.switchCamera(cameraPosition))
-      dispatch(Action.updateCameraPosition(cameraPosition))
       dispatch(Action.resetZoomRatio(1))
     },
   }
