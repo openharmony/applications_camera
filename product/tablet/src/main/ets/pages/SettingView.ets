@@ -67,7 +67,7 @@ export struct SettingView {
   @State tempMargin: number = 12; //两侧间距
   @State settingsList: any[] = SettingListModel.getSettingList()
   @State state: any = {}
-  @State localStyle: any = { "columns": 12, "offset": 0, "span": 8 }
+  @State localStyle: any = { "columns": 12, "offset": 2, "span": 8 }
   private WH_100_100: string = "100%";
   private mEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
@@ -99,8 +99,8 @@ export struct SettingView {
   }
 
   private windowSizeChange(data) {
-    this.localStyle =  (data.width >= px2vp(1280)) ? { "columns": 12, "offset": 0, "span": 8 } :
-      { "columns": 8, "offset": 0, "span": 6 }
+    this.localStyle =  (data.width >= px2vp(1280)) ? { "columns": 12, "offset": 2, "span": 8 } :
+      { "columns": 8, "offset": 1, "span": 6 }
   }
   private aspectRatioChange(xComponentSize) {
     if (this.state.mode != 'VIDEO') {
@@ -172,16 +172,16 @@ export struct SettingView {
                   .fontColor($r('app.color.font_color_FFFFFF'))
                   .fontWeight(FontWeight.Regular)
                   .textAlign(TextAlign.Center)
-                  .useSizeType({
-                    xs: { span: 4, offset: 0 },
-                    sm: { span: 4, offset: 0 },
-                    md: { span: 4, offset: 0 },
-                    lg: { span: 4, offset: 0 }
-                  })
               }
               .borderRadius(30)
               .backgroundColor($r('app.color.background_color_333333'))
               .height(40)
+              .useSizeType({
+                xs: { span: 4, offset: 4 },
+                sm: { span: 4, offset: 4 },
+                md: { span: 4, offset: 4 },
+                lg: { span: 4, offset: 4 }
+              })
               .onClick(() => {
                 this.state.showBlur()
                 this.settingManager.restoreValues(this.state.mode)
