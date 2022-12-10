@@ -20,7 +20,7 @@ import { CameraBasicFunction } from '../../../../../../common/src/main/ets/defau
 import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants'
+import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log';
 import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
@@ -130,26 +130,25 @@ export default class MainAbility extends Ability {
     Log.info('Camera MainAbility onWindowStageDestroy.')
   }
 
-  @debounce(debounceTimeout)
   onForeground() {
     Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
     Log.info('Camera MainAbility onForeground.')
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT
     if (globalThis?.doOnForeground && globalThis.doOnForeground) {
       console.info('Camera MainAbility onForeground.')
-      globalThis?.onForegroundInit && globalThis.onForegroundInit()
+      globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
     } else {
       globalThis.doOnForeground = true
     }
     Log.info('Camera MainAbility onForeground end.')
   }
 
-  @debounce(debounceTimeout)
   onBackground() {
     Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
     Log.info('Camera MainAbility onBackground.')
     this.cameraBasicFunction.startIdentification = false
-    globalThis.needInitCameraFlag = false
-    globalThis?.releaseCamera && globalThis.releaseCamera()
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
+    globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
   }
 
   onNewWant(want) {
