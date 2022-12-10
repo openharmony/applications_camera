@@ -48,6 +48,7 @@ export class Action {
   public static readonly ACTION_SET_CAMERA_POSITION = 'ACTION_SET_CAMERA_POSITION'
   public static readonly ACTION_UPDATE_CAMERA_POSITION = 'ACTION_UPDATE_CAMERA_POSITION'
   public static readonly ACTION_CLOSE_CAMERA = 'ACTION_CLOSE_CAMERA'
+  public static readonly ACTION_UPDATE_CAMERA_STATUS = 'ACTION_UPDATE_CAMERA_STATUS'
 
   // Mode
   public static readonly ACTION_INIT_MODE = 'ACTION_INIT_MODE'
@@ -214,6 +215,13 @@ export class Action {
     return {
       type: Action.ACTION_UPDATE_CAMERA_POSITION,
       data: { cameraPosition: cameraPosition }
+    }
+  }
+
+  public static updateCameraStatus(): ActionData {
+    return {
+      type: Action.ACTION_UPDATE_CAMERA_STATUS,
+      data: {}
     }
   }
 

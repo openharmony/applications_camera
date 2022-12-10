@@ -27,6 +27,7 @@ import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/def
 import { CameraPlatformCapability
 } from '../../../../../../common/src/main/ets/default/camera/CameraPlatformCapability'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { CameraStatus, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
 import { ShowFlashBlack
@@ -368,41 +369,10 @@ export struct PreviewArea {
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this))
-    globalThis.releaseCamera = (() => {
-      Log.info(`${this.TAG} globalThis.releaseCamera called`)
-      if (this.state.videoState === 'startTakeVideo') {
-        this.state.stopRecording()
-      }
-      this.state.close()
-    })
-
-    globalThis.onForegroundInit = (async () => {
-      this.pageType = ''
-      Log.info(`${this.TAG} globalThis.onForegroundInit called`)
-      this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-      await new Promise((resolve) => setTimeout(resolve, 20))
-      this.doCameraAction()
-      let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
-      if (newWantAction) {
-        this.state.thirdPartyCall(true, newWantAction)
-        switch (newWantAction) {
-          case wantConstant.Action.ACTION_IMAGE_CAPTURE:
-            this.state.initMode('PHOTO')
-            this.state.updateModeIndex(1)
-            break
-          case wantConstant.Action.ACTION_VIDEO_CAPTURE:
-            this.state.initMode('VIDEO')
-            this.state.updateModeIndex(2)
-            break
-          default:
-            break
-        }
-      } else {
-        this.state.thirdPartyCall(false, newWantAction)
-        this.state.faCall(false)
-        this.state.reloadThumbnail()
-      }
-      this.calledByFa()
+    this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this))
+    globalThis.updateCameraStatus = (() => {
+      Log.info(`${this.TAG} globalThis.updateCameraStatus called`)
+      this.updateCameraStatus()
     })
 
     this.calledByFa()
@@ -416,8 +386,73 @@ export struct PreviewArea {
     Log.info(`${this.TAG} previewAreaLand aboutToDisappear called`)
     this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
+    this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this))
     GeoLocation.getInstance().off()
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
+    this.updateCameraStatus()
     globalThis.releaseCamera()
+  }
+
+  private  releaseCamera() {
+    Log.info(`${this.TAG} globalThis.releaseCamera called`)
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
+    if (this.state.videoState === 'startTakeVideo') {
+      this.state.stopRecording()
+    }
+    this.state.close()
+  }
+
+  private async onForegroundInit() {
+    Log.info(`${this.TAG} onForegroundInit E `)
+    this.pageType = ''
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
+    this.state.initCamera(this.state.curCameraPosition, this.state.mode)
+    await new Promise((resolve) => setTimeout(resolve, 20))
+    this.doCameraAction()
+    let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
+    if (newWantAction) {
+      this.state.thirdPartyCall(true, newWantAction)
+      switch (newWantAction) {
+        case wantConstant.Action.ACTION_IMAGE_CAPTURE:
+          this.state.initMode('PHOTO')
+          this.state.updateModeIndex(1)
+          break
+        case wantConstant.Action.ACTION_VIDEO_CAPTURE:
+          this.state.initMode('VIDEO')
+          this.state.updateModeIndex(2)
+          break
+        default:
+          break
+      }
+    } else {
+      this.state.thirdPartyCall(false, newWantAction)
+      this.state.faCall(false)
+      this.state.reloadThumbnail()
+    }
+    this.calledByFa()
+    Log.info(`${this.TAG} onForegroundInit X`)
+  }
+
+  private  updateCameraStatus() {
+    Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${globalThis.cameraStatus}`)
+    Log.info(`${this.TAG} updateCameraStatus  cameraNeedStatus: ${globalThis.cameraNeedStatus}`)
+
+    if (this.canInit() && globalThis.cameraNeedStatus == CameraNeedStatus.CAMERA_NEED_INIT) {
+      this.onForegroundInit()
+    }
+    if (this.canRelease() && globalThis.cameraNeedStatus == CameraNeedStatus.CAMERA_NEED_RELEASE) {
+      this.releaseCamera()
+    }
+    Log.info(`${this.TAG} updateCameraStatus X`)
+  }
+
+  private  canInit():boolean {
+    //相机状态是首次加载或者session释放完成状态，才能进行初始化操作
+    return globalThis.cameraStatus == CameraStatus.CAMERA_BEFORE_VALUE || globalThis.cameraStatus == CameraStatus.CAMERA_RELEASE_FINISHED
+  }
+  private  canRelease():boolean {
+    //相机状态是预览完成状态或录像完成状态才能进行释放操作
+    return  globalThis.cameraStatus == CameraStatus.CAMERA_PREVIEW_FINISHED|| globalThis.cameraStatus == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED
   }
 
   onBackPress(): void {
