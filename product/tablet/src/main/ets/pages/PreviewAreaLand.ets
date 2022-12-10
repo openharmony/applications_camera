@@ -29,6 +29,7 @@ import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/def
 import { CameraPlatformCapability
 } from '../../../../../../common/src/main/ets/default/camera/CameraPlatformCapability'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { CameraStatus, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import Resolution from '../../../../../../common/src/main/ets/default/setting/settingitem/Resolution'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
@@ -329,22 +330,10 @@ export struct PreviewAreaLand {
     this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this))
     this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
-    globalThis.releaseCamera = (() => {
-      Log.info(`${this.TAG} globalThis.releaseCamera called`)
-      if (this.state.videoState === 'startTakeVideo') {
-        this.state.stopRecording()
-      }
-      this.state.close()
-    })
-
-    globalThis.onForegroundInit = (async () => {
-      this.pageType = ''
-      Log.info(`${this.TAG} globalThis.onForegroundInit called`)
-      this.state.initCamera(this.state.cameraPosition, this.state.mode)
-      await new Promise((resolve) => setTimeout(resolve, 40))
-      this.doCameraAction()
-      this.state.updateInitShowFlag(true)
-      this.thirdPartyCall()
+    this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this))
+    globalThis.updateCameraStatus = (() => {
+      Log.info(`${this.TAG} globalThis.updateCameraStatus called`)
+      this.updateCameraStatus()
     })
 
     display.getDefaultDisplay().then((dis) => {
@@ -356,14 +345,59 @@ export struct PreviewAreaLand {
     Trace.start(Trace.X_COMPONENT_LIFE)
   }
 
+  private  releaseCamera() {
+    Log.info(`${this.TAG} globalThis.releaseCamera called`)
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
+    if (this.state.videoState === 'startTakeVideo') {
+      this.state.stopRecording()
+    }
+    this.state.close()
+  }
+
+  private async onForegroundInit() {
+    Log.info(`${this.TAG} onForegroundInit E `)
+    this.pageType = ''
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
+    this.state.initCamera(this.state.cameraPosition, this.state.mode)
+    await new Promise((resolve) => setTimeout(resolve, 40))
+    this.doCameraAction()
+    this.state.updateInitShowFlag(true)
+    this.thirdPartyCall()
+    Log.info(`${this.TAG} onForegroundInit X`)
+  }
+
+  private  updateCameraStatus() {
+    Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${globalThis.cameraStatus}`)
+    Log.info(`${this.TAG} updateCameraStatus  cameraNeedStatus: ${globalThis.cameraNeedStatus}`)
+
+    if (this.canInit() && globalThis.cameraNeedStatus == CameraNeedStatus.CAMERA_NEED_INIT) {
+      this.onForegroundInit()
+    }
+    if (this.canRelease() && globalThis.cameraNeedStatus == CameraNeedStatus.CAMERA_NEED_RELEASE) {
+      this.releaseCamera()
+    }
+    Log.info(`${this.TAG} updateCameraStatus X`)
+  }
+
+  private  canInit():boolean {
+    //相机状态是首次加载或者session释放完成状态，才能进行初始化操作
+    return globalThis.cameraStatus == CameraStatus.CAMERA_BEFORE_VALUE || globalThis.cameraStatus == CameraStatus.CAMERA_RELEASE_FINISHED
+  }
+  private  canRelease():boolean {
+    //相机状态是预览完成状态或录像完成状态才能进行释放操作
+    return  globalThis.cameraStatus == CameraStatus.CAMERA_PREVIEW_FINISHED|| globalThis.cameraStatus == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED
+  }
+
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
     this.appEventBus.off("windowSize", this.windowSizeChange.bind(this))
+    this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this))
     this.mConnect?.destroy()
     GeoLocation.getInstance().off()
-    globalThis.releaseCamera()
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
+    this.updateCameraStatus()
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 

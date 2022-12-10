@@ -31,7 +31,7 @@ const initState: CameraState = {
   cameraId: '',
   curCameraName: 'BACK',
   cameraCount: 0,
-  shutterIcon: $r('app.media.ic_circled_filled'),
+  shutterIcon: $r('app.media.ic_circled_filled')
 }
 
 export default function CameraReducer(state = initState, action: ActionData): CameraState {
@@ -44,6 +44,8 @@ export default function CameraReducer(state = initState, action: ActionData): Ca
     return { ...state, curCameraPosition: action.data.cameraPosition }
   case Action.ACTION_UPDATE_SHUTTER_ICON:
     return { ...state, shutterIcon: action.data.shutterIcon }
+    case Action.ACTION_UPDATE_CAMERA_STATUS:
+      return { ...state }
   default:
     return state;
   }

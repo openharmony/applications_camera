@@ -19,6 +19,7 @@ import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
 import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
 import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 
 const debounceTimeout = 500;
 
@@ -108,25 +109,24 @@ export default class MainAbility extends Ability {
     console.info('Camera MainAbility onWindowStageDestroy.')
   }
 
-  @debounce(debounceTimeout)
   onForeground() {
     Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onForeground.')
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT
     if (globalThis?.doOnForeground && globalThis.doOnForeground) {
       console.info('Camera MainAbility onForeground.')
-      globalThis?.onForegroundInit && globalThis.onForegroundInit()
+      globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
     } else {
       globalThis.doOnForeground = true
     }
   }
 
-  @debounce(debounceTimeout)
   onBackground() {
     Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onBackground.')
     this.cameraBasicFunction.startIdentification = false
-    globalThis.needInitCameraFlag = false
-    globalThis?.releaseCamera && globalThis.releaseCamera()
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
+    globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
   }
 
   onNewWant(want) {
