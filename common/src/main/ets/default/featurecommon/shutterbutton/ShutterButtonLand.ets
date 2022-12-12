@@ -184,13 +184,13 @@ export struct ShutterButtonLand {
                     onFinish: () => { this.captureBtnScale = 1 }},
                   () => { this.captureBtnScale = 1 })
                 let timerLapse = this.settingManager.getTimeLapse()
-                Log.log(`${this.TAG} startRecording getValue= ${JSON.stringify(timerLapse)}`)
+                Log.log(`${this.TAG} startCapture getValue= ${JSON.stringify(timerLapse)}`)
                 if (timerLapse && timerLapse.id !== Timer.RESOURCE_OFF.id) {
                   this.state.changeTimeLapse(true)
                 } else {
-                  let waitTime = 400
+                  let waitTime = 450
                   let curTime = Date.now();
-                  if (curTime - this.lastTime >= waitTime) {
+                  if (Math.abs(curTime - this.lastTime) >= waitTime) {
                     Log.log(`${this.TAG} throttle invoke time = ${JSON.stringify(curTime - this.lastTime)}`)
                     this.state.capture()
                     this.lastTime = curTime;
