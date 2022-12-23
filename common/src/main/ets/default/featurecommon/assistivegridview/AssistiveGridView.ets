@@ -20,7 +20,6 @@ import getStore from '../../redux/store'
 
 let localState = (state) => {
   return {
-    mode: state.ModeReducer.mode,
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
   }

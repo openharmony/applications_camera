@@ -37,7 +37,7 @@ let localDispatcher = (dispatch) => {
 export struct ThumbnailView {
   private TAG: string = '[ThumbnailView]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  private thumbnailBorder: Object = {}
+  @State thumbnailBorder: Object = {}
 
   @State state: any = {}
   @State thumbnail: any = $r('app.media.ic_camera_thumbnail_default_white')
@@ -52,7 +52,7 @@ export struct ThumbnailView {
     if (this.hasThumbnail) {
       this.thumbnailBorder = { width: 1, color: Color.White, style: BorderStyle.Solid }
     } else {
-      this.thumbnailBorder = {}
+      this.thumbnailBorder = { width: 0 }
     }
     this.scaleValue = 1.5
     this.tempOpacity = 0.0
@@ -72,7 +72,7 @@ export struct ThumbnailView {
     if (this.hasThumbnail) {
       this.thumbnailBorder = { width: 1, color: Color.White, style: BorderStyle.Solid }
     } else {
-      this.thumbnailBorder = {}
+      this.thumbnailBorder = { width: 0 }
     }
     this.scaleValue = 1
     this.tempOpacity = 1
