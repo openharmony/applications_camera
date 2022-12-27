@@ -42,6 +42,7 @@ export default class ThumbnailGetter {
       return undefined
     }
     const lastFileAsset = await fetchFileResult.getLastObject()
+    await fetchFileResult.close()
     if (lastFileAsset == null) {
       Log.error(`${this.TAG} getThumbnailInfo lastFileAsset is null`)
       return undefined

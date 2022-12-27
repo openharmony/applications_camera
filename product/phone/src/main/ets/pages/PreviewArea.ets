@@ -390,7 +390,6 @@ export struct PreviewArea {
     GeoLocation.getInstance().off()
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
     this.updateCameraStatus()
-    globalThis.releaseCamera()
   }
 
   private  releaseCamera() {
