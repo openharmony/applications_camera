@@ -406,7 +406,7 @@ export struct PreviewArea {
     this.pageType = ''
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
     this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-    await new Promise((resolve) => setTimeout(resolve, 20))
+    await new Promise((resolve) => setTimeout(resolve, 60))
     this.doCameraAction()
     let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
     if (newWantAction) {
