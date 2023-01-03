@@ -89,7 +89,6 @@ export default class SaveCameraAsset {
         const fetchOp = {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
-          order: `date_added DESC LIMIT 0, 1`
         }
         // 通过id去查找
         Log.log(`${this.TAG} saveImage fetchOp${JSON.stringify(fetchOp)}`)
@@ -144,7 +143,6 @@ export default class SaveCameraAsset {
         const fetchOp = {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
-          order: `date_added DESC LIMIT 0, 1`
         }
         // 通过id去查找
         Log.log(`${this.TAG} fetchOp= ${JSON.stringify(fetchOp)}`)
