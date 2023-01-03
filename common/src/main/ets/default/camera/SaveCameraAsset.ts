@@ -138,12 +138,13 @@ export default class SaveCameraAsset {
     Log.info(`${this.TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`)
 //    publicPath = `${publicPath}Camera/`
     try {
-      const dataUri = await  media.createAsset(mediaType, displayName, publicPath)
+      const dataUri = await media.createAsset(mediaType, displayName, publicPath)
       if (dataUri !== undefined) {
         const args = dataUri.id.toString()
         const fetchOp = {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
+          order: `date_added DESC LIMIT 0, 1`
         }
         // 通过id去查找
         Log.log(`${this.TAG} fetchOp= ${JSON.stringify(fetchOp)}`)
