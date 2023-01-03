@@ -24,8 +24,6 @@ import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/e
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log';
 import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
-const debounceTimeout = 500;
-
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()

@@ -28,6 +28,8 @@ import { SettingManager } from '../setting/SettingManager'
 import { CameraPlatformCapability } from './CameraPlatformCapability'
 import Trace from '../utils/Trace'
 
+const DEFAULT_VIDEO_FRAME_RATE = 30
+
 export interface FunctionCallBack {
   onCaptureSuccess(thumbnail: any, resourceUri: any): void
 
@@ -299,7 +301,8 @@ export class CameraService {
     globalThis.isSessionCreating = true
     this.mCaptureSession = await this.mCameraManager.createCaptureSession()
     globalThis.isSessionCreating = false
-    Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
+    Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput},
+    videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
     Log.info(`${this.TAG} createSession beginConfig.`)
     Trace.start(Trace.STREAM_DISTRIBUTION)
     try {
@@ -459,6 +462,7 @@ export class CameraService {
       Log.info(`${this.TAG} videoProfiles length.` + videoProfiles.length)
       profileVideo = videoProfiles.find(item =>
       item.size.width === size.width && item.size.height === size.height
+      && item.frameRateRange.min === DEFAULT_VIDEO_FRAME_RATE && item.frameRateRange.max === DEFAULT_VIDEO_FRAME_RATE
       )
     }
 
