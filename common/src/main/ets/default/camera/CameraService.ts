@@ -459,6 +459,7 @@ export class CameraService {
       Log.info(`${this.TAG} videoProfiles length.` + videoProfiles.length)
       profileVideo = videoProfiles.find(item =>
       item.size.width === size.width && item.size.height === size.height
+      && item.frameRateRange.min === 30 && item.frameRateRange.max === 30
       )
     }
 
