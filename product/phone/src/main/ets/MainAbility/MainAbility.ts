@@ -21,8 +21,6 @@ import { debounce } from '../../../../../../common/src/main/ets/default/featurec
 import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 
-const debounceTimeout = 500;
-
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
   onCreate(want, launchParam) {
