@@ -335,7 +335,6 @@ export class Action {
 
   public static capture(): ActionData {
     return {
-      isEvent: true,
       type: Action.ACTION_CAPTURE,
       data: {}
     }
@@ -343,6 +342,7 @@ export class Action {
 
   public static capturePhotoOutput(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CAPTURE_PHOTO_OUTPUT,
       data: {}
     }
