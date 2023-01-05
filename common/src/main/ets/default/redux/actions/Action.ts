@@ -134,6 +134,7 @@ export class Action {
   public static readonly ACTION_UPDATE_SHOW_PINCH = 'ACTION_UPDATE_SHOW_PINCH'
   public static readonly ACTION_CLOSE_DIALOG = 'ACTION_CLOSE_DIALOG'
   public static readonly ACTION_SHOW_SETTING_VIEW = 'ACTION_SHOW_SETTING_VIEW'
+  public static readonly ACTION_CAPTURE_PHOTO_OUTPUT = 'ACTION_CAPTURE_PHOTO_OUTPUT'
 
 
   /** CONTEXT METHODS LIST **/
@@ -334,7 +335,15 @@ export class Action {
 
   public static capture(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CAPTURE,
+      data: {}
+    }
+  }
+
+  public static capturePhotoOutput(): ActionData {
+    return {
+      type: Action.ACTION_CAPTURE_PHOTO_OUTPUT,
       data: {}
     }
   }
