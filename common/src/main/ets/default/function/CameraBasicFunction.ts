@@ -34,6 +34,10 @@ export class CameraBasicFunction extends BaseFunction {
   public startIdentification: boolean = false
 
   private functionBackImpl: FunctionCallBack = {
+    onCapturePhotoOutput: (): void => {
+      Log.info(`${this.TAG} functionBackImpl onCapturePhotoOutput`)
+      this.mWorkerManager.postMessage(Action.capturePhotoOutput())
+    },
     onCaptureSuccess: (thumbnail: any, resourceUri: any): void => {
       Log.info(`${this.TAG} functionBackImpl onCaptureSuccess ${thumbnail}`)
       this.mWorkerManager.postMessage(Action.updateThumbnail(thumbnail, resourceUri))

@@ -31,6 +31,8 @@ import Trace from '../utils/Trace'
 const DEFAULT_VIDEO_FRAME_RATE = 30
 
 export interface FunctionCallBack {
+  onCapturePhotoOutput(): void
+
   onCaptureSuccess(thumbnail: any, resourceUri: any): void
 
   onCaptureFailure(): void
