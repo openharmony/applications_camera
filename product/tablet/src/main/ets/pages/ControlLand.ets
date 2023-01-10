@@ -87,24 +87,6 @@ export struct ControlLand {
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(controlLandState, controlLandDispatcher)(this.state)
-    let startWantAction = globalThis.cameraAbilityWant.parameters.action
-    Log.info(`${this.TAG}  Camera MainAbility lanuchWant action: ${startWantAction}`)
-    if (!globalThis?.cameraNewWant && startWantAction) {
-      Log.info(`${this.TAG} thirdParty called`)
-      this.state.thirdPartyCall(true, startWantAction)
-      switch (startWantAction) {
-        case wantConstant.Action.ACTION_IMAGE_CAPTURE:
-          this.state.initMode('PHOTO')
-          this.state.updateModeIndex(1)
-          break
-        case wantConstant.Action.ACTION_VIDEO_CAPTURE:
-          this.state.initMode('VIDEO')
-          this.state.updateModeIndex(2)
-          break
-        default:
-          break
-      }
-    }
     this.appEventBus.on(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
   }
