@@ -106,6 +106,9 @@ let indexDispatcher = (dispatch) => {
     updateInitShowFlag: (initShowFlag: boolean) => {
       dispatch(Action.updateInitShowFlag(initShowFlag))
     },
+    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
+      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
+    },
     resetZoomRatio: () => {
       dispatch(Action.changeZoomRatio(1))
     },
@@ -221,15 +224,7 @@ struct Index {
     let from: string = ""
     let uri: string = ""
 
-    if (globalThis?.cameraNewWant) {
-      Log.debug((`${this.TAG} cameraNewWant: ${JSON.stringify(globalThis.cameraNewWant)}`))
-      if (globalThis.cameraNewWant?.parameters?.from) {
-        from = globalThis.cameraNewWant.parameters.from
-      }
-      if (globalThis.cameraNewWant?.parameters?.uri) {
-        uri = globalThis.cameraNewWant.parameters.uri
-      }
-    } else if (globalThis?.cameraAbilityWant) {
+    if (globalThis?.cameraAbilityWant) {
       Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
       if (globalThis.cameraAbilityWant?.parameters?.from) {
         from = globalThis.cameraAbilityWant.parameters.from
@@ -238,6 +233,7 @@ struct Index {
         uri = globalThis.cameraAbilityWant.parameters.uri
       }
     } else {
+      this.state.thirdPartyCall(false, "")
       return
     }
     Log.info(`${this.TAG} from: ${from}  uri: ${uri}`)
@@ -245,23 +241,38 @@ struct Index {
     if (from === "FA") {
       Log.info(`from === "FA"`)
       this.state.faCall(true)
-      switch (uri) {
-        case "capture":
-          this.state.initMode('PHOTO')
-          this.state.updateModeIndex(1)
-          break
-        case "video":
-          this.state.initMode('VIDEO')
-          this.state.updateModeIndex(2)
-          break
-        default:
-          Log.info(`${this.TAG} FA default`)
-          break
-      }
+      this.state.thirdPartyCall(false, "")
+      this.initStateMode(uri)
+    } else if (uri != "") {
+      this.state.faCall(false)
+      this.state.thirdPartyCall(true, globalThis.cameraAbilityWant.action)
+      this.initStateMode(uri)
     } else {
       this.state.faCall(false)
+      this.state.thirdPartyCall(false, "")
     }
     Log.info(`${this.TAG} calledByFa invoke X: ${this.state.mode}`)
+  }
+
+  private initStateMode(uri:string) {
+    switch (uri) {
+      case "capture":
+        this.state.initMode('PHOTO')
+        this.state.updateModeIndex(1)
+        break
+      case "video":
+        this.state.initMode('VIDEO')
+        this.state.updateModeIndex(2)
+        break
+      default:
+        Log.info(`${this.TAG} FA default`)
+        break
+    }
+  }
+
+  private onBackClicked() {
+    Log.info(`${this.TAG} onBackClicked E`)
+    this.terminateSelfWithResult()
   }
 
   onBackPress(): boolean {
@@ -287,7 +298,6 @@ struct Index {
   onPageHide(): void {
     Log.info(`${this.TAG} onPageHide E`)
     this.stopCameraRecording()
-    this.state.updateInitShowFlag(false)
     Log.info(`${this.TAG} onPageHide X`)
   }
 
@@ -308,7 +318,9 @@ struct Index {
       "resultCode": 200,
       "want": {
         "parameters": {
-          "imagePath": ""
+          "resourceUri": "",
+          "width": "",
+          "height": ""
         },
         "bundleName": "com.ohos.camera",
         "abilityName": "com.ohos.camera.MainAbility"
@@ -332,9 +344,10 @@ struct Index {
     Stack({ alignContent: Alignment.TopStart }) {
       Column() {
         PreviewAreaLand({ screenSize: $screenSize })
-      }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
+      }
+      .position(this.state.isThirdPartyCall ? ComponentPosition.previewTabletPosition(this.screenSize.width, this.screenSize.height,
+        this.state.xComponentWidth, this.state.xComponentHeight) : ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
         this.state.xComponentWidth, this.state.xComponentHeight))
-
       Column() {
         if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.cameraPosition !== 'FRONT') {
           ZoomViewLand()
@@ -343,23 +356,24 @@ struct Index {
           }.width(82).margin({ right: '20vp' })
         }
       }.zIndex(2).height('100%')
-      .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
+      .position(this.state.isThirdPartyCall ? {x: 984, y: 0} : ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
         this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
       .visibility(this.componentVisibility(!this.state.isShowPinch))
 
       Column(){
         FootBarLand({ screenSize: $screenSize })
       }.zIndex(2).height('100%')
-      .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
+      .position(this.state.isThirdPartyCall ? {x: 1124, y: 0} : ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
         this.state.xComponentWidth, this.state.xComponentHeight))
       .visibility(this.componentVisibility(this.state.showZoomLabelValue))
 
       Column() {
-        TabBarLand()
+        TabBarLand({onBackClicked: () => this.onBackClicked(), screenSize: $screenSize})
       }.zIndex(3)
       .visibility(this.componentVisibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue))
-      .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight))
+      .position(this.state.isThirdPartyCall ? {x: 0, y: 44} : ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
+      this.state.xComponentWidth, this.state.xComponentHeight))
+      .height(712)
 
       if (this.state.isShowMoreList) {
         Column() {
