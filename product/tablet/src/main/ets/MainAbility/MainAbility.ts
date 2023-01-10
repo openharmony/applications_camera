@@ -15,14 +15,14 @@
 
 import Ability from '@ohos.application.Ability'
 import window from '@ohos.window';
+import wantConstant from '@ohos.ability.wantConstant'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
-import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log';
-import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
@@ -36,6 +36,8 @@ export default class MainAbility extends Ability {
     globalThis.cameraAbilityContext = this.context
     globalThis.cameraAbilityWant = this.launchWant
     globalThis.permissionFlag = false
+
+    Log.info(`Camera MainAbility onCreate launchWant. ${JSON.stringify(globalThis.cameraAbilityWant )}`)
     globalThis.cameraStartTime = new Date().getTime()
     globalThis.cameraStartFlag = true
     globalThis.stopRecordingFlag = false;
@@ -151,6 +153,7 @@ export default class MainAbility extends Ability {
 
   onNewWant(want) {
     Log.info('Camera MainAbility onNewWant.')
-    globalThis.cameraNewWant = want
+    globalThis.cameraAbilityWant = want
+    Log.info(`Camera MainAbility E newWantAction: ${JSON.stringify(globalThis.cameraAbilityWant )}`)
   }
 }

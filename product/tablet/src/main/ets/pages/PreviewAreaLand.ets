@@ -362,7 +362,9 @@ export struct PreviewAreaLand {
     await new Promise((resolve) => setTimeout(resolve, 40))
     this.doCameraAction()
     this.state.updateInitShowFlag(true)
-    this.thirdPartyCall()
+    if (!this.state.isThirdPartyCall) {
+      this.state.reloadThumbnail()
+    }
     Log.info(`${this.TAG} onForegroundInit X`)
   }
 
@@ -585,28 +587,6 @@ export struct PreviewAreaLand {
       }
     }
     Log.info(`${this.TAG} onScreenChanged X`)
-  }
-
-  private thirdPartyCall() {
-    let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
-    if (newWantAction) {
-      this.state.thirdPartyCall(true, newWantAction)
-      switch (newWantAction) {
-        case wantConstant.Action.ACTION_IMAGE_CAPTURE:
-          this.state.initMode('PHOTO')
-          this.state.updateModeIndex(1)
-          break
-        case wantConstant.Action.ACTION_VIDEO_CAPTURE:
-          this.state.initMode('VIDEO')
-          this.state.updateModeIndex(2)
-          break
-        default:
-          break
-      }
-    } else {
-      this.state.thirdPartyCall(false, newWantAction)
-      this.state.reloadThumbnail()
-    }
   }
 
   build() {
