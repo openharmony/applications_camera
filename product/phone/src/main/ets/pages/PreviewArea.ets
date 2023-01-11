@@ -209,6 +209,7 @@ export struct PreviewArea {
   @State isSwitchBackground: boolean = false
   @State pageType: string = ''
   private isShowPreview: boolean = false
+  private isForegroundInit: boolean = false
   private settingManager = SettingManager.getInstance()
   private pinchGestureTimer: number
   private baseZoom: number
@@ -216,6 +217,32 @@ export struct PreviewArea {
 
   private async onCameraInit(data) {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
+    if (this.isForegroundInit === true) {
+      Log.info(`${this.TAG} EventBus onCameraInit foregroundInit`)
+      this.doCameraAction()
+      let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
+      if (newWantAction) {
+        this.state.thirdPartyCall(true, newWantAction)
+        switch (newWantAction) {
+          case wantConstant.Action.ACTION_IMAGE_CAPTURE:
+            this.state.initMode('PHOTO')
+            this.state.updateModeIndex(1)
+            break
+          case wantConstant.Action.ACTION_VIDEO_CAPTURE:
+            this.state.initMode('VIDEO')
+            this.state.updateModeIndex(2)
+            break
+          default:
+            break
+        }
+      } else {
+        this.state.thirdPartyCall(false, newWantAction)
+        this.state.faCall(false)
+        this.state.reloadThumbnail()
+      }
+      this.calledByFa()
+      this.isForegroundInit = false
+    }
     if (this.state.platformCapability) {
       //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
@@ -405,30 +432,8 @@ export struct PreviewArea {
     Log.info(`${this.TAG} onForegroundInit E `)
     this.pageType = ''
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
+    this.isForegroundInit = true
     this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-    await new Promise((resolve) => setTimeout(resolve, 60))
-    this.doCameraAction()
-    let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
-    if (newWantAction) {
-      this.state.thirdPartyCall(true, newWantAction)
-      switch (newWantAction) {
-        case wantConstant.Action.ACTION_IMAGE_CAPTURE:
-          this.state.initMode('PHOTO')
-          this.state.updateModeIndex(1)
-          break
-        case wantConstant.Action.ACTION_VIDEO_CAPTURE:
-          this.state.initMode('VIDEO')
-          this.state.updateModeIndex(2)
-          break
-        default:
-          break
-      }
-    } else {
-      this.state.thirdPartyCall(false, newWantAction)
-      this.state.faCall(false)
-      this.state.reloadThumbnail()
-    }
-    this.calledByFa()
     Log.info(`${this.TAG} onForegroundInit X`)
   }
 
