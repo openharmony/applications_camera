@@ -96,6 +96,12 @@ let indexDispatcher = (dispatch) => {
     },
     updateModeIndex: (index: number) => {
       dispatch(Action.updateModeIndex(index))
+    },
+    faCall: (isFaCall: boolean) => {
+      dispatch(Action.faCall(isFaCall))
+    },
+    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
+      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
     }
   }
 }
@@ -195,6 +201,65 @@ struct Index {
     let curCameraId = AppStorage.Get<string>('storageCameraId')
     if(curCameraId) this.state.initCameraPosition(curCameraId)
     this.state.resetRecordingTime()
+    this.calledByFa()
+    Log.info(`${this.TAG} onPageShow X`)
+  }
+
+
+  private calledByFa(): void {
+    Log.info(`${this.TAG} calledByFa invoke E`)
+    let from: string = ""
+    let uri: string = ""
+
+    if (globalThis?.cameraAbilityWant) {
+      Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
+      if (globalThis.cameraAbilityWant?.parameters?.from) {
+        from = globalThis.cameraAbilityWant.parameters.from
+      }
+      if (globalThis.cameraAbilityWant?.parameters?.uri) {
+        uri = globalThis.cameraAbilityWant.parameters.uri
+      }
+    } else {
+      this.state.thirdPartyCall(false, "")
+      return
+    }
+    Log.info(`${this.TAG} from: ${from}  uri: ${uri}`)
+
+    if (from === "FA") {
+      Log.info(`from === "FA"`)
+      this.state.faCall(true)
+      this.state.thirdPartyCall(false, "")
+      this.initStateMode(uri)
+    } else if (uri != "") {
+      this.state.faCall(false)
+      this.state.thirdPartyCall(true, globalThis.cameraAbilityWant.action)
+      this.initStateMode(uri)
+    } else {
+      this.state.faCall(false)
+      this.state.thirdPartyCall(false, "")
+    }
+    Log.info(`${this.TAG} calledByFa invoke X: ${this.state.mode}`)
+  }
+
+  private initStateMode(uri:string) {
+    switch (uri) {
+      case "capture":
+        this.state.initMode('PHOTO')
+        this.state.updateModeIndex(1)
+        break
+      case "video":
+        this.state.initMode('VIDEO')
+        this.state.updateModeIndex(2)
+        break
+      default:
+        Log.info(`${this.TAG} FA default`)
+        break
+    }
+  }
+
+  private onBackClicked() {
+    Log.info(`${this.TAG} onBackClicked E`)
+    this.terminateSelfWithResult()
   }
 
   aboutToDisappear(): void {
@@ -244,7 +309,9 @@ struct Index {
       "resultCode": 200,
       "want": {
         "parameters": {
-          "imagePath": ""
+          "resourceUri": "",
+          "width": "",
+          "height": ""
         },
         "bundleName": "com.ohos.camera",
         "abilityName": "com.ohos.camera.MainAbility"
@@ -267,7 +334,7 @@ struct Index {
       }.width('100%').position({ y: 48 })
       Stack() {
         if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
-          TabBar()
+          TabBar({onBackClicked: () => this.onBackClicked()})
         }
       }.width('100%').height(48).position({ x: '0', y: '0' })
       if(this.state.isShowMoreList && this.state.showZoomLabelValue){
