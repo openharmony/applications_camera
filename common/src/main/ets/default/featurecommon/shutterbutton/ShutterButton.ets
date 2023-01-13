@@ -120,7 +120,8 @@ export struct ShutterButton {
           height: this.state.xComponentHeight,
           mode: this.state.mode,
           uri: this.state.resourceUri,
-          videoUri: this.state.videoUri
+          videoUri: this.state.videoUri,
+          callBundleName:globalThis.cameraAbilityWant?.parameters?.callBundleName
         }
       })
     }

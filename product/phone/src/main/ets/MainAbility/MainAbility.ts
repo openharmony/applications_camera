@@ -128,7 +128,8 @@ export default class MainAbility extends Ability {
   }
 
   onNewWant(want) {
-    console.info('Camera MainAbility onNewWant.')
-    globalThis.cameraNewWant = want
+    console.info('Camera MainAbility E onNewWant.')
+    globalThis.cameraAbilityWant = want
+    console.info(`Camera MainAbility X newWantAction: ${JSON.stringify(globalThis.cameraAbilityWant )}`)
   }
 }

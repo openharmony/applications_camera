@@ -220,27 +220,9 @@ export struct PreviewArea {
     if (this.isForegroundInit === true) {
       Log.info(`${this.TAG} EventBus onCameraInit foregroundInit`)
       this.doCameraAction()
-      let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
-      if (newWantAction) {
-        this.state.thirdPartyCall(true, newWantAction)
-        switch (newWantAction) {
-          case wantConstant.Action.ACTION_IMAGE_CAPTURE:
-            this.state.initMode('PHOTO')
-            this.state.updateModeIndex(1)
-            break
-          case wantConstant.Action.ACTION_VIDEO_CAPTURE:
-            this.state.initMode('VIDEO')
-            this.state.updateModeIndex(2)
-            break
-          default:
-            break
-        }
-      } else {
-        this.state.thirdPartyCall(false, newWantAction)
-        this.state.faCall(false)
+      if (!this.state.isThirdPartyCall) {
         this.state.reloadThumbnail()
       }
-      this.calledByFa()
       this.isForegroundInit = false
     }
     if (this.state.platformCapability) {
