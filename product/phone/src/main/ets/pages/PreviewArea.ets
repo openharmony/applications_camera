@@ -220,27 +220,9 @@ export struct PreviewArea {
     if (this.isForegroundInit === true) {
       Log.info(`${this.TAG} EventBus onCameraInit foregroundInit`)
       this.doCameraAction()
-      let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
-      if (newWantAction) {
-        this.state.thirdPartyCall(true, newWantAction)
-        switch (newWantAction) {
-          case wantConstant.Action.ACTION_IMAGE_CAPTURE:
-            this.state.initMode('PHOTO')
-            this.state.updateModeIndex(1)
-            break
-          case wantConstant.Action.ACTION_VIDEO_CAPTURE:
-            this.state.initMode('VIDEO')
-            this.state.updateModeIndex(2)
-            break
-          default:
-            break
-        }
-      } else {
-        this.state.thirdPartyCall(false, newWantAction)
-        this.state.faCall(false)
+      if (!this.state.isThirdPartyCall) {
         this.state.reloadThumbnail()
       }
-      this.calledByFa()
       this.isForegroundInit = false
     }
     if (this.state.platformCapability) {
@@ -327,51 +309,6 @@ export struct PreviewArea {
     Log.debug(`${this.TAG} onModeChanged X`)
   }
 
-  private calledByFa(): void {
-    Log.info(`${this.TAG} calledByFa invoke E`)
-    let action: string = ""
-    let uri: string = ""
-
-    if (globalThis?.cameraNewWant) {
-      Log.debug((`${this.TAG} cameraNewWant: ${JSON.stringify(globalThis.cameraNewWant)}`))
-      if (globalThis.cameraNewWant?.parameters?.from) {
-        action = globalThis.cameraNewWant.parameters.from
-      }
-      if (globalThis.cameraNewWant?.parameters?.uri) {
-        uri = globalThis.cameraNewWant.parameters.uri
-      }
-    } else if (globalThis?.cameraAbilityWant) {
-      Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
-      if (globalThis.cameraAbilityWant?.parameters?.from) {
-        action = globalThis.cameraAbilityWant.parameters.from
-      }
-      if (globalThis.cameraAbilityWant?.parameters?.uri) {
-        uri = globalThis.cameraAbilityWant.parameters.uri
-      }
-    } else {
-      return
-    }
-    Log.info(`${this.TAG} action: ${action}  uri: ${uri}`)
-
-    if (action === "FA") {
-      this.state.faCall(true)
-      switch (uri) {
-        case "capture":
-          this.state.initMode('PHOTO')
-          this.state.updateModeIndex(1)
-          break
-        case "video":
-          this.state.initMode('VIDEO')
-          this.state.updateModeIndex(2)
-          break
-        default:
-          Log.info(`${this.TAG} FA default`)
-          break
-      }
-    }
-    Log.info(`${this.TAG} calledByFa invoke X`)
-  }
-
   private async onRecordError() {
     Log.info(`${this.TAG} onRecordError invoke E`)
     prompt.showToast({
@@ -402,7 +339,6 @@ export struct PreviewArea {
       this.updateCameraStatus()
     })
 
-    this.calledByFa()
     this.state.initCamera(this.state.curCameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     Log.info(`${this.TAG} aboutToAppear end`)
@@ -419,7 +355,7 @@ export struct PreviewArea {
     this.updateCameraStatus()
   }
 
-  private  releaseCamera() {
+  private releaseCamera() {
     Log.info(`${this.TAG} globalThis.releaseCamera called`)
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
     if (this.state.videoState === 'startTakeVideo') {
@@ -437,7 +373,7 @@ export struct PreviewArea {
     Log.info(`${this.TAG} onForegroundInit X`)
   }
 
-  private  updateCameraStatus() {
+  private updateCameraStatus() {
     Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${globalThis.cameraStatus}`)
     Log.info(`${this.TAG} updateCameraStatus  cameraNeedStatus: ${globalThis.cameraNeedStatus}`)
 

@@ -18,7 +18,9 @@ import getStore from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 
 let tabBarState = (state) => {
-  return {}
+  return {
+    isThirdPartyCall: state.ContextReducer.isThirdPartyCall
+  }
 }
 
 let tabBarDispatcher = (dispatch) => {
@@ -33,6 +35,7 @@ let tabBarDispatcher = (dispatch) => {
 export struct TabBar {
   private TAG: string = '[TabBar]'
   @State state: any = {}
+  private onBackClicked:Function
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
@@ -46,7 +49,17 @@ export struct TabBar {
 //        TabBarOther()
       }.width('40%').height('100%')
       Column() {
-//        TabBarSame()
+            if (this.state.isThirdPartyCall) {
+              Row() {
+                Image($r("app.media.ic_public_back")).width(24).height(24)
+                  .onClick(() => {
+                    this.state.showSettingView()
+                    this.onBackClicked()
+                  })
+              }.width(48).height(48)
+              .padding({left: 12})
+              .margin({ bottom: 12 })
+            }
       }.width('40%').height('100%')
       Column() {
         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
