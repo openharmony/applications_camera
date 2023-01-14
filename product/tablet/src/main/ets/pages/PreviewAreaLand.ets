@@ -339,6 +339,7 @@ export struct PreviewAreaLand {
     display.getDefaultDisplay().then((dis) => {
       this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height)}
     })
+    this.calledByOther()
     this.state.initCamera(this.state.cameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     Log.info(`${this.TAG} aboutToAppear X`)
@@ -358,6 +359,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} onForegroundInit E `)
     this.pageType = ''
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
+    this.calledByOther()
     this.state.initCamera(this.state.cameraPosition, this.state.mode)
     await new Promise((resolve) => setTimeout(resolve, 40))
     this.doCameraAction()
@@ -366,6 +368,57 @@ export struct PreviewAreaLand {
       this.state.reloadThumbnail()
     }
     Log.info(`${this.TAG} onForegroundInit X`)
+  }
+
+  private calledByOther(): void {
+    Log.info(`${this.TAG} calledByOther invoke E`)
+    let from: string = ""
+    let uri: string = ""
+
+    if (globalThis?.cameraAbilityWant) {
+      Log.info(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
+      if (globalThis.cameraAbilityWant?.parameters?.from) {
+        from = globalThis.cameraAbilityWant.parameters.from
+      }
+      if (globalThis.cameraAbilityWant?.parameters?.uri) {
+        uri = globalThis.cameraAbilityWant.parameters.uri
+      }
+    } else {
+      this.state.thirdPartyCall(false, "")
+      return
+    }
+    Log.info(`${this.TAG} from: ${from}  uri: ${uri}`)
+
+    if (from === "FA") {
+      Log.info(`from === "FA"`)
+      this.state.faCall(true)
+      this.state.thirdPartyCall(false, "")
+      this.initStateMode(uri)
+    } else if (uri != "") {
+      this.state.faCall(false)
+      this.state.thirdPartyCall(true, globalThis.cameraAbilityWant.action)
+      this.initStateMode(uri)
+    } else {
+      this.state.faCall(false)
+      this.state.thirdPartyCall(false, "")
+    }
+    Log.info(`${this.TAG} calledByOther invoke X: ${this.state.mode}`)
+  }
+
+  private initStateMode(uri:string) {
+    switch (uri) {
+      case "capture":
+        this.state.initMode('PHOTO')
+        this.state.updateModeIndex(1)
+        break
+      case "video":
+        this.state.initMode('VIDEO')
+        this.state.updateModeIndex(2)
+        break
+      default:
+        Log.info(`${this.TAG} FA default`)
+        break
+    }
   }
 
   private  updateCameraStatus() {
