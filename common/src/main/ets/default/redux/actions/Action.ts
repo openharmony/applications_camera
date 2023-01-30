@@ -302,10 +302,10 @@ export class Action {
     }
   }
 
-  public static reStartPreview(): ActionData {
+  public static reStartPreview(zoomRatio?: number): ActionData {
     return {
       type: Action.ACTION_RESTART_PREVIEW,
-      data: {}
+      data: { zoomRatio: zoomRatio }
     }
   }
 
