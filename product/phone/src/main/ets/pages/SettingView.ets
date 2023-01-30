@@ -27,6 +27,7 @@ let localState = (state: OhCombinedState) => {
   return {
     isCloseFlag: state.SettingReducer.isCloseFlag,
     mode: state.ModeReducer.mode,
+    zoomRatio: state.ZoomReducer.zoomRatio,
   }
 }
 
@@ -44,8 +45,8 @@ let localDispatcher = (dispatch) => {
     assistiveGridView: (isViewShow) => {
       dispatch(Action.assistiveGridView(isViewShow))
     },
-    reStartPreview: () => {
-      dispatch(Action.reStartPreview())
+    reStartPreview: (zoomRatio?: number) => {
+      dispatch(Action.reStartPreview(zoomRatio))
     },
   }
 }
@@ -92,13 +93,13 @@ export struct SettingView {
   private aspectRatioChange(xComponentSize) {
     if (this.state.mode != 'VIDEO') {
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
-      this.state.reStartPreview()
+      this.state.reStartPreview(this.state.zoomRatio)
     }
   }
   private resolutionChange(xComponentSize) {
     if (this.state.mode == 'VIDEO') {
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
-      this.state.reStartPreview()
+      this.state.reStartPreview(this.state.zoomRatio)
     }
   }
   private assistiveGridChange(mAssistiveGrid) {

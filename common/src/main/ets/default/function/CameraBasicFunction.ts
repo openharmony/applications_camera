@@ -136,7 +136,7 @@ export class CameraBasicFunction extends BaseFunction {
     Log.info(`${this.TAG} startPreview X`)
   }
 
-  private async reStartPreview() {
+  private async reStartPreview(data) {
     Log.info(`${this.TAG} reStartPreview E`)
     if (!this.mSurfaceId) {
       Log.info(`${this.TAG} reStartPreview error mSurfaceId is null`)
@@ -158,6 +158,9 @@ export class CameraBasicFunction extends BaseFunction {
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     if ([...this.mSessionList].pop() === 'RELEASE') {
       await this.close()
+    }
+    if (data && data?.zoomRatio && data.zoomRatio !== 1) {
+      await this.mCameraService.setZoomRatio(data.zoomRatio)
     }
     this.mSessionList = []
     this.enableUi()
