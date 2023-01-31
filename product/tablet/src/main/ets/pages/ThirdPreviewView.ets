@@ -14,7 +14,8 @@
  */
 
 import router from '@system.router'
-
+import fileshare from '@ohos.fileshare'
+import wantConstant from '@ohos.ability.wantConstant'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 
 @Entry
@@ -26,6 +27,7 @@ struct ThirdPreviewView {
   private photoUri: string
   private videoUri: string
   private mode: string
+  private callBundleName: string
   @State controls: boolean = false
   @State isShowVideoButton: boolean = true
   myVideoController: VideoController = new VideoController()
@@ -42,7 +44,22 @@ struct ThirdPreviewView {
     Log.info(`${this.TAG} aboutToAppear mode= ${this.mode} E`)
     this.videoUri = routerParams.videoUri.toString()
     Log.info(`${this.TAG} aboutToAppear videoUri= ${this.videoUri} E`)
+    this.callBundleName = routerParams.callBundleName.toString()
+    Log.info(`${this.TAG} aboutToAppear callBundleName= ${this.callBundleName} E`)
     Log.info(`${this.TAG} aboutToAppear X`)
+  }
+
+  backCalledApp(resourceUri) {
+    Log.info(`${this.TAG} backCalledApp E`)
+    let that = this
+    fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
+      .then(() => {
+        Log.info(`${this.TAG} grantUriPermission success`)
+        that.terminateSelfWithResult(resourceUri)
+      }).catch(function (error) {
+      Log.error(`${this.TAG} grantUriPermission error= ${error} `)
+    })
+    Log.info(`${this.TAG} backCalledApp X`)
   }
 
   terminateSelfWithResult(resourceUri) {
@@ -51,7 +68,9 @@ struct ThirdPreviewView {
       "resultCode": 200,
       "want": {
         "parameters": {
-          "imagePath": resourceUri
+          "resourceUri": resourceUri,
+          "width": this.photoWidth,
+          "height": this.photoHeight
         },
         "bundleName": "com.ohos.camera",
         "abilityName": "com.ohos.camera.MainAbility"
@@ -107,9 +126,13 @@ struct ThirdPreviewView {
               this.controls = true;
             })
             .zIndex(1)
-          if(this.isShowVideoButton) {
+          if (this.isShowVideoButton) {
             Column() {
-              Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+              Flex({
+                direction: FlexDirection.Column,
+                alignItems: ItemAlign.Center,
+                justifyContent: FlexAlign.Center
+              }) {
                 Image(this.getVideoPlayIcon()).objectFit(ImageFit.Contain).width(56).height(56)
                   .onClick(() => {
                     this.myVideoController.start()
@@ -123,25 +146,26 @@ struct ThirdPreviewView {
       .width(this.photoWidth)
       .height(this.photoHeight)
       Flex({
-        direction: FlexDirection.Row,
+        direction: FlexDirection.Column,
         alignItems: ItemAlign.Center,
         justifyContent: FlexAlign.SpaceBetween
       }) {
-        Image($r('app.media.ic_system_cancel'))
+        Image($r('app.media.ic_public_ok'))
+          .width(24)
+          .aspectRatio(1)
+          .onClick(() => {
+            this.backCalledApp(this.mode === "PHOTO" ? this.photoUri : this.videoUri)
+          })
+        Image($r('app.media.ic_public_cancel'))
           .width(24)
           .aspectRatio(1)
           .onClick(() => {
             router.back()
           })
-        Image($r('app.media.ic_system_confirm'))
-          .width(24)
-          .aspectRatio(1)
-          .onClick(() => {
-            this.terminateSelfWithResult(this.mode === "PHOTO" ? this.photoUri : this.videoUri)
-          })
-      }.width('100%').height(48).margin({ top: '24vp' })
-      .padding({ top: '12vp', left: '24vp', right: '24vp' })
-      .position({x:0, y:0})
+      }
+      .width(48).height('100%').margin({left: 24})
+      .padding({ top: '64', bottom: '64'})
+      .position({y: 0 })
     }.width('100%').height('100%').backgroundColor('#000')
   }
 }

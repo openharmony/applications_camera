@@ -25,6 +25,7 @@ let tabBarLandState = (state) => {
   return {
 //    widthTabBar: state.PreviewReducer.widthTabBar,
 //    opacityValueForTabBar: state.SettingReducer.opacityValueForTabBar
+    isThirdPartyCall: state.ContextReducer.isThirdPartyCall
   }
 }
 
@@ -42,6 +43,8 @@ export struct TabBarLand {
   @State state: any = {}
   @State opacityTabBar: number = 0
   @State isShowTabBarOther: boolean= false
+  @Link screenSize: any
+  private onBackClicked:Function
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   aboutToAppear(): void {
@@ -52,13 +55,25 @@ export struct TabBarLand {
 
   build() {
     Flex({ direction: FlexDirection.ColumnReverse, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        Image($r("app.media.setting")).width(24).height(24)
+    if (this.state.isThirdPartyCall) {
+      Row() {
+        Image($r("app.media.ic_public_back")).width(24).height(24)
           .onClick(() => {
-            this.state.showSettingView()
+            this.onBackClicked()
           })
-      }.width('100%').height('20%')
+      }.width(48).height(48)
+      .padding({left: 12})
+      .margin({ bottom: 12 })
+    }
 
+    Row()  {
+      Image($r("app.media.setting")).width(24).height(24)
+        .onClick(() => {
+          this.state.showSettingView()
+        })
+    }.width(48).height(48)
+    .padding({ left: 12 })
+    .position(this.state.isThirdPartyCall ? {x:0,y:12} : {x:0,y: this.screenSize.height - 144})
       //        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       //          TabBarOther()
       //        }.width('100%').height('20%')
@@ -84,6 +99,6 @@ export struct TabBarLand {
       //          iterations: 1,
       //          playMode: PlayMode.Normal
       //        })
-    }.width(48).height(360)
+    }.width(48).height('100%')
   }
 }

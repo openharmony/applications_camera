@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import FormExtension from '@ohos.application.FormExtension';
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 
-export default class FormAbility extends FormExtension {
+export default class FormAbility extends FormExtensionAbility {
     private TAG: string = '[FormAbility]'
 
     onCreate(want) {

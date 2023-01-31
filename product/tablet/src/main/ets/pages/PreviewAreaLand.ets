@@ -29,6 +29,7 @@ import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/def
 import { CameraPlatformCapability
 } from '../../../../../../common/src/main/ets/default/camera/CameraPlatformCapability'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { CameraStatus, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import Resolution from '../../../../../../common/src/main/ets/default/setting/settingitem/Resolution'
 import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
@@ -42,6 +43,7 @@ import { EventBus } from '../../../../../../common/src/main/ets/default/worker/e
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
+import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import prompt from '@ohos.prompt';
 
 let cameraState = (state: OhCombinedState) => {
@@ -72,6 +74,7 @@ let cameraState = (state: OhCombinedState) => {
     isAssGridViewShow: state.SettingReducer.isAssGridViewShow,
     isShowFlashBlack: state.PreviewReducer.isShowFlashBlack,
     modeChangeDone: state.ModeReducer.modeChangeDone,
+    isShowPageView: state.SettingReducer.isShowSettingView,
     showBlur: isShowBlur,
     isFaCall: state.ContextReducer.isFaCall,
   }
@@ -94,17 +97,17 @@ let cameraDispatcher = (dispatch) => {
     prepareSurface: (surfaceId: number) => {
       dispatch(Action.prepareSurface(surfaceId))
     },
-    startPreview: () => {
-      dispatch(Action.startPreview())
+    startPreview: (zoomRatio: number) => {
+      dispatch(Action.startPreview(zoomRatio))
     },
-    switchCamera: (cameraId: CameraId) => {
-      dispatch(Action.switchCamera(cameraId))
-    },
-    startVideoFlag: (isStartVideo: boolean) => {
-      dispatch(Action.startVideoFlag(isStartVideo))
+    switchCamera: (cameraId: CameraId, mode: string) => {
+      dispatch(Action.switchCamera(cameraId, mode))
     },
     updateCameraPosition: (cameraPosition: string) => {
       dispatch(Action.updateCameraPosition(cameraPosition))
+    },
+    startVideoFlag: (isStartVideo: boolean) => {
+      dispatch(Action.startVideoFlag(isStartVideo))
     },
     changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
       dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
@@ -165,14 +168,14 @@ let cameraDispatcher = (dispatch) => {
     initMode: (mode: string) => {
       dispatch(Action.initMode(mode))
     },
-    updateModeIndex: (index: number) => {
-      dispatch(Action.updateModeIndex(index))
-    },
     updateMode: (mode: string) => {
       dispatch(Action.updateMode(mode))
     },
     changeToMode: (mode: string) => {
       dispatch(Action.changeMode(mode))
+    },
+    updateModeIndex: (index: number) => {
+      dispatch(Action.updateModeIndex(index))
     },
     updateShowZoomLabelValue: (flag: boolean) => {
       dispatch(Action.updateShowZoomLabelValue(flag))
@@ -188,7 +191,10 @@ let cameraDispatcher = (dispatch) => {
     },
     updateInitShowFlag: (initShowFlag: boolean) => {
       dispatch(Action.updateInitShowFlag(initShowFlag))
-    }
+    },
+    hideSettingView: () => {
+      dispatch(Action.showSettingView(false))
+    },
   }
 }
 
@@ -224,7 +230,6 @@ export struct PreviewAreaLand {
   private async onCameraInit(data) {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`)
     if (this.state.platformCapability) {
-      //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
         this.settingManager.setCameraId(this.state.cameraPosition)
 
@@ -242,7 +247,6 @@ export struct PreviewAreaLand {
         this.resetScreenSize(this.screenSize)
         this.state.updateShowPreviewFlag(true)
       })
-      //            }
     }
     Log.info(`${this.TAG} onCameraInit isShowPreview = ${this.state.isShowPreview}  X`)
   }
@@ -270,29 +274,26 @@ export struct PreviewAreaLand {
   }
 
   private async doCameraAction() {
-    if (!globalThis?.doCameraActionDone || !globalThis.doCameraActionDone) {
-      globalThis.doCameraActionDone = true
-      setTimeout(() => {
-        globalThis.doCameraActionDone = false
-      }, 1000)
-      Log.debug(`${this.TAG} doCameraAction E`)
-      this.settingManager.setCameraId(this.state.cameraPosition)
-      if (this.state.curCameraPosition != this.state.cameraPosition) {
-      this.state.switchCamera(this.state.cameraPosition)
+    Log.info(`${this.TAG} doCameraAction E`)
+    this.settingManager.setCameraId(this.state.cameraPosition)
+    Log.info(`${this.TAG} curMode:${this.state.curMode} mode:${this.state.mode}`)
+    if (this.state.curCameraPosition != this.state.cameraPosition) {
+      this.state.switchCamera(this.state.cameraPosition, this.state.mode)
+      this.state.updateCameraPosition(this.state.cameraPosition)
     } else if (this.state.curMode != this.state.mode) {
       this.state.changeToMode(this.state.mode)
-    } else {
-        this.state.startPreview()
-      }
-      this.state.updateCameraPosition(this.state.cameraPosition)
       this.state.updateMode(this.state.mode)
+    } else {
       if (globalThis?.keepCameraZoomRatio && globalThis.keepCameraZoomRatio) {
         globalThis.keepCameraZoomRatio = false
+        Log.info(`${this.TAG} keep zoomRatio: ` + this.state.zoomRatio)
       } else {
         this.state.changeZoomRatio(1)
+        Log.info(`${this.TAG} change zoomRatio: 1`)
       }
-      Log.debug(`${this.TAG} doCameraAction X`)
+      this.state.startPreview(this.state.zoomRatio)
     }
+    Log.info(`${this.TAG} doCameraAction X`)
     this.state.updateInitShowFlag(true)
   }
 
@@ -328,30 +329,118 @@ export struct PreviewAreaLand {
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
     this.appEventBus.on("windowSize", this.windowSizeChange.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this))
-    globalThis.releaseCamera = (() => {
-      Log.info(`${this.TAG} globalThis.releaseCamera called`)
-      if (this.state.videoState === 'startTakeVideo') {
-        this.state.stopRecording()
-      }
-      this.state.close()
-    })
-
-    globalThis.onForegroundInit = (async () => {
-      this.pageType = ''
-      Log.info(`${this.TAG} globalThis.onForegroundInit called`)
-      this.state.initCamera(this.state.curCameraPosition, this.state.mode)
-      await new Promise((resolve) => setTimeout(resolve, 40))
-      this.doCameraAction()
-      this.thirdPartyCall()
+    this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this))
+    this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this))
+    globalThis.updateCameraStatus = (() => {
+      Log.info(`${this.TAG} globalThis.updateCameraStatus called`)
+      this.updateCameraStatus()
     })
 
     display.getDefaultDisplay().then((dis) => {
       this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height)}
     })
-    this.state.initCamera(this.state.curCameraPosition, this.state.mode)
+    this.calledByOther()
+    this.state.initCamera(this.state.cameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     Log.info(`${this.TAG} aboutToAppear X`)
     Trace.start(Trace.X_COMPONENT_LIFE)
+  }
+
+  private  releaseCamera() {
+    Log.info(`${this.TAG} globalThis.releaseCamera called`)
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
+    if (this.state.videoState === 'startTakeVideo') {
+      this.state.stopRecording()
+    }
+    this.state.close()
+  }
+
+  private async onForegroundInit() {
+    Log.info(`${this.TAG} onForegroundInit E `)
+    this.pageType = ''
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
+    this.calledByOther()
+    this.state.initCamera(this.state.cameraPosition, this.state.mode)
+    await new Promise((resolve) => setTimeout(resolve, 40))
+    this.doCameraAction()
+    this.state.updateInitShowFlag(true)
+    if (!this.state.isThirdPartyCall) {
+      this.state.reloadThumbnail()
+    }
+    Log.info(`${this.TAG} onForegroundInit X`)
+  }
+
+  private calledByOther(): void {
+    Log.info(`${this.TAG} calledByOther invoke E`)
+    let from: string = ""
+    let uri: string = ""
+
+    if (globalThis?.cameraAbilityWant) {
+      Log.info(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
+      if (globalThis.cameraAbilityWant?.parameters?.from) {
+        from = globalThis.cameraAbilityWant.parameters.from
+      }
+      if (globalThis.cameraAbilityWant?.parameters?.uri) {
+        uri = globalThis.cameraAbilityWant.parameters.uri
+      }
+    } else {
+      this.state.thirdPartyCall(false, "")
+      return
+    }
+    Log.info(`${this.TAG} from: ${from}  uri: ${uri}`)
+
+    if (from === "FA") {
+      Log.info(`from === "FA"`)
+      this.state.faCall(true)
+      this.state.thirdPartyCall(false, "")
+      this.initStateMode(uri)
+    } else if (uri != "") {
+      this.state.faCall(false)
+      this.state.thirdPartyCall(true, globalThis.cameraAbilityWant.action)
+      this.initStateMode(uri)
+    } else {
+      this.state.faCall(false)
+      this.state.thirdPartyCall(false, "")
+    }
+    Log.info(`${this.TAG} calledByOther invoke X: ${this.state.mode}`)
+  }
+
+  private initStateMode(uri:string) {
+    switch (uri) {
+      case "capture":
+        this.state.initMode('PHOTO')
+        this.state.updateModeIndex(1)
+        break
+      case "video":
+        this.state.initMode('VIDEO')
+        this.state.updateModeIndex(2)
+        break
+      default:
+        Log.info(`${this.TAG} FA default`)
+        break
+    }
+  }
+
+  private  updateCameraStatus() {
+    Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${globalThis.cameraStatus}`)
+    Log.info(`${this.TAG} updateCameraStatus  cameraNeedStatus: ${globalThis.cameraNeedStatus}`)
+
+    if (this.canInit() && globalThis.cameraNeedStatus == CameraNeedStatus.CAMERA_NEED_INIT) {
+      this.onForegroundInit()
+    }
+    if (this.canRelease() && globalThis.cameraNeedStatus == CameraNeedStatus.CAMERA_NEED_RELEASE) {
+      this.releaseCamera()
+    }
+    Log.info(`${this.TAG} updateCameraStatus X`)
+  }
+
+  private  canInit():boolean {
+    //相机状态是首次加载或者session释放完成状态，才能进行初始化操作
+    return globalThis.cameraStatus == CameraStatus.CAMERA_BEFORE_VALUE || globalThis.cameraStatus == CameraStatus.CAMERA_RELEASE_FINISHED
+  }
+  private  canRelease():boolean {
+    //相机状态是预览完成状态或录像完成状态才能进行释放操作
+    return  globalThis.cameraStatus == CameraStatus.CAMERA_PREVIEW_FINISHED|| globalThis.cameraStatus == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED
   }
 
   aboutToDisappear(): void {
@@ -359,9 +448,11 @@ export struct PreviewAreaLand {
     this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
     this.appEventBus.off("windowSize", this.windowSizeChange.bind(this))
+    this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this))
     this.mConnect?.destroy()
     GeoLocation.getInstance().off()
-    globalThis.releaseCamera()
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
+    this.updateCameraStatus()
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
@@ -446,14 +537,14 @@ export struct PreviewAreaLand {
 
   private pinchGestureStart(event: GestureEvent) {
     Log.info(`${this.TAG} pinchGestureStart invoke E`)
-    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
+    if (this.state.mode != 'MULTI' && this.state.cameraPosition !== 'FRONT') {
       clearTimeout(this.pinchGestureTimer)
       this.state.updateIsShowZoomText(true)
       this.state.updateShowPinch(true)
       this.state.updateShowZoomLabelValue(false)
       this.baseZoom = this.state.zoomRatio
     }
-    if (this.state.mode !== "MULTI" && this.state.curCameraPosition !== 'FRONT') {
+    if (this.state.mode !== "MULTI" && this.state.cameraPosition !== 'FRONT') {
       this.state.updateIsShowZoomText(true)
       this.state.updateShowPinch(true)
       this.state.updateIsPhotoZoomDetails(true)
@@ -466,7 +557,7 @@ export struct PreviewAreaLand {
 
   private pinchGestureUpdate(event: GestureEvent) {
     Log.info(`${this.TAG} pinchGestureUpdate invoke E`)
-    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
+    if (this.state.mode != 'MULTI' && this.state.cameraPosition !== 'FRONT') {
       let zoomRatio = event.scale + this.baseZoom - 1
       if (zoomRatio > 6) {
         zoomRatio = 6
@@ -483,7 +574,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} pinchGestureEnd invoke E`)
     this.state.updateShowZoomLabelValue(true)
     this.state.updateShowPinch(false)
-    if (this.state.mode != 'MULTI' && this.state.curCameraPosition !== 'FRONT') {
+    if (this.state.mode != 'MULTI' && this.state.cameraPosition !== 'FRONT') {
       this.pinchGestureTimer = setTimeout(() => {
         this.state.updateIsShowZoomText(false)
       }, 2000)
@@ -526,7 +617,6 @@ export struct PreviewAreaLand {
   }
 
   private windowSizeChange(data) {
-    Log.info(`{kuiruo} data:${JSON.stringify(data)}, this.screenSize:${JSON.stringify(this.screenSize)}`)
     if (this.screenSize != data) {
       this.screenSize = data
       this.resetScreenSize(data)
@@ -541,26 +631,15 @@ export struct PreviewAreaLand {
     this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
   }
 
-  private thirdPartyCall() {
-    let newWantAction = globalThis?.cameraNewWant && globalThis.cameraNewWant.parameters.action
-    if (newWantAction) {
-      this.state.thirdPartyCall(true, newWantAction)
-      switch (newWantAction) {
-        case wantConstant.Action.ACTION_IMAGE_CAPTURE:
-          this.state.initMode('PHOTO')
-          this.state.updateModeIndex(1)
-          break
-        case wantConstant.Action.ACTION_VIDEO_CAPTURE:
-          this.state.initMode('VIDEO')
-          this.state.updateModeIndex(2)
-          break
-        default:
-          break
+  private async onScreenChange(isScreenOn) {
+    Log.info(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`)
+    if (!isScreenOn) {
+      globalThis.keepCameraZoomRatio = true
+      if (this.state.isShowPageView) {
+        this.state.hideSettingView()
       }
-    } else {
-      this.state.thirdPartyCall(false, newWantAction)
-      this.state.reloadThumbnail()
     }
+    Log.info(`${this.TAG} onScreenChanged X`)
   }
 
   build() {

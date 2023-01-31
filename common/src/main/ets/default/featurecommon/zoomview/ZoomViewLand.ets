@@ -16,28 +16,10 @@
 import display from '@ohos.display'
 
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import getStore, { OhCombinedState } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import { EventBus } from '../../worker/eventbus/EventBus'
 import EventBusManager from '../../worker/eventbus/EventBusManager'
-
-let localState = (state) => {
-  return {
-    mode: state.ModeReducer.mode,
-    videoState: state.RecordReducer.videoState,
-    cameraPosition: state.CameraReducer.cameraPosition,
-    isShowPressScrollDetailPhotoButton: state.ZoomReducer.isShowPressScrollDetailPhotoButton,
-    zoomRatio: state.ZoomReducer.zoomRatio,
-    minZoomRatio: state.ZoomReducer.minZoomRatio,
-    maxZoomRatio: state.ZoomReducer.maxZoomRatio,
-    scrollDetailsBox: state.ZoomReducer.scrollDetailsBox,
-    isPhotoZoomDetails: state.ZoomReducer.isPhotoZoomDetails,
-    photoDetailsOffsetX: state.ZoomReducer.photoDetailsOffsetX,
-    photoDetailsOffsetXInit: state.ZoomReducer.photoDetailsOffsetXInit,
-    isShowZoomText: state.ZoomReducer.isShowZoomText,
-    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-  }
-}
 
 let localDispatcher = (dispatch) => {
   return {
@@ -64,6 +46,10 @@ export struct ZoomViewLand {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   @State state: any = {}
+  @State @Watch('onZoomRatioRefresh') zoomRatio: number = 0
+  @State @Watch('onZoomRatioRefresh') showZoomLabelValue: boolean = true
+  @State @Watch('onZoomRatioRefresh') isShowZoomText: boolean = false
+  @State @Watch('onZoomRatioRefresh') curZoomRatio: number = 0
   @State offsetY: number = 0
   @State triggerRebuildNum: number = 0
 
@@ -97,9 +83,26 @@ export struct ZoomViewLand {
   private secDotRadius: number = 0.75
   private centerDotRadius: number = 2.5
   private dotSpacing: number = 4
+  private refreshSwitchCanvas: number = -1
 
   aboutToAppear(): void {
-    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    this.mConnect = getStore().connect((state: OhCombinedState) => {
+      this.zoomRatio = state.ZoomReducer.zoomRatio
+      this.showZoomLabelValue = state.ZoomReducer.showZoomLabelValue
+      this.isShowZoomText = state.ZoomReducer.isShowZoomText
+      return {
+        mode: state.ModeReducer.mode,
+        videoState: state.RecordReducer.videoState,
+        cameraPosition: state.CameraReducer.cameraPosition,
+        isShowPressScrollDetailPhotoButton: state.ZoomReducer.isShowPressScrollDetailPhotoButton,
+        minZoomRatio: state.ZoomReducer.minZoomRatio,
+        maxZoomRatio: state.ZoomReducer.maxZoomRatio,
+        scrollDetailsBox: state.ZoomReducer.scrollDetailsBox,
+        isPhotoZoomDetails: state.ZoomReducer.isPhotoZoomDetails,
+        photoDetailsOffsetX: state.ZoomReducer.photoDetailsOffsetX,
+        photoDetailsOffsetXInit: state.ZoomReducer.photoDetailsOffsetXInit,
+      }
+    }, localDispatcher)(this.state)
     this.appEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
     this.appEventBus.on(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
   }
@@ -111,11 +114,11 @@ export struct ZoomViewLand {
   }
 
   private getCurrentCanvasType(): number {
-    if (this.state.isShowZoomText && (this.state.videoState === 'beforeTakeVideo'
+    if (this.isShowZoomText && (this.state.videoState === 'beforeTakeVideo'
       && (this.state.mode === 'PHOTO' || this.state.mode === 'VIDEO'))) {
       return SHOW_NOT_TAKE_VIDEO_CANVAS
     } else if (this.state.mode === 'VIDEO'
-      && (this.state.isShowZoomText || this.state.videoState !== 'beforeTakeVideo')) {
+      && (this.isShowZoomText || this.state.videoState !== 'beforeTakeVideo')) {
       return SHOW_TAKING_VIDEO_CANVAS
     } else {
       return SHOW_FOLD_CANVAS
@@ -134,21 +137,21 @@ export struct ZoomViewLand {
   }
 
   private addZoomRatio(): void {
-    let curZoomRatio = this.state.zoomRatio + 0.1
-    if (curZoomRatio > this.state.maxZoomRatio) {
-      curZoomRatio = this.state.maxZoomRatio
+    this.curZoomRatio = this.zoomRatio + 0.1
+    if (this.curZoomRatio > this.state.maxZoomRatio) {
+      this.curZoomRatio = this.state.maxZoomRatio
     }
-    this.state.updateZoomRatio(curZoomRatio)
+    this.state.updateZoomRatio(this.curZoomRatio)
     this.state.updateShowZoomFlag(true)
     this.triggerRebuildNum = this.triggerRebuildNum + 0.0001
   }
 
   private subtractZoomRatio(): void {
-    let curZoomRatio = this.state.zoomRatio - 0.1
-    if (curZoomRatio < this.state.minZoomRatio) {
-      curZoomRatio = this.state.minZoomRatio
+    this.curZoomRatio = this.zoomRatio - 0.1
+    if (this.curZoomRatio < this.state.minZoomRatio) {
+      this.curZoomRatio = this.state.minZoomRatio
     }
-    this.state.updateZoomRatio(curZoomRatio)
+    this.state.updateZoomRatio(this.curZoomRatio)
     this.state.updateShowZoomFlag(true)
     this.triggerRebuildNum = this.triggerRebuildNum - 0.0001
   }
@@ -235,8 +238,8 @@ export struct ZoomViewLand {
   private lpgOnAction(event: GestureEvent): void {
     this.clearTimer()
     this.state.updateShowZoomFlag(true)
-    this.baseZoomRatio = this.state.zoomRatio
-    this.offsetY = (this.state.zoomRatio - 1) * this.getZoomOffsetUnit()
+    this.baseZoomRatio = this.zoomRatio
+    this.offsetY = (this.zoomRatio - 1) * this.getZoomOffsetUnit()
     this.lpgExp = true
     this.pgExp = false
     this.triggerRebuildNum = this.triggerRebuildNum + 0.0001
@@ -259,7 +262,7 @@ export struct ZoomViewLand {
     this.clearTimer()
     this.state.updateShowZoomFlag(true)
     this.state.updateShowZoomLabelValue(false)
-    this.baseZoomRatio = this.state.zoomRatio
+    this.baseZoomRatio = this.zoomRatio
     this.pgExp = true
     this.lpgExp = false
   }
@@ -290,7 +293,7 @@ export struct ZoomViewLand {
       this.lpgExp = false
 
       let y = event.touches[0].y
-      let zoomRatio = this.state.zoomRatio
+      let zoomRatio = this.zoomRatio
       if (this.state.videoState === 'beforeTakeVideo' && this.getCurrentCanvasType() === SHOW_NOT_TAKE_VIDEO_CANVAS) {
         if (y < vp2px(36)) {
           zoomRatio = this.state.maxZoomRatio
@@ -323,10 +326,10 @@ export struct ZoomViewLand {
     if (this.getCurrentCanvasType() === SHOW_TAKING_VIDEO_CANVAS) {
       return this.touchedOffsetY
     }
-    if (this.offsetY === 0 && this.state.zoomRatio !== 1) {
-      this.offsetY = (this.state.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
+    if (this.offsetY === 0 && this.zoomRatio !== 1) {
+      this.offsetY = (this.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
     }
-    if (this.state.zoomRatio === 1 && this.offsetY !== 0) {
+    if (this.zoomRatio === 1 && this.offsetY !== 0) {
       this.offsetY = 0
     }
     let padding = this.getPadding()
@@ -366,14 +369,14 @@ export struct ZoomViewLand {
   private updateZoomRatio(): void {
     let padding = this.getPadding()
     let fullHeight = this.notTakeVideoExtCanvasHeight - padding * 2 - this.mainDotRadius * 2
-    let curZoomRatio = (this.offsetY / fullHeight) * (this.state.maxZoomRatio - this.state.minZoomRatio) + this.state.minZoomRatio
-    if (curZoomRatio > this.state.maxZoomRatio) {
-      curZoomRatio = this.state.maxZoomRatio
+    this.curZoomRatio = (this.offsetY / fullHeight) * (this.state.maxZoomRatio - this.state.minZoomRatio) + this.state.minZoomRatio
+    if (this.curZoomRatio > this.state.maxZoomRatio) {
+      this.curZoomRatio = this.state.maxZoomRatio
     }
-    if (curZoomRatio < this.state.minZoomRatio) {
-      curZoomRatio = this.state.minZoomRatio
+    if (this.curZoomRatio < this.state.minZoomRatio) {
+      this.curZoomRatio = this.state.minZoomRatio
     }
-    this.state.updateZoomRatio(curZoomRatio)
+    this.state.updateZoomRatio(this.curZoomRatio)
   }
 
   private getPadding(): number {
@@ -387,73 +390,178 @@ export struct ZoomViewLand {
   }
 
   private getZoomText() {
-    return `${Number(this.state.zoomRatio.toFixed(1))}x`
+    return `${Number(this.zoomRatio.toFixed(1))}x`
   }
 
   private getZoomBtnRadius(): number {
-    if (!this.state.showZoomLabelValue) {
+    if (!this.showZoomLabelValue) {
       return 17.25
     } else {
       return 15.25
     }
   }
 
+  private onZoomRatioRefresh() {
+    if (this.getCurrentCanvasType() === this.refreshSwitchCanvas) {
+      this.refreshCanvas(this.refreshSwitchCanvas)
+    }
+  }
+
+  private canvasInit(mType: number) {
+    this.refreshSwitchCanvas = mType
+    this.refreshCanvas(mType)
+  }
+
+  private refreshCanvas(mType: number) {
+    switch (mType) {
+      case SHOW_NOT_TAKE_VIDEO_CANVAS:
+        this.notTakeVideoCanvas();
+        break;
+      case SHOW_TAKING_VIDEO_CANVAS:
+        this.takingVideoCanvas();
+        break;
+      default:
+        this.foldCanvas()
+    }
+  }
+
+  private notTakeVideoCanvas() {
+    this.notTakeVideoExtCanvasCxt.clearRect(0, 0, this.canvasWidth, this.notTakeVideoExtCanvasHeight)
+    this.notTakeVideoExtOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.notTakeVideoExtCanvasHeight)
+    this.notTakeVideoExtOffCanvasCxt.strokeStyle = '#ffffff'
+    this.notTakeVideoExtOffCanvasCxt.fillStyle = '#ffffff'
+    this.notTakeVideoExtOffCanvasCxt.lineWidth = 1.5
+    this.notTakeVideoExtOffCanvasCxt.beginPath()
+    this.notTakeVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, this.getZoomBtnCenterY(), this.getZoomBtnRadius(), 0, 6.28)
+    this.notTakeVideoExtOffCanvasCxt.stroke()
+    if (this.showZoomLabelValue) {
+      this.notTakeVideoExtOffCanvasCxt.font = `bold ${vp2px(11)}px`
+      this.notTakeVideoExtOffCanvasCxt.textAlign = 'center'
+      this.notTakeVideoExtOffCanvasCxt.fillText(this.getZoomText(), this.canvasWidth / 2, this.getZoomBtnCenterY() + 5)
+    } else {
+      this.notTakeVideoExtOffCanvasCxt.beginPath()
+      this.notTakeVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, this.getZoomBtnCenterY(), this.centerDotRadius, 0, 6.28)
+      this.notTakeVideoExtOffCanvasCxt.fill()
+    }
+
+    let spotCount = (this.notTakeVideoExtCanvasHeight - this.getPadding() * 2 - this.mainDotRadius * 4 - this.dotSpacing) / (this.dotSpacing + this.secDotRadius * 2) + 2
+    for (let i = 0; i < spotCount; i++) {
+      let spotCenter = 0
+      let spotRadius = 0
+      if (i === 0) {
+        spotRadius = this.mainDotRadius
+        spotCenter = this.notTakeVideoExtCanvasHeight - this.getPadding() - spotRadius
+        this.notTakeVideoExtOffCanvasCxt.font = `bold ${vp2px(11)}px`
+        this.notTakeVideoExtOffCanvasCxt.textAlign = 'right'
+        this.notTakeVideoExtOffCanvasCxt.fillText(`${this.state.minZoomRatio}x`,this.canvasWidth / 2 - (!this.showZoomLabelValue ? 26: 24), spotCenter)
+      } else if (i === spotCount - 1) {
+        spotRadius = this.mainDotRadius
+        spotCenter = this.getPadding() + spotRadius
+        this.notTakeVideoExtOffCanvasCxt.font = `bold ${vp2px(11)}px`
+        this.notTakeVideoExtOffCanvasCxt.textAlign = 'right'
+        this.notTakeVideoExtOffCanvasCxt.fillText(`${this.state.maxZoomRatio}x`,this.canvasWidth / 2 - (!this.showZoomLabelValue ? 26: 24), spotCenter)
+      } else {
+        spotRadius = this.secDotRadius
+        spotCenter = this.notTakeVideoExtCanvasHeight - this.getPadding() - this.mainDotRadius * 2 - (2 * i - 1) * this.secDotRadius - i * this.dotSpacing
+        this.notTakeVideoExtOffCanvasCxt.globalAlpha = 0.2
+      }
+      if (spotCenter < this.getZoomBtnCenterY() - this.getZoomBtnRadius() || spotCenter > this.getZoomBtnCenterY() + this.getZoomBtnRadius()) {
+        this.notTakeVideoExtOffCanvasCxt.beginPath()
+        this.notTakeVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, spotCenter, spotRadius, 0, 6.28)
+        this.notTakeVideoExtOffCanvasCxt.fill()
+      }
+      this.notTakeVideoExtOffCanvasCxt.globalAlpha = 1
+    }
+    this.notTakeVideoExtCanvasCxt.transferFromImageBitmap(this.notTakeVideoExtOffCanvasCxt.transferToImageBitmap())
+  }
+
+  private takingVideoCanvas() {
+    this.takingVideoExtCanvasCxt.clearRect(0, 0, this.canvasWidth, this.takingVideoExtCanvasHeight)
+    this.takingVideoExtOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.takingVideoExtCanvasHeight)
+    this.takingVideoExtOffCanvasCxt.strokeStyle = '#ffffff'
+    this.takingVideoExtOffCanvasCxt.fillStyle = '#ffffff'
+    this.takingVideoExtOffCanvasCxt.lineWidth = 1.5
+    this.takingVideoExtOffCanvasCxt.beginPath()
+    this.takingVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, this.getZoomBtnCenterY(), this.getZoomBtnRadius(), 0, 6.28)
+    this.takingVideoExtOffCanvasCxt.stroke()
+    if (this.isShowZoomText) {
+      this.takingVideoExtOffCanvasCxt.beginPath()
+      this.takingVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, this.getZoomBtnCenterY(), this.centerDotRadius, 0, 6.28)
+      this.takingVideoExtOffCanvasCxt.fill()
+    } else {
+      this.takingVideoExtOffCanvasCxt.font = `bold ${vp2px(11)}px`
+      this.takingVideoExtOffCanvasCxt.textAlign = 'center'
+      this.takingVideoExtOffCanvasCxt.fillText(this.getZoomText(), this.canvasWidth / 2, this.getZoomBtnCenterY() + 5)
+    }
+
+    let spotCount = 30
+    for (let i = 0; i < spotCount; i++) {
+      let spotCenter = 0
+      let spotRadius = 0
+      spotRadius = this.secDotRadius
+      spotCenter = this.getPadding() + (2 * i + 1) * this.secDotRadius + i * this.dotSpacing
+      this.takingVideoExtOffCanvasCxt.globalAlpha = 0.2
+      if (spotCenter < this.getZoomBtnCenterY() - this.getZoomBtnRadius() || spotCenter > this.getZoomBtnCenterY() + this.getZoomBtnRadius()) {
+        this.takingVideoExtOffCanvasCxt.beginPath()
+        this.takingVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, spotCenter, spotRadius, 0, 6.28)
+        this.takingVideoExtOffCanvasCxt.fill()
+      }
+      this.takingVideoExtOffCanvasCxt.globalAlpha = 1
+    }
+
+    this.takingVideoExtCanvasCxt.transferFromImageBitmap(this.takingVideoExtOffCanvasCxt.transferToImageBitmap())
+  }
+
+  private foldCanvas() {
+    this.foldCanvasCxt.clearRect(0, 0, this.canvasWidth, this.foldCanvasHeight)
+    this.foldOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.foldCanvasHeight)
+    this.foldOffCanvasCxt.strokeStyle = '#ffffff'
+    this.foldOffCanvasCxt.fillStyle = '#ffffff'
+    this.foldOffCanvasCxt.lineWidth = 1.5
+    this.foldOffCanvasCxt.beginPath()
+    this.foldOffCanvasCxt.arc(this.canvasWidth / 2, this.foldCanvasHeight / 2, this.getZoomBtnRadius(), 0, 6.28)
+    this.foldOffCanvasCxt.stroke()
+
+    this.foldOffCanvasCxt.font = `bold ${vp2px(10)}px`
+    this.foldOffCanvasCxt.textAlign = 'center'
+    this.foldOffCanvasCxt.fillText(this.getZoomText(), this.canvasWidth / 2, this.foldCanvasHeight / 2 + 3)
+
+    let fullHeight = this.foldCanvasHeight / 2 - this.mainDotRadius
+    let spotCount = (fullHeight - this.mainDotRadius * 2 - this.dotSpacing) / (this.dotSpacing + this.secDotRadius * 2) + 2
+    let spotOffset = (this.zoomRatio === this.state.maxZoomRatio) ? this.foldCanvasHeight / 2 + fullHeight
+                                                                  : this.foldCanvasHeight / 2
+    for (let i = 0; i < spotCount; i++) {
+      let spotCenter = 0
+      let spotRadius = 0
+      if (i === 0) {
+        spotRadius = this.mainDotRadius
+        spotCenter = spotOffset - spotRadius
+      } else if (i === spotCount - 1) {
+        spotRadius = this.mainDotRadius
+        spotCenter = spotOffset - this.mainDotRadius * 2 - (i - 1) * this.dotSpacing - (2 * i - 1) * this.secDotRadius + this.secDotRadius - spotRadius
+      } else {
+        spotRadius = this.secDotRadius
+        spotCenter = spotOffset - this.mainDotRadius * 2 - (i - 1) * this.dotSpacing - (2 * i - 1) * this.secDotRadius - spotRadius
+        this.foldOffCanvasCxt.globalAlpha = 0.2
+      }
+      if (spotCenter > this.foldCanvasHeight / 2 + this.getZoomBtnRadius() || spotCenter < this.foldCanvasHeight / 2 - this.getZoomBtnRadius()) {
+        this.foldOffCanvasCxt.beginPath()
+        this.foldOffCanvasCxt.arc(this.canvasWidth / 2, spotCenter, spotRadius, 0, 6.28)
+        this.foldOffCanvasCxt.fill()
+      }
+      this.foldOffCanvasCxt.globalAlpha = 1
+    }
+    this.foldCanvasCxt.transferFromImageBitmap(this.foldOffCanvasCxt.transferToImageBitmap())
+  }
+
   build() {
     Stack({ alignContent: Alignment.Start}) {
-      Stack({ alignContent: Alignment.Top }).width(this.triggerRebuildNum).height(this.offsetY + this.touchedOffsetY + this.state.zoomRatio).visibility(Visibility.None)
+      Stack({ alignContent: Alignment.Top }).width(this.triggerRebuildNum).height(this.offsetY + this.touchedOffsetY + this.zoomRatio).visibility(Visibility.None)
       if (this.getCurrentCanvasType() === SHOW_NOT_TAKE_VIDEO_CANVAS) {
         Canvas(this.notTakeVideoExtCanvasCxt)
           .width(this.canvasWidth)
           .height(this.notTakeVideoExtCanvasHeight)
-          .onReady(() => {
-            this.notTakeVideoExtCanvasCxt.clearRect(0, 0, this.canvasWidth, this.notTakeVideoExtCanvasHeight)
-            this.notTakeVideoExtOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.notTakeVideoExtCanvasHeight)
-            this.notTakeVideoExtOffCanvasCxt.strokeStyle = '#ffffff'
-            this.notTakeVideoExtOffCanvasCxt.fillStyle = '#ffffff'
-            this.notTakeVideoExtOffCanvasCxt.lineWidth = 1.5
-            this.notTakeVideoExtOffCanvasCxt.beginPath()
-            this.notTakeVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, this.getZoomBtnCenterY(), this.getZoomBtnRadius(), 0, 6.28)
-            this.notTakeVideoExtOffCanvasCxt.stroke()
-            if (this.state.showZoomLabelValue) {
-              this.notTakeVideoExtOffCanvasCxt.font = `bold ${vp2px(11)}px`
-              this.notTakeVideoExtOffCanvasCxt.textAlign = 'center'
-              this.notTakeVideoExtOffCanvasCxt.fillText(this.getZoomText(), this.canvasWidth / 2, this.getZoomBtnCenterY() + 5)
-            } else {
-              this.notTakeVideoExtOffCanvasCxt.beginPath()
-              this.notTakeVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, this.getZoomBtnCenterY(), this.centerDotRadius, 0, 6.28)
-              this.notTakeVideoExtOffCanvasCxt.fill()
-            }
-
-            let spotCount = (this.notTakeVideoExtCanvasHeight - this.getPadding() * 2 - this.mainDotRadius * 4 - this.dotSpacing) / (this.dotSpacing + this.secDotRadius * 2) + 2
-            for (let i = 0; i < spotCount; i++) {
-              let spotCenter = 0
-              let spotRadius = 0
-              if (i === 0) {
-                spotRadius = this.mainDotRadius
-                spotCenter = this.notTakeVideoExtCanvasHeight - this.getPadding() - spotRadius
-                this.notTakeVideoExtOffCanvasCxt.font = `bold ${vp2px(11)}px`
-                this.notTakeVideoExtOffCanvasCxt.textAlign = 'right'
-                this.notTakeVideoExtOffCanvasCxt.fillText(`${this.state.minZoomRatio}x`,this.canvasWidth / 2 - (!this.state.showZoomLabelValue ? 26: 24), spotCenter)
-              } else if (i === spotCount - 1) {
-                spotRadius = this.mainDotRadius
-                spotCenter = this.getPadding() + spotRadius
-                this.notTakeVideoExtOffCanvasCxt.font = `bold ${vp2px(11)}px`
-                this.notTakeVideoExtOffCanvasCxt.textAlign = 'right'
-                this.notTakeVideoExtOffCanvasCxt.fillText(`${this.state.maxZoomRatio}x`,this.canvasWidth / 2 - (!this.state.showZoomLabelValue ? 26: 24), spotCenter)
-              } else {
-                spotRadius = this.secDotRadius
-                spotCenter = this.notTakeVideoExtCanvasHeight - this.getPadding() - this.mainDotRadius * 2 - (2 * i - 1) * this.secDotRadius - i * this.dotSpacing
-                this.notTakeVideoExtOffCanvasCxt.globalAlpha = 0.2
-              }
-              if (spotCenter < this.getZoomBtnCenterY() - this.getZoomBtnRadius() || spotCenter > this.getZoomBtnCenterY() + this.getZoomBtnRadius()) {
-                this.notTakeVideoExtOffCanvasCxt.beginPath()
-                this.notTakeVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, spotCenter, spotRadius, 0, 6.28)
-                this.notTakeVideoExtOffCanvasCxt.fill()
-              }
-              this.notTakeVideoExtOffCanvasCxt.globalAlpha = 1
-            }
-            this.notTakeVideoExtCanvasCxt.transferFromImageBitmap(this.notTakeVideoExtOffCanvasCxt.transferToImageBitmap())
-          })
+          .onReady(() => this.canvasInit(SHOW_NOT_TAKE_VIDEO_CANVAS))
           .gesture(
             GestureGroup(
               GestureMode.Parallel,
@@ -482,42 +590,7 @@ export struct ZoomViewLand {
           Canvas(this.takingVideoExtCanvasCxt)
             .width(this.canvasWidth)
             .height(this.takingVideoExtCanvasHeight)
-            .onReady(() => {
-              this.takingVideoExtCanvasCxt.clearRect(0, 0, this.canvasWidth, this.takingVideoExtCanvasHeight)
-              this.takingVideoExtOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.takingVideoExtCanvasHeight)
-              this.takingVideoExtOffCanvasCxt.strokeStyle = '#ffffff'
-              this.takingVideoExtOffCanvasCxt.fillStyle = '#ffffff'
-              this.takingVideoExtOffCanvasCxt.lineWidth = 1.5
-              this.takingVideoExtOffCanvasCxt.beginPath()
-              this.takingVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, this.getZoomBtnCenterY(), this.getZoomBtnRadius(), 0, 6.28)
-              this.takingVideoExtOffCanvasCxt.stroke()
-              if (this.state.isShowZoomText) {
-                this.takingVideoExtOffCanvasCxt.beginPath()
-                this.takingVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, this.getZoomBtnCenterY(), this.centerDotRadius, 0, 6.28)
-                this.takingVideoExtOffCanvasCxt.fill()
-              } else {
-                this.takingVideoExtOffCanvasCxt.font = `bold ${vp2px(11)}px`
-                this.takingVideoExtOffCanvasCxt.textAlign = 'center'
-                this.takingVideoExtOffCanvasCxt.fillText(this.getZoomText(), this.canvasWidth / 2, this.getZoomBtnCenterY() + 5)
-              }
-
-              let spotCount = 30
-              for (let i = 0; i < spotCount; i++) {
-                let spotCenter = 0
-                let spotRadius = 0
-                spotRadius = this.secDotRadius
-                spotCenter = this.getPadding() + (2 * i + 1) * this.secDotRadius + i * this.dotSpacing
-                this.takingVideoExtOffCanvasCxt.globalAlpha = 0.2
-                if (spotCenter < this.getZoomBtnCenterY() - this.getZoomBtnRadius() || spotCenter > this.getZoomBtnCenterY() + this.getZoomBtnRadius()) {
-                  this.takingVideoExtOffCanvasCxt.beginPath()
-                  this.takingVideoExtOffCanvasCxt.arc(this.canvasWidth / 2, spotCenter, spotRadius, 0, 6.28)
-                  this.takingVideoExtOffCanvasCxt.fill()
-                }
-                this.takingVideoExtOffCanvasCxt.globalAlpha = 1
-              }
-
-              this.takingVideoExtCanvasCxt.transferFromImageBitmap(this.takingVideoExtOffCanvasCxt.transferToImageBitmap())
-            })
+            .onReady(() => this.canvasInit(SHOW_TAKING_VIDEO_CANVAS))
             .gesture(
             GestureGroup(
               GestureMode.Parallel,
@@ -549,47 +622,7 @@ export struct ZoomViewLand {
         Canvas(this.foldCanvasCxt)
           .width(this.canvasWidth)
           .height(this.foldCanvasHeight)
-          .onReady(() => {
-            this.foldCanvasCxt.clearRect(0, 0, this.canvasWidth, this.foldCanvasHeight)
-            this.foldOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.foldCanvasHeight)
-            this.foldOffCanvasCxt.strokeStyle = '#ffffff'
-            this.foldOffCanvasCxt.fillStyle = '#ffffff'
-            this.foldOffCanvasCxt.lineWidth = 1.5
-            this.foldOffCanvasCxt.beginPath()
-            this.foldOffCanvasCxt.arc(this.canvasWidth / 2, this.foldCanvasHeight / 2, this.getZoomBtnRadius(), 0, 6.28)
-            this.foldOffCanvasCxt.stroke()
-
-            this.foldOffCanvasCxt.font = `bold ${vp2px(10)}px`
-            this.foldOffCanvasCxt.textAlign = 'center'
-            this.foldOffCanvasCxt.fillText(this.getZoomText(), this.canvasWidth / 2, this.foldCanvasHeight / 2 + 3)
-
-            let fullHeight = this.foldCanvasHeight / 2 - this.mainDotRadius
-            let spotCount = (fullHeight - this.mainDotRadius * 2 - this.dotSpacing) / (this.dotSpacing + this.secDotRadius * 2) + 2
-            let spotOffset = (this.state.zoomRatio === this.state.maxZoomRatio) ? this.foldCanvasHeight / 2 + fullHeight
-                                                                                : this.foldCanvasHeight / 2
-            for (let i = 0; i < spotCount; i++) {
-              let spotCenter = 0
-              let spotRadius = 0
-              if (i === 0) {
-                spotRadius = this.mainDotRadius
-                spotCenter = spotOffset - spotRadius
-              } else if (i === spotCount - 1) {
-                spotRadius = this.mainDotRadius
-                spotCenter = spotOffset - this.mainDotRadius * 2 - (i - 1) * this.dotSpacing - (2 * i - 1) * this.secDotRadius + this.secDotRadius - spotRadius
-              } else {
-                spotRadius = this.secDotRadius
-                spotCenter = spotOffset - this.mainDotRadius * 2 - (i - 1) * this.dotSpacing - (2 * i - 1) * this.secDotRadius - spotRadius
-                this.foldOffCanvasCxt.globalAlpha = 0.2
-              }
-              if (spotCenter > this.foldCanvasHeight / 2 + this.getZoomBtnRadius() || spotCenter < this.foldCanvasHeight / 2 - this.getZoomBtnRadius()) {
-                this.foldOffCanvasCxt.beginPath()
-                this.foldOffCanvasCxt.arc(this.canvasWidth / 2, spotCenter, spotRadius, 0, 6.28)
-                this.foldOffCanvasCxt.fill()
-              }
-              this.foldOffCanvasCxt.globalAlpha = 1
-            }
-            this.foldCanvasCxt.transferFromImageBitmap(this.foldOffCanvasCxt.transferToImageBitmap())
-          })
+          .onReady(() => this.canvasInit(SHOW_FOLD_CANVAS))
           .gesture(
             GestureGroup(
               GestureMode.Parallel,

@@ -28,7 +28,11 @@ import { SettingManager } from '../setting/SettingManager'
 import { CameraPlatformCapability } from './CameraPlatformCapability'
 import Trace from '../utils/Trace'
 
+const DEFAULT_VIDEO_FRAME_RATE = 30
+
 export interface FunctionCallBack {
+  onCapturePhotoOutput(): void
+
   onCaptureSuccess(thumbnail: any, resourceUri: any): void
 
   onCaptureFailure(): void
@@ -65,7 +69,7 @@ export class CameraService {
   private mPhotoOutPut!: camera.PhotoOutput
   private mImageReceiver!: image.ImageReceiver
   private mVideoOutput!: camera.VideoOutput
-  private mVideoRecorder!: media.VideoRecorder
+  private mAVRecorder!: media.AVRecorder
   private mThumbnail!: image.PixelMap
   private mIsStartRecording = false
   private mSaveCameraAsset = new SaveCameraAsset()
@@ -299,7 +303,8 @@ export class CameraService {
     globalThis.isSessionCreating = true
     this.mCaptureSession = await this.mCameraManager.createCaptureSession()
     globalThis.isSessionCreating = false
-    Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput}, videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
+    Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput},
+    videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
     Log.info(`${this.TAG} createSession beginConfig.`)
     Trace.start(Trace.STREAM_DISTRIBUTION)
     try {
@@ -412,13 +417,13 @@ export class CameraService {
       functionCallBack.onRecodeError(`createVideoOutput error: mFileAssetId undefined`)
     }
     this.mVideoConfig.url = `fd://${this.mFileAssetId.toString()}`
-    await media.createVideoRecorder().then((recorder) => {
-      Log.info(`${this.TAG} createVideoOutput createVideoRecorder record: ${recorder}`)
-      this.mVideoRecorder = recorder
+    await media.createAVRecorder().then((recorder) => {
+      Log.info(`${this.TAG} createVideoOutput createAVRecorder record: ${recorder}`)
+      this.mAVRecorder = recorder
     })
     const size = SettingManager.getInstance().getVideoSize()
-    if (this.mVideoRecorder != null) {
-      this.mVideoRecorder.on('error', (error) => {
+    if (this.mAVRecorder != null) {
+      this.mAVRecorder.on('error', (error) => {
         if (error) {
           Log.error(`${this.TAG} createVideoOutput error: ${error}`)
           functionCallBack.onRecodeError(`createVideoOutput error: ${error}`)
@@ -442,12 +447,12 @@ export class CameraService {
           this.mVideoConfig.rotation = 270
         }
       }
-      Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare called.`)
+      Log.info(`${this.TAG} createVideoOutput AVRecorder.prepare called.`)
       Log.info(`${this.TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`)
-      await this.mVideoRecorder.prepare(this.mVideoConfig)
-      Log.info(`${this.TAG} createVideoOutput videoRecorder.prepare succeed.`)
+      await this.mAVRecorder.prepare(this.mVideoConfig)
+      Log.info(`${this.TAG} createVideoOutput AVRecorder.prepare succeed.`)
     } else {
-      Log.error(`${this.TAG} createVideoOutput createVideoRecorder failed.`)
+      Log.error(`${this.TAG} createVideoOutput createAVRecorder failed.`)
       return
     }
 
@@ -459,10 +464,11 @@ export class CameraService {
       Log.info(`${this.TAG} videoProfiles length.` + videoProfiles.length)
       profileVideo = videoProfiles.find(item =>
       item.size.width === size.width && item.size.height === size.height
+      && item.frameRateRange.min === DEFAULT_VIDEO_FRAME_RATE && item.frameRateRange.max === DEFAULT_VIDEO_FRAME_RATE
       )
     }
 
-    const videoId = await this.mVideoRecorder.getInputSurface()
+    const videoId = await this.mAVRecorder.getInputSurface()
     Log.info(`${this.TAG} createVideoOutput profileVideo =  ${JSON.stringify(profileVideo)}.`)
     this.mVideoOutput = await this.mCameraManager.createVideoOutput(profileVideo, videoId)
     Log.info(`${this.TAG} createVideoOutput invoke X.`)
@@ -504,8 +510,8 @@ export class CameraService {
     await this.mVideoOutput.start().then(() => {
       Log.info(`${this.TAG} videoOutput.start()`)
     })
-    await this.mVideoRecorder.start().then(() => {
-      Log.info(`${this.TAG} videoRecorder.start()`)
+    await this.mAVRecorder.start().then(() => {
+      Log.info(`${this.TAG} AVRecorder.start()`)
     })
     this.mIsStartRecording = true
     Log.info(`${this.TAG} StartRecording invoke X.`)
@@ -518,17 +524,17 @@ export class CameraService {
     Trace.start(Trace.STOP_RECORDING)
     let stopRecordingTime = new Date().getTime()
     Log.info(`${this.TAG} stopRecording invoke E.`)
-    if (!this.mVideoOutput || !this.mVideoRecorder) {
+    if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
-              videoRecorder: ${this.mVideoRecorder} .`)
+              AVRecorder: ${this.mAVRecorder} .`)
       return
     }
     this.mIsStartRecording = false
     try {
-      await this.mVideoRecorder.stop()
-      await this.mVideoRecorder.release()
+      await this.mAVRecorder.stop()
+      await this.mAVRecorder.release()
     } catch (err) {
-      Log.error(`${this.TAG} stop videoRecorder ${err}`)
+      Log.error(`${this.TAG} stop AVRecorder ${err}`)
     }
 
     try {
@@ -555,42 +561,42 @@ export class CameraService {
 
   public async pauseRecording() {
     Log.info(`${this.TAG} pauseRecording invoke E.`)
-    if (!this.mVideoOutput || !this.mVideoRecorder) {
+    if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
-              videoRecorder: ${this.mVideoRecorder} .`)
+              AVRecorder: ${this.mAVRecorder} .`)
       return
     }
-    await this.mVideoRecorder.pause()
+    await this.mAVRecorder.pause()
     await this.mVideoOutput.stop()
     Log.info(`${this.TAG} pauseRecording invoke X.`)
   }
 
   public async resumeRecording() {
     Log.info(`${this.TAG} resumeRecording invoke E.`)
-    if (!this.mVideoOutput || !this.mVideoRecorder) {
+    if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
-              videoRecorder: ${this.mVideoRecorder} .`)
+              AVRecorder: ${this.mAVRecorder} .`)
       return
     }
     await this.mVideoOutput.start().then(() => {
       Log.info(`${this.TAG} videoOutput.start()`)
     })
-    await this.mVideoRecorder.resume()
+    await this.mAVRecorder.resume()
     Log.debug(`${this.TAG} resumeRecording invoke X.`)
   }
 
   public async releaseRecording() {
     Log.info(`${this.TAG} releaseRecording invoke E.`)
-    if (!this.mVideoRecorder) {
-      Log.info(`${this.TAG} video recorder has not been created.`)
+    if (!this.mAVRecorder) {
+      Log.info(`${this.TAG} AVRecorder has not been created.`)
       return
     }
     if (this.mIsStartRecording) {
       await this.stopRecording()
     }
-    await this.mVideoRecorder.release().then(() => {
-      Log.info(`${this.TAG} videoRecorder.release() success.`)
-      this.mVideoRecorder = undefined
+    await this.mAVRecorder.release().then(() => {
+      Log.info(`${this.TAG} AVRecorder.release() success.`)
+      this.mAVRecorder = undefined
     })
     Log.debug(`${this.TAG} releaseRecording invoke X.`)
   }
@@ -609,13 +615,13 @@ export class CameraService {
   }
 
   public async setZoomRatio(zoomRatio: number) {
-    Log.info(`${this.TAG} setZoomRatio invoke E.`)
+    Log.info(`${this.TAG} setZoomRatio invoke E ${zoomRatio}`)
     if (!this.mCaptureSession) {
       Log.info(`${this.TAG} setZoomRatio mCaptureSession is release`)
       return
     }
     await this.mCaptureSession.setZoomRatio(zoomRatio)
-    Log.debug(`${this.TAG} setZoomRatio invoke X.`)
+    Log.info(`${this.TAG} setZoomRatio invoke X.`)
   }
 
   public async getZoomRatio(): Promise<number> {
@@ -624,7 +630,7 @@ export class CameraService {
       Log.info(`${this.TAG} getZoomRatio mCaptureSession is release`)
       return 1;
     }
-    Log.debug(`${this.TAG} getZoomRatio invoke X.`)
+    Log.info(`${this.TAG} getZoomRatio invoke X.`)
     return await this.mCaptureSession.getZoomRatio()
   }
 
@@ -654,7 +660,7 @@ export class CameraService {
       Log.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
       functionCallBack.thumbnail(thumbnail)
     })
-    Log.debug(`${this.TAG} getThumbnail invoke X.`)
+    Log.info(`${this.TAG} getThumbnail invoke X.`)
     return this.mThumbnail
   }
 

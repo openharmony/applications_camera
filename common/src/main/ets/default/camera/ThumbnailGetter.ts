@@ -31,7 +31,7 @@ export default class ThumbnailGetter {
     fetchOp = {
       selections: `${fileKeyObj.RELATIVE_PATH}=?`,
       selectionArgs: [publicPath],
-      order: fileKeyObj.DATE_ADDED,
+      order: `${fileKeyObj.DATE_ADDED} DESC LIMIT 0, 1`
     }
 
     Log.log(`${this.TAG} getThumbnailInfo fetchOp: ${JSON.stringify(fetchOp)}`)
@@ -42,6 +42,7 @@ export default class ThumbnailGetter {
       return undefined
     }
     const lastFileAsset = await fetchFileResult.getLastObject()
+    await fetchFileResult.close()
     if (lastFileAsset == null) {
       Log.error(`${this.TAG} getThumbnailInfo lastFileAsset is null`)
       return undefined

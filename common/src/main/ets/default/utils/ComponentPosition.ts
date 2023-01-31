@@ -41,6 +41,16 @@ export default class ComponentPosition {
     return position
   }
 
+  public static previewTabletPosition(screenWidth: number, screenHeight: number, previewWidth: number, previewHeight: number) {
+    Log.info(`${this.TAG} previewTabletPosition ` + previewHeight + previewWidth)
+    if ((screenHeight == previewHeight &&  previewWidth > previewHeight)) {
+      return {x: 0, y: 0}
+    }
+    let position = (Math.abs(screenWidth - previewWidth)  < 1) ? { x: 0, y: (screenHeight - previewHeight) / 2}
+                                                               : { x: (screenWidth - previewWidth) / 2, y: 0 }
+    return position
+  }
+
   public static footBarPosition(screenWidth: number, screenHeight: number, previewWidth: number, previewHeight: number) {
     Log.info(`${this.TAG} footBarPosition `)
     if (screenWidth == previewWidth && (3 * previewWidth > 4 * previewHeight)) {
@@ -68,7 +78,7 @@ export default class ComponentPosition {
     let yPosition: number = (screenWidth * 9 <= screenHeight * 16) ?
       (screenHeight / 2 + screenWidth * 9 / 32 - this.tarBarHeight) :
       (screenHeight - this.tarBarHeight - this.tabBarBottomDistance)
-    let position = { x: xPosition, y: yPosition}
+    let position = { x: xPosition, y: 44}
     return position
   }
 

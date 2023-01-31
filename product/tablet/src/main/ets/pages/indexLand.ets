@@ -38,8 +38,11 @@ import { Constants } from '../../../../../../common/src/main/ets/default/utils/C
 import { SettingView } from './SettingView'
 import { PreferencesService, PersistType
 } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
 var cameraWorker = CameraWorker.getInstance()
+var mScreenLockManager = new ScreenLockManager()
 
 let indexState = (state: OhCombinedState) => {
   return {
@@ -53,7 +56,7 @@ let indexState = (state: OhCombinedState) => {
     isShowMoreList: state.ModeReducer.isShowMoreList,
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
     showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-    curCameraPosition: state.CameraReducer.curCameraPosition,
+    cameraPosition: state.CameraReducer.cameraPosition,
     isShowPinch: state.ZoomReducer.isShowPinch,
     xComponentWidth: state.PreviewReducer.xComponentWidth,
     xComponentHeight: state.PreviewReducer.xComponentHeight,
@@ -102,7 +105,13 @@ let indexDispatcher = (dispatch) => {
     },
     updateInitShowFlag: (initShowFlag: boolean) => {
       dispatch(Action.updateInitShowFlag(initShowFlag))
-    }
+    },
+    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
+      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
+    },
+    resetZoomRatio: () => {
+      dispatch(Action.changeZoomRatio(1))
+    },
   }
 }
 
@@ -111,7 +120,7 @@ PersistentStorage.PersistProp("storageCameraId", "")
 @Entry
 @Component
 struct Index {
-  private TAG: string = '[Index]:'
+  private TAG: string = '[IndexLand]:'
   private modeConfig: ModeConfig = new ModeConfig()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: any = {}
@@ -125,6 +134,7 @@ struct Index {
     let dbStore = RdbStoreManager.getInstance()
     dbStore.initRdbConfig()
     getStore().connect(indexState, indexDispatcher)(this.state)
+    mScreenLockManager.init()
 
     if (!this.state.permissionFlag) {
       let permissionList: Array<string> = [
@@ -139,24 +149,30 @@ struct Index {
         "ohos.permission.APPROXIMATELY_LOCATION"
       ]
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
-      globalThis.cameraAbilityContext.requestPermissionsFromUser(permissionList).then((data) => {
-        Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`)
-        Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`)
-        let sum = 0
-        for (let i = 0; i < data.authResults.length; i++) {
-          sum += data.authResults[i]
-        }
-        if (sum >= 0) {
-          globalThis.permissionFlag = true
-          this.state.setPermissionFlag(true)
-        } else {
-          globalThis.permissionFlag = false
-          this.state.setPermissionFlag(false)
-        }
-        Log.info(`${this.TAG} request permissions result: ${globalThis.permissionFlag}`)
-      }, (err) => {
-        Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`)
-      });
+      let atManager = abilityAccessCtrl.createAtManager()
+      try {
+        // @ts-ignore
+        atManager.requestPermissionsFromUser(globalThis.cameraAbilityContext, permissionList).then((data) => {
+          Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`)
+          Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`)
+          let sum = 0
+          for (let i = 0; i < data.authResults.length; i++) {
+            sum += data.authResults[i]
+          }
+          if (sum >= 0) {
+            globalThis.permissionFlag = true
+            this.state.setPermissionFlag(true)
+          } else {
+            globalThis.permissionFlag = false
+            this.state.setPermissionFlag(false)
+          }
+          Log.info(`${this.TAG} request permissions result: ${globalThis.permissionFlag}`)
+        }, (err) => {
+          Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`)
+        });
+      } catch (error) {
+        Log.info(`${this.TAG} catch error: ${JSON.stringify(error)}`)
+      }
     }
 
     if (globalThis.cameraFormParam != undefined) {
@@ -167,6 +183,10 @@ struct Index {
 
     globalThis.stopCameraRecording = (() => {
       this.stopCameraRecording()
+    })
+
+    globalThis.resetZoomRatio = (() => {
+      this.state.resetZoomRatio()
     })
 
     if (AppStorage.Has(Constants.APP_KEY_WINDOW_SIZE)) {
@@ -191,64 +211,16 @@ struct Index {
   onPageShow(): void {
     Log.info(`${this.TAG} onPageShow E this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
     this.state.setPermissionFlag(globalThis.permissionFlag)
-    let curCameraId = AppStorage.Get<string>('storageCameraId')
-    if(curCameraId) this.state.initCameraPosition(curCameraId)
+    let cameraId = AppStorage.Get<string>('storageCameraId')
+    if(cameraId) this.state.initCameraPosition(cameraId)
+    Log.info(`${this.TAG} initCameraPosition ${cameraId}`)
     this.state.resetRecordingTime()
-    this.calledByFa()
     Log.info(`${this.TAG} onPageShow X`)
   }
 
-  private calledByFa(): void {
-    Log.info(`${this.TAG} calledByFa invoke E`)
-    let from: string = ""
-    let uri: string = ""
-
-    if (globalThis?.cameraNewWant) {
-      Log.debug((`${this.TAG} cameraNewWant: ${JSON.stringify(globalThis.cameraNewWant)}`))
-      if (globalThis.cameraNewWant?.parameters?.from) {
-        from = globalThis.cameraNewWant.parameters.from
-      }
-      if (globalThis.cameraNewWant?.parameters?.uri) {
-        uri = globalThis.cameraNewWant.parameters.uri
-      }
-    } else if (globalThis?.cameraAbilityWant) {
-      Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`)
-      if (globalThis.cameraAbilityWant?.parameters?.from) {
-        from = globalThis.cameraAbilityWant.parameters.from
-      }
-      if (globalThis.cameraAbilityWant?.parameters?.uri) {
-        uri = globalThis.cameraAbilityWant.parameters.uri
-      }
-    } else {
-      return
-    }
-    Log.info(`${this.TAG} from: ${from}  uri: ${uri}`)
-
-    if (from === "FA") {
-      Log.info(`from === "FA"`)
-      this.state.faCall(true)
-      switch (uri) {
-        case "capture":
-          this.state.initMode('PHOTO')
-          this.state.updateModeIndex(1)
-          break
-        case "video":
-          this.state.initMode('VIDEO')
-          this.state.updateModeIndex(2)
-          break
-        default:
-          Log.info(`${this.TAG} FA default`)
-          break
-      }
-    } else {
-      this.state.faCall(false)
-    }
-    Log.info(`${this.TAG} calledByFa invoke X: ${this.state.mode}`)
-  }
-
-  aboutToDisappear(): void {
-
-    Log.info(`${this.TAG} aboutToDisappear E`)
+  private onBackClicked() {
+    Log.info(`${this.TAG} onBackClicked E`)
+    this.terminateSelfWithResult()
   }
 
   onBackPress(): boolean {
@@ -274,7 +246,6 @@ struct Index {
   onPageHide(): void {
     Log.info(`${this.TAG} onPageHide E`)
     this.stopCameraRecording()
-    this.state.updateInitShowFlag(false)
     Log.info(`${this.TAG} onPageHide X`)
   }
 
@@ -295,7 +266,9 @@ struct Index {
       "resultCode": 200,
       "want": {
         "parameters": {
-          "imagePath": ""
+          "resourceUri": "",
+          "width": "",
+          "height": ""
         },
         "bundleName": "com.ohos.camera",
         "abilityName": "com.ohos.camera.MainAbility"
@@ -311,49 +284,50 @@ struct Index {
     });
   }
 
+  private componentVisibility(condition: boolean): Visibility {
+    return (!this.state.isShowtimeLapse && this.state.initShowFlag && condition) ? Visibility.Visible : Visibility.Hidden
+  }
+
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
-      if (this.state.permissionFlag) {
-        Column() {
-          PreviewAreaLand({ screenSize: $screenSize })
-        }.position(ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
-          this.state.xComponentWidth, this.state.xComponentHeight))
-
-        if (!this.state.isShowtimeLapse && this.state.initShowFlag) {
+      Column() {
+        PreviewAreaLand({ screenSize: $screenSize })
+      }
+      .position(this.state.isThirdPartyCall ? ComponentPosition.previewTabletPosition(this.screenSize.width, this.screenSize.height,
+        this.state.xComponentWidth, this.state.xComponentHeight) : ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
+        this.state.xComponentWidth, this.state.xComponentHeight))
+      Column() {
+        if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.cameraPosition !== 'FRONT') {
+          ZoomViewLand()
+        } else {
           Column() {
-            if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.curCameraPosition !== 'FRONT') {
-              ZoomViewLand()
-            } else {
-              Column() {
-              }.width(82).margin({ right: '20vp' })
-            }
-          }.zIndex(2).height('100%')
-          .position(ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
-          .visibility(!this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
-
-          Column(){
-            FootBarLand({ screenSize: $screenSize })
-          }.zIndex(2).height('100%')
-          .position(ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight))
-          .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
-
-          Column() {
-            TabBarLand()
-          }.zIndex(3)
-          .visibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue ? Visibility.Visible
-                                                                                                   : Visibility.Hidden)
-          .position(ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
-            this.state.xComponentWidth, this.state.xComponentHeight))
-
-          if (this.state.isShowMoreList) {
-            Column() {
-              MoreList()
-            }.zIndex(1).height('100%').width('100%')
-            .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
-          }
+          }.width(82).margin({ right: '20vp' })
         }
+      }.zIndex(2).height('100%')
+      .position(this.state.isThirdPartyCall ? {x: 984, y: 0} : ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
+        this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
+      .visibility(this.componentVisibility(!this.state.isShowPinch))
+
+      Column(){
+        FootBarLand({ screenSize: $screenSize })
+      }.zIndex(2).height('100%')
+      .position(this.state.isThirdPartyCall ? {x: 1124, y: 0} : ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
+        this.state.xComponentWidth, this.state.xComponentHeight))
+      .visibility(this.componentVisibility(this.state.showZoomLabelValue))
+
+      Column() {
+        TabBarLand({onBackClicked: () => this.onBackClicked(), screenSize: $screenSize})
+      }.zIndex(3)
+      .visibility(this.componentVisibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue))
+      .position(this.state.isThirdPartyCall ? {x: 0, y: 44} : ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
+      this.state.xComponentWidth, this.state.xComponentHeight))
+      .height(712)
+
+      if (this.state.isShowMoreList) {
+        Column() {
+          MoreList()
+        }.zIndex(1).height('100%').width('100%')
+        .visibility(this.componentVisibility(this.state.showZoomLabelValue))
       }
       if (this.state.isShowPageView) {
         SettingView().width('100%').height('100%').zIndex(4)

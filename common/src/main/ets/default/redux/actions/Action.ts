@@ -48,6 +48,7 @@ export class Action {
   public static readonly ACTION_SET_CAMERA_POSITION = 'ACTION_SET_CAMERA_POSITION'
   public static readonly ACTION_UPDATE_CAMERA_POSITION = 'ACTION_UPDATE_CAMERA_POSITION'
   public static readonly ACTION_CLOSE_CAMERA = 'ACTION_CLOSE_CAMERA'
+  public static readonly ACTION_UPDATE_CAMERA_STATUS = 'ACTION_UPDATE_CAMERA_STATUS'
 
   // Mode
   public static readonly ACTION_INIT_MODE = 'ACTION_INIT_MODE'
@@ -133,6 +134,7 @@ export class Action {
   public static readonly ACTION_UPDATE_SHOW_PINCH = 'ACTION_UPDATE_SHOW_PINCH'
   public static readonly ACTION_CLOSE_DIALOG = 'ACTION_CLOSE_DIALOG'
   public static readonly ACTION_SHOW_SETTING_VIEW = 'ACTION_SHOW_SETTING_VIEW'
+  public static readonly ACTION_CAPTURE_PHOTO_OUTPUT = 'ACTION_CAPTURE_PHOTO_OUTPUT'
 
 
   /** CONTEXT METHODS LIST **/
@@ -196,10 +198,10 @@ export class Action {
     }
   }
 
-  public static switchCamera(cameraId: string): ActionData {
+  public static switchCamera(cameraId: string, curMode?: string): ActionData {
     return {
       type: Action.ACTION_SWITCH_CAMERA,
-      data: { cameraId: cameraId }
+      data: { cameraId: cameraId, curMode: curMode }
     }
   }
 
@@ -214,6 +216,13 @@ export class Action {
     return {
       type: Action.ACTION_UPDATE_CAMERA_POSITION,
       data: { cameraPosition: cameraPosition }
+    }
+  }
+
+  public static updateCameraStatus(): ActionData {
+    return {
+      type: Action.ACTION_UPDATE_CAMERA_STATUS,
+      data: {}
     }
   }
 
@@ -286,10 +295,10 @@ export class Action {
     }
   }
 
-  public static startPreview(): ActionData {
+  public static startPreview(zoomRatio?: number): ActionData {
     return {
       type: Action.ACTION_START_PREVIEW,
-      data: {}
+      data: { zoomRatio: zoomRatio }
     }
   }
 
@@ -327,6 +336,14 @@ export class Action {
   public static capture(): ActionData {
     return {
       type: Action.ACTION_CAPTURE,
+      data: {}
+    }
+  }
+
+  public static capturePhotoOutput(): ActionData {
+    return {
+      isEvent: true,
+      type: Action.ACTION_CAPTURE_PHOTO_OUTPUT,
       data: {}
     }
   }

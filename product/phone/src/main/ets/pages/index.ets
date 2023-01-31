@@ -38,6 +38,7 @@ import { ZoomView
 import { SettingView } from './SettingView'
 import { PreferencesService, PersistType
 } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
 var cameraWorker = CameraWorker.getInstance()
 
@@ -95,6 +96,12 @@ let indexDispatcher = (dispatch) => {
     },
     updateModeIndex: (index: number) => {
       dispatch(Action.updateModeIndex(index))
+    },
+    faCall: (isFaCall: boolean) => {
+      dispatch(Action.faCall(isFaCall))
+    },
+    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
+      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
     }
   }
 }
@@ -142,24 +149,30 @@ struct Index {
         "ohos.permission.APPROXIMATELY_LOCATION"
       ]
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`)
-      globalThis.cameraAbilityContext.requestPermissionsFromUser(permissionList).then((data) => {
-        Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`)
-        Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`)
-        let sum = 0
-        for (let i = 0; i < data.authResults.length; i++) {
-          sum += data.authResults[i]
-        }
-        if (sum >= 0) {
-          globalThis.permissionFlag = true
-          this.state.setPermissionFlag(true)
-        } else {
-          globalThis.permissionFlag = false
-          this.state.setPermissionFlag(false)
-        }
-        Log.info(`${this.TAG} request permissions result: ${globalThis.permissionFlag}`)
-      }, (err) => {
-        Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`)
-      })
+      let atManager = abilityAccessCtrl.createAtManager()
+      try {
+        // @ts-ignore
+        atManager.requestPermissionsFromUser(globalThis.cameraAbilityContext, permissionList).then((data) => {
+          Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`)
+          Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`)
+          let sum = 0
+          for (let i = 0; i < data.authResults.length; i++) {
+            sum += data.authResults[i]
+          }
+          if (sum >= 0) {
+            globalThis.permissionFlag = true
+            this.state.setPermissionFlag(true)
+          } else {
+            globalThis.permissionFlag = false
+            this.state.setPermissionFlag(false)
+          }
+          Log.info(`${this.TAG} request permissions result: ${globalThis.permissionFlag}`)
+        }, (err) => {
+          Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`)
+        })
+      } catch (error) {
+        Log.info(`${this.TAG} catch error: ${JSON.stringify(error)}`)
+      }
     }
 
     if (globalThis.cameraFormParam != undefined) {
@@ -188,6 +201,12 @@ struct Index {
     let curCameraId = AppStorage.Get<string>('storageCameraId')
     if(curCameraId) this.state.initCameraPosition(curCameraId)
     this.state.resetRecordingTime()
+    Log.info(`${this.TAG} onPageShow X`)
+  }
+
+  private onBackClicked() {
+    Log.info(`${this.TAG} onBackClicked E`)
+    this.terminateSelfWithResult()
   }
 
   aboutToDisappear(): void {
@@ -237,7 +256,9 @@ struct Index {
       "resultCode": 200,
       "want": {
         "parameters": {
-          "imagePath": ""
+          "resourceUri": "",
+          "width": "",
+          "height": ""
         },
         "bundleName": "com.ohos.camera",
         "abilityName": "com.ohos.camera.MainAbility"
@@ -255,40 +276,38 @@ struct Index {
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
-      if (this.state.permissionFlag) {
-        Stack() {
-          PreviewArea()
-        }.width('100%').position({ y: 48 })
-        Stack() {
-          if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
-            TabBar()
-          }
-        }.width('100%').height(48).position({ x: '0', y: '0' })
-        if(this.state.isShowMoreList && this.state.showZoomLabelValue){
-          MoreList()
+      Stack() {
+        PreviewArea()
+      }.width('100%').position({ y: 48 })
+      Stack() {
+        if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
+          TabBar({onBackClicked: () => this.onBackClicked()})
         }
-        Stack({alignContent: Alignment.Bottom}) {
-          Column() {
-            if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
-              if (deviceInfo.deviceType !== "default" && this.state.curCameraPosition !== 'FRONT') {
-                Column() {
-                  ZoomView()
-                }.visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
-              }
-            }
-            if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
-              Column(){
-                Control()
-              }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
-              .width('100%')
-            }
-            Column(){
-              FootBar()
-            }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
-          }
-        }.width('100%').height(302).position({ y: this.state.footBarHeight })
-          .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
+      }.width('100%').height(48).position({ x: '0', y: '0' })
+      if(this.state.isShowMoreList && this.state.showZoomLabelValue){
+        MoreList()
       }
+      Stack({alignContent: Alignment.Bottom}) {
+        Column() {
+          if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
+            if (deviceInfo.deviceType !== "default" && this.state.curCameraPosition !== 'FRONT') {
+              Column() {
+                ZoomView()
+              }.visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
+            }
+          }
+          if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
+            Column(){
+              Control()
+            }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+            .width('100%')
+          }
+          Column(){
+            FootBar()
+          }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+        }
+      }.width('100%').height(302).position({ y: this.state.footBarHeight })
+        .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
       if (this.state.isShowPageView) {
         SettingView().width('100%').height('100%')
       }

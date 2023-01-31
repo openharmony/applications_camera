@@ -25,19 +25,26 @@ export class CaptureFunction extends BaseFunction {
     globalThis.startCaptureTime = new Date().getTime()
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     await this.mCameraService.takePicture()
-    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     Log.info(`${this.TAG} capture X`)
+  }
+
+  private onCapturePhotoOutput(){
+    Log.info(`${this.TAG} onCapturePhotoOutput E`)
+    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
+    Log.info(`${this.TAG} onCapturePhotoOutput X`)
   }
 
   load(): void{
     Log.info(`${this.TAG} load E`)
     this.mEventBus.on(Action.ACTION_CAPTURE, this.capture.bind(this))
+    this.mEventBus.on(Action.ACTION_CAPTURE_PHOTO_OUTPUT, this.onCapturePhotoOutput.bind(this))
     Log.info(`${this.TAG} load X`)
   }
 
   unload(): void {
     Log.info(`${this.TAG} unload E`)
     this.mEventBus.off(Action.ACTION_CAPTURE, this.capture.bind(this))
+    this.mEventBus.off(Action.ACTION_CAPTURE_PHOTO_OUTPUT, this.onCapturePhotoOutput.bind(this))
     Log.info(`${this.TAG} unload X`)
 
   }

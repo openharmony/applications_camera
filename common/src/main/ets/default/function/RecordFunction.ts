@@ -15,6 +15,7 @@
 
 import { Action, UiStateMode } from '../redux/actions/Action'
 import { Log } from '../utils/Log'
+import { CameraStatus } from '../utils/Constants'
 import { BaseFunction } from './BaseFunction'
 import { VideoCallBack } from '../camera/CameraService'
 
@@ -33,6 +34,7 @@ export class RecordFunction extends BaseFunction {
   private async startRecording() {
     Log.info(`${this.TAG} startRecording E`)
     globalThis.startRecordingFlag = true
+    globalThis.cameraStatus = CameraStatus.CAMERA_BEGIN_TAKE_VIDEO
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     await this.mCameraService.StartRecording(this.functionBackImpl)
     // TODO update video status in State by sending action
@@ -87,6 +89,8 @@ export class RecordFunction extends BaseFunction {
     this.mWorkerManager.postMessage(Action.updateRecordingSpotVisible(false))
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(false))
     this.mWorkerManager.postMessage(Action.updateThumbnail(thumbnailPixelMap, ''))
+    globalThis.cameraStatus = CameraStatus.CAMERA_TAKE_VIDEO_FINISHED
+    this.mWorkerManager.postMessage(Action.updateCameraStatus())
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     Log.info(`${this.TAG} stopRecording X`)
   }
