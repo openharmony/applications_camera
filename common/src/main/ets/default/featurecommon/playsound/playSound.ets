@@ -29,38 +29,61 @@ export class PlaySound {
   private settingManager = SettingManager.getInstance()
   private fdNumber: number = 0
   private fdPath
-  private mAudioPlayer:media.AudioPlayer
+    // @ts-ignore
+  private mAVPlayer: media.AVPlayer
 
   constructor() {
-   this.appEventBus.on(Action.ACTION_CAPTURE, this.playCapture.bind(this))
-    this.mAudioPlayer = media.createAudioPlayer()
-    this.setAudioCallback()
+    Log.info(`${this.TAG} constructor start, enroll playCapture to ACTION_CAPTURE`)
+    this.appEventBus.on(Action.ACTION_CAPTURE, this.playCapture.bind(this))
+      // @ts-ignore
+    media.createAVPlayer().then((avPlayer) => {
+      Log.info(`${this.TAG} createAVPlayer then ${avPlayer}`)
+      this.mAVPlayer = avPlayer;
+      this.setAVPlayerCallback();
+    })
   }
 
-  setAudioCallback() {
-    this.mAudioPlayer.on('error', (err) => {
-      Log.info(`${this.TAG} case error called, err is: ${err.message}`)
-      Log.info(`${this.TAG} case error called, status is: ${this.mAudioPlayer.state}`)
-    })
-    this.mAudioPlayer.on('dataLoad', () => {
-      Log.info(`${this.TAG} case dataLoad called, status is: ${this.mAudioPlayer.state}`)
-      if (this.settingManager.getCaptureMute() == Voice.SOUND) {
-        this.mAudioPlayer.play()
+  setAVPlayerCallback() {
+    Log.info(`${this.TAG} setAudioCallback`)
+    this.mAVPlayer.on('stateChange', async (state, reason) => {
+      switch (state) {
+        case 'idle':
+          Log.info(`${this.TAG} stateChange idle state`)
+          break;
+        case 'initialized':
+          Log.info(`${this.TAG} stateChange initialized state`)
+          this.mAVPlayer.prepare().then(() => {}, (err) => {
+            Log.error(`${this.TAG} case prepare error`)
+          })
+          break;
+        case 'prepared':
+          Log.info(`${this.TAG} stateChange prepared state`)
+          if (this.settingManager.getCaptureMute() == Voice.SOUND) {
+            this.mAVPlayer.play()
+          }
+          break;
+        case 'playing':
+          Log.info(`${this.TAG} stateChange playing state`)
+          break;
+        case 'completed':
+          Log.info(`${this.TAG} stateChange completed state`)
+          if (this.fdNumber !== 0) {
+            fileIO.closeSync(this.fdNumber)
+            Log.info(`${this.TAG} fileIO closeSync success`)
+          }
+          this.mAVPlayer.stop()
+          break;
+        case 'stopped':
+          Log.info(`${this.TAG} stateChange stopped state`)
+          this.mAVPlayer.reset()
+          break;
+        case 'error':
+          Log.info(`${this.TAG} case error called, err is: ${reason}`)
+          break;
+        default:
+          Log.info(`${this.TAG} unknow state: ${state}`)
+          break;
       }
-    })
-    this.mAudioPlayer.on('play', () => {
-      Log.info(`${this.TAG} case play called, status is: ${this.mAudioPlayer.state}`)
-    })
-    this.mAudioPlayer.on('reset', () => {
-      Log.info(`${this.TAG} case reset called, status is: ${this.mAudioPlayer.state}`)
-      this.mAudioPlayer.src = this.fdPath
-    })
-    this.mAudioPlayer.on('finish', () => {
-      Log.info(`${this.TAG} case finish called, status is: ${this.mAudioPlayer.state}`)
-        if (this.fdNumber !== 0) {
-          fileIO.closeSync(this.fdNumber)
-          Log.info(`${this.TAG} fileIO closeSync success`)
-        }
     })
   }
 
@@ -100,9 +123,9 @@ export class PlaySound {
     this.fdPath = 'fd://'
     fileIO.open(Voice.CAPTURE_URI).then((fdData) => {
       this.fdPath = this.fdPath + '' + fdData
+      this.mAVPlayer.url = this.fdPath
       this.fdNumber = fdData
-      this.mAudioPlayer.src = this.fdPath
-      this.mAudioPlayer.reset()
+      Log.debug(`${this.TAG} fileIO open then ${this.fdPath}`)
     }).catch((err) => {
       Log.info(`${this.TAG} open soundUri failed, err: ${err}`)
     })
