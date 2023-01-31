@@ -14,9 +14,8 @@
  */
 
 import router from '@system.router'
-// @ts-ignore
 import fileshare from '@ohos.fileshare'
-
+import wantConstant from '@ohos.ability.wantConstant'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 
 @Entry
@@ -53,7 +52,7 @@ struct ThirdPreviewView {
   backCalledApp(resourceUri) {
     Log.info(`${this.TAG} backCalledApp E`)
     let that = this
-    fileshare.grantUriPermission(resourceUri, this.callBundleName, "r")
+    fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
       .then(() => {
         Log.info(`${this.TAG} grantUriPermission success`)
         that.terminateSelfWithResult(resourceUri)

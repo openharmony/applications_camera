@@ -152,7 +152,7 @@ struct Index {
       let atManager = abilityAccessCtrl.createAtManager()
       try {
         // @ts-ignore
-        atManager.requestPermissionsFromUser(globalThis.cameraAbilityContext, permissionList, (err, data) => {
+        atManager.requestPermissionsFromUser(globalThis.cameraAbilityContext, permissionList).then((data) => {
           Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`)
           Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`)
           let sum = 0
