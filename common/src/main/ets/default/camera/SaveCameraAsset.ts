@@ -68,6 +68,7 @@ export default class SaveCameraAsset {
           if (img.byteBuffer) {
             Log.info(`${this.TAG} getComponent img.byteBuffer = ${img.byteBuffer}`)
             buffer = img.byteBuffer
+            captureCallBack.onCapturePhotoOutput()
           } else {
             Log.info(`${this.TAG} getComponent img.byteBuffer is undefined`)
           }
@@ -137,7 +138,7 @@ export default class SaveCameraAsset {
     Log.info(`${this.TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`)
 //    publicPath = `${publicPath}Camera/`
     try {
-      const dataUri = await  media.createAsset(mediaType, displayName, publicPath)
+      const dataUri = await media.createAsset(mediaType, displayName, publicPath)
       if (dataUri !== undefined) {
         const args = dataUri.id.toString()
         const fetchOp = {

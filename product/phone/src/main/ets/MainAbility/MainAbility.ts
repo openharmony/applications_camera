@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
 import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
 import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
-
-const debounceTimeout = 500;
+import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
@@ -108,29 +107,29 @@ export default class MainAbility extends Ability {
     console.info('Camera MainAbility onWindowStageDestroy.')
   }
 
-  @debounce(debounceTimeout)
   onForeground() {
     Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onForeground.')
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT
     if (globalThis?.doOnForeground && globalThis.doOnForeground) {
       console.info('Camera MainAbility onForeground.')
-      globalThis?.onForegroundInit && globalThis.onForegroundInit()
+      globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
     } else {
       globalThis.doOnForeground = true
     }
   }
 
-  @debounce(debounceTimeout)
   onBackground() {
     Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onBackground.')
     this.cameraBasicFunction.startIdentification = false
-    globalThis.needInitCameraFlag = false
-    globalThis?.releaseCamera && globalThis.releaseCamera()
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
+    globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
   }
 
   onNewWant(want) {
-    console.info('Camera MainAbility onNewWant.')
-    globalThis.cameraNewWant = want
+    console.info('Camera MainAbility E onNewWant.')
+    globalThis.cameraAbilityWant = want
+    console.info(`Camera MainAbility X newWantAction: ${JSON.stringify(globalThis.cameraAbilityWant )}`)
   }
 }

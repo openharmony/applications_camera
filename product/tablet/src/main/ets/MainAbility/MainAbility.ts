@@ -13,22 +13,22 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window';
+import wantConstant from '@ohos.ability.wantConstant'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
-import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants'
+import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log';
-import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
-
-const debounceTimeout = 500;
+import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  private readonly foreRoundCountLimit: number = 1
+  private foreRoundOverCount: number = 0
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
     Trace.start(Trace.ABILITY_WHOLE_LIFE)
@@ -36,9 +36,12 @@ export default class MainAbility extends Ability {
     globalThis.cameraAbilityContext = this.context
     globalThis.cameraAbilityWant = this.launchWant
     globalThis.permissionFlag = false
+
+    Log.info(`Camera MainAbility onCreate launchWant. ${JSON.stringify(globalThis.cameraAbilityWant )}`)
     globalThis.cameraStartTime = new Date().getTime()
     globalThis.cameraStartFlag = true
     globalThis.stopRecordingFlag = false;
+    globalThis.doOnForeground = false
     this.cameraBasicFunction = CameraBasicFunction.getInstance()
     this.cameraBasicFunction.initCamera({ cameraId: 'BACK', mode: 'PHOTO' }, 'onCreate')
   }
@@ -58,6 +61,15 @@ export default class MainAbility extends Ability {
     Log.info('Camera MainAbility onWindowStageCreate.')
     windowStage.on('windowStageEvent', (event) => {
       Log.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
+      if (event === window.WindowStageEventType.SHOWN) {
+        if (++this.foreRoundOverCount > 1) {
+          this.foreRoundOverCount = 1
+          Log.info("multi task interface: reset zoomRatio to 1")
+          globalThis?.resetZoomRatio && globalThis.resetZoomRatio()
+        }
+      } else if (event === window.WindowStageEventType.HIDDEN) {
+        this.foreRoundOverCount--
+      }
       globalThis.cameraWindowStageEvent = event
       if (event === window.WindowStageEventType.INACTIVE) {
         globalThis.stopRecordingFlag = true
@@ -118,29 +130,30 @@ export default class MainAbility extends Ability {
     Log.info('Camera MainAbility onWindowStageDestroy.')
   }
 
-  @debounce(debounceTimeout)
   onForeground() {
     Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
     Log.info('Camera MainAbility onForeground.')
-    if (globalThis?.onForegroundInit) {
-      globalThis.onForegroundInit()
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT
+    if (globalThis?.doOnForeground && globalThis.doOnForeground) {
+      console.info('Camera MainAbility onForeground.')
+      globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
     } else {
-      Log.info("globalThis.onForegroundInit is null")
+      globalThis.doOnForeground = true
     }
     Log.info('Camera MainAbility onForeground end.')
   }
 
-  @debounce(debounceTimeout)
   onBackground() {
     Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
     Log.info('Camera MainAbility onBackground.')
     this.cameraBasicFunction.startIdentification = false
-    globalThis.needInitCameraFlag = false
-    globalThis?.releaseCamera && globalThis.releaseCamera()
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
+    globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
   }
 
   onNewWant(want) {
     Log.info('Camera MainAbility onNewWant.')
-    globalThis.cameraNewWant = want
+    globalThis.cameraAbilityWant = want
+    Log.info(`Camera MainAbility E newWantAction: ${JSON.stringify(globalThis.cameraAbilityWant )}`)
   }
 }

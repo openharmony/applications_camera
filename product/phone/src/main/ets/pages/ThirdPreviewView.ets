@@ -14,6 +14,8 @@
  */
 
 import router from '@system.router'
+import fileshare from '@ohos.fileshare'
+import wantConstant from '@ohos.ability.wantConstant'
 
 import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 
@@ -26,6 +28,7 @@ struct ThirdPreviewView {
   private photoUri: string
   private videoUri: string
   private mode: string
+  private callBundleName: string
   @State controls: boolean = false
   @State isShowVideoButton: boolean = true
   myVideoController: VideoController = new VideoController()
@@ -42,7 +45,22 @@ struct ThirdPreviewView {
     Log.info(`${this.TAG} aboutToAppear mode= ${this.mode} E`)
     this.videoUri = routerParams.videoUri.toString()
     Log.info(`${this.TAG} aboutToAppear videoUri= ${this.videoUri} E`)
+    this.callBundleName = routerParams.callBundleName.toString()
+    Log.info(`${this.TAG} aboutToAppear callBundleName= ${this.callBundleName} E`)
     Log.info(`${this.TAG} aboutToAppear X`)
+  }
+
+  backCalledApp(resourceUri) {
+    Log.info(`${this.TAG} backCalledApp E`)
+    let that = this
+    fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
+      .then(() => {
+        Log.info(`${this.TAG} grantUriPermission success`)
+        that.terminateSelfWithResult(resourceUri)
+      }).catch(function (error) {
+      Log.error(`${this.TAG} grantUriPermission error= ${error} `)
+    })
+    Log.info(`${this.TAG} backCalledApp X`)
   }
 
   terminateSelfWithResult(resourceUri) {
@@ -51,7 +69,9 @@ struct ThirdPreviewView {
       "resultCode": 200,
       "want": {
         "parameters": {
-          "imagePath": resourceUri
+          "resourceUri": resourceUri,
+          "width": this.photoWidth,
+          "height": this.photoHeight
         },
         "bundleName": "com.ohos.camera",
         "abilityName": "com.ohos.camera.MainAbility"
@@ -137,7 +157,7 @@ struct ThirdPreviewView {
           .width(24)
           .aspectRatio(1)
           .onClick(() => {
-            this.terminateSelfWithResult(this.mode === "PHOTO" ? this.photoUri : this.videoUri)
+            this.backCalledApp(this.mode === "PHOTO" ? this.photoUri : this.videoUri)
           })
       }.width('100%').height(48).margin({ top: '24vp' })
       .padding({ top: '12vp', left: '24vp', right: '24vp' })
