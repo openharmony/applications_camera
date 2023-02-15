@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from '@ohos.application.AbilityStage'
+import AbilityStage from '@ohos.app.ability.AbilityStage'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 
 export default class MyAbilityStage extends AbilityStage {
