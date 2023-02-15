@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
+import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window';
 import wantConstant from '@ohos.ability.wantConstant'
 import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
@@ -61,13 +61,13 @@ export default class MainAbility extends Ability {
     Log.info('Camera MainAbility onWindowStageCreate.')
     windowStage.on('windowStageEvent', (event) => {
       Log.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
-      if (event === window.WindowStageEventType.FOREGROUND) {
+      if (event === window.WindowStageEventType.SHOWN) {
         if (++this.foreRoundOverCount > 1) {
           this.foreRoundOverCount = 1
           Log.info("multi task interface: reset zoomRatio to 1")
           globalThis?.resetZoomRatio && globalThis.resetZoomRatio()
         }
-      } else if (event === window.WindowStageEventType.BACKGROUND) {
+      } else if (event === window.WindowStageEventType.HIDDEN) {
         this.foreRoundOverCount--
       }
       globalThis.cameraWindowStageEvent = event
