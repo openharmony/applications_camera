@@ -152,7 +152,7 @@ struct Index {
       let atManager = abilityAccessCtrl.createAtManager()
       try {
         // @ts-ignore
-        atManager.requestPermissionsFromUser(globalThis.cameraAbilityContext, permissionList, (err, data) => {
+        atManager.requestPermissionsFromUser(globalThis.cameraAbilityContext, permissionList).then((data) => {
           Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`)
           Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`)
           let sum = 0
@@ -294,8 +294,8 @@ struct Index {
         PreviewAreaLand({ screenSize: $screenSize })
       }
       .position(this.state.isThirdPartyCall ? ComponentPosition.previewTabletPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight) : ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight))
+      this.state.xComponentWidth, this.state.xComponentHeight) : ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
+      this.state.xComponentWidth, this.state.xComponentHeight))
       Column() {
         if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.cameraPosition !== 'FRONT') {
           ZoomViewLand()
@@ -305,14 +305,14 @@ struct Index {
         }
       }.zIndex(2).height('100%')
       .position(this.state.isThirdPartyCall ? {x: 984, y: 0} : ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
+      this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
       .visibility(this.componentVisibility(!this.state.isShowPinch))
 
       Column(){
         FootBarLand({ screenSize: $screenSize })
       }.zIndex(2).height('100%')
       .position(this.state.isThirdPartyCall ? {x: 1124, y: 0} : ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight))
+      this.state.xComponentWidth, this.state.xComponentHeight))
       .visibility(this.componentVisibility(this.state.showZoomLabelValue))
 
       Column() {
