@@ -26,6 +26,12 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
+    ],
     "requestPermissions": [
       {
         "name": "ohos.permission.REQUIRE_FORM"
