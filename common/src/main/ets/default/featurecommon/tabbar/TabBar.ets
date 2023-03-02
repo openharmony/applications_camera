@@ -16,6 +16,7 @@
 import { Log } from '../../utils/Log'
 import getStore from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
+import EventLog from '../../utils/EventLog'
 
 let tabBarState = (state) => {
   return {
@@ -26,6 +27,7 @@ let tabBarState = (state) => {
 let tabBarDispatcher = (dispatch) => {
   return {
     showSettingView: () => {
+      EventLog.write(EventLog.CLICK_SETTINGS)
       dispatch(Action.showSettingView(true))
     },
   }

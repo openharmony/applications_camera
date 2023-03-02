@@ -14,11 +14,11 @@
  */
 
 import AbilityStage from '@ohos.app.ability.AbilityStage'
-import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    Trace.start(Trace.APPLICATION_WHOLE_LIFE)
+    Log.start(Log.APPLICATION_WHOLE_LIFE)
     console.info('MyAbilityStage onCreate.')
   }
 }

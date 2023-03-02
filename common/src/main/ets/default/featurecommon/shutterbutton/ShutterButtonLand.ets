@@ -114,9 +114,9 @@ export struct ShutterButtonLand {
 
   private async onThumbnailUpdate(data) {
     Log.info(`${this.TAG} onThumbnailUpdate data: ${JSON.stringify(data)} E`)
-    Log.info(`${this.TAG} onThumbnailUpdate resourceUri= ${JSON.stringify(this.state.resourceUri)} E`)
+    Log.debug(`${this.TAG} onThumbnailUpdate resourceUri= ${JSON.stringify(this.state.resourceUri)} E`)
     Log.info(`${this.TAG} onThumbnailUpdate isThirdPartyCall= ${this.state.isThirdPartyCall} E`)
-    Log.info(`${this.TAG} onThumbnailUpdate videoUri= ${this.state.videoUri} E`)
+    Log.debug(`${this.TAG} onThumbnailUpdate videoUri= ${this.state.videoUri} E`)
     if (this.state.isThirdPartyCall) {
       Log.info(`${this.TAG} onThumbnailUpdate start router to ThirdPreviewView`)
       router.push({

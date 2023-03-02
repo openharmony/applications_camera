@@ -42,7 +42,6 @@ import { TimeLapseView } from '../../../../../../common/src/main/ets/default/fea
 import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
 import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
-import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
 import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import prompt from '@ohos.prompt';
 
@@ -343,7 +342,7 @@ export struct PreviewAreaLand {
     this.state.initCamera(this.state.cameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     Log.info(`${this.TAG} aboutToAppear X`)
-    Trace.start(Trace.X_COMPONENT_LIFE)
+    Log.start(Log.X_COMPONENT_LIFE)
   }
 
   private  releaseCamera() {
@@ -653,7 +652,7 @@ export struct PreviewAreaLand {
             controller: globalThis.mXComponentController
           })
             .onLoad(() => {
-              Trace.end(Trace.X_COMPONENT_LIFE)
+              Log.end(Log.X_COMPONENT_LIFE)
               Log.info(`${this.TAG} XComponent_onLoad`)
               let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
               this.state.prepareSurface(surfaceId)
