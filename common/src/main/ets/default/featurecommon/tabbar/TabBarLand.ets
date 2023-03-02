@@ -18,13 +18,10 @@ import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
 import EventBusManager from '../../worker/eventbus/EventBusManager'
 import getStore from '../../redux/store'
-//import { TabBarOther } from './TabBarTablet/TabBarOther'
-//import { TabBarSame } from './TabBarTablet/TabBarSame'
+import EventLog from '../../utils/EventLog'
 
 let tabBarLandState = (state) => {
   return {
-//    widthTabBar: state.PreviewReducer.widthTabBar,
-//    opacityValueForTabBar: state.SettingReducer.opacityValueForTabBar
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall
   }
 }
@@ -69,6 +66,7 @@ export struct TabBarLand {
     Row()  {
       Image($r("app.media.setting")).width(24).height(24)
         .onClick(() => {
+          EventLog.write(EventLog.CLICK_SETTINGS)
           this.state.showSettingView()
         })
     }.width(48).height(48)

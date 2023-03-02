@@ -22,7 +22,7 @@ export default class ThumbnailGetter {
 
   public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap | undefined> {
     Log.log(`${this.TAG} getThumbnailInfo E`)
-    Log.log(`${this.TAG} getThumbnailInfo width: ${width}, height: ${height}, uri: ${JSON.stringify(uri)}`)
+    Log.debug(`${this.TAG} getThumbnailInfo width: ${width}, height: ${height}, uri: ${JSON.stringify(uri)}`)
     const fileKeyObj = mediaLibrary.FileKey;
     let fetchOp: any
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);

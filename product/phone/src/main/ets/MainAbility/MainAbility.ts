@@ -15,7 +15,7 @@
 
 import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window'
-import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
+import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
 import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
 import { debounce } from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/Decorators'
 import { PreferencesService } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
@@ -25,7 +25,7 @@ export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
-    Trace.start(Trace.ABILITY_WHOLE_LIFE)
+    Log.start(Log.ABILITY_WHOLE_LIFE)
     console.info('Camera MainAbility onCreate.')
     globalThis.cameraAbilityContext = this.context
     globalThis.cameraAbilityWant = this.launchWant
@@ -40,8 +40,8 @@ export default class MainAbility extends Ability {
 
   onDestroy() {
     // Ability is creating, release resources for this ability
-    Trace.end(Trace.ABILITY_WHOLE_LIFE)
-    Trace.end(Trace.APPLICATION_WHOLE_LIFE)
+    Log.end(Log.ABILITY_WHOLE_LIFE)
+    Log.end(Log.APPLICATION_WHOLE_LIFE)
     this.cameraBasicFunction.startIdentification = false
     PreferencesService.getInstance().flush()
     console.info('Camera MainAbility onDestroy.')
@@ -49,12 +49,12 @@ export default class MainAbility extends Ability {
 
   async onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    Trace.start(Trace.ABILITY_VISIBLE_LIFE)
+    Log.start(Log.ABILITY_VISIBLE_LIFE)
     console.info('Camera MainAbility onWindowStageCreate.')
     windowStage.on('windowStageEvent', (event) => {
       console.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
       globalThis.cameraWindowStageEvent = event
-      if (event === window.WindowStageEventType.INACTIVE) {
+      if (event === window.WindowStageEventType.INACTIVE || event === window.WindowStageEventType.HIDDEN) {
         globalThis.stopRecordingFlag = true
         globalThis?.stopCameraRecording && globalThis.stopCameraRecording()
       } else {
@@ -103,12 +103,12 @@ export default class MainAbility extends Ability {
   }
 
   onWindowStageDestroy() {
-    Trace.end(Trace.ABILITY_VISIBLE_LIFE)
+    Log.end(Log.ABILITY_VISIBLE_LIFE)
     console.info('Camera MainAbility onWindowStageDestroy.')
   }
 
   onForeground() {
-    Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
+    Log.start(Log.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onForeground.')
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT
     if (globalThis?.doOnForeground && globalThis.doOnForeground) {
@@ -120,7 +120,7 @@ export default class MainAbility extends Ability {
   }
 
   onBackground() {
-    Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
+    Log.end(Log.ABILITY_FOREGROUND_LIFE)
     console.info('Camera MainAbility onBackground.')
     this.cameraBasicFunction.startIdentification = false
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
