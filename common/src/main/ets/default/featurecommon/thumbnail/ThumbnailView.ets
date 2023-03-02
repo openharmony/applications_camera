@@ -21,7 +21,7 @@ import getStore from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import { EventBus } from '../../worker/eventbus/EventBus'
 import EventBusManager from '../../worker/eventbus/EventBusManager'
-
+import EventLog from '../../utils/EventLog'
 
 let localState = (state) => {
   return {
@@ -104,6 +104,7 @@ export struct ThumbnailView {
       .enabled(this.hasThumbnail)
       .onClick(async () => {
         Log.info(`${this.TAG} launch bundle com.ohos.photos`)
+        EventLog.write(EventLog.CLICK_THUMBNAIL)
         globalThis.keepCameraZoomRatio = true
         await globalThis.cameraAbilityContext.startAbility({
           parameters: { uri: 'photodetail' },

@@ -16,7 +16,7 @@
 import { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
 import { CameraId } from '../../setting/settingitem/CameraId'
 import { AnyAction } from '../../redux/core/redux'
-import Trace from '../../utils/Trace'
+import { Log } from '../../utils/Log'
 
 interface Data {
  [prop: string]: any;
