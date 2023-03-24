@@ -18,7 +18,7 @@ import worker from '@ohos.worker'
 import { ActionHandler } from './ActionHandler'
 import { Log } from '../utils/Log'
 import { EventBus } from './eventbus/EventBus'
-import EventBusManager from './eventbus/EventBusManager'
+import { EventBusManager } from './eventbus/EventBusManager'
 
 export class WorkerManager {
   private TAG = '[WorkerManager]:'

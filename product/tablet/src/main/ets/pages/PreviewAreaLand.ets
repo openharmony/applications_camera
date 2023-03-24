@@ -15,34 +15,30 @@
 
 import router from '@system.router';
 import display from '@ohos.display';
-import wantConstant from '@ohos.ability.wantConstant'
-import window from '@ohos.window';
 import deviceInfo from '@ohos.deviceInfo'
-import { Action, UiStateMode } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import AspectRatio from '../../../../../../common/src/main/ets/default/setting/settingitem/AspectRatio'
-import { AssistiveGridView
-} from '../../../../../../common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
-import { BigText
-} from '../../../../../../common/src/main/ets/default/featurecommon/bigtext/BigText'
 import { BigVideoTimer } from './BigVideoTimer'
-import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/default/setting/settingitem/CameraId'
-import { CameraPlatformCapability
-} from '../../../../../../common/src/main/ets/default/camera/CameraPlatformCapability'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import { CameraStatus, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import Resolution from '../../../../../../common/src/main/ets/default/setting/settingitem/Resolution'
-import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-import { ShowFlashBlack
-} from '../../../../../../common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
+import {
+  Action,
+  AssistiveGridView,
+  BigText,
+  CameraId,
+  CameraNeedStatus,
+  CameraStatus,
+  EventBus,
+  EventBusManager,
+  GeoLocation,
+  getStore,
+  Log,
+  OhCombinedState,
+  ScreenLockManager,
+  SettingManager,
+  ShowFlashBlack,
+  TimeLapseView,
+  UiStateMode,
+  ZoomText
+} from '@ohos/common'
 import { SmallVideoTimer } from './SmallVideoTimer'
-import { ZoomText
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomText'
-import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
+
 import prompt from '@ohos.prompt';
 
 let cameraState = (state: OhCombinedState) => {
@@ -336,7 +332,7 @@ export struct PreviewAreaLand {
     })
 
     display.getDefaultDisplay().then((dis) => {
-      this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height)}
+      this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height) }
     })
     this.calledByOther()
     this.state.initCamera(this.state.cameraPosition, this.state.mode)
@@ -345,7 +341,7 @@ export struct PreviewAreaLand {
     Log.start(Log.X_COMPONENT_LIFE)
   }
 
-  private  releaseCamera() {
+  private releaseCamera() {
     Log.info(`${this.TAG} globalThis.releaseCamera called`)
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
     if (this.state.videoState === 'startTakeVideo') {
@@ -404,7 +400,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} calledByOther invoke X: ${this.state.mode}`)
   }
 
-  private initStateMode(uri:string) {
+  private initStateMode(uri: string) {
     switch (uri) {
       case "capture":
         this.state.initMode('PHOTO')
@@ -420,7 +416,7 @@ export struct PreviewAreaLand {
     }
   }
 
-  private  updateCameraStatus() {
+  private updateCameraStatus() {
     Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${globalThis.cameraStatus}`)
     Log.info(`${this.TAG} updateCameraStatus  cameraNeedStatus: ${globalThis.cameraNeedStatus}`)
 
@@ -433,13 +429,14 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} updateCameraStatus X`)
   }
 
-  private  canInit():boolean {
+  private canInit(): boolean {
     //相机状态是首次加载或者session释放完成状态，才能进行初始化操作
     return globalThis.cameraStatus == CameraStatus.CAMERA_BEFORE_VALUE || globalThis.cameraStatus == CameraStatus.CAMERA_RELEASE_FINISHED
   }
-  private  canRelease():boolean {
+
+  private canRelease(): boolean {
     //相机状态是预览完成状态或录像完成状态才能进行释放操作
-    return  globalThis.cameraStatus == CameraStatus.CAMERA_PREVIEW_FINISHED|| globalThis.cameraStatus == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED
+    return globalThis.cameraStatus == CameraStatus.CAMERA_PREVIEW_FINISHED || globalThis.cameraStatus == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED
   }
 
   aboutToDisappear(): void {
@@ -705,7 +702,7 @@ export struct PreviewAreaLand {
             ShowFlashBlack()
           }
 
-          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default"&&!this.state.isShowtimeLapse) {
+          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default" && !this.state.isShowtimeLapse) {
             Stack({ alignContent: Alignment.Top }) {
               Column() {
                 Column() {
@@ -777,7 +774,7 @@ export struct PreviewAreaLand {
           }
           .width(this.screenSize.width > this.screenSize.height ? this.screenSize.height : this.screenSize.width)
           .height(this.screenSize.height > (this.screenSize.width * 9 / 16) ? (this.screenSize.width * 9 / 16) :
-            this.screenSize.height)
+          this.screenSize.height)
         }
         .width('100%')
         .height('100%')
@@ -789,7 +786,7 @@ export struct PreviewAreaLand {
     .backgroundColor('#000')
     .gesture(
     GestureGroup(
-      GestureMode.Exclusive,
+    GestureMode.Exclusive,
     TapGesture({ fingers: 1, count: 1 })
       .onAction(this.onPreviewClicked.bind(this)),
     PinchGesture({ fingers: 2, distance: 1 })

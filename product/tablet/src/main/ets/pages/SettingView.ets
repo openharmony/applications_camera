@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { SettingItem
-} from '../../../../../../common/src/main/ets/default/featurecommon/settingview/tablet/SettingItem'
-import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
-import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager';
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus';
+import {
+  Action,EventBus,
+  EventBusManager,
+  getStore,
+  Log,TabletSettingItem,
+  OhCombinedState,
+  SettingListModel,
+  SettingManager
+} from '@ohos/common'
 
 let localState = (state: OhCombinedState) => {
   return {
@@ -66,7 +66,7 @@ export struct SettingView {
   @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
-  @State settingsList: any[] = SettingListModel.getSettingList()
+  @State settingsList: any[] = new SettingListModel().getSettingList()
   @State state: any = {}
   @State localStyle: any = { "columns": 12, "offset": 2, "span": 8 }
   private WH_100_100: string = "100%";
@@ -147,7 +147,7 @@ export struct SettingView {
                 List() {
                   ForEach(this.settingsList, (item, index) => {
                     ListItem() {
-                      SettingItem({
+                      TabletSettingItem({
                         settingsList: $settingsList,
                         closeFlag: $closeFlag,
                         item: item,

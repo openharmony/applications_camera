@@ -18,11 +18,11 @@ import router from "@system.router"
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
-import getStore from '../../redux/store'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import { getStore } from '../../redux/store'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
-import ComponentPosition from '../../utils/ComponentPosition'
+import { ComponentPosition } from '../../utils/ComponentPosition'
 
 let localState = (state) => {
   return {

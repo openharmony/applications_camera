@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { Constants } from '../../../../../featureservice/Constants'
+import { Log, FunctionId } from '@ohos/common'
 
 export class PhotoModeParam {
   public readonly tabBar: string[] = ['', 'flash', 'zoom', 'focus', 'setup']
-  public readonly functions: string[] = [Constants.CAPTURE_FUNCTION, Constants.ZOOM_FUNCTION]
+  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION, FunctionId.ZOOM_FUNCTION]
 }

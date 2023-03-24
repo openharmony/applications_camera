@@ -13,11 +13,7 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Action, EventBus, EventBusManager, Log, getStore, OhCombinedState } from '@ohos/common'
 
 let localState = (state: OhCombinedState) => {
   return {
@@ -131,12 +127,20 @@ export struct BigVideoTimer {
           } else {
             if (this.state.isRecordingSpotVisible) {
               Column() {
-              }.width(12).height(12).borderRadius(6)
-              .backgroundColor(Color.Red).visibility(Visibility.Visible)
+              }
+              .width(12)
+              .height(12)
+              .borderRadius(6)
+              .backgroundColor(Color.Red)
+              .visibility(Visibility.Visible)
             } else {
               Column() {
-              }.width(12).height(12).borderRadius(6)
-              .backgroundColor(Color.Red).visibility(Visibility.Hidden)
+              }
+              .width(12)
+              .height(12)
+              .borderRadius(6)
+              .backgroundColor(Color.Red)
+              .visibility(Visibility.Hidden)
             }
           }
           Text(`${this.state.recordingTimeDisplay}`)

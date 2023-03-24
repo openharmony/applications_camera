@@ -17,7 +17,7 @@ import router from '@system.router'
 import fileshare from '@ohos.fileshare'
 import wantConstant from '@ohos.ability.wantConstant'
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { Log } from '@ohos/common'
 
 @Entry
 @Component

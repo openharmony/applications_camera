@@ -14,7 +14,7 @@
  */
 
 import { CameraService } from '../../camera/CameraService'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Log } from '../../utils/Log'
 
 let localState = (state) => {

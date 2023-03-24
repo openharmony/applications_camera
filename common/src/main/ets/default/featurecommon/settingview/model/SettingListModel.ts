@@ -22,26 +22,7 @@ import Resolution from '../../../setting/settingitem/Resolution'
 import Timer from '../../../setting/settingitem/Timer'
 import VideoCodec from '../../../setting/settingitem/VideoCodec'
 import { Voice } from '../../../setting/settingitem/Voice'
-
-type RadioItem = {
-    itemValue?: any
-}
-
-type SettingItem = {
-    imagePath?: Resource,
-    settingName?: Resource,
-    description?: any,
-    checkedName?: any,
-    settingAlias?: any,
-    selectType?: any,
-    radio?: RadioItem[],
-    toggle?: boolean,
-}
-
-type SettingGroupItem = {
-    settingTitle?: Resource,
-    settingChildren?: SettingItem[],
-}
+import type { RadioItem, SettingGroupItem, SettingItem } from './SettingData'
 
 /**
  * app setting homepage service class
@@ -50,6 +31,10 @@ export class SettingListModel {
     private settingsList: SettingGroupItem[] = []
     constructor() {
         this.buildSettingsList()
+    }
+
+    getSettingList() {
+        return this.settingsList;
     }
 
     private buildSettingsList() {
@@ -201,12 +186,4 @@ export class SettingListModel {
         result.toggle = false
         return result;
     }
-
-    getSettingList() {
-        return this.settingsList;
-    }
 }
-
-let settingListModel = new SettingListModel();
-
-export default settingListModel as SettingListModel;

@@ -16,12 +16,11 @@
 import settings from '@ohos.settings'
 
 import { Log } from '../../../utils/Log'
-import SettingListModel from '../../../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 import { SettingManager } from '../../../setting/SettingManager'
 import Timer from '../../../setting/settingitem/Timer'
 import AspectRatio from '../../../setting/settingitem/AspectRatio'
 import Resolution from '../../../setting/settingitem/Resolution'
-import getStore from '../../../redux/store';
+import { getStore } from '../../../redux/store';
 
 let localState = (state) => {
   return {

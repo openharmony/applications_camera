@@ -14,19 +14,20 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo'
-import { CameraSwitchButton
-} from '../../../../../../common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import {
+  Action,
+  CameraSwitchButton,
+  ComponentPosition,
+  EventBus,
+  EventBusManager,
+  getStore,
+  Log,
+  OhCombinedState,
+  ShutterButtonLand,
+  ThumbnailView
+} from '@ohos/common'
 import { ControlLand } from './ControlLand'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { ShutterButtonLand
-} from '../../../../../../common/src/main/ets/default/featurecommon/shutterbutton/ShutterButtonLand'
-import { ThumbnailView
-} from '../../../../../../common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition';
+
 
 let footBarLandState = (state: OhCombinedState) => {
   return {
@@ -45,11 +46,9 @@ let footBarLandDispatcher = (dispatch) => {
 @Component
 export struct FootBarLand {
   private TAG: string = '[FootBarLand]:'
-
   @State state: any = {}
   @State isRecording: boolean = false
   @Link screenSize: any
-
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private async onRecordStart(data) {
@@ -81,13 +80,15 @@ export struct FootBarLand {
   }
 
   private isThumbnailViewVisibility() {
-    return !this.isRecording && !this.state.isThirdPartyCall &&
+    return!this.isRecording && !this.state.isThirdPartyCall &&
     this.state.videoState !== "startTakeVideo" && this.state.videoState !== "pauseTakeVideo"
   }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Column() {}.width('100%').height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height))
+      Column() {
+      }.width('100%').height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height))
+
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         if (this.state.platformCapability?.mCameraCount > 1 && !this.isRecording && deviceInfo.deviceType !== "default") {
           CameraSwitchButton()
@@ -101,12 +102,15 @@ export struct FootBarLand {
         }.width(44).aspectRatio(1).visibility(this.isThumbnailViewVisibility() ? Visibility.Visible : Visibility.Hidden)
       }.width('100%')
       .height(ComponentPosition.getFootBarHeight(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight))
-      .margin({ top: ComponentPosition.getFootBarMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight),
-        bottom: ComponentPosition.getFootBarMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight) })
+      .margin({
+        top: ComponentPosition.getFootBarMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight),
+        bottom: ComponentPosition.getFootBarMargin(this.screenSize.width, this.screenSize.height, this.state.xComponentHeight)
+      })
       .offset(ComponentPosition.getFootBarPosition(this.state.xComponentHeight))
+
       if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
         ControlLand({ screenSize: $screenSize })
-        .offset({ x: 0, y: 0 })
+          .offset({ x: 0, y: 0 })
       } else {
         Column() {
         }.width('100%').height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height))

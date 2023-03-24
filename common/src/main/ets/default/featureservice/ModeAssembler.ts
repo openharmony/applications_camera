@@ -13,26 +13,29 @@
  * limitations under the License.
  */
 
-import { Log } from '../../common/src/main/ets/default/utils/Log'
-import { Constants } from './Constants'
-import { Mode } from './Mode'
+import { Log } from '../utils/Log'
+import type { IModeMap } from './IModeMap'
+import type { FunctionId } from './FunctionId'
 
 export class ModeAssembler {
   private TAG: string = '[ModeAssembler]:'
-  private mNeedAdd: string[]
-  private mNeedDelete: string[]
-  private mMode = new Mode()
-  private mFunctionsMap: Map<string, any>
+  private mNeedAdd: FunctionId[]
+  private mNeedDelete: FunctionId[]
+  private mMode: IModeMap
+  private mFunctionsMap: Map<FunctionId, any>
 
-  constructor(functionsMap: Map<string, any>) {
+  constructor(functionsMap: Map<FunctionId, any>, modeMap: IModeMap) {
     this.mFunctionsMap = functionsMap
+    this.mMode = modeMap
   }
   public assembler(preMode: string, currentMode: string): void {
     Log.info(`${this.TAG} assembler preMode = ${preMode}  currentMode = ${currentMode} E `)
     this.mNeedAdd = []
     this.mNeedDelete = []
-    let preModeFun: string[] = this.mMode.getFunctions(preMode)
-    let currentModeFun: string[] = this.mMode.getFunctions(currentMode)
+    Log.info(`${this.TAG} assembler preMode = ${this.mMode.getFunctions(preMode)}  currentMode = ${this.mMode.getFunctions(currentMode)} E `)
+
+    let preModeFun: FunctionId[] = this.mMode.getFunctions(preMode)
+    let currentModeFun: FunctionId[] = this.mMode.getFunctions(currentMode)
 
     Log.info(`${this.TAG} assembler preModeFun = ${preModeFun}  currentModeFun = ${currentModeFun}  `)
     if (!preMode) {
@@ -54,14 +57,14 @@ export class ModeAssembler {
     Log.info(`${this.TAG} assembler X`)
   }
 
-  private attachFunction(item: string[]): void {
+  private attachFunction(item: FunctionId[]): void {
     for (let fun of item) {
       Log.info(`${this.TAG} attachFunction fun: ${fun}`)
       this.mFunctionsMap.get(fun).load()
     }
   }
 
-  private detachFunction(item: string[]): void {
+  private detachFunction(item: FunctionId[]): void {
     for (let fun of item) {
       Log.info(`${this.TAG} disattachFunction fun: ${fun}`)
       this.mFunctionsMap.get(fun).unload()

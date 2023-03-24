@@ -15,14 +15,17 @@
 
 import display from '@ohos.display'
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-import wantConstant from '@ohos.ability.wantConstant'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import {
+  Action,
+  EventBus,
+  EventBusManager,
+  getStore,
+  Log,
+  OhCombinedState,
+  PersistType,
+  PreferencesService,
+  SettingManager
+} from '@ohos/common'
 
 let controlState = (state: OhCombinedState) => {
   return {
@@ -74,7 +77,6 @@ export struct Control {
   private isScroll: boolean = false
   private scrollDistance: number = 0
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
-
   @State state: any = {}
   @State modeBarItemLeftWidth: number = 225
   @State modeBarItemRightWidth: number = 225
@@ -167,56 +169,87 @@ export struct Control {
         if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO') {
           Row() {
             Text($r('app.string.photo_mode'))
-              .width('100%').height('100%')
-              .fontSize(14).fontColor(Color.White)
+              .width('100%')
+              .height('100%')
+              .fontSize(14)
+              .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
               .textAlign(TextAlign.Center)
           }.width('100%').height('100%')
         } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO') {
           Row() {
             Text($r('app.string.video_mode'))
-              .width('100%').height('100%')
-              .fontSize(14).fontColor(Color.White)
+              .width('100%')
+              .height('100%')
+              .fontSize(14)
+              .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
               .textAlign(TextAlign.Center)
           }.width('100%').height('100%')
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            ListItem() {}.width(64).height('100%')
-            ListItem() {}.width(56).height('100%')
-            ListItem() {}.width(this.modeBarItemLeftWidth).height('100%')
+            ListItem() {
+            }.width(64).height('100%')
+
+            ListItem() {
+            }.width(56).height('100%')
+
+            ListItem() {
+            }.width(this.modeBarItemLeftWidth).height('100%')
+
             ListItem() {
               Text($r('app.string.multi_mode'))
-                .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
+                .width('100%')
+                .height('100%')
+                .fontColor('#fff')
+                .fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(0))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
-                .onClick(() => { this.changeToMode(0) })
+                .onClick(() => {
+                  this.changeToMode(0)
+                })
             }.width(72).height('100%')
+
             ListItem() {
               Text($r('app.string.photo_mode'))
-                .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
+                .width('100%')
+                .height('100%')
+                .fontColor('#fff')
+                .fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(1))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
-                .onClick(() => { this.changeToMode(1) })
+                .onClick(() => {
+                  this.changeToMode(1)
+                })
             }.width(56).height('100%')
+
             ListItem() {
               Text($r('app.string.video_mode'))
-                .width('100%').height('100%')
-                .fontColor('#fff').fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
+                .width('100%')
+                .height('100%')
+                .fontColor('#fff')
+                .fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
                 .fontWeight(this.getModeFontWeight(2))
                 .textAlign(TextAlign.Center)
                 .enabled(this.state.uiEnable)
-                .onClick(() => { this.changeToMode(2) })
+                .onClick(() => {
+                  this.changeToMode(2)
+                })
             }.width(56).height('100%')
-            ListItem() {}.width(this.modeBarItemRightWidth).height('100%')
-            ListItem() {}.width(64).height('100%')
-            ListItem() {}.width(56).height('100%')
+
+            ListItem() {
+            }.width(this.modeBarItemRightWidth).height('100%')
+
+            ListItem() {
+            }.width(64).height('100%')
+
+            ListItem() {
+            }.width(56).height('100%')
           }
-          .width('100%').height('100%')
+          .width('100%')
+          .height('100%')
           .listDirection(Axis.Horizontal)
           .edgeEffect(EdgeEffect.None)
           .chainAnimation(false)
@@ -253,7 +286,8 @@ export struct Control {
           })
         }
         Column() {
-          Column() {}.width(6).height(6).borderRadius(3).backgroundColor('#007DFF')
+          Column() {
+          }.width(6).height(6).borderRadius(3).backgroundColor('#007DFF')
         }.width('100%').height(18)
       }.width('100%').height(58)
     }

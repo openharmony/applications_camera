@@ -27,3 +27,24 @@ export class SettingData {
   toggle?: string;
   description?: string;
 }
+
+
+export class RadioItem {
+  itemValue?: any
+}
+
+export class SettingItem {
+  imagePath?: Resource;
+  settingName?: Resource;
+  description?: any;
+  checkedName?: any;
+  settingAlias?: any;
+  selectType?: any;
+  radio?: RadioItem[];
+  toggle?: boolean;
+}
+
+export class SettingGroupItem {
+  settingTitle?: Resource;
+  settingChildren?: SettingItem[];
+}

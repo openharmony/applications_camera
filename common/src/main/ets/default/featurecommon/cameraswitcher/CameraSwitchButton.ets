@@ -15,7 +15,7 @@
 
 import { Action } from '../../redux/actions/Action'
 import { CameraSwitchController } from './CameraSwitchController'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Log } from '../../utils/Log'
 import MultiCameraDialog from '../customdialog/MultiCameraDialog'
 import deviceInfo from '@ohos.deviceInfo'

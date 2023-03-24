@@ -15,11 +15,7 @@
 
 import display from '@ohos.display'
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Action, EventBus, EventBusManager, getStore, Log, OhCombinedState } from '@ohos/common'
 
 let localState = (state: OhCombinedState) => {
   return {
@@ -81,7 +77,7 @@ export struct BigVideoTimer {
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  aboutToDisappear(): void{
+  aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
     this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
@@ -129,13 +125,28 @@ export struct BigVideoTimer {
       } else {
         if (this.state.isRecordingSpotVisible) {
           Column() {
-          }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Visible)
+          }
+          .width(12)
+          .height(12)
+          .backgroundColor('#FF0000')
+          .borderRadius(6)
+          .visibility(Visibility.Visible)
         } else {
           Column() {
-          }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Hidden)
+          }
+          .width(12)
+          .height(12)
+          .backgroundColor('#FF0000')
+          .borderRadius(6)
+          .visibility(Visibility.Hidden)
         }
       }
-      Text(`${this.state.recordingTimeDisplay}`).margin({ left: 8, right: 8 }).fontSize('50fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Center)
+      Text(`${this.state.recordingTimeDisplay}`)
+        .margin({ left: 8, right: 8 })
+        .fontSize('50fp')
+        .fontWeight(300)
+        .fontColor('#FFFFFF')
+        .textAlign(TextAlign.Center)
       Text('').width(12).height(12)
       Text('').layoutWeight(1)
     }.width('100%').height(96)
