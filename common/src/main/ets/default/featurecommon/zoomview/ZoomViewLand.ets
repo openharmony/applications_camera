@@ -16,10 +16,10 @@
 import display from '@ohos.display'
 
 import { Log } from '../../utils/Log'
-import getStore, { OhCombinedState } from '../../redux/store'
+import { getStore, OhCombinedState } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 let localDispatcher = (dispatch) => {
   return {

@@ -15,7 +15,7 @@
 
 import { Action, UiStateMode } from '../redux/actions/Action'
 import { CameraService } from '../camera/CameraService'
-import EventBusManager from '../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../worker/eventbus/EventBusManager'
 import { WorkerManager } from '../worker/WorkerManager'
 
 export abstract class BaseFunction {

@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-export class Constants {
-  public static readonly CAMERA_BASIC_FUNCTION = 'CAMERA_BASIC_FUNCTION'
-  public static readonly CAPTURE_FUNCTION = 'CAPTURE_FUNCTION'
-  public static readonly RECORDING_FUNCTION = 'RECORDING_FUNCTION'
-  public static readonly ZOOM_FUNCTION = 'ZOOM_FUNCTION'
+export enum FunctionId {
+    NONE,
+    CAMERA_BASIC_FUNCTION,
+    CAPTURE_FUNCTION,
+    RECORDING_FUNCTION,
+    ZOOM_FUNCTION
 }

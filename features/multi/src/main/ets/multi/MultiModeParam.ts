@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { Constants } from '../../../../../featureservice/Constants'
+import { Log, FunctionId } from '@ohos/common'
 
 export class MultiModeParam {
-  public readonly functions: string[] = [Constants.CAPTURE_FUNCTION]
+  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION]
 }

@@ -16,10 +16,10 @@
 import router from "@system.router"
 
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
 

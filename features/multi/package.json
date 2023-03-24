@@ -1,7 +1,8 @@
 {
 	"license": "ISC",
 	"devDependencies": {},
-	"name": "@ohos/features",
+	"name": "@ohos/multi",
+	"main": "index.ets",
 	"description": "multi mode",
 	"ohos": {
 		"org": ""

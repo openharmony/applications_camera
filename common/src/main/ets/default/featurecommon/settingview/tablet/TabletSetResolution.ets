@@ -19,7 +19,7 @@ import Resolution from '../../../setting/settingitem/Resolution'
 import Timer from '../../../setting/settingitem/Timer'
 import { CustomDialogView, CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
 import { Log } from '../../../utils/Log'
-import getStore from '../../../redux/store'
+import { getStore } from '../../../redux/store'
 import { SettingManager } from '../../../setting/SettingManager'
 import { BaseData }  from '../model/BaseData'
 import { SettingData }  from '../model/SettingData'
@@ -39,8 +39,8 @@ let localDispatcher = (dispatch) => {
 }
 
 @Component
-export struct SetResolution {
-  private TAG: string = '[SetResolution]:'
+export struct TabletSetResolution {
+  private TAG: string = '[TabletSetResolution]:'
   @Link settingsList: any[]
   @Link @Watch('onCloseDialog') closeFlag: boolean
   private itemValue: SettingData

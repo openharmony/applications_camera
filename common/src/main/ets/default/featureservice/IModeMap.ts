@@ -13,14 +13,8 @@
  * limitations under the License.
  */
 
-{
-  "apiType": 'stageMode',
-  "buildOption": {
-    "compileMode": "esmodule"
-  },
-  "targets": [
-    {
-      "name": "default",
-    }
-  ]
+import { FunctionId } from './FunctionId'
+
+export interface IModeMap {
+  getFunctions: (mode: string) => FunctionId[];
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { Log, FunctionId } from '@ohos/common'
 import { PhotoModeParam } from './PhotoModeParam'
 
 const TAG: string = '[PhotoMode]:'
@@ -25,7 +25,7 @@ export class PhotoMode {
     return this.photoModeParam.tabBar
   }
 
-  public getFunctions(): string[] {
+  public getFunctions(): FunctionId[] {
     Log.info(`${TAG} function = ${this.photoModeParam.functions}`)
     return this.photoModeParam.functions
   }

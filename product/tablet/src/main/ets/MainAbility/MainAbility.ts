@@ -16,12 +16,8 @@
 import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window';
 import wantConstant from '@ohos.ability.wantConstant'
-import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log';
-import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { CameraBasicFunction, CameraNeedStatus, Constants, EventBus, EventBusManager, FeatureManager, Log, PreferencesService} from '@ohos/common'
+import { ModeMap } from '../common/ModeMap';
 
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
@@ -31,6 +27,11 @@ export default class MainAbility extends Ability {
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
     Log.start(Log.ABILITY_WHOLE_LIFE)
+    if (globalThis.cameraFormParam != undefined) {
+      var featureManager = new FeatureManager(globalThis.cameraFormParam.mode, new ModeMap())
+    } else {
+      var featureManager = new FeatureManager('PHOTO', new ModeMap())
+    }
     Log.info('Camera MainAbility onCreate.')
     globalThis.cameraAbilityContext = this.context
     globalThis.cameraAbilityWant = this.launchWant

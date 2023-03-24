@@ -18,7 +18,7 @@ import worker from '@ohos.worker'
 import { Log } from '../utils/Log'
 import { Constants } from '../utils/Constants'
 import { EventBus } from './eventbus/EventBus'
-import EventBusManager from './eventbus/EventBusManager'
+import { EventBusManager } from './eventbus/EventBusManager'
 
 export interface Message {
   type: string,

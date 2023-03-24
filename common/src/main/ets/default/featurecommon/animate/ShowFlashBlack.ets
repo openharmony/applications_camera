@@ -14,7 +14,7 @@
  */
 
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 
 let localState = (state) => {
