@@ -117,13 +117,46 @@ let indexDispatcher = (dispatch) => {
 
 PersistentStorage.PersistProp("storageCameraId", "")
 
+class StateStruct {
+  permissionFlag
+  mode
+  curMode
+  isBigVideoTimerVisible
+  isSmallVideoTimerVisible
+  videoState
+  isShowtimeLapse
+  isShowMoreList
+  isThirdPartyCall
+  showZoomLabelValue
+  cameraPosition
+  isShowPinch
+  xComponentWidth
+  xComponentHeight
+  isShowPageView
+  isInitiated
+  initShowFlag
+  initFootBarHeight: Function
+  setPermissionFlag: Function
+  initAction: Function
+  initCameraPosition: Function
+  initMode: Function
+  changeTimeLapse: Function
+  stopRecording: Function
+  resetRecordingTime: Function
+  resetZoomRatio
+  hideSettingView: Function
+  updateModeIndex: Function
+  faCall: Function
+  thirdPartyCall: Function
+}
+
 @Entry
 @Component
 struct Index {
   private TAG: string = '[IndexLand]:'
   private modeConfig: ModeConfig = new ModeConfig()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State screenSize: any = { width: 0, height: 0 }
   private mPlaySound: PlaySound = PlaySound.getInstance()
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']

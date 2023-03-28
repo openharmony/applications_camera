@@ -33,14 +33,18 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  thumbnail
+}
+
 @Component
 export struct ThumbnailView {
   private TAG: string = '[ThumbnailView]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State thumbnailBorder: Object = {}
 
-  @State state: any = {}
-  @State thumbnail: any = $r('app.media.ic_camera_thumbnail_default_white')
+  @State state: StateStruct = new StateStruct()
+  @State thumbnail: Resource = $r('app.media.ic_camera_thumbnail_default_white')
   @State hasThumbnail: boolean = false
   @State scaleValue: number = 1
   @State tempOpacity: number = 1

@@ -36,6 +36,10 @@ let localDispatcher = (dispatch) => {
 
 let storageCameraId = AppStorage.Link('storageCameraId')
 
+class StateStruct {
+  changeCameraPosition : Function
+}
+
 @CustomDialog
 export default struct MultiCameraDialog {
   private TAG: string = '[MultiCameraDialog]:'
@@ -49,7 +53,7 @@ export default struct MultiCameraDialog {
   ]
   @State private moreList: string[] = []
   private multiCameraMap = new Map()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State isShowMore: boolean = false
   @State gridColumns: number = 12
   @State useSizeTypeOffset: number = 4
