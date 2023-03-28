@@ -48,21 +48,21 @@ export struct MoreList {
   @State state: StateStruct = new StateStruct()
   private mDirection: any
   private moreList: MoreListInfo[] = [{
-    "itemIcon": $r("app.media.photo"),
-    "itemValue": "photo"
-  }, {
-    "itemIcon": $r("app.media.sd_card"),
-    "itemValue": "sd_card"
-  }, {
-    "itemIcon": $r("app.media.setting"),
-    "itemValue": "setting"
-  }, {
-    "itemIcon": $r("app.media.small_switch_camera"),
-    "itemValue": "switch"
-  }, {
-    "itemIcon": $r("app.media.sound_mute"),
-    "itemValue": "sound_mute"
-  }]
+                                        "itemIcon": $r("app.media.photo"),
+                                        "itemValue": "photo"
+                                      }, {
+                                        "itemIcon": $r("app.media.sd_card"),
+                                        "itemValue": "sd_card"
+                                      }, {
+                                        "itemIcon": $r("app.media.setting"),
+                                        "itemValue": "setting"
+                                      }, {
+                                        "itemIcon": $r("app.media.small_switch_camera"),
+                                        "itemValue": "switch"
+                                      }, {
+                                        "itemIcon": $r("app.media.sound_mute"),
+                                        "itemValue": "sound_mute"
+                                      }]
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
@@ -114,10 +114,10 @@ export struct MoreList {
     .width("100%")
     .height("70%")
     .gesture(
-    PanGesture({ direction: this.mDirection })
-      .onActionEnd(() => {
-        this.state.swipeChangeMode(this.state.modeIndex - 1)
-      })
+      PanGesture({ direction: this.mDirection })
+        .onActionEnd(() => {
+          this.state.swipeChangeMode(this.state.modeIndex - 1)
+        })
     )
   }
 }
