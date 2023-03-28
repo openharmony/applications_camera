@@ -150,6 +150,11 @@ class StateStruct {
   thirdPartyCall: Function
 }
 
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Entry
 @Component
 struct Index {
@@ -157,7 +162,7 @@ struct Index {
   private modeConfig: ModeConfig = new ModeConfig()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: StateStruct = new StateStruct()
-  @State screenSize: any = { width: 0, height: 0 }
+  @State screenSize: ScreenSizeType = { width: 0, height: 0 }
   private mPlaySound: PlaySound = PlaySound.getInstance()
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()

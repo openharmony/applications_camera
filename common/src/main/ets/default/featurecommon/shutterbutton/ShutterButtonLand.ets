@@ -101,13 +101,18 @@ class StateStruct {
   changeTimeLapse: Function
 }
 
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct ShutterButtonLand {
   private TAG: string = '[ShutterButtonLand]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
   private lastTime = 0
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
 
   type: ButtonType
   stateEffect: boolean

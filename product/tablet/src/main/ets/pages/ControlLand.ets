@@ -82,6 +82,11 @@ class StateStruct {
 
 }
 
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct ControlLand {
   private TAG: string = '[ControlLand]:'
@@ -98,7 +103,7 @@ export struct ControlLand {
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
 
 
   aboutToAppear(): void {
