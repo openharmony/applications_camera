@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 
-import { Action, EventBus, EventBusManager, getStore, Log, OhCombinedState } from '@ohos/common'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 
 let localState = (state: OhCombinedState) => {
   return {

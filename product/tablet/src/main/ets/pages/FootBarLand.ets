@@ -14,18 +14,15 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo'
-import {
-  Action,
-  CameraSwitchButton,
-  ComponentPosition,
-  EventBus,
-  EventBusManager,
-  getStore,
-  Log,
-  OhCombinedState,
-  ShutterButtonLand,
-  ThumbnailView
-} from '@ohos/common'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { CameraSwitchButton }  from '@ohos/common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
+import { ComponentPosition }  from '@ohos/common/src/main/ets/default/utils/ComponentPosition'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { ShutterButtonLand } from '@ohos/common/src/main/ets/default/featurecommon/shutterbutton/ShutterButtonLand'
+import { ThumbnailView } from '@ohos/common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
 import { ControlLand } from './ControlLand'
 
 

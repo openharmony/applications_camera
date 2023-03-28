@@ -15,13 +15,14 @@
 
 import { Action, UiStateMode } from '../redux/actions/Action'
 import { CameraService } from '../camera/CameraService'
+import { EventBus } from '../worker/eventbus/EventBus'
 import { EventBusManager } from '../worker/eventbus/EventBusManager'
 import { WorkerManager } from '../worker/WorkerManager'
 
 export abstract class BaseFunction {
   protected mCameraService: CameraService = CameraService.getInstance()
   protected mWorkerManager: WorkerManager = new WorkerManager()
-  protected mEventBus = EventBusManager.getInstance().getEventBus()
+  protected mEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   protected enableUi() {
     this.mWorkerManager.postMessage(Action.uiState(true))

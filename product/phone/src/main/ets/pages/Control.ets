@@ -14,18 +14,13 @@
  */
 
 import display from '@ohos.display'
-
-import {
-  Action,
-  EventBus,
-  EventBusManager,
-  getStore,
-  Log,
-  OhCombinedState,
-  PersistType,
-  PreferencesService,
-  SettingManager
-} from '@ohos/common'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
 
 let controlState = (state: OhCombinedState) => {
   return {

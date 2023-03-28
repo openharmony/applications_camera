@@ -14,26 +14,21 @@
  */
 
 import display from '@ohos.display';
-
-import {
-  Action,
-  CameraWorker,
-  ComponentPosition,
-  Constants,
-  EventBus,
-  EventBusManager,
-  getStore,
-  Log,
-  MoreList,
-  OhCombinedState,
-  PersistType,
-  PlaySound,
-  PreferencesService,
-  RdbStoreManager,
-  ScreenLockManager,
-  TabBarLand,
-  ZoomViewLand
-} from '@ohos/common'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { CameraWorker }  from '@ohos/common/src/main/ets/default/worker/CameraWorker'
+import { ComponentPosition }  from '@ohos/common/src/main/ets/default/utils/ComponentPosition'
+import { Constants }  from '@ohos/common/src/main/ets/default/utils/Constants'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/MoreList'
+import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { RdbStoreManager } from '@ohos/common/src/main/ets/default/setting/storage/RdbStoreManager'
+import { PlaySound } from '@ohos/common/src/main/ets/default/featurecommon/playsound/playSound'
+import { ScreenLockManager } from '@ohos/common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
+import { TabBarLand } from '@ohos/common/src/main/ets/default/featurecommon/tabbar/TabBarLand'
+import { ZoomViewLand } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomViewLand'
 import { FootBarLand } from './FootBarLand'
 import { ModeConfig } from '../common/ModeConfig'
 import { PreviewAreaLand } from './PreviewAreaLand'

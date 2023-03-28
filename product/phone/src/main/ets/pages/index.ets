@@ -16,23 +16,18 @@
 import display from '@ohos.display'
 import deviceInfo from '@ohos.deviceInfo'
 import { ModeMap } from '../common/ModeMap';
-
-import {
-  Action,
-  CameraWorker,
-  EventBus,
-  EventBusManager,
-  getStore,
-  Log,
-  MoreList,
-  OhCombinedState,
-  PersistType,
-  PlaySound,
-  PreferencesService,
-  RdbStoreManager,
-  TabBar,
-  ZoomView
-} from '@ohos/common'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { CameraWorker }  from '@ohos/common/src/main/ets/default/worker/CameraWorker'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/MoreList'
+import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { PlaySound } from '@ohos/common/src/main/ets/default/featurecommon/playsound/playSound'
+import { RdbStoreManager } from '@ohos/common/src/main/ets/default/setting/storage/RdbStoreManager'
+import { TabBar } from '@ohos/common/src/main/ets/default/featurecommon/tabbar/TabBar'
+import { ZoomView } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomView'
 import { Control } from './Control'
 import { FootBar } from './FootBar'
 import { ModeConfig } from '../common/ModeConfig'

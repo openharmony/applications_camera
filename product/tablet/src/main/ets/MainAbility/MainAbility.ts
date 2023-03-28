@@ -16,7 +16,13 @@
 import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window';
 import wantConstant from '@ohos.ability.wantConstant'
-import { CameraBasicFunction, CameraNeedStatus, Constants, EventBus, EventBusManager, FeatureManager, Log, PreferencesService} from '@ohos/common'
+import { CameraBasicFunction } from '@ohos/common/src/main/ets/default/function/CameraBasicFunction'
+import { CameraNeedStatus,Constants }  from '@ohos/common/src/main/ets/default/utils/Constants'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { FeatureManager } from '@ohos/common/src/main/ets/default/featureservice/FeatureManager'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 import { ModeMap } from '../common/ModeMap';
 
 export default class MainAbility extends Ability {
