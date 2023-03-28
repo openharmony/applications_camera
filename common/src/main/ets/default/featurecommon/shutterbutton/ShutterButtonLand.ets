@@ -80,6 +80,27 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  uiEnable
+  shutterIcon
+  videoState
+  mode
+  videoUri
+  resourceUri
+  isThirdPartyCall
+  xComponentWidth
+  xComponentHeight
+  thumbnail
+  updateSmallVideoTimerVisible: Function
+  updateShutterIcon: Function
+  capture: Function
+  startRecording: Function
+  pauseRecording: Function
+  resumeRecording: Function
+  stopRecording: Function
+  changeTimeLapse: Function
+}
+
 @Component
 export struct ShutterButtonLand {
   private TAG: string = '[ShutterButtonLand]:'
@@ -91,7 +112,7 @@ export struct ShutterButtonLand {
   type: ButtonType
   stateEffect: boolean
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State captureBtnScale: number = 1
 
   aboutToAppear(): void {

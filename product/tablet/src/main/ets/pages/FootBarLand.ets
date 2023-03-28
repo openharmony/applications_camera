@@ -42,11 +42,19 @@ let footBarLandDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  platformCapability
+  videoState
+  isThirdPartyCall
+  showZoomLabelValue
+  xComponentHeight
+}
+
 @Component
 export struct FootBarLand {
   private TAG: string = '[FootBarLand]:'
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State isRecording: boolean = false
   @Link screenSize: any
 

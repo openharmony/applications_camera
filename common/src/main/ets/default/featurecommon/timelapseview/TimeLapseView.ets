@@ -45,6 +45,13 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  mode
+  changeTimeLapse: Function
+  capture: Function
+  startRecording: Function
+}
+
 @Component
 export struct TimeLapseView {
   private TAG: string = '[TimeLapseView]:'
@@ -52,7 +59,7 @@ export struct TimeLapseView {
   private settingManager = SettingManager.getInstance()
   appEventBus = EventBusManager.getInstance().getEventBus()
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State timerLapse: number = 0
 
   private onKeepScreen(data) {

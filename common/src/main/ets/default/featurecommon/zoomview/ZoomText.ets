@@ -26,11 +26,15 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  zoomRatio
+}
+
 @Component
 export struct ZoomText {
   private TAG: string = '[ZoomText]'
 
-  @Link state: any
+  @Link state : StateStruct
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)

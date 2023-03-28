@@ -41,10 +41,18 @@ let localDispatcher = (dispatch) => {
 
 let storageCameraId = AppStorage.Link('storageCameraId')
 
+class StateStruct {
+  mode
+  uiEnable
+  cameraPosition
+  videoState
+  changeCameraPosition : Function
+}
+
 @Component
 export struct CameraSwitchButton {
   private TAG: string = '[CameraSwitchButton]:'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State deviceType: string = deviceInfo.deviceType
   @StorageLink('storageCameraId') storageCameraId: string = ''
 

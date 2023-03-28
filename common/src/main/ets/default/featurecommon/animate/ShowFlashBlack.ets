@@ -35,11 +35,17 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  xComponentWidth
+  xComponentHeight
+  updateShowFlashBlackFlag : Function
+}
+
 @Component
 export struct ShowFlashBlack {
   private TAG: string = '[ShowFlashBlack]:'
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State opacityValue: number = 1
 
   aboutToAppear() {

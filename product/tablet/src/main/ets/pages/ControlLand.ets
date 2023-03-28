@@ -64,6 +64,23 @@ let controlLandDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  isThirdPartyCall
+  isFaCall
+  action
+  uiEnable
+  modeIndex
+  mode
+  isShowMoreList
+  changeToMode: Function
+  updateModeIndex: Function
+  updateShowMoreList: Function
+  thirdPartyCall: Function
+  initAction: Function
+  initMode: Function
+  changeXComponentSize: Function
+
+}
 
 @Component
 export struct ControlLand {
@@ -77,7 +94,7 @@ export struct ControlLand {
   private scrollDistance: number = 0
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0

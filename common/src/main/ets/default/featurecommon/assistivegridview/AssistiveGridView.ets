@@ -29,6 +29,11 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  xComponentWidth
+  xComponentHeight
+}
+
 @Component
 export struct AssistiveGridView {
   private TAG: string = '[AssistiveGridView]:'
@@ -48,7 +53,7 @@ export struct AssistiveGridView {
   private settingManager = SettingManager.getInstance()
   private xCWidth: number = 0
   private xCHeight: number = 0
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
