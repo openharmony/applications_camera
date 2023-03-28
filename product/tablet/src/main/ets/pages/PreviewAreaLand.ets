@@ -266,6 +266,11 @@ class StateStruct {
 
 globalThis.mXComponentController = new XComponentController()
 
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct PreviewAreaLand {
   private TAG: string = '[PreviewAreaLand]:'
@@ -284,8 +289,8 @@ export struct PreviewAreaLand {
   @State switchBackgroundOpacity: number = 1
   @State isSwitchBackground: boolean = false
   @State pageType: string = ''
-  @Link screenSize: any
-  @State isShowBlurSize: any = {}
+  @Link screenSize: ScreenSizeType
+  @State isShowBlurSize: ScreenSizeType = { width: 0, height: 0}
   private mConnect: any
   private isShowPreview: boolean = false
   private settingManager = SettingManager.getInstance()

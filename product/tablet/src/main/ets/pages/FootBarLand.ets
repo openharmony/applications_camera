@@ -50,13 +50,18 @@ class StateStruct {
   xComponentHeight
 }
 
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct FootBarLand {
   private TAG: string = '[FootBarLand]:'
 
   @State state: StateStruct = new StateStruct()
   @State isRecording: boolean = false
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
 
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 

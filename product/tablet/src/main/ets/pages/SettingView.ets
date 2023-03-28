@@ -70,6 +70,12 @@ class StateStruct {
   resetZoomRatio: Function
 }
 
+type LocalStyleType = {
+  columns: number
+  offset: number
+  span: number
+}
+
 @Component
 export struct SettingView {
   private TAG: string = '[SettingView]:'
@@ -81,7 +87,7 @@ export struct SettingView {
   @State tempMargin: number = 12; //两侧间距
   @State settingsList: any[] = SettingListModel.getSettingList()
   @State state: StateStruct = new StateStruct()
-  @State localStyle: any = { "columns": 12, "offset": 2, "span": 8 }
+  @State localStyle: LocalStyleType = { "columns": 12, "offset": 2, "span": 8 }
   private WH_100_100: string = "100%";
   private mEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
