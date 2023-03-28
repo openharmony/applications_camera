@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-import {
-  Action,EventBus,
-  EventBusManager,
-  getStore,
-  Log,TabletSettingItem,
-  OhCombinedState,
-  SettingListModel,
-  SettingManager
-} from '@ohos/common'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
+import { TabletSettingItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/tablet/TabletSettingItem'
+import { SettingListModel } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 
 let localState = (state: OhCombinedState) => {
   return {

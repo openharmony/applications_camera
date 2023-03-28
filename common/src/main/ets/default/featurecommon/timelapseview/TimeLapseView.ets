@@ -19,6 +19,7 @@ import window from '@ohos.window';
 import { Action } from '../../redux/actions/Action'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
+import { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 let localState = (state) => {
@@ -50,7 +51,7 @@ export struct TimeLapseView {
   private TAG: string = '[TimeLapseView]:'
   private timer: number = 0
   private settingManager = SettingManager.getInstance()
-  appEventBus = EventBusManager.getInstance().getEventBus()
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   @State state: any = {}
   @State timerLapse: number = 0

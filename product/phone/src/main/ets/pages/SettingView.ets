@@ -14,16 +14,13 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import {
-  Action,
-  EventBusManager,
-  getStore,
-  Log,
-  OhCombinedState,
-  SettingItem,
-  SettingListModel,
-  SettingManager
-} from '@ohos/common'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
+import { SettingItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'
+import { SettingListModel } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 
 let localState = (state: OhCombinedState) => {
   return {

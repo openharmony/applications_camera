@@ -18,25 +18,19 @@ import display from '@ohos.display';
 import wantConstant from '@ohos.ability.wantConstant'
 import window from '@ohos.window';
 import deviceInfo from '@ohos.deviceInfo'
-import {
-  Action,
-  AssistiveGridView,
-  BigText,
-  CameraNeedStatus,
-  CameraStatus,
-  EventBus,
-  EventBusManager,
-  GeoLocation,
-  getStore,
-  Log,
-  OhCombinedState,
-  SettingManager,
-  ShowFlashBlack,
-  TimeLapseView,
-  UiStateMode,
-  ZoomText
-} from '@ohos/common'
-
+import { Action, UiStateMode }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { AssistiveGridView }  from '@ohos/common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
+import { BigText } from '@ohos/common/src/main/ets/default/featurecommon/bigtext/BigText'
+import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/default/utils/Constants'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
+import { ShowFlashBlack } from '@ohos/common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
+import { TimeLapseView } from '@ohos/common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
+import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomText'
 import { BigVideoTimer } from './BigVideoTimer'
 import { SmallVideoTimer } from './SmallVideoTimer'
 import prompt from '@ohos.prompt';
