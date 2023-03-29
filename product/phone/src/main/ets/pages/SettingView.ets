@@ -51,6 +51,17 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  isCloseFlag
+  mode
+  zoomRatio
+  closeDialog : Function
+  hideSettingView : Function
+  changeXComponentSize : Function
+  assistiveGridView : Function
+  reStartPreview : Function
+}
+
 @Component
 export struct SettingView {
   private TAG: string = '[SettingView]:'
@@ -60,7 +71,7 @@ export struct SettingView {
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
   @State settingsList: any[] = SettingListModel.getSettingList()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   private mEventBus = EventBusManager.getInstance().getEventBus()
   private WH_100_100: string = "100%";
 

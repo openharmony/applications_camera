@@ -37,10 +37,15 @@ class MoreListInfo {
   itemValue: number | string = ''
 }
 
+class StateStruct {
+  modeIndex
+  swipeChangeMode : Function
+}
+
 @Component
 export struct MoreList {
   private TAG: string = '[moreList]:'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   private mDirection: any
   private moreList: MoreListInfo[] = [{
                                         "itemIcon": $r("app.media.photo"),

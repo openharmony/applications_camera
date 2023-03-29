@@ -34,13 +34,23 @@ let tabBarLandDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  isThirdPartyCall
+  showSettingView: Function
+}
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct TabBarLand {
   private TAG: string = '[TabBarLand]'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State opacityTabBar: number = 0
   @State isShowTabBarOther: boolean= false
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
   private onBackClicked:Function
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 

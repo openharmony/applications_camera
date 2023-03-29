@@ -36,6 +36,10 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  closeDialog : Function
+}
+
 @Component
 export struct SetResolution {
   private TAG: string = '[SetResolution]:'
@@ -50,7 +54,7 @@ export struct SetResolution {
 
   @State curCheckName: Resource = $r("app.string.default_value")
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   @Provide customDialogDetails: CustomDialogDetails = {
     confirmCallback: null,
