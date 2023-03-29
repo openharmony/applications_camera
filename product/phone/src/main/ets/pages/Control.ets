@@ -64,6 +64,23 @@ let controlDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  isThirdPartyCall
+  isFaCall
+  action
+  uiEnable
+  modeIndex
+  mode
+  isShowMoreList
+  changeToMode : Function
+  updateModeIndex : Function
+  updateShowMoreList : Function
+  thirdPartyCall : Function
+  initAction : Function
+  initMode : Function
+  updateListStatus : Function
+}
+
 @Component
 export struct Control {
   private TAG: string = '[Control]'
@@ -75,7 +92,7 @@ export struct Control {
   private scrollDistance: number = 0
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State modeBarItemLeftWidth: number = 225
   @State modeBarItemRightWidth: number = 225
   @State startScroll: number = 0
