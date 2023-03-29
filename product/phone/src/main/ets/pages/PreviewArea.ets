@@ -190,11 +190,80 @@ let cameraDispatcher = (dispatch) => {
 
 globalThis.mXComponentController = new XComponentController()
 
+class StateStruct {
+  mode
+  baseZoom
+  curMode
+  isShowPreview
+  surfaceId
+  xComponentWidth
+  xComponentHeight
+  cameraPosition
+  curCameraPosition
+  minZoomRatio
+  maxZoomRatio
+  zoomRatio
+  platformCapability
+  videoState
+  footBarHeight
+  isShowZoomText
+  showZoomLabelValue
+  modeIndex
+  isThirdPartyCall
+  isShowBigText
+  isShowtimeLapse
+  isBigVideoTimerVisible
+  isSmallVideoTimerVisible
+  isAssGridViewShow
+  isShowFlashBlack
+  modeChangeDone
+  isShowPageView
+  showBlur
+  isFaCall
+  scaleX
+  rotateAngle
+  rotateAngleSec
+  switchBackgroundOpacity
+  initCamera: Function
+  initZoomRatio: Function
+  changeZoomRatio: Function
+  updateZoomPercentage: Function
+  prepareSurface: Function
+  startPreview: Function
+  switchCamera: Function
+  updateCameraPosition: Function
+  startVideoFlag: Function
+  changeXComponentSize: Function
+  updateShowPreviewFlag: Function
+  updateIsShowZoomText: Function
+  updateIsPhotoZoomDetails: Function
+  updateBaseZoom: Function
+  changeImageSize: Function
+  changeVideoSize: Function
+  close: Function
+  stopRecording: Function
+  changeTimeLapse: Function
+  capture: Function
+  startRecording: Function
+  assistiveGridView: Function
+  swipeChangeMode: Function
+  thirdPartyCall: Function
+  faCall: Function
+  initMode: Function
+  updateMode: Function
+  changeToMode: Function
+  updateModeIndex: Function
+  updateShowZoomLabelValue: Function
+  reloadThumbnail: Function
+  updateShowPinch: Function
+  swipeModeChangeDone: Function
+}
+
 @Component
 export struct PreviewArea {
   private TAG: string = '[PreviewArea]:'
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State mAspectRatio: number = 3 / 4
   @State btnSwitch: boolean = false
   @State btnSwitchSec: boolean = false

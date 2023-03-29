@@ -33,10 +33,15 @@ let tabBarDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  isThirdPartyCall
+  showSettingView: Function
+}
+
 @Component
 export struct TabBar {
   private TAG: string = '[TabBar]'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   private onBackClicked:Function
 
   aboutToAppear(): void {

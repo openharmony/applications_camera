@@ -27,10 +27,14 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  uiEnable
+}
+
 @Component
 export default struct EntryComponentForMulti {
   private TAG: string = '[EntryComponentForMulti]:'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State isLocalDevice: boolean = false
   @State switchCameraState: boolean = false
   @State recCameraState: boolean = true

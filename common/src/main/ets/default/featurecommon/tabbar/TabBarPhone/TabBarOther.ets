@@ -34,10 +34,13 @@ let tabBarLandDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+}
+
 @Component
 export struct TabBarOther {
   private TAG: string = '[TabBarOther]:'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private aboutToAppear() {

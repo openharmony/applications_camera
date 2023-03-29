@@ -40,12 +40,27 @@ let footBarLandDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  platformCapability
+  videoState
+  isThirdPartyCall
+  showZoomLabelValue
+  xComponentHeight
+}
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct FootBarLand {
   private TAG: string = '[FootBarLand]:'
-  @State state: any = {}
+
+  @State state: StateStruct = new StateStruct()
   @State isRecording: boolean = false
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
+
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private async onRecordStart(data) {

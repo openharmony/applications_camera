@@ -37,6 +37,12 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  mode
+  updateShowBigTextFlag : Function
+  updateUiState : Function
+}
+
 @Component
 export struct BigText {
   private TAG: string = '[BigText]:'
@@ -47,7 +53,7 @@ export struct BigText {
     'VIDEO': $r('app.string.video_mode')
   }
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State bigTextOpacity: number = 0
 
   public aboutToAppear() {

@@ -80,18 +80,44 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  uiEnable
+  shutterIcon
+  videoState
+  mode
+  videoUri
+  resourceUri
+  isThirdPartyCall
+  xComponentWidth
+  xComponentHeight
+  thumbnail
+  updateSmallVideoTimerVisible: Function
+  updateShutterIcon: Function
+  capture: Function
+  startRecording: Function
+  pauseRecording: Function
+  resumeRecording: Function
+  stopRecording: Function
+  changeTimeLapse: Function
+}
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct ShutterButtonLand {
   private TAG: string = '[ShutterButtonLand]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
   private lastTime = 0
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
 
   type: ButtonType
   stateEffect: boolean
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State captureBtnScale: number = 1
 
   aboutToAppear(): void {

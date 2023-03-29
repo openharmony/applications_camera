@@ -42,6 +42,11 @@ let localDispatcher = (dispatch) => {
     }
   }
 }
+
+class StateStruct {
+  closeDialog : Function
+}
+
 @CustomDialog
 export struct CustomDialogView {
   private TAG: string = '[CustomDialogView]:'
@@ -56,7 +61,7 @@ export struct CustomDialogView {
   @StorageLink('settingsList') settingsList: any[]= []
   @State childrenList: Array<any> = []
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   async aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)

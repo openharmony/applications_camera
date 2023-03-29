@@ -29,6 +29,9 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  mode
+}
 
 @Component
 export struct TabletSetToggle {
@@ -40,7 +43,7 @@ export struct TabletSetToggle {
   private WH_100_100: string = "100%"
   private settingManager = SettingManager.getInstance()
   @State generalStatusValue: boolean = false
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
