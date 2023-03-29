@@ -34,10 +34,15 @@ let tabBarLandDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  opacityValueForTabBar
+  updateOpacityForTabBar: Function
+}
+
 @Component
 export struct TabBarOther {
   private TAG: string = '[TabBarOther]:'
-  @State state: any ={}
+  @State state: StateStruct = new StateStruct()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private aboutToAppear(): void {

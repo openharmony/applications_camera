@@ -63,6 +63,28 @@ let controlLandDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  isThirdPartyCall
+  isFaCall
+  action
+  uiEnable
+  modeIndex
+  mode
+  isShowMoreList
+  changeToMode: Function
+  updateModeIndex: Function
+  updateShowMoreList: Function
+  thirdPartyCall: Function
+  initAction: Function
+  initMode: Function
+  changeXComponentSize: Function
+
+}
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
 
 @Component
 export struct ControlLand {
@@ -75,11 +97,12 @@ export struct ControlLand {
   private touchOff: boolean = true
   private scrollDistance: number = 0
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
-  @State state: any = {}
+
+  @State state: StateStruct = new StateStruct()
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)

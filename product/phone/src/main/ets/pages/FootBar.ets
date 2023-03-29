@@ -37,10 +37,21 @@ let footBarDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  platformCapability
+  isThirdPartyCall
+  videoState
+  showZoomLabelValue
+  mode
+  isRecording
+}
+
 @Component
 export struct FootBar {
   private TAG: string = '[FootBar]:'
-  @State state: any = {}
+
+  @State state: StateStruct = new StateStruct()
+
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private async onRecordStart(data) {

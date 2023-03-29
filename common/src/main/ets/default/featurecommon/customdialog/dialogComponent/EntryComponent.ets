@@ -32,6 +32,9 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  mode
+}
 
 @Component
 export default struct EntryComponent {
@@ -42,7 +45,7 @@ export default struct EntryComponent {
   private getValue: Resource
   private onChange: Function
   private settingManager = SettingManager.getInstance()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear calle1d = ${this.settingAlias}`)

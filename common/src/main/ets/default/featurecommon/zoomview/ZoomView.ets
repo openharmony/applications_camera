@@ -53,13 +53,27 @@ let SHOW_FOLD_CANVAS: number = 0
 let SHOW_NOT_TAKE_VIDEO_CANVAS: number = 1
 let SHOW_TAKING_VIDEO_CANVAS: number = 2
 
+class StateStruct {
+  mode
+  videoState
+  cameraPosition
+  zoomRatio
+  isShowZoomText
+  showZoomLabelValue
+  minZoomRatio
+  maxZoomRatio
+  updateZoomRatio : Function
+  updateShowZoomFlag : Function
+  updateShowZoomLabelValue : Function
+}
+
 @Component
 export struct ZoomView {
   private TAG: string = '[ZoomView]:'
   private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State offsetX: number = 0
   @State triggerRebuildNum: number = 0
 

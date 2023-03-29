@@ -34,10 +34,15 @@ let tabBarMDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  widthTabBar
+  updateShowTabBarWidth: Function
+}
+
 @Component
 export struct TabBarSame {
   private TAG: string = '[TabBarSame]:'
-  @State state: any ={}
+  @State state: StateStruct = new StateStruct()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private aboutToAppear() {

@@ -42,13 +42,23 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  recordingTime
+  recordingTimeDisplay
+  isRecordingPaused
+  isRecordingSpotVisible
+  updateSpotVisible : Function
+  updateRecordingTime : Function
+  updateRecordingTimeDisplay : Function
+}
+
 @Component
 export struct SmallVideoTimer {
   private TAG: string = '[SmallVideoTimer]'
   private timer: number = 0
   private timerTick: number = 0
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   private async onRecordPaused(data) {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
