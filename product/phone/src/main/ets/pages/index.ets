@@ -22,7 +22,7 @@ import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/Eve
 import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/MoreList'
+import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/moreList'
 import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 import { PlaySound } from '@ohos/common/src/main/ets/default/featurecommon/playsound/playSound'
 import { RdbStoreManager } from '@ohos/common/src/main/ets/default/setting/storage/RdbStoreManager'
