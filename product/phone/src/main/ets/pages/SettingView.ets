@@ -69,7 +69,7 @@ export struct SettingView {
   @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
-  @State settingsList: any[] = new SettingListModel.getSettingList()
+  @State settingsList: any[] = new SettingListModel().getSettingList()
   @State state: StateStruct = new StateStruct()
   private mEventBus = EventBusManager.getInstance().getEventBus()
   private WH_100_100: string = "100%";
