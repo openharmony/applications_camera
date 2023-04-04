@@ -87,7 +87,7 @@ export class CameraService {
       audioSampleRate: 48000,
       durationTime: 1000,
       fileFormat: 'mp4',
-      videoBitrate: 48000,
+      videoBitrate: 5000000,
       videoCodec: 'video/avc',
       videoFrameWidth: 640,
       videoFrameHeight: 480,
