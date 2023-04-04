@@ -16,7 +16,7 @@
 {
   "apiType": 'stageMode',
   "buildOption": {
-    "compileMode": "esmodule"
+    "compileMode": "jsbundle"
   },
   "targets": [
     {
