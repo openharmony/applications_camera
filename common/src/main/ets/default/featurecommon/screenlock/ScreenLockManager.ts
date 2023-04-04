@@ -17,7 +17,7 @@ import commonEvent from "@ohos.commonEvent"
 
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 const SCREEN_COMMON_EVENT_INFO = {
     events: [commonEvent.Support.COMMON_EVENT_SCREEN_OFF],

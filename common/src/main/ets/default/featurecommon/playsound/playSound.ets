@@ -19,7 +19,7 @@ import fileIO from '@ohos.fileio'
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import { SettingManager } from '../../setting/SettingManager'
 import { Voice } from '../../setting/settingitem/Voice'
 

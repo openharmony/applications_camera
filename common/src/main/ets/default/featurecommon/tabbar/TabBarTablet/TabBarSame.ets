@@ -17,8 +17,8 @@ import { Action } from '../../../redux/actions/Action'
 import { CaptureMode } from '../../../setting/settingitem/CaptureMode'
 import { Log } from '../../../utils/Log'
 import { EventBus } from '../../../worker/eventbus/EventBus'
-import EventBusManager from '../../../worker/eventbus/EventBusManager'
-import getStore from '../../../redux/store'
+import { EventBusManager } from '../../../worker/eventbus/EventBusManager'
+import { getStore } from '../../../redux/store'
 
 let tabBarMState = (state) => {
   return {

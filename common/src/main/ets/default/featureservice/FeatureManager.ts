@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import { Action } from '../../common/src/main/ets/default/redux/actions/Action'
-import { CameraBasicFunction } from '../../common/src/main/ets/default/function/CameraBasicFunction'
-import { CaptureFunction } from '../../common/src/main/ets/default/function/CaptureFunction'
-import { Log } from '../../common/src/main/ets/default/utils/Log'
-import { Constants } from './Constants'
-import { EventBus } from '../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Action } from '../redux/actions/Action'
+import { CameraBasicFunction } from '../function/CameraBasicFunction'
+import { CaptureFunction } from '../function/CaptureFunction'
+import { Log } from '../utils/Log'
+import { FunctionId } from './FunctionId'
+import { EventBus } from '../worker/eventbus/EventBus'
+import { EventBusManager } from '../worker/eventbus/EventBusManager'
 import { ModeAssembler } from './ModeAssembler'
-import { RecordFunction } from '../../common/src/main/ets/default/function/RecordFunction'
-import { WorkerManager } from '../../common/src/main/ets/default/worker/WorkerManager'
-import { ZoomFunction } from '../../common/src/main/ets/default/function/ZoomFunction'
-
+import { RecordFunction } from '../function/RecordFunction'
+import { WorkerManager } from '../worker/WorkerManager'
+import { ZoomFunction } from '../function/ZoomFunction'
+import { IModeMap } from './IModeMap'
 export class FeatureManager {
   private TAG: string = '[FeatureManager]:'
   private mModeAssembler: ModeAssembler
@@ -33,13 +33,13 @@ export class FeatureManager {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private mFunctionsMap = new Map()
 
-  constructor(mode: string) {
+  constructor(mode: string, modeMap: IModeMap) {
     Log.info(`${this.TAG} constructor`)
     this.initFunctionsMap()
-    this.mModeAssembler = new ModeAssembler(this.mFunctionsMap)
+    this.mModeAssembler = new ModeAssembler(this.mFunctionsMap, modeMap)
     this.mPreMode = mode
     this.mCurrentMode = mode
-    this.mFunctionsMap.get(Constants.CAMERA_BASIC_FUNCTION).load()
+    this.mFunctionsMap.get(FunctionId.CAMERA_BASIC_FUNCTION).load()
     this.mModeAssembler.assembler(null, this.mPreMode)
     // 接收到modeChange的消息，调用changeMode做处理
     this.appEventBus.on(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
@@ -54,10 +54,10 @@ export class FeatureManager {
 
   private initFunctionsMap(): void {
     Log.info(`${this.TAG} initFunctionsMap invoke E.`)
-    this.mFunctionsMap.set(Constants.CAMERA_BASIC_FUNCTION, CameraBasicFunction.getInstance())
-    this.mFunctionsMap.set(Constants.CAPTURE_FUNCTION, new CaptureFunction())
-    this.mFunctionsMap.set(Constants.RECORDING_FUNCTION, new RecordFunction())
-    this.mFunctionsMap.set(Constants.ZOOM_FUNCTION, new ZoomFunction())
+    this.mFunctionsMap.set(FunctionId.CAMERA_BASIC_FUNCTION, CameraBasicFunction.getInstance())
+    this.mFunctionsMap.set(FunctionId.CAPTURE_FUNCTION, new CaptureFunction())
+    this.mFunctionsMap.set(FunctionId.RECORDING_FUNCTION, new RecordFunction())
+    this.mFunctionsMap.set(FunctionId.ZOOM_FUNCTION, new ZoomFunction())
     Log.info(`${this.TAG} initFunctionsMap invoke X.`)
   }
 }

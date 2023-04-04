@@ -16,8 +16,8 @@
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
-import getStore from '../../redux/store'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import { getStore } from '../../redux/store'
 import EventLog from '../../utils/EventLog'
 
 let tabBarLandState = (state) => {

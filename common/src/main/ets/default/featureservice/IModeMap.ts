@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { Log, FunctionId } from '@ohos/common'
+import { FunctionId } from './FunctionId'
 
-export class MultiModeParam {
-  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION]
+export interface IModeMap {
+  getFunctions: (mode: string) => FunctionId[];
 }

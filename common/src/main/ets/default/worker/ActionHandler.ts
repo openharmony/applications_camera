@@ -15,7 +15,7 @@
 
 import { Log } from '../utils/Log'
 import { EventBus } from './eventbus/EventBus'
-import EventBusManager from './eventbus/EventBusManager'
+import { EventBusManager } from './eventbus/EventBusManager'
 
 // todo 后续考虑EventBus可能出现的消息堵塞问题
 export class ActionHandler {

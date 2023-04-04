@@ -17,7 +17,7 @@ import deviceInfo from '@ohos.deviceInfo'
 
 import { Action } from '../../../redux/actions/Action'
 import { Log } from '../../../utils/Log'
-import getStore from '../../../redux/store'
+import { getStore } from '../../../redux/store'
 import EntryComponent from './EntryComponent'
 
 @Observed

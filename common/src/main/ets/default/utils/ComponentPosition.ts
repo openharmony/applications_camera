@@ -16,7 +16,7 @@
 import DisplayCalculator from '../setting/DisplayCalculator';
 import { Log } from './Log';
 
-export default class ComponentPosition {
+export class ComponentPosition {
   private static TAG: string = '[ComponentPosition]:'
   private static shutterButtonWidth: number = 76
   private static shutterButtonWidthVideo: number = 56

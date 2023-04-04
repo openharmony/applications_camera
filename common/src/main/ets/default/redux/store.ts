@@ -14,7 +14,7 @@
  */
 
 import { AsyncManager, Message } from '../worker/AsyncManager'
-import EventBusManager from '../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../worker/eventbus/EventBusManager'
 import { Log } from '../utils/Log'
 import { createStore, combineReducers, applyMiddleware } from '../redux/core/ohredux/index'
 import { logger } from './middlewares/logger'
@@ -49,7 +49,7 @@ export type OhCombinedState = CombinedState<{
   ZoomReducer: ZoomState
 }>
 
-export default function getStore(): {
+export function getStore(): {
   getState: () => OhCombinedState,
   dispatch: Dispatch<ActionData>,
   subscribe: (listener: () => void) => Unsubscribe,

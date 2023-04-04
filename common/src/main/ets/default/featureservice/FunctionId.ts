@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
-import { Log, FunctionId } from '@ohos/common'
-
-export class MultiModeParam {
-  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION]
+export enum FunctionId {
+    NONE,
+    CAMERA_BASIC_FUNCTION,
+    CAPTURE_FUNCTION,
+    RECORDING_FUNCTION,
+    ZOOM_FUNCTION
 }

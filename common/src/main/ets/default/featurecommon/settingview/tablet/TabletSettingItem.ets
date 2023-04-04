@@ -15,13 +15,13 @@
 
 import { SettingManager } from '../../../setting/SettingManager'
 import { Log } from '../../../utils/Log'
-import { SetResolution } from './SetResolution'
-import { SetToggle } from './SetToggle'
+import { TabletSetResolution } from './TabletSetResolution'
+import { TabletSetToggle } from './TabletSetToggle'
 import { BaseData }  from '../model/BaseData'
 
 @Component
-export struct SettingItem {
-  private TAG: string = '[SettingItem]:'
+export struct TabletSettingItem {
+  private TAG: string = '[TabletSettingItem]:'
   @Link settingsList: any[]
   @Link closeFlag: Boolean
   private item: BaseData
@@ -65,14 +65,14 @@ export struct SettingItem {
             ListItem() {
               Column() {
                 if (itemValue.selectType === "radio") {
-                  SetResolution({
+                  TabletSetResolution({
                     closeFlag: $closeFlag,
                     settingsList: $settingsList,
                     itemValue: itemValue
                   })
                 }
                 if (itemValue.selectType === "toggle") {
-                  SetToggle({
+                  TabletSetToggle({
                     settingsList: $settingsList,
                     itemValue: itemValue
                   })
