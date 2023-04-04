@@ -13,17 +13,19 @@
  * limitations under the License.
  */
 
-import { PhotoMode } from '../photo/src/main/ets/photo/PhotoMode'
-import { VideoMode } from '../video/src/main/ets/video/VideoMode'
-import { MultiMode } from '../multi/src/main/ets/multi/MultiMode'
+import { PhotoMode } from '@ohos/photo'
+import { VideoMode } from '@ohos/video'
+import { MultiMode } from '@ohos/multi'
+import { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId'
+import { IModeMap } from '@ohos/common/src/main/ets/default/featureservice/IModeMap'
 
-export class Mode {
+export class ModeMap implements IModeMap {
   private TAG: string = '[Mode]:'
   private photoMode: PhotoMode = new PhotoMode()
   private videoMode: VideoMode = new VideoMode()
   private multiMode: MultiMode = new MultiMode()
 
-  public getFunctions(mode: string): string[] {
+  public getFunctions(mode: string): FunctionId[] {
     switch (mode) {
       case 'PHOTO':
         return this.photoMode.getFunctions()

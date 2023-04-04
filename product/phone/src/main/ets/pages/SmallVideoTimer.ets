@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 
 let localState = (state: OhCombinedState) => {
   return {
@@ -127,12 +127,20 @@ export struct SmallVideoTimer {
           } else {
             if (this.state.isRecordingSpotVisible) {
               Column() {
-              }.width(12).height(12).borderRadius(6)
-              .backgroundColor(Color.Red).visibility(Visibility.Visible)
+              }
+              .width(12)
+              .height(12)
+              .borderRadius(6)
+              .backgroundColor(Color.Red)
+              .visibility(Visibility.Visible)
             } else {
               Column() {
-              }.width(12).height(12).borderRadius(6)
-              .backgroundColor(Color.Red).visibility(Visibility.Hidden)
+              }
+              .width(12)
+              .height(12)
+              .borderRadius(6)
+              .backgroundColor(Color.Red)
+              .visibility(Visibility.Hidden)
             }
           }
           Text(`${this.state.recordingTimeDisplay}`)

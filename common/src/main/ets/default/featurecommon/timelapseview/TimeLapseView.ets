@@ -14,12 +14,13 @@
  */
 
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import window from '@ohos.window';
 import { Action } from '../../redux/actions/Action'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBus } from '../../worker/eventbus/EventBus'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 let localState = (state) => {
   return {
@@ -57,7 +58,7 @@ export struct TimeLapseView {
   private TAG: string = '[TimeLapseView]:'
   private timer: number = 0
   private settingManager = SettingManager.getInstance()
-  appEventBus = EventBusManager.getInstance().getEventBus()
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   @State state: StateStruct = new StateStruct()
   @State timerLapse: number = 0

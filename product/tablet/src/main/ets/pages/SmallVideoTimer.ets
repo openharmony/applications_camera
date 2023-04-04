@@ -13,13 +13,11 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display';
-
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 
 let localState = (state: OhCombinedState) => {
   return {
@@ -125,19 +123,40 @@ export struct SmallVideoTimer {
         } else {
           if (this.state.isRecordingSpotVisible) {
             Column() {
-            }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Visible)
+            }
+            .width(12)
+            .height(12)
+            .backgroundColor('#FF0000')
+            .borderRadius(6)
+            .visibility(Visibility.Visible)
           } else {
             Column() {
-            }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Hidden)
+            }
+            .width(12)
+            .height(12)
+            .backgroundColor('#FF0000')
+            .borderRadius(6)
+            .visibility(Visibility.Hidden)
           }
         }
-        Text(`${this.state.recordingTimeDisplay.split(':')[0]}`).margin({ left: 8 }).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
+        Text(`${this.state.recordingTimeDisplay.split(':')[0]}`)
+          .margin({ left: 8 })
+          .fontSize('28fp')
+          .fontWeight(300)
+          .fontColor('#FFFFFF')
         //TODO 需要确认UX样式
-//        Text(this.showMinute).margin({ left: 8 }).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
+        //        Text(this.showMinute).margin({ left: 8 }).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
       }.layoutWeight(1)
+
       Text(":").fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
-      Text(`${this.state.recordingTimeDisplay.split(':')[1]}`).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).align(Alignment.Start).layoutWeight(1)
-//      Text(this.showSecond).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
+      Text(`${this.state.recordingTimeDisplay.split(':')[1]}`)
+        .fontSize('28fp')
+        .fontWeight(300)
+        .fontColor('#FFFFFF')
+        .textAlign(TextAlign.Start)
+        .align(Alignment.Start)
+        .layoutWeight(1)
+      //      Text(this.showSecond).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
     }.width('100%').height(48)
   }
 }

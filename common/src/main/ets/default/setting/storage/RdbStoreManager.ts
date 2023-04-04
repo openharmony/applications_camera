@@ -29,7 +29,7 @@ const CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS SETTING ' +
 /**
  * db manager
  */
-export default class RdbStoreManager {
+export class RdbStoreManager {
   private TAG = '[RdbStoreManager]:'
   private mRdbStore
 

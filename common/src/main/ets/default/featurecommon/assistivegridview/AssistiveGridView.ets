@@ -16,7 +16,7 @@
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { SettingManager } from '../../setting/SettingManager'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 
 let localState = (state) => {
   return {

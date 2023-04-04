@@ -17,7 +17,7 @@ import AssistiveGrid from '../../../setting/settingitem/AssistiveGrid'
 import { Log } from '../../../utils/Log'
 import { SettingManager } from '../../../setting/SettingManager'
 import { SettingData }  from '../model/SettingData'
-import getStore from '../../../redux/store';
+import { getStore } from '../../../redux/store';
 
 let localState = (state) => {
   return {
@@ -34,8 +34,8 @@ class StateStruct {
 }
 
 @Component
-export struct SetToggle {
-  private TAG: string = '[SetToggle]:'
+export struct TabletSetToggle {
+  private TAG: string = '[TabletSetToggle]:'
   @Link settingsList: any[]
   @State isOn: boolean = false
   private itemValue: SettingData

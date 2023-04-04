@@ -1,3 +1,5 @@
+
+
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,22 +18,16 @@
 import { Log } from '../utils/Log'
 import { Constants } from '../utils/Constants'
 import { EventBus } from './eventbus/EventBus'
-import EventBusManager from './eventbus/EventBusManager'
+import { EventBusManager } from './eventbus/EventBusManager'
 import { WorkerManager } from './WorkerManager'
-import { FeatureManager } from '../../../../../../features/featureservice/FeatureManager'
-
+import { IModeMap } from '../featureservice/IModeMap';
 export class CameraWorker {
   private static TAG = '[CameraWorker]:'
   private appEventBus: EventBus = EventBusManager.getWorkerInstance().getEventBus()
   private workerManager: WorkerManager
 
-  constructor() {
+  constructor(modeMap: IModeMap) {
     this.workerManager = new WorkerManager()
-    if (globalThis.cameraFormParam != undefined) {
-      var featureManager = new FeatureManager(globalThis.cameraFormParam.mode)
-    } else {
-      var featureManager = new FeatureManager('PHOTO')
-    }
     // 接收UI线程的消息，并继续发送
     this.appEventBus.on('MAIN_TO_WORKER', (msg) => {
       console.info(`[CameraWorker]:  action from main thread: ${JSON.stringify(msg)}`)
@@ -39,9 +35,9 @@ export class CameraWorker {
     })
   }
 
-  public static getInstance(): CameraWorker {
+  public static getInstance(modeMap: IModeMap): CameraWorker {
     if (!AppStorage.Has(Constants.APP_KEY_CAMERA_WORKER)) {
-      AppStorage.SetOrCreate(Constants.APP_KEY_CAMERA_WORKER, new CameraWorker())
+      AppStorage.SetOrCreate(Constants.APP_KEY_CAMERA_WORKER, new CameraWorker(modeMap))
       Log.info(`${this.TAG} build new CameraWorker.`)
     }
     return AppStorage.Get(Constants.APP_KEY_CAMERA_WORKER);

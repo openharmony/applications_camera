@@ -17,7 +17,7 @@ import { CameraService } from '../../camera/CameraService'
 import { CameraId } from '../../setting/settingitem/CameraId'
 import { Log } from '../../utils/Log'
 import EntryComponentForMulti from './EntryComponentForMulti'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 
 let localState = (state) => {

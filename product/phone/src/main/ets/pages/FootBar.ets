@@ -14,17 +14,14 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo'
-import { CameraSwitchButton
-} from '../../../../../../common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { ShutterButton
-} from '../../../../../../common/src/main/ets/default/featurecommon/shutterbutton/ShutterButton'
-import { ThumbnailView
-} from '../../../../../../common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { CameraSwitchButton }  from '@ohos/common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { ShutterButton } from '@ohos/common/src/main/ets/default/featurecommon/shutterbutton/ShutterButton'
+import { ThumbnailView } from '@ohos/common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
 
 let footBarState = (state: OhCombinedState) => {
   return {
@@ -86,7 +83,7 @@ export struct FootBar {
   }
 
   private isThumbnailViewVisibility() {
-    return !this.state.isRecording && !this.state.isThirdPartyCall &&
+    return!this.state.isRecording && !this.state.isThirdPartyCall &&
     this.state.videoState !== "startTakeVideo" && this.state.videoState !== "pauseTakeVideo"
   }
 
@@ -104,6 +101,7 @@ export struct FootBar {
       Column() {
         ThumbnailView()
       }.width(44).aspectRatio(1).visibility(this.isThumbnailViewVisibility() ? Visibility.Visible : Visibility.Hidden)
+
       ShutterButton()
       if (this.isPhoneSwitchShow()) {
         CameraSwitchButton()
@@ -117,7 +115,7 @@ export struct FootBar {
     .height(96)
     .opacity(100)
     .width('100%')
-    .padding({ top: 10, bottom: 10})
+    .padding({ top: 10, bottom: 10 })
     .visibility(this.state.showZoomLabelValue ? Visibility.Visible : Visibility.Hidden)
   }
 }

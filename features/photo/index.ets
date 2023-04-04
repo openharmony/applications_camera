@@ -13,8 +13,4 @@
  * limitations under the License.
  */
 
-import { Log, FunctionId } from '@ohos/common'
-
-export class MultiModeParam {
-  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION]
-}
+export { PhotoMode } from './src/main/ets/photo/PhotoMode';

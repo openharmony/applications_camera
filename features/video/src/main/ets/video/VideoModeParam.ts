@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { Constants } from '../../../../../featureservice/Constants'
+import { Log, FunctionId } from '@ohos/common'
 
 export class VideoModeParam {
   public readonly tabBar: string[] = ['', '', 'zoom', 'timer', 'setup']
-  public readonly functions: string[] = [Constants.RECORDING_FUNCTION, Constants.ZOOM_FUNCTION]
+  public readonly functions: FunctionId[] = [FunctionId.RECORDING_FUNCTION, FunctionId.ZOOM_FUNCTION]
 }

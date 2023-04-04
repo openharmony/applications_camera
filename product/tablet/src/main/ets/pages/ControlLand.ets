@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-import wantConstant from '@ohos.ability.wantConstant';
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition';
-import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { ComponentPosition }  from '@ohos/common/src/main/ets/default/utils/ComponentPosition'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
 
 let controlLandState = (state: OhCombinedState) => {
   return {
@@ -105,7 +104,6 @@ export struct ControlLand {
   @State index: number = 0
   @Link screenSize: ScreenSizeType
 
-
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
     this.mConnect = getStore().connect(controlLandState, controlLandDispatcher)(this.state)
@@ -125,7 +123,7 @@ export struct ControlLand {
       this.state.updateShowMoreList(false)
     }
   }
-  
+
   private changeToMode(modeIndex: number, callType?: string) {
     Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
     this.scroller.scrollToIndex(modeIndex)
@@ -202,7 +200,7 @@ export struct ControlLand {
           }.layoutWeight(1).height('100%')
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            if(ComponentPosition.isUnfoldControl(this.screenSize.width, this.screenSize.height)) {
+            if (ComponentPosition.isUnfoldControl(this.screenSize.width, this.screenSize.height)) {
               ListItem() {
               }.width('100%').height(32)
             }
@@ -247,6 +245,7 @@ export struct ControlLand {
                   .fontWeight(this.getModeFontWeight(2))
               }.width('100%').height('100%')
             }.width('100%').height(32)
+
             ListItem() {
             }.width('100%').height(32)
 
