@@ -33,7 +33,7 @@ import { TimeLapseView } from '@ohos/common/src/main/ets/default/featurecommon/t
 import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomText'
 import { BigVideoTimer } from './BigVideoTimer'
 import { SmallVideoTimer } from './SmallVideoTimer'
-import prompt from '@ohos.prompt';
+import promptAction from '@ohos.promptAction';
 
 let cameraState = (state: OhCombinedState) => {
   let isShowBlur = !state.ContextReducer.uiEnable && state.ContextReducer.uiStateMode == UiStateMode.NONE
@@ -372,7 +372,7 @@ export struct PreviewArea {
 
   private async onRecordError() {
     Log.info(`${this.TAG} onRecordError invoke E`)
-    prompt.showToast({
+    promptAction.showToast({
       message: "录像异常",
       duration: 2000,
     })
