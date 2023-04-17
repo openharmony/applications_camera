@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,11 +15,11 @@
 
 import display from '@ohos.display'
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 
 let localState = (state: OhCombinedState) => {
   return {
@@ -50,13 +50,25 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  recordingTime
+  recordingTimeDisplay
+  isRecordingPaused
+  isRecordingSpotVisible
+  updateRecordingTime: Function
+  updateSmallVideoTimerVisible: Function
+  updateBigVideoTimerVisible: Function
+  updateRecordingSpotVisible: Function
+  updateRecordingTimeDisplay: Function
+}
+
 @Component
 export struct BigVideoTimer {
   private TAG: string = '[BigVideoTimer]'
   private timer: number = 0
   private timerTick: number = 0
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   private async onRecordPausedBig(data) {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
@@ -81,7 +93,7 @@ export struct BigVideoTimer {
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  aboutToDisappear(): void{
+  aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
     this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
     this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
@@ -129,13 +141,28 @@ export struct BigVideoTimer {
       } else {
         if (this.state.isRecordingSpotVisible) {
           Column() {
-          }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Visible)
+          }
+          .width(12)
+          .height(12)
+          .backgroundColor('#FF0000')
+          .borderRadius(6)
+          .visibility(Visibility.Visible)
         } else {
           Column() {
-          }.width(12).height(12).backgroundColor('#FF0000').borderRadius(6).visibility(Visibility.Hidden)
+          }
+          .width(12)
+          .height(12)
+          .backgroundColor('#FF0000')
+          .borderRadius(6)
+          .visibility(Visibility.Hidden)
         }
       }
-      Text(`${this.state.recordingTimeDisplay}`).margin({ left: 8, right: 8 }).fontSize('50fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Center)
+      Text(`${this.state.recordingTimeDisplay}`)
+        .margin({ left: 8, right: 8 })
+        .fontSize('50fp')
+        .fontWeight(300)
+        .fontColor('#FFFFFF')
+        .textAlign(TextAlign.Center)
       Text('').width(12).height(12)
       Text('').layoutWeight(1)
     }.width('100%').height(96)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-import wantConstant from '@ohos.ability.wantConstant';
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition';
-import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { ComponentPosition }  from '@ohos/common/src/main/ets/default/utils/ComponentPosition'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
 
 let controlLandState = (state: OhCombinedState) => {
   return {
@@ -64,6 +63,28 @@ let controlLandDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  isThirdPartyCall
+  isFaCall
+  action
+  uiEnable
+  modeIndex
+  mode
+  isShowMoreList
+  changeToMode: Function
+  updateModeIndex: Function
+  updateShowMoreList: Function
+  thirdPartyCall: Function
+  initAction: Function
+  initMode: Function
+  changeXComponentSize: Function
+
+}
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
 
 @Component
 export struct ControlLand {
@@ -77,12 +98,11 @@ export struct ControlLand {
   private scrollDistance: number = 0
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0
-  @Link screenSize: any
-
+  @Link screenSize: ScreenSizeType
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -103,7 +123,7 @@ export struct ControlLand {
       this.state.updateShowMoreList(false)
     }
   }
-  
+
   private changeToMode(modeIndex: number, callType?: string) {
     Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
     this.scroller.scrollToIndex(modeIndex)
@@ -180,7 +200,7 @@ export struct ControlLand {
           }.layoutWeight(1).height('100%')
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            if(ComponentPosition.isUnfoldControl(this.screenSize.width, this.screenSize.height)) {
+            if (ComponentPosition.isUnfoldControl(this.screenSize.width, this.screenSize.height)) {
               ListItem() {
               }.width('100%').height(32)
             }
@@ -225,6 +245,7 @@ export struct ControlLand {
                   .fontWeight(this.getModeFontWeight(2))
               }.width('100%').height('100%')
             }.width('100%').height(32)
+
             ListItem() {
             }.width('100%').height(32)
 

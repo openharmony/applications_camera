@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,7 +19,7 @@ import Resolution from '../../../setting/settingitem/Resolution'
 import Timer from '../../../setting/settingitem/Timer'
 import { CustomDialogView, CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
 import { Log } from '../../../utils/Log'
-import getStore from '../../../redux/store'
+import { getStore } from '../../../redux/store'
 import { SettingManager } from '../../../setting/SettingManager'
 import { BaseData }  from '../model/BaseData'
 import { SettingData }  from '../model/SettingData'
@@ -36,6 +36,10 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  closeDialog : Function
+}
+
 @Component
 export struct SetResolution {
   private TAG: string = '[SetResolution]:'
@@ -50,7 +54,7 @@ export struct SetResolution {
 
   @State curCheckName: Resource = $r("app.string.default_value")
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   @Provide customDialogDetails: CustomDialogDetails = {
     confirmCallback: null,

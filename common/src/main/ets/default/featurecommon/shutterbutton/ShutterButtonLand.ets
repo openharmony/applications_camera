@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,11 +18,11 @@ import router from "@system.router"
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
-import getStore from '../../redux/store'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import { getStore } from '../../redux/store'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
-import ComponentPosition from '../../utils/ComponentPosition'
+import { ComponentPosition } from '../../utils/ComponentPosition'
 
 let localState = (state) => {
   return {
@@ -80,18 +80,44 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  uiEnable
+  shutterIcon
+  videoState
+  mode
+  videoUri
+  resourceUri
+  isThirdPartyCall
+  xComponentWidth
+  xComponentHeight
+  thumbnail
+  updateSmallVideoTimerVisible: Function
+  updateShutterIcon: Function
+  capture: Function
+  startRecording: Function
+  pauseRecording: Function
+  resumeRecording: Function
+  stopRecording: Function
+  changeTimeLapse: Function
+}
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct ShutterButtonLand {
   private TAG: string = '[ShutterButtonLand]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
   private lastTime = 0
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
 
   type: ButtonType
   stateEffect: boolean
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State captureBtnScale: number = 1
 
   aboutToAppear(): void {
@@ -114,9 +140,9 @@ export struct ShutterButtonLand {
 
   private async onThumbnailUpdate(data) {
     Log.info(`${this.TAG} onThumbnailUpdate data: ${JSON.stringify(data)} E`)
-    Log.info(`${this.TAG} onThumbnailUpdate resourceUri= ${JSON.stringify(this.state.resourceUri)} E`)
+    Log.debug(`${this.TAG} onThumbnailUpdate resourceUri= ${JSON.stringify(this.state.resourceUri)} E`)
     Log.info(`${this.TAG} onThumbnailUpdate isThirdPartyCall= ${this.state.isThirdPartyCall} E`)
-    Log.info(`${this.TAG} onThumbnailUpdate videoUri= ${this.state.videoUri} E`)
+    Log.debug(`${this.TAG} onThumbnailUpdate videoUri= ${this.state.videoUri} E`)
     if (this.state.isThirdPartyCall) {
       Log.info(`${this.TAG} onThumbnailUpdate start router to ThirdPreviewView`)
       router.push({

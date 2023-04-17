@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,11 +17,11 @@ import router from '@system.router'
 
 import { Log } from '../../utils/Log'
 import { ThumbnailController } from './ThumbnailController'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
-
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import EventLog from '../../utils/EventLog'
 
 let localState = (state) => {
   return {
@@ -33,14 +33,18 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  thumbnail
+}
+
 @Component
 export struct ThumbnailView {
   private TAG: string = '[ThumbnailView]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State thumbnailBorder: Object = {}
 
-  @State state: any = {}
-  @State thumbnail: any = $r('app.media.ic_camera_thumbnail_default_white')
+  @State state: StateStruct = new StateStruct()
+  @State thumbnail: Resource = $r('app.media.ic_camera_thumbnail_default_white')
   @State hasThumbnail: boolean = false
   @State scaleValue: number = 1
   @State tempOpacity: number = 1
@@ -104,6 +108,7 @@ export struct ThumbnailView {
       .enabled(this.hasThumbnail)
       .onClick(async () => {
         Log.info(`${this.TAG} launch bundle com.ohos.photos`)
+        EventLog.write(EventLog.CLICK_THUMBNAIL)
         globalThis.keepCameraZoomRatio = true
         await globalThis.cameraAbilityContext.startAbility({
           parameters: { uri: 'photodetail' },

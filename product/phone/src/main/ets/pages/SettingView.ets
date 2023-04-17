@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,19 +14,19 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import { SettingItem
-} from '../../../../../../common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'
-import SettingListModel from '../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
-import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
+import { SettingItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'
+import { SettingListModel } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 
 let localState = (state: OhCombinedState) => {
   return {
     isCloseFlag: state.SettingReducer.isCloseFlag,
     mode: state.ModeReducer.mode,
+    zoomRatio: state.ZoomReducer.zoomRatio,
   }
 }
 
@@ -44,10 +44,21 @@ let localDispatcher = (dispatch) => {
     assistiveGridView: (isViewShow) => {
       dispatch(Action.assistiveGridView(isViewShow))
     },
-    reStartPreview: () => {
-      dispatch(Action.reStartPreview())
+    reStartPreview: (zoomRatio?: number) => {
+      dispatch(Action.reStartPreview(zoomRatio))
     },
   }
+}
+
+class StateStruct {
+  isCloseFlag
+  mode
+  zoomRatio
+  closeDialog : Function
+  hideSettingView : Function
+  changeXComponentSize : Function
+  assistiveGridView : Function
+  reStartPreview : Function
 }
 
 @Component
@@ -58,12 +69,12 @@ export struct SettingView {
   @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
-  @State settingsList: any[] = SettingListModel.getSettingList()
-  @State state: any = {}
+  @State settingsList: any[] = new SettingListModel().getSettingList()
+  @State state: StateStruct = new StateStruct()
   private mEventBus = EventBusManager.getInstance().getEventBus()
   private WH_100_100: string = "100%";
 
-  aboutToAppear(): void{
+  aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
     getStore().connect(localState, localDispatcher)(this.state)
     this.mEventBus.on("AspectRatio", this.aspectRatioChange.bind(this))
@@ -81,7 +92,7 @@ export struct SettingView {
 
   onBackPress(): boolean {
     Log.info(`${this.TAG} onBackPress invoke X`)
-    if (this.state.isCloseFlag){
+    if (this.state.isCloseFlag) {
       this.closeFlag = !this.closeFlag
     } else {
       this.state.hideSettingView()
@@ -92,15 +103,17 @@ export struct SettingView {
   private aspectRatioChange(xComponentSize) {
     if (this.state.mode != 'VIDEO') {
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
-      this.state.reStartPreview()
+      this.state.reStartPreview(this.state.zoomRatio)
     }
   }
+
   private resolutionChange(xComponentSize) {
     if (this.state.mode == 'VIDEO') {
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
-      this.state.reStartPreview()
+      this.state.reStartPreview(this.state.zoomRatio)
     }
   }
+
   private assistiveGridChange(mAssistiveGrid) {
     this.state.assistiveGridView(mAssistiveGrid)
   }
@@ -142,6 +155,7 @@ export struct SettingView {
               })
             }
           }
+
           Row() {
             Button({ type: ButtonType.Normal, stateEffect: true }) {
               Text($r('app.string.restore_defaults'))
