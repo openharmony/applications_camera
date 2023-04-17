@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import deviceInfo from '@ohos.deviceInfo'
 
 import { Action } from '../../../redux/actions/Action'
 import { Log } from '../../../utils/Log'
-import getStore from '../../../redux/store'
+import { getStore } from '../../../redux/store'
 import EntryComponent from './EntryComponent'
 
 @Observed
@@ -42,6 +42,11 @@ let localDispatcher = (dispatch) => {
     }
   }
 }
+
+class StateStruct {
+  closeDialog : Function
+}
+
 @CustomDialog
 export struct CustomDialogView {
   private TAG: string = '[CustomDialogView]:'
@@ -56,7 +61,7 @@ export struct CustomDialogView {
   @StorageLink('settingsList') settingsList: any[]= []
   @State childrenList: Array<any> = []
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   async aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)

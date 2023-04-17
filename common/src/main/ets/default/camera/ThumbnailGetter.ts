@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,7 +22,7 @@ export default class ThumbnailGetter {
 
   public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap | undefined> {
     Log.log(`${this.TAG} getThumbnailInfo E`)
-    Log.log(`${this.TAG} getThumbnailInfo width: ${width}, height: ${height}, uri: ${JSON.stringify(uri)}`)
+    Log.debug(`${this.TAG} getThumbnailInfo width: ${width}, height: ${height}, uri: ${JSON.stringify(uri)}`)
     const fileKeyObj = mediaLibrary.FileKey;
     let fetchOp: any
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);

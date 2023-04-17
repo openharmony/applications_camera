@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,15 +16,12 @@
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
-import getStore from '../../redux/store'
-//import { TabBarOther } from './TabBarTablet/TabBarOther'
-//import { TabBarSame } from './TabBarTablet/TabBarSame'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import { getStore } from '../../redux/store'
+import EventLog from '../../utils/EventLog'
 
 let tabBarLandState = (state) => {
   return {
-//    widthTabBar: state.PreviewReducer.widthTabBar,
-//    opacityValueForTabBar: state.SettingReducer.opacityValueForTabBar
     isThirdPartyCall: state.ContextReducer.isThirdPartyCall
   }
 }
@@ -37,13 +34,23 @@ let tabBarLandDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  isThirdPartyCall
+  showSettingView: Function
+}
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Component
 export struct TabBarLand {
   private TAG: string = '[TabBarLand]'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State opacityTabBar: number = 0
   @State isShowTabBarOther: boolean= false
-  @Link screenSize: any
+  @Link screenSize: ScreenSizeType
   private onBackClicked:Function
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
@@ -69,6 +76,7 @@ export struct TabBarLand {
     Row()  {
       Image($r("app.media.setting")).width(24).height(24)
         .onClick(() => {
+          EventLog.write(EventLog.CLICK_SETTINGS)
           this.state.showSettingView()
         })
     }.width(48).height(48)

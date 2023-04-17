@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,34 +14,29 @@
  */
 
 import display from '@ohos.display';
-
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { CameraWorker } from '../../../../../../common/src/main/ets/default/worker/CameraWorker'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { CameraWorker }  from '@ohos/common/src/main/ets/default/worker/CameraWorker'
+import { ComponentPosition }  from '@ohos/common/src/main/ets/default/utils/ComponentPosition'
+import { Constants }  from '@ohos/common/src/main/ets/default/utils/Constants'
+import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/moreList'
+import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { RdbStoreManager } from '@ohos/common/src/main/ets/default/setting/storage/RdbStoreManager'
+import { PlaySound } from '@ohos/common/src/main/ets/default/featurecommon/playsound/playSound'
+import { ScreenLockManager } from '@ohos/common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
+import { TabBarLand } from '@ohos/common/src/main/ets/default/featurecommon/tabbar/TabBarLand'
+import { ZoomViewLand } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomViewLand'
 import { FootBarLand } from './FootBarLand'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { ModeConfig } from '../common/ModeConfig'
-import {MoreList
-} from '../../../../../../common/src/main/ets/default/featurecommon/moreList/moreList'
-import { PlaySound
-} from '../../../../../../common/src/main/ets/default/featurecommon/playsound/playSound'
 import { PreviewAreaLand } from './PreviewAreaLand'
-import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
-import { TabBarLand
-} from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBarLand'
-import { ZoomViewLand
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomViewLand'
-import ComponentPosition from '../../../../../../common/src/main/ets/default/utils/ComponentPosition'
-import { Constants } from '../../../../../../common/src/main/ets/default/utils/Constants';
 import { SettingView } from './SettingView'
-import { PreferencesService, PersistType
-} from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
+import { ModeMap } from '../common/ModeMap';
 
-var cameraWorker = CameraWorker.getInstance()
+var cameraWorker = CameraWorker.getInstance(new ModeMap())
 var mScreenLockManager = new ScreenLockManager()
 
 let indexState = (state: OhCombinedState) => {
@@ -117,14 +112,52 @@ let indexDispatcher = (dispatch) => {
 
 PersistentStorage.PersistProp("storageCameraId", "")
 
+class StateStruct {
+  permissionFlag
+  mode
+  curMode
+  isBigVideoTimerVisible
+  isSmallVideoTimerVisible
+  videoState
+  isShowtimeLapse
+  isShowMoreList
+  isThirdPartyCall
+  showZoomLabelValue
+  cameraPosition
+  isShowPinch
+  xComponentWidth
+  xComponentHeight
+  isShowPageView
+  isInitiated
+  initShowFlag
+  initFootBarHeight: Function
+  setPermissionFlag: Function
+  initAction: Function
+  initCameraPosition: Function
+  initMode: Function
+  changeTimeLapse: Function
+  stopRecording: Function
+  resetRecordingTime: Function
+  resetZoomRatio
+  hideSettingView: Function
+  updateModeIndex: Function
+  faCall: Function
+  thirdPartyCall: Function
+}
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
+
 @Entry
 @Component
 struct Index {
   private TAG: string = '[IndexLand]:'
   private modeConfig: ModeConfig = new ModeConfig()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State state: any = {}
-  @State screenSize: any = { width: 0, height: 0 }
+  @State state: StateStruct = new StateStruct()
+  @State screenSize: ScreenSizeType = { width: 0, height: 0 }
   private mPlaySound: PlaySound = PlaySound.getInstance()
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
@@ -212,7 +245,7 @@ struct Index {
     Log.info(`${this.TAG} onPageShow E this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
     this.state.setPermissionFlag(globalThis.permissionFlag)
     let cameraId = AppStorage.Get<string>('storageCameraId')
-    if(cameraId) this.state.initCameraPosition(cameraId)
+    if (cameraId) this.state.initCameraPosition(cameraId)
     Log.info(`${this.TAG} initCameraPosition ${cameraId}`)
     this.state.resetRecordingTime()
     Log.info(`${this.TAG} onPageShow X`)
@@ -234,7 +267,7 @@ struct Index {
     } else if (this.state.isThirdPartyCall) {
       this.terminateSelfWithResult()
     } else {
-      if(this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo'){
+      if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
         this.state.stopRecording()
         return true
       }
@@ -254,7 +287,7 @@ struct Index {
     if (this.state.isShowtimeLapse) {
       this.state.changeTimeLapse(false)
     }
-    if(this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
+    if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
       this.state.stopRecording()
     }
     Log.info(`${this.TAG} stopCameraRecording X`)
@@ -294,8 +327,9 @@ struct Index {
         PreviewAreaLand({ screenSize: $screenSize })
       }
       .position(this.state.isThirdPartyCall ? ComponentPosition.previewTabletPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight) : ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight))
+      this.state.xComponentWidth, this.state.xComponentHeight) : ComponentPosition.previewPosition(this.screenSize.width, this.screenSize.height,
+      this.state.xComponentWidth, this.state.xComponentHeight))
+
       Column() {
         if ((this.state.mode === "PHOTO" || this.state.mode === "VIDEO") && this.state.cameraPosition !== 'FRONT') {
           ZoomViewLand()
@@ -304,22 +338,31 @@ struct Index {
           }.width(82).margin({ right: '20vp' })
         }
       }.zIndex(2).height('100%')
-      .position(this.state.isThirdPartyCall ? {x: 984, y: 0} : ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
+      .position(this.state.isThirdPartyCall ? {
+                                                x: 984,
+                                                y: 0
+                                              } : ComponentPosition.zoomViewPosition(this.screenSize.width, this.screenSize.height,
+      this.state.xComponentWidth, this.state.xComponentHeight, this.state.videoState))
       .visibility(this.componentVisibility(!this.state.isShowPinch))
 
-      Column(){
+      Column() {
         FootBarLand({ screenSize: $screenSize })
       }.zIndex(2).height('100%')
-      .position(this.state.isThirdPartyCall ? {x: 1124, y: 0} : ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
-        this.state.xComponentWidth, this.state.xComponentHeight))
+      .position(this.state.isThirdPartyCall ? {
+                                                x: 1124,
+                                                y: 0
+                                              } : ComponentPosition.footBarPosition(this.screenSize.width, this.screenSize.height,
+      this.state.xComponentWidth, this.state.xComponentHeight))
       .visibility(this.componentVisibility(this.state.showZoomLabelValue))
 
       Column() {
-        TabBarLand({onBackClicked: () => this.onBackClicked(), screenSize: $screenSize})
+        TabBarLand({ onBackClicked: () => this.onBackClicked(), screenSize: $screenSize })
       }.zIndex(3)
       .visibility(this.componentVisibility(this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue))
-      .position(this.state.isThirdPartyCall ? {x: 0, y: 44} : ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
+      .position(this.state.isThirdPartyCall ? {
+                                                x: 0,
+                                                y: 44
+                                              } : ComponentPosition.tabBarPosition(this.screenSize.width, this.screenSize.height,
       this.state.xComponentWidth, this.state.xComponentHeight))
       .height(712)
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,11 +14,11 @@
  */
 
 import AbilityStage from '@ohos.app.ability.AbilityStage'
-import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    Trace.start(Trace.APPLICATION_WHOLE_LIFE)
+    Log.start(Log.APPLICATION_WHOLE_LIFE)
     console.info('MyAbilityStage onCreate.')
   }
 }

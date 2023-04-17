@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,13 +16,14 @@
 import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window';
 import wantConstant from '@ohos.ability.wantConstant'
-import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
-import { CameraBasicFunction } from '../../../../../../common/src/main/ets/default/function/CameraBasicFunction'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { Constants, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log';
-import { PreferencesService, PersistType } from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { CameraBasicFunction } from '@ohos/common/src/main/ets/default/function/CameraBasicFunction'
+import { CameraNeedStatus,Constants }  from '@ohos/common/src/main/ets/default/utils/Constants'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { FeatureManager } from '@ohos/common/src/main/ets/default/featureservice/FeatureManager'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { ModeMap } from '../common/ModeMap';
 
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null
@@ -31,7 +32,12 @@ export default class MainAbility extends Ability {
   private foreRoundOverCount: number = 0
   onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
-    Trace.start(Trace.ABILITY_WHOLE_LIFE)
+    Log.start(Log.ABILITY_WHOLE_LIFE)
+    if (globalThis.cameraFormParam != undefined) {
+      var featureManager = new FeatureManager(globalThis.cameraFormParam.mode, new ModeMap())
+    } else {
+      var featureManager = new FeatureManager('PHOTO', new ModeMap())
+    }
     Log.info('Camera MainAbility onCreate.')
     globalThis.cameraAbilityContext = this.context
     globalThis.cameraAbilityWant = this.launchWant
@@ -48,8 +54,8 @@ export default class MainAbility extends Ability {
 
   onDestroy() {
     // Ability is creating, release resources for this ability
-    Trace.end(Trace.ABILITY_WHOLE_LIFE)
-    Trace.end(Trace.APPLICATION_WHOLE_LIFE)
+    Log.end(Log.ABILITY_WHOLE_LIFE)
+    Log.end(Log.APPLICATION_WHOLE_LIFE)
     this.cameraBasicFunction.startIdentification = false
     PreferencesService.getInstance().flush()
     Log.info('Camera MainAbility onDestroy.')
@@ -57,7 +63,7 @@ export default class MainAbility extends Ability {
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    Trace.start(Trace.ABILITY_VISIBLE_LIFE)
+    Log.start(Log.ABILITY_VISIBLE_LIFE)
     Log.info('Camera MainAbility onWindowStageCreate.')
     windowStage.on('windowStageEvent', (event) => {
       Log.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
@@ -126,12 +132,12 @@ export default class MainAbility extends Ability {
   }
 
   onWindowStageDestroy() {
-    Trace.end(Trace.ABILITY_VISIBLE_LIFE)
+    Log.end(Log.ABILITY_VISIBLE_LIFE)
     Log.info('Camera MainAbility onWindowStageDestroy.')
   }
 
   onForeground() {
-    Trace.start(Trace.ABILITY_FOREGROUND_LIFE)
+    Log.start(Log.ABILITY_FOREGROUND_LIFE)
     Log.info('Camera MainAbility onForeground.')
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT
     if (globalThis?.doOnForeground && globalThis.doOnForeground) {
@@ -144,7 +150,7 @@ export default class MainAbility extends Ability {
   }
 
   onBackground() {
-    Trace.end(Trace.ABILITY_FOREGROUND_LIFE)
+    Log.end(Log.ABILITY_FOREGROUND_LIFE)
     Log.info('Camera MainAbility onBackground.')
     this.cameraBasicFunction.startIdentification = false
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE

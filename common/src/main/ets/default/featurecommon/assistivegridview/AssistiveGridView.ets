@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { SettingManager } from '../../setting/SettingManager'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 
 let localState = (state) => {
   return {
@@ -27,6 +27,11 @@ let localState = (state) => {
 
 let localDispatcher = (dispatch) => {
   return {}
+}
+
+class StateStruct {
+  xComponentWidth
+  xComponentHeight
 }
 
 @Component
@@ -48,7 +53,7 @@ export struct AssistiveGridView {
   private settingManager = SettingManager.getInstance()
   private xCWidth: number = 0
   private xCHeight: number = 0
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)

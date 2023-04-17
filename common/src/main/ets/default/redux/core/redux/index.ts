@@ -9,7 +9,7 @@ import __DO_NOT_USE__ActionTypes from './utils/actionTypes'
 
 // types
 // store
-export {
+export type {
   CombinedState,
   PreloadedState,
   Dispatch,
@@ -23,7 +23,7 @@ export {
   ExtendState
 } from './types/store'
 // reducers
-export {
+export type {
   Reducer,
   ReducerFromReducersMapObject,
   ReducersMapObject,
@@ -32,11 +32,11 @@ export {
   ActionFromReducersMapObject
 } from './types/reducers'
 // action creators
-export { ActionCreator, ActionCreatorsMapObject } from './types/actions'
+export type { ActionCreator, ActionCreatorsMapObject } from './types/actions'
 // middleware
-export { MiddlewareAPI, Middleware } from './types/middleware'
+export type { MiddlewareAPI, Middleware } from './types/middleware'
 // actions
-export { Action, AnyAction } from './types/actions'
+export type { Action, AnyAction } from './types/actions'
 
 /*
  * This is a dummy function to check if the function name has been altered by minification.

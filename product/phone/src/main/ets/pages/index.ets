@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,32 +15,27 @@
 
 import display from '@ohos.display'
 import deviceInfo from '@ohos.deviceInfo'
-
-import { Action } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import { CameraWorker } from '../../../../../../common/src/main/ets/default/worker/CameraWorker'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { ModeMap } from '../common/ModeMap';
+import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { CameraWorker }  from '@ohos/common/src/main/ets/default/worker/CameraWorker'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/moreList'
+import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { PlaySound } from '@ohos/common/src/main/ets/default/featurecommon/playsound/playSound'
+import { RdbStoreManager } from '@ohos/common/src/main/ets/default/setting/storage/RdbStoreManager'
+import { TabBar } from '@ohos/common/src/main/ets/default/featurecommon/tabbar/TabBar'
+import { ZoomView } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomView'
 import { Control } from './Control'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { FootBar } from './FootBar'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
 import { ModeConfig } from '../common/ModeConfig'
-import { MoreList
-} from '../../../../../../common/src/main/ets/default/featurecommon/moreList/moreList'
-import { PlaySound
-} from '../../../../../../common/src/main/ets/default/featurecommon/playsound/playSound'
 import { PreviewArea } from './PreviewArea'
-import RdbStoreManager from '../../../../../../common/src/main/ets/default/setting/storage/RdbStoreManager'
-import { TabBar
-} from '../../../../../../common/src/main/ets/default/featurecommon/tabbar/TabBar'
-import { ZoomView
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomView'
 import { SettingView } from './SettingView'
-import { PreferencesService, PersistType
-} from '../../../../../../common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
 
-var cameraWorker = CameraWorker.getInstance()
+var cameraWorker = CameraWorker.getInstance(new ModeMap())
 
 let indexState = (state: OhCombinedState) => {
   return {
@@ -108,13 +103,47 @@ let indexDispatcher = (dispatch) => {
 
 PersistentStorage.PersistProp("storageCameraId", "")
 
+class StateStruct {
+  permissionFlag
+  mode
+  curMode
+  isBigVideoTimerVisible
+  isSmallVideoTimerVisible
+  videoState
+  isShowtimeLapse
+  isShowMoreList
+  isThirdPartyCall
+  showZoomLabelValue
+  cameraPosition
+  isShowPinch
+  xComponentWidth
+  xComponentHeight
+  isShowPageView
+  isInitiated
+  initShowFlag
+  curCameraPosition
+  footBarHeight
+  initFootBarHeight: Function
+  setPermissionFlag: Function
+  initAction: Function
+  initCameraPosition: Function
+  initMode: Function
+  changeTimeLapse: Function
+  stopRecording: Function
+  resetRecordingTime: Function
+  hideSettingView: Function
+  updateModeIndex: Function
+  faCall: Function
+  thirdPartyCall: Function
+}
+
 @Entry
 @Component
 struct Index {
   private TAG: string = '[Index]:'
   private modeConfig: ModeConfig = new ModeConfig()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   private mPlaySound: PlaySound = PlaySound.getInstance()
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
@@ -199,7 +228,7 @@ struct Index {
     Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`)
     this.state.setPermissionFlag(globalThis.permissionFlag)
     let curCameraId = AppStorage.Get<string>('storageCameraId')
-    if(curCameraId) this.state.initCameraPosition(curCameraId)
+    if (curCameraId) this.state.initCameraPosition(curCameraId)
     this.state.resetRecordingTime()
     Log.info(`${this.TAG} onPageShow X`)
   }
@@ -224,7 +253,7 @@ struct Index {
     } else if (this.state.isThirdPartyCall) {
       this.terminateSelfWithResult()
     } else {
-      if(this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo'){
+      if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
         this.state.stopRecording()
         return true
       }
@@ -244,7 +273,7 @@ struct Index {
     if (this.state.isShowtimeLapse) {
       this.state.changeTimeLapse(false)
     }
-    if(this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
+    if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
       this.state.stopRecording()
     }
     Log.info(`${this.TAG} stopCameraRecording X`)
@@ -279,35 +308,41 @@ struct Index {
       Stack() {
         PreviewArea()
       }.width('100%').position({ y: 48 })
+
       Stack() {
         if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
-          TabBar({onBackClicked: () => this.onBackClicked()})
+          TabBar({ onBackClicked: () => this.onBackClicked() })
         }
       }.width('100%').height(48).position({ x: '0', y: '0' })
-      if(this.state.isShowMoreList && this.state.showZoomLabelValue){
+
+      if (this.state.isShowMoreList && this.state.showZoomLabelValue) {
         MoreList()
       }
-      Stack({alignContent: Alignment.Bottom}) {
+      Stack({ alignContent: Alignment.Bottom }) {
         Column() {
           if (this.state.mode === "PHOTO" || this.state.mode === "VIDEO") {
             if (deviceInfo.deviceType !== "default" && this.state.curCameraPosition !== 'FRONT') {
               Column() {
                 ZoomView()
-              }.visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
+              }
+              .visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
             }
           }
           if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
-            Column(){
+            Column() {
               Control()
-            }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+            }
+            .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
             .width('100%')
           }
-          Column(){
+          Column() {
             FootBar()
-          }.visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+          }
+          .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
         }
       }.width('100%').height(302).position({ y: this.state.footBarHeight })
-        .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
+      .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
+
       if (this.state.isShowPageView) {
         SettingView().width('100%').height('100%')
       }

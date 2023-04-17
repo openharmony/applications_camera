@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 
 let localState = (state) => {
@@ -37,6 +37,12 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  mode
+  updateShowBigTextFlag : Function
+  updateUiState : Function
+}
+
 @Component
 export struct BigText {
   private TAG: string = '[BigText]:'
@@ -47,7 +53,7 @@ export struct BigText {
     'VIDEO': $r('app.string.video_mode')
   }
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State bigTextOpacity: number = 0
 
   public aboutToAppear() {
