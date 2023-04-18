@@ -1,0 +1,28 @@
+{
+	"license": "ISC",
+	"devDependencies": {},
+	"name": "camera",
+	"ohos": {
+		"org": "huawei",
+		"directoryLevel": "project",
+		"buildTool": "hvigor"
+	},
+	"description": "example description",
+	"repository": {},
+	"scripts": {
+		"tablet": "hvigor --m module --prop module=tablet assembleHap",
+		"phone": "hvigor --m module --prop module=phone assembleHap",
+		"allApp": "hvigor --mode project assembleApp",
+		"loadDependence": "node infra/prepare.js",
+		"allHap": "hvigor --mode module assembleHap"
+	},
+	"version": "1.0.0",
+	"config": {
+		"unsafe-prem": true
+	},
+	"dependencies": {
+		"@ohos/hypium": "1.0.2",
+		"@ohos/hvigor-ohos-plugin": "1.4.0",
+		"@ohos/hvigor": "1.4.0"
+	}
+}
