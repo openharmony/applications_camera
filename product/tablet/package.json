@@ -1,0 +1,16 @@
+{
+	"devDependencies": {},
+	"name": "tablet",
+	"ohos": {
+		"org": "huawei",
+		"directoryLevel": "module",
+		"buildTool": "hvigor"
+	},
+	"version": "1.0.0",
+	"dependencies": {
+		"@ohos/multi": "../../features/multi",
+		"@ohos/common": "../../common",
+		"@ohos/video": "../../features/video",
+		"@ohos/photo": "../../features/photo"
+	}
+}
