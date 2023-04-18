@@ -1,0 +1,16 @@
+{
+	"license": "ISC",
+	"devDependencies": {},
+	"name": "@ohos/photo",
+	"main": "index.ets",
+	"description": "photo mode",
+	"ohos": {
+		"org": ""
+	},
+	"repository": {},
+	"version": "1.0.0",
+	"dependencies": {
+		"@ohos/common": "../../common"
+	},
+	"type": "module"
+}
