@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import { CameraService } from '../../camera/CameraService'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Log } from '../../utils/Log'
 
 let localState = (state) => {
@@ -27,10 +27,14 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  uiEnable
+}
+
 @Component
 export default struct EntryComponentForMulti {
   private TAG: string = '[EntryComponentForMulti]:'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State isLocalDevice: boolean = false
   @State switchCameraState: boolean = false
   @State recCameraState: boolean = true

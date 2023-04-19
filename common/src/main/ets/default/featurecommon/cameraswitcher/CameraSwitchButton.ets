@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
 
 import { Action } from '../../redux/actions/Action'
 import { CameraSwitchController } from './CameraSwitchController'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Log } from '../../utils/Log'
 import MultiCameraDialog from '../customdialog/MultiCameraDialog'
 import deviceInfo from '@ohos.deviceInfo'
@@ -41,10 +41,18 @@ let localDispatcher = (dispatch) => {
 
 let storageCameraId = AppStorage.Link('storageCameraId')
 
+class StateStruct {
+  mode
+  uiEnable
+  cameraPosition
+  videoState
+  changeCameraPosition : Function
+}
+
 @Component
 export struct CameraSwitchButton {
   private TAG: string = '[CameraSwitchButton]:'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State deviceType: string = deviceInfo.deviceType
   @StorageLink('storageCameraId') storageCameraId: string = ''
 

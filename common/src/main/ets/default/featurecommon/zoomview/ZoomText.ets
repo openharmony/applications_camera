@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 
 let localState = (state) => {
   return {
@@ -26,11 +26,15 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  zoomRatio
+}
+
 @Component
 export struct ZoomText {
   private TAG: string = '[ZoomText]'
 
-  @Link state: any
+  @Link state : StateStruct
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,12 +14,13 @@
  */
 
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import window from '@ohos.window';
 import { Action } from '../../redux/actions/Action'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBus } from '../../worker/eventbus/EventBus'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 let localState = (state) => {
   return {
@@ -45,14 +46,21 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  mode
+  changeTimeLapse: Function
+  capture: Function
+  startRecording: Function
+}
+
 @Component
 export struct TimeLapseView {
   private TAG: string = '[TimeLapseView]:'
   private timer: number = 0
   private settingManager = SettingManager.getInstance()
-  appEventBus = EventBusManager.getInstance().getEventBus()
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State timerLapse: number = 0
 
   private onKeepScreen(data) {

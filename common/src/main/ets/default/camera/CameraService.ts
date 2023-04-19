@@ -1,6 +1,6 @@
 //@ts-nocheck
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,7 +26,7 @@ import ThumbnailGetter from './ThumbnailGetter'
 import SaveCameraAsset from './SaveCameraAsset'
 import { SettingManager } from '../setting/SettingManager'
 import { CameraPlatformCapability } from './CameraPlatformCapability'
-import Trace from '../utils/Trace'
+import EventLog from '../utils/EventLog'
 
 const DEFAULT_VIDEO_FRAME_RATE = 30
 
@@ -54,8 +54,6 @@ type Callback = (args?: any) => void
 export class CameraService {
   private TAG = '[CameraService]:'
   private mCameraId: string = CameraId.BACK
-  private mSurfaceId = ''
-  private isVideo: boolean = false
   private mFileAssetId = 0
   private mCameraManager!: camera.CameraManager
   private mCameraIdMap: Map<string, string> = new Map()
@@ -125,34 +123,39 @@ export class CameraService {
   }
 
   public async initCamera(cameraId: string): Promise<number> {
-    Log.info(`${this.TAG} initCamera invoke E.`)
+    Log.start(`${this.TAG} initCamera`)
     if (!this.mCameraManager) {
-      this.mCameraManager = await camera.getCameraManager(globalThis.cameraAbilityContext)
-      const cameras = await this.mCameraManager.getSupportedCameras()
-      this.camerasCache = cameras
-      this.mCameraCount = cameras.length
-      if (cameras) {
-        Log.info(`${this.TAG} getCameras success.`)
-        for (let i = 0; i < cameras.length; i++) {
-          Log.info(`${this.TAG} --------------Camera Info-------------`)
-          Log.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
-          Log.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
-          Log.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
-          Log.info(`${this.TAG} connectionType: ${cameras[i].connectionType}`)
-          if(cameras[i].cameraPosition === 2 && cameras[i].connectionType !== 2){
-            this.mLocalCameraMap.set('front', 'true')
+      try {
+        this.mCameraManager = camera.getCameraManager(globalThis.cameraAbilityContext)
+        const cameras = this.mCameraManager.getSupportedCameras()
+        this.camerasCache = cameras
+        this.mCameraCount = cameras.length
+        if (cameras) {
+          Log.info(`${this.TAG} getCameras success.`)
+          for (let i = 0; i < cameras.length; i++) {
+            Log.info(`${this.TAG} --------------Camera Info-------------`)
+            Log.info(`${this.TAG} camera_id: ${cameras[i].cameraId}`)
+            Log.info(`${this.TAG} cameraPosition: ${cameras[i].cameraPosition}`)
+            Log.info(`${this.TAG} cameraType: ${cameras[i].cameraType}`)
+            Log.info(`${this.TAG} connectionType: ${cameras[i].connectionType}`)
+            if(cameras[i].cameraPosition === 2 && cameras[i].connectionType !== 2){
+              this.mLocalCameraMap.set('front', 'true')
+            }
+            if(cameras[i].cameraPosition !== 2 && cameras[i].connectionType !== 2){
+              this.mLocalCameraMap.set('back', 'true')
+            }
           }
-          if(cameras[i].cameraPosition !== 2 && cameras[i].connectionType !== 2){
-            this.mLocalCameraMap.set('back', 'true')
+          // TODO 根据底层信息匹配cameraId 目前默认第0个是back， 第1个是front
+          this.mCameraIdMap.set(CameraId.BACK, cameras[0].cameraId);
+          if (cameras.length > 1 && cameras[1].connectionType !== 2) {
+            this.mCameraIdMap.set(CameraId.FRONT, cameras[1].cameraId);
+          } else {
+            this.mCameraIdMap.set(CameraId.FRONT, cameras[0].cameraId);
           }
         }
-        // TODO 根据底层信息匹配cameraId 目前默认第0个是back， 第1个是front
-        this.mCameraIdMap.set(CameraId.BACK, cameras[0].cameraId);
-        if (cameras.length > 1 && cameras[1].connectionType !== 2) {
-          this.mCameraIdMap.set(CameraId.FRONT, cameras[1].cameraId);
-        } else {
-          this.mCameraIdMap.set(CameraId.FRONT, cameras[0].cameraId);
-        }
+      } catch (error) {
+        Log.error(`${this.TAG} initCamera failed: ${JSON.stringify(error)}`)
+        EventLog.writeFaultLog(error)
       }
     }
     this.curCameraName = cameraId
@@ -164,7 +167,7 @@ export class CameraService {
     } else {
       this.mVideoConfig.videoSourceType = 0
     }
-    Log.info(`${this.TAG} initCamera invoke X.`)
+    Log.end(`${this.TAG} initCamera`)
     return this.mCameraCount
   }
 
@@ -189,7 +192,7 @@ export class CameraService {
   }
 
   public async createCameraInput(cameraName: string, callType?: string) {
-    Log.info(`${this.TAG} createCameraInput invoke E.`)
+    Log.start(`${this.TAG} createCameraInput`)
     this.mCameraId = cameraName
     this.curCameraName = cameraName
     if (callType === 'modeChange' || callType === 'init') {
@@ -209,33 +212,38 @@ export class CameraService {
       id = this.mCameraMap.get(cameraName).cameraId
     }
     Log.info(`${this.TAG} createCameraInput id = ${id}`)
-    let cameras = await this.getCameraLists()
-    let targetCamera = cameras.find(item => item.cameraId === id)
-    this.outputCapability = await this.mCameraManager.getSupportedOutputCapability(targetCamera)
-    this.mCameraInput = await this.mCameraManager.createCameraInput(targetCamera)
-    await this.mCameraInput.open()
-    const platformCapability = CameraPlatformCapability.getInstance()
-    await platformCapability.calcSupportedSizes(this.mCameraInput, this.outputCapability)
-    SettingManager.getInstance().setCameraPlatformCapability(platformCapability)
-    Log.info(`${this.TAG} createCameraInput invoke X.`)
+    try {
+      let cameras = await this.getCameraLists()
+      let targetCamera = cameras.find(item => item.cameraId === id)
+      this.outputCapability = this.mCameraManager.getSupportedOutputCapability(targetCamera)
+      this.mCameraInput = this.mCameraManager.createCameraInput(targetCamera)
+      await this.mCameraInput.open()
+      const platformCapability = CameraPlatformCapability.getInstance()
+      await platformCapability.calcSupportedSizes(this.mCameraInput, this.outputCapability)
+      SettingManager.getInstance().setCameraPlatformCapability(platformCapability)
+    } catch (error) {
+      Log.error(`${this.TAG} createCameraInput failed: ${JSON.stringify(error)}`)
+      EventLog.writeFaultLog(error)
+    }
+    Log.end(`${this.TAG} createCameraInput`)
   }
 
   public async releaseCameraInput() {
-    Log.info(`${this.TAG} releaseCameraInput invoke E.`)
+    Log.start(`${this.TAG} releaseCameraInput`)
     if (this.mCameraInput) {
       try {
         await this.mCameraInput.release()
-      } catch (err) {
-        Log.error(`${this.TAG} releaseCameraInput ${err}`)
+      } catch (error) {
+        Log.error(`${this.TAG} releaseCameraInput failed: ${JSON.stringify(error)}`)
+        EventLog.writeFaultLog(error)
       }
       this.mCameraInput = null
     }
-    Log.info(`${this.TAG} releaseCameraInput invoke X.`)
+    Log.end(`${this.TAG} releaseCameraInput`)
   }
 
   public async createPreviewOutput(surfaceId: string, mode: string) {
-    Log.info(`${this.TAG} createPreviewOutput invoke ${surfaceId} E. `)
-    this.mSurfaceId = surfaceId
+    Log.start(`${this.TAG} createPreviewOutput`)
     const size = SettingManager.getInstance().getPreviewSize(mode)
     Log.info(`${this.TAG} createPreviewOutput size = ${JSON.stringify(size)}`)
     globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width , surfaceHeight: size.height })
@@ -248,21 +256,32 @@ export class CameraService {
       previewProfile = previewProfiles.find(item => item.size.width === size.width
       && item.size.height === size.height && item.format === 1003)
     }
-    this.mPreviewOutput = await this.mCameraManager.createPreviewOutput(previewProfile, surfaceId)
-    Log.info(`${this.TAG} createPreviewOutput invoke ${this.mPreviewOutput} X.`)
+    await this.releasePreviewOutput()
+    try {
+      this.mPreviewOutput = this.mCameraManager.createPreviewOutput(previewProfile, surfaceId)
+    } catch (error) {
+      Log.error(`${this.TAG} createPreviewOutput failed: ${JSON.stringify(error)}`)
+      EventLog.writeFaultLog(error)
+    }
+    Log.end(`${this.TAG} createPreviewOutput`)
   }
 
   public async releasePreviewOutput() {
-    Log.info(`${this.TAG} releasePreviewOutput invoke E.`)
+    Log.start(`${this.TAG} releasePreviewOutput`)
     if (this.mPreviewOutput) {
-      await this.mPreviewOutput.release()
-      this.mPreviewOutput = null
+      try {
+        await this.mPreviewOutput.release()
+        this.mPreviewOutput = null
+      } catch (error) {
+        Log.error(`${this.TAG} releasePreviewOutput failed: ${JSON.stringify(error)}`)
+        EventLog.writeFaultLog(error)
+      }
     }
-    Log.info(`${this.TAG} releasePreviewOutput invoke X.`)
+    Log.end(`${this.TAG} releasePreviewOutput`)
   }
 
   public async createPhotoOutput(functionCallback: FunctionCallBack) {
-    Log.info(`${this.TAG} createPhotoOutput invoke E.`)
+    Log.start(`${this.TAG} createPhotoOutput`)
     const size = SettingManager.getInstance().getImageSize()
     Log.info(`${this.TAG} createPhotoOutput size = ${JSON.stringify(size)}`)
     this.mImageReceiver = image.createImageReceiver(size.width, size.height, image.ImageFormat.JPEG, 8)
@@ -277,101 +296,126 @@ export class CameraService {
       Log.info(`${this.TAG} videoProfiles length.` + photoProfiles.length)
       photoProfile = photoProfiles.find(item => item.size.width === size.width && item.size.height === size.height)
     }
-    this.mPhotoOutPut = await this.mCameraManager.createPhotoOutput(photoProfile, surfaceId)
+    try {
+      this.mPhotoOutPut = this.mCameraManager.createPhotoOutput(photoProfile, surfaceId)
+    } catch (error) {
+      Log.error(`${this.TAG} createPhotoOutput failed: ${JSON.stringify(error)}`)
+      EventLog.writeFaultLog(error)
+    }
     Log.info(`${this.TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`)
     this.mSaveCameraAsset.saveImage(this.mImageReceiver, 40, 40, this.mThumbnailGetter, functionCallback)
-    Log.info(`${this.TAG} createPhotoOutput invoke X.`)
+    Log.end(`${this.TAG} createPhotoOutput`)
   }
 
   public async releasePhotoOutput() {
-    Log.info(`${this.TAG} releasePhotoOutput invoke E.`)
+    Log.start(`${this.TAG} releasePhotoOutput`)
     if (this.mPhotoOutPut) {
-      await this.mPhotoOutPut.release()
-      this.mPhotoOutPut = null
+      try {
+        await this.mPhotoOutPut.release()
+        this.mPhotoOutPut = null
+      } catch (error) {
+        Log.error(`${this.TAG} releasePhotoOutput failed: ${JSON.stringify(error)}`)
+        EventLog.writeFaultLog(error)
+      }
     }
     if (this.mImageReceiver) {
       await this.mImageReceiver.release()
       this.mImageReceiver = null
     }
-    Log.info(`${this.TAG} releasePhotoOutput invoke X.`)
+    Log.end(`${this.TAG} releasePhotoOutput`)
   }
 
   public async createSession(surfaceId: string, isVideo: boolean) {
-    Log.info(`${this.TAG} createSession invoke E.`)
-    this.mSurfaceId = surfaceId
-    this.isVideo = isVideo
+    Log.start(`${this.TAG} createSession`)
     globalThis.isSessionCreating = true
-    this.mCaptureSession = await this.mCameraManager.createCaptureSession()
+    this.mCaptureSession = this.mCameraManager.createCaptureSession()
     globalThis.isSessionCreating = false
     Log.info(`${this.TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput},
     videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`)
     Log.info(`${this.TAG} createSession beginConfig.`)
-    Trace.start(Trace.STREAM_DISTRIBUTION)
+    Log.start(Log.STREAM_DISTRIBUTION)
     try {
-      await this.mCaptureSession?.beginConfig()
+      this.mCaptureSession?.beginConfig()
       await new Promise((resolve) => setTimeout(resolve, 1));
       Log.info(`${this.TAG} createSession addInput.`)
-      await this.mCaptureSession?.addInput(this.mCameraInput)
+      this.mCaptureSession?.addInput(this.mCameraInput)
       if (!isVideo) {
         Log.info(`${this.TAG} createSession photo addOutput.`)
-        await this.mCaptureSession?.addOutput(this.mPhotoOutPut)
+        this.mCaptureSession?.addOutput(this.mPhotoOutPut)
       }
       Log.info(`${this.TAG} createSession preview addOutput.`)
-      await this.mCaptureSession?.addOutput(this.mPreviewOutput)
-    } catch(err) {
-      if (err) {
-        Trace.write(Trace.CAMERA_ERROR)
+      this.mCaptureSession?.addOutput(this.mPreviewOutput)
+    } catch(error) {
+      Log.error(`${this.TAG} createSession failed: ${JSON.stringify(error)}`)
+      if (error) {
+        EventLog.write(EventLog.CAMERA_ERROR)
       }
     }
     Log.info(`${this.TAG} createSession commitConfig.`)
-    Trace.start(Trace.OPEN_CAMERA)
+    Log.start(Log.OPEN_CAMERA)
     try {
       await this.mCaptureSession?.commitConfig()
+      Log.end(Log.OPEN_CAMERA)
+      Log.end(Log.STREAM_DISTRIBUTION)
+      await this.mCaptureSession?.start()
     } catch(err) {
       if (err) {
-        Trace.write(Trace.OPEN_FAIL)
+        EventLog.write(EventLog.OPEN_FAIL)
       }
     }
-    Trace.end(Trace.OPEN_CAMERA)
-    Trace.end(Trace.STREAM_DISTRIBUTION)
-    await this.mCaptureSession?.start()
     if(globalThis.cameraStartFlag && (new Date().getTime() - globalThis.cameraStartTime) > 2000){
-      Trace.write(Trace.START_TIMEOUT)
+      EventLog.write(EventLog.START_TIMEOUT)
     }
     globalThis.cameraStartFlag = false
-    Log.info(`${this.TAG} createSession invoke X.`)
+    Log.end(`${this.TAG} createSession`)
   }
 
   public async releaseSession() {
-    Log.info(`${this.TAG} releasePhotoSession invoke E.`)
+    Log.start(`${this.TAG} releaseSession`)
     if (this.mCaptureSession) {
-      await this.mCaptureSession.stop()
-      await this.mCaptureSession.release()
-      this.mCaptureSession = null
+      try {
+        await this.mCaptureSession.stop()
+        await this.mCaptureSession.release()
+        this.mCaptureSession = null
+      } catch (error) {
+        Log.error(`${this.TAG} releaseSession failed: ${JSON.stringify(error)}`)
+        EventLog.writeFaultLog(error)
+      }
     }
-    Log.info(`${this.TAG} releasePhotoSession invoke X.`)
+    Log.end(`${this.TAG} releaseSession`)
   }
 
   public async startPreview() {
-    Log.info(`${this.TAG} startPreview invoke E.`)
+    Log.start(`${this.TAG} startPreview`)
     if (!this.mCaptureSession) {
       return
     }
-    await this.mCaptureSession.start()
-    Log.info(`${this.TAG} startPreview invoke X.`)
+    try {
+      await this.mCaptureSession.start()
+    } catch (error) {
+      Log.error(`${this.TAG} startPreview failed: ${JSON.stringify(error)}`)
+      EventLog.writeFaultLog(error)
+    }
+    Log.end(`${this.TAG} startPreview`)
   }
 
   public async stopPreview() {
-    Log.info(`${this.TAG} stopPreview invoke E.`)
+    Log.start(`${this.TAG} stopPreview`)
     if (!this.mCaptureSession) {
       return
     }
-    await this.mCaptureSession.stop()
-    Log.info(`${this.TAG} stopPreview invoke X.`)
+    try {
+      await this.mCaptureSession.stop()
+    } catch (error) {
+      Log.error(`${this.TAG} stopPreview failed: ${JSON.stringify(error)}`)
+      EventLog.writeFaultLog(error)
+    }
+    Log.end(`${this.TAG} stopPreview`)
   }
 
   public async takePicture() {
-    Log.info(`${this.TAG} takePicture invoke E.`)
+    Log.start(`${this.TAG} takePicture`)
+    EventLog.write(EventLog.CAPTURE)
     if (!this.mCaptureSession) {
       Log.info(`${this.TAG} takePicture session is release`)
       return
@@ -395,22 +439,22 @@ export class CameraService {
     Log.info(`${this.TAG} takePicture captureSetting ${JSON.stringify(this.mCaptureSetting)}`)
     // todo modify the location and mirror config
     try {
-      await this.mPhotoOutPut.capture(this.mCaptureSetting)
+      this.mPhotoOutPut.capture(this.mCaptureSetting)
     } catch(err) {
       if(err){
-        Trace.write(Trace.CAPTURE_FAIL)
+        EventLog.write(EventLog.CAPTURE_FAIL)
       }
     }
-    Log.info(`${this.TAG} takePicture invoke X.`)
-    Trace.end(Trace.TAKE_PICTURE)
+    Log.end(`${this.TAG} takePicture`)
+//    Log.end(Log.TAKE_PICTURE)
     if((new Date().getTime() - globalThis.startCaptureTime) > 2000){
-      Trace.write(Trace.CAPTURE_TIMEOUT)
+      EventLog.write(EventLog.CAPTURE_TIMEOUT)
     }
   }
 
   public async createVideoOutput(functionCallBack: VideoCallBack) {
-    Log.info(`${this.TAG} createVideoOutput invoke E.`)
-    Log.info(`${this.TAG} createVideoOutput this.mSurfaceId：saveCameraAsset: ${this.mSaveCameraAsset}`)
+    Log.start(`${this.TAG} createVideoOutput`)
+    Log.info(`${this.TAG} createVideoOutput saveCameraAsset: ${this.mSaveCameraAsset}`)
     this.mFileAssetId = await this.mSaveCameraAsset.createVideoFd(functionCallBack)
     if (this.mFileAssetId === undefined) {
       Log.error(`${this.TAG} createVideoOutput error: mFileAssetId undefined`)
@@ -425,8 +469,8 @@ export class CameraService {
     if (this.mAVRecorder != null) {
       this.mAVRecorder.on('error', (error) => {
         if (error) {
-          Log.error(`${this.TAG} createVideoOutput error: ${error}`)
-          functionCallBack.onRecodeError(`createVideoOutput error: ${error}`)
+          Log.error(`${this.TAG} createVideoOutput error: ${JSON.stringify(error)}`)
+          functionCallBack.onRecodeError(`createVideoOutput error: ${JSON.stringify(error)}`)
         }
       })
       Log.info(`${this.TAG} createVideoOutput size = ${JSON.stringify(size)}`)
@@ -470,43 +514,55 @@ export class CameraService {
 
     const videoId = await this.mAVRecorder.getInputSurface()
     Log.info(`${this.TAG} createVideoOutput profileVideo =  ${JSON.stringify(profileVideo)}.`)
-    this.mVideoOutput = await this.mCameraManager.createVideoOutput(profileVideo, videoId)
-    Log.info(`${this.TAG} createVideoOutput invoke X.`)
+    try {
+      this.mVideoOutput = this.mCameraManager.createVideoOutput(profileVideo, videoId)
+    } catch (error) {
+      Log.error(`${this.TAG} createVideoOutput failed: ${JSON.stringify(error)}`)
+      EventLog.writeFaultLog(error)
+    }
+    Log.end(`${this.TAG} createVideoOutput`)
   }
 
   public async releaseVideoOutput() {
-    Log.info(`${this.TAG} releaseVideoOutput invoke E.`)
+    Log.start(`${this.TAG} releaseVideoOutput`)
     if (this.mVideoOutput) {
       Log.info(`${this.TAG} releaseVideoOutput start`)
-      await this.mVideoOutput.release()
+      try {
+        await this.mVideoOutput.release()
+      } catch (error) {
+        Log.error(`${this.TAG} releaseVideoOutput failed: ${JSON.stringify(error)}`)
+        EventLog.writeFaultLog(error)
+      }
       Log.info(`${this.TAG} releaseVideoOutput end`)
       this.mVideoOutput = null
     }
-    Log.info(`${this.TAG} releaseVideoOutput invoke X.`)
+    Log.end(`${this.TAG} releaseVideoOutput`)
   }
 
   public async StartRecording(functionCallBack: VideoCallBack) {
     let startRecordingTime = new Date().getTime()
-    Log.info(`${this.TAG} StartRecording invoke E.`)
+    Log.start(`${this.TAG} StartRecording`)
     Log.info(`${this.TAG} StartRecording codec ${this.mVideoConfig.profile.videoCodec}`)
-    await this.mCaptureSession.stop()
-    await this.mCaptureSession.beginConfig()
-    if (this.mVideoOutput) {
-      try {
-        await this.mCaptureSession.removeOutput(this.mVideoOutput)
-        Log.info(`${this.TAG} old videoOutput has been removed.`)
-      } catch (err) {
-        globalThis.startRecordingFlag = false
-        Log.error(`${this.TAG} remove videoOutput ${err}`)
+    EventLog.write(EventLog.VIDEO_RECORD)
+    try {
+      await this.mCaptureSession.stop()
+      this.mCaptureSession.beginConfig()
+      if (this.mVideoOutput) {
+          await this.mCaptureSession.removeOutput(this.mVideoOutput)
+          Log.info(`${this.TAG} old videoOutput has been removed.`)
       }
+      await this.createVideoOutput(functionCallBack)
+      this.mCaptureSession.addOutput(this.mVideoOutput)
+      Log.info(`${this.TAG} StartRecording addOutput finished.`)
+      await this.mCaptureSession.commitConfig()
+      Log.info(`${this.TAG} StartRecording commitConfig finished.`)
+      await this.mCaptureSession.start()
+      Log.info(`${this.TAG} StartRecording Session.start finished.`)
+    } catch (err) {
+      globalThis.startRecordingFlag = false
+      EventLog.writeFaultLog(error)
+      Log.error(`${this.TAG} remove videoOutput ${err}`)
     }
-    await this.createVideoOutput(functionCallBack)
-    await this.mCaptureSession.addOutput(this.mVideoOutput)
-    Log.info(`${this.TAG} StartRecording addOutput finished.`)
-    await this.mCaptureSession.commitConfig()
-    Log.info(`${this.TAG} StartRecording commitConfig finished.`)
-    await this.mCaptureSession.start()
-    Log.info(`${this.TAG} StartRecording Session.start finished.`)
     await this.mVideoOutput.start().then(() => {
       Log.info(`${this.TAG} videoOutput.start()`)
     })
@@ -514,16 +570,17 @@ export class CameraService {
       Log.info(`${this.TAG} AVRecorder.start()`)
     })
     this.mIsStartRecording = true
-    Log.info(`${this.TAG} StartRecording invoke X.`)
     if(new Date().getTime() - startRecordingTime > 2000){
-      Trace.write(Trace.START_RECORD_TIMEOUT)
+      EventLog.write(EventLog.START_RECORD_TIMEOUT)
     }
+    Log.end(`${this.TAG} StartRecording`)
   }
 
   public async stopRecording() {
-    Trace.start(Trace.STOP_RECORDING)
+    Log.start(Log.STOP_RECORDING)
     let stopRecordingTime = new Date().getTime()
     Log.info(`${this.TAG} stopRecording invoke E.`)
+    EventLog.write(EventLog.STOP_RECORD)
     if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${this.TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
               AVRecorder: ${this.mAVRecorder} .`)
@@ -548,31 +605,35 @@ export class CameraService {
       this.mFileAssetId = undefined
       Log.info(`${this.TAG} fileAsset.close().`)
     }
-    Trace.start(Trace.UPDATE_VIDEO_THUMBNAIL)
+    Log.start(Log.UPDATE_VIDEO_THUMBNAIL)
     const thumbnailPixelMap = await this.mThumbnailGetter.getThumbnailInfo(40, 40)
-    Trace.end(Trace.UPDATE_VIDEO_THUMBNAIL)
+    Log.end(Log.UPDATE_VIDEO_THUMBNAIL)
     Log.info(`${this.TAG} stopRecording invoke X.`)
     if(new Date().getTime() - stopRecordingTime > 2000){
-      Trace.write(Trace.FINISH_RECORD_TIMEOUT)
+      EventLog.write(EventLog.FINISH_RECORD_TIMEOUT)
     }
-    Trace.end(Trace.STOP_RECORDING)
+    Log.end(Log.STOP_RECORDING)
     return thumbnailPixelMap
   }
 
   public async pauseRecording() {
-    Log.info(`${this.TAG} pauseRecording invoke E.`)
+    Log.start(`${this.TAG} pauseRecording`)
     if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${this.TAG} pauseRecording error videoOutPut: ${this.mVideoOutput},
               AVRecorder: ${this.mAVRecorder} .`)
       return
     }
-    await this.mAVRecorder.pause()
-    await this.mVideoOutput.stop()
-    Log.info(`${this.TAG} pauseRecording invoke X.`)
+    try {
+      await this.mAVRecorder.pause()
+      await this.mVideoOutput.stop()
+    } catch (error) {
+      Log.error(`${this.TAG} pauseRecording failed: ${JSON.stringify(error)}`)
+    }
+    Log.end(`${this.TAG} pauseRecording`)
   }
 
   public async resumeRecording() {
-    Log.info(`${this.TAG} resumeRecording invoke E.`)
+    Log.start(`${this.TAG} resumeRecording`)
     if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${this.TAG} resumeRecording error videoOutPut: ${this.mVideoOutput},
               AVRecorder: ${this.mAVRecorder} .`)
@@ -580,13 +641,15 @@ export class CameraService {
     }
     await this.mVideoOutput.start().then(() => {
       Log.info(`${this.TAG} videoOutput.start()`)
+    }).catch((error) => {
+      Log.error(`${this.TAG} resumeRecording mVideoOutput start failed: ${JSON.stringify(error)}`)
     })
     await this.mAVRecorder.resume()
-    Log.debug(`${this.TAG} resumeRecording invoke X.`)
+    Log.end(`${this.TAG} resumeRecording`)
   }
 
   public async releaseRecording() {
-    Log.info(`${this.TAG} releaseRecording invoke E.`)
+    Log.start(`${this.TAG} releaseRecording`)
     if (!this.mAVRecorder) {
       Log.info(`${this.TAG} AVRecorder has not been created.`)
       return
@@ -598,20 +661,16 @@ export class CameraService {
       Log.info(`${this.TAG} AVRecorder.release() success.`)
       this.mAVRecorder = undefined
     })
-    Log.debug(`${this.TAG} releaseRecording invoke X.`)
+    Log.end(`${this.TAG} releaseRecording`)
   }
 
   public async releaseCamera() {
-    Log.info(`${this.TAG} releaseCamera invoke E.`)
-    try {
-      await this.releaseRecording()
-    } catch(err) {
-      Log.error(`${this.TAG} releaseRecording: ${err}`)
-    }
+    Log.start(`${this.TAG} releaseCamera`)
+    await this.releaseRecording()
     await this.releaseVideoOutput()
     await this.releasePhotoOutput()
     await this.releaseSession()
-    Log.info(`${this.TAG} releaseCamera invoke X.`)
+    Log.end(`${this.TAG} releaseCamera`)
   }
 
   public async setZoomRatio(zoomRatio: number) {
@@ -620,7 +679,11 @@ export class CameraService {
       Log.info(`${this.TAG} setZoomRatio mCaptureSession is release`)
       return
     }
-    await this.mCaptureSession.setZoomRatio(zoomRatio)
+    try {
+      this.mCaptureSession.setZoomRatio(zoomRatio)
+    } catch (error) {
+      Log.error(`${this.TAG} setZoomRatio failed: ${JSON.stringify(error)}`)
+    }
     Log.info(`${this.TAG} setZoomRatio invoke X.`)
   }
 
@@ -631,7 +694,7 @@ export class CameraService {
       return 1;
     }
     Log.info(`${this.TAG} getZoomRatio invoke X.`)
-    return await this.mCaptureSession.getZoomRatio()
+    return this.mCaptureSession.getZoomRatio()
   }
 
   public async setVideoConfig(videoConfig: any) {
@@ -655,10 +718,11 @@ export class CameraService {
   }
 
   public getThumbnail(functionCallBack: FunctionCallBack) {
-    Log.info(`${this.TAG} getThumbnail invoke E.`)
+    Log.start(`${this.TAG} getThumbnail`)
     this.mThumbnailGetter.getThumbnailInfo(40, 40).then((thumbnail) => {
       Log.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
       functionCallBack.thumbnail(thumbnail)
+      Log.end(`${this.TAG} getThumbnail`)
     })
     Log.info(`${this.TAG} getThumbnail invoke X.`)
     return this.mThumbnail
@@ -713,7 +777,7 @@ export class CameraService {
   }
 
   private async getCameraLists() {
-    const cameras = await this.mCameraManager.getSupportedCameras()
+    const cameras = this.mCameraManager.getSupportedCameras()
     this.camerasCache = cameras
     return cameras
   }

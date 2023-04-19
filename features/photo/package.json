@@ -2,6 +2,7 @@
 	"license": "ISC",
 	"devDependencies": {},
 	"name": "@ohos/photo",
+	"main": "index.ets",
 	"description": "photo mode",
 	"ohos": {
 		"org": ""

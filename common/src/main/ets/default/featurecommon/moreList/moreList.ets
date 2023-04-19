@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@ import deviceInfo from '@ohos.deviceInfo';
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 
 let localState = (state) => {
   return {
@@ -37,10 +37,15 @@ class MoreListInfo {
   itemValue: number | string = ''
 }
 
+class StateStruct {
+  modeIndex
+  swipeChangeMode : Function
+}
+
 @Component
 export struct MoreList {
   private TAG: string = '[moreList]:'
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   private mDirection: any
   private moreList: MoreListInfo[] = [{
                                         "itemIcon": $r("app.media.photo"),

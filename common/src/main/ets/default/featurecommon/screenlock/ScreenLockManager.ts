@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import commonEvent from "@ohos.commonEvent"
 
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 const SCREEN_COMMON_EVENT_INFO = {
     events: [commonEvent.Support.COMMON_EVENT_SCREEN_OFF],
