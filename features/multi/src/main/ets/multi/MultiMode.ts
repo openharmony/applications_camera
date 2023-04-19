@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { Log, FunctionId } from '@ohos/common'
 import { MultiModeParam } from './MultiModeParam'
 
 const TAG: string = '[MultiMode]:'
@@ -21,7 +21,7 @@ const TAG: string = '[MultiMode]:'
 export class MultiMode {
   private MultiModeParam: MultiModeParam = new MultiModeParam()
 
-  public getFunctions(): string[] {
+  public getFunctions(): FunctionId[] {
     Log.info(`${TAG} function = ${this.MultiModeParam.functions}`)
     return this.MultiModeParam.functions
   }

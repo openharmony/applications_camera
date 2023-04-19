@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,36 +15,26 @@
 
 import router from '@system.router';
 import display from '@ohos.display';
-import wantConstant from '@ohos.ability.wantConstant'
-import window from '@ohos.window';
 import deviceInfo from '@ohos.deviceInfo'
-import { Action, UiStateMode } from '../../../../../../common/src/main/ets/default/redux/actions/Action'
-import AspectRatio from '../../../../../../common/src/main/ets/default/setting/settingitem/AspectRatio'
-import { AssistiveGridView
-} from '../../../../../../common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
-import { BigText
-} from '../../../../../../common/src/main/ets/default/featurecommon/bigtext/BigText'
 import { BigVideoTimer } from './BigVideoTimer'
-import { CameraId, getCameraId } from '../../../../../../common/src/main/ets/default/setting/settingitem/CameraId'
-import { CameraPlatformCapability
-} from '../../../../../../common/src/main/ets/default/camera/CameraPlatformCapability'
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
-import { CameraStatus, CameraNeedStatus } from '../../../../../../common/src/main/ets/default/utils/Constants'
-import getStore, { OhCombinedState } from '../../../../../../common/src/main/ets/default/redux/store'
-import Resolution from '../../../../../../common/src/main/ets/default/setting/settingitem/Resolution'
-import { SettingManager } from '../../../../../../common/src/main/ets/default/setting/SettingManager'
-import { ShowFlashBlack
-} from '../../../../../../common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
+import { Action, UiStateMode }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { AssistiveGridView }  from '@ohos/common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
+import { BigText } from '@ohos/common/src/main/ets/default/featurecommon/bigtext/BigText'
+import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/default/utils/Constants'
+import { CameraId }  from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId'
+import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
+import { ScreenLockManager } from '@ohos/common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
+import { ShowFlashBlack } from '@ohos/common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
+import { TimeLapseView } from '@ohos/common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
+import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomText'
 import { SmallVideoTimer } from './SmallVideoTimer'
-import { ZoomText
-} from '../../../../../../common/src/main/ets/default/featurecommon/zoomview/ZoomText'
-import { TimeLapseView } from '../../../../../../common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
-import { EventBus } from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBus'
-import EventBusManager from '../../../../../../common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { GeoLocation } from '../../../../../../common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
-import Trace from '../../../../../../common/src/main/ets/default/utils/Trace'
-import ScreenLockManager from '../../../../../../common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
-import prompt from '@ohos.prompt';
+
+import promptAction from '@ohos.promptAction';
 
 let cameraState = (state: OhCombinedState) => {
   let isShowBlur = !state.ContextReducer.uiEnable && state.ContextReducer.uiStateMode == UiStateMode.NONE
@@ -198,13 +188,85 @@ let cameraDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  mode
+  curMode
+  isShowPreview
+  surfaceId
+  xComponentWidth
+  xComponentHeight
+  cameraPosition
+  curCameraPosition
+  minZoomRatio
+  maxZoomRatio
+  zoomRatio
+  platformCapability
+  videoState
+  footBarHeight
+  isShowZoomText
+  showZoomLabelValue
+  modeIndex
+  isThirdPartyCall
+  isShowBigText
+  isShowtimeLapse
+  isBigVideoTimerVisible
+  isSmallVideoTimerVisible
+  isAssGridViewShow
+  isShowFlashBlack
+  modeChangeDone
+  isShowPageView
+  showBlur
+  isFaCall
+  baseZoom
+  initCamera: Function
+  initZoomRatio: Function
+  changeZoomRatio: Function
+  updateZoomPercentage: Function
+  prepareSurface: Function
+  startPreview: Function
+  switchCamera: Function
+  updateCameraPosition: Function
+  startVideoFlag: Function
+  changeXComponentSize: Function
+  updateShowPreviewFlag: Function
+  updateIsShowZoomText: Function
+  updateIsPhotoZoomDetails: Function
+  updateBaseZoom: Function
+  changeImageSize: Function
+  changeVideoSize: Function
+  close: Function
+  stopRecording: Function
+  changeTimeLapse: Function
+  capture: Function
+  startRecording: Function
+  assistiveGridView: Function
+  swipeChangeMode: Function
+  thirdPartyCall: Function
+  faCall: Function
+  initMode: Function
+  updateMode: Function
+  changeToMode: Function
+  updateModeIndex: Function
+  updateShowZoomLabelValue: Function
+  reloadThumbnail: Function
+  updateShowPinch: Function
+  swipeModeChangeDone: Function
+  updateInitShowFlag: Function
+  hideSettingView: Function
+}
+
 globalThis.mXComponentController = new XComponentController()
+
+type ScreenSizeType = {
+  width: number
+  height: number
+}
 
 @Component
 export struct PreviewAreaLand {
   private TAG: string = '[PreviewAreaLand]:'
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State btnSwitch: boolean = false
   @State btnSwitchSec: boolean = false
   @State pinchGestureTimerId: number = 0
@@ -218,8 +280,8 @@ export struct PreviewAreaLand {
   @State switchBackgroundOpacity: number = 1
   @State isSwitchBackground: boolean = false
   @State pageType: string = ''
-  @Link screenSize: any
-  @State isShowBlurSize: any = {}
+  @Link screenSize: ScreenSizeType
+  @State isShowBlurSize: ScreenSizeType = { width: 0, height: 0}
   private mConnect: any
   private isShowPreview: boolean = false
   private settingManager = SettingManager.getInstance()
@@ -306,7 +368,7 @@ export struct PreviewAreaLand {
 
   private async onRecordError() {
     Log.info(`${this.TAG} onRecordError invoke E`)
-    prompt.showToast({
+    promptAction.showToast({
       message: "录像异常",
       duration: 2000,
     })
@@ -337,16 +399,16 @@ export struct PreviewAreaLand {
     })
 
     display.getDefaultDisplay().then((dis) => {
-      this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height)}
+      this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height) }
     })
     this.calledByOther()
     this.state.initCamera(this.state.cameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
     Log.info(`${this.TAG} aboutToAppear X`)
-    Trace.start(Trace.X_COMPONENT_LIFE)
+    Log.start(Log.X_COMPONENT_LIFE)
   }
 
-  private  releaseCamera() {
+  private releaseCamera() {
     Log.info(`${this.TAG} globalThis.releaseCamera called`)
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
     if (this.state.videoState === 'startTakeVideo') {
@@ -405,7 +467,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} calledByOther invoke X: ${this.state.mode}`)
   }
 
-  private initStateMode(uri:string) {
+  private initStateMode(uri: string) {
     switch (uri) {
       case "capture":
         this.state.initMode('PHOTO')
@@ -421,7 +483,7 @@ export struct PreviewAreaLand {
     }
   }
 
-  private  updateCameraStatus() {
+  private updateCameraStatus() {
     Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${globalThis.cameraStatus}`)
     Log.info(`${this.TAG} updateCameraStatus  cameraNeedStatus: ${globalThis.cameraNeedStatus}`)
 
@@ -434,13 +496,14 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} updateCameraStatus X`)
   }
 
-  private  canInit():boolean {
+  private canInit(): boolean {
     //相机状态是首次加载或者session释放完成状态，才能进行初始化操作
     return globalThis.cameraStatus == CameraStatus.CAMERA_BEFORE_VALUE || globalThis.cameraStatus == CameraStatus.CAMERA_RELEASE_FINISHED
   }
-  private  canRelease():boolean {
+
+  private canRelease(): boolean {
     //相机状态是预览完成状态或录像完成状态才能进行释放操作
-    return  globalThis.cameraStatus == CameraStatus.CAMERA_PREVIEW_FINISHED|| globalThis.cameraStatus == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED
+    return globalThis.cameraStatus == CameraStatus.CAMERA_PREVIEW_FINISHED || globalThis.cameraStatus == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED
   }
 
   aboutToDisappear(): void {
@@ -653,7 +716,7 @@ export struct PreviewAreaLand {
             controller: globalThis.mXComponentController
           })
             .onLoad(() => {
-              Trace.end(Trace.X_COMPONENT_LIFE)
+              Log.end(Log.X_COMPONENT_LIFE)
               Log.info(`${this.TAG} XComponent_onLoad`)
               let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId()
               this.state.prepareSurface(surfaceId)
@@ -706,7 +769,7 @@ export struct PreviewAreaLand {
             ShowFlashBlack()
           }
 
-          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default"&&!this.state.isShowtimeLapse) {
+          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default" && !this.state.isShowtimeLapse) {
             Stack({ alignContent: Alignment.Top }) {
               Column() {
                 Column() {
@@ -778,7 +841,7 @@ export struct PreviewAreaLand {
           }
           .width(this.screenSize.width > this.screenSize.height ? this.screenSize.height : this.screenSize.width)
           .height(this.screenSize.height > (this.screenSize.width * 9 / 16) ? (this.screenSize.width * 9 / 16) :
-            this.screenSize.height)
+          this.screenSize.height)
         }
         .width('100%')
         .height('100%')
@@ -790,7 +853,7 @@ export struct PreviewAreaLand {
     .backgroundColor('#000')
     .gesture(
     GestureGroup(
-      GestureMode.Exclusive,
+    GestureMode.Exclusive,
     TapGesture({ fingers: 1, count: 1 })
       .onAction(this.onPreviewClicked.bind(this)),
     PinchGesture({ fingers: 2, distance: 1 })

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,12 +16,11 @@
 import settings from '@ohos.settings'
 
 import { Log } from '../../../utils/Log'
-import SettingListModel from '../../../../../../../../common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
 import { SettingManager } from '../../../setting/SettingManager'
 import Timer from '../../../setting/settingitem/Timer'
 import AspectRatio from '../../../setting/settingitem/AspectRatio'
 import Resolution from '../../../setting/settingitem/Resolution'
-import getStore from '../../../redux/store';
+import { getStore } from '../../../redux/store';
 
 let localState = (state) => {
   return {
@@ -33,6 +32,9 @@ let localDispatcher = (dispatch) => {
   return {}
 }
 
+class StateStruct {
+  mode
+}
 
 @Component
 export default struct EntryComponent {
@@ -43,7 +45,7 @@ export default struct EntryComponent {
   private getValue: Resource
   private onChange: Function
   private settingManager = SettingManager.getInstance()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear calle1d = ${this.settingAlias}`)

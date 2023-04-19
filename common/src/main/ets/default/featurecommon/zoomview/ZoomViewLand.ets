@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,10 +16,10 @@
 import display from '@ohos.display'
 
 import { Log } from '../../utils/Log'
-import getStore, { OhCombinedState } from '../../redux/store'
+import { getStore, OhCombinedState } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 let localDispatcher = (dispatch) => {
   return {
@@ -39,13 +39,29 @@ let SHOW_FOLD_CANVAS: number = 0
 let SHOW_NOT_TAKE_VIDEO_CANVAS: number = 1
 let SHOW_TAKING_VIDEO_CANVAS: number = 2
 
+class StateStruct {
+  mode
+  videoState
+  cameraPosition
+  isShowPressScrollDetailPhotoButton
+  minZoomRatio
+  maxZoomRatio
+  scrollDetailsBox
+  isPhotoZoomDetails
+  photoDetailsOffsetX
+  photoDetailsOffsetXInit
+  updateZoomRatio: Function
+  updateShowZoomFlag: Function
+  updateShowZoomLabelValue: Function
+}
+
 @Component
 export struct ZoomViewLand {
   private TAG: string = '[ZoomViewLand]:'
   private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State @Watch('onZoomRatioRefresh') zoomRatio: number = 0
   @State @Watch('onZoomRatioRefresh') showZoomLabelValue: boolean = true
   @State @Watch('onZoomRatioRefresh') isShowZoomText: boolean = false

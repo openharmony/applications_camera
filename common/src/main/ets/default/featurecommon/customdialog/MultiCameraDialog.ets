@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import { CameraService } from '../../camera/CameraService'
 import { CameraId } from '../../setting/settingitem/CameraId'
 import { Log } from '../../utils/Log'
 import EntryComponentForMulti from './EntryComponentForMulti'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 
 let localState = (state) => {
@@ -36,6 +36,10 @@ let localDispatcher = (dispatch) => {
 
 let storageCameraId = AppStorage.Link('storageCameraId')
 
+class StateStruct {
+  changeCameraPosition : Function
+}
+
 @CustomDialog
 export default struct MultiCameraDialog {
   private TAG: string = '[MultiCameraDialog]:'
@@ -49,7 +53,7 @@ export default struct MultiCameraDialog {
   ]
   @State private moreList: string[] = []
   private multiCameraMap = new Map()
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State isShowMore: boolean = false
   @State gridColumns: number = 12
   @State useSizeTypeOffset: number = 4

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../../../../common/src/main/ets/default/utils/Log'
+import { Log, FunctionId } from '@ohos/common'
 import { VideoModeParam } from './VideoModeParam'
 
 const TAG: string = '[VideoMode]:'
@@ -25,7 +25,7 @@ export class VideoMode {
     return this.videoModeParam.tabBar
   }
 
-  public getFunctions(): string[] {
+  public getFunctions(): FunctionId[] {
     Log.info(`${TAG} function = ${this.videoModeParam.functions}`)
     return this.videoModeParam.functions
   }

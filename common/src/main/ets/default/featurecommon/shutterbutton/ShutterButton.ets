@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,10 +16,10 @@
 import router from "@system.router"
 
 import { Log } from '../../utils/Log'
-import getStore from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import { EventBus } from '../../worker/eventbus/EventBus'
-import EventBusManager from '../../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
 
@@ -77,6 +77,28 @@ let localDispatcher = (dispatch) => {
   }
 }
 
+class StateStruct {
+  uiEnable
+  shutterIcon
+  captureBtnScale
+  videoState
+  mode
+  resourceUri
+  videoUri
+  thumbnail
+  isThirdPartyCall
+  xComponentWidth
+  xComponentHeight
+  updateSmallVideoTimerVisible : Function
+  updateShutterIcon : Function
+  capture : Function
+  startRecording : Function
+  pauseRecording : Function
+  resumeRecording : Function
+  stopRecording : Function
+  changeTimeLapse : Function
+}
+
 @Component
 export struct ShutterButton {
   private TAG: string = '[ShutterButton]:'
@@ -86,7 +108,7 @@ export struct ShutterButton {
   type: ButtonType
   stateEffect: boolean
 
-  @State state: any = {}
+  @State state: StateStruct = new StateStruct()
   @State captureBtnScale: number = 1
 
   aboutToAppear() {
