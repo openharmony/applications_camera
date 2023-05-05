@@ -29,7 +29,8 @@ export default class MainAbility extends Ability {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private readonly foreRoundCountLimit: number = 1
   private foreRoundOverCount: number = 0
-  onCreate() {
+
+  onCreate(): void {
     // Ability is creating, initialize resources for this ability
     Log.start(Log.ABILITY_WHOLE_LIFE)
     if (globalThis.cameraFormParam != undefined) {
