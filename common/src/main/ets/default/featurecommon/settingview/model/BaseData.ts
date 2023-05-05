@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { SettingData } from './SettingData'
+import type { SettingData } from './SettingData'
 
 export class BaseData {
-  constructor() {
-  }
-
   settingIcon?: string;
   settingTitle?: string | Resource;
   settingAlias?: string;
   settingChildren?: SettingData[]
+
+  constructor() {
+  }
 }

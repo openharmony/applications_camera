@@ -30,7 +30,7 @@ export class EventBus {
     * @param event event to handle.
     * @param callback event related callbacck
     */
-  public on(event: string | string[], callback: Callback) {
+  public on(event: string | string[], callback: Callback): void {
     Log.info(`${this.TAG} on event = ${JSON.stringify(event)}  ${JSON.stringify(callback)}`)
     if (Array.isArray(event)) {
       for (let i = 0, l = event.length; i < l; i++) {
@@ -53,10 +53,10 @@ export class EventBus {
     * @param event event to handle
     * @param callback event related callback
     */
-  public once(event: string | string[], callback: Callback) {
+  public once(event: string | string[], callback: Callback): void {
     const _self = this
 
-    function handler() {
+    function handler(): void {
       const args: any = arguments;
       _self.off(event, handler);
       callback.apply(_self, args); // When called in emit, it will pass parameters to the on method
@@ -72,7 +72,7 @@ export class EventBus {
     * @param event event to handle
     * @param callback event related callback
     */
-  public off(event: string | string[], callback: Callback | undefined) {
+  public off(event: string | string[], callback: Callback | undefined): void {
     // Array cyclic emptying
     if (Array.isArray(event)) {
       for (let i = 0, l = event.length; i < l; i++) {
@@ -101,7 +101,7 @@ export class EventBus {
     * @param event event to handle
     * @param argument parameter for the related callback
     */
-  public emit(event: string, argument: any) {
+  public emit(event: string, argument: any): void {
     // once deleting the event will cause this in the following loop this._events moves forward in fn,
     // so it is copied here as a new array
     const _self = this

@@ -28,7 +28,7 @@ export class CaptureFunction extends BaseFunction {
     Log.info(`${this.TAG} capture X`)
   }
 
-  private onCapturePhotoOutput(){
+  private onCapturePhotoOutput(): void{
     Log.info(`${this.TAG} onCapturePhotoOutput E`)
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW)
     Log.info(`${this.TAG} onCapturePhotoOutput X`)

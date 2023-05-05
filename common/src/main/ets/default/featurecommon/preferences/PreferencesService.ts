@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,8 +15,6 @@
 
 import dataStorage from '@ohos.data.storage';
 
-const TAG: string = 'PreferencesService'
-
 export enum PersistType {
   NEVER,
   FOREVER,
@@ -31,8 +28,7 @@ export class PreferencesService {
   public static getInstance(): PreferencesService {
     if (!globalThis?.sInstancePreferencesService) {
       globalThis.sInstancePreferencesService = new PreferencesService()
-      let filePath = globalThis.cameraAbilityContext.filesDir
-      PreferencesService.modeStorage = dataStorage.getStorageSync(filePath + '/mode_persist_values')
+      PreferencesService.modeStorage = dataStorage.getStorageSync(globalThis.cameraAbilityContext.filesDir + '/mode_persist_values')
     }
     return globalThis.sInstancePreferencesService
   }
@@ -44,7 +40,7 @@ export class PreferencesService {
     return PreferencesService.modeStorage.getSync(this.getModePersistKey(persistType, 'BASE'), defaultValue)
   }
 
-  putModeValue(persistType, value: any) {
+  putModeValue(persistType, value: any): void {
     if (persistType === PersistType.FOR_AWHILE) {
       PreferencesService.modeStorage.putSync(this.getModePersistKey(persistType, 'Timestamp'), new Date().getTime())
     }

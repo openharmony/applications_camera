@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Log, FunctionId } from '@ohos/common'
+import { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId'
 
 export class PhotoModeParam {
   public readonly tabBar: string[] = ['', 'flash', 'zoom', 'focus', 'setup']

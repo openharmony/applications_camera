@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import { AsyncManager, Message } from '../../worker/AsyncManager'
+import { AsyncManager } from '../../worker/AsyncManager'
+import type { Message } from '../../worker/AsyncManager'
 import { Log } from '../../utils/Log'
-import { AnyAction, Dispatch, Middleware, MiddlewareAPI, Store } from '../core/redux'
+import type { AnyAction, Dispatch, Middleware, MiddlewareAPI } from '../core/redux'
 
 const TAG = '[reduxWorkerMiddle]:'
 

@@ -25,19 +25,19 @@ export default class FormAbility extends FormExtensionAbility {
         return null;
     }
 
-    onCastToNormal(formId) {
+    onCastToNormal(formId): void {
         Log.info(`${this.TAG} onCastToNormal, formId: ${formId}`);
     }
 
-    onUpdate(formId) {
+    onUpdate(formId): void {
         Log.info(`${this.TAG} onUpdate, formId: ${formId}`);
     }
 
-    onVisibilityChange(newStatus) {
+    onVisibilityChange(newStatus): void {
         Log.info(`${this.TAG} onVisibilityChange, newStatus: ${JSON.stringify(newStatus)}`);
     }
 
-    onEvent(formId, message) {
+    onEvent(formId, message): void {
         Log.info(`${this.TAG} onEventA, formId: ${formId}, msg: ${message}`);
     }
 

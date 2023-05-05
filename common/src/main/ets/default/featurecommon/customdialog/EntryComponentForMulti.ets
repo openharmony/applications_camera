@@ -14,21 +14,12 @@
  */
 
 import { CameraService } from '../../camera/CameraService'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Log } from '../../utils/Log'
 
-let localState = (state) => {
-  return {
-    uiEnable: state.ContextReducer.uiEnable
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {}
-}
-
 class StateStruct {
-  uiEnable
+  uiEnable: boolean
 }
 
 @Component
@@ -49,7 +40,15 @@ export default struct EntryComponentForMulti {
   private cameraPositionName: string
 
   aboutToAppear() {
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        uiEnable: state.ContextReducer.uiEnable
+      }
+    }, () => {
+      return {
+      }
+    })(this.state)
+
     this.getShowName(this.item)
     this.curCameraName = this.cameraService.getCameraName()
     if (this.localList.split(",").length === 1 && this.curCameraName === 'BACK') {
@@ -57,8 +56,7 @@ export default struct EntryComponentForMulti {
     }
   }
 
-  private getShowName(item) {
-    let cameraMap
+  private getShowName(item: string): void {
     this.cameraPositionName = item.split('_').pop()
     switch (this.cameraPositionName) {
       case 'FRONT':
@@ -73,8 +71,7 @@ export default struct EntryComponentForMulti {
     if (item.split('_').length == 1) {
       this.isLocalDevice = true
     } else {
-      cameraMap = this.cameraService.getCameraMap()
-      this.deviceName = cameraMap.get(item).deviceName
+      this.deviceName = this.cameraService.getCameraMap().get(item).deviceName
       this.isLocalDevice = false
     }
   }

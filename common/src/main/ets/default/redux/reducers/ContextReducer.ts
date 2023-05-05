@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { Action, ActionData, UiStateMode } from '../actions/Action'
+import { Action, UiStateMode } from '../actions/Action'
+import type { ActionData } from '../actions/Action'
 
 export type ContextState = {
   uiEnable: boolean,

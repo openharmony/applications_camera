@@ -15,27 +15,14 @@
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
-import { EventBus } from '../../worker/eventbus/EventBus'
+import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import EventLog from '../../utils/EventLog'
 
-let tabBarLandState = (state) => {
-  return {
-    isThirdPartyCall: state.ContextReducer.isThirdPartyCall
-  }
-}
-
-let tabBarLandDispatcher = (dispatch) => {
-  return {
-    showSettingView: () => {
-      dispatch(Action.showSettingView(true))
-    },
-  }
-}
-
 class StateStruct {
-  isThirdPartyCall
+  isThirdPartyCall: boolean
   showSettingView: Function
 }
 
@@ -56,7 +43,18 @@ export struct TabBarLand {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    getStore().connect(tabBarLandState, tabBarLandDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        isThirdPartyCall: state.ContextReducer.isThirdPartyCall
+      }
+    }, (dispatch) => {
+      return {
+        showSettingView: (): void => {
+          dispatch(Action.showSettingView(true))
+        }
+      }
+    })(this.state)
+
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
@@ -96,7 +94,7 @@ export struct TabBarLand {
       //
       //        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       //          TabBarSame()
-      //        }
+       //        }
       //        .position({ y: this.state.widthTabBar })
       //        .width('100%')
       //        .height('20%')

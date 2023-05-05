@@ -14,7 +14,7 @@
  */
 
 import { Log } from '../utils/Log'
-import { EventBus } from './eventbus/EventBus'
+import type { EventBus } from './eventbus/EventBus'
 import { EventBusManager } from './eventbus/EventBusManager'
 
 // todo 后续考虑EventBus可能出现的消息堵塞问题
@@ -23,7 +23,7 @@ export class ActionHandler {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   // 在worker线程中通过EventBus发送action，相关后台能力需要注册对应的action.type
-  public handleAction(action: any) {
+  public handleAction(action: any): void {
     Log.info(`${this.TAG} handle action: ${JSON.stringify(action)}`)
     this.appEventBus.emit(action.type, [action.data])
   }

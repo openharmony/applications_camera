@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { CameraId } from '../../setting/settingitem/CameraId'
-import { Action, ActionData } from '../actions/Action'
+import { Action } from '../actions/Action'
+import type { ActionData } from '../actions/Action'
 
 export type CameraState = {
   cameraPosition: string,

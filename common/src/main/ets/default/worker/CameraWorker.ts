@@ -17,10 +17,11 @@
 
 import { Log } from '../utils/Log'
 import { Constants } from '../utils/Constants'
-import { EventBus } from './eventbus/EventBus'
+import type { EventBus } from './eventbus/EventBus'
 import { EventBusManager } from './eventbus/EventBusManager'
 import { WorkerManager } from './WorkerManager'
-import { IModeMap } from '../featureservice/IModeMap';
+import type { IModeMap } from '../featureservice/IModeMap'
+
 export class CameraWorker {
   private static TAG = '[CameraWorker]:'
   private appEventBus: EventBus = EventBusManager.getWorkerInstance().getEventBus()
@@ -30,7 +31,7 @@ export class CameraWorker {
     this.workerManager = new WorkerManager()
     // 接收UI线程的消息，并继续发送
     this.appEventBus.on('MAIN_TO_WORKER', (msg) => {
-      console.info(`[CameraWorker]:  action from main thread: ${JSON.stringify(msg)}`)
+      Log.info(`[CameraWorker]:  action from main thread: ${JSON.stringify(msg)}`)
       this.workerManager.onMessage(msg)
     })
   }

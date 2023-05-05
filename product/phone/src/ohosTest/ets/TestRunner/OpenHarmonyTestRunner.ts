@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import TestRunner from '@ohos.application.testRunner'
+import type TestRunner from '@ohos.application.testRunner'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 
 var abilityDelegator = undefined
 var abilityDelegatorArguments = undefined
 
-function translateParamsToString(parameters) {
+function translateParamsToString(parameters): string {
     const keySet = new Set([
         '-s class', '-s notClass', '-s suite', '-s it',
         '-s level', '-s testType', '-s size', '-s timeout'
@@ -34,23 +35,23 @@ function translateParamsToString(parameters) {
 }
 
 async function onAbilityCreateCallback() {
-    console.log("onAbilityCreateCallback");
+    Log.log("onAbilityCreateCallback");
 }
 
 async function addAbilityMonitorCallback(err: any) {
-    console.info("addAbilityMonitorCallback : " + JSON.stringify(err))
+    Log.info("addAbilityMonitorCallback : " + JSON.stringify(err))
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
     constructor() {
     }
 
-    onPrepare() {
-        console.info("OpenHarmonyTestRunner OnPrepare ")
+    onPrepare(): void {
+        Log.info("OpenHarmonyTestRunner OnPrepare ")
     }
 
     async onRun() {
-        console.log('OpenHarmonyTestRunner onRun run')
+        Log.log('OpenHarmonyTestRunner onRun run')
         abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         var testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility'
@@ -61,13 +62,13 @@ export default class OpenHarmonyTestRunner implements TestRunner {
         abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
         var cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName
         cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters)
-        console.info('cmd : ' + cmd)
+        Log.info('cmd : ' + cmd)
         abilityDelegator.executeShellCommand(cmd,
             (err: any, d: any) => {
-                console.info('executeShellCommand : err : ' + JSON.stringify(err));
-                console.info('executeShellCommand : data : ' + d.stdResult);
-                console.info('executeShellCommand : data : ' + d.exitCode);
+                Log.info('executeShellCommand : err : ' + JSON.stringify(err));
+                Log.info('executeShellCommand : data : ' + d.stdResult);
+                Log.info('executeShellCommand : data : ' + d.exitCode);
             })
-        console.info('OpenHarmonyTestRunner onRun end')
+        Log.info('OpenHarmonyTestRunner onRun end')
     }
 };

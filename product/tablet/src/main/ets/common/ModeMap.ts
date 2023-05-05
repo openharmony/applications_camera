@@ -16,8 +16,8 @@
 import { PhotoMode } from '@ohos/photo'
 import { VideoMode } from '@ohos/video'
 import { MultiMode } from '@ohos/multi'
-import { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId'
-import { IModeMap } from '@ohos/common/src/main/ets/default/featureservice/IModeMap'
+import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId'
+import type { IModeMap } from '@ohos/common/src/main/ets/default/featureservice/IModeMap'
 
 export class ModeMap implements IModeMap {
   private TAG: string = '[Mode]:'

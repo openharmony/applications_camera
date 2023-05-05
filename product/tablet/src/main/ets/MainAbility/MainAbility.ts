@@ -15,10 +15,9 @@
 
 import Ability from '@ohos.app.ability.UIAbility'
 import window from '@ohos.window';
-import wantConstant from '@ohos.ability.wantConstant'
 import { CameraBasicFunction } from '@ohos/common/src/main/ets/default/function/CameraBasicFunction'
 import { CameraNeedStatus,Constants }  from '@ohos/common/src/main/ets/default/utils/Constants'
-import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { FeatureManager } from '@ohos/common/src/main/ets/default/featureservice/FeatureManager'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
@@ -26,17 +25,17 @@ import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecom
 import { ModeMap } from '../common/ModeMap';
 
 export default class MainAbility extends Ability {
-  private cameraBasicFunction: any = null
+  private cameraBasicFunction: CameraBasicFunction = null
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private readonly foreRoundCountLimit: number = 1
   private foreRoundOverCount: number = 0
-  onCreate(want, launchParam) {
+  onCreate() {
     // Ability is creating, initialize resources for this ability
     Log.start(Log.ABILITY_WHOLE_LIFE)
     if (globalThis.cameraFormParam != undefined) {
-      var featureManager = new FeatureManager(globalThis.cameraFormParam.mode, new ModeMap())
+      new FeatureManager(globalThis.cameraFormParam.mode, new ModeMap())
     } else {
-      var featureManager = new FeatureManager('PHOTO', new ModeMap())
+      new FeatureManager('PHOTO', new ModeMap())
     }
     Log.info('Camera MainAbility onCreate.')
     globalThis.cameraAbilityContext = this.context
@@ -141,7 +140,7 @@ export default class MainAbility extends Ability {
     Log.info('Camera MainAbility onForeground.')
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT
     if (globalThis?.doOnForeground && globalThis.doOnForeground) {
-      console.info('Camera MainAbility onForeground.')
+      Log.info('Camera MainAbility onForeground.')
       globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
     } else {
       globalThis.doOnForeground = true

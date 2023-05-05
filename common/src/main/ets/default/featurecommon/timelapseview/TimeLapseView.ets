@@ -14,37 +14,13 @@
  */
 
 import { Log } from '../../utils/Log'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
-import window from '@ohos.window';
 import { Action } from '../../redux/actions/Action'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
-import { EventBus } from '../../worker/eventbus/EventBus'
+import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-
-let localState = (state) => {
-  return {
-    mode: state.ModeReducer.mode,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    changeTimeLapse: (isShowtimeLapse: boolean) => {
-      dispatch(Action.changeTimeLapse(isShowtimeLapse))
-    },
-    capture: () => {
-      dispatch(Action.updateShowFlashBlackFlag(true))
-      dispatch(Action.capture())
-    },
-    startRecording: () => {
-      dispatch(Action.startRecording())
-      dispatch(Action.updateVideoState('startTakeVideo'))
-      dispatch(Action.updateBigVideoTimerVisible(true))
-      dispatch(Action.updateScreenStatus(true))
-    }
-  }
-}
 
 class StateStruct {
   mode
@@ -63,7 +39,7 @@ export struct TimeLapseView {
   @State state: StateStruct = new StateStruct()
   @State timerLapse: number = 0
 
-  private onKeepScreen(data) {
+  private onKeepScreen(data): void {
     Log.info(`${this.TAG} onKeepScreen E`)
     if (data) {
       globalThis.cameraWinClass.setKeepScreenOn(data.isKeepScreenOn).then((v) => {
@@ -77,7 +53,28 @@ export struct TimeLapseView {
 
   aboutToAppear() {
     Log.debug(`${this.TAG} aboutToAppear E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        mode: state.ModeReducer.mode
+      }
+    }, (dispatch) => {
+      return {
+        changeTimeLapse: (isShowtimeLapse: boolean): void => {
+          dispatch(Action.changeTimeLapse(isShowtimeLapse))
+        },
+        capture: (): void => {
+          dispatch(Action.updateShowFlashBlackFlag(true))
+          dispatch(Action.capture())
+        },
+        startRecording: (): void => {
+          dispatch(Action.startRecording())
+          dispatch(Action.updateVideoState('startTakeVideo'))
+          dispatch(Action.updateBigVideoTimerVisible(true))
+          dispatch(Action.updateScreenStatus(true))
+        }
+      }
+    })(this.state)
+
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
     switch(JSON.stringify(this.settingManager.getTimeLapse())){
       case JSON.stringify(Timer.RESOURCE_OFF):

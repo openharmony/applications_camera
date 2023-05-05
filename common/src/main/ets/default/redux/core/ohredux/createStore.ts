@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import {
+import { createStore } from '../redux/index'
+import type {
   Store,
-  createStore,
   ExtendState,
   PreloadedState,
   StoreEnhancer,

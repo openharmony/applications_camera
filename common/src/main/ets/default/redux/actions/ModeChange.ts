@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ActionData } from './Action'
+import type { ActionData } from './Action'
 
 export const ACTION_CHANGE_PREVIEW_SIZE = 'changePreviewSize'
 

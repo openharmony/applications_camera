@@ -14,47 +14,14 @@
  */
 
 import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
+import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
 import { TabletSettingItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/tablet/TabletSettingItem'
 import { SettingListModel } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
-
-let localState = (state: OhCombinedState) => {
-  return {
-    isCloseFlag: state.SettingReducer.isCloseFlag,
-    mode: state.ModeReducer.mode,
-    zoomRatio: state.ZoomReducer.zoomRatio,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    closeDialog: (isCloseFlag: boolean) => {
-      dispatch(Action.closeDialog(isCloseFlag))
-    },
-    hideSettingView: () => {
-      dispatch(Action.showSettingView(false))
-    },
-    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
-      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
-    },
-    assistiveGridView: (isViewShow) => {
-      dispatch(Action.assistiveGridView(isViewShow))
-    },
-    reStartPreview: (zoomRatio?: number) => {
-      dispatch(Action.reStartPreview(zoomRatio))
-    },
-    showBlur:() => {
-      dispatch(Action.uiState(false))
-    },
-    resetZoomRatio: () => {
-      dispatch(Action.changeZoomRatio(1))
-    },
-  }
-}
 
 class StateStruct {
   isCloseFlag
@@ -92,7 +59,38 @@ export struct SettingView {
 
   aboutToAppear(): void{
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        isCloseFlag: state.SettingReducer.isCloseFlag,
+        mode: state.ModeReducer.mode,
+        zoomRatio: state.ZoomReducer.zoomRatio
+      }
+    }, (dispatch) => {
+      return {
+        closeDialog: (isCloseFlag: boolean): void =>  {
+          dispatch(Action.closeDialog(isCloseFlag))
+        },
+        hideSettingView: (): void =>  {
+          dispatch(Action.showSettingView(false))
+        },
+        changeXComponentSize: (xComponentWidth: number, xComponentHeight: number): void =>  {
+          dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
+        },
+        assistiveGridView: (isViewShow: number): void =>  {
+          dispatch(Action.assistiveGridView(isViewShow))
+        },
+        reStartPreview: (zoomRatio?: number): void =>  {
+          dispatch(Action.reStartPreview(zoomRatio))
+        },
+        showBlur:(): void =>  {
+          dispatch(Action.uiState(false))
+        },
+        resetZoomRatio: (): void =>  {
+          dispatch(Action.changeZoomRatio(1))
+        }
+      }
+    })(this.state)
+
     this.mEventBus.on("windowSize", this.windowSizeChange.bind(this))
     this.mEventBus.on("AspectRatio", this.aspectRatioChange.bind(this))
     this.mEventBus.on("Resolution", this.resolutionChange.bind(this))
@@ -117,23 +115,26 @@ export struct SettingView {
     return true;
   }
 
-  private windowSizeChange(data) {
+  private windowSizeChange(data): void {
     this.localStyle =  (data.width >= px2vp(1280)) ? { "columns": 12, "offset": 2, "span": 8 } :
       { "columns": 8, "offset": 1, "span": 6 }
   }
-  private aspectRatioChange(xComponentSize) {
+
+  private aspectRatioChange(xComponentSize): void {
     if (this.state.mode != 'VIDEO') {
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.state.reStartPreview(this.state.zoomRatio)
     }
   }
-  private resolutionChange(xComponentSize) {
+
+  private resolutionChange(xComponentSize): void {
     if (this.state.mode == 'VIDEO') {
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.state.reStartPreview(this.state.zoomRatio)
     }
   }
-  private assistiveGridChange(mAssistiveGrid) {
+
+  private assistiveGridChange(mAssistiveGrid): void {
     this.state.assistiveGridView(mAssistiveGrid)
   }
 

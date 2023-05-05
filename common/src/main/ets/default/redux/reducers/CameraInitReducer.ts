@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
-import { Action, ActionData } from '../actions/Action'
+import type { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
+import { Action } from '../actions/Action'
+import type{ ActionData } from '../actions/Action'
 
 export type CameraInitState = {
   platformCapability: CameraPlatformCapability | undefined,

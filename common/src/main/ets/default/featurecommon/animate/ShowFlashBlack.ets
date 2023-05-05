@@ -14,30 +14,13 @@
  */
 
 import { Log } from '../../utils/Log'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 
-let localState = (state) => {
-  return {
-    xComponentWidth: state.PreviewReducer.xComponentWidth,
-    xComponentHeight: state.PreviewReducer.xComponentHeight,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-//    updateOpacityValue: (opacityValue) => {
-//      dispatch(Action.updateOpacityValue(opacityValue))
-//    },
-    updateShowFlashBlackFlag: (flag: boolean) => {
-      dispatch(Action.updateShowFlashBlackFlag(flag))
-    }
-  }
-}
-
 class StateStruct {
-  xComponentWidth
-  xComponentHeight
+  xComponentWidth: number
+  xComponentHeight: number
   updateShowFlashBlackFlag : Function
 }
 
@@ -50,7 +33,18 @@ export struct ShowFlashBlack {
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        xComponentWidth: state.PreviewReducer.xComponentWidth,
+        xComponentHeight: state.PreviewReducer.xComponentHeight
+      }
+    }, (dispatch) => {
+      return {
+        updateShowFlashBlackFlag: (flag: boolean): void => {
+          dispatch(Action.updateShowFlashBlackFlag(flag))
+        }
+      }
+    })(this.state)
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 

@@ -15,29 +15,11 @@
 
 import { Action } from '../../redux/actions/Action'
 import { CameraSwitchController } from './CameraSwitchController'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Log } from '../../utils/Log'
 import MultiCameraDialog from '../customdialog/MultiCameraDialog'
 import deviceInfo from '@ohos.deviceInfo'
-
-let localState = (state) => {
-  return {
-    mode: state.ModeReducer.mode,
-    uiEnable: state.ContextReducer.uiEnable,
-    cameraPosition: state.CameraReducer.cameraPosition,
-    videoState: state.RecordReducer.videoState,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    changeCameraPosition: (cameraPosition: string) => {
-      dispatch(Action.uiState(false))
-      dispatch(Action.switchCamera(cameraPosition))
-      dispatch(Action.resetZoomRatio(1))
-    },
-  }
-}
 
 let storageCameraId = AppStorage.Link('storageCameraId')
 
@@ -76,7 +58,23 @@ export struct CameraSwitchButton {
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        mode: state.ModeReducer.mode,
+        uiEnable: state.ContextReducer.uiEnable,
+        cameraPosition: state.CameraReducer.cameraPosition,
+        videoState: state.RecordReducer.videoState
+      }
+    }, (dispatch) => {
+      return {
+        changeCameraPosition: (cameraPosition: string) => {
+          dispatch(Action.uiState(false))
+          dispatch(Action.switchCamera(cameraPosition))
+          dispatch(Action.resetZoomRatio(1))
+        }
+      }
+    })(this.state)
+
     this.cameraSwitchController.getParam()
     this.icon = this.cameraSwitchController.icon
     this.mWidth = this.cameraSwitchController.width
@@ -93,7 +91,7 @@ export struct CameraSwitchButton {
     Log.info(`${this.TAG} openMultiDialog X`)
   }
 
-  private existView() {}
+  private existView(): void {}
 
   build() {
     Column() {

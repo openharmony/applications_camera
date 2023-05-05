@@ -51,6 +51,11 @@ export interface VideoCallBack {
 
 type Callback = (args?: any) => void
 
+class CameraInformation {
+  deviceName: string
+  cameraId: string
+}
+
 export class CameraService {
   private TAG = '[CameraService]:'
   private mCameraId: string = CameraId.BACK
@@ -58,7 +63,7 @@ export class CameraService {
   private mCameraManager!: camera.CameraManager
   private mCameraIdMap: Map<string, string> = new Map()
   private mLocalCameraMap: Map<string, string> = new Map()
-  private mCameraMap = new Map()
+  private mCameraMap: Map<string, CameraInformation> = new Map()
   private curCameraName = ''
   private mCameraCount = 0
   private mCameraInput!: camera.CameraInput
@@ -171,23 +176,23 @@ export class CameraService {
     return this.mCameraCount
   }
 
-  public getCameraManager() {
+  public getCameraManager(): camera.CameraManager {
     return this.mCameraManager
   }
 
-  public getCameraIdMap() {
+  public getCameraIdMap(): Map<string, string> {
     return this.mCameraIdMap
   }
 
-  public getLocalCameraMap() {
+  public getLocalCameraMap(): Map<string, string> {
     return this.mLocalCameraMap
   }
 
-  public getCameraMap() {
+  public getCameraMap(): Map<string, CameraInformation> {
     return this.mCameraMap
   }
 
-  public getCameraCount() {
+  public getCameraCount(): number {
     return this.mCameraCount
   }
 
@@ -717,7 +722,7 @@ export class CameraService {
     Log.debug(`${this.TAG} setCaptureSetting invoke X.`)
   }
 
-  public getThumbnail(functionCallBack: FunctionCallBack) {
+  public getThumbnail(functionCallBack: FunctionCallBack): image.PixelMap {
     Log.start(`${this.TAG} getThumbnail`)
     this.mThumbnailGetter.getThumbnailInfo(40, 40).then((thumbnail) => {
       Log.info(`${this.TAG} getThumbnail thumbnail: ${thumbnail}`)
@@ -786,7 +791,7 @@ export class CameraService {
     return this.curCameraName
   }
 
-  public setCameraId(name: string) {
+  public setCameraId(name: string): void {
     this.curCameraName = name
   }
 

@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
-import { CameraId } from '../../setting/settingitem/CameraId'
-import { AnyAction } from '../../redux/core/redux'
-import { Log } from '../../utils/Log'
+import type { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
+import type { CameraId } from '../../setting/settingitem/CameraId'
+import type { AnyAction } from '../../redux/core/redux'
 
 interface Data {
  [prop: string]: any;

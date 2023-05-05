@@ -13,28 +13,16 @@
  * limitations under the License.
  */
 
-import router from '@system.router'
-
 import { Log } from '../../utils/Log'
-import { ThumbnailController } from './ThumbnailController'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
-import { EventBus } from '../../worker/eventbus/EventBus'
+import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import EventLog from '../../utils/EventLog'
 
-let localState = (state) => {
-  return {
-    thumbnail: state.CameraInitReducer.thumbnail,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {}
-}
-
 class StateStruct {
-  thumbnail
+  thumbnail: Resource
 }
 
 @Component
@@ -85,7 +73,15 @@ export struct ThumbnailView {
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        thumbnail: state.CameraInitReducer.thumbnail
+      }
+    }, (dispatch) => {
+      return {
+      }
+    })(this.state)
+
     this.appEventBus.on(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
     this.appEventBus.on(Action.ACTION_LOAD_THUMBNAIL, this.onThumbnailLoad.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
