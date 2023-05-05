@@ -63,7 +63,7 @@ export class CameraPlatformCapability {
     Log.info(`${this.TAG} init X.`)
   }
 
-  public async calcSupportedSizes(cameraInput, outputCapability: camera.CameraOutputCapability) {
+  public async calcSupportedSizes(cameraInput, outputCapability: camera.CameraOutputCapability): Promise<void> {
     Log.info(`${this.TAG} calcSupportedSizes start.`)
     if (deviceInfo.deviceType == 'default') {
       return
