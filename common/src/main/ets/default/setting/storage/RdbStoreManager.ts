@@ -129,7 +129,7 @@ export class RdbStoreManager {
     return result;
   }
 
-  private ifStringIsNull(str) {
+  private ifStringIsNull(str): boolean {
     return (str == undefined || str == '' || str == null)
   }
 }

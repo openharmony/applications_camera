@@ -13,20 +13,23 @@
  * limitations under the License.
  */
 
-import { Action, ActionData } from '../actions/Action'
+import { Action } from '../actions/Action'
+import type { ActionData } from '../actions/Action'
 
 export type SettingState = {
   isAssGridViewShow: string,
   isShowtimeLapse: boolean,
   isCloseFlag: boolean,
-  isShowSettingView: boolean
+  isShowSettingView: boolean,
+  opacityValueForTabBar: number
 }
 
 const initState = {
   isAssGridViewShow: '0',
   isShowtimeLapse: false,
   isCloseFlag: false,
-  isShowSettingView: false
+  isShowSettingView: false,
+  opacityValueForTabBar: 0
 }
 
 export default function SettingReducer(state = initState, action: ActionData): SettingState {
@@ -39,6 +42,9 @@ export default function SettingReducer(state = initState, action: ActionData): S
     return { ...state, isCloseFlag: action.data.isCloseFlag }
   case Action.ACTION_SHOW_SETTING_VIEW:
     return { ...state, isShowSettingView: action.data.isShowSettingView }
+  case Action.ACTION_UPDATE_OPACITY_TAB_BAR:
+    return { ...state, opacityValueForTabBar: action.data.opacityValueForTabBar }
+
   default:
     return state;
   }

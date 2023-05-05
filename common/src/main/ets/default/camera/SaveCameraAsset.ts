@@ -18,8 +18,8 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 
 import { Log } from '../utils/Log'
 import DateTimeUtil from '../utils/DateTimeUtil'
-import { FunctionCallBack, VideoCallBack } from './CameraService'
-import ThumbnailGetter from './ThumbnailGetter'
+import type { FunctionCallBack, VideoCallBack } from './CameraService'
+import type ThumbnailGetter from './ThumbnailGetter'
 import EventLog from '../utils/EventLog'
 
 let photoUri: string;
@@ -39,7 +39,7 @@ export default class SaveCameraAsset {
     return photoUri
   }
 
-  public saveImage(mReceiver, thumbWidth: number, thumbHeight: number, thumbnailGetter: ThumbnailGetter, captureCallBack: FunctionCallBack) {
+  public saveImage(mReceiver, thumbWidth: number, thumbHeight: number, thumbnailGetter: ThumbnailGetter, captureCallBack: FunctionCallBack): void {
     Log.info(`${this.TAG} saveImage E`)
     const mDateTimeUtil = new DateTimeUtil();
     const fileKeyObj = mediaLibrary.FileKey

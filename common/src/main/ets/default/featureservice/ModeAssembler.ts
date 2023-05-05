@@ -28,6 +28,7 @@ export class ModeAssembler {
     this.mFunctionsMap = functionsMap
     this.mMode = modeMap
   }
+
   public assembler(preMode: string, currentMode: string): void {
     Log.info(`${this.TAG} assembler preMode = ${preMode}  currentMode = ${currentMode} E `)
     this.mNeedAdd = []

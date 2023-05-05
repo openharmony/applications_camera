@@ -33,17 +33,17 @@ export class SettingListModel {
         this.buildSettingsList()
     }
 
-    getSettingList() {
+    getSettingList(): SettingGroupItem[] {
         return this.settingsList;
     }
 
-    private buildSettingsList() {
+    private buildSettingsList(): void {
         this.settingsList[0] = this.buildPhotoModeSettings()
         this.settingsList[1] = this.buildVideoModeSettings()
         this.settingsList[2] = this.buildGeneralSettings()
     }
 
-    private buildPhotoModeSettings() {
+    private buildPhotoModeSettings(): SettingGroupItem {
         let result: SettingGroupItem = {}
         result.settingTitle = $r('app.string.photo_mode')
         result.settingChildren = []
@@ -51,7 +51,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildPhotoResolutionSettingItem() {
+    private buildPhotoResolutionSettingItem(): SettingItem {
         let result: SettingItem = {}
         result.imagePath = $r("app.media.ic_camera_setting_resolution_photo")
         result.settingName = $r('app.string.aspect_ratio')
@@ -62,7 +62,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildPhotoResolutionRadio() {
+    private buildPhotoResolutionRadio(): RadioItem[] {
         let result: RadioItem[] = []
         result[0] = { "itemValue": AspectRatio.RESOURCE_RATIO_4_3}
         result[1] = { "itemValue": AspectRatio.RESOURCE_RATIO_1_1}
@@ -70,7 +70,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildVideoModeSettings() {
+    private buildVideoModeSettings(): SettingGroupItem {
         let result: SettingGroupItem = {}
         result.settingTitle = $r('app.string.video_mode')
         result.settingChildren = []
@@ -79,7 +79,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildVideoResolutionSettingItem() {
+    private buildVideoResolutionSettingItem(): SettingItem {
         let result :SettingItem = {}
         result.imagePath = $r("app.media.ic_camera_setting_resolution_video")
         result.settingName = $r('app.string.video_resolution')
@@ -90,14 +90,14 @@ export class SettingListModel {
         return result;
     }
 
-    private buildVideoResolutionRadio() {
+    private buildVideoResolutionRadio(): RadioItem[] {
         let result: RadioItem[] = []
         result[0] = { "itemValue": Resolution.RESOURCE_16_9_720P}
         result[1] = { "itemValue": Resolution.RESOURCE_16_9_1080P}
         return result;
     }
 
-    private buildVideoCodecSettingItem() {
+    private buildVideoCodecSettingItem(): SettingItem {
         let result: SettingItem = {}
         result.imagePath = $r("app.media.ic_camera_setting_efficient_video_format")
         result.settingName = $r('app.string.video_codec')
@@ -109,7 +109,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildGeneralSettings() {
+    private buildGeneralSettings(): SettingGroupItem {
         let result: SettingGroupItem = {}
         result.settingTitle = $r('app.string.general')
         result.settingChildren = []
@@ -121,7 +121,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildAssistiveGridSettingItem() {
+    private buildAssistiveGridSettingItem(): SettingItem {
         let result: SettingItem = {}
         result.imagePath = $r("app.media.ic_camera_setting_assistive_grid")
         result.settingName = $r('app.string.assistive_grid')
@@ -132,7 +132,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildTimerSettingItem() {
+    private buildTimerSettingItem(): SettingItem {
         let result :SettingItem = {}
         result.imagePath = $r("app.media.ic_camera_rersolution")
         result.settingName = $r('app.string.timer')
@@ -143,7 +143,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildTimerRadio() {
+    private buildTimerRadio(): RadioItem[] {
         let result: RadioItem[] = []
         result[0] = { "itemValue": Timer.RESOURCE_OFF }
         result[1] = { "itemValue": Timer.RESOURCE_TWO_SECONDS }
@@ -152,7 +152,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildSaveGeoLocationSettingItem() {
+    private buildSaveGeoLocationSettingItem(): SettingItem {
         let result: SettingItem = {}
         result.imagePath = $r("app.media.ic_camera_setting_location")
         result.settingName = $r('app.string.save_geo_location')
@@ -164,7 +164,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildSoundMuteSettingItem() {
+    private buildSoundMuteSettingItem(): SettingItem {
         let result: SettingItem = {}
         result.imagePath = $r("app.media.ic_camera_sound_mute")
         result.settingName = $r('app.string.sound_mute')
@@ -175,7 +175,7 @@ export class SettingListModel {
         return result;
     }
 
-    private buildSelfMirrorSettingItem() {
+    private buildSelfMirrorSettingItem(): SettingItem {
         let result: SettingItem = {}
         result.imagePath = $r("app.media.ic_camera_mirrow_reflection")
         result.settingName = $r('app.string.self_mirror')

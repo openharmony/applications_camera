@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
-import { Log, FunctionId } from '@ohos/common'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId'
 import { VideoModeParam } from './VideoModeParam'
+
 
 const TAG: string = '[VideoMode]:'
 

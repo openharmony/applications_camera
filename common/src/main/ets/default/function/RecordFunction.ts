@@ -17,7 +17,7 @@ import { Action, UiStateMode } from '../redux/actions/Action'
 import { Log } from '../utils/Log'
 import { CameraStatus } from '../utils/Constants'
 import { BaseFunction } from './BaseFunction'
-import { VideoCallBack } from '../camera/CameraService'
+import type { VideoCallBack } from '../camera/CameraService'
 
 export class RecordFunction extends BaseFunction {
   private TAG = '[RecordFunction]:'

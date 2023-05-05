@@ -14,28 +14,9 @@
  */
 
 import { Log } from '../../utils/Log'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
-
-let localState = (state) => {
-  return {
-    mode: state.ModeReducer.mode,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    updateShowBigTextFlag: (flag: boolean) => {
-      dispatch(Action.updateShowBigTextFlag(flag))
-    },
-    updateUiState: (state: boolean) => {
-      dispatch(Action.uiState(state))
-    }
-//    updateBigTextOpacity: (opacity: number) => {
-//      dispatch(Action.updateBigTextOpacity(opacity))
-//    }
-  }
-}
 
 class StateStruct {
   mode
@@ -58,7 +39,21 @@ export struct BigText {
 
   public aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    this.mConnect = getStore().connect((state: OhCombinedState) => {
+      return {
+        mode: state.ModeReducer.mode
+      }
+    }, (dispatch) => {
+      return {
+        updateShowBigTextFlag: (flag: boolean) => {
+          dispatch(Action.updateShowBigTextFlag(flag))
+        },
+        updateUiState: (state: boolean) => {
+          dispatch(Action.uiState(state))
+        }
+      }
+    })(this.state)
+
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 

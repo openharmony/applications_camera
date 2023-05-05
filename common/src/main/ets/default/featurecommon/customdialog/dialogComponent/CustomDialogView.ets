@@ -17,6 +17,7 @@ import deviceInfo from '@ohos.deviceInfo'
 
 import { Action } from '../../../redux/actions/Action'
 import { Log } from '../../../utils/Log'
+import type { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store'
 import EntryComponent from './EntryComponent'
 
@@ -31,18 +32,6 @@ export class CustomDialogDetails {
   settingTitle: string
 }
 
-let localState = (state) => {
-  return {}
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    closeDialog: (isCloseFlag: boolean) => {
-      dispatch(Action.closeDialog(isCloseFlag))
-    }
-  }
-}
-
 class StateStruct {
   closeDialog : Function
 }
@@ -50,7 +39,6 @@ class StateStruct {
 @CustomDialog
 export struct CustomDialogView {
   private TAG: string = '[CustomDialogView]:'
-  //  @StorageLink('settingsDetailList') settingsDetailList: any[]= [];
   localStyle = { "columns": 4, "offset": 0 }
   controller: CustomDialogController
   cancel: () => void
@@ -58,7 +46,6 @@ export struct CustomDialogView {
   @Consume customDialogDetails: CustomDialogDetails
   @State settingAlias: string= ""
   @State getValue: string= ""
-  @StorageLink('settingsList') settingsList: any[]= []
   @State childrenList: Array<any> = []
 
   @State state: StateStruct = new StateStruct()
@@ -67,7 +54,17 @@ export struct CustomDialogView {
     Log.info(`${this.TAG} aboutToAppear start`)
     this.childrenList = this.customDialogDetails.childrenList
     Log.info(`${this.TAG} childrenList ${JSON.stringify(this.childrenList)}`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+      }
+    }, (dispatch) => {
+      return {
+        closeDialog: (isCloseFlag: boolean) => {
+          dispatch(Action.closeDialog(isCloseFlag))
+        }
+      }
+    })(this.state)
+
     this.settingAlias = this.customDialogDetails.setAlias
     Log.info(`${this.TAG} aboutToAppear end`)
   }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ActionData } from '../actions/Action'
+import type { ActionData } from '../actions/Action'
 import { ACTION_CHANGE_PREVIEW_SIZE, ACTION_CHANGE_SHUTTER_BUTTON } from '../actions/ModeChange'
 import { UIDATA_TAB_ITEM } from '../actions/UiData'
 

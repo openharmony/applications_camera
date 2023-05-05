@@ -50,7 +50,7 @@ export default class DateTimeUtil {
      * @param {string} value - 数据值
      * @return {string} - 日期不足两位补 0
      */
-  fill(value) {
+  fill(value): string {
     return (value > 9 ? '' : '0') + value;
   }
 

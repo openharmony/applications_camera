@@ -1,15 +1,14 @@
-import { AnyAction, Action } from './types/actions'
-import {
+import type { AnyAction, Action } from './types/actions'
+import type {
   ActionFromReducersMapObject,
   Reducer,
   ReducersMapObject,
   StateFromReducersMapObject
 } from './types/reducers'
-import { CombinedState } from './types/store'
+import type { CombinedState } from './types/store'
 
 import ActionTypes from './utils/actionTypes'
 import isPlainObject from './utils/isPlainObject'
-import warning from './utils/warning'
 import { kindOf } from './utils/kindOf'
 
 function getUnexpectedStateShapeWarningMessage(
@@ -60,7 +59,7 @@ function getUnexpectedStateShapeWarningMessage(
   }
 }
 
-function assertReducerShape(reducers: ReducersMapObject) {
+function assertReducerShape(reducers: ReducersMapObject): void {
   Object.keys(reducers).forEach(key => {
     const reducer = reducers[key]
     const initialState = reducer(undefined, { type: ActionTypes.INIT })

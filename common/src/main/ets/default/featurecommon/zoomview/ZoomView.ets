@@ -13,41 +13,11 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display'
-
-import {Log} from '../../utils/Log'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import {Action} from '../../redux/actions/Action'
-import { EventBus } from '../../worker/eventbus/EventBus'
+import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-
-
-let localState = (state) => {
-  return {
-    mode: state.ModeReducer.mode,
-    videoState: state.RecordReducer.videoState,
-    cameraPosition: state.CameraReducer.cameraPosition,
-    zoomRatio: state.ZoomReducer.zoomRatio,
-    isShowZoomText: state.ZoomReducer.isShowZoomText,
-    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-    minZoomRatio: state.ZoomReducer.minZoomRatio,
-    maxZoomRatio: state.ZoomReducer.maxZoomRatio,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    updateZoomRatio: (zoomRatio: number) => {
-      dispatch(Action.changeZoomRatio(zoomRatio))
-    },
-    updateShowZoomFlag: (flag: boolean) => {
-      dispatch(Action.updateShowZoomTextFlag(flag))
-    },
-    updateShowZoomLabelValue: (flag: boolean) => {
-      dispatch(Action.updateShowZoomLabelValue(flag))
-    }
-  }
-}
 
 let SHOW_FOLD_CANVAS: number = 0
 let SHOW_NOT_TAKE_VIDEO_CANVAS: number = 1
@@ -69,7 +39,6 @@ class StateStruct {
 
 @Component
 export struct ZoomView {
-  private TAG: string = '[ZoomView]:'
   private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
@@ -109,7 +78,31 @@ export struct ZoomView {
   private dotSpacing: number = 4
 
   aboutToAppear(): void {
-    this.mConnect = getStore().connect(localState, localDispatcher)(this.state)
+    this.mConnect = getStore().connect((state: OhCombinedState) => {
+      return {
+        mode: state.ModeReducer.mode,
+        videoState: state.RecordReducer.videoState,
+        cameraPosition: state.CameraReducer.cameraPosition,
+        zoomRatio: state.ZoomReducer.zoomRatio,
+        isShowZoomText: state.ZoomReducer.isShowZoomText,
+        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
+        minZoomRatio: state.ZoomReducer.minZoomRatio,
+        maxZoomRatio: state.ZoomReducer.maxZoomRatio
+      }
+    }, (dispatch) => {
+      return {
+        updateZoomRatio: (zoomRatio: number): void => {
+          dispatch(Action.changeZoomRatio(zoomRatio))
+        },
+        updateShowZoomFlag: (flag: boolean): void => {
+          dispatch(Action.updateShowZoomTextFlag(flag))
+        },
+        updateShowZoomLabelValue: (flag: boolean): void => {
+          dispatch(Action.updateShowZoomLabelValue(flag))
+        }
+      }
+    })(this.state)
+
     this.appEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
     this.appEventBus.on(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
   }
@@ -231,7 +224,7 @@ export struct ZoomView {
     this.changeZoomRatioOnTakingVideoExt()
   }
 
-  private subtractTouched(event: TouchEvent) {
+  private subtractTouched(event: TouchEvent): void {
     if (event.type === TouchType.Down) {
       this.subtractZoomRatio()
     }
@@ -240,15 +233,15 @@ export struct ZoomView {
     }
   }
 
-  private subtractLongOnAction(event: GestureEvent) {
+  private subtractLongOnAction(event: GestureEvent): void {
     this.subtractZoomRatio()
   }
 
-  private subtractLongOnActionEnd() {
+  private subtractLongOnActionEnd(): void {
     this.state.updateShowZoomFlag(false)
   }
 
-  private addTouched(event: TouchEvent) {
+  private addTouched(event: TouchEvent): void {
     if (event.type === TouchType.Down) {
       this.addZoomRatio()
     }
@@ -257,11 +250,11 @@ export struct ZoomView {
     }
   }
 
-  private addLongOnAction(event: GestureEvent) {
+  private addLongOnAction(event: GestureEvent): void {
     this.addZoomRatio()
   }
 
-  private addLongOnActionEnd() {
+  private addLongOnActionEnd(): void {
     this.state.updateShowZoomFlag(false)
   }
 
@@ -358,7 +351,6 @@ export struct ZoomView {
   }
 
   private updateZoomOffset(data): void {
-    let padding = this.getPadding()
     let offset = (data.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
     this.offsetX = offset
   }

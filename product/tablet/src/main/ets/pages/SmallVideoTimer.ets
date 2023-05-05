@@ -14,33 +14,10 @@
  */
 
 import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-
-let localState = (state: OhCombinedState) => {
-  return {
-    recordingTime: state.RecordReducer.recordingTime,
-    recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
-    isRecordingPaused: state.RecordReducer.isRecordingPaused,
-    isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    updateSpotVisible: (visible: boolean) => {
-      dispatch(Action.updateRecordingSpotVisible(visible))
-    },
-    updateRecordingTime: (recordingTime: number) => {
-      dispatch(Action.updateRecordingTime(recordingTime))
-    },
-    updateRecordingTimeDisplay: (timeDisplay: string) => {
-      dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
-    }
-  }
-}
 
 class StateStruct {
   recordingTime
@@ -74,7 +51,27 @@ export struct SmallVideoTimer {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        recordingTime: state.RecordReducer.recordingTime,
+        recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
+        isRecordingPaused: state.RecordReducer.isRecordingPaused,
+        isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible
+      }
+    }, (dispatch) => {
+      return {
+        updateSpotVisible: (visible: boolean): void => {
+          dispatch(Action.updateRecordingSpotVisible(visible))
+        },
+        updateRecordingTime: (recordingTime: number): void => {
+          dispatch(Action.updateRecordingTime(recordingTime))
+        },
+        updateRecordingTimeDisplay: (timeDisplay: string): void => {
+          dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
+        }
+      }
+    })(this.state)
+
     this.setIntervalTimer()
     this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPausedSmall.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumedSmall.bind(this))
@@ -89,7 +86,7 @@ export struct SmallVideoTimer {
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
-  private setIntervalTimer() {
+  private setIntervalTimer(): void {
     clearInterval(this.timer)
     this.timer = setInterval(() => {
       this.timerTick++

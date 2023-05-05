@@ -13,24 +13,13 @@
  * limitations under the License.
  */
 
-import settings from '@ohos.settings'
-
 import { Log } from '../../../utils/Log'
 import { SettingManager } from '../../../setting/SettingManager'
 import Timer from '../../../setting/settingitem/Timer'
 import AspectRatio from '../../../setting/settingitem/AspectRatio'
 import Resolution from '../../../setting/settingitem/Resolution'
+import type { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store';
-
-let localState = (state) => {
-  return {
-    mode: state.ModeReducer.mode,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {}
-}
 
 class StateStruct {
   mode
@@ -49,7 +38,15 @@ export default struct EntryComponent {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear calle1d = ${this.settingAlias}`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        mode: state.ModeReducer.mode
+      }
+    }, (dispatch) => {
+      return {
+      }
+    })(this.state)
+
     try {
       this.getValue = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.settingAlias)))
       Log.log(`${this.TAG} EntryComponent.getValue=${this.getValue}`)

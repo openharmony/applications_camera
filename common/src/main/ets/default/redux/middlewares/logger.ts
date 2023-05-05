@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { AnyAction, Dispatch, Middleware, MiddlewareAPI } from '../core/redux'
+import type { AnyAction, Dispatch, Middleware, MiddlewareAPI } from '../core/redux'
+import { Log } from '../../utils/Log'
 
 /**
  * Middleware to log the behaviors of dispatch.
@@ -23,8 +24,8 @@ import { AnyAction, Dispatch, Middleware, MiddlewareAPI } from '../core/redux'
  * can be obtained.
  */
 export const logger: Middleware = (store: MiddlewareAPI) => (next: Dispatch<AnyAction>) => (action: AnyAction) => {
-  console.info(`logger: dispatch ${JSON.stringify(action)}, store: ${JSON.stringify(store.getState())}`)
+  Log.info(`logger: dispatch ${JSON.stringify(action)}, store: ${JSON.stringify(store.getState())}`)
   const result = next(action)
-  console.info(`logger: new state ${JSON.stringify(store.getState())}`)
+  Log.info(`logger: new state ${JSON.stringify(store.getState())}`)
   return result
 }

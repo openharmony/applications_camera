@@ -13,51 +13,43 @@
  * limitations under the License.
  */
 
-import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { SettingManager } from '../../setting/SettingManager'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 
-let localState = (state) => {
-  return {
-    xComponentWidth: state.PreviewReducer.xComponentWidth,
-    xComponentHeight: state.PreviewReducer.xComponentHeight,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {}
-}
-
 class StateStruct {
-  xComponentWidth
-  xComponentHeight
+  xComponentWidth: number
+  xComponentHeight: number
 }
 
 @Component
 export struct AssistiveGridView {
   private TAG: string = '[AssistiveGridView]:'
-  private curX: number = 0
-  private curY: number = 0
   private mGlobalAlpha: number = 0.5
   private mLineWidth: number = 0.5
-  private mShadowBlur: number = 5
   private mShadowColor: string = 'argb(#7F000000)'
   private mShadowOffsetX: number = 0
   private mShadowOffsetY: number = 0
   private mStrokeStyle: string = '#FFFFFF'
-
   private scaleLen: number = 4
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private settingManager = SettingManager.getInstance()
-  private xCWidth: number = 0
-  private xCHeight: number = 0
+
   @State state: StateStruct = new StateStruct()
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        xComponentWidth: state.PreviewReducer.xComponentWidth,
+        xComponentHeight: state.PreviewReducer.xComponentHeight
+      }
+    }, (dispatch) => {
+      return {
+      }
+    })(this.state)
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
@@ -67,7 +59,7 @@ export struct AssistiveGridView {
         .width('100%')
         .height('100%')
         .onReady(() => {
-          this.context.clearRect(0, 0, parseInt(this.state.xComponentWidth), parseInt(this.state.xComponentHeight))
+          this.context.clearRect(0, 0, this.state.xComponentWidth, this.state.xComponentHeight)
           this.drawRuler()
         })
     }
@@ -75,7 +67,7 @@ export struct AssistiveGridView {
     .height(this.state.xComponentHeight)
   }
 
-  drawRuler() {
+  drawRuler(): void {
     let xCWidth = this.state.xComponentWidth
     let xCHeight = this.state.xComponentHeight
     let curX = xCWidth / 3

@@ -16,7 +16,7 @@
 import commonEvent from "@ohos.commonEvent"
 
 import { Log } from '../../utils/Log'
-import { EventBus } from '../../worker/eventbus/EventBus'
+import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 const SCREEN_COMMON_EVENT_INFO = {
@@ -50,11 +50,11 @@ export class ScreenLockManager {
         });
     }
 
-    close() {
+    close(): void {
         commonEvent.unsubscribe(this.mSubscriber)
     }
 
-    notifyScreenEvent(isScreenOn: boolean) {
+    notifyScreenEvent(isScreenOn: boolean): void {
         this.appEventBus.emit(ScreenLockManager.SCREEN_CHANGE_EVENT, [isScreenOn]);
         Log.log(`${this.TAG} publish ${ScreenLockManager.SCREEN_CHANGE_EVENT} screenState: ${isScreenOn}`);
     }

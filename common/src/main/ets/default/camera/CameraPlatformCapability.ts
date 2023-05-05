@@ -14,7 +14,7 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo'
-
+import type camera from '@ohos.multimedia.camera'
 import { Log } from '../utils/Log'
 
 export class CameraPlatformCapability {
@@ -63,7 +63,7 @@ export class CameraPlatformCapability {
     Log.info(`${this.TAG} init X.`)
   }
 
-  public async calcSupportedSizes(cameraInput, outputCapability) {
+  public async calcSupportedSizes(cameraInput, outputCapability: camera.CameraOutputCapability) {
     Log.info(`${this.TAG} calcSupportedSizes start.`)
     if (deviceInfo.deviceType == 'default') {
       return

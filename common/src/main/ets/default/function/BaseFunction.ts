@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import { Action, UiStateMode } from '../redux/actions/Action'
+import { Action } from '../redux/actions/Action'
+import type { UiStateMode } from '../redux/actions/Action'
 import { CameraService } from '../camera/CameraService'
-import { EventBus } from '../worker/eventbus/EventBus'
+import type { EventBus } from '../worker/eventbus/EventBus'
 import { EventBusManager } from '../worker/eventbus/EventBusManager'
 import { WorkerManager } from '../worker/WorkerManager'
 
@@ -24,19 +25,19 @@ export abstract class BaseFunction {
   protected mWorkerManager: WorkerManager = new WorkerManager()
   protected mEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
-  protected enableUi() {
+  protected enableUi(): void {
     this.mWorkerManager.postMessage(Action.uiState(true))
   }
 
-  protected disableUi() {
+  protected disableUi(): void {
     this.mWorkerManager.postMessage(Action.uiState(false))
   }
 
-  protected enableUiWithMode(uiStateMode: UiStateMode) {
+  protected enableUiWithMode(uiStateMode: UiStateMode): void {
     this.mWorkerManager.postMessage(Action.uiStateWithMode(true, uiStateMode))
   }
 
-  protected disableUiWithMode(uiStateMode: UiStateMode) {
+  protected disableUiWithMode(uiStateMode: UiStateMode): void {
     this.mWorkerManager.postMessage(Action.uiStateWithMode(false, uiStateMode))
   }
 

@@ -19,6 +19,5 @@ import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     Log.start(Log.APPLICATION_WHOLE_LIFE)
-    console.info('MyAbilityStage onCreate.')
   }
 }

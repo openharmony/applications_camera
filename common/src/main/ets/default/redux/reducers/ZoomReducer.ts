@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import { ZoomFunction } from '../../function/ZoomFunction'
 import { Action, ActionData } from '../actions/Action'
 
 export type ZoomState = {

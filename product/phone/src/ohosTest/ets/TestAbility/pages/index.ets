@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    console.info('TestAbility index aboutToAppear')
+    Log.info('TestAbility index aboutToAppear')
   }
 
   @State message: string = 'Hello World'

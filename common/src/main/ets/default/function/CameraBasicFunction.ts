@@ -19,7 +19,7 @@ import { CameraPlatformCapability } from '../camera/CameraPlatformCapability'
 import { Log } from '../utils/Log'
 import { CameraStatus } from '../utils/Constants'
 import { BaseFunction } from './BaseFunction'
-import { FunctionCallBack } from '../camera/CameraService'
+import type { FunctionCallBack } from '../camera/CameraService'
 import EventLog from '../utils/EventLog'
 
 export class CameraBasicFunction extends BaseFunction {

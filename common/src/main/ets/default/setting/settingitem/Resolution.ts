@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
-import { CameraId } from './CameraId'
+import type { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
 import { Log } from '../../utils/Log'
 
 export default class Resolution {
