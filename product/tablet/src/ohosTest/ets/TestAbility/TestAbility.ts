@@ -13,43 +13,43 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from 'hypium/index'
-import testsuite from '../test/List.test'
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import Ability from '@ohos.application.Ability';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import { Hypium } from 'hypium/index';
+import testsuite from '../test/List.test';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 
 export default class TestAbility extends Ability {
-    onCreate(want, launchParam) {
-        Log.log('TestAbility onCreate')
-        var abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        Log.info('start run testcase!!!')
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
-    }
+  onCreate(want, launchParam) {
+    Log.log('TestAbility onCreate');
+    var abilityDelegator: any;
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    var abilityDelegatorArguments: any;
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    Log.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+  }
 
-    onDestroy() {
-        Log.log('TestAbility onDestroy')
-    }
+  onDestroy() {
+    Log.log('TestAbility onDestroy');
+  }
 
-    onWindowStageCreate(windowStage) {
-        Log.log('TestAbility onWindowStageCreate')
-        windowStage.setUIContent(this.context, 'TestAbility/pages/index', null)
+  onWindowStageCreate(windowStage) {
+    Log.log('TestAbility onWindowStageCreate');
+    windowStage.setUIContent(this.context, 'TestAbility/pages/index', null);
 
-        globalThis.abilityContext = this.context
-    }
+    globalThis.abilityContext = this.context;
+  }
 
-    onWindowStageDestroy() {
-        Log.log('TestAbility onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    Log.log('TestAbility onWindowStageDestroy');
+  }
 
-    onForeground() {
-        Log.log('TestAbility onForeground')
-    }
+  onForeground() {
+    Log.log('TestAbility onForeground');
+  }
 
-    onBackground() {
-        Log.log('TestAbility onBackground')
-    }
+  onBackground() {
+    Log.log('TestAbility onBackground');
+  }
 };

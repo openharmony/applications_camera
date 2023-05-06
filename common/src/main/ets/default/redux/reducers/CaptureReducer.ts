@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
 import type { ActionData } from '../actions/Action'
+import { Action } from '../actions/Action'
 
 export type CaptureState = {
   captureBtnScale: number
@@ -26,10 +26,12 @@ const initState = {
 
 export default function CaptureReducer(state = initState, action: ActionData): CaptureState {
   switch (action.type) {
-  case Action.ACTION_UPDATE_CAPTURE_BTN_SCALE:
-    return { ...state, captureBtnScale: action.data.captureBtnScale }
-  default:
-    return state;
+    case Action.ACTION_UPDATE_CAPTURE_BTN_SCALE:
+      return {
+        ...state, captureBtnScale: action.data.captureBtnScale
+      }
+    default:
+      return state;
   }
   return state;
 }
