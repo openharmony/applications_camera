@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId'
-import { MultiModeParam } from './MultiModeParam'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId';
+import { MultiModeParam } from './MultiModeParam';
 
-const TAG: string = '[MultiMode]:'
+const TAG: string = '[MultiMode]:';
 
 export class MultiMode {
-  private MultiModeParam: MultiModeParam = new MultiModeParam()
+  private MultiModeParam: MultiModeParam = new MultiModeParam();
 
   public getFunctions(): FunctionId[] {
-    Log.info(`${TAG} function = ${this.MultiModeParam.functions}`)
-    return this.MultiModeParam.functions
+    Log.info(`${TAG} function = ${this.MultiModeParam.functions}`);
+    return this.MultiModeParam.functions;
   }
 }

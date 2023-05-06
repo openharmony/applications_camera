@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import type { SettingData } from './SettingData'
+import type { SettingData } from './SettingData';
 
 export class BaseData {
   settingIcon?: string;

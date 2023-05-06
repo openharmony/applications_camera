@@ -13,104 +13,102 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-import { CameraBasicFunction } from '@ohos/common/src/main/ets/default/function/CameraBasicFunction'
-import { CameraNeedStatus,Constants }  from '@ohos/common/src/main/ets/default/utils/Constants'
-import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
-import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { FeatureManager } from '@ohos/common/src/main/ets/default/featureservice/FeatureManager'
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
+import { CameraBasicFunction } from '@ohos/common/src/main/ets/default/function/CameraBasicFunction';
+import { CameraNeedStatus,Constants }  from '@ohos/common/src/main/ets/default/utils/Constants';
+import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { FeatureManager } from '@ohos/common/src/main/ets/default/featureservice/FeatureManager';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService';
 import { ModeMap } from '../common/ModeMap';
 
 export default class MainAbility extends Ability {
-  private cameraBasicFunction: CameraBasicFunction = null
-  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  private readonly foreRoundCountLimit: number = 1
-  private foreRoundOverCount: number = 0
+  private cameraBasicFunction: CameraBasicFunction = null;
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private readonly foreRoundCountLimit: number = 1;
+  private foreRoundOverCount: number = 0;
 
   onCreate(): void {
     // Ability is creating, initialize resources for this ability
-    Log.start(Log.ABILITY_WHOLE_LIFE)
+    Log.start(Log.ABILITY_WHOLE_LIFE);
     if (globalThis.cameraFormParam != undefined) {
-      new FeatureManager(globalThis.cameraFormParam.mode, new ModeMap())
+      new FeatureManager(globalThis.cameraFormParam.mode, new ModeMap());
     } else {
-      new FeatureManager('PHOTO', new ModeMap())
+      new FeatureManager('PHOTO', new ModeMap());
     }
-    Log.info('Camera MainAbility onCreate.')
-    globalThis.cameraAbilityContext = this.context
-    globalThis.cameraAbilityWant = this.launchWant
-    globalThis.permissionFlag = false
+    Log.info('Camera MainAbility onCreate.');
+    globalThis.cameraAbilityContext = this.context;
+    globalThis.cameraAbilityWant = this.launchWant;
+    globalThis.permissionFlag = false;
 
-    Log.info(`Camera MainAbility onCreate launchWant. ${JSON.stringify(globalThis.cameraAbilityWant )}`)
-    globalThis.cameraStartTime = new Date().getTime()
-    globalThis.cameraStartFlag = true
+    Log.info(`Camera MainAbility onCreate launchWant. ${JSON.stringify(globalThis.cameraAbilityWant )}`);
+    globalThis.cameraStartTime = new Date().getTime();
+    globalThis.cameraStartFlag = true;
     globalThis.stopRecordingFlag = false;
-    globalThis.doOnForeground = false
-    this.cameraBasicFunction = CameraBasicFunction.getInstance()
-    this.cameraBasicFunction.initCamera({ cameraId: 'BACK', mode: 'PHOTO' }, 'onCreate')
+    globalThis.doOnForeground = false;
+    this.cameraBasicFunction = CameraBasicFunction.getInstance();
+    this.cameraBasicFunction.initCamera({ cameraId: 'BACK', mode: 'PHOTO' }, 'onCreate');
   }
 
   onDestroy() {
     // Ability is creating, release resources for this ability
-    Log.end(Log.ABILITY_WHOLE_LIFE)
-    Log.end(Log.APPLICATION_WHOLE_LIFE)
-    this.cameraBasicFunction.startIdentification = false
-    PreferencesService.getInstance().flush()
-    Log.info('Camera MainAbility onDestroy.')
+    Log.end(Log.ABILITY_WHOLE_LIFE);
+    Log.end(Log.APPLICATION_WHOLE_LIFE);
+    this.cameraBasicFunction.startIdentification = false;
+    PreferencesService.getInstance().flush();
+    Log.info('Camera MainAbility onDestroy.');
   }
 
   onWindowStageCreate(windowStage) {
     // Main window is created, set main page for this ability
-    Log.start(Log.ABILITY_VISIBLE_LIFE)
-    Log.info('Camera MainAbility onWindowStageCreate.')
+    Log.start(Log.ABILITY_VISIBLE_LIFE);
+    Log.info('Camera MainAbility onWindowStageCreate.');
     windowStage.on('windowStageEvent', (event) => {
-      Log.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event))
+      Log.info('Camera MainAbility onWindowStageEvent: ' + JSON.stringify(event));
       if (event === window.WindowStageEventType.SHOWN) {
         if (++this.foreRoundOverCount > 1) {
-          this.foreRoundOverCount = 1
-          Log.info("multi task interface: reset zoomRatio to 1")
-          globalThis?.resetZoomRatio && globalThis.resetZoomRatio()
+          this.foreRoundOverCount = 1;
+          Log.info("multi task interface: reset zoomRatio to 1");
+          globalThis?.resetZoomRatio && globalThis.resetZoomRatio();
         }
       } else if (event === window.WindowStageEventType.HIDDEN) {
-        this.foreRoundOverCount--
+        this.foreRoundOverCount--;
       }
-      globalThis.cameraWindowStageEvent = event
+      globalThis.cameraWindowStageEvent = event;
       if (event === window.WindowStageEventType.INACTIVE) {
-        globalThis.stopRecordingFlag = true
-        globalThis?.stopCameraRecording && globalThis.stopCameraRecording()
+        globalThis.stopRecordingFlag = true;
+        globalThis?.stopCameraRecording && globalThis.stopCameraRecording();
       } else {
-        globalThis.stopRecordingFlag = false
+        globalThis.stopRecordingFlag = false;
       }
     })
 
     windowStage.getMainWindow().then((win) => {
       try {
         win.setLayoutFullScreen(true).then(() => {
-          Log.info('Camera setFullScreen finished.')
+          Log.info('Camera setFullScreen finished.');
           win.setSystemBarEnable(['navigation']).then(() => {
-            Log.info('Camera setSystemBarEnable finished.')
+            Log.info('Camera setSystemBarEnable finished.');
           })
         })
 
         win.setSystemBarProperties({
           navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
         }).then(() => {
-          Log.info('Camera setSystemBarProperties.')
+          Log.info('Camera setSystemBarProperties.');
         })
 
         win.on('windowSizeChange', (data) => {
-          data.width = (data.height != 1600) ? px2vp(data.width) - 8 : px2vp(data.width)
-          data.height = (data.height != 1600) ? px2vp(data.height) - 43 : px2vp(data.height)
-          AppStorage.SetOrCreate(Constants.APP_KEY_WINDOW_SIZE, data)
-          this.appEventBus.emit("windowSize", [data])
+          data.width = (data.height != 1600) ? px2vp(data.width) - 8 : px2vp(data.width);
+          data.height = (data.height != 1600) ? px2vp(data.height) - 43 : px2vp(data.height);
+          AppStorage.SetOrCreate(Constants.APP_KEY_WINDOW_SIZE, data);
+          this.appEventBus.emit("windowSize", [data]);
         });
-
-        globalThis.cameraWinClass = win
-
+        globalThis.cameraWinClass = win;
       } catch (err) {
-        Log.error('Camera setFullScreen err: ' + err)
+        Log.error('Camera setFullScreen err: ' + err);
       }
     })
 
@@ -128,38 +126,38 @@ export default class MainAbility extends Ability {
       }
     }
 
-    windowStage.setUIContent(this.context, 'pages/indexLand', null)
+    windowStage.setUIContent(this.context, 'pages/indexLand', null);
   }
 
   onWindowStageDestroy() {
-    Log.end(Log.ABILITY_VISIBLE_LIFE)
-    Log.info('Camera MainAbility onWindowStageDestroy.')
+    Log.end(Log.ABILITY_VISIBLE_LIFE);
+    Log.info('Camera MainAbility onWindowStageDestroy.');
   }
 
   onForeground() {
-    Log.start(Log.ABILITY_FOREGROUND_LIFE)
-    Log.info('Camera MainAbility onForeground.')
-    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT
+    Log.start(Log.ABILITY_FOREGROUND_LIFE);
+    Log.info('Camera MainAbility onForeground.');
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT;
     if (globalThis?.doOnForeground && globalThis.doOnForeground) {
-      Log.info('Camera MainAbility onForeground.')
-      globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
+      Log.info('Camera MainAbility onForeground.');
+      globalThis?.updateCameraStatus && globalThis.updateCameraStatus();
     } else {
-      globalThis.doOnForeground = true
+      globalThis.doOnForeground = true;
     }
-    Log.info('Camera MainAbility onForeground end.')
+    Log.info('Camera MainAbility onForeground end.');
   }
 
   onBackground() {
-    Log.end(Log.ABILITY_FOREGROUND_LIFE)
-    Log.info('Camera MainAbility onBackground.')
-    this.cameraBasicFunction.startIdentification = false
-    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE
-    globalThis?.updateCameraStatus && globalThis.updateCameraStatus()
+    Log.end(Log.ABILITY_FOREGROUND_LIFE);
+    Log.info('Camera MainAbility onBackground.');
+    this.cameraBasicFunction.startIdentification = false;
+    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE;
+    globalThis?.updateCameraStatus && globalThis.updateCameraStatus();
   }
 
   onNewWant(want) {
-    Log.info('Camera MainAbility onNewWant.')
-    globalThis.cameraAbilityWant = want
-    Log.info(`Camera MainAbility E newWantAction: ${JSON.stringify(globalThis.cameraAbilityWant )}`)
+    Log.info('Camera MainAbility onNewWant.');
+    globalThis.cameraAbilityWant = want;
+    Log.info(`Camera MainAbility E newWantAction: ${JSON.stringify(globalThis.cameraAbilityWant )}`);
   }
 }

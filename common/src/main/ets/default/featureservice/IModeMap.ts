@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import type { FunctionId } from './FunctionId'
+import type { FunctionId } from './FunctionId';
 
 export interface IModeMap {
   getFunctions: (mode: string) => FunctionId[];

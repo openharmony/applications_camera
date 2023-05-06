@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,31 +13,31 @@
  * limitations under the License.
  */
 
-import { Log } from '../utils/Log'
-import { Constants } from '../utils/Constants'
-import type { EventBus } from './eventbus/EventBus'
-import { EventBusManager } from './eventbus/EventBusManager'
-import { WorkerManager } from './WorkerManager'
-import type { IModeMap } from '../featureservice/IModeMap'
+import { Log } from '../utils/Log';
+import { Constants } from '../utils/Constants';
+import type { EventBus } from './eventbus/EventBus';
+import { EventBusManager } from './eventbus/EventBusManager';
+import { WorkerManager } from './WorkerManager';
+import type { IModeMap } from '../featureservice/IModeMap';
 
 export class CameraWorker {
-  private static TAG = '[CameraWorker]:'
-  private appEventBus: EventBus = EventBusManager.getWorkerInstance().getEventBus()
-  private workerManager: WorkerManager
+  private static TAG = '[CameraWorker]:';
+  private appEventBus: EventBus = EventBusManager.getWorkerInstance().getEventBus();
+  private workerManager: WorkerManager;
 
   constructor(modeMap: IModeMap) {
-    this.workerManager = new WorkerManager()
+    this.workerManager = new WorkerManager();
     // 接收UI线程的消息，并继续发送
     this.appEventBus.on('MAIN_TO_WORKER', (msg) => {
-      Log.info(`[CameraWorker]:  action from main thread: ${JSON.stringify(msg)}`)
-      this.workerManager.onMessage(msg)
+      Log.info(`[CameraWorker]:  action from main thread: ${JSON.stringify(msg)}`);
+      this.workerManager.onMessage(msg);
     })
   }
 
   public static getInstance(modeMap: IModeMap): CameraWorker {
     if (!AppStorage.Has(Constants.APP_KEY_CAMERA_WORKER)) {
-      AppStorage.SetOrCreate(Constants.APP_KEY_CAMERA_WORKER, new CameraWorker(modeMap))
-      Log.info(`${this.TAG} build new CameraWorker.`)
+      AppStorage.SetOrCreate(Constants.APP_KEY_CAMERA_WORKER, new CameraWorker(modeMap));
+      Log.info(`${this.TAG} build new CameraWorker.`);
     }
     return AppStorage.Get(Constants.APP_KEY_CAMERA_WORKER);
   }

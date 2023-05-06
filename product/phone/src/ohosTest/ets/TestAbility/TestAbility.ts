@@ -14,6 +14,8 @@
  */
 
 import Ability from '@ohos.application.Ability';
+import type AbilityDelegator from '@ohos.application.AbilityDelegator';
+import type AbilityDelegatorArgs from '@ohos.application.AbilityDelegatorArgs';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import { Hypium } from 'hypium/index';
 import testsuite from '../test/List.test';
@@ -22,9 +24,9 @@ import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 export default class TestAbility extends Ability {
   onCreate(want, launchParam) {
     Log.log('TestAbility onCreate');
-    var abilityDelegator: any;
+    let abilityDelegator: AbilityDelegator;
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    var abilityDelegatorArguments: any;
+    let abilityDelegatorArguments: AbilityDelegatorArgs;
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     Log.info('start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);

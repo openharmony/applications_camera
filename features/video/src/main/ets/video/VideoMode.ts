@@ -13,22 +13,22 @@
  * limitations under the License.
  */
 
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId'
-import { VideoModeParam } from './VideoModeParam'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId';
+import { VideoModeParam } from './VideoModeParam';
 
 
-const TAG: string = '[VideoMode]:'
+const TAG: string = '[VideoMode]:';
 
 export class VideoMode {
-  private videoModeParam: VideoModeParam = new VideoModeParam()
+  private videoModeParam: VideoModeParam = new VideoModeParam();
 
   public getTabBarParam(): string[] {
-    return this.videoModeParam.tabBar
+    return this.videoModeParam.tabBar;
   }
 
   public getFunctions(): FunctionId[] {
-    Log.info(`${TAG} function = ${this.videoModeParam.functions}`)
-    return this.videoModeParam.functions
+    Log.info(`${TAG} function = ${this.videoModeParam.functions}`);
+    return this.videoModeParam.functions;
   }
 }
