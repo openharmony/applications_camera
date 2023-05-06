@@ -207,7 +207,7 @@ export class CameraService {
       }
     }
     if (this.mCameraInput) {
-      this.mCameraInput.release();
+      await this.mCameraInput.release();
     }
     let id;
     if (cameraName == CameraId.FRONT || cameraName == CameraId.BACK) {

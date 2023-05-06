@@ -72,6 +72,9 @@
       },
       {
         "name": "ohos.permission.APPROXIMATELY_LOCATION"
+      },
+      {
+        "name": "ohos.permission.ACCESS_SERVICE_DM"
       }
     ],
     "abilities": [
