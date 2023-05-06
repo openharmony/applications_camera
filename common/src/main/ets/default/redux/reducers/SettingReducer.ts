@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
-import type { ActionData } from '../actions/Action'
+import type { ActionData } from '../actions/Action';
+import { Action } from '../actions/Action';
 
 export type SettingState = {
   isAssGridViewShow: string,
@@ -34,18 +34,27 @@ const initState = {
 
 export default function SettingReducer(state = initState, action: ActionData): SettingState {
   switch (action.type) {
-  case Action.ACTION_ASSISTIVE_GRID_VIEW:
-    return {...state, isAssGridViewShow: action.data.isAssGridViewShow}
-  case Action.ACTION_CHANGE_TIME_LAPSE:
-    return { ...state, isShowtimeLapse: action.data.isShowtimeLapse}
-  case Action.ACTION_CLOSE_DIALOG:
-    return { ...state, isCloseFlag: action.data.isCloseFlag }
-  case Action.ACTION_SHOW_SETTING_VIEW:
-    return { ...state, isShowSettingView: action.data.isShowSettingView }
-  case Action.ACTION_UPDATE_OPACITY_TAB_BAR:
-    return { ...state, opacityValueForTabBar: action.data.opacityValueForTabBar }
-
-  default:
-    return state;
+    case Action.ACTION_ASSISTIVE_GRID_VIEW:
+      return {
+        ...state, isAssGridViewShow: action.data.isAssGridViewShow
+      }
+    case Action.ACTION_CHANGE_TIME_LAPSE:
+      return {
+        ...state, isShowtimeLapse: action.data.isShowtimeLapse
+      }
+    case Action.ACTION_CLOSE_DIALOG:
+      return {
+        ...state, isCloseFlag: action.data.isCloseFlag
+      }
+    case Action.ACTION_SHOW_SETTING_VIEW:
+      return {
+        ...state, isShowSettingView: action.data.isShowSettingView
+      }
+    case Action.ACTION_UPDATE_OPACITY_TAB_BAR:
+      return {
+        ...state, opacityValueForTabBar: action.data.opacityValueForTabBar
+      }
+    default:
+      return state;
   }
 }

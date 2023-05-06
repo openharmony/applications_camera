@@ -17,34 +17,34 @@ import { Action, UiStateMode } from '../redux/actions/Action';
 import { Log } from '../utils/Log';
 import { BaseFunction } from './BaseFunction';
 
-export class CaptureFunction extends BaseFunction {
-  private TAG = '[CaptureFunction]:';
+const TAG: string = '[CaptureFunction]:';
 
+export class CaptureFunction extends BaseFunction {
   load(): void {
-    Log.info(`${this.TAG} load E`);
+    Log.info(`${TAG} load E`);
     this.mEventBus.on(Action.ACTION_CAPTURE, this.capture.bind(this));
     this.mEventBus.on(Action.ACTION_CAPTURE_PHOTO_OUTPUT, this.onCapturePhotoOutput.bind(this));
-    Log.info(`${this.TAG} load X`);
+    Log.info(`${TAG} load X`);
   }
 
   unload(): void {
-    Log.info(`${this.TAG} unload E`);
+    Log.info(`${TAG} unload E`);
     this.mEventBus.off(Action.ACTION_CAPTURE, this.capture.bind(this));
     this.mEventBus.off(Action.ACTION_CAPTURE_PHOTO_OUTPUT, this.onCapturePhotoOutput.bind(this));
-    Log.info(`${this.TAG} unload X`);
+    Log.info(`${TAG} unload X`);
   }
 
   private async capture(): Promise<void> {
-    Log.info(`${this.TAG} capture E`);
+    Log.info(`${TAG} capture E`);
     globalThis.startCaptureTime = new Date().getTime();
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
     await this.mCameraService.takePicture();
-    Log.info(`${this.TAG} capture X`);
+    Log.info(`${TAG} capture X`);
   }
 
   private onCapturePhotoOutput(): void {
-    Log.info(`${this.TAG} onCapturePhotoOutput E`);
+    Log.info(`${TAG} onCapturePhotoOutput E`);
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
-    Log.info(`${this.TAG} onCapturePhotoOutput X`);
+    Log.info(`${TAG} onCapturePhotoOutput X`);
   }
 }

@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { Action, UiStateMode } from '../actions/Action'
-import type { ActionData } from '../actions/Action'
+import { Action, UiStateMode } from '../actions/Action';
+import type { ActionData } from '../actions/Action';
 
 export type ContextState = {
   uiEnable: boolean,
@@ -47,23 +47,23 @@ const initState: ContextState = {
 export default function ContextReducer(state = initState, action: ActionData): ContextState {
   switch (action.type) {
   case Action.ACTION_UI_STATE:
-    return { ...state, uiEnable: action.data.enable, uiStateMode: action.data.uiStateMode }
+    return { ...state, uiEnable: action.data.enable, uiStateMode: action.data.uiStateMode };
   case Action.ACTION_INIT_FOOT_BAR_WIDTH:
-    return { ...state, footBarWidth: action.data.footBarWidth }
+    return { ...state, footBarWidth: action.data.footBarWidth };
   case Action.ACTION_INIT_FOOT_BAR_HEIGHT:
-    return { ...state, footBarHeight: action.data.footBarHeight }
+    return { ...state, footBarHeight: action.data.footBarHeight };
   case Action.ACTION_THIRD_PARTY_CALL:
-    return { ...state, isThirdPartyCall: action.data.isThirdPartyCall, action: action.data.action }
+    return { ...state, isThirdPartyCall: action.data.isThirdPartyCall, action: action.data.action };
   case Action.ACTION_FA_CALL:
-    return {...state, isFaCall: action.data.isFaCall}
+    return {...state, isFaCall: action.data.isFaCall};
   case Action.ACTION_SET_PERMISSION_FLAG:
-    return { ...state, permissionFlag: action.data.permissionFlag }
+    return { ...state, permissionFlag: action.data.permissionFlag };
   case Action.ACTION_INIT_ACTION:
-    return { ...state, action: action.data.action }
+    return { ...state, action: action.data.action };
   case Action.ACTION_KEEP_SCREEN_ON:
-    return { ...state, isKeepScreenOn: action.data.isKeepScreenOn }
+    return { ...state, isKeepScreenOn: action.data.isKeepScreenOn };
   case Action.ACTION_UPDATE_INIT_SHOW_FLAG:
-    return { ...state, initShowFlag: action.data.initShowFlag }
+    return { ...state, initShowFlag: action.data.initShowFlag };
   default:
     return state;
   }

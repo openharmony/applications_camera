@@ -15,33 +15,33 @@
 
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+
+const TAG: string = '[FormAbility]';
 
 export default class FormAbility extends FormExtensionAbility {
-  private TAG: string = '[FormAbility]'
-
   onCreate(want) {
-    Log.info(`${this.TAG} form onCreate. want ${JSON.stringify(want)}`);
+    Log.info(`${TAG} form onCreate. want ${JSON.stringify(want)}`);
     return null;
   }
 
   onCastToNormal(formId) {
-    Log.info(`${this.TAG} onCastToNormal, formId: ${formId}`);
+    Log.info(`${TAG} onCastToNormal, formId: ${formId}`);
   }
 
   onUpdate(formId) {
-    Log.info(`${this.TAG} onUpdate, formId: ${formId}`);
+    Log.info(`${TAG} onUpdate, formId: ${formId}`);
   }
 
   onVisibilityChange(newStatus) {
-    Log.info(`${this.TAG} onVisibilityChange, newStatus: ${JSON.stringify(newStatus)}`);
+    Log.info(`${TAG} onVisibilityChange, newStatus: ${JSON.stringify(newStatus)}`);
   }
 
   onEvent(formId, message) {
-    Log.info(`${this.TAG} onEventA, formId: ${formId}, msg: ${message}`);
+    Log.info(`${TAG} onEventA, formId: ${formId}, msg: ${message}`);
   }
 
   onDestroy() {
-    Log.info(`${this.TAG} onDestroy`);
+    Log.info(`${TAG} onDestroy`);
   }
 };

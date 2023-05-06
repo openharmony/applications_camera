@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { Log } from '../utils/Log'
-import { Constants } from '../utils/Constants'
-import type { EventBus } from './eventbus/EventBus'
-import { EventBusManager } from './eventbus/EventBusManager'
+import { Log } from '../utils/Log';
+import { Constants } from '../utils/Constants';
+import type { EventBus } from './eventbus/EventBus';
+import { EventBusManager } from './eventbus/EventBusManager';
 
 export interface Message {
   type: string,
@@ -24,26 +24,26 @@ export interface Message {
 }
 
 export class AsyncManager {
-  private static TAG = '[AsyncManager]:'
-  private workerName: string
-  private workerUri: string
-  protected mWorker: any
-  private appEventBus: EventBus = EventBusManager.getWorkerInstance().getEventBus()
-  private _appEventBus: EventBus = EventBusManager.getCameraInstance().getEventBus()
+  private static TAG = '[AsyncManager]:';
+  private workerName: string;
+  private workerUri: string;
+  protected mWorker: any;
+  private appEventBus: EventBus = EventBusManager.getWorkerInstance().getEventBus();
+  private _appEventBus: EventBus = EventBusManager.getCameraInstance().getEventBus();
 
   constructor() {
     // todo 此处暂时只考虑了一个worker，后续改造支持多个worker创建
-    this.workerName = 'AsyncManager'
-    this.workerUri = 'workers/CameraWorker.js'
-    this.initWorker()
+    this.workerName = 'AsyncManager';
+    this.workerUri = 'workers/CameraWorker.js';
+    this.initWorker();
   }
 
   public static getInstance(): AsyncManager {
     if (!AppStorage.Has(Constants.APP_KEY_ASYNC_MANAGER)) {
-      AppStorage.SetOrCreate(Constants.APP_KEY_ASYNC_MANAGER, new AsyncManager())
-      Log.info(`${this.TAG} build new AsyncManager.`)
+      AppStorage.SetOrCreate(Constants.APP_KEY_ASYNC_MANAGER, new AsyncManager());
+      Log.info(`${this.TAG} build new AsyncManager.`);
     }
-    return AppStorage.Get(Constants.APP_KEY_ASYNC_MANAGER)
+    return AppStorage.Get(Constants.APP_KEY_ASYNC_MANAGER);
   }
 
   //todo 预留实现，待能力稳定后开放
@@ -61,8 +61,8 @@ export class AsyncManager {
 
   private initWorker(): void {
     this._appEventBus.on('WORKER_TO_MAIN', (...args) => {
-      Log.info(`${AsyncManager.TAG} mWorker.onmessage`)
-      this.onMessage(args[0])
+      Log.info(`${AsyncManager.TAG} mWorker.onmessage`);
+      this.onMessage(args[0]);
     })
   }
 
@@ -75,13 +75,13 @@ export class AsyncManager {
 
   // 向worker线程发送消息
   public postMessage(msg: Message): void {
-    Log.info(`${AsyncManager.TAG} postMessage`)
-    this.appEventBus.emit('MAIN_TO_WORKER', [msg])
+    Log.info(`${AsyncManager.TAG} postMessage`);
+    this.appEventBus.emit('MAIN_TO_WORKER', [msg]);
   }
 
   // 接收worker线程返回的UiData
   public onMessage(msg: Message): void {
-    Log.info(`${AsyncManager.TAG} onMessage uidata: ${JSON.stringify(msg.data)}`)
+    Log.info(`${AsyncManager.TAG} onMessage uidata: ${JSON.stringify(msg.data)}`);
   }
 
   public onmessageerror(msg: Message): void {
