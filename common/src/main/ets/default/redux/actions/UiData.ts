@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import type { ActionData } from './Action'
+import type { ActionData } from './Action';
 
-export const UIDATA_TAB_ITEM = 'tabItem'
+export const UIDATA_TAB_ITEM = 'tabItem';
 
 export function uiDataTabItem(tabItem): ActionData {
   return {
     type: UIDATA_TAB_ITEM,
     data: tabItem
-  }
+  };
 }

@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
-import type { ActionData } from './Action'
+import type { ActionData } from './Action';
 
-export const ACTION_CHANGE_PREVIEW_SIZE = 'changePreviewSize'
+export const ACTION_CHANGE_PREVIEW_SIZE = 'changePreviewSize';
 
-export const ACTION_CHANGE_SHUTTER_BUTTON = 'changeShutterButton'
+export const ACTION_CHANGE_SHUTTER_BUTTON = 'changeShutterButton';
 
-export const ACTION_CHANGE_TAB_ITEM = 'changeTabItem'
+export const ACTION_CHANGE_TAB_ITEM = 'changeTabItem';
 
 export function changePreviewSize(size): ActionData {
   return {

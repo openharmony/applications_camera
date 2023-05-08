@@ -65,9 +65,9 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     Log.info('cmd : ' + cmd);
     abilityDelegator.executeShellCommand(cmd,
       (err: any, d: any) => {
-        Log.info('executeShellCommand : err : ' + JSON.stringify(err))
-        Log.info('executeShellCommand : data : ' + d.stdResult)
-        Log.info('executeShellCommand : data : ' + d.exitCode)
+        Log.info('executeShellCommand : err : ' + JSON.stringify(err));
+        Log.info('executeShellCommand : data : ' + d.stdResult);
+        Log.info('executeShellCommand : data : ' + d.exitCode);
       });
     Log.info('OpenHarmonyTestRunner onRun end');
   }

@@ -53,8 +53,8 @@ export interface VideoCallBack {
 type Callback = (args?: any) => void
 
 class CameraInformation {
-  deviceName: string
-  cameraId: string
+  deviceName: string;
+  cameraId: string;
 }
 
 export class CameraService {
