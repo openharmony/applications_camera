@@ -1,4 +1,4 @@
-import type { AnyAction, Action } from './types/actions';
+import type { Action, AnyAction } from './types/actions';
 import type {
   ActionFromReducersMapObject,
   Reducer,
@@ -19,9 +19,8 @@ function getUnexpectedStateShapeWarningMessage(
 ) {
   const reducerKeys = Object.keys(reducers);
   const argumentName =
-    action && action.type === ActionTypes.INIT
-      ? 'preloadedState argument passed to createStore'
-      : 'previous state received by the reducer';
+      action && action.type === ActionTypes.INIT ?
+      'preloadedState argument passed to createStore' : 'previous state received by the reducer';
 
   if (reducerKeys.length === 0) {
     return (
@@ -47,7 +46,9 @@ function getUnexpectedStateShapeWarningMessage(
     unexpectedKeyCache[key] = true
   })
 
-  if (action && action.type === ActionTypes.REPLACE) return;
+  if (action && action.type === ActionTypes.REPLACE) {
+    return ('');
+  }
 
   if (unexpectedKeys.length > 0) {
     return (
