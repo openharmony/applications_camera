@@ -26,16 +26,17 @@ import { WorkerManager } from '../worker/WorkerManager';
 import { ZoomFunction } from '../function/ZoomFunction';
 import type { IModeMap } from './IModeMap';
 
+const TAG = '[FeatureManager]:';
+
 export class FeatureManager {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
-  private TAG: string = '[FeatureManager]:';
   private mModeAssembler: ModeAssembler;
   private mPreMode: string = 'PHOTO';
   public mCurrentMode: string = this.mPreMode;
   private mFunctionsMap = new Map();
 
   constructor(mode: string, modeMap: IModeMap) {
-    Log.info(`${this.TAG} constructor`);
+    Log.info(`${TAG} constructor`);
     this.initFunctionsMap();
     this.mModeAssembler = new ModeAssembler(this.mFunctionsMap, modeMap);
     this.mPreMode = mode;
@@ -48,17 +49,17 @@ export class FeatureManager {
 
   public changeMode(data: any): void {
     // 外部条件触发mode切换，传入下一个mode名称
-    Log.info(`${this.TAG} changeMode start data:  ${JSON.stringify(data)}`);
+    Log.info(`${TAG} changeMode start data:  ${JSON.stringify(data)}`);
     this.mModeAssembler.assembler(this.mPreMode, data.mode);
     this.mPreMode = data.mode;
   }
 
   private initFunctionsMap(): void {
-    Log.info(`${this.TAG} initFunctionsMap invoke E.`)
+    Log.info(`${TAG} initFunctionsMap invoke E.`)
     this.mFunctionsMap.set(FunctionId.CAMERA_BASIC_FUNCTION, CameraBasicFunction.getInstance());
     this.mFunctionsMap.set(FunctionId.CAPTURE_FUNCTION, new CaptureFunction());
     this.mFunctionsMap.set(FunctionId.RECORDING_FUNCTION, new RecordFunction());
     this.mFunctionsMap.set(FunctionId.ZOOM_FUNCTION, new ZoomFunction());
-    Log.info(`${this.TAG} initFunctionsMap invoke X.`);
+    Log.info(`${TAG} initFunctionsMap invoke X.`);
   }
 }

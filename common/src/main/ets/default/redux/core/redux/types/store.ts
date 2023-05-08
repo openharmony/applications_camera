@@ -1,6 +1,6 @@
-import type { Action, AnyAction } from './actions'
-import type { Reducer } from './reducers'
-import '../utils/symbol-observable'
+import type { Action, AnyAction } from './actions';
+import type { Reducer } from './reducers';
+import '../utils/symbol-observable';
 
 /**
  * Extend the state

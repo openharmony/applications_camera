@@ -20,10 +20,10 @@ import { MultiModeParam } from './MultiModeParam';
 const TAG: string = '[MultiMode]:';
 
 export class MultiMode {
-  private MultiModeParam: MultiModeParam = new MultiModeParam();
+  private multiModeParam: MultiModeParam = new MultiModeParam();
 
   public getFunctions(): FunctionId[] {
-    Log.info(`${TAG} function = ${this.MultiModeParam.functions}`);
-    return this.MultiModeParam.functions;
+    Log.info(`${TAG} function = ${this.multiModeParam.functions}`);
+    return this.multiModeParam.functions;
   }
 }

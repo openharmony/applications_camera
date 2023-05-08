@@ -16,6 +16,8 @@
 import type { CameraPlatformCapability } from '../../camera/CameraPlatformCapability';
 import { Log } from '../../utils/Log';
 
+const TAG = '[Resolution]:';
+
 export default class Resolution {
   public static readonly ALIAS = 'VideoResolution';
   public static readonly RESOLUTION_16_9_720P = '[16:9] 720p';
@@ -23,17 +25,16 @@ export default class Resolution {
   public static readonly DEFAULT_VALUE = $r('app.string.resolution_1280_720');
   public static readonly RESOURCE_16_9_720P = Resolution.DEFAULT_VALUE;
   public static readonly RESOURCE_16_9_1080P = $r('app.string.resolution_1620_1080');
-  private static TAG = '[Resolution]:';
 
   public static getVideoPreviewSize(platform: CameraPlatformCapability, cameraId: string, resolution: Resource) {
     const index = Resolution.getIndex(resolution);
-    Log.info(`${this.TAG} getVideoPreviewSize size = ${JSON.stringify(platform.mVideoPreviewSize[index])}`);
+    Log.info(`${TAG} getVideoPreviewSize size = ${JSON.stringify(platform.mVideoPreviewSize[index])}`);
     return platform.mVideoPreviewSize[index];
   }
 
   public static getVideoFrameSize(platform: CameraPlatformCapability, cameraId: string, resolution: Resource) {
     const index = Resolution.getIndex(resolution);
-    Log.info(`${this.TAG} getVideoFrameSize size = ${JSON.stringify(platform.mVideoFrameSize[index])}`);
+    Log.info(`${TAG} getVideoFrameSize size = ${JSON.stringify(platform.mVideoFrameSize[index])}`);
     return platform.mVideoFrameSize[index];
   }
 

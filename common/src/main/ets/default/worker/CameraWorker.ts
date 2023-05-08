@@ -20,8 +20,9 @@ import { EventBusManager } from './eventbus/EventBusManager';
 import { WorkerManager } from './WorkerManager';
 import type { IModeMap } from '../featureservice/IModeMap';
 
+const TAG = '[CameraWorker]:';
+
 export class CameraWorker {
-  private static TAG = '[CameraWorker]:';
   private appEventBus: EventBus = EventBusManager.getWorkerInstance().getEventBus();
   private workerManager: WorkerManager;
 
@@ -37,7 +38,7 @@ export class CameraWorker {
   public static getInstance(modeMap: IModeMap): CameraWorker {
     if (!AppStorage.Has(Constants.APP_KEY_CAMERA_WORKER)) {
       AppStorage.SetOrCreate(Constants.APP_KEY_CAMERA_WORKER, new CameraWorker(modeMap));
-      Log.info(`${this.TAG} build new CameraWorker.`);
+      Log.info(`${TAG} build new CameraWorker.`);
     }
     return AppStorage.Get(Constants.APP_KEY_CAMERA_WORKER);
   }

@@ -16,9 +16,9 @@
 import Ability from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { CameraBasicFunction } from '@ohos/common/src/main/ets/default/function/CameraBasicFunction';
-import { CameraNeedStatus,Constants }  from '@ohos/common/src/main/ets/default/utils/Constants';
+import { CameraNeedStatus, Constants } from '@ohos/common/src/main/ets/default/utils/Constants';
 import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
-import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
 import { FeatureManager } from '@ohos/common/src/main/ets/default/featureservice/FeatureManager';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService';
@@ -70,7 +70,7 @@ export default class MainAbility extends Ability {
       if (event === window.WindowStageEventType.SHOWN) {
         if (++this.foreRoundOverCount > 1) {
           this.foreRoundOverCount = 1;
-          Log.info("multi task interface: reset zoomRatio to 1");
+          Log.info('multi task interface: reset zoomRatio to 1');
           globalThis?.resetZoomRatio && globalThis.resetZoomRatio();
         }
       } else if (event === window.WindowStageEventType.HIDDEN) {
@@ -101,10 +101,10 @@ export default class MainAbility extends Ability {
         })
 
         win.on('windowSizeChange', (data) => {
-          data.width = (data.height != 1600) ? px2vp(data.width) - 8 : px2vp(data.width);
-          data.height = (data.height != 1600) ? px2vp(data.height) - 43 : px2vp(data.height);
+          data.width = (data.height !== 1600) ? px2vp(data.width) - 8 : px2vp(data.width);
+          data.height = (data.height !== 1600) ? px2vp(data.height) - 43 : px2vp(data.height);
           AppStorage.SetOrCreate(Constants.APP_KEY_WINDOW_SIZE, data);
-          this.appEventBus.emit("windowSize", [data]);
+          this.appEventBus.emit('windowSize', [data]);
         });
         globalThis.cameraWinClass = win;
       } catch (err) {
