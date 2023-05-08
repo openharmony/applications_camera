@@ -62,7 +62,7 @@ export class AsyncManager {
 
   private initWorker(): void {
     this._appEventBus.on('WORKER_TO_MAIN', (...args) => {
-      Log.info(`${AsyncManager.TAG} mWorker.onmessage`);
+      Log.info(`${TAG} mWorker.onmessage`);
       this.onMessage(args[0]);
     })
   }
@@ -76,13 +76,13 @@ export class AsyncManager {
 
   // 向worker线程发送消息
   public postMessage(msg: Message): void {
-    Log.info(`${AsyncManager.TAG} postMessage`);
+    Log.info(`${TAG} postMessage`);
     this.appEventBus.emit('MAIN_TO_WORKER', [msg]);
   }
 
   // 接收worker线程返回的UiData
   public onMessage(msg: Message): void {
-    Log.info(`${AsyncManager.TAG} onMessage uidata: ${JSON.stringify(msg.data)}`);
+    Log.info(`${TAG} onMessage uidata: ${JSON.stringify(msg.data)}`);
   }
 
   public onmessageerror(msg: Message): void {
