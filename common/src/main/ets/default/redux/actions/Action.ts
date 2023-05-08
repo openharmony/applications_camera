@@ -55,9 +55,9 @@ export class Action {
   public static readonly ACTION_SET_MODE = 'ACTION_SET_MODE';
   public static readonly ACTION_UPDATE_MODE = 'ACTION_UPDATE_MODE';
   public static readonly ACTION_ON_MODE_CHANGED = 'ACTION_ON_MODE_CHANGED';
-  public static readonly ACTION_THIRD_PARTY_CALL =  'ACTION_THIRD_PARTY_CALL';
-  public static readonly ACTION_FA_CALL =  'ACTION_FA_CALL';
-  public static readonly ACTION_SWIPE_MODE_DONE =  'ACTION_SWIPE_MODE_DONE';
+  public static readonly ACTION_THIRD_PARTY_CALL = 'ACTION_THIRD_PARTY_CALL';
+  public static readonly ACTION_FA_CALL = 'ACTION_FA_CALL';
+  public static readonly ACTION_SWIPE_MODE_DONE = 'ACTION_SWIPE_MODE_DONE';
 
   // Preview
   public static readonly ACTION_PREPARE_SURFACE = 'ACTION_PREPARE_SURFACE';

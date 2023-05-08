@@ -19,11 +19,12 @@ import { CameraStatus } from '../utils/Constants';
 import { BaseFunction } from './BaseFunction';
 import type { VideoCallBack } from '../camera/CameraService';
 
+const TAG = '[RecordFunction]:';
+
 export class RecordFunction extends BaseFunction {
-  private TAG = '[RecordFunction]:';
   private functionBackImpl: VideoCallBack = {
     videoUri: (videoUri: any): void => {
-      Log.info(`${this.TAG} functionBackImpl videoUri ${videoUri}`);
+      Log.info(`${TAG} functionBackImpl videoUri ${videoUri}`);
       this.mWorkerManager.postMessage(Action.updateVideoUri(videoUri));
     },
     onRecodeError:(data: any): void => {
@@ -32,7 +33,7 @@ export class RecordFunction extends BaseFunction {
   }
 
   private async startRecording() {
-    Log.info(`${this.TAG} startRecording E`);
+    Log.info(`${TAG} startRecording E`);
     globalThis.startRecordingFlag = true;
     globalThis.cameraStatus = CameraStatus.CAMERA_BEGIN_TAKE_VIDEO;
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
@@ -43,40 +44,40 @@ export class RecordFunction extends BaseFunction {
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
 
     globalThis.startRecordingFlag = false;
-    Log.info(`${this.TAG} globalThis.stopRecording : ` + globalThis.stopRecordingFlag);
+    Log.info(`${TAG} globalThis.stopRecording : ` + globalThis.stopRecordingFlag);
     if (globalThis.stopRecordingFlag) {
       this.stopRecording();
       globalThis.stopRecordingFlag = false;
     }
-    Log.info(`${this.TAG} startRecording X`);
+    Log.info(`${TAG} startRecording X`);
   }
 
   private async pauseRecording() {
-    Log.info(`${this.TAG} pauseRecording E`);
+    Log.info(`${TAG} pauseRecording E`);
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
     await this.mCameraService.pauseRecording();
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(true));
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
-    Log.info(`${this.TAG} pauseRecording X`);
+    Log.info(`${TAG} pauseRecording X`);
   }
 
   private async resumeRecording() {
-    Log.info(`${this.TAG} resumeRecording E`);
+    Log.info(`${TAG} resumeRecording E`);
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
     await this.mCameraService.resumeRecording();
     // TODO update video status in State by sending action
     // temp code
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(false));
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
-    Log.info(`${this.TAG} resumeRecording X`);
+    Log.info(`${TAG} resumeRecording X`);
   }
 
   private async stopRecording() {
-    Log.info(`${this.TAG} stopRecording E`);
+    Log.info(`${TAG} stopRecording E`);
 
-    Log.info(`${this.TAG} globalThis.startRecording : ${JSON.stringify(globalThis.startRecordingFlag)}`);
+    Log.info(`${TAG} globalThis.startRecording : ${JSON.stringify(globalThis.startRecordingFlag)}`);
     if (globalThis.startRecordingFlag) {
       return;
     }
@@ -92,7 +93,7 @@ export class RecordFunction extends BaseFunction {
     globalThis.cameraStatus = CameraStatus.CAMERA_TAKE_VIDEO_FINISHED;
     this.mWorkerManager.postMessage(Action.updateCameraStatus());
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
-    Log.info(`${this.TAG} stopRecording X`);
+    Log.info(`${TAG} stopRecording X`);
   }
 
   load(): void{

@@ -61,7 +61,7 @@ export class PreferencesService {
   }
 
   private isModeExpire(): boolean {
-    return (new Date().getTime() - this.getModeTimestamp(PersistType.FOR_AWHILE, 0)) > 15*60*1000;
+    return (new Date().getTime() - this.getModeTimestamp(PersistType.FOR_AWHILE, 0)) > 15 * 60 * 1000;
   }
 
   private getModePersistKey(persistType: PersistType, item: string): string {

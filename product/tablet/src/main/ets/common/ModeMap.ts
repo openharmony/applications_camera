@@ -20,7 +20,6 @@ import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservic
 import type { IModeMap } from '@ohos/common/src/main/ets/default/featureservice/IModeMap';
 
 export class ModeMap implements IModeMap {
-  private TAG: string = '[Mode]:';
   private photoMode: PhotoMode = new PhotoMode();
   private videoMode: VideoMode = new VideoMode();
   private multiMode: MultiMode = new MultiMode();

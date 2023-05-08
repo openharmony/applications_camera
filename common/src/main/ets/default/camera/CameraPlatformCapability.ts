@@ -17,6 +17,8 @@ import deviceInfo from '@ohos.deviceInfo';
 import type camera from '@ohos.multimedia.camera';
 import { Log } from '../utils/Log';
 
+const TAG = '[CameraPlatformCapability]:';
+
 export class CameraPlatformCapability {
   public mZoomRatioRangeMap = new Map();
   public mPhotoPreviewSizeMap = new Map();
@@ -45,7 +47,6 @@ export class CameraPlatformCapability {
     { width: 1920, height: 1080 }, //16:9 1080p
     { width: 3840, height: 2160 } //16:9 4k
   ]
-  private TAG = '[CameraPlatformCapability]:';
 
   constructor() {
   }
@@ -58,13 +59,13 @@ export class CameraPlatformCapability {
   }
 
   public async init(cameraCount: number) {
-    Log.info(`${this.TAG} init E.`);
+    Log.info(`${TAG} init E.`);
     this.mCameraCount = cameraCount;
-    Log.info(`${this.TAG} init X.`);
+    Log.info(`${TAG} init X.`);
   }
 
   public async calcSupportedSizes(cameraInput, outputCapability: camera.CameraOutputCapability): Promise<void> {
-    Log.info(`${this.TAG} calcSupportedSizes start.`);
+    Log.info(`${TAG} calcSupportedSizes start.`);
     if (deviceInfo.deviceType == 'default') {
       return;
     }
@@ -84,13 +85,13 @@ export class CameraPlatformCapability {
     this.mVideoPreviewSize[0] = this.mVideoFrameSize[0];
     this.mVideoPreviewSize[1] = this.mVideoFrameSize[1];
     this.mVideoPreviewSize[2] = this.mVideoFrameSize[2];
-    Log.info(`${this.TAG} calcSupportedSizes end.`);
+    Log.info(`${TAG} calcSupportedSizes end.`);
   }
 
   public async getZoomRatioRange(captureSession) {
-    Log.info(`${this.TAG} getZoomRatioRange called`);
+    Log.info(`${TAG} getZoomRatioRange called`);
     const zoomRatioRange = await captureSession.getZoomRatioRange();
-    Log.info(`${this.TAG} zoomRatioRange= ${zoomRatioRange}`);
+    Log.info(`${TAG} zoomRatioRange= ${zoomRatioRange}`);
     return zoomRatioRange;
   }
 
@@ -104,14 +105,14 @@ export class CameraPlatformCapability {
       }
     }
     if (fitList.length == 0) {
-      Log.error(`${this.TAG} calc failed based on the supportedSizesList, try default value.`);
+      Log.error(`${TAG} calc failed based on the supportedSizesList, try default value.`);
       maxSize.width = 640;
       maxSize.height = 480;
-      Log.info(`${this.TAG} -----------SupportedSizes List Start-----------`)
+      Log.info(`${TAG} -----------SupportedSizes List Start-----------`)
       for (let i = 0; i < sizeList.length; i++) {
-        Log.info(`${this.TAG} supportedSize width: ${sizeList[i].size.width} height: ${sizeList[i].size.height}`);
+        Log.info(`${TAG} supportedSize width: ${sizeList[i].size.width} height: ${sizeList[i].size.height}`);
       }
-      Log.info(`${this.TAG} -----------SupportedSizes List End-----------`)
+      Log.info(`${TAG} -----------SupportedSizes List End-----------`)
       return maxSize;
     } else {
       const index = Math.floor(fitList.length / 2);
@@ -134,7 +135,7 @@ export class CameraPlatformCapability {
       }
     }
     if (specifiedSize.width == 0) {
-      Log.error(`${this.TAG} calc failed based on the supportedSizesList, try default value.`);
+      Log.error(`${TAG} calc failed based on the supportedSizesList, try default value.`);
       specifiedSize.width = 1920;
       specifiedSize.height = 1080;
     }

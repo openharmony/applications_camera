@@ -18,13 +18,14 @@ import { Constants } from '../utils/Constants';
 import type { EventBus } from './eventbus/EventBus';
 import { EventBusManager } from './eventbus/EventBusManager';
 
+const TAG = '[AsyncManager]:';
+
 export interface Message {
   type: string,
   data: any
 }
 
 export class AsyncManager {
-  private static TAG = '[AsyncManager]:';
   private workerName: string;
   private workerUri: string;
   protected mWorker: any;
@@ -41,7 +42,7 @@ export class AsyncManager {
   public static getInstance(): AsyncManager {
     if (!AppStorage.Has(Constants.APP_KEY_ASYNC_MANAGER)) {
       AppStorage.SetOrCreate(Constants.APP_KEY_ASYNC_MANAGER, new AsyncManager());
-      Log.info(`${this.TAG} build new AsyncManager.`);
+      Log.info(`${TAG} build new AsyncManager.`);
     }
     return AppStorage.Get(Constants.APP_KEY_ASYNC_MANAGER);
   }

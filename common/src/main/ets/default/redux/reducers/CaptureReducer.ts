@@ -29,7 +29,7 @@ export default function CaptureReducer(state = initState, action: ActionData): C
     case Action.ACTION_UPDATE_CAPTURE_BTN_SCALE:
       return {
         ...state, captureBtnScale: action.data.captureBtnScale
-      }
+      };
     default:
       return state;
   }

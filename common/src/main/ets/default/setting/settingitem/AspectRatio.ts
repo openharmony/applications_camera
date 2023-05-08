@@ -16,6 +16,8 @@
 import type { CameraPlatformCapability } from '../../camera/CameraPlatformCapability';
 import { Log } from '../../utils/Log';
 
+const TAG = '[AspectRatio]:';
+
 export default class AspectRatio {
   public static readonly ALIAS = 'AspectRatio';
   public static readonly ASPECT_RATIO_4_3 = '4:3';
@@ -25,17 +27,16 @@ export default class AspectRatio {
   public static readonly RESOURCE_RATIO_4_3 = AspectRatio.DEFAULT_VALUE;
   public static readonly RESOURCE_RATIO_1_1 = $r('app.string.photo_ratio_1_1');
   public static readonly RESOURCE_RATIO_16_9 = $r('app.string.photo_ratio_16_9');
-  private static TAG = '[AspectRatio]:';
 
   public static getPhotoPreviewSize(platform: CameraPlatformCapability, cameraId: string, aspectRatio: Resource) {
     const index = AspectRatio.getIndex(aspectRatio);
-    Log.info(`${this.TAG} getPhotoPreviewSize size = ${JSON.stringify(platform.mPhotoPreviewSize[index])}`);
+    Log.info(`${TAG} getPhotoPreviewSize size = ${JSON.stringify(platform.mPhotoPreviewSize[index])}`);
     return platform.mPhotoPreviewSize[index];
   }
 
   public static getImageSize(platform: CameraPlatformCapability, cameraId: string, aspectRatio: Resource) {
     const index = AspectRatio.getIndex(aspectRatio);
-    Log.info(`${this.TAG} getImageSize size = ${JSON.stringify(platform.mImageSize[index])}`);
+    Log.info(`${TAG} getImageSize size = ${JSON.stringify(platform.mImageSize[index])}`);
     return platform.mImageSize[index];
   }
 
