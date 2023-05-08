@@ -1,4 +1,4 @@
-import $$observable from './utils/symbol-observable'
+import $$observable from './utils/symbol-observable';
 
 import {
   Store,
@@ -7,12 +7,12 @@ import {
   Dispatch,
   Observer,
   ExtendState
-} from './types/store'
-import type { Action } from './types/actions'
-import type { Reducer } from './types/reducers'
-import ActionTypes from './utils/actionTypes'
-import isPlainObject from './utils/isPlainObject'
-import { kindOf } from './utils/kindOf'
+} from './types/store';
+import type { Action } from './types/actions';
+import type { Reducer } from './types/reducers';
+import ActionTypes from './utils/actionTypes';
+import isPlainObject from './utils/isPlainObject';
+import { kindOf } from './utils/kindOf';
 
 /**
  * Creates a Redux store that holds the state tree.

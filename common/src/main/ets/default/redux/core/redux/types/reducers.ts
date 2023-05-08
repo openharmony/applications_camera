@@ -1,4 +1,4 @@
-import type { Action, AnyAction } from './actions'
+import type { Action, AnyAction } from './actions';
 
 /* reducers */
 

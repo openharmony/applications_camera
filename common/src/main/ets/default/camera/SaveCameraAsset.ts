@@ -144,7 +144,7 @@ export default class SaveCameraAsset {
         const fetchOp = {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
-        }
+        };
         // 通过id去查找
         Log.log(`${this.TAG} fetchOp= ${JSON.stringify(fetchOp)}`);
         const fetchFileResult = await media.getFileAssets(fetchOp);

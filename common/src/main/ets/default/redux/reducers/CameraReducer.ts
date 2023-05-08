@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { Action } from '../actions/Action'
-import type { ActionData } from '../actions/Action'
+import { Action } from '../actions/Action';
+import type { ActionData } from '../actions/Action';
 
 export type CameraState = {
   cameraPosition: string,

@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import { AsyncManager } from '../../worker/AsyncManager'
-import type { Message } from '../../worker/AsyncManager'
-import { Log } from '../../utils/Log'
-import type { AnyAction, Dispatch, Middleware, MiddlewareAPI } from '../core/redux'
+import { AsyncManager } from '../../worker/AsyncManager';
+import type { Message } from '../../worker/AsyncManager';
+import { Log } from '../../utils/Log';
+import type { AnyAction, Dispatch, Middleware, MiddlewareAPI } from '../core/redux';
 
-const TAG = '[reduxWorkerMiddle]:'
+const TAG = '[reduxWorkerMiddle]:';
 
 /**
  * Middleware to emit async operation like switching camera and so on.
@@ -27,15 +27,15 @@ const TAG = '[reduxWorkerMiddle]:'
  * @returns (next: Dispatch) => (action: AnyAction) => anyAction
  */
 export const reduxWorkerMiddle: Middleware = (store: MiddlewareAPI) => (next: Dispatch) => (action: AnyAction) => {
-  const asyncManager = AsyncManager.getInstance()
-  const uiAction = { type: undefined, data: undefined }
+  const asyncManager = AsyncManager.getInstance();
+  const uiAction = { type: undefined, data: undefined };
   if (Object.keys(action).length == 2) {
-    asyncManager.postMessage(action as Message)
+    asyncManager.postMessage(action as Message);
   }
-  uiAction.type = action.type
-  uiAction.data = action.data
+  uiAction.type = action.type;
+  uiAction.data = action.data;
   //  EventBusManager.getInstance().getEventBus().emit(action.type, [action.data])
-  const result = next(uiAction)
-  Log.info(`${TAG} logger: new state ${JSON.stringify(store.getState())}`)
-  return result
+  const result = next(uiAction);
+  Log.info(`${TAG} logger: new state ${JSON.stringify(store.getState())}`);
+  return result;
 }

@@ -23,48 +23,48 @@ export enum PersistType {
 }
 
 export class PreferencesService {
-  private static modeStorage
+  private static modeStorage;
 
   public static getInstance(): PreferencesService {
     if (!globalThis?.sInstancePreferencesService) {
-      globalThis.sInstancePreferencesService = new PreferencesService()
-      PreferencesService.modeStorage = dataStorage.getStorageSync(globalThis.cameraAbilityContext.filesDir + '/mode_persist_values')
+      globalThis.sInstancePreferencesService = new PreferencesService();
+      PreferencesService.modeStorage = dataStorage.getStorageSync(globalThis.cameraAbilityContext.filesDir + '/mode_persist_values');
     }
-    return globalThis.sInstancePreferencesService
+    return globalThis.sInstancePreferencesService;
   }
 
   getModeValue(persistType: PersistType, defaultValue: any) {
     if (persistType === PersistType.FOR_AWHILE && this.isModeExpire()) {
-      return defaultValue
+      return defaultValue;
     }
-    return PreferencesService.modeStorage.getSync(this.getModePersistKey(persistType, 'BASE'), defaultValue)
+    return PreferencesService.modeStorage.getSync(this.getModePersistKey(persistType, 'BASE'), defaultValue);
   }
 
   putModeValue(persistType, value: any): void {
     if (persistType === PersistType.FOR_AWHILE) {
-      PreferencesService.modeStorage.putSync(this.getModePersistKey(persistType, 'Timestamp'), new Date().getTime())
+      PreferencesService.modeStorage.putSync(this.getModePersistKey(persistType, 'Timestamp'), new Date().getTime());
     }
-    PreferencesService.modeStorage.putSync(this.getModePersistKey(persistType, 'BASE'), value)
+    PreferencesService.modeStorage.putSync(this.getModePersistKey(persistType, 'BASE'), value);
   }
 
   flush(): void {
-    PreferencesService.modeStorage.putSync(this.getModePersistKey(PersistType.FOR_AWHILE, 'Timestamp'), new Date().getTime())
-    this.flushMode()
+    PreferencesService.modeStorage.putSync(this.getModePersistKey(PersistType.FOR_AWHILE, 'Timestamp'), new Date().getTime());
+    this.flushMode();
   }
 
   flushMode(): void {
-    PreferencesService.modeStorage.flushSync()
+    PreferencesService.modeStorage.flushSync();
   }
 
   private getModeTimestamp(persistType: PersistType, defaultValue: any): any {
-    return PreferencesService.modeStorage.getSync(this.getModePersistKey(persistType, 'Timestamp'), defaultValue)
+    return PreferencesService.modeStorage.getSync(this.getModePersistKey(persistType, 'Timestamp'), defaultValue);
   }
 
   private isModeExpire(): boolean {
-    return (new Date().getTime() - this.getModeTimestamp(PersistType.FOR_AWHILE, 0)) > 15*60*1000
+    return (new Date().getTime() - this.getModeTimestamp(PersistType.FOR_AWHILE, 0)) > 15*60*1000;
   }
 
   private getModePersistKey(persistType: PersistType, item: string): string {
-    return 'mode_' + persistType + '_' + item
+    return 'mode_' + persistType + '_' + item;
   }
 }

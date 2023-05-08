@@ -1,15 +1,15 @@
-import type { AnyAction, Action } from './types/actions'
+import type { AnyAction, Action } from './types/actions';
 import type {
   ActionFromReducersMapObject,
   Reducer,
   ReducersMapObject,
   StateFromReducersMapObject
-} from './types/reducers'
-import type { CombinedState } from './types/store'
+} from './types/reducers';
+import type { CombinedState } from './types/store';
 
-import ActionTypes from './utils/actionTypes'
-import isPlainObject from './utils/isPlainObject'
-import { kindOf } from './utils/kindOf'
+import ActionTypes from './utils/actionTypes';
+import isPlainObject from './utils/isPlainObject';
+import { kindOf } from './utils/kindOf';
 
 function getUnexpectedStateShapeWarningMessage(
   inputState: object,
@@ -17,11 +17,11 @@ function getUnexpectedStateShapeWarningMessage(
   action: Action,
   unexpectedKeyCache: { [key: string]: true }
 ) {
-  const reducerKeys = Object.keys(reducers)
+  const reducerKeys = Object.keys(reducers);
   const argumentName =
     action && action.type === ActionTypes.INIT
       ? 'preloadedState argument passed to createStore'
-      : 'previous state received by the reducer'
+      : 'previous state received by the reducer';
 
   if (reducerKeys.length === 0) {
     return (
@@ -36,7 +36,7 @@ function getUnexpectedStateShapeWarningMessage(
         inputState
       )}". Expected argument to be an object with the following ` +
       `keys: "${reducerKeys.join('", "')}"`
-    )
+    );
   }
 
   const unexpectedKeys = Object.keys(inputState).filter(
@@ -47,7 +47,7 @@ function getUnexpectedStateShapeWarningMessage(
     unexpectedKeyCache[key] = true
   })
 
-  if (action && action.type === ActionTypes.REPLACE) return
+  if (action && action.type === ActionTypes.REPLACE) return;
 
   if (unexpectedKeys.length > 0) {
     return (
@@ -55,14 +55,14 @@ function getUnexpectedStateShapeWarningMessage(
       `"${unexpectedKeys.join('", "')}" found in ${argumentName}. ` +
       `Expected to find one of the known reducer keys instead: ` +
       `"${reducerKeys.join('", "')}". Unexpected keys will be ignored.`
-    )
+    );
   }
 }
 
 function assertReducerShape(reducers: ReducersMapObject): void {
   Object.keys(reducers).forEach(key => {
-    const reducer = reducers[key]
-    const initialState = reducer(undefined, { type: ActionTypes.INIT })
+    const reducer = reducers[key];
+    const initialState = reducer(undefined, { type: ActionTypes.INIT });
 
     if (typeof initialState === 'undefined') {
       throw new Error(

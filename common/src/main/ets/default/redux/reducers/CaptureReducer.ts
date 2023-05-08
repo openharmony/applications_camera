@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import type { ActionData } from '../actions/Action'
-import { Action } from '../actions/Action'
+import type { ActionData } from '../actions/Action';
+import { Action } from '../actions/Action';
 
 export type CaptureState = {
   captureBtnScale: number
-}
+};
 
 const initState = {
   captureBtnScale: 0
-}
+};
 
 export default function CaptureReducer(state = initState, action: ActionData): CaptureState {
   switch (action.type) {
@@ -34,4 +34,4 @@ export default function CaptureReducer(state = initState, action: ActionData): C
       return state;
   }
   return state;
-}
+};
