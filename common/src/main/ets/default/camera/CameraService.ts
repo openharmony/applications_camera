@@ -589,7 +589,7 @@ export class CameraService {
     if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
               AVRecorder: ${this.mAVRecorder} .`);
-      return;
+      return undefined;
     }
     this.mIsStartRecording = false;
     try {
