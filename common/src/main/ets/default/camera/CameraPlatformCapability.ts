@@ -108,11 +108,11 @@ export class CameraPlatformCapability {
       Log.error(`${TAG} calc failed based on the supportedSizesList, try default value.`);
       maxSize.width = 640;
       maxSize.height = 480;
-      Log.info(`${TAG} -----------SupportedSizes List Start-----------`)
+      Log.info(`${TAG} -----------SupportedSizes List Start-----------`);
       for (let i = 0; i < sizeList.length; i++) {
         Log.info(`${TAG} supportedSize width: ${sizeList[i].size.width} height: ${sizeList[i].size.height}`);
       }
-      Log.info(`${TAG} -----------SupportedSizes List End-----------`)
+      Log.info(`${TAG} -----------SupportedSizes List End-----------`);
       return maxSize;
     } else {
       const index = Math.floor(fitList.length / 2);

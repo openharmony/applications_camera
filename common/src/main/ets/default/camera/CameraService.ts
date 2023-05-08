@@ -258,8 +258,8 @@ export class CameraService {
       previewProfile = previewProfiles[0];
     } else {
       Log.info(`${TAG} previewProfiles length.` + previewProfiles.length);
-      previewProfile = previewProfiles.find(item => item.size.width === size.width
-      && item.size.height === size.height && item.format === 1003);
+      previewProfile = previewProfiles.find(item => item.size.width === size.width &&
+      item.size.height === size.height && item.format === 1003);
     }
     await this.releasePreviewOutput();
     try {
@@ -467,15 +467,15 @@ export class CameraService {
     }
     this.mVideoConfig.url = `fd://${this.mFileAssetId.toString()}`;
     await media.createAVRecorder().then((recorder) => {
-      Log.info(`${TAG} createVideoOutput createAVRecorder record: ${recorder}`)
-      this.mAVRecorder = recorder
+      Log.info(`${TAG} createVideoOutput createAVRecorder record: ${recorder}`);
+      this.mAVRecorder = recorder;
     });
     const size = SettingManager.getInstance().getVideoSize();
     if (this.mAVRecorder != null) {
       this.mAVRecorder.on('error', (error) => {
         if (error) {
-          Log.error(`${TAG} createVideoOutput error: ${JSON.stringify(error)}`)
-          functionCallBack.onRecodeError(`createVideoOutput error: ${JSON.stringify(error)}`)
+          Log.error(`${TAG} createVideoOutput error: ${JSON.stringify(error)}`);
+          functionCallBack.onRecodeError(`createVideoOutput error: ${JSON.stringify(error)}`);
         }
       });
       Log.info(`${TAG} createVideoOutput size = ${JSON.stringify(size)}`);
@@ -569,10 +569,10 @@ export class CameraService {
       Log.error(`${TAG} remove videoOutput ${err}`);
     }
     await this.mVideoOutput.start().then(() => {
-      Log.info(`${TAG} videoOutput.start()`)
+      Log.info(`${TAG} videoOutput.start()`);
     });
     await this.mAVRecorder.start().then(() => {
-      Log.info(`${TAG} AVRecorder.start()`)
+      Log.info(`${TAG} AVRecorder.start()`);
     });
     this.mIsStartRecording = true;
     if (new Date().getTime() - startRecordingTime > 2000) {
@@ -581,7 +581,7 @@ export class CameraService {
     Log.end(`${TAG} StartRecording`);
   }
 
-  public async stopRecording() {
+  public async stopRecording(): Promise<PixelMap | undefined> {
     Log.start(Log.STOP_RECORDING);
     let stopRecordingTime = new Date().getTime();
     Log.info(`${TAG} stopRecording invoke E.`);
@@ -647,7 +647,7 @@ export class CameraService {
     await this.mVideoOutput.start().then(() => {
       Log.info(`${TAG} videoOutput.start()`)
     }).catch((error) => {
-      Log.error(`${TAG} resumeRecording mVideoOutput start failed: ${JSON.stringify(error)}`)
+      Log.error(`${TAG} resumeRecording mVideoOutput start failed: ${JSON.stringify(error)}`);
     });
     await this.mAVRecorder.resume();
     Log.end(`${TAG} resumeRecording`);
@@ -663,8 +663,8 @@ export class CameraService {
       await this.stopRecording();
     }
     await this.mAVRecorder.release().then(() => {
-      Log.info(`${TAG} AVRecorder.release() success.`)
-      this.mAVRecorder = undefined
+      Log.info(`${TAG} AVRecorder.release() success.`);
+      this.mAVRecorder = undefined;
     });
     Log.end(`${TAG} releaseRecording`);
   }
@@ -725,9 +725,9 @@ export class CameraService {
   public getThumbnail(functionCallBack: FunctionCallBack): image.PixelMap {
     Log.start(`${TAG} getThumbnail`);
     this.mThumbnailGetter.getThumbnailInfo(40, 40).then((thumbnail) => {
-      Log.info(`${TAG} getThumbnail thumbnail: ${thumbnail}`)
-      functionCallBack.thumbnail(thumbnail)
-      Log.end(`${TAG} getThumbnail`)
+      Log.info(`${TAG} getThumbnail thumbnail: ${thumbnail}`);
+      functionCallBack.thumbnail(thumbnail);
+      Log.end(`${TAG} getThumbnail`);
     });
     Log.info(`${TAG} getThumbnail invoke X.`);
     return this.mThumbnail;
