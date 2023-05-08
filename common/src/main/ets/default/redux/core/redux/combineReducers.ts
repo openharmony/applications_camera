@@ -19,8 +19,8 @@ function getUnexpectedStateShapeWarningMessage(
 ) {
   const reducerKeys = Object.keys(reducers);
   const argumentName =
-      action && action.type === ActionTypes.INIT ?
-      'preloadedState argument passed to createStore' : 'previous state received by the reducer';
+    action && action.type === ActionTypes.INIT ?
+    'preloadedState argument passed to createStore' : 'previous state received by the reducer';
 
   if (reducerKeys.length === 0) {
     return (

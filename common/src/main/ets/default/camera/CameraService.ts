@@ -611,7 +611,7 @@ export class CameraService {
       Log.info(`${TAG} fileAsset.close().`);
     }
     Log.start(Log.UPDATE_VIDEO_THUMBNAIL);
-    const thumbnailPixelMap = await this.mThumbnailGetter.getThumbnailInfo(40, 40);
+    const thumbnailPixelMap: PixelMap | undefined = await this.mThumbnailGetter.getThumbnailInfo(40, 40);
     Log.end(Log.UPDATE_VIDEO_THUMBNAIL);
     Log.info(`${TAG} stopRecording invoke X.`);
     if (new Date().getTime() - stopRecordingTime > 2000) {
@@ -645,7 +645,7 @@ export class CameraService {
       return;
     }
     await this.mVideoOutput.start().then(() => {
-      Log.info(`${TAG} videoOutput.start()`)
+      Log.info(`${TAG} videoOutput.start()`);
     }).catch((error) => {
       Log.error(`${TAG} resumeRecording mVideoOutput start failed: ${JSON.stringify(error)}`);
     });
