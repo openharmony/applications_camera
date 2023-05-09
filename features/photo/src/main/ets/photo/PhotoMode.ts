@@ -13,20 +13,21 @@
  * limitations under the License.
  */
 
-import { Log, FunctionId } from '@ohos/common'
-import { PhotoModeParam } from './PhotoModeParam'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId';
+import { PhotoModeParam } from './PhotoModeParam';
 
 const TAG: string = '[PhotoMode]:'
 
 export class PhotoMode {
-  private photoModeParam: PhotoModeParam = new PhotoModeParam()
+  private photoModeParam: PhotoModeParam = new PhotoModeParam();
 
   public getTabBarParam(): string[] {
-    return this.photoModeParam.tabBar
+    return this.photoModeParam.tabBar;
   }
 
   public getFunctions(): FunctionId[] {
-    Log.info(`${TAG} function = ${this.photoModeParam.functions}`)
-    return this.photoModeParam.functions
+    Log.info(`${TAG} function = ${this.photoModeParam.functions}`);
+    return this.photoModeParam.functions;
   }
 }

@@ -13,27 +13,11 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display'
-
-import { Log } from '../../utils/Log'
-import { getStore, OhCombinedState } from '../../redux/store'
+import { getStore } from '../../redux/store'
+import type { OhCombinedState } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
-import { EventBus } from '../../worker/eventbus/EventBus'
+import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-
-let localDispatcher = (dispatch) => {
-  return {
-    updateZoomRatio: (zoomRatio: number) => {
-      dispatch(Action.changeZoomRatio(zoomRatio))
-    },
-    updateShowZoomFlag: (flag: boolean) => {
-      dispatch(Action.updateShowZoomTextFlag(flag))
-    },
-    updateShowZoomLabelValue: (flag: boolean) => {
-      dispatch(Action.updateShowZoomLabelValue(flag))
-    }
-  }
-}
 
 let SHOW_FOLD_CANVAS: number = 0
 let SHOW_NOT_TAKE_VIDEO_CANVAS: number = 1
@@ -57,7 +41,6 @@ class StateStruct {
 
 @Component
 export struct ZoomViewLand {
-  private TAG: string = '[ZoomViewLand]:'
   private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
@@ -116,9 +99,22 @@ export struct ZoomViewLand {
         scrollDetailsBox: state.ZoomReducer.scrollDetailsBox,
         isPhotoZoomDetails: state.ZoomReducer.isPhotoZoomDetails,
         photoDetailsOffsetX: state.ZoomReducer.photoDetailsOffsetX,
-        photoDetailsOffsetXInit: state.ZoomReducer.photoDetailsOffsetXInit,
+        photoDetailsOffsetXInit: state.ZoomReducer.photoDetailsOffsetXInit
       }
-    }, localDispatcher)(this.state)
+    }, (dispatch) => {
+      return {
+        updateZoomRatio: (zoomRatio: number): void => {
+          dispatch(Action.changeZoomRatio(zoomRatio))
+        },
+        updateShowZoomFlag: (flag: boolean): void => {
+          dispatch(Action.updateShowZoomTextFlag(flag))
+        },
+        updateShowZoomLabelValue: (flag: boolean): void => {
+          dispatch(Action.updateShowZoomLabelValue(flag))
+        }
+      }
+    })(this.state)
+
     this.appEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
     this.appEventBus.on(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
   }
@@ -360,7 +356,6 @@ export struct ZoomViewLand {
   }
 
   private updateZoomOffset(data): void {
-    let padding = this.getPadding()
     let offset = (data.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
     this.offsetY = offset
   }
@@ -423,12 +418,12 @@ export struct ZoomViewLand {
     }
   }
 
-  private canvasInit(mType: number) {
+  private canvasInit(mType: number): void {
     this.refreshSwitchCanvas = mType
     this.refreshCanvas(mType)
   }
 
-  private refreshCanvas(mType: number) {
+  private refreshCanvas(mType: number): void {
     switch (mType) {
       case SHOW_NOT_TAKE_VIDEO_CANVAS:
         this.notTakeVideoCanvas();
@@ -441,7 +436,7 @@ export struct ZoomViewLand {
     }
   }
 
-  private notTakeVideoCanvas() {
+  private notTakeVideoCanvas(): void {
     this.notTakeVideoExtCanvasCxt.clearRect(0, 0, this.canvasWidth, this.notTakeVideoExtCanvasHeight)
     this.notTakeVideoExtOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.notTakeVideoExtCanvasHeight)
     this.notTakeVideoExtOffCanvasCxt.strokeStyle = '#ffffff'
@@ -491,7 +486,7 @@ export struct ZoomViewLand {
     this.notTakeVideoExtCanvasCxt.transferFromImageBitmap(this.notTakeVideoExtOffCanvasCxt.transferToImageBitmap())
   }
 
-  private takingVideoCanvas() {
+  private takingVideoCanvas(): void {
     this.takingVideoExtCanvasCxt.clearRect(0, 0, this.canvasWidth, this.takingVideoExtCanvasHeight)
     this.takingVideoExtOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.takingVideoExtCanvasHeight)
     this.takingVideoExtOffCanvasCxt.strokeStyle = '#ffffff'
@@ -528,7 +523,7 @@ export struct ZoomViewLand {
     this.takingVideoExtCanvasCxt.transferFromImageBitmap(this.takingVideoExtOffCanvasCxt.transferToImageBitmap())
   }
 
-  private foldCanvas() {
+  private foldCanvas(): void {
     this.foldCanvasCxt.clearRect(0, 0, this.canvasWidth, this.foldCanvasHeight)
     this.foldOffCanvasCxt.clearRect(0, 0, this.canvasWidth, this.foldCanvasHeight)
     this.foldOffCanvasCxt.strokeStyle = '#ffffff'

@@ -50,7 +50,7 @@ struct ThirdPreviewView {
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  backCalledApp(resourceUri) {
+  backCalledApp(resourceUri): void {
     Log.info(`${this.TAG} backCalledApp E`)
     let that = this
     fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
@@ -63,7 +63,7 @@ struct ThirdPreviewView {
     Log.info(`${this.TAG} backCalledApp X`)
   }
 
-  terminateSelfWithResult(resourceUri) {
+  terminateSelfWithResult(resourceUri): void {
     Log.info(`${this.TAG} terminateSelfWithResult start`)
     let abilityResult = {
       "resultCode": 200,

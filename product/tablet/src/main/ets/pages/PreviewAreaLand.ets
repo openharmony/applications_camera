@@ -21,10 +21,11 @@ import { Action, UiStateMode }  from '@ohos/common/src/main/ets/default/redux/ac
 import { AssistiveGridView }  from '@ohos/common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
 import { BigText } from '@ohos/common/src/main/ets/default/featurecommon/bigtext/BigText'
 import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/default/utils/Constants'
-import { CameraId }  from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId'
-import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import type { CameraId }  from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId'
+import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
+import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
 import { ScreenLockManager } from '@ohos/common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
@@ -35,158 +36,6 @@ import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomvi
 import { SmallVideoTimer } from './SmallVideoTimer'
 
 import promptAction from '@ohos.promptAction';
-
-let cameraState = (state: OhCombinedState) => {
-  let isShowBlur = !state.ContextReducer.uiEnable && state.ContextReducer.uiStateMode == UiStateMode.NONE
-  return {
-    mode: state.ModeReducer.mode,
-    curMode: state.ModeReducer.curMode,
-    isShowPreview: state.PreviewReducer.isShowPreview,
-    surfaceId: state.PreviewReducer.surfaceId,
-    xComponentWidth: state.PreviewReducer.xComponentWidth,
-    xComponentHeight: state.PreviewReducer.xComponentHeight,
-    cameraPosition: state.CameraReducer.cameraPosition,
-    curCameraPosition: state.CameraReducer.curCameraPosition,
-    minZoomRatio: state.ZoomReducer.minZoomRatio,
-    maxZoomRatio: state.ZoomReducer.maxZoomRatio,
-    zoomRatio: state.ZoomReducer.zoomRatio,
-    platformCapability: state.CameraInitReducer.platformCapability,
-    videoState: state.RecordReducer.videoState,
-    footBarHeight: state.ContextReducer.footBarHeight,
-    isShowZoomText: state.ZoomReducer.isShowZoomText,
-    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-    modeIndex: state.ModeReducer.modeIndex,
-    isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-    isShowBigText: state.ModeReducer.isShowBigText,
-    isShowtimeLapse: state.SettingReducer.isShowtimeLapse,
-    isBigVideoTimerVisible: state.RecordReducer.isBigVideoTimerVisible,
-    isSmallVideoTimerVisible: state.RecordReducer.isSmallVideoTimerVisible,
-    isAssGridViewShow: state.SettingReducer.isAssGridViewShow,
-    isShowFlashBlack: state.PreviewReducer.isShowFlashBlack,
-    modeChangeDone: state.ModeReducer.modeChangeDone,
-    isShowPageView: state.SettingReducer.isShowSettingView,
-    showBlur: isShowBlur,
-    isFaCall: state.ContextReducer.isFaCall,
-  }
-}
-
-let cameraDispatcher = (dispatch) => {
-  return {
-    initCamera: (cameraId, mode) => {
-      dispatch(Action.initCamera(cameraId, mode))
-    },
-    initZoomRatio: (min: number, max: number) => {
-      dispatch(Action.initZoomRatio(min, max))
-    },
-    changeZoomRatio: (zoomRatio: number) => {
-      dispatch(Action.changeZoomRatio(zoomRatio))
-    },
-    updateZoomPercentage: (zoomPercentage: number) => {
-      dispatch(Action.updateZoomPercentage(zoomPercentage))
-    },
-    prepareSurface: (surfaceId: number) => {
-      dispatch(Action.prepareSurface(surfaceId))
-    },
-    startPreview: (zoomRatio: number) => {
-      dispatch(Action.startPreview(zoomRatio))
-    },
-    switchCamera: (cameraId: CameraId, mode: string) => {
-      dispatch(Action.switchCamera(cameraId, mode))
-    },
-    updateCameraPosition: (cameraPosition: string) => {
-      dispatch(Action.updateCameraPosition(cameraPosition))
-    },
-    startVideoFlag: (isStartVideo: boolean) => {
-      dispatch(Action.startVideoFlag(isStartVideo))
-    },
-    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
-      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
-    },
-    updateShowPreviewFlag: (isShowPreview: boolean) => {
-      dispatch(Action.updateShowPreviewFlag(isShowPreview))
-    },
-    updateIsShowZoomText: (isShowZoomText: boolean) => {
-      dispatch(Action.updateShowZoomTextFlag(isShowZoomText))
-    },
-    updateIsPhotoZoomDetails: (isPhotoZoomDetails: boolean) => {
-      dispatch(Action.updatePhotoZoomDetailsFlag(isPhotoZoomDetails))
-    },
-    updateBaseZoom: (zoomRatio: number) => {
-      dispatch(Action.updateBaseZoom(zoomRatio))
-    },
-    changeImageSize: (imageSize) => {
-      dispatch(Action.changeImageSize(imageSize))
-    },
-    changeVideoSize: (videoSize) => {
-      dispatch(Action.changeVideoSize(videoSize))
-    },
-    close: () => {
-      dispatch(Action.close())
-    },
-    stopRecording: () => {
-      dispatch(Action.stopRecording())
-      dispatch(Action.updateVideoState('beforeTakeVideo'))
-      dispatch(Action.updateBigVideoTimerVisible(false))
-      dispatch(Action.updateSmallVideoTimerVisible(false))
-      dispatch(Action.updateScreenStatus(false))
-    },
-    changeTimeLapse: (isShowtimeLapse: boolean) => {
-      dispatch(Action.changeTimeLapse(isShowtimeLapse))
-    },
-    capture: () => {
-      dispatch(Action.updateShowFlashBlackFlag(true))
-      dispatch(Action.capture())
-    },
-    startRecording: () => {
-      dispatch(Action.startRecording())
-      dispatch(Action.updateVideoState('startTakeVideo'))
-      dispatch(Action.updateBigVideoTimerVisible(true))
-      dispatch(Action.updateScreenStatus(true))
-    },
-    assistiveGridView: (isViewShow) => {
-      dispatch(Action.assistiveGridView(isViewShow))
-    },
-    swipeChangeMode: (swipeModeIndex) => {
-      dispatch(Action.swipeChangeMode(swipeModeIndex))
-    },
-    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
-      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
-    },
-    faCall: (isFaCall: boolean) => {
-      dispatch(Action.faCall(isFaCall))
-    },
-    initMode: (mode: string) => {
-      dispatch(Action.initMode(mode))
-    },
-    updateMode: (mode: string) => {
-      dispatch(Action.updateMode(mode))
-    },
-    changeToMode: (mode: string) => {
-      dispatch(Action.changeMode(mode))
-    },
-    updateModeIndex: (index: number) => {
-      dispatch(Action.updateModeIndex(index))
-    },
-    updateShowZoomLabelValue: (flag: boolean) => {
-      dispatch(Action.updateShowZoomLabelValue(flag))
-    },
-    reloadThumbnail: () => {
-      dispatch(Action.reloadThumbnail())
-    },
-    updateShowPinch: (flag: boolean) => {
-      dispatch(Action.updateShowPinch(flag))
-    },
-    swipeModeChangeDone: (actionOff) => {
-      dispatch(Action.swipeModeChangeDone(actionOff))
-    },
-    updateInitShowFlag: (initShowFlag: boolean) => {
-      dispatch(Action.updateInitShowFlag(initShowFlag))
-    },
-    hideSettingView: () => {
-      dispatch(Action.showSettingView(false))
-    },
-  }
-}
 
 class StateStruct {
   mode
@@ -313,28 +162,6 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} onCameraInit isShowPreview = ${this.state.isShowPreview}  X`)
   }
 
-  private onScaleUpdate(scale) {
-    Log.info(`${this.TAG} onScaleUpdate called scale = ${scale}`)
-    let tempZoom = 1.0
-    if (scale > 1) {
-      tempZoom = this.state.baseZoom + scale - 1
-    } else {
-      tempZoom = this.state.baseZoom * scale
-    }
-    if (Math.abs(tempZoom - this.state.zoomRatio) >= 0.1) {
-      if (tempZoom >= this.state.minZoomRatio && tempZoom <= this.state.maxZoomRatio) { //TODO 需要动态取得实际变焦能力范围
-        //        this.cameraService.setZoomRatio(tempZoom)
-        this.state.changeZoomRatio(tempZoom)
-        this.state.updateZoomPercentage(this.ratioToPercentage(tempZoom))
-      }
-    }
-  }
-
-  private ratioToPercentage(ratio) {
-    return (Math.log2(ratio) - Math.log2(this.state.minZoomRatio))
-    / (Math.log2(this.state.maxZoomRatio) - Math.log2(this.state.minZoomRatio))
-  }
-
   private async doCameraAction() {
     Log.info(`${this.TAG} doCameraAction E`)
     this.settingManager.setCameraId(this.state.cameraPosition)
@@ -385,7 +212,156 @@ export struct PreviewAreaLand {
     if (routerParams && routerParams.pageType) {
       this.pageType = routerParams.pageType.toString()
     }
-    this.mConnect = getStore().connect(cameraState, cameraDispatcher)(this.state)
+    this.mConnect = getStore().connect((state: OhCombinedState) => {
+      let isShowBlur = !state.ContextReducer.uiEnable && state.ContextReducer.uiStateMode == UiStateMode.NONE
+      return {
+        mode: state.ModeReducer.mode,
+        curMode: state.ModeReducer.curMode,
+        isShowPreview: state.PreviewReducer.isShowPreview,
+        surfaceId: state.PreviewReducer.surfaceId,
+        xComponentWidth: state.PreviewReducer.xComponentWidth,
+        xComponentHeight: state.PreviewReducer.xComponentHeight,
+        cameraPosition: state.CameraReducer.cameraPosition,
+        curCameraPosition: state.CameraReducer.curCameraPosition,
+        minZoomRatio: state.ZoomReducer.minZoomRatio,
+        maxZoomRatio: state.ZoomReducer.maxZoomRatio,
+        zoomRatio: state.ZoomReducer.zoomRatio,
+        platformCapability: state.CameraInitReducer.platformCapability,
+        videoState: state.RecordReducer.videoState,
+        footBarHeight: state.ContextReducer.footBarHeight,
+        isShowZoomText: state.ZoomReducer.isShowZoomText,
+        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
+        modeIndex: state.ModeReducer.modeIndex,
+        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+        isShowBigText: state.ModeReducer.isShowBigText,
+        isShowtimeLapse: state.SettingReducer.isShowtimeLapse,
+        isBigVideoTimerVisible: state.RecordReducer.isBigVideoTimerVisible,
+        isSmallVideoTimerVisible: state.RecordReducer.isSmallVideoTimerVisible,
+        isAssGridViewShow: state.SettingReducer.isAssGridViewShow,
+        isShowFlashBlack: state.PreviewReducer.isShowFlashBlack,
+        modeChangeDone: state.ModeReducer.modeChangeDone,
+        isShowPageView: state.SettingReducer.isShowSettingView,
+        showBlur: isShowBlur,
+        isFaCall: state.ContextReducer.isFaCall
+      }
+    }, (dispatch) => {
+      return {
+        initCamera: (cameraId: CameraId, mode: string): void => {
+          dispatch(Action.initCamera(cameraId, mode))
+        },
+        initZoomRatio: (min: number, max: number): void => {
+          dispatch(Action.initZoomRatio(min, max))
+        },
+        changeZoomRatio: (zoomRatio: number): void => {
+          dispatch(Action.changeZoomRatio(zoomRatio))
+        },
+        updateZoomPercentage: (zoomPercentage: number): void => {
+          dispatch(Action.updateZoomPercentage(zoomPercentage))
+        },
+        prepareSurface: (surfaceId: number): void => {
+          dispatch(Action.prepareSurface(surfaceId))
+        },
+        startPreview: (zoomRatio: number): void => {
+          dispatch(Action.startPreview(zoomRatio))
+        },
+        switchCamera: (cameraId: CameraId, mode: string): void => {
+          dispatch(Action.switchCamera(cameraId, mode))
+        },
+        updateCameraPosition: (cameraPosition: string): void => {
+          dispatch(Action.updateCameraPosition(cameraPosition))
+        },
+        startVideoFlag: (isStartVideo: boolean): void => {
+          dispatch(Action.startVideoFlag(isStartVideo))
+        },
+        changeXComponentSize: (xComponentWidth: number, xComponentHeight: number): void => {
+          dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
+        },
+        updateShowPreviewFlag: (isShowPreview: boolean): void => {
+          dispatch(Action.updateShowPreviewFlag(isShowPreview))
+        },
+        updateIsShowZoomText: (isShowZoomText: boolean): void => {
+          dispatch(Action.updateShowZoomTextFlag(isShowZoomText))
+        },
+        updateIsPhotoZoomDetails: (isPhotoZoomDetails: boolean): void => {
+          dispatch(Action.updatePhotoZoomDetailsFlag(isPhotoZoomDetails))
+        },
+        updateBaseZoom: (zoomRatio: number): void => {
+          dispatch(Action.updateBaseZoom(zoomRatio))
+        },
+        changeImageSize: (imageSize): void => {
+          dispatch(Action.changeImageSize(imageSize))
+        },
+        changeVideoSize: (videoSize): void => {
+          dispatch(Action.changeVideoSize(videoSize))
+        },
+        close: (): void => {
+          dispatch(Action.close())
+        },
+        stopRecording: (): void => {
+          dispatch(Action.stopRecording())
+          dispatch(Action.updateVideoState('beforeTakeVideo'))
+          dispatch(Action.updateBigVideoTimerVisible(false))
+          dispatch(Action.updateSmallVideoTimerVisible(false))
+          dispatch(Action.updateScreenStatus(false))
+        },
+        changeTimeLapse: (isShowtimeLapse: boolean): void => {
+          dispatch(Action.changeTimeLapse(isShowtimeLapse))
+        },
+        capture: (): void => {
+          dispatch(Action.updateShowFlashBlackFlag(true))
+          dispatch(Action.capture())
+        },
+        startRecording: (): void => {
+          dispatch(Action.startRecording())
+          dispatch(Action.updateVideoState('startTakeVideo'))
+          dispatch(Action.updateBigVideoTimerVisible(true))
+          dispatch(Action.updateScreenStatus(true))
+        },
+        assistiveGridView: (isViewShow: number): void => {
+          dispatch(Action.assistiveGridView(isViewShow))
+        },
+        swipeChangeMode: (swipeModeIndex: number): void => {
+          dispatch(Action.swipeChangeMode(swipeModeIndex))
+        },
+        thirdPartyCall: (isThirdPartyCall: boolean, action: string): void => {
+          dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
+        },
+        faCall: (isFaCall: boolean): void => {
+          dispatch(Action.faCall(isFaCall))
+        },
+        initMode: (mode: string): void => {
+          dispatch(Action.initMode(mode))
+        },
+        updateMode: (mode: string): void => {
+          dispatch(Action.updateMode(mode))
+        },
+        changeToMode: (mode: string): void => {
+          dispatch(Action.changeMode(mode))
+        },
+        updateModeIndex: (index: number): void => {
+          dispatch(Action.updateModeIndex(index))
+        },
+        updateShowZoomLabelValue: (flag: boolean): void => {
+          dispatch(Action.updateShowZoomLabelValue(flag))
+        },
+        reloadThumbnail: (): void => {
+          dispatch(Action.reloadThumbnail())
+        },
+        updateShowPinch: (flag: boolean): void => {
+          dispatch(Action.updateShowPinch(flag))
+        },
+        swipeModeChangeDone: (actionOff: boolean): void => {
+          dispatch(Action.swipeModeChangeDone(actionOff))
+        },
+        updateInitShowFlag: (initShowFlag: boolean): void => {
+          dispatch(Action.updateInitShowFlag(initShowFlag))
+        },
+        hideSettingView: (): void => {
+          dispatch(Action.showSettingView(false))
+        }
+      }
+    })(this.state)
+
     this.appEventBus.on(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this))
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this))
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
@@ -408,7 +384,7 @@ export struct PreviewAreaLand {
     Log.start(Log.X_COMPONENT_LIFE)
   }
 
-  private releaseCamera() {
+  private releaseCamera(): void {
     Log.info(`${this.TAG} globalThis.releaseCamera called`)
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO
     if (this.state.videoState === 'startTakeVideo') {
@@ -467,7 +443,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} calledByOther invoke X: ${this.state.mode}`)
   }
 
-  private initStateMode(uri: string) {
+  private initStateMode(uri: string): void {
     switch (uri) {
       case "capture":
         this.state.initMode('PHOTO')
@@ -483,7 +459,7 @@ export struct PreviewAreaLand {
     }
   }
 
-  private updateCameraStatus() {
+  private updateCameraStatus(): void {
     Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${globalThis.cameraStatus}`)
     Log.info(`${this.TAG} updateCameraStatus  cameraNeedStatus: ${globalThis.cameraNeedStatus}`)
 
@@ -525,7 +501,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} onPageHide X`)
   }
 
-  private switchAnimationSec() {
+  private switchAnimationSec(): void {
     Log.info(`${this.TAG} switchAnimationSec called`)
     animateTo({ duration: 200,
       delay: 0,
@@ -560,7 +536,7 @@ export struct PreviewAreaLand {
     })
   }
 
-  private switchAnimation() {
+  private switchAnimation(): void {
     Log.info(`${this.TAG} switchAnimation called`)
     animateTo({ duration: 300,
       delay: 0,
@@ -585,7 +561,7 @@ export struct PreviewAreaLand {
     })
   }
 
-  private switchBackgroundAnimation() {
+  private switchBackgroundAnimation(): void {
     animateTo({ duration: 350,
       delay: 0,
       curve: Curve.Sharp,
@@ -598,7 +574,7 @@ export struct PreviewAreaLand {
     })
   }
 
-  private pinchGestureStart(event: GestureEvent) {
+  private pinchGestureStart(event: GestureEvent): void {
     Log.info(`${this.TAG} pinchGestureStart invoke E`)
     if (this.state.mode != 'MULTI' && this.state.cameraPosition !== 'FRONT') {
       clearTimeout(this.pinchGestureTimer)
@@ -618,7 +594,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} pinchGestureStart invoke X`)
   }
 
-  private pinchGestureUpdate(event: GestureEvent) {
+  private pinchGestureUpdate(event: GestureEvent): void {
     Log.info(`${this.TAG} pinchGestureUpdate invoke E`)
     if (this.state.mode != 'MULTI' && this.state.cameraPosition !== 'FRONT') {
       let zoomRatio = event.scale + this.baseZoom - 1
@@ -633,7 +609,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} pinchGestureUpdate invoke X`)
   }
 
-  private pinchGestureEnd(event: GestureEvent) {
+  private pinchGestureEnd(event: GestureEvent): void {
     Log.info(`${this.TAG} pinchGestureEnd invoke E`)
     this.state.updateShowZoomLabelValue(true)
     this.state.updateShowPinch(false)
@@ -645,7 +621,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} pinchGestureEnd invoke X`)
   }
 
-  private onPreviewClicked() {
+  private onPreviewClicked(): void {
     Log.info(`${this.TAG} onPreviewClicked invoke E`)
     Log.info(`${this.TAG} isShowtimeLapse= ${this.state.isShowtimeLapse}, state.mode= ${this.state.mode}`)
     if (this.state.mode === 'PHOTO' && this.state.isShowtimeLapse) {
@@ -658,7 +634,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} onPreviewClicked invoke X`)
   }
 
-  private swipeChangeMode(swipe: number) {
+  private swipeChangeMode(swipe: number): void {
     Log.info(`${this.TAG} swipeChangeMode E`)
     if (!this.state.modeChangeDone && this.state.modeIndex + swipe >= 0 && this.state.modeIndex + swipe <= this.modeArray.length - 1 && !this.state.isShowtimeLapse) {
       this.state.swipeChangeMode(this.state.modeIndex + swipe)
@@ -667,7 +643,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} swipeChangeMode X`)
   }
 
-  private onKeepScreen(data) {
+  private onKeepScreen(data): void {
     Log.info(`${this.TAG} onKeepScreen E`)
     if (data) {
       globalThis.cameraWinClass.setKeepScreenOn(data.isKeepScreenOn).then((v) => {
@@ -679,14 +655,14 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} onKeepScreen X`)
   }
 
-  private windowSizeChange(data) {
+  private windowSizeChange(data): void {
     if (this.screenSize != data) {
       this.screenSize = data
       this.resetScreenSize(data)
     }
   }
 
-  private resetScreenSize(size: any) {
+  private resetScreenSize(size: any): void {
     this.settingManager.setScreenHeight(size.height)
     this.settingManager.setScreenWidth(size.width)
     let xComponentSize = this.settingManager.getPreviewDisplaySize(this.state.mode)

@@ -13,21 +13,11 @@
  * limitations under the License.
  */
 
-import AssistiveGrid from '../../../setting/settingitem/AssistiveGrid'
 import { Log } from '../../../utils/Log'
 import { SettingManager } from '../../../setting/SettingManager'
-import { SettingData }  from '../model/SettingData'
+import type { SettingData, SettingGroupItem }  from '../model/SettingData'
+import type { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store';
-
-let localState = (state) => {
-  return {
-    mode: state.ModeReducer.mode,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {}
-}
 
 class StateStruct {
   mode
@@ -36,7 +26,7 @@ class StateStruct {
 @Component
 export struct TabletSetToggle {
   private TAG: string = '[TabletSetToggle]:'
-  @Link settingsList: any[]
+  @Link settingsList: SettingGroupItem[]
   @State isOn: boolean = false
   private itemValue: SettingData
   private getToggleStatus: Promise<string>
@@ -47,7 +37,15 @@ export struct TabletSetToggle {
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        mode: state.ModeReducer.mode
+      }
+    }, (dispatch) => {
+      return {
+      }
+    })(this.state)
+
     try {
       if (this.settingManager.getSettingValue(this.itemValue.settingAlias) === "1") {
         this.generalStatusValue = true

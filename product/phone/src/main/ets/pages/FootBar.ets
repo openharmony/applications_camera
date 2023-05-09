@@ -16,26 +16,13 @@
 import deviceInfo from '@ohos.deviceInfo'
 import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
 import { CameraSwitchButton }  from '@ohos/common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
-import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
+import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { ShutterButton } from '@ohos/common/src/main/ets/default/featurecommon/shutterbutton/ShutterButton'
 import { ThumbnailView } from '@ohos/common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
-
-let footBarState = (state: OhCombinedState) => {
-  return {
-    platformCapability: state.CameraInitReducer.platformCapability,
-    isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-    videoState: state.RecordReducer.videoState,
-    showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-    mode: state.ModeReducer.mode
-  }
-}
-
-let footBarDispatcher = (dispatch) => {
-  return {}
-}
 
 class StateStruct {
   platformCapability
@@ -68,7 +55,19 @@ export struct FootBar {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect(footBarState, footBarDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        platformCapability: state.CameraInitReducer.platformCapability,
+        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+        videoState: state.RecordReducer.videoState,
+        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
+        mode: state.ModeReducer.mode
+      }
+    }, (dispatch) => {
+      return {
+      }
+    })(this.state)
+
     this.state.isRecording = false
     this.appEventBus.on(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
@@ -82,7 +81,7 @@ export struct FootBar {
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
-  private isThumbnailViewVisibility() {
+  private isThumbnailViewVisibility(): boolean {
     return!this.state.isRecording && !this.state.isThirdPartyCall &&
     this.state.videoState !== "startTakeVideo" && this.state.videoState !== "pauseTakeVideo"
   }

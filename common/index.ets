@@ -81,6 +81,8 @@ export { getStore } from './src/main/ets/default/redux/store';
 
 export type { OhCombinedState } from './src/main/ets/default/redux/store';
 
+export type { Dispatch } from './src/main/ets/default/redux/core/redux/types/store';
+
 export { SettingManager } from './src/main/ets/default/setting/SettingManager';
 
 export { CameraId } from './src/main/ets/default/setting/settingitem/CameraId';

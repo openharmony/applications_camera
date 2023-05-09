@@ -22,15 +22,13 @@ export class GeoLocation {
   private static instance: GeoLocation
   private mLocation = undefined
   private requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0}
-  private locationChange = (location) => {//删掉参数err及相关逻辑
+  private locationChange = (location): void => {//删掉参数err及相关逻辑
 //    Log.info(`[GeoLocation]: locationChange err: ${err}`)
 //    if (!err) {
       Log.info(`[GeoLocation]: locationChange: ${location}`)
       SettingManager.getInstance().setCurGeoLocation(location)
 //    }
   }
-
-  private Constructor() {}
 
   public static getInstance() {
     if (!GeoLocation.instance) {

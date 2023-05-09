@@ -13,42 +13,45 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from 'hypium/index'
-import testsuite from '../test/List.test'
+import Ability from '@ohos.application.Ability';
+import type AbilityDelegator from '@ohos.application.AbilityDelegator';
+import type AbilityDelegatorArgs from '@ohos.application.AbilityDelegatorArgs';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import { Hypium } from 'hypium/index';
+import testsuite from '../test/List.test';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 
 export default class TestAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.log('TestAbility onCreate')
-        var abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        console.info('start run testcase!!!')
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
-    }
+  onCreate(want, launchParam) {
+    Log.log('TestAbility onCreate');
+    let abilityDelegator: AbilityDelegator;
+    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments: AbilityDelegatorArgs;
+    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    Log.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+  }
 
-    onDestroy() {
-        console.log('TestAbility onDestroy')
-    }
+  onDestroy() {
+    Log.log('TestAbility onDestroy');
+  }
 
-    onWindowStageCreate(windowStage) {
-        console.log('TestAbility onWindowStageCreate')
-        windowStage.setUIContent(this.context, 'TestAbility/pages/index', null)
+  onWindowStageCreate(windowStage) {
+    Log.log('TestAbility onWindowStageCreate');
+    windowStage.setUIContent(this.context, 'TestAbility/pages/index', null);
 
-        globalThis.abilityContext = this.context;
-    }
+    globalThis.abilityContext = this.context;
+  }
 
-    onWindowStageDestroy() {
-        console.log('TestAbility onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    Log.log('TestAbility onWindowStageDestroy');
+  }
 
-    onForeground() {
-        console.log('TestAbility onForeground')
-    }
+  onForeground() {
+    Log.log('TestAbility onForeground');
+  }
 
-    onBackground() {
-        console.log('TestAbility onBackground')
-    }
+  onBackground() {
+    Log.log('TestAbility onBackground');
+  }
 };

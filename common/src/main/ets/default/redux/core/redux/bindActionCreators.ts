@@ -1,10 +1,10 @@
-import { Dispatch } from './types/store'
-import {
+import type { Dispatch } from './types/store';
+import type {
   AnyAction,
   ActionCreator,
   ActionCreatorsMapObject
-} from './types/actions'
-import { kindOf } from './utils/kindOf'
+} from './types/actions';
+import { kindOf } from './utils/kindOf';
 
 function bindActionCreator<A extends AnyAction = AnyAction>(
   actionCreator: ActionCreator<A>,

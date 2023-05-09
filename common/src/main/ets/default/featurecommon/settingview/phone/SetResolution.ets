@@ -14,27 +14,14 @@
  */
 
 import { Action } from '../../../redux/actions/Action'
-import AspectRatio from '../../../setting/settingitem/AspectRatio'
-import Resolution from '../../../setting/settingitem/Resolution'
 import Timer from '../../../setting/settingitem/Timer'
-import { CustomDialogView, CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
+import { CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView'
+import type { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
 import { Log } from '../../../utils/Log'
+import type { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store'
 import { SettingManager } from '../../../setting/SettingManager'
-import { BaseData }  from '../model/BaseData'
-import { SettingData }  from '../model/SettingData'
-
-let localState = (state) => {
-  return {}
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    closeDialog: (isCloseFlag: boolean) => {
-      dispatch(Action.closeDialog(isCloseFlag))
-    }
-  }
-}
+import type { SettingData, SettingGroupItem }  from '../model/SettingData'
 
 class StateStruct {
   closeDialog : Function
@@ -43,7 +30,7 @@ class StateStruct {
 @Component
 export struct SetResolution {
   private TAG: string = '[SetResolution]:'
-  @Link settingsList: any[]
+  @Link settingsList: SettingGroupItem[]
   @Link @Watch('onCloseDialog') closeFlag: boolean
   private itemValue: SettingData
   private getCheckValue: Promise<string>
@@ -73,7 +60,7 @@ export struct SetResolution {
     customStyle: true
   })
 
-  existView() {
+  existView(): void {
     Log.info(`${this.TAG} existView E`)
     if (this.settingManager.getSettingValue(this.itemValue.settingAlias) !== undefined) {
       this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
@@ -84,14 +71,24 @@ export struct SetResolution {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+      }
+    }, (dispatch) => {
+      return {
+        closeDialog: (isCloseFlag: boolean) => {
+          dispatch(Action.closeDialog(isCloseFlag))
+        }
+      }
+    })(this.state)
+
     if (this.settingManager.getSettingValue(this.itemValue.settingAlias) !== undefined) {
       this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
       Log.info(`${this.TAG} aboutToAppear curCheckName: ${this.curCheckName} X`)
     }
   }
 
-  public onCloseDialog() {
+  public onCloseDialog(): void {
     Log.info(`${this.TAG} onCloseDialog E`)
     if (this.customDialogDetails.setAlias !== undefined) {
       this.state.closeDialog(false)
@@ -158,8 +155,7 @@ export struct SetResolution {
   }
 
   async openDetailsDialog(itemValue): Promise<void> {
-    Log.info(`${this.TAG} openDetailsDialog start`)
-    Log.info(`${this.TAG} openDetailsDialog dataInfo ${JSON.stringify(itemValue)}`)
+    Log.info(`${this.TAG} openDetailsDialog start dataInfo ${JSON.stringify(itemValue)}`)
     // 需要根据相机能力更新这个childrenList，目前是写死状态
     this.customDialogDetails.childrenList = itemValue.radio
     this.customDialogDetails.settingTitle = itemValue.settingName

@@ -13,42 +13,12 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display'
-
 import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
-
-let localState = (state: OhCombinedState) => {
-  return {
-    recordingTime: state.RecordReducer.recordingTime,
-    recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
-    isRecordingPaused: state.RecordReducer.isRecordingPaused,
-    isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    updateRecordingTime: (recordingTime: number) => {
-      dispatch(Action.updateRecordingTime(recordingTime))
-    },
-    updateSmallVideoTimerVisible: (visible: boolean) => {
-      dispatch(Action.updateSmallVideoTimerVisible(visible))
-    },
-    updateBigVideoTimerVisible: (visible: boolean) => {
-      dispatch(Action.updateBigVideoTimerVisible(visible))
-    },
-    updateRecordingSpotVisible: (visible: boolean) => {
-      dispatch(Action.updateRecordingSpotVisible(visible))
-    },
-    updateRecordingTimeDisplay: (timeDisplay: string) => {
-      dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
-    }
-  }
-}
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
+import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 
 class StateStruct {
   recordingTime
@@ -86,7 +56,33 @@ export struct BigVideoTimer {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        recordingTime: state.RecordReducer.recordingTime,
+        recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
+        isRecordingPaused: state.RecordReducer.isRecordingPaused,
+        isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible
+      }
+    }, (dispatch) => {
+      return {
+        updateRecordingTime: (recordingTime: number): void => {
+          dispatch(Action.updateRecordingTime(recordingTime))
+        },
+        updateSmallVideoTimerVisible: (visible: boolean): void => {
+          dispatch(Action.updateSmallVideoTimerVisible(visible))
+        },
+        updateBigVideoTimerVisible: (visible: boolean): void => {
+          dispatch(Action.updateBigVideoTimerVisible(visible))
+        },
+        updateRecordingSpotVisible: (visible: boolean): void => {
+          dispatch(Action.updateRecordingSpotVisible(visible))
+        },
+        updateRecordingTimeDisplay: (timeDisplay: string): void => {
+          dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
+        }
+      }
+    })(this.state)
+
     this.setIntervalTimer()
     this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
     this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
@@ -102,7 +98,7 @@ export struct BigVideoTimer {
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
-  private setIntervalTimer() {
+  private setIntervalTimer(): void {
     clearInterval(this.timer)
     this.timer = setInterval(() => {
       this.timerTick++

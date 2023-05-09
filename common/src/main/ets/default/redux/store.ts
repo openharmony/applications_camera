@@ -13,28 +13,39 @@
  * limitations under the License.
  */
 
-import { AsyncManager, Message } from '../worker/AsyncManager'
-import { EventBusManager } from '../worker/eventbus/EventBusManager'
-import { Log } from '../utils/Log'
-import { createStore, combineReducers, applyMiddleware } from '../redux/core/ohredux/index'
-import { logger } from './middlewares/logger'
-import { reduxWorkerMiddle } from './middlewares/ReduxWorkerMiddle'
-import CameraInitReducer, { CameraInitState } from './reducers/CameraInitReducer'
-import ContextReducer, { ContextState } from './reducers/ContextReducer'
-import CameraReducer, { CameraState } from './reducers/CameraReducer'
-import PreviewReducer, { PreviewState } from './reducers/PreviewReducer'
-import CaptureReducer, { CaptureState } from './reducers/CaptureReducer'
-import ModeChangeReducer, { ModeChangeState } from './reducers/ModeChangeReducer'
-import ModeReducer, { ModeState } from './reducers/ModeReducer'
-import SettingReducer, { SettingState } from './reducers/SettingReducer'
-import RecordReducer, { RecordState } from './reducers/RecordReducer'
-import ZoomReducer, { ZoomState } from './reducers/ZoomReducer'
-import { ActionData } from './actions/Action'
-import { CombinedState, Dispatch, Unsubscribe } from './core/redux'
-import { MapDispatchProp, MapStateProp } from './core/ohredux/connect'
+import { AsyncManager } from '../worker/AsyncManager';
+import type { Message } from '../worker/AsyncManager';
+import { EventBusManager } from '../worker/eventbus/EventBusManager';
+import { Log } from '../utils/Log';
+import { createStore, combineReducers, applyMiddleware } from '../redux/core/ohredux/index';
+import { logger } from './middlewares/logger';
+import { reduxWorkerMiddle } from './middlewares/ReduxWorkerMiddle';
+import CameraInitReducer from './reducers/CameraInitReducer';
+import type { CameraInitState } from './reducers/CameraInitReducer';
+import ContextReducer from './reducers/ContextReducer';
+import type { ContextState } from './reducers/ContextReducer';
+import CameraReducer from './reducers/CameraReducer';
+import type { CameraState } from './reducers/CameraReducer';
+import PreviewReducer from './reducers/PreviewReducer';
+import type { PreviewState } from './reducers/PreviewReducer';
+import CaptureReducer from './reducers/CaptureReducer';
+import type { CaptureState } from './reducers/CaptureReducer';
+import ModeChangeReducer from './reducers/ModeChangeReducer';
+import type { ModeChangeState } from './reducers/ModeChangeReducer';
+import ModeReducer from './reducers/ModeReducer';
+import type { ModeState } from './reducers/ModeReducer';
+import SettingReducer from './reducers/SettingReducer';
+import type { SettingState } from './reducers/SettingReducer';
+import RecordReducer from './reducers/RecordReducer';
+import type { RecordState } from './reducers/RecordReducer';
+import ZoomReducer from './reducers/ZoomReducer';
+import type { ZoomState } from './reducers/ZoomReducer';
+import type { ActionData } from './actions/Action';
+import type { CombinedState, Dispatch, Unsubscribe } from './core/redux';
+import type { MapDispatchProp, MapStateProp } from './core/ohredux/connect';
 
-const TAG = '[store]:'
-const STORE_KEY = 'CAMERA_REDUX_STORE'
+const TAG = '[store]:';
+const STORE_KEY = 'CAMERA_REDUX_STORE';
 
 export type OhCombinedState = CombinedState<{
   CameraInitReducer: CameraInitState;
@@ -83,5 +94,5 @@ export function getStore(): {
     }
 
   }
-  return AppStorage.Get(STORE_KEY)
+  return AppStorage.Get(STORE_KEY);
 }
