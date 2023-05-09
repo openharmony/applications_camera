@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import geolocation from '@ohos.geolocation'
-
 import AspectRatio from '../setting/settingitem/AspectRatio'
 import AssistiveGrid from '../setting/settingitem/AssistiveGrid'
 import { CameraId } from './settingitem/CameraId'
@@ -65,7 +63,7 @@ export class SettingManager {
     return AppStorage.Get(Constants.APP_KEY_SETTINGS_UTILS)
   }
 
-  public setSettingValue(settingAlias, itemValue, mode: string) {
+  public setSettingValue(settingAlias, itemValue, mode: string): void {
     Log.info(`${SettingManager.TAG} settingAlias = ${settingAlias} itemValue= ${itemValue}`)
     let needCommit = false
     if (settingAlias == AspectRatio.ALIAS) {
@@ -162,7 +160,7 @@ export class SettingManager {
     Log.info(`${SettingManager.TAG} loadAllSetting X`)
   }
 
-  private setDefault(force: boolean) {
+  private setDefault(force: boolean): void {
     if (!this.mAspectRatio || force) {
       this.mAspectRatio = AspectRatio.DEFAULT_VALUE
     }
@@ -183,7 +181,7 @@ export class SettingManager {
     }
   }
 
-  public restoreValues(mode: string) {
+  public restoreValues(mode: string): void {
     for (let i = 0; i < this.mSettingsList.length; i++) {
       this.setSettingValue(this.mSettingsList[i].ALIAS, this.mSettingsList[i].DEFAULT_VALUE, mode)
     }
@@ -202,11 +200,11 @@ export class SettingManager {
   private mPlatformCapability
   private mCameraId: string
 
-  public setCameraPlatformCapability(platformCapability) {
+  public setCameraPlatformCapability(platformCapability): void {
     this.mPlatformCapability = platformCapability
   }
 
-  public setCameraId(cameraId: string) {
+  public setCameraId(cameraId: string): void {
     this.mCameraId = cameraId
   }
 
@@ -218,11 +216,11 @@ export class SettingManager {
     return Resolution.getVideoFrameSize(this.mPlatformCapability, this.mCameraId, this.mResolution)
   }
 
-  public setScreenWidth(width: number) {
+  public setScreenWidth(width: number): void {
     this.mScreenWidth = width
   }
 
-  public setScreenHeight(height: number) {
+  public setScreenHeight(height: number): void {
     this.mScreenHeight = height
   }
 
@@ -255,7 +253,7 @@ export class SettingManager {
     return this.mSaveGeoLocation === '1'
   }
 
-  public setCurGeoLocation(location) {
+  public setCurGeoLocation(location): void {
     this.mCurGeoLocation = location
   }
 
@@ -267,7 +265,7 @@ export class SettingManager {
     }
   }
 
-  public getVideoCodec() {
+  public getVideoCodec(): string {
     if (this.mVideoCodec === '1') {
       return 'video/mp4v-es'
     } else {

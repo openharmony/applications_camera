@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import { CameraPlatformCapability } from '../../camera/CameraPlatformCapability'
-import { Action, ActionData } from '../actions/Action'
+import type { CameraPlatformCapability } from '../../camera/CameraPlatformCapability';
+import type { ActionData } from '../actions/Action';
+import { Action } from '../actions/Action';
 
 export type CameraInitState = {
   platformCapability: CameraPlatformCapability | undefined,
@@ -32,15 +33,23 @@ const initState: CameraInitState = {
 
 export default function CameraInitReducer(state = initState, action: ActionData): CameraInitState {
   switch (action.type) {
-  case Action.ACTION_INIT_DONE:
-    return { ...state, platformCapability: action.data.platformCapability}
-  case Action.ACTION_UPDATE_THUMBNAIL:
-    return { ...state, thumbnail: action.data.thumbnail, resourceUri: action.data.resourceUri }
-  case Action.ACTION_LOAD_THUMBNAIL:
-    return { ...state, thumbnail: action.data.thumbnail }
-  case Action.ACTION_UPDATE_VIDEO_URI:
-    return { ...state, videoUri: action.data.videoUri }
-  default:
-    return state;
+    case Action.ACTION_INIT_DONE:
+      return {
+        ...state, platformCapability: action.data.platformCapability
+      };
+    case Action.ACTION_UPDATE_THUMBNAIL:
+      return {
+        ...state, thumbnail: action.data.thumbnail, resourceUri: action.data.resourceUri
+      };
+    case Action.ACTION_LOAD_THUMBNAIL:
+      return {
+        ...state, thumbnail: action.data.thumbnail
+      };
+    case Action.ACTION_UPDATE_VIDEO_URI:
+      return {
+        ...state, videoUri: action.data.videoUri
+      };
+    default:
+      return state;
   }
 }

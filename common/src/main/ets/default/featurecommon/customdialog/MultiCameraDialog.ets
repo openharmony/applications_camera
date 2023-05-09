@@ -17,22 +17,9 @@ import { CameraService } from '../../camera/CameraService'
 import { CameraId } from '../../setting/settingitem/CameraId'
 import { Log } from '../../utils/Log'
 import EntryComponentForMulti from './EntryComponentForMulti'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
-
-let localState = (state) => {
-  return {}
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    changeCameraPosition: (cameraPosition: string) => {
-      dispatch(Action.uiState(false))
-      dispatch(Action.switchCamera(cameraPosition))
-      dispatch(Action.resetZoomRatio(1))
-    },
-  }
-}
 
 let storageCameraId = AppStorage.Link('storageCameraId')
 
@@ -52,7 +39,6 @@ export default struct MultiCameraDialog {
     CameraId.BACK
   ]
   @State private moreList: string[] = []
-  private multiCameraMap = new Map()
   @State state: StateStruct = new StateStruct()
   @State isShowMore: boolean = false
   @State gridColumns: number = 12
@@ -62,14 +48,26 @@ export default struct MultiCameraDialog {
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear.`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+
+      }
+    }, (dispatch) => {
+      return {
+        changeCameraPosition: (cameraPosition: string): void => {
+          dispatch(Action.uiState(false))
+          dispatch(Action.switchCamera(cameraPosition))
+          dispatch(Action.resetZoomRatio(1))
+        }
+      }
+    })(this.state)
+
     this.cameraService.getMultiCameraInfo(() => {
       let cameraMap = new Map(this.cameraService.getCameraMap())
       let keys = cameraMap.keys()
       this.moreList = [...keys]
       Log.info(`${this.TAG} cameraMap length: ${this.moreList.length}`)
       if (this.moreList.length !== 0) {
-        this.multiCameraMap = cameraMap
         this.isShowMore = true
         Log.info(`${this.TAG} getMultiCameraInfo finished.`)
       } else {

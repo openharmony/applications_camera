@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { EventBus } from './EventBus'
+import { EventBus } from './EventBus';
+import { Log } from '../../utils/Log';
 
 export class EventBusManager {
   // The global eventbus of the application process. Event registration and destruction should be paired
@@ -26,7 +27,7 @@ export class EventBusManager {
   public static getInstance(): EventBusManager {
     if (!globalThis?.sInstanceEventBus) {
       globalThis.sInstanceEventBus = new EventBusManager();
-      console.info('EventBusManager create a new EventBus')
+      Log.info('EventBusManager create a new EventBus');
     }
     return globalThis.sInstanceEventBus;
   }

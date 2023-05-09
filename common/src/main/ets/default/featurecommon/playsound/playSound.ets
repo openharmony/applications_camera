@@ -18,7 +18,7 @@ import fileIO from '@ohos.fileio'
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
-import { EventBus } from '../../worker/eventbus/EventBus'
+import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import { SettingManager } from '../../setting/SettingManager'
 import { Voice } from '../../setting/settingitem/Voice'
@@ -43,7 +43,7 @@ export class PlaySound {
     })
   }
 
-  setAVPlayerCallback() {
+  setAVPlayerCallback(): void {
     Log.info(`${this.TAG} setAudioCallback`)
     this.mAVPlayer.on('stateChange', async (state, reason) => {
       switch (state) {
@@ -94,23 +94,7 @@ export class PlaySound {
     return globalThis.sInstancePlaySound;
   }
 
-  private playRecordStart(data) {
-    Log.debug(`${this.TAG} playRecordStart invoke E`)
-    if (this.settingManager.getCaptureMute() == Voice.SOUND) {
-      this.playSound(Voice.RECORD_START_URI)
-    }
-    Log.debug(`${this.TAG} playRecordStart invoke X`)
-  }
-
-  private playRecordStop(data) {
-    Log.debug(`${this.TAG} playRecordStop invoke E`)
-    if (this.settingManager.getCaptureMute() == Voice.SOUND) {
-      this.playSound(Voice.RECORD_STOP_URI)
-    }
-    Log.debug(`${this.TAG} playRecordStop invoke X`)
-  }
-
-  private playCapture(data) {
+  private playCapture(data): void {
     Log.debug(`${this.TAG} playCapture invoke E`)
     if (this.settingManager.getCaptureMute() == Voice.SOUND) {
       this.playSound(Voice.CAPTURE_URI)

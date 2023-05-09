@@ -44,37 +44,37 @@ export class Log {
   static readonly ABILITY_WHOLE_LIFE: string = 'abilityWholeLife';
   static readonly X_COMPONENT_LIFE: string = 'XComponentLife';
 
-  public static debug(message: string) {
+  public static debug(message: string): void {
     if (this.LOG_LEVEL <= this.LEVEL_DEBUG) {
       HiLog.debug(this.DOMAIN, this.TAG, message)
     }
   }
 
-  public static log(message: string) {
+  public static log(message: string): void {
     if (this.LOG_LEVEL <= this.LEVEL_LOG) {
       HiLog.info(this.DOMAIN, this.TAG, message)
     }
   }
 
-  public static info(message: string) {
+  public static info(message: string): void {
     if (this.LOG_LEVEL <= this.LEVEL_INFO) {
       HiLog.info(this.DOMAIN, this.TAG, message)
     }
   }
 
-  public static warn(message: string) {
+  public static warn(message: string): void {
     if (this.LOG_LEVEL <= this.LEVEL_WARN) {
       HiLog.warn(this.DOMAIN, this.TAG, message)
     }
   }
 
-  public static error(message: string) {
+  public static error(message: string): void {
     if (this.LOG_LEVEL <= this.LEVEL_ERROR) {
       HiLog.error(this.DOMAIN, this.TAG, message)
     }
   }
 
-  static start(methodName: string) {
+  static start(methodName: string): void {
     this.info(methodName + this.TRACE_LOG_BEGIN)
     if (!this.RECORD_TRACE) return;
     if (typeof globalThis.taskIdMap === 'undefined' || typeof globalThis.traceIndex === 'undefined') {
@@ -89,12 +89,12 @@ export class Log {
     hiTraceMeter.startTrace(methodName, taskId);
   }
 
-  private static init() {
+  private static init(): void {
     globalThis.taskIdMap = new Map<string, number>();
     globalThis.traceIndex = this.TRACE_BASE_INDEX;
   }
 
-  static end(methodName: string) {
+  static end(methodName: string): void {
     this.info(methodName + this.TRACE_LOG_END)
     if (!this.RECORD_TRACE) return;
     if (typeof globalThis.taskIdMap === 'undefined') {

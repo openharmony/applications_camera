@@ -14,24 +14,10 @@
  */
 
 import { Log } from '../../utils/Log'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import EventLog from '../../utils/EventLog'
-
-let tabBarState = (state) => {
-  return {
-    isThirdPartyCall: state.ContextReducer.isThirdPartyCall
-  }
-}
-
-let tabBarDispatcher = (dispatch) => {
-  return {
-    showSettingView: () => {
-      EventLog.write(EventLog.CLICK_SETTINGS)
-      dispatch(Action.showSettingView(true))
-    },
-  }
-}
 
 class StateStruct {
   isThirdPartyCall
@@ -46,7 +32,16 @@ export struct TabBar {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    getStore().connect(tabBarState, tabBarDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        xComponentWidth: state.PreviewReducer.xComponentWidth,
+        xComponentHeight: state.PreviewReducer.xComponentHeight
+      }
+    }, (dispatch) => {
+      return {
+      }
+    })(this.state)
+
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 

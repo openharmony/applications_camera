@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { ActionData } from '../actions/Action'
-import { ACTION_CHANGE_PREVIEW_SIZE, ACTION_CHANGE_SHUTTER_BUTTON } from '../actions/ModeChange'
-import { UIDATA_TAB_ITEM } from '../actions/UiData'
+import type { ActionData } from '../actions/Action';
+import { ACTION_CHANGE_PREVIEW_SIZE, ACTION_CHANGE_SHUTTER_BUTTON } from '../actions/ModeChange';
+import { UIDATA_TAB_ITEM } from '../actions/UiData';
 
 export type ModeChangeState = {
   number: number,
@@ -31,13 +31,19 @@ const initState: ModeChangeState = {
 
 export default function ModeChangeReducer(state = initState, action: ActionData): ModeChangeState {
   switch (action.type) {
-  case ACTION_CHANGE_PREVIEW_SIZE:
-    return { ...state, number: action.data.size}
-  case ACTION_CHANGE_SHUTTER_BUTTON:
-    return { ...state, res: action.data.res}
-  case UIDATA_TAB_ITEM:
-    return { ...state, tabItem: action.data.tabItem}
-  default:
-    return state;
+    case ACTION_CHANGE_PREVIEW_SIZE:
+      return {
+        ...state, number: action.data.size
+      };
+    case ACTION_CHANGE_SHUTTER_BUTTON:
+      return {
+        ...state, res: action.data.res
+      };
+    case UIDATA_TAB_ITEM:
+      return {
+        ...state, tabItem: action.data.tabItem
+      };
+    default:
+      return state;
   }
 }

@@ -17,12 +17,13 @@ import { SettingManager } from '../../../setting/SettingManager'
 import { Log } from '../../../utils/Log'
 import { SetResolution } from './SetResolution'
 import { SetToggle } from './SetToggle'
-import { BaseData }  from '../model/BaseData'
+import type { BaseData }  from '../model/BaseData'
+import type { SettingData, SettingGroupItem } from '../model/SettingData'
 
 @Component
 export struct SettingItem {
   private TAG: string = '[SettingItem]:'
-  @Link settingsList: any[]
+  @Link settingsList: SettingGroupItem[]
   @Link closeFlag: Boolean
   private item: BaseData
   private index: number
@@ -61,7 +62,7 @@ export struct SettingItem {
 
       Column() {
         List() {
-          ForEach(this.item.settingChildren, (itemValue) => {
+          ForEach(this.item.settingChildren, (itemValue: SettingData) => {
             ListItem() {
               Column() {
                 if (itemValue.selectType === "radio") {

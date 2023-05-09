@@ -13,31 +13,30 @@
  * limitations under the License.
  */
 
-import { PhotoMode } from '@ohos/photo'
-import { VideoMode } from '@ohos/video'
-import { MultiMode } from '@ohos/multi'
-import { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId'
-import { IModeMap } from '@ohos/common/src/main/ets/default/featureservice/IModeMap'
+import { PhotoMode } from '@ohos/photo';
+import { VideoMode } from '@ohos/video';
+import { MultiMode } from '@ohos/multi';
+import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId';
+import type { IModeMap } from '@ohos/common/src/main/ets/default/featureservice/IModeMap';
 
 export class ModeMap implements IModeMap {
-  private TAG: string = '[Mode]:'
-  private photoMode: PhotoMode = new PhotoMode()
-  private videoMode: VideoMode = new VideoMode()
-  private multiMode: MultiMode = new MultiMode()
+  private photoMode: PhotoMode = new PhotoMode();
+  private videoMode: VideoMode = new VideoMode();
+  private multiMode: MultiMode = new MultiMode();
 
   public getFunctions(mode: string): FunctionId[] {
     switch (mode) {
       case 'PHOTO':
-        return this.photoMode.getFunctions()
+        return this.photoMode.getFunctions();
         break;
       case 'VIDEO':
-        return this.videoMode.getFunctions()
+        return this.videoMode.getFunctions();
         break;
       case 'MULTI':
-        return this.multiMode.getFunctions()
+        return this.multiMode.getFunctions();
         break;
       default:
-        return []
+        return [];
     }
   }
 }

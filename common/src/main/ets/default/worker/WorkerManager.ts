@@ -13,34 +13,35 @@
  * limitations under the License.
  */
 
-import worker from '@ohos.worker'
+import worker from '@ohos.worker';
 
-import { ActionHandler } from './ActionHandler'
-import { Log } from '../utils/Log'
-import { EventBus } from './eventbus/EventBus'
-import { EventBusManager } from './eventbus/EventBusManager'
+import { ActionHandler } from './ActionHandler';
+import { Log } from '../utils/Log';
+import type { EventBus } from './eventbus/EventBus';
+import { EventBusManager } from './eventbus/EventBusManager';
+
+const TAG = '[WorkerManager]:';
 
 export class WorkerManager {
-  private TAG = '[WorkerManager]:'
-  private actionHandler: ActionHandler = new ActionHandler()
-  static parentPort = worker.parentPort
-  private _appEventBus: EventBus = EventBusManager.getCameraInstance().getEventBus()
+  static parentPort = worker.parentPort;
+  private actionHandler: ActionHandler = new ActionHandler();
+  private _appEventBus: EventBus = EventBusManager.getCameraInstance().getEventBus();
 
   public onMessage(action: any): void {
-    Log.info(`${this.TAG} action from main thread: ${JSON.stringify(action)}`)
-    this.actionHandler.handleAction(action)
+    Log.info(`${TAG} action from main thread: ${JSON.stringify(action)}`);
+    this.actionHandler.handleAction(action);
   }
 
   //todo 预留实现，待能力稳定后开放
   //  // worker线程中通过该方法向UI线程发送消息，消息中包含type和data
   //  public postMessage(msg: any): void {
-  //    Log.info(`${this.TAG} postMessage: ${JSON.stringify(msg)}`)
+  //    Log.info(`${TAG} postMessage: ${JSON.stringify(msg)}`)
   //    WorkerManager.parentPort.postMessage(msg)
   //  }
 
   // worker线程中通过该方法向UI线程发送消息，消息中包含type和data
   public postMessage(msg: any): void {
-    Log.info(`${this.TAG} postMessage: ${JSON.stringify(msg)}`)
-    this._appEventBus.emit('WORKER_TO_MAIN', [msg])
+    Log.info(`${TAG} postMessage: ${JSON.stringify(msg)}`);
+    this._appEventBus.emit('WORKER_TO_MAIN', [msg]);
   }
 }

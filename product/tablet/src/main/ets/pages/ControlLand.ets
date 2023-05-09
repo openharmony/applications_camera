@@ -15,53 +15,13 @@
 
 import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
 import { ComponentPosition }  from '@ohos/common/src/main/ets/default/utils/ComponentPosition'
-import { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
+import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { PersistType, PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
-
-let controlLandState = (state: OhCombinedState) => {
-  return {
-    isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-    isFaCall: state.ContextReducer.isFaCall,
-    action: state.ContextReducer.action,
-    uiEnable: state.ContextReducer.uiEnable,
-    modeIndex: state.ModeReducer.modeIndex,
-    mode: state.ModeReducer.mode,
-    isShowMoreList: state.ModeReducer.isShowMoreList,
-  }
-}
-
-let controlLandDispatcher = (dispatch) => {
-  return {
-    changeToMode: (mode: string) => {
-      dispatch(Action.uiState(false))
-      dispatch(Action.updateMode(mode))
-      dispatch(Action.changeMode(mode))
-      dispatch(Action.updateShowBigTextFlag(true))
-    },
-    updateModeIndex: (index: number) => {
-      dispatch(Action.updateModeIndex(index))
-    },
-    updateShowMoreList: (isShowMoreList) => {
-      dispatch(Action.updateShowMoreList(isShowMoreList))
-    },
-    thirdPartyCall: (isThirdPartyCall: boolean, action: string) => {
-      dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
-    },
-    initAction: (action: string) => {
-      dispatch(Action.initAction(action))
-    },
-    initMode: (mode: string) => {
-      dispatch(Action.initMode(mode))
-    },
-    changeXComponentSize: (xComponentWidth: number, xComponentHeight: number) => {
-      dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
-    },
-  }
-}
 
 class StateStruct {
   isThirdPartyCall
@@ -106,7 +66,45 @@ export struct ControlLand {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
-    this.mConnect = getStore().connect(controlLandState, controlLandDispatcher)(this.state)
+    this.mConnect = getStore().connect((state: OhCombinedState) => {
+      return {
+        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+        isFaCall: state.ContextReducer.isFaCall,
+        action: state.ContextReducer.action,
+        uiEnable: state.ContextReducer.uiEnable,
+        modeIndex: state.ModeReducer.modeIndex,
+        mode: state.ModeReducer.mode,
+        isShowMoreList: state.ModeReducer.isShowMoreList
+      }
+    }, (dispatch) => {
+      return {
+        changeToMode: (mode: string): void => {
+          dispatch(Action.uiState(false))
+          dispatch(Action.updateMode(mode))
+          dispatch(Action.changeMode(mode))
+          dispatch(Action.updateShowBigTextFlag(true))
+        },
+        updateModeIndex: (index: number): void => {
+          dispatch(Action.updateModeIndex(index))
+        },
+        updateShowMoreList: (isShowMoreList: boolean): void => {
+          dispatch(Action.updateShowMoreList(isShowMoreList))
+        },
+        thirdPartyCall: (isThirdPartyCall: boolean, action: string): void => {
+          dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
+        },
+        initAction: (action: string): void => {
+          dispatch(Action.initAction(action))
+        },
+        initMode: (mode: string): void => {
+          dispatch(Action.initMode(mode))
+        },
+        changeXComponentSize: (xComponentWidth: number, xComponentHeight: number): void => {
+          dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
+        }
+      }
+    })(this.state)
+
     this.appEventBus.on(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
     Log.info(`${this.TAG} aboutToAppear X`)
   }
@@ -118,13 +116,7 @@ export struct ControlLand {
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
-  private closeMoreListView() {
-    if (this.state.isShowMoreList) {
-      this.state.updateShowMoreList(false)
-    }
-  }
-
-  private changeToMode(modeIndex: number, callType?: string) {
+  private changeToMode(modeIndex: number, callType?: string): void {
     Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
     this.scroller.scrollToIndex(modeIndex)
     if (callType === 'begin') return;
@@ -147,11 +139,11 @@ export struct ControlLand {
     }
   }
 
-  private swipeChangeMode(data) {
+  private swipeChangeMode(data): void {
     this.changeToMode(data.swipeModeIndex)
   }
 
-  private scrollSwitchMode(callType: string) {
+  private scrollSwitchMode(callType: string): void {
     if (this.index == 1 && Math.abs(this.scrollDistance) <= px2vp(20)) {
       this.changeToMode(1, callType)
     }

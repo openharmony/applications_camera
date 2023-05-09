@@ -13,31 +13,32 @@
  * limitations under the License.
  */
 
-import { Action, UiStateMode } from '../redux/actions/Action'
-import { CameraService } from '../camera/CameraService'
-import { EventBus } from '../worker/eventbus/EventBus'
-import { EventBusManager } from '../worker/eventbus/EventBusManager'
-import { WorkerManager } from '../worker/WorkerManager'
+import { Action } from '../redux/actions/Action';
+import type { UiStateMode } from '../redux/actions/Action';
+import { CameraService } from '../camera/CameraService';
+import type { EventBus } from '../worker/eventbus/EventBus';
+import { EventBusManager } from '../worker/eventbus/EventBusManager';
+import { WorkerManager } from '../worker/WorkerManager';
 
 export abstract class BaseFunction {
-  protected mCameraService: CameraService = CameraService.getInstance()
-  protected mWorkerManager: WorkerManager = new WorkerManager()
-  protected mEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  protected mCameraService: CameraService = CameraService.getInstance();
+  protected mWorkerManager: WorkerManager = new WorkerManager();
+  protected mEventBus: EventBus = EventBusManager.getInstance().getEventBus();
 
-  protected enableUi() {
-    this.mWorkerManager.postMessage(Action.uiState(true))
+  protected enableUi(): void {
+    this.mWorkerManager.postMessage(Action.uiState(true));
   }
 
-  protected disableUi() {
-    this.mWorkerManager.postMessage(Action.uiState(false))
+  protected disableUi(): void {
+    this.mWorkerManager.postMessage(Action.uiState(false));
   }
 
-  protected enableUiWithMode(uiStateMode: UiStateMode) {
-    this.mWorkerManager.postMessage(Action.uiStateWithMode(true, uiStateMode))
+  protected enableUiWithMode(uiStateMode: UiStateMode): void {
+    this.mWorkerManager.postMessage(Action.uiStateWithMode(true, uiStateMode));
   }
 
-  protected disableUiWithMode(uiStateMode: UiStateMode) {
-    this.mWorkerManager.postMessage(Action.uiStateWithMode(false, uiStateMode))
+  protected disableUiWithMode(uiStateMode: UiStateMode): void {
+    this.mWorkerManager.postMessage(Action.uiStateWithMode(false, uiStateMode));
   }
 
   abstract load(): void

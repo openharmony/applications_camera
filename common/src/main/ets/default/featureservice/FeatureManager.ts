@@ -13,51 +13,53 @@
  * limitations under the License.
  */
 
-import { Action } from '../redux/actions/Action'
-import { CameraBasicFunction } from '../function/CameraBasicFunction'
-import { CaptureFunction } from '../function/CaptureFunction'
-import { Log } from '../utils/Log'
-import { FunctionId } from './FunctionId'
-import { EventBus } from '../worker/eventbus/EventBus'
-import { EventBusManager } from '../worker/eventbus/EventBusManager'
-import { ModeAssembler } from './ModeAssembler'
-import { RecordFunction } from '../function/RecordFunction'
-import { WorkerManager } from '../worker/WorkerManager'
-import { ZoomFunction } from '../function/ZoomFunction'
-import { IModeMap } from './IModeMap'
+import { Action } from '../redux/actions/Action';
+import { CameraBasicFunction } from '../function/CameraBasicFunction';
+import { CaptureFunction } from '../function/CaptureFunction';
+import { Log } from '../utils/Log';
+import { FunctionId } from './FunctionId';
+import type { EventBus } from '../worker/eventbus/EventBus';
+import { EventBusManager } from '../worker/eventbus/EventBusManager';
+import { ModeAssembler } from './ModeAssembler';
+import { RecordFunction } from '../function/RecordFunction';
+import { WorkerManager } from '../worker/WorkerManager';
+import { ZoomFunction } from '../function/ZoomFunction';
+import type { IModeMap } from './IModeMap';
+
+const TAG = '[FeatureManager]:';
+
 export class FeatureManager {
-  private TAG: string = '[FeatureManager]:'
-  private mModeAssembler: ModeAssembler
-  private mPreMode: string = 'PHOTO'
-  public mCurrentMode: string = this.mPreMode
-  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  private mFunctionsMap = new Map()
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private mModeAssembler: ModeAssembler;
+  private mPreMode: string = 'PHOTO';
+  public mCurrentMode: string = this.mPreMode;
+  private mFunctionsMap = new Map();
 
   constructor(mode: string, modeMap: IModeMap) {
-    Log.info(`${this.TAG} constructor`)
-    this.initFunctionsMap()
-    this.mModeAssembler = new ModeAssembler(this.mFunctionsMap, modeMap)
-    this.mPreMode = mode
-    this.mCurrentMode = mode
-    this.mFunctionsMap.get(FunctionId.CAMERA_BASIC_FUNCTION).load()
-    this.mModeAssembler.assembler(null, this.mPreMode)
+    Log.info(`${TAG} constructor`);
+    this.initFunctionsMap();
+    this.mModeAssembler = new ModeAssembler(this.mFunctionsMap, modeMap);
+    this.mPreMode = mode;
+    this.mCurrentMode = mode;
+    this.mFunctionsMap.get(FunctionId.CAMERA_BASIC_FUNCTION).load();
+    this.mModeAssembler.assembler(null, this.mPreMode);
     // 接收到modeChange的消息，调用changeMode做处理
-    this.appEventBus.on(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
+    this.appEventBus.on(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this));
   }
 
   public changeMode(data: any): void {
     // 外部条件触发mode切换，传入下一个mode名称
-    Log.info(`${this.TAG} changeMode start data:  ${JSON.stringify(data)}`)
-    this.mModeAssembler.assembler(this.mPreMode, data.mode)
-    this.mPreMode = data.mode
+    Log.info(`${TAG} changeMode start data:  ${JSON.stringify(data)}`);
+    this.mModeAssembler.assembler(this.mPreMode, data.mode);
+    this.mPreMode = data.mode;
   }
 
   private initFunctionsMap(): void {
-    Log.info(`${this.TAG} initFunctionsMap invoke E.`)
-    this.mFunctionsMap.set(FunctionId.CAMERA_BASIC_FUNCTION, CameraBasicFunction.getInstance())
-    this.mFunctionsMap.set(FunctionId.CAPTURE_FUNCTION, new CaptureFunction())
-    this.mFunctionsMap.set(FunctionId.RECORDING_FUNCTION, new RecordFunction())
-    this.mFunctionsMap.set(FunctionId.ZOOM_FUNCTION, new ZoomFunction())
-    Log.info(`${this.TAG} initFunctionsMap invoke X.`)
+    Log.info(`${TAG} initFunctionsMap invoke E.`);
+    this.mFunctionsMap.set(FunctionId.CAMERA_BASIC_FUNCTION, CameraBasicFunction.getInstance());
+    this.mFunctionsMap.set(FunctionId.CAPTURE_FUNCTION, new CaptureFunction());
+    this.mFunctionsMap.set(FunctionId.RECORDING_FUNCTION, new RecordFunction());
+    this.mFunctionsMap.set(FunctionId.ZOOM_FUNCTION, new ZoomFunction());
+    Log.info(`${TAG} initFunctionsMap invoke X.`);
   }
 }

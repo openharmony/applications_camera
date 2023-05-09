@@ -14,20 +14,11 @@
  */
 
 import { Log } from '../../utils/Log'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 
-let localState = (state) => {
-  return {
-    zoomRatio: state.ZoomReducer.zoomRatio
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {}
-}
-
 class StateStruct {
-  zoomRatio
+  zoomRatio: number
 }
 
 @Component
@@ -38,7 +29,14 @@ export struct ZoomText {
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        zoomRatio: state.ZoomReducer.zoomRatio
+      }
+    }, (dispatch) => {
+      return {
+      }
+    })(this.state)
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 

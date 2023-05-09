@@ -16,21 +16,8 @@ import deviceInfo from '@ohos.deviceInfo';
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
-
-let localState = (state) => {
-  return {
-    modeIndex: state.ModeReducer.modeIndex
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    swipeChangeMode: (swipeModeIndex) => {
-      dispatch(Action.swipeChangeMode(swipeModeIndex))
-    }
-  }
-}
 
 class MoreListInfo {
   itemIcon: string | Resource = ''
@@ -66,12 +53,23 @@ export struct MoreList {
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        modeIndex: state.ModeReducer.modeIndex
+      }
+    }, (dispatch) => {
+      return {
+        swipeChangeMode: (swipeModeIndex: number): void => {
+          dispatch(Action.swipeChangeMode(swipeModeIndex))
+        }
+      }
+    })(this.state)
+
     this.setDirection()
     Log.info(`${this.TAG} aboutToAppear end`)
   }
 
-  private setDirection() {
+  private setDirection(): void {
     switch (deviceInfo.deviceType) {
       case 'PAD':
         this.mDirection = PanDirection.Down

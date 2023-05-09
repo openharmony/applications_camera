@@ -17,68 +17,13 @@ import router from "@system.router"
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
-import { EventBus } from '../../worker/eventbus/EventBus'
+import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import type { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
 import { ComponentPosition } from '../../utils/ComponentPosition'
-
-let localState = (state) => {
-  return {
-    uiEnable: state.ContextReducer.uiEnable,
-    shutterIcon: state.CameraReducer.shutterIcon,
-    videoState: state.RecordReducer.videoState,
-    mode: state.ModeReducer.mode,
-    videoUri: state.CameraInitReducer.videoUri,
-    resourceUri: state.CameraInitReducer.resourceUri,
-    isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-    xComponentWidth: state.PreviewReducer.xComponentWidth,
-    xComponentHeight: state.PreviewReducer.xComponentHeight,
-  }
-}
-
-let localDispatcher = (dispatch) => {
-  return {
-    updateSmallVideoTimerVisible: (visible: boolean) => {
-      dispatch(Action.updateSmallVideoTimerVisible(visible))
-    },
-//    updateCaptureBtnScale: (scale: number) => {
-//      dispatch(Action.updateCaptureBtnScale(scale))
-//    },
-    updateShutterIcon: (icon: Resource) => {
-      dispatch(Action.updateShutterIcon(icon))
-    },
-    capture: () => {
-      dispatch(Action.updateShowFlashBlackFlag(true))
-      dispatch(Action.capture())
-    },
-    startRecording: () => {
-      dispatch(Action.startRecording())
-      dispatch(Action.updateVideoState('startTakeVideo'))
-      dispatch(Action.updateBigVideoTimerVisible(true))
-      dispatch(Action.updateScreenStatus(true))
-    },
-    pauseRecording: () => {
-      dispatch(Action.pauseRecording())
-      dispatch(Action.updateVideoState('pauseTakeVideo'))
-    },
-    resumeRecording: () => {
-      dispatch(Action.resumeRecording())
-      dispatch(Action.updateVideoState('startTakeVideo'))
-    },
-    stopRecording: () => {
-      dispatch(Action.stopRecording())
-      dispatch(Action.updateVideoState('beforeTakeVideo'))
-      dispatch(Action.updateBigVideoTimerVisible(false))
-      dispatch(Action.updateSmallVideoTimerVisible(false))
-      dispatch(Action.updateScreenStatus(false))
-    },
-    changeTimeLapse: (isShowtimeLapse: boolean) => {
-      dispatch(Action.changeTimeLapse(isShowtimeLapse))
-    }
-  }
-}
 
 class StateStruct {
   uiEnable
@@ -122,7 +67,56 @@ export struct ShutterButtonLand {
 
   aboutToAppear(): void {
     Log.debug(`${this.TAG} aboutToAppear E`)
-    getStore().connect(localState, localDispatcher)(this.state)
+    getStore().connect((state: OhCombinedState) => {
+      return {
+        uiEnable: state.ContextReducer.uiEnable,
+        shutterIcon: state.CameraReducer.shutterIcon,
+        videoState: state.RecordReducer.videoState,
+        mode: state.ModeReducer.mode,
+        videoUri: state.CameraInitReducer.videoUri,
+        resourceUri: state.CameraInitReducer.resourceUri,
+        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+        xComponentWidth: state.PreviewReducer.xComponentWidth,
+        xComponentHeight: state.PreviewReducer.xComponentHeight
+      }
+    }, (dispatch) => {
+      return {
+        updateSmallVideoTimerVisible: (visible: boolean) : void => {
+          dispatch(Action.updateSmallVideoTimerVisible(visible))
+        },
+        updateShutterIcon: (icon: Resource) : void => {
+          dispatch(Action.updateShutterIcon(icon))
+        },
+        capture: () : void => {
+          dispatch(Action.updateShowFlashBlackFlag(true))
+          dispatch(Action.capture())
+        },
+        startRecording: () : void => {
+          dispatch(Action.startRecording())
+          dispatch(Action.updateVideoState('startTakeVideo'))
+          dispatch(Action.updateBigVideoTimerVisible(true))
+          dispatch(Action.updateScreenStatus(true))
+        },
+        pauseRecording: () : void => {
+          dispatch(Action.pauseRecording())
+          dispatch(Action.updateVideoState('pauseTakeVideo'))
+        },
+        resumeRecording: () : void => {
+          dispatch(Action.resumeRecording())
+          dispatch(Action.updateVideoState('startTakeVideo'))
+        },
+        stopRecording: () : void => {
+          dispatch(Action.stopRecording())
+          dispatch(Action.updateVideoState('beforeTakeVideo'))
+          dispatch(Action.updateBigVideoTimerVisible(false))
+          dispatch(Action.updateSmallVideoTimerVisible(false))
+          dispatch(Action.updateScreenStatus(false))
+        },
+        changeTimeLapse: (isShowtimeLapse: boolean) : void => {
+          dispatch(Action.changeTimeLapse(isShowtimeLapse))
+        }
+      }
+    })(this.state)
     this.appEventBus.on(Action.ACTION_CHANGE_MODE, this.changeShutterIcon.bind(this))
     this.appEventBus.on(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
     this.appEventBus.on(Action.ACTION_INIT_MODE, this.changeShutterIcon.bind(this))

@@ -13,12 +13,13 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
+import { describe, it, expect } from 'hypium/index'
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
     it('assertContain', 0, function () {
-      console.info("it begin")
+      Log.info("it begin")
       let a = 'abc'
       let b = 'b'
       expect(a).assertContain(b)

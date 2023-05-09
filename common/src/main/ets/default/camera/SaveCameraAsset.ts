@@ -13,162 +13,162 @@
  * limitations under the License.
  */
 
-import fileio from '@ohos.fileio'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
+import fileio from '@ohos.fileio';
+import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 
-import { Log } from '../utils/Log'
-import DateTimeUtil from '../utils/DateTimeUtil'
-import { FunctionCallBack, VideoCallBack } from './CameraService'
-import ThumbnailGetter from './ThumbnailGetter'
-import EventLog from '../utils/EventLog'
+import { Log } from '../utils/Log';
+import DateTimeUtil from '../utils/DateTimeUtil';
+import type { FunctionCallBack, VideoCallBack } from './CameraService';
+import type ThumbnailGetter from './ThumbnailGetter';
+import EventLog from '../utils/EventLog';
 
+const TAG = '[SaveCameraAsset]:';
 let photoUri: string;
 
 export default class SaveCameraAsset {
+  public videoPrepareFile: any;
+  private lastSaveTime = '';
+  private saveIndex = 0;
+
   constructor() {
 
   }
 
-  private TAG = '[SaveCameraAsset:] '
-  private lastSaveTime = ''
-  private saveIndex = 0
-  public videoPrepareFile: any
-
   public getPhotoUri() {
-    Log.log(`${this.TAG} getPhotoUri= ${photoUri}`)
-    return photoUri
+    Log.log(`${TAG} getPhotoUri= ${photoUri}`);
+    return photoUri;
   }
 
-  public saveImage(mReceiver, thumbWidth: number, thumbHeight: number, thumbnailGetter: ThumbnailGetter, captureCallBack: FunctionCallBack) {
-    Log.info(`${this.TAG} saveImage E`)
+  public saveImage(mReceiver, thumbWidth: number, thumbHeight: number, thumbnailGetter: ThumbnailGetter, captureCallBack: FunctionCallBack): void {
+    Log.info(`${TAG} saveImage E`);
     const mDateTimeUtil = new DateTimeUtil();
-    const fileKeyObj = mediaLibrary.FileKey
+    const fileKeyObj = mediaLibrary.FileKey;
     const mediaType = mediaLibrary.MediaType.IMAGE;
-    let buffer = new ArrayBuffer(4096)
+    let buffer = new ArrayBuffer(4096);
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    Log.info(`${this.TAG} saveImage mediaLibrary.getMediaLibrary media: ${media}`)
+    Log.info(`${TAG} saveImage mediaLibrary.getMediaLibrary media: ${media}`);
 
     mReceiver.on('imageArrival', async () => {
-      Log.start(Log.UPDATE_PHOTO_THUMBNAIL)
-      Log.log(`${this.TAG} saveImage ImageReceiver on called`)
-      const displayName = this.checkName(`IMG_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.jpg'
-      Log.log(`${this.TAG} saveImage displayName== ${displayName}`)
+      Log.start(Log.UPDATE_PHOTO_THUMBNAIL);
+      Log.log(`${TAG} saveImage ImageReceiver on called`);
+      const displayName = this.checkName(`IMG_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.jpg';
+      Log.log(`${TAG} saveImage displayName== ${displayName}`);
       mReceiver.readNextImage((err, image) => {
-        Log.error(`${this.TAG} readNextImage image = ${image} error = ${err}`)
+        Log.error(`${TAG} readNextImage image = ${image} error = ${err}`);
         if (image === undefined) {
-          Log.info(`${this.TAG} saveImage failed to get valid image`)
-          return
+          Log.info(`${TAG} saveImage failed to get valid image`);
+          return;
         }
         image.getComponent(4, async (errMsg, img) => {
-          Log.info(`${this.TAG} getComponent img = ${img} errMsg = ${errMsg} E`)
+          Log.info(`${TAG} getComponent img = ${img} errMsg = ${errMsg} E`);
           if (img === undefined) {
-            Log.error(`${this.TAG} getComponent failed to get valid buffer`)
-            return
+            Log.error(`${TAG} getComponent failed to get valid buffer`);
+            return;
           }
           if (img.byteBuffer) {
-            Log.info(`${this.TAG} getComponent img.byteBuffer = ${img.byteBuffer}`)
-            buffer = img.byteBuffer
-            captureCallBack.onCapturePhotoOutput()
+            Log.info(`${TAG} getComponent img.byteBuffer = ${img.byteBuffer}`);
+            buffer = img.byteBuffer;
+            captureCallBack.onCapturePhotoOutput();
           } else {
-            Log.info(`${this.TAG} getComponent img.byteBuffer is undefined`)
+            Log.info(`${TAG} getComponent img.byteBuffer is undefined`);
           }
-          await image.release()
-          Log.info(`${this.TAG} getComponent  X`)
+          await image.release();
+          Log.info(`${TAG} getComponent  X`);
         })
       })
 
-      Log.info(`${this.TAG} saveImage getPublicDirectory `)
-      let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA)
-//      publicPath = `${publicPath}Camera/`
-      Log.info(`${this.TAG} saveImage publicPath = ${publicPath}`)
-      const dataUri = await media.createAsset(mediaType, displayName, publicPath)
-      photoUri = dataUri.uri
-      Log.info(`${this.TAG} saveImage photoUri: ${photoUri}`)
+      Log.info(`${TAG} saveImage getPublicDirectory `);
+      let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA);
+      //      publicPath = `${publicPath}Camera/`
+      Log.info(`${TAG} saveImage publicPath = ${publicPath}`);
+      const dataUri = await media.createAsset(mediaType, displayName, publicPath);
+      photoUri = dataUri.uri;
+      Log.info(`${TAG} saveImage photoUri: ${photoUri}`);
 
       if (dataUri !== undefined) {
-        const args = dataUri.id.toString()
+        const args = dataUri.id.toString();
         const fetchOp = {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
         }
         // 通过id去查找
-        Log.log(`${this.TAG} saveImage fetchOp${JSON.stringify(fetchOp)}`)
+        Log.log(`${TAG} saveImage fetchOp${JSON.stringify(fetchOp)}`);
         const fetchFileResult = await media.getFileAssets(fetchOp);
         const fileAsset = await fetchFileResult.getAllObject();
         if (fileAsset != undefined) {
-          Log.info(`${this.TAG} saveImage fileAsset is not undefined`)
+          Log.info(`${TAG} saveImage fileAsset is not undefined`);
           fileAsset.forEach((dataInfo) => {
-            Log.info(`${this.TAG} saveImage fileAsset.forEach called`)
+            Log.info(`${TAG} saveImage fileAsset.forEach called`);
             dataInfo.open('Rw').then((fd) => { // RW是读写方式打开文件 获取fd
-              Log.info(`${this.TAG} saveImage dataInfo.open called`)
+              Log.info(`${TAG} saveImage dataInfo.open called`);
               fileio.write(fd, buffer).then(() => {
-                Log.info(`${this.TAG} saveImage fileio.write called`)
+                Log.info(`${TAG} saveImage fileio.write called`);
                 dataInfo.close(fd).then(() => {
-                  Log.info(`${this.TAG} saveImage ataInfo.close called`)
+                  Log.info(`${TAG} saveImage ataInfo.close called`);
                   thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
-                    Log.info(`${this.TAG} saveImage thumbnailInfo: ${thumbnail}`)
-                    captureCallBack.onCaptureSuccess(thumbnail, photoUri)
-                    Log.end(Log.UPDATE_PHOTO_THUMBNAIL)
+                    Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
+                    captureCallBack.onCaptureSuccess(thumbnail, photoUri);
+                    Log.end(Log.UPDATE_PHOTO_THUMBNAIL);
                   })
-                  Log.info(`${this.TAG} ==========================fileAsset.close success=======================>`);
+                  Log.info(`${TAG} ==========================fileAsset.close success=======================>`);
                 }).catch(error => {
-                  EventLog.write(EventLog.SAVE_FAIL)
-                  Log.error(`${this.TAG} saveImage close is error `)
+                  EventLog.write(EventLog.SAVE_FAIL);
+                  Log.error(`${TAG} saveImage close is error `);
                 })
               })
             })
           });
         }
       } else {
-        Log.error(`${this.TAG} dataUri is null`)
+        Log.error(`${TAG} dataUri is null`);
       }
     })
-    Log.info(`${this.TAG} saveImage X`)
+    Log.info(`${TAG} saveImage X`);
   }
 
   public async createVideoFd(captureCallBack: VideoCallBack): Promise<number> {
-    Log.info(`${this.TAG} getVideoFd E`)
+    Log.info(`${TAG} getVideoFd E`);
     const mDateTimeUtil = new DateTimeUtil();
-    const displayName = this.checkName(`VID_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.mp4'
+    const displayName = this.checkName(`VID_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.mp4';
     const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    Log.info(`${this.TAG} getVideoFd publicPath: ${media}`)
+    Log.info(`${TAG} getVideoFd publicPath: ${media}`);
     const fileKeyObj = mediaLibrary.FileKey;
     const mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA)
-    Log.info(`${this.TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`)
-//    publicPath = `${publicPath}Camera/`
+    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA);
+    Log.info(`${TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`);
+    //    publicPath = `${publicPath}Camera/`
     try {
-      const dataUri = await media.createAsset(mediaType, displayName, publicPath)
+      const dataUri = await media.createAsset(mediaType, displayName, publicPath);
       if (dataUri !== undefined) {
-        const args = dataUri.id.toString()
+        const args = dataUri.id.toString();
         const fetchOp = {
           selections: `${fileKeyObj.ID} = ? `,
           selectionArgs: [args],
-        }
+        };
         // 通过id去查找
-        Log.log(`${this.TAG} fetchOp= ${JSON.stringify(fetchOp)}`)
+        Log.log(`${TAG} fetchOp= ${JSON.stringify(fetchOp)}`);
         const fetchFileResult = await media.getFileAssets(fetchOp);
-        Log.info(`${this.TAG} SaveCameraAsset getFileAssets finished`)
+        Log.info(`${TAG} SaveCameraAsset getFileAssets finished`);
         this.videoPrepareFile = await fetchFileResult.getFirstObject();
-        const getLastObject = await fetchFileResult.getLastObject()
-        captureCallBack.videoUri(getLastObject.uri)
-        Log.info(`${this.TAG} SaveCameraAsset getLastObject.uri: ${JSON.stringify(getLastObject.uri)}`)
-        const fdNumber = await this.videoPrepareFile.open('Rw')
+        const getLastObject = await fetchFileResult.getLastObject();
+        captureCallBack.videoUri(getLastObject.uri);
+        Log.info(`${TAG} SaveCameraAsset getLastObject.uri: ${JSON.stringify(getLastObject.uri)}`);
+        const fdNumber = await this.videoPrepareFile.open('Rw');
         return fdNumber;
       }
     } catch (err) {
-      Log.error(`${this.TAG} createVideoFd err: ` + err)
+      Log.error(`${TAG} createVideoFd err: ` + err);
     }
-    Log.info(`${this.TAG} getVideoFd X`)
+    Log.info(`${TAG} getVideoFd X`);
   }
 
   private checkName(name: string): string {
     if (this.lastSaveTime == name) {
-      this.saveIndex++
-      return `${name}_${this.saveIndex}`
+      this.saveIndex++;
+      return `${name}_${this.saveIndex}`;
     }
-    this.lastSaveTime = name
-    this.saveIndex = 0
-    return name
+    this.lastSaveTime = name;
+    this.saveIndex = 0;
+    return name;
   }
 }
