@@ -31,7 +31,7 @@ export class EventBus {
     * @param callback event related callbacck
     */
   public on(event: string | string[], callback: Callback): void {
-    Log.info(`${this.TAG} on event = ${JSON.stringify(event)}  ${JSON.stringify(callback)}`)
+    Log.debug(`${this.TAG} on event = ${JSON.stringify(event)}  ${JSON.stringify(callback)}`);
     if (Array.isArray(event)) {
       for (let i = 0, l = event.length; i < l; i++) {
         this.on(event[i], callback)
@@ -105,7 +105,7 @@ export class EventBus {
     // once deleting the event will cause this in the following loop this._events moves forward in fn,
     // so it is copied here as a new array
     const _self = this
-    Log.info(`${this.TAG} emit event = ${JSON.stringify(event)}  ${JSON.stringify(this.events.get(event))}`)
+    Log.info(`${this.TAG} emit event = ${JSON.stringify(event)}  ${JSON.stringify(this.events.get(argument))}`)
     const tempCall = _self.events.get(event);
     if (!tempCall) {
       return
