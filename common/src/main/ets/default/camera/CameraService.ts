@@ -138,11 +138,8 @@ export class CameraService {
         if (cameras) {
           Log.info(`${TAG} getCameras success.`);
           for (let i = 0; i < cameras.length; i++) {
-            Log.info(`${TAG} --------------Camera Info-------------`);
-            Log.info(`${TAG} camera_id: ${cameras[i].cameraId}`);
-            Log.info(`${TAG} cameraPosition: ${cameras[i].cameraPosition}`);
-            Log.info(`${TAG} cameraType: ${cameras[i].cameraType}`);
-            Log.info(`${TAG} connectionType: ${cameras[i].connectionType}`);
+            Log.info(`${TAG} camera_id: ${cameras[i].cameraId}  cameraPosition: ${cameras[i].cameraPosition}
+              cameraType: ${cameras[i].cameraType} connectionType: ${cameras[i].connectionType}`);
             if (cameras[i].cameraPosition === 2 && cameras[i].connectionType !== 2) {
               this.mLocalCameraMap.set('front', 'true');
             }
@@ -725,11 +722,9 @@ export class CameraService {
   public getThumbnail(functionCallBack: FunctionCallBack): image.PixelMap {
     Log.start(`${TAG} getThumbnail`);
     this.mThumbnailGetter.getThumbnailInfo(40, 40).then((thumbnail) => {
-      Log.info(`${TAG} getThumbnail thumbnail: ${thumbnail}`);
       functionCallBack.thumbnail(thumbnail);
       Log.end(`${TAG} getThumbnail`);
     });
-    Log.info(`${TAG} getThumbnail invoke X.`);
     return this.mThumbnail;
   }
 

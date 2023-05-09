@@ -399,7 +399,6 @@ export struct PreviewArea {
     this.calledByOther()
     this.state.initCamera(this.state.curCameraPosition, this.state.mode)
     this.state.initZoomRatio(1, 6) //TODO 需要动态取得实际变焦能力范围
-    Log.info(`${this.TAG} aboutToAppear end`)
     Log.start(Log.X_COMPONENT_LIFE)
   }
 
@@ -554,9 +553,7 @@ export struct PreviewArea {
   }
 
   private onPreviewClicked(): void {
-    Log.info(`${this.TAG} click preview called`)
-    Log.info(`${this.TAG} click preview isShowtimeLapse= ${this.state.isShowtimeLapse}`)
-    Log.info(`${this.TAG} click preview state.mode= ${this.state.mode}`)
+    Log.info(`${this.TAG} click preview isShowtimeLapse= ${this.state.isShowtimeLapse} state.mode= ${this.state.mode}`);
     if (this.state.mode === 'PHOTO' && this.state.isShowtimeLapse) {
       this.state.changeTimeLapse(false)
       this.state.capture()
