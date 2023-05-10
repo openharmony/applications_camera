@@ -15,9 +15,6 @@
 
 {
   "apiType": 'stageMode',
-  "buildOption": {
-    "compileMode": "jsbundle"
-  },
   "targets": [
     {
       "name": "default",
