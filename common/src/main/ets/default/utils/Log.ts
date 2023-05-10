@@ -16,8 +16,8 @@
 import HiLog from "@ohos.hilog"
 import hiTraceMeter from '@ohos.hiTraceMeter'
 
-const DOMAIN = 0x0200
-const TAG: string = 'CameraApp'
+const DOMAIN = 0x0200;
+const TAG: string = 'CameraApp';
 
 const RECORD_TRACE = true;
 const TRACE_BASE_INDEX = 10000;
@@ -33,17 +33,17 @@ const TRACE_LOG_BEGIN: string = ' begin ';
 const TRACE_LOG_END: string = ' end ';
 
 export class Log {
-  public static readonly  STREAM_DISTRIBUTION: string = 'streamDistribution';
-  public static readonly  OPEN_CAMERA: string = 'openCamera';
-  public static readonly  STOP_RECORDING: string = 'stopRecording';
-  public static readonly  UPDATE_PHOTO_THUMBNAIL: string = 'updatePhotoThumbnail';
-  public static readonly  TAKE_PICTURE: string = 'takePicture';
-  public static readonly  UPDATE_VIDEO_THUMBNAIL: string = 'updateVideoThumbnail';
-  public static readonly  APPLICATION_WHOLE_LIFE: string = 'applicationWholeLife';
-  public static readonly  ABILITY_VISIBLE_LIFE: string = 'abilityVisibleLife';
-  public static readonly  ABILITY_FOREGROUND_LIFE: string = 'abilityForegroundLife';
-  public static readonly  ABILITY_WHOLE_LIFE: string = 'abilityWholeLife';
-  public static readonly  X_COMPONENT_LIFE: string = 'XComponentLife';
+  public static readonly STREAM_DISTRIBUTION: string = 'streamDistribution';
+  public static readonly OPEN_CAMERA: string = 'openCamera';
+  public static readonly STOP_RECORDING: string = 'stopRecording';
+  public static readonly UPDATE_PHOTO_THUMBNAIL: string = 'updatePhotoThumbnail';
+  public static readonly TAKE_PICTURE: string = 'takePicture';
+  public static readonly UPDATE_VIDEO_THUMBNAIL: string = 'updateVideoThumbnail';
+  public static readonly APPLICATION_WHOLE_LIFE: string = 'applicationWholeLife';
+  public static readonly ABILITY_VISIBLE_LIFE: string = 'abilityVisibleLife';
+  public static readonly ABILITY_FOREGROUND_LIFE: string = 'abilityForegroundLife';
+  public static readonly ABILITY_WHOLE_LIFE: string = 'abilityWholeLife';
+  public static readonly X_COMPONENT_LIFE: string = 'XComponentLife';
 
   public static debug(message: string): void {
     if (LOG_LEVEL <= LEVEL_DEBUG) {
@@ -77,7 +77,9 @@ export class Log {
 
   static start(methodName: string): void {
     this.info(methodName + TRACE_LOG_BEGIN);
-    if (!RECORD_TRACE) return;
+    if (!RECORD_TRACE) {
+      return;
+    }
     if (typeof globalThis.taskIdMap === 'undefined' || typeof globalThis.traceIndex === 'undefined') {
       this.init();
     }
@@ -97,7 +99,9 @@ export class Log {
 
   static end(methodName: string): void {
     this.info(methodName + TRACE_LOG_END)
-    if (!RECORD_TRACE) return;
+    if (!RECORD_TRACE) {
+      return;
+    }
     if (typeof globalThis.taskIdMap === 'undefined') {
       this.init();
     }
