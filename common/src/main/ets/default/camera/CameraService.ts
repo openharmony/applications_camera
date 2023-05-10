@@ -30,7 +30,9 @@ import EventLog from '../utils/EventLog';
 
 const TAG = '[CameraService]:';
 
-const DEFAULT_VIDEO_FRAME_RATE = 30
+const DEFAULT_VIDEO_FRAME_RATE = 30;
+const FRONT_CAMERA_POSITION = 2;
+const CAMERA_CONNECT_TYPE = 2;
 
 export interface FunctionCallBack {
   onCapturePhotoOutput(): void
@@ -140,10 +142,10 @@ export class CameraService {
           for (let i = 0; i < cameras.length; i++) {
             Log.info(`${TAG} camera_id: ${cameras[i].cameraId}  cameraPosition: ${cameras[i].cameraPosition}
               cameraType: ${cameras[i].cameraType} connectionType: ${cameras[i].connectionType}`);
-            if (cameras[i].cameraPosition === 2 && cameras[i].connectionType !== 2) {
+            if (cameras[i].cameraPosition === FRONT_CAMERA_POSITION && cameras[i].connectionType !== CAMERA_CONNECT_TYPE) {
               this.mLocalCameraMap.set('front', 'true');
             }
-            if (cameras[i].cameraPosition !== 2 && cameras[i].connectionType !== 2) {
+            if (cameras[i].cameraPosition !== FRONT_CAMERA_POSITION && cameras[i].connectionType !== CAMERA_CONNECT_TYPE) {
               this.mLocalCameraMap.set('back', 'true');
             }
           }
@@ -247,7 +249,7 @@ export class CameraService {
   public async createPreviewOutput(surfaceId: string, mode: string) {
     Log.start(`${TAG} createPreviewOutput`);
     const size = SettingManager.getInstance().getPreviewSize(mode);
-    Log.info(`${TAG} createPreviewOutput size = ${JSON.stringify(size)}`);
+    Log.info(`${TAG} createPreviewOutput size.width = ${size.width} size.height = ${size.height}`);
     globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height });
     let previewProfiles = this.outputCapability.previewProfiles;
     let previewProfile;
@@ -285,9 +287,8 @@ export class CameraService {
   public async createPhotoOutput(functionCallback: FunctionCallBack) {
     Log.start(`${TAG} createPhotoOutput`);
     const size = SettingManager.getInstance().getImageSize();
-    Log.info(`${TAG} createPhotoOutput size = ${JSON.stringify(size)}`);
+    Log.info(`${TAG} createPhotoOutput size.width = ${size.width} size.height = ${size.height}`);
     this.mImageReceiver = image.createImageReceiver(size.width, size.height, image.ImageFormat.JPEG, 8);
-    Log.info(`${TAG} createPhotoOutput receiver: ${this.mImageReceiver}.`);
     const surfaceId = await this.mImageReceiver.getReceivingSurfaceId();
     Log.info(`${TAG} createPhotoOutput surfaceId: ${surfaceId}.`);
     let photoProfiles = this.outputCapability.photoProfiles;
