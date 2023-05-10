@@ -16,67 +16,68 @@
 import HiLog from "@ohos.hilog"
 import hiTraceMeter from '@ohos.hiTraceMeter'
 
+const DOMAIN = 0x0200
+const TAG: string = 'CameraApp'
+
+const RECORD_TRACE = true;
+const TRACE_BASE_INDEX = 10000;
+
+const LEVEL_DEBUG = 0;
+const LEVEL_LOG = 1;
+const LEVEL_INFO = 2;
+const LEVEL_WARN = 3;
+const LEVEL_ERROR = 4;
+const LOG_LEVEL = LEVEL_DEBUG;
+
+const TRACE_LOG_BEGIN: string = ' begin ';
+const TRACE_LOG_END: string = ' end ';
+
 export class Log {
-  private static readonly DOMAIN = 0x0200
-  private static readonly TAG: string = 'CameraApp'
-
-  private static readonly RECORD_TRACE = true;
-  private static readonly TRACE_BASE_INDEX = 10000;
-
-  public static readonly LEVEL_DEBUG = 0;
-  public static readonly LEVEL_LOG = 1;
-  public static readonly LEVEL_INFO = 2;
-  public static readonly LEVEL_WARN = 3;
-  public static readonly LEVEL_ERROR = 4;
-  public static LOG_LEVEL = Log.LEVEL_DEBUG;
-
-  static readonly TRACE_LOG_BEGIN: string = ' begin ';
-  static readonly TRACE_LOG_END: string = ' end ';
-  static readonly STREAM_DISTRIBUTION: string = 'streamDistribution';
-  static readonly OPEN_CAMERA: string = 'openCamera';
-  static readonly STOP_RECORDING: string = 'stopRecording';
-  static readonly UPDATE_PHOTO_THUMBNAIL: string = 'updatePhotoThumbnail';
-  static readonly TAKE_PICTURE: string = 'takePicture';
-  static readonly UPDATE_VIDEO_THUMBNAIL: string = 'updateVideoThumbnail';
-  static readonly APPLICATION_WHOLE_LIFE: string = 'applicationWholeLife';
-  static readonly ABILITY_VISIBLE_LIFE: string = 'abilityVisibleLife';
-  static readonly ABILITY_FOREGROUND_LIFE: string = 'abilityForegroundLife';
-  static readonly ABILITY_WHOLE_LIFE: string = 'abilityWholeLife';
-  static readonly X_COMPONENT_LIFE: string = 'XComponentLife';
+  public static readonly  STREAM_DISTRIBUTION: string = 'streamDistribution';
+  public static readonly  OPEN_CAMERA: string = 'openCamera';
+  public static readonly  STOP_RECORDING: string = 'stopRecording';
+  public static readonly  UPDATE_PHOTO_THUMBNAIL: string = 'updatePhotoThumbnail';
+  public static readonly  TAKE_PICTURE: string = 'takePicture';
+  public static readonly  UPDATE_VIDEO_THUMBNAIL: string = 'updateVideoThumbnail';
+  public static readonly  APPLICATION_WHOLE_LIFE: string = 'applicationWholeLife';
+  public static readonly  ABILITY_VISIBLE_LIFE: string = 'abilityVisibleLife';
+  public static readonly  ABILITY_FOREGROUND_LIFE: string = 'abilityForegroundLife';
+  public static readonly  ABILITY_WHOLE_LIFE: string = 'abilityWholeLife';
+  public static readonly  X_COMPONENT_LIFE: string = 'XComponentLife';
 
   public static debug(message: string): void {
-    if (this.LOG_LEVEL <= this.LEVEL_DEBUG) {
-      HiLog.debug(this.DOMAIN, this.TAG, message)
+    if (LOG_LEVEL <= LEVEL_DEBUG) {
+      HiLog.debug(DOMAIN, TAG, message);
     }
   }
 
   public static log(message: string): void {
-    if (this.LOG_LEVEL <= this.LEVEL_LOG) {
-      HiLog.info(this.DOMAIN, this.TAG, message)
+    if (LOG_LEVEL <= LEVEL_LOG) {
+      HiLog.info(DOMAIN, TAG, message);
     }
   }
 
   public static info(message: string): void {
-    if (this.LOG_LEVEL <= this.LEVEL_INFO) {
-      HiLog.info(this.DOMAIN, this.TAG, message)
+    if (LOG_LEVEL <= LEVEL_INFO) {
+      HiLog.info(DOMAIN, TAG, message);
     }
   }
 
   public static warn(message: string): void {
-    if (this.LOG_LEVEL <= this.LEVEL_WARN) {
-      HiLog.warn(this.DOMAIN, this.TAG, message)
+    if (LOG_LEVEL <= LEVEL_WARN) {
+      HiLog.warn(DOMAIN, TAG, message);
     }
   }
 
   public static error(message: string): void {
-    if (this.LOG_LEVEL <= this.LEVEL_ERROR) {
-      HiLog.error(this.DOMAIN, this.TAG, message)
+    if (LOG_LEVEL <= LEVEL_ERROR) {
+      HiLog.error(DOMAIN, TAG, message);
     }
   }
 
   static start(methodName: string): void {
-    this.info(methodName + this.TRACE_LOG_BEGIN)
-    if (!this.RECORD_TRACE) return;
+    this.info(methodName + TRACE_LOG_BEGIN);
+    if (!RECORD_TRACE) return;
     if (typeof globalThis.taskIdMap === 'undefined' || typeof globalThis.traceIndex === 'undefined') {
       this.init();
     }
@@ -91,18 +92,18 @@ export class Log {
 
   private static init(): void {
     globalThis.taskIdMap = new Map<string, number>();
-    globalThis.traceIndex = this.TRACE_BASE_INDEX;
+    globalThis.traceIndex = TRACE_BASE_INDEX;
   }
 
   static end(methodName: string): void {
-    this.info(methodName + this.TRACE_LOG_END)
-    if (!this.RECORD_TRACE) return;
+    this.info(methodName + TRACE_LOG_END)
+    if (!RECORD_TRACE) return;
     if (typeof globalThis.taskIdMap === 'undefined') {
       this.init();
     }
     const taskId = globalThis.taskIdMap.get(methodName);
     if (taskId == undefined) {
-      Log.error(`fail to end trace name ${methodName}`)
+      Log.error(`fail to end trace name ${methodName}`);
       return;
     }
     hiTraceMeter.finishTrace(methodName, taskId);

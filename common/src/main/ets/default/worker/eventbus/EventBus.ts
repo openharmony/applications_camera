@@ -105,7 +105,7 @@ export class EventBus {
     // once deleting the event will cause this in the following loop this._events moves forward in fn,
     // so it is copied here as a new array
     const _self = this
-    Log.info(`${this.TAG} emit event = ${JSON.stringify(event)}  ${JSON.stringify(this.events.get(argument))}`)
+    Log.info(`${this.TAG} emit event = ${JSON.stringify(event)}`);
     const tempCall = _self.events.get(event);
     if (!tempCall) {
       return
