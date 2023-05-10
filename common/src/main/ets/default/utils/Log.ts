@@ -98,7 +98,7 @@ export class Log {
   }
 
   static end(methodName: string): void {
-    this.info(methodName + TRACE_LOG_END)
+    this.info(methodName + TRACE_LOG_END);
     if (!RECORD_TRACE) {
       return;
     }

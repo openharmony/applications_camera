@@ -427,7 +427,6 @@ export class CameraService {
       Log.info(`${TAG} takePicture photoOutPut is release`);
       return;
     }
-    Log.info(`${TAG} takePicture SelfMirror setting: ${SettingManager.getInstance().getSelfMirror()}`);
     if (this.mCameraId === CameraId.FRONT) {
       this.mCaptureSetting.mirror = SettingManager.getInstance().getSelfMirror();
     }
@@ -449,7 +448,6 @@ export class CameraService {
       }
     }
     Log.end(`${TAG} takePicture`);
-    //    Log.end(Log.TAKE_PICTURE)
     if ((new Date().getTime() - globalThis.startCaptureTime) > 2000) {
       EventLog.write(EventLog.CAPTURE_TIMEOUT);
     }
@@ -457,7 +455,6 @@ export class CameraService {
 
   public async createVideoOutput(functionCallBack: VideoCallBack) {
     Log.start(`${TAG} createVideoOutput`);
-    Log.info(`${TAG} createVideoOutput saveCameraAsset: ${this.mSaveCameraAsset}`);
     this.mFileAssetId = await this.mSaveCameraAsset.createVideoFd(functionCallBack);
     if (this.mFileAssetId === undefined) {
       Log.error(`${TAG} createVideoOutput error: mFileAssetId undefined`);
@@ -494,7 +491,6 @@ export class CameraService {
           this.mVideoConfig.rotation = 270;
         }
       }
-      Log.info(`${TAG} createVideoOutput AVRecorder.prepare called.`);
       Log.info(`${TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`);
       await this.mAVRecorder.prepare(this.mVideoConfig);
       Log.info(`${TAG} createVideoOutput AVRecorder.prepare succeed.`);
@@ -582,7 +578,6 @@ export class CameraService {
   public async stopRecording(): Promise<PixelMap | undefined> {
     Log.start(Log.STOP_RECORDING);
     let stopRecordingTime = new Date().getTime();
-    Log.info(`${TAG} stopRecording invoke E.`);
     EventLog.write(EventLog.STOP_RECORD);
     if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
@@ -611,7 +606,6 @@ export class CameraService {
     Log.start(Log.UPDATE_VIDEO_THUMBNAIL);
     const thumbnailPixelMap: PixelMap | undefined = await this.mThumbnailGetter.getThumbnailInfo(40, 40);
     Log.end(Log.UPDATE_VIDEO_THUMBNAIL);
-    Log.info(`${TAG} stopRecording invoke X.`);
     if (new Date().getTime() - stopRecordingTime > 2000) {
       EventLog.write(EventLog.FINISH_RECORD_TIMEOUT);
     }
