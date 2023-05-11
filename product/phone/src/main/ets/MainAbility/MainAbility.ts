@@ -76,14 +76,13 @@ export default class MainAbility extends Ability {
         win.setLayoutFullScreen(true).then(() => {
           Log.info('Camera setFullScreen finished.');
           win.setSystemBarEnable(['navigation']).then(() => {
+            win.setSystemBarProperties({
+              navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
+            }).then(() => {
+              Log.info('Camera setSystemBarProperties.');
+            })
             Log.info('Camera setSystemBarEnable finished.');
           })
-        })
-
-        win.setSystemBarProperties({
-          navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
-        }).then(() => {
-          Log.info('Camera setSystemBarProperties.');
         })
         globalThis.cameraWinClass = win;
       } catch (err) {
@@ -114,7 +113,6 @@ export default class MainAbility extends Ability {
 
   onForeground() {
     Log.start(Log.ABILITY_FOREGROUND_LIFE);
-    Log.info('Camera MainAbility onForeground. e');
     globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT;
     if (globalThis?.doOnForeground && globalThis.doOnForeground) {
       Log.info('Camera MainAbility onForeground.');
@@ -122,7 +120,7 @@ export default class MainAbility extends Ability {
     } else {
       globalThis.doOnForeground = true;
     }
-    Log.info('Camera MainAbility onForeground. x');
+    Log.info('Camera MainAbility onForeground');
   }
 
   onBackground() {
