@@ -1,3 +1,6 @@
 /node_modules
 /.preview
 /build
+/package.json
+/oh_modules
+/oh-package.json5

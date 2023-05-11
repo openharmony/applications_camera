@@ -30,7 +30,9 @@ import EventLog from '../utils/EventLog';
 
 const TAG = '[CameraService]:';
 
-const DEFAULT_VIDEO_FRAME_RATE = 30
+const DEFAULT_VIDEO_FRAME_RATE = 30;
+const FRONT_CAMERA_POSITION = 2;
+const CAMERA_CONNECT_TYPE = 2;
 
 export interface FunctionCallBack {
   onCapturePhotoOutput(): void
@@ -138,15 +140,12 @@ export class CameraService {
         if (cameras) {
           Log.info(`${TAG} getCameras success.`);
           for (let i = 0; i < cameras.length; i++) {
-            Log.info(`${TAG} --------------Camera Info-------------`);
-            Log.info(`${TAG} camera_id: ${cameras[i].cameraId}`);
-            Log.info(`${TAG} cameraPosition: ${cameras[i].cameraPosition}`);
-            Log.info(`${TAG} cameraType: ${cameras[i].cameraType}`);
-            Log.info(`${TAG} connectionType: ${cameras[i].connectionType}`);
-            if (cameras[i].cameraPosition === 2 && cameras[i].connectionType !== 2) {
+            Log.info(`${TAG} camera_id: ${cameras[i].cameraId}  cameraPosition: ${cameras[i].cameraPosition}
+              cameraType: ${cameras[i].cameraType} connectionType: ${cameras[i].connectionType}`);
+            if (cameras[i].cameraPosition === FRONT_CAMERA_POSITION && cameras[i].connectionType !== CAMERA_CONNECT_TYPE) {
               this.mLocalCameraMap.set('front', 'true');
             }
-            if (cameras[i].cameraPosition !== 2 && cameras[i].connectionType !== 2) {
+            if (cameras[i].cameraPosition !== FRONT_CAMERA_POSITION && cameras[i].connectionType !== CAMERA_CONNECT_TYPE) {
               this.mLocalCameraMap.set('back', 'true');
             }
           }
@@ -250,7 +249,7 @@ export class CameraService {
   public async createPreviewOutput(surfaceId: string, mode: string) {
     Log.start(`${TAG} createPreviewOutput`);
     const size = SettingManager.getInstance().getPreviewSize(mode);
-    Log.info(`${TAG} createPreviewOutput size = ${JSON.stringify(size)}`);
+    Log.info(`${TAG} createPreviewOutput size.width = ${size.width} size.height = ${size.height}`);
     globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height });
     let previewProfiles = this.outputCapability.previewProfiles;
     let previewProfile;
@@ -288,9 +287,8 @@ export class CameraService {
   public async createPhotoOutput(functionCallback: FunctionCallBack) {
     Log.start(`${TAG} createPhotoOutput`);
     const size = SettingManager.getInstance().getImageSize();
-    Log.info(`${TAG} createPhotoOutput size = ${JSON.stringify(size)}`);
+    Log.info(`${TAG} createPhotoOutput size.width = ${size.width} size.height = ${size.height}`);
     this.mImageReceiver = image.createImageReceiver(size.width, size.height, image.ImageFormat.JPEG, 8);
-    Log.info(`${TAG} createPhotoOutput receiver: ${this.mImageReceiver}.`);
     const surfaceId = await this.mImageReceiver.getReceivingSurfaceId();
     Log.info(`${TAG} createPhotoOutput surfaceId: ${surfaceId}.`);
     let photoProfiles = this.outputCapability.photoProfiles;
@@ -429,7 +427,6 @@ export class CameraService {
       Log.info(`${TAG} takePicture photoOutPut is release`);
       return;
     }
-    Log.info(`${TAG} takePicture SelfMirror setting: ${SettingManager.getInstance().getSelfMirror()}`);
     if (this.mCameraId === CameraId.FRONT) {
       this.mCaptureSetting.mirror = SettingManager.getInstance().getSelfMirror();
     }
@@ -451,7 +448,6 @@ export class CameraService {
       }
     }
     Log.end(`${TAG} takePicture`);
-    //    Log.end(Log.TAKE_PICTURE)
     if ((new Date().getTime() - globalThis.startCaptureTime) > 2000) {
       EventLog.write(EventLog.CAPTURE_TIMEOUT);
     }
@@ -459,7 +455,6 @@ export class CameraService {
 
   public async createVideoOutput(functionCallBack: VideoCallBack) {
     Log.start(`${TAG} createVideoOutput`);
-    Log.info(`${TAG} createVideoOutput saveCameraAsset: ${this.mSaveCameraAsset}`);
     this.mFileAssetId = await this.mSaveCameraAsset.createVideoFd(functionCallBack);
     if (this.mFileAssetId === undefined) {
       Log.error(`${TAG} createVideoOutput error: mFileAssetId undefined`);
@@ -496,7 +491,6 @@ export class CameraService {
           this.mVideoConfig.rotation = 270;
         }
       }
-      Log.info(`${TAG} createVideoOutput AVRecorder.prepare called.`);
       Log.info(`${TAG} createVideoOutput mVideoConfig =  ${JSON.stringify(this.mVideoConfig)}.`);
       await this.mAVRecorder.prepare(this.mVideoConfig);
       Log.info(`${TAG} createVideoOutput AVRecorder.prepare succeed.`);
@@ -584,7 +578,6 @@ export class CameraService {
   public async stopRecording(): Promise<PixelMap | undefined> {
     Log.start(Log.STOP_RECORDING);
     let stopRecordingTime = new Date().getTime();
-    Log.info(`${TAG} stopRecording invoke E.`);
     EventLog.write(EventLog.STOP_RECORD);
     if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
@@ -613,7 +606,6 @@ export class CameraService {
     Log.start(Log.UPDATE_VIDEO_THUMBNAIL);
     const thumbnailPixelMap: PixelMap | undefined = await this.mThumbnailGetter.getThumbnailInfo(40, 40);
     Log.end(Log.UPDATE_VIDEO_THUMBNAIL);
-    Log.info(`${TAG} stopRecording invoke X.`);
     if (new Date().getTime() - stopRecordingTime > 2000) {
       EventLog.write(EventLog.FINISH_RECORD_TIMEOUT);
     }
@@ -725,11 +717,9 @@ export class CameraService {
   public getThumbnail(functionCallBack: FunctionCallBack): image.PixelMap {
     Log.start(`${TAG} getThumbnail`);
     this.mThumbnailGetter.getThumbnailInfo(40, 40).then((thumbnail) => {
-      Log.info(`${TAG} getThumbnail thumbnail: ${thumbnail}`);
       functionCallBack.thumbnail(thumbnail);
       Log.end(`${TAG} getThumbnail`);
     });
-    Log.info(`${TAG} getThumbnail invoke X.`);
     return this.mThumbnail;
   }
 

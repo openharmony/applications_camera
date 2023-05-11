@@ -25,7 +25,7 @@ export class ActionHandler {
 
   // 在worker线程中通过EventBus发送action，相关后台能力需要注册对应的action.type
   public handleAction(action: any): void {
-    Log.info(`${TAG} handle action: ${JSON.stringify(action)}`);
+    Log.debug(`${TAG} handle action: ${JSON.stringify(action)}`);
     this.appEventBus.emit(action.type, [action.data]);
   }
 }

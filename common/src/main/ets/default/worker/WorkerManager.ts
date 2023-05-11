@@ -28,7 +28,6 @@ export class WorkerManager {
   private _appEventBus: EventBus = EventBusManager.getCameraInstance().getEventBus();
 
   public onMessage(action: any): void {
-    Log.info(`${TAG} action from main thread: ${JSON.stringify(action)}`);
     this.actionHandler.handleAction(action);
   }
 
