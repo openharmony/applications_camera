@@ -45,7 +45,7 @@ function merge1<T, U>(obj: T, props: U): T & U {
 
 export function connect(store, mapToProps: MapStateProp, mapToDispatch: MapDispatchProp): (state: any) => void {
   return (obj) => {
-    Log.info(`${TAG} mapProps: ${JSON.stringify(store.getState())}`);
+    Log.debug(`${TAG} mapProps: ${JSON.stringify(store.getState())}`);
     merge(obj, mapToProps(store.getState()));
     merge(obj, mapToDispatch(store.dispatch));
     store.subscribe(() => merge(obj, mapToProps(store.getState())));

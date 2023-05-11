@@ -90,14 +90,13 @@ export default class MainAbility extends Ability {
         win.setLayoutFullScreen(true).then(() => {
           Log.info('Camera setFullScreen finished.');
           win.setSystemBarEnable(['navigation']).then(() => {
+            win.setSystemBarProperties({
+              navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
+            }).then(() => {
+              Log.info('Camera setSystemBarProperties.');
+            })
             Log.info('Camera setSystemBarEnable finished.');
           })
-        })
-
-        win.setSystemBarProperties({
-          navigationBarColor: '#00000000', navigationBarContentColor: '#B3B3B3'
-        }).then(() => {
-          Log.info('Camera setSystemBarProperties.');
         })
 
         win.on('windowSizeChange', (data) => {
@@ -117,13 +116,13 @@ export default class MainAbility extends Ability {
         action: 'capture',
         cameraPosition: 'PHOTO',
         mode: 'PHOTO'
-      }
+      };
     } else if (this.launchWant.parameters.uri === 'video') {
       globalThis.cameraFormParam = {
         action: 'video',
         cameraPosition: 'VIDEO',
         mode: 'VIDEO'
-      }
+      };
     }
 
     windowStage.setUIContent(this.context, 'pages/indexLand', null);

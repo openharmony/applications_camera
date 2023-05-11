@@ -42,15 +42,13 @@ export struct FootBar {
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
   private async onRecordStart(data) {
-    Log.info(`${this.TAG} onRecordStart E`)
     this.state.isRecording = true
-    Log.info(`${this.TAG} onRecordStart X`)
+    Log.info(`${this.TAG} onRecordStart`)
   }
 
   private async onRecordStop(data) {
-    Log.info(`${this.TAG} onRecordStop E`)
     this.state.isRecording = false
-    Log.info(`${this.TAG} onRecordStop X`)
+    Log.info(`${this.TAG} onRecordStop`)
   }
 
   aboutToAppear(): void {
