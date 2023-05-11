@@ -116,13 +116,13 @@ export default class MainAbility extends Ability {
         action: 'capture',
         cameraPosition: 'PHOTO',
         mode: 'PHOTO'
-      }
+      };
     } else if (this.launchWant.parameters.uri === 'video') {
       globalThis.cameraFormParam = {
         action: 'video',
         cameraPosition: 'VIDEO',
         mode: 'VIDEO'
-      }
+      };
     }
 
     windowStage.setUIContent(this.context, 'pages/indexLand', null);
