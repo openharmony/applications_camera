@@ -1,13 +1,6 @@
 import $$observable from './utils/symbol-observable';
 
-import {
-  Store,
-  PreloadedState,
-  StoreEnhancer,
-  Dispatch,
-  Observer,
-  ExtendState
-} from './types/store';
+import { Dispatch, ExtendState, Observer, PreloadedState, Store, StoreEnhancer } from './types/store';
 import type { Action } from './types/actions';
 import type { Reducer } from './types/reducers';
 import ActionTypes from './utils/actionTypes';

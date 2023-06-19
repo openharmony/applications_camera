@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from "@system.router"
+import router from '@system.router'
 
 import { Log } from '../../utils/Log'
 import type { OhCombinedState } from '../../redux/store'

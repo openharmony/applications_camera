@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from "@system.router"
+import router from '@system.router'
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
