@@ -14,10 +14,10 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
-import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
+import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
 import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
 import { SettingItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'

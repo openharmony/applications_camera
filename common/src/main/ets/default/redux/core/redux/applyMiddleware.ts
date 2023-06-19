@@ -1,12 +1,7 @@
 import compose from './compose';
 import type { Middleware, MiddlewareAPI } from './types/middleware';
 import type { AnyAction } from './types/actions';
-import type {
-  StoreEnhancer,
-  Dispatch,
-  PreloadedState,
-  StoreEnhancerStoreCreator
-} from './types/store';
+import type { Dispatch, PreloadedState, StoreEnhancer, StoreEnhancerStoreCreator } from './types/store';
 import type { Reducer } from './types/reducers';
 
 /**

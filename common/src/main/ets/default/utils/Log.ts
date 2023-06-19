@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import HiLog from "@ohos.hilog"
+import HiLog from '@ohos.hilog'
 import hiTraceMeter from '@ohos.hiTraceMeter'
 
 const DOMAIN = 0x0200;

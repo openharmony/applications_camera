@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { AsyncManager } from '../../worker/AsyncManager';
 import type { Message } from '../../worker/AsyncManager';
+import { AsyncManager } from '../../worker/AsyncManager';
 import { Log } from '../../utils/Log';
 import type { AnyAction, Dispatch, Middleware, MiddlewareAPI } from '../core/redux';
 

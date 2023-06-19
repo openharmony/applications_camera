@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { getStore } from '../../redux/store'
 import type { OhCombinedState } from '../../redux/store'
+import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'

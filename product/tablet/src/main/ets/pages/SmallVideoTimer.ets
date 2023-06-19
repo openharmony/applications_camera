@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { Action }  from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import type { EventBus }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
-import { EventBusManager }  from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
+import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
+import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 

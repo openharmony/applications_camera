@@ -15,7 +15,7 @@
 
 import { Log } from '../../../utils/Log'
 import { SettingManager } from '../../../setting/SettingManager'
-import type { SettingData, SettingGroupItem }  from '../model/SettingData'
+import type { SettingData, SettingGroupItem } from '../model/SettingData'
 import type { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store';
 
