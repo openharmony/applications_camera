@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import HiLog from '@ohos.hilog'
-import hiTraceMeter from '@ohos.hiTraceMeter'
+import HiLog from '@ohos.hilog';
+import hiTraceMeter from '@ohos.hiTraceMeter';
 
 const DOMAIN = 0x0200;
 const TAG: string = 'CameraApp';
