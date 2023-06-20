@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'hypium/index'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 
 export default function abilityTest() {

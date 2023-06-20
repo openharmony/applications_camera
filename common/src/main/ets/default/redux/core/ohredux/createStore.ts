@@ -13,15 +13,8 @@
  * limitations under the License.
  */
 
+import type { Action, ExtendState, PreloadedState, Reducer, Store, StoreEnhancer } from '../redux/index';
 import { createStore } from '../redux/index';
-import type {
-  Store,
-  ExtendState,
-  PreloadedState,
-  StoreEnhancer,
-  Reducer,
-  Action
-} from '../redux/index';
 import { connect } from './connect';
 
 export default function _createStore<S,
