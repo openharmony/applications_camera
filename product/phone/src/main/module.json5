@@ -17,7 +17,7 @@
   "module": {
     "name": "phone",
     "type": "entry",
-    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
     "description": "$string:entry_desc",
     "mainElement": "com.ohos.camera.MainAbility",
     "deviceTypes": [

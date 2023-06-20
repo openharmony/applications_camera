@@ -17,7 +17,7 @@ import { SettingManager } from '../../../setting/SettingManager'
 import { Log } from '../../../utils/Log'
 import { SetResolution } from './SetResolution'
 import { SetToggle } from './SetToggle'
-import type { BaseData }  from '../model/BaseData'
+import type { BaseData } from '../model/BaseData'
 import type { SettingData, SettingGroupItem } from '../model/SettingData'
 
 @Component

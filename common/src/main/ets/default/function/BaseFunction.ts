@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { Action } from '../redux/actions/Action';
 import type { UiStateMode } from '../redux/actions/Action';
+import { Action } from '../redux/actions/Action';
 import { CameraService } from '../camera/CameraService';
 import type { EventBus } from '../worker/eventbus/EventBus';
 import { EventBusManager } from '../worker/eventbus/EventBusManager';
