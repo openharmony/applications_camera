@@ -119,7 +119,7 @@ export default class SaveCameraAsset {
     }).catch(e => {
       Log.error(`${TAG} getThumbnail error: ${JSON.stringify(e)}`);
     });
-    if (thumbnailPixelMap == undefined) {
+    if (thumbnailPixelMap === undefined) {
       Log.info(`${TAG} getThumbnail fail`);
     } else {
       Log.info(`${TAG} getThumbnail successful ` + thumbnailPixelMap);
@@ -145,10 +145,10 @@ export default class SaveCameraAsset {
     try {
       await this.createCameraAlbum();
       fetchResult = await this.mCameraAlbum?.getPhotoAssets(fetchOp);
-      if (fetchResult != undefined) {
+      if (fetchResult !== undefined) {
         Log.info(`${TAG} getFileAssetByFetchOp fetchResult success`);
         fileAsset = await fetchResult.getLastObject();
-        if (fileAsset != undefined) {
+        if (fileAsset !== undefined) {
           Log.info(`${TAG} getFileAssetByFetchOp fileAsset.displayName : ` + fileAsset.displayName);
         }
       }
@@ -211,7 +211,7 @@ export default class SaveCameraAsset {
       subType: UserFileManager.PhotoSubType.CAMERA,
     };
     let fileAsset: UserFileManager.FileAsset = await this.mUserFileManager.createPhotoAsset(displayName, option);
-    if (fileAsset != undefined) {
+    if (fileAsset !== undefined) {
       Log.info(`${TAG} createPhotoAsset successfully displayName` + fileAsset.displayName);
     } else {
       Log.error(`${TAG} createPhotoAsset failed, fileAsset is undefined `);
@@ -252,7 +252,7 @@ export default class SaveCameraAsset {
   }
 
   private checkName(name: string): string {
-    if (this.lastSaveTime == name) {
+    if (this.lastSaveTime === name) {
       this.saveIndex++;
       return `${name}_${this.saveIndex}`;
     }
