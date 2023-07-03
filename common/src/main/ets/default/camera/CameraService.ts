@@ -783,7 +783,7 @@ export class CameraService {
     return this.mSaveCameraAsset.getPhotoUri();
   }
 
-  public getRecentFileUri() {
+  public getRecentFileUri(): string {
     return this.mThumbnailGetter.getRecentFileUri();
   }
 
