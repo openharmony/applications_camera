@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
-import fileio from '@ohos.fileio';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import fileIO from '@ohos.fileio';
+import image from '@ohos.multimedia.image';
+import UserFileManager from '@ohos.filemanagement.userFileManager';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 import { Log } from '../utils/Log';
 import DateTimeUtil from '../utils/DateTimeUtil';
@@ -25,10 +27,25 @@ import EventLog from '../utils/EventLog';
 const TAG = '[SaveCameraAsset]:';
 let photoUri: string;
 
+export type FetchOpType = {
+  fetchColumns: Array<string>,
+  predicates: dataSharePredicates.DataSharePredicates,
+};
+
+type FileMessageType = {
+  fileId: string;
+  bufferLength: number;
+};
+
 export default class SaveCameraAsset {
-  public videoPrepareFile: any;
   private lastSaveTime = '';
   private saveIndex = 0;
+  private mUserFileManager: UserFileManager.UserFileManager;
+  public videoPrepareFile: UserFileManager.FileAsset;
+  private lastFileMessage: FileMessageType;
+  private mCameraAlbum: UserFileManager.Album;
+  private photoUri: string;
+  private videoUri: string;
 
   constructor() {
 
@@ -39,127 +56,199 @@ export default class SaveCameraAsset {
     return photoUri;
   }
 
+  private async createCameraAlbum(): Promise<void> {
+    Log.log(`${TAG} createCameraAlbum E`);
+    if (!this.mCameraAlbum) {
+      let fetchResult = await this.mUserFileManager?.getAlbums(UserFileManager.AlbumType.SYSTEM, UserFileManager.AlbumSubType.CAMERA);
+      this.mCameraAlbum = await fetchResult?.getFirstObject();
+      Log.log(`${TAG} createCameraAlbum albumUri: ${JSON.stringify(this.mCameraAlbum.albumUri)}`);
+    }
+    Log.log(`${TAG} createCameraAlbum X`);
+  }
+
   public saveImage(mReceiver, thumbWidth: number, thumbHeight: number, thumbnailGetter: ThumbnailGetter, captureCallBack: FunctionCallBack): void {
     Log.info(`${TAG} saveImage E`);
-    const mDateTimeUtil = new DateTimeUtil();
-    const fileKeyObj = mediaLibrary.FileKey;
-    const mediaType = mediaLibrary.MediaType.IMAGE;
-    let buffer = new ArrayBuffer(4096);
-    const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    Log.info(`${TAG} saveImage mediaLibrary.getMediaLibrary media: ${media}`);
-
+    this.mUserFileManager = UserFileManager.getUserFileMgr(globalThis.cameraAbilityContext);
+    Log.info(`${TAG} saveImage mediaLibrary.getMediaLibrary media: ${this.mUserFileManager}`);
     mReceiver.on('imageArrival', async () => {
       Log.start(Log.UPDATE_PHOTO_THUMBNAIL);
       Log.log(`${TAG} saveImage ImageReceiver on called`);
-      const displayName = this.checkName(`IMG_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.jpg';
-      Log.log(`${TAG} saveImage displayName== ${displayName}`);
-      mReceiver.readNextImage((err, image) => {
-        Log.error(`${TAG} readNextImage image = ${image} error = ${err}`);
-        if (image === undefined) {
-          Log.info(`${TAG} saveImage failed to get valid image`);
-          return;
-        }
-        image.getComponent(4, async (errMsg, img) => {
-          Log.info(`${TAG} getComponent img = ${img} errMsg = ${errMsg} E`);
-          if (img === undefined) {
-            Log.error(`${TAG} getComponent failed to get valid buffer`);
-            return;
-          }
-          if (img.byteBuffer) {
-            Log.info(`${TAG} getComponent img.byteBuffer = ${img.byteBuffer}`);
-            buffer = img.byteBuffer;
-            captureCallBack.onCapturePhotoOutput();
-          } else {
-            Log.info(`${TAG} getComponent img.byteBuffer is undefined`);
-          }
-          await image.release();
-          Log.info(`${TAG} getComponent  X`);
-        })
-      })
-
-      Log.info(`${TAG} saveImage getPublicDirectory `);
-      let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA);
-      //      publicPath = `${publicPath}Camera/`
-      Log.info(`${TAG} saveImage publicPath = ${publicPath}`);
-      const dataUri = await media.createAsset(mediaType, displayName, publicPath);
-      photoUri = dataUri.uri;
-      Log.info(`${TAG} saveImage photoUri: ${photoUri}`);
-
-      if (dataUri !== undefined) {
-        const args = dataUri.id.toString();
-        const fetchOp = {
-          selections: `${fileKeyObj.ID} = ? `,
-          selectionArgs: [args],
-        }
-        // 通过id去查找
-        Log.log(`${TAG} saveImage fetchOp${JSON.stringify(fetchOp)}`);
-        const fetchFileResult = await media.getFileAssets(fetchOp);
-        const fileAsset = await fetchFileResult.getAllObject();
-        if (fileAsset != undefined) {
-          Log.info(`${TAG} saveImage fileAsset is not undefined`);
-          fileAsset.forEach((dataInfo) => {
-            Log.info(`${TAG} saveImage fileAsset.forEach called`);
-            dataInfo.open('Rw').then((fd) => { // RW是读写方式打开文件 获取fd
-              Log.info(`${TAG} saveImage dataInfo.open called`);
-              fileio.write(fd, buffer).then(() => {
-                Log.info(`${TAG} saveImage fileio.write called`);
-                dataInfo.close(fd).then(() => {
-                  Log.info(`${TAG} saveImage ataInfo.close called`);
-                  thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
-                    Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
-                    captureCallBack.onCaptureSuccess(thumbnail, photoUri);
-                    Log.end(Log.UPDATE_PHOTO_THUMBNAIL);
-                  })
-                  Log.info(`${TAG} ==========================fileAsset.close success=======================>`);
-                }).catch(error => {
-                  EventLog.write(EventLog.SAVE_FAIL);
-                  Log.error(`${TAG} saveImage close is error `);
-                })
-              })
-            })
-          });
-        }
-      } else {
-        Log.error(`${TAG} dataUri is null`);
+      const buffer = await this.getBufferByReceiver(mReceiver);
+      if (!buffer) {
+        return;
       }
+      captureCallBack.onCapturePhotoOutput();
+
+      const fileAsset: UserFileManager.FileAsset = await this.createAsset(UserFileManager.FileType.IMAGE);
+      if (!fileAsset) {
+        Log.info(`${TAG} fileAsset is null`);
+        return;
+      }
+      this.lastFileMessage = {
+        fileId: fileAsset.uri, bufferLength: buffer.byteLength
+      };
+      this.photoUri = fileAsset.uri;
+      Log.info(`${TAG} saveImage photoUri: ${this.photoUri}`);
+
+      await this.fileAssetOperate(fileAsset, async (fd: number) => {
+        await fileIO.write(fd, buffer);
+        Log.info(`${TAG} saveImage fileio write done`);
+      }).catch(error => {
+        Log.error(`${TAG} saveImage error: ${JSON.stringify(error)}`);
+      });
+
+      thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
+        Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
+        captureCallBack.onCaptureSuccess(thumbnail, photoUri);
+        Log.end(Log.UPDATE_PHOTO_THUMBNAIL);
+      })
     })
     Log.info(`${TAG} saveImage X`);
   }
 
-  public async createVideoFd(captureCallBack: VideoCallBack): Promise<number> {
-    Log.info(`${TAG} getVideoFd E`);
-    const mDateTimeUtil = new DateTimeUtil();
-    const displayName = this.checkName(`VID_${mDateTimeUtil.getDate()}_${mDateTimeUtil.getTime()}`) + '.mp4';
-    const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    Log.info(`${TAG} getVideoFd publicPath: ${media}`);
-    const fileKeyObj = mediaLibrary.FileKey;
-    const mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA);
-    Log.info(`${TAG} getVideoFd publicPath: ${JSON.stringify(publicPath)}`);
-    //    publicPath = `${publicPath}Camera/`
-    try {
-      const dataUri = await media.createAsset(mediaType, displayName, publicPath);
-      if (dataUri !== undefined) {
-        const args = dataUri.id.toString();
-        const fetchOp = {
-          selections: `${fileKeyObj.ID} = ? `,
-          selectionArgs: [args],
-        };
-        // 通过id去查找
-        Log.log(`${TAG} fetchOp= ${JSON.stringify(fetchOp)}`);
-        const fetchFileResult = await media.getFileAssets(fetchOp);
-        Log.info(`${TAG} SaveCameraAsset getFileAssets finished`);
-        this.videoPrepareFile = await fetchFileResult.getFirstObject();
-        const getLastObject = await fetchFileResult.getLastObject();
-        captureCallBack.videoUri(getLastObject.uri);
-        Log.info(`${TAG} SaveCameraAsset getLastObject.uri: ${JSON.stringify(getLastObject.uri)}`);
-        const fdNumber = await this.videoPrepareFile.open('Rw');
-        return fdNumber;
-      }
-    } catch (err) {
-      Log.error(`${TAG} createVideoFd err: ` + err);
+  public async getThumbnailInfo(width?: number, height?: number, uri?: string): Promise<image.PixelMap | undefined> {
+    Log.info(`${TAG} getThumbnailInfo E width: ${width}, height: ${height}, uri: ${uri}`);
+    Log.info(`${TAG} getThumbnailInfo E`);
+    const fileAsset: UserFileManager.FileAsset = await this.getLastFileAsset();
+    if (!fileAsset) {
+      Log.info(`${TAG} getThumbnailInfo getLastFileAsset error: fileAsset undefined.`);
+      return undefined;
     }
-    Log.info(`${TAG} getVideoFd X`);
+    let thumbnailPixelMap: image.PixelMap = <image.PixelMap> await fileAsset.getThumbnail({
+      width: width, height: height
+    }).catch(e => {
+      Log.error(`${TAG} getThumbnail error: ${JSON.stringify(e)}`);
+    });
+    if (thumbnailPixelMap == undefined) {
+      Log.info(`${TAG} getThumbnail fail`);
+    } else {
+      Log.info(`${TAG} getThumbnail successful ` + thumbnailPixelMap);
+    }
+    Log.info(`${TAG} getThumbnailInfo X`);
+    return thumbnailPixelMap;
+  }
+
+  public async getLastFileAsset(): Promise<UserFileManager.FileAsset> {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByDesc('date_added').limit(1, 0);
+    let fetchOptions: FetchOpType = {
+      fetchColumns: ['date_added'],
+      predicates: predicates,
+    };
+    Log.info(`${TAG} getLastFileAsset fetchOp: ${JSON.stringify(fetchOptions)}`);
+    return this.getFileAssetByFetchOp(fetchOptions);
+  }
+
+  public async getFileAssetByFetchOp(fetchOp: FetchOpType): Promise<UserFileManager.FileAsset> {
+    let fetchResult;
+    let fileAsset;
+    try {
+      await this.createCameraAlbum();
+      fetchResult = await this.mCameraAlbum?.getPhotoAssets(fetchOp);
+      if (fetchResult != undefined) {
+        Log.info(`${TAG} getFileAssetByFetchOp fetchResult success`);
+        fileAsset = await fetchResult.getLastObject();
+        if (fileAsset != undefined) {
+          Log.info(`${TAG} getFileAssetByFetchOp fileAsset.displayName : ` + fileAsset.displayName);
+        }
+      }
+    } catch (e) {
+      Log.error(`${TAG} getFileAssetByFetchOp get fileAsset error: ${JSON.stringify(e)}`);
+    } finally {
+      fetchResult.close();
+    }
+    return fileAsset;
+  }
+
+  private async fileAssetOperate(fileAsset: UserFileManager.FileAsset, operate: (fd: number) => void): Promise<void> {
+    const fd: number = <number> await fileAsset.open('Rw').catch(error => {
+      Log.error(`${TAG} fileAsset open error: ${JSON.stringify(error)}`);
+      return;
+    });
+    try {
+      await operate.apply(this, [fd]);
+    } catch (error) {
+      Log.error(`${TAG} fileAsset operate error: ${JSON.stringify(error)}`);
+    } finally {
+      Log.info(`${TAG} fileAsset operate close`);
+      await fileAsset.close(fd).catch(error => {
+        EventLog.write(EventLog.SAVE_FAIL);
+        Log.error(`${TAG} fileAsset open error: ${JSON.stringify(error)}`);
+      });
+    }
+  }
+
+  private async getBufferByReceiver(mReceiver: image.ImageReceiver): Promise<ArrayBuffer> {
+    const imageInfo: image.Image = <image.Image> await mReceiver.readNextImage().catch(error => {
+      Log.error(`${TAG} saveImage receiver read next image error: ${JSON.stringify(error)}`);
+      return undefined;
+    });
+    try {
+      const img: image.Component = await imageInfo.getComponent(image.ComponentType.JPEG);
+      if (img && img.byteBuffer) {
+        const buffer: ArrayBuffer = img.byteBuffer.slice(0, img.byteBuffer.byteLength);
+        Log.info(`${TAG} saveImage getComponent img.byteBuffer.byteLength = ${buffer.byteLength}`);
+        return buffer;
+      } else {
+        Log.error(`${TAG} saveImage getComponent img is undefined error`);
+      }
+    } catch (error) {
+      Log.error(`${TAG} saveImage get buffer from receiver error: ${JSON.stringify(error)}`);
+    } finally {
+      if (imageInfo) {
+        await imageInfo.release().catch(error => {
+          Log.error(`${TAG} image info release error: ${JSON.stringify(error)}`);
+        });
+      }
+    }
+    return undefined;
+  }
+
+  public async createAsset(type: UserFileManager.FileType): Promise<UserFileManager.FileAsset> {
+    const displayName = this.getDisplayName(type);
+    Log.info(`${TAG} createAsset  displayName: ${displayName}`);
+    let option: UserFileManager.PhotoCreateOptions = {
+      subType: UserFileManager.PhotoSubType.CAMERA,
+    };
+    let fileAsset: UserFileManager.FileAsset = await this.mUserFileManager.createPhotoAsset(displayName, option);
+    if (fileAsset != undefined) {
+      Log.info(`${TAG} createPhotoAsset successfully displayName` + fileAsset.displayName);
+    } else {
+      Log.error(`${TAG} createPhotoAsset failed, fileAsset is undefined `);
+    }
+    return fileAsset;
+  }
+
+  private getDisplayName(type: UserFileManager.FileType): string {
+    const mDateTimeUtil: DateTimeUtil = new DateTimeUtil();
+    const mData: string = mDateTimeUtil.getDate();
+    const mTime: string = mDateTimeUtil.getTime();
+    if (type === UserFileManager.FileType.IMAGE) {
+      return `${this.checkName(`IMG_${mData}_${mTime}`)}.jpg`;
+    } else {
+      return `${this.checkName(`VID_${mData}_${mTime}`)}.mp4`;
+    }
+  }
+
+  public async createVideoFd(captureCallBack: VideoCallBack): Promise<number> {
+    Log.info(`${TAG} createVideoFd E`);
+    const fileAsset: UserFileManager.FileAsset = await this.createAsset(UserFileManager.FileType.VIDEO);
+    if (!fileAsset) {
+      Log.error(`${TAG} createVideoFd mediaLibrary createAsset error: fileAsset undefined.`);
+      return undefined;
+    }
+    let fdNumber: number = undefined;
+    try {
+      this.videoPrepareFile = fileAsset;
+      this.videoUri = fileAsset.uri;
+      captureCallBack.videoUri(this.videoUri);
+      Log.info(`${TAG} SaveCameraAsset getLastObject.uri: ${JSON.stringify(fileAsset.uri)}`);
+      fdNumber = await fileAsset.open('Rw');
+    } catch (err) {
+      Log.error(`${TAG} createVideoFd err: ${err}`);
+    }
+    Log.info(`${TAG} createVideoFd X`);
+    return fdNumber;
   }
 
   private checkName(name: string): string {
