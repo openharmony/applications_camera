@@ -20,6 +20,7 @@ import { Action } from '../../redux/actions/Action'
 import type { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import EventLog from '../../utils/EventLog'
+import { CameraService } from '../../camera/CameraService'
 
 class StateStruct {
   thumbnail: Resource
@@ -36,6 +37,7 @@ export struct ThumbnailView {
   @State hasThumbnail: boolean = false
   @State scaleValue: number = 1
   @State tempOpacity: number = 1
+  private cameraService = CameraService.getInstance()
 
   private async onThumbnailUpdate(data) {
     Log.info(`${this.TAG} onThumbnailUpdate data: ${JSON.stringify(data)} E`)
@@ -106,8 +108,10 @@ export struct ThumbnailView {
         Log.info(`${this.TAG} launch bundle com.ohos.photos`)
         EventLog.write(EventLog.CLICK_THUMBNAIL)
         globalThis.keepCameraZoomRatio = true
+        Log.info(`${this.TAG} uri === `+this.cameraService.getRecentFileUri())
         await globalThis.cameraAbilityContext.startAbility({
-          parameters: { uri: 'photodetail' },
+          parameters: { uri: this.cameraService.getRecentFileUri() },
+          action: 'ohos.want.action.viewData',
           bundleName: 'com.ohos.photos',
           abilityName: 'com.ohos.photos.MainAbility'
         })
