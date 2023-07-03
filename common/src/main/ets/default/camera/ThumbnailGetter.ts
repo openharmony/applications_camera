@@ -24,7 +24,7 @@ export default class ThumbnailGetter {
 
   private mUserFileManager: UserFileManager.UserFileManager;
   private mCameraAlbum: UserFileManager.Album;
-  private mRecentFileUri: string = ''
+  private mRecentFileUri: string = '';
 
   public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap | undefined> {
     this.mUserFileManager = UserFileManager.getUserFileMgr(globalThis.cameraAbilityContext);
@@ -41,7 +41,7 @@ export default class ThumbnailGetter {
     }).catch(e => {
       Log.error(`${TAG} getThumbnail error: ${JSON.stringify(e)}`);
     });
-    if (thumbnailPixelMap == undefined) {
+    if (thumbnailPixelMap === undefined) {
       Log.info(`${TAG} getThumbnail successful ` + thumbnailPixelMap);
     } else {
       Log.info(`${TAG} getThumbnail fail`);
@@ -81,11 +81,11 @@ export default class ThumbnailGetter {
     try {
       await this.createCameraAlbum();
       fetchResult = await this.mCameraAlbum?.getPhotoAssets(fetchOp);
-      if (fetchResult != undefined) {
+      if (fetchResult !== undefined) {
         Log.info(`${TAG} getFileAssetByFetchOp fetchResult success`);
         fileAsset = await fetchResult.getLastObject();
-        if (fileAsset != undefined) {
-          Log.info(`${TAG} getFileAssetByFetchOp fileAsset.displayName : ` + fileAsset.displayName);
+        if (fileAsset !== undefined) {
+          Log.info(`${TAG} getFileAssetByFetchOp fileAsset.displayName : ${JSON.stringify(fileAsset.displayName)}`);
         }
       }
     } catch (e) {
@@ -94,7 +94,7 @@ export default class ThumbnailGetter {
       fetchResult.close();
     }
     this.mRecentFileUri = fileAsset?.uri;
-    Log.info(`${TAG} mRecentFileUri ===`+this.mRecentFileUri);
+    Log.info(`${TAG} mRecentFileUri : ${JSON.stringify(this.mRecentFileUri)}`);
     return fileAsset;
   }
 }
