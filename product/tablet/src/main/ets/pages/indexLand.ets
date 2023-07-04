@@ -168,8 +168,8 @@ struct Index {
     if (!this.state.permissionFlag) {
       let permissionList: Array<string> = [
         "ohos.permission.MEDIA_LOCATION",
-        "ohos.permission.READ_MEDIA",
-        "ohos.permission.WRITE_MEDIA",
+        "ohos.permission.READ_IMAGEVIDEO",
+        "ohos.permission.WRITE_IMAGEVIDEO",
         "ohos.permission.CAMERA",
         "ohos.permission.MICROPHONE",
         "ohos.permission.DISTRIBUTED_DATASYNC",
