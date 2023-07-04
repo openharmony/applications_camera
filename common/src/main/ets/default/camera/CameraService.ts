@@ -783,6 +783,10 @@ export class CameraService {
     return this.mSaveCameraAsset.getPhotoUri();
   }
 
+  public getRecentFileUri(): string {
+    return this.mThumbnailGetter.getRecentFileUri();
+  }
+
   private async getCameraLists() {
     const cameras = this.mCameraManager.getSupportedCameras();
     this.camerasCache = cameras;

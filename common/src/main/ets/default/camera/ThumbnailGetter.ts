@@ -13,42 +13,88 @@
  * limitations under the License.
  */
 
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
-
+import UserFileManager from '@ohos.filemanagement.userFileManager';
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import type image from '@ohos.multimedia.image';
 import { Log } from '../utils/Log'
 
+const TAG = '[ThumbnailGetter]:';
+
 export default class ThumbnailGetter {
-  private TAG = '[ThumbnailGetter]:'
+
+  private mUserFileManager: UserFileManager.UserFileManager;
+  private mCameraAlbum: UserFileManager.Album;
+  private mRecentFileUri: string = '';
 
   public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap | undefined> {
-    Log.log(`${this.TAG} getThumbnailInfo E`)
-    Log.debug(`${this.TAG} getThumbnailInfo width: ${width}, height: ${height}, uri: ${JSON.stringify(uri)}`)
-    const fileKeyObj = mediaLibrary.FileKey;
-    let fetchOp: any
-    const media = mediaLibrary.getMediaLibrary(globalThis.cameraAbilityContext);
-    let publicPath: string = await media.getPublicDirectory(mediaLibrary.DirectoryType.DIR_CAMERA)
-    Log.log(`${this.TAG} getThumbnailInfo media: ${media}`)
-    fetchOp = {
-      selections: `${fileKeyObj.RELATIVE_PATH}=?`,
-      selectionArgs: [publicPath],
-      order: `${fileKeyObj.DATE_ADDED} DESC LIMIT 0, 1`
+    this.mUserFileManager = UserFileManager.getUserFileMgr(globalThis.cameraAbilityContext);
+    Log.info(`${TAG} getThumbnailInfo E width: ${width}, height: ${height}, uri: ${uri}`);
+    Log.info(`${TAG} getThumbnailInfo E`);
+    const fileAsset: UserFileManager.FileAsset = await this.getLastFileAsset();
+    if (!fileAsset) {
+      Log.info(`${TAG} getThumbnailInfo getLastFileAsset error: fileAsset undefined.`);
+      return undefined;
     }
+    let thumbnailPixelMap: image.PixelMap = <image.PixelMap> await fileAsset.getThumbnail({
+      width: width, height: height
+      // @ts-ignore
+    }).catch(e => {
+      Log.error(`${TAG} getThumbnail error: ${JSON.stringify(e)}`);
+    });
+    if (thumbnailPixelMap === undefined) {
+      Log.info(`${TAG} getThumbnail successful ` + thumbnailPixelMap);
+    } else {
+      Log.info(`${TAG} getThumbnail fail`);
+    }
+    Log.info(`${TAG} getThumbnailInfo X`);
+    return thumbnailPixelMap;
+  }
 
-    Log.log(`${this.TAG} getThumbnailInfo fetchOp: ${JSON.stringify(fetchOp)}`)
-    const fetchFileResult = await media.getFileAssets(fetchOp);
-    const count = fetchFileResult.getCount()
-    Log.log(`${this.TAG} getThumbnailInfo fetchFileResult.getCount: ${count}`)
-    if (count == 0) {
-      return undefined
+  public async getLastFileAsset(): Promise<UserFileManager.FileAsset> {
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.orderByDesc('date_added').limit(1, 0);
+    let fetchOptions = {
+      fetchColumns: ['date_added'],
+      predicates: predicates,
+    };
+    Log.info(`${TAG} getLastFileAsset fetchOp: ${JSON.stringify(fetchOptions)}`);
+    return this.getFileAssetByFetchOp(fetchOptions);
+  }
+
+  private async createCameraAlbum(): Promise<void> {
+    Log.log(`${TAG} createCameraAlbum E`);
+    if (!this.mCameraAlbum) {
+      let fetchResult = await this.mUserFileManager?.getAlbums(UserFileManager.AlbumType.SYSTEM, UserFileManager.AlbumSubType.CAMERA);
+      this.mCameraAlbum = await fetchResult?.getFirstObject();
+      Log.log(`${TAG} createCameraAlbum albumUri: ${JSON.stringify(this.mCameraAlbum.albumUri)}`);
     }
-    const lastFileAsset = await fetchFileResult.getLastObject()
-    await fetchFileResult.close()
-    if (lastFileAsset == null) {
-      Log.error(`${this.TAG} getThumbnailInfo lastFileAsset is null`)
-      return undefined
+    Log.log(`${TAG} createCameraAlbum X`);
+  }
+
+  public getRecentFileUri(): string {
+    return this.mRecentFileUri;
+  }
+
+  public async getFileAssetByFetchOp(fetchOp): Promise<UserFileManager.FileAsset> {
+    let fetchResult;
+    let fileAsset;
+    try {
+      await this.createCameraAlbum();
+      fetchResult = await this.mCameraAlbum?.getPhotoAssets(fetchOp);
+      if (fetchResult !== undefined) {
+        Log.info(`${TAG} getFileAssetByFetchOp fetchResult success`);
+        fileAsset = await fetchResult.getLastObject();
+        if (fileAsset !== undefined) {
+          Log.info(`${TAG} getFileAssetByFetchOp fileAsset.displayName : ${JSON.stringify(fileAsset.displayName)}`);
+        }
+      }
+    } catch (e) {
+      Log.error(`${TAG} getFileAssetByFetchOp get fileAsset error: ${JSON.stringify(e)}`);
+    } finally {
+      fetchResult.close();
     }
-    const thumbnailPixelMap = lastFileAsset.getThumbnail({width: 40, height: 40})
-    Log.info(`${this.TAG} getThumbnailInfo thumbnailPixelMap: ${JSON.stringify(thumbnailPixelMap)} X`)
-    return thumbnailPixelMap
+    this.mRecentFileUri = fileAsset?.uri;
+    Log.info(`${TAG} mRecentFileUri : ${JSON.stringify(this.mRecentFileUri)}`);
+    return fileAsset;
   }
 }
