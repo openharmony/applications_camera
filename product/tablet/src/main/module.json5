@@ -34,9 +34,6 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.REQUIRE_FORM"
-      },
-      {
         "name": "ohos.permission.MEDIA_LOCATION"
       },
       {
@@ -52,7 +49,7 @@
         "name": "ohos.permission.WRITE_IMAGEVIDEO"
       },
       {
-        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+        "name": "ohos.permission.GET_BUNDLE_INFO"
       },
       {
         "name": "ohos.permission.CAMERA"
