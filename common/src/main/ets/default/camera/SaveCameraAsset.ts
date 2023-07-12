@@ -25,7 +25,6 @@ import type ThumbnailGetter from './ThumbnailGetter';
 import EventLog from '../utils/EventLog';
 
 const TAG = '[SaveCameraAsset]:';
-let photoUri: string;
 
 export type FetchOpType = {
   fetchColumns: Array<string>,
@@ -52,8 +51,8 @@ export default class SaveCameraAsset {
   }
 
   public getPhotoUri() {
-    Log.log(`${TAG} getPhotoUri= ${photoUri}`);
-    return photoUri;
+    Log.log(`${TAG} getPhotoUri= ${this.photoUri}`);
+    return this.photoUri;
   }
 
   private async createCameraAlbum(): Promise<void> {
@@ -97,9 +96,9 @@ export default class SaveCameraAsset {
         Log.error(`${TAG} saveImage error: ${JSON.stringify(error)}`);
       });
 
-      thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, photoUri).then(thumbnail => {
+      thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, this.photoUri).then(thumbnail => {
         Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
-        captureCallBack.onCaptureSuccess(thumbnail, photoUri);
+        captureCallBack.onCaptureSuccess(thumbnail, this.photoUri);
         Log.end(Log.UPDATE_PHOTO_THUMBNAIL);
       })
     })
