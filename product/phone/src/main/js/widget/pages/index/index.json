@@ -3,21 +3,23 @@
   },
   "actions": {
     "photoRouter": {
-      "action": "ohos.want.action.imageCapture",
+      "action": "router",
       "bundleName": "com.ohos.camera",
       "abilityName": "com.ohos.camera.MainAbility",
       "params": {
         "uri": "capture",
-        "from": "FA"
+        "from": "FA",
+        "action": "ohos.want.action.imageCapture"
       }
     },
     "videoRouter": {
-      "action": "ohos.want.action.videoCapture",
+      "action": "router",
       "bundleName": "com.ohos.camera",
       "abilityName": "com.ohos.camera.MainAbility",
       "params": {
         "uri": "video",
-        "from": "FA"
+        "from": "FA",
+        "action": "ohos.want.action.videoCapture"
       }
     }
   }

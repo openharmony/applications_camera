@@ -91,13 +91,15 @@ export default class MainAbility extends Ability {
       }
     })
 
-    if (this.launchWant?.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
+    if (this.launchWant?.action === wantConstant.Action.ACTION_IMAGE_CAPTURE ||
+    this.launchWant?.parameters?.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
       globalThis.cameraFormParam = {
         action: 'capture',
         cameraPosition: 'PHOTO',
         mode: 'PHOTO'
       }
-    } else if (this.launchWant?.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
+    } else if (this.launchWant?.action === wantConstant.Action.ACTION_VIDEO_CAPTURE ||
+    this.launchWant?.parameters?.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
       globalThis.cameraFormParam = {
         action: 'video',
         cameraPosition: 'VIDEO',
