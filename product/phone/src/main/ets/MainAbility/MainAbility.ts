@@ -21,6 +21,7 @@ import { FeatureManager } from '@ohos/common/src/main/ets/default/featureservice
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService';
 import { ModeMap } from '../common/ModeMap';
+import wantConstant from '@ohos.ability.wantConstant';
 
 export default class MainAbility extends Ability {
   private cameraBasicFunction: any = null;
@@ -90,13 +91,15 @@ export default class MainAbility extends Ability {
       }
     })
 
-    if (this.launchWant.parameters.uri === 'capture') {
+    if (this.launchWant?.action === wantConstant.Action.ACTION_IMAGE_CAPTURE ||
+    this.launchWant?.parameters?.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
       globalThis.cameraFormParam = {
         action: 'capture',
         cameraPosition: 'PHOTO',
         mode: 'PHOTO'
       }
-    } else if (this.launchWant.parameters.uri === 'video') {
+    } else if (this.launchWant?.action === wantConstant.Action.ACTION_VIDEO_CAPTURE ||
+    this.launchWant?.parameters?.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
       globalThis.cameraFormParam = {
         action: 'video',
         cameraPosition: 'VIDEO',

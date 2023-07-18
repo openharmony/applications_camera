@@ -8,7 +8,8 @@
       "abilityName": "com.ohos.camera.MainAbility",
       "params": {
         "uri": "capture",
-        "from": "FA"
+        "from": "FA",
+        "action": "ohos.want.action.imageCapture"
       }
     },
     "videoRouter": {
@@ -17,7 +18,8 @@
       "abilityName": "com.ohos.camera.MainAbility",
       "params": {
         "uri": "video",
-        "from": "FA"
+        "from": "FA",
+        "action": "ohos.want.action.videoCapture"
       }
     }
   }

@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,6 +35,7 @@ import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomvi
 import { BigVideoTimer } from './BigVideoTimer'
 import { SmallVideoTimer } from './SmallVideoTimer'
 import promptAction from '@ohos.promptAction';
+import wantConstant from '@ohos.ability.wantConstant';
 
 globalThis.mXComponentController = new XComponentController();
 
@@ -434,31 +436,34 @@ export struct PreviewArea {
   private calledByOther(): void {
     Log.info(`${this.TAG} calledByOther invoke E`);
     let from: string = "";
-    let uri: string = "";
+    let action: string = "";
 
     if (globalThis?.cameraAbilityWant) {
       Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`);
       if (globalThis.cameraAbilityWant?.parameters?.from) {
         from = globalThis.cameraAbilityWant.parameters.from;
       }
-      if (globalThis.cameraAbilityWant?.parameters?.uri) {
-        uri = globalThis.cameraAbilityWant.parameters.uri;
+      if (globalThis.cameraAbilityWant?.action) {
+        action = globalThis.cameraAbilityWant.action;
       }
     } else {
       this.state.thirdPartyCall(false, "");
       return;
     }
-    Log.info(`${this.TAG} from: ${from}  uri: ${uri}`);
+    Log.info(`${this.TAG} from: ${from}  action: ${action}`);
 
     if (from === "FA") {
       Log.info(`from === "FA"`);
+      if (globalThis.cameraAbilityWant?.parameters?.action) {
+        action = globalThis.cameraAbilityWant.parameters.action;
+      }
       this.state.faCall(true);
       this.state.thirdPartyCall(false, "");
-      this.initStateMode(uri);
-    } else if (uri != "") {
+      this.initStateMode(action);
+    } else if (action != "") {
       this.state.faCall(false);
       this.state.thirdPartyCall(true, globalThis.cameraAbilityWant.action);
-      this.initStateMode(uri);
+      this.initStateMode(action);
     } else {
       this.state.faCall(false);
       this.state.thirdPartyCall(false, "");
@@ -466,13 +471,13 @@ export struct PreviewArea {
     Log.info(`${this.TAG} calledByOther invoke X: ${this.state.mode}`);
   }
 
-  private initStateMode(uri: string): void {
-    switch (uri) {
-      case "capture":
+  private initStateMode(action: string): void {
+    switch (action) {
+      case wantConstant.Action.ACTION_IMAGE_CAPTURE:
         this.state.initMode('PHOTO');
         this.state.updateModeIndex(1);
         break;
-      case "video":
+      case wantConstant.Action.ACTION_VIDEO_CAPTURE:
         this.state.initMode('VIDEO');
         this.state.updateModeIndex(2);
         break;
