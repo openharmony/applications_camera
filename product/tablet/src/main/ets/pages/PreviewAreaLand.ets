@@ -430,6 +430,9 @@ export struct PreviewAreaLand {
 
     if (from === "FA") {
       Log.info(`from === "FA"`);
+      if (globalThis.cameraAbilityWant?.parameters?.action) {
+        action = globalThis.cameraAbilityWant.parameters.action;
+      }
       this.state.faCall(true);
       this.state.thirdPartyCall(false, "");
       this.initStateMode(action);
