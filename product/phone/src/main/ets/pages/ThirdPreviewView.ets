@@ -65,15 +65,11 @@ struct ThirdPreviewView {
   terminateSelfWithResult(resourceUri): void {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
     let abilityResult = {
-      "resultCode": 200,
+      "resultCode": 0,
       "want": {
         "parameters": {
-          "resourceUri": resourceUri,
-          "width": this.photoWidth,
-          "height": this.photoHeight
+          "resourceUri": resourceUri
         },
-        "bundleName": "com.ohos.camera",
-        "abilityName": "com.ohos.camera.MainAbility"
       }
     };
 
