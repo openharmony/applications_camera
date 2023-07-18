@@ -3,7 +3,7 @@
   },
   "actions": {
     "photoRouter": {
-      "action": "router",
+      "action": "ohos.want.action.imageCapture",
       "bundleName": "com.ohos.camera",
       "abilityName": "com.ohos.camera.MainAbility",
       "params": {
@@ -12,7 +12,7 @@
       }
     },
     "videoRouter": {
-      "action": "router",
+      "action": "ohos.want.action.videoCapture",
       "bundleName": "com.ohos.camera",
       "abilityName": "com.ohos.camera.MainAbility",
       "params": {
