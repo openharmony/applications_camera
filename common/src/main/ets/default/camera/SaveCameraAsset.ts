@@ -48,7 +48,7 @@ export default class SaveCameraAsset {
   private videoUri: string;
 
   constructor() {
-
+    this.mUserFileManager = UserFileManager.getUserFileMgr(globalThis.cameraAbilityContext);
   }
 
   public getPhotoUri() {
@@ -67,9 +67,7 @@ export default class SaveCameraAsset {
   }
 
   public saveImage(mReceiver, thumbWidth: number, thumbHeight: number, thumbnailGetter: ThumbnailGetter, captureCallBack: FunctionCallBack): void {
-    Log.info(`${TAG} saveImage E`);
-    this.mUserFileManager = UserFileManager.getUserFileMgr(globalThis.cameraAbilityContext);
-    Log.info(`${TAG} saveImage mediaLibrary.getMediaLibrary media: ${this.mUserFileManager}`);
+    Log.info(`${TAG} saveImage E mediaLibrary.getMediaLibrary media: ${this.mUserFileManager}`);
     mReceiver.on('imageArrival', async () => {
       Log.start(Log.UPDATE_PHOTO_THUMBNAIL);
       Log.log(`${TAG} saveImage ImageReceiver on called`);
@@ -210,11 +208,16 @@ export default class SaveCameraAsset {
     let option: UserFileManager.PhotoCreateOptions = {
       subType: UserFileManager.PhotoSubType.CAMERA,
     };
-    let fileAsset: UserFileManager.FileAsset = await this.mUserFileManager.createPhotoAsset(displayName, option);
-    if (fileAsset !== undefined) {
-      Log.info(`${TAG} createPhotoAsset successfully displayName` + fileAsset.displayName);
-    } else {
-      Log.error(`${TAG} createPhotoAsset failed, fileAsset is undefined `);
+    let fileAsset: UserFileManager.FileAsset;
+    try {
+      fileAsset = await this.mUserFileManager.createPhotoAsset(displayName, option);
+      if (fileAsset !== undefined) {
+        Log.info(`${TAG} createPhotoAsset successfully displayName` + fileAsset.displayName);
+      } else {
+        Log.error(`${TAG} createPhotoAsset failed, fileAsset is undefined `);
+      }
+    } catch (e) {
+      Log.error(`${TAG} createPhotoAsset failed, error: ${JSON.stringify(e)}}`);
     }
     return fileAsset;
   }
