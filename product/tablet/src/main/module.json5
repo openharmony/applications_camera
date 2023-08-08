@@ -71,6 +71,9 @@
       },
       {
         "name": "ohos.permission.ACCESS_SERVICE_DM"
+      },
+      {
+        "name": "ohos.permission.PROXY_AUTHORIZATION_URI"
       }
     ],
     "abilities": [
