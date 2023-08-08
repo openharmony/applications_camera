@@ -65,6 +65,7 @@ export default class MainAbility extends Ability {
       globalThis.cameraWindowStageEvent = event
       if (event === window.WindowStageEventType.INACTIVE || event === window.WindowStageEventType.HIDDEN) {
         globalThis.stopRecordingFlag = true
+        globalThis.startRecordingFlag = false
         globalThis?.stopCameraRecording && globalThis.stopCameraRecording()
       } else {
         globalThis.stopRecordingFlag = false
