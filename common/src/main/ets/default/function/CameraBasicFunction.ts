@@ -122,6 +122,7 @@ export class CameraBasicFunction extends BaseFunction {
     } else {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
+    this.disableUi()
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     if ([...this.mSessionList].pop() === 'RELEASE') {
       await this.close()
@@ -155,6 +156,7 @@ export class CameraBasicFunction extends BaseFunction {
     } else {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
+    this.disableUi()
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     if ([...this.mSessionList].pop() === 'RELEASE') {
       await this.close()
@@ -183,6 +185,7 @@ export class CameraBasicFunction extends BaseFunction {
     } else {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
+    this.disableUi()
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     this.mWorkerManager.postMessage(Action.onModeChanged(this.mCurrentMode))
     this.mWorkerManager.postMessage(Action.swipeModeChangeDone(false))
@@ -208,6 +211,7 @@ export class CameraBasicFunction extends BaseFunction {
     } else {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
+    this.disableUi()
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     globalThis.cameraStatus = CameraStatus.CAMERA_PREVIEW_FINISHED
     this.mWorkerManager.postMessage(Action.updateCameraStatus())
