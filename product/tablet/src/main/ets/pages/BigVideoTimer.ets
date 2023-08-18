@@ -25,11 +25,13 @@ class StateStruct {
   recordingTimeDisplay
   isRecordingPaused
   isRecordingSpotVisible
+  isThirdPartyCall
   updateRecordingTime: Function
   updateSmallVideoTimerVisible: Function
   updateBigVideoTimerVisible: Function
   updateRecordingSpotVisible: Function
   updateRecordingTimeDisplay: Function
+  stopRecording : Function
 }
 
 @Component
@@ -61,7 +63,8 @@ export struct BigVideoTimer {
         recordingTime: state.RecordReducer.recordingTime,
         recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
         isRecordingPaused: state.RecordReducer.isRecordingPaused,
-        isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible
+        isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible,
+        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
       }
     }, (dispatch) => {
       return {
@@ -79,7 +82,14 @@ export struct BigVideoTimer {
         },
         updateRecordingTimeDisplay: (timeDisplay: string): void => {
           dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
-        }
+        },
+        stopRecording: () : void => {
+          dispatch(Action.stopRecording())
+          dispatch(Action.updateVideoState('beforeTakeVideo'))
+          dispatch(Action.updateBigVideoTimerVisible(false))
+          dispatch(Action.updateSmallVideoTimerVisible(false))
+          dispatch(Action.updateScreenStatus(false))
+        },
       }
     })(this.state)
 
@@ -126,6 +136,17 @@ export struct BigVideoTimer {
         }
       }
       this.state.updateRecordingSpotVisible(!this.state.isRecordingSpotVisible)
+      if (this.state.isThirdPartyCall && globalThis.cameraAbilityWant.parameters?.durationLimit) {
+        try {
+          let durationLimit: number = Number.parseInt(globalThis.cameraAbilityWant.parameters?.durationLimit)
+          Log.info(`${this.TAG} durationLimit is ${durationLimit}`);
+          if (this.state.recordingTime >= durationLimit) {
+            this.state.stopRecording();
+          }
+        } catch (error) {
+          Log.info(`${this.TAG} picker durationLimit --> ${JSON.stringify(error)}}`)
+        }
+      }
     }, 500)
   }
 
