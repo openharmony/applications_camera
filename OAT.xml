@@ -75,7 +75,7 @@
 
             <filefilter name="copyrightPolicyFilter" desc="Filters for copyright header policies">
                 <filteritem type="filename" name="README|README_zh|.*.log|.*.json5|.*.json" desc=""/>
-                <filteritem type="filename" name="hvigor/hvigor-wrapper.js|hvigorw|hvigorw.bat" desc=""/>
+                <filteritem type="filename" name="hvigor/.*.js|hvigor-wrapper.js|hvigorw|hvigorw.bat" desc=""/>
             </filefilter>
 
             <filefilter name="defaultPolicyFilter" desc="Filters for LICENSE file policies">
