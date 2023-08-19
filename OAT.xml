@@ -81,7 +81,7 @@
 
             <filefilter name="defaultPolicyFilter" desc="Filters for LICENSE file policies">
                 <filteritem type="filename" name="README|README_zh|*.log|*.json5|*.json" desc="json file"/>
-                <filteritem type="filename" name="hvigor-wrapper.js|hvigorw|hvigorw.bat" desc=""/>
+                <filteritem type="filename" name="hvigor/.*.js|hvigor-wrapper.js|hvigorw|hvigorw.bat" desc=""/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
