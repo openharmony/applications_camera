@@ -200,12 +200,12 @@ export struct ShutterButton {
                     onFinish: () => { this.captureBtnScale = 1 }},
                   () => { this.captureBtnScale = 1 })
                 let timerLapse = this.settingManager.getTimeLapse()
-                Log.log(`${this.TAG} ShutterButton startRecording getValue= ${JSON.stringify(timerLapse)}`)
+                Log.log(`${this.TAG} ShutterButton start capture getValue= ${JSON.stringify(timerLapse)}`)
                 if (timerLapse && timerLapse.id !== Timer.RESOURCE_OFF.id) {
                   Log.log('ShutterButton startRecording changeTimeLapse called')
                   this.state.changeTimeLapse(true)
                 } else {
-                  Log.log('ShutterButton startRecording changeTimeLapse not called')
+                  Log.log('ShutterButton capture changeTimeLapse not called')
                   this.state.capture()
                 }
               }
