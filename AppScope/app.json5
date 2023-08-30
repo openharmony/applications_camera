@@ -17,8 +17,8 @@
   "app": {
     "bundleName": "com.ohos.camera",
     "vendor": "ohos",
-    "versionCode": 1000000,
-    "versionName": "1.0.0",
+    "versionCode": 1000003,
+    "versionName": "1.0.3",
     "icon": "$media:icon",
     "label": "$string:app_name",
     "distributedNotificationEnabled": false
