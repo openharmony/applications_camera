@@ -52,6 +52,9 @@ struct ThirdPreviewView {
   backCalledApp(resourceUri): void {
     Log.info(`${this.TAG} backCalledApp E`);
     let that = this;
+    if (!this.callBundleName) {
+      Log.info(`${this.TAG} backCalledApp callBundleName is null return`);
+    }
     fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
       .then(() => {
         Log.info(`${this.TAG} grantUriPermission success`);
