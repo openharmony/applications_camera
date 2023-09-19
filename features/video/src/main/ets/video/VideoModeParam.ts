@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { Log, FunctionId } from '@ohos/common'
+import { FunctionId, Log } from '@ohos/common'
 
 export class VideoModeParam {
   public readonly tabBar: string[] = ['', '', 'zoom', 'timer', 'setup']
-  public readonly functions: FunctionId[] = [FunctionId.RECORDING_FUNCTION, FunctionId.ZOOM_FUNCTION]
+  public readonly functions: FunctionId[] = [FunctionId.RECORDING_FUNCTION, FunctionId.ZOOM_FUNCTION, FunctionId.CAPTURE_FUNCTION]
 }
