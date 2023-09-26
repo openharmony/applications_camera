@@ -14,20 +14,23 @@
  */
 
 import geolocation from '@ohos.geolocation';
-import { Log } from '../../utils/Log'
-import { SettingManager } from '../../setting/SettingManager'
+import { Log } from '../../utils/Log';
+import { SettingManager } from '../../setting/SettingManager';
+import { BusinessError } from '@ohos.base';
 
 export class GeoLocation {
   private TAG: string = '[GeoLocation]:'
   private static instance: GeoLocation
-  private mLocation = undefined
-  private requestInfo = {'priority': 0x203, 'scenario': 0x300, 'timeInterval': 0, 'distanceInterval': 0, 'maxAccuracy': 0}
-  private locationChange = (location): void => {//删掉参数err及相关逻辑
-//    Log.info(`[GeoLocation]: locationChange err: ${err}`)
-//    if (!err) {
-      Log.info(`[GeoLocation]: locationChange: ${location}`)
-      SettingManager.getInstance().setCurGeoLocation(location)
-//    }
+  private requestInfo: geolocation.LocationRequest = {
+    priority: 0x203,
+    scenario: 0x300,
+    timeInterval: 0,
+    distanceInterval: 0,
+    maxAccuracy: 0
+  }
+  private locationChange = (location: geolocation.Location): void => { //删掉参数err及相关逻辑
+    Log.info(`[GeoLocation]: locationChange: ${location}`)
+    SettingManager.getInstance().setCurGeoLocation(location)
   }
 
   public static getInstance() {
@@ -46,11 +49,15 @@ export class GeoLocation {
     geolocation.isLocationEnabled().then((result) => {
       Log.info(`${this.TAG} isLocationEnabled: ${result}`)
       if (result) {
-        var curRequestInfo = {'priority': 0x203, 'scenario': 0x300, 'maxAccuracy': 1000}
+        let curRequestInfo: geolocation.CurrentLocationRequest = {
+          'priority': 0x203,
+          'scenario': 0x300,
+          'maxAccuracy': 1000
+        }
         geolocation.getCurrentLocation(curRequestInfo).then((result) => {
           Log.info(`${this.TAG} on getCurrentLocation result: ${JSON.stringify(result)}`)
           SettingManager.getInstance().setCurGeoLocation(result)
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           Log.info(`${this.TAG} on getCurrentLocation err result: ${JSON.stringify(err)}`)
         })
         geolocation.on('locationChange', this.requestInfo, this.locationChange)

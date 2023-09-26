@@ -15,13 +15,13 @@
 
 import { Action } from '../../../redux/actions/Action'
 import Timer from '../../../setting/settingitem/Timer'
-import type { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
+import { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
 import { CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView'
 import { Log } from '../../../utils/Log'
-import type { OhCombinedState } from '../../../redux/store'
+import { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store'
 import { SettingManager } from '../../../setting/SettingManager'
-import type { SettingData, SettingGroupItem } from '../model/SettingData'
+import { SettingData, SettingGroupItem } from '../model/SettingData'
 
 class StateStruct {
   isCloseFlag

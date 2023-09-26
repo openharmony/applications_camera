@@ -17,6 +17,7 @@ import router from '@system.router';
 import fileshare from '@ohos.fileshare';
 import wantConstant from '@ohos.ability.wantConstant';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 @Entry
 @Component
@@ -51,9 +52,6 @@ struct ThirdPreviewView {
   backCalledApp(resourceUri): void {
     Log.info(`${this.TAG} backCalledApp E`);
     let that = this;
-    if (!this.callBundleName) {
-      Log.info(`${this.TAG} backCalledApp callBundleName is null return`);
-    }
     fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
       .then(() => {
         Log.info(`${this.TAG} grantUriPermission success`);
@@ -75,7 +73,7 @@ struct ThirdPreviewView {
       }
     };
 
-    globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
+    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error, data) => {
       if (error) {
         Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
         return;

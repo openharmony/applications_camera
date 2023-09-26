@@ -13,20 +13,48 @@
  * limitations under the License.
  */
 
-import { Log } from '../../utils/Log'
-import type { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Action } from '../../redux/actions/Action'
-import { SettingManager } from '../../setting/SettingManager'
-import Timer from '../../setting/settingitem/Timer'
-import type { EventBus } from '../../worker/eventbus/EventBus'
-import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import { BusinessError } from "@ohos.base";
+import { Log } from '../../utils/Log';
+import { OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Action } from '../../redux/actions/Action';
+import { SettingManager } from '../../setting/SettingManager';
+import Timer from '../../setting/settingitem/Timer';
+import { EventBus } from '../../worker/eventbus/EventBus';
+import { EventBusManager } from '../../worker/eventbus/EventBusManager';
+import { Dispatch } from '../../redux/core/redux/types/store'
+import { GlobalContext } from '../../utils/GlobalContext';
 
 class StateStruct {
-  mode
-  changeTimeLapse: Function
-  capture: Function
-  startRecording: Function
+  mode: string = '';
+}
+
+class TimeLapseViewDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public changeTimeLapse(isShowtimeLapse: boolean): void {
+    this.mDispatch(Action.changeTimeLapse(isShowtimeLapse));
+  }
+
+  public capture(): void {
+    this.mDispatch(Action.updateShowFlashBlackFlag(true))
+    this.mDispatch(Action.capture());
+  }
+
+  public startRecording(): void {
+    this.mDispatch(Action.startRecording());
+    this.mDispatch(Action.updateVideoState('startTakeVideo'));
+    this.mDispatch(Action.updateBigVideoTimerVisible(true));
+    this.mDispatch(Action.updateScreenStatus(true));
+  }
+}
+
+class KeepScreenStruct {
+  isKeepScreenOn: boolean = false;
 }
 
 @Component
@@ -35,48 +63,37 @@ export struct TimeLapseView {
   private timer: number = 0
   private settingManager = SettingManager.getInstance()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-
   @State state: StateStruct = new StateStruct()
   @State timerLapse: number = 0
+  private mAction: TimeLapseViewDispatcher = new TimeLapseViewDispatcher();
 
-  private onKeepScreen(data): void {
+  private onKeepScreen(data: KeepScreenStruct): void {
     Log.info(`${this.TAG} onKeepScreen E`)
     if (data) {
-      globalThis.cameraWinClass.setKeepScreenOn(data.isKeepScreenOn).then((v) => {
-        Log.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(v))
-      }).catch((err) => {
-        Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
-      });
+      GlobalContext.get()
+        .getCameraWinClass()
+        .setKeepScreenOn(data.isKeepScreenOn)
+        .then(() => {
+          Log.info('Succeeded in setting the screen to be always on');
+        })
+        .catch((err: BusinessError) => {
+          Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+        });
     }
     Log.info(`${this.TAG} onKeepScreen X`)
   }
 
   aboutToAppear() {
-    Log.debug(`${this.TAG} aboutToAppear E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-        mode: state.ModeReducer.mode
-      }
-    }, (dispatch) => {
-      return {
-        changeTimeLapse: (isShowtimeLapse: boolean): void => {
-          dispatch(Action.changeTimeLapse(isShowtimeLapse))
-        },
-        capture: (): void => {
-          dispatch(Action.updateShowFlashBlackFlag(true))
-          dispatch(Action.capture())
-        },
-        startRecording: (): void => {
-          dispatch(Action.startRecording())
-          dispatch(Action.updateVideoState('startTakeVideo'))
-          dispatch(Action.updateBigVideoTimerVisible(true))
-          dispatch(Action.updateScreenStatus(true))
-        }
-      }
-    })(this.state)
-
-    this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this))
-    switch(JSON.stringify(this.settingManager.getTimeLapse())){
+    Log.info(`${this.TAG} aboutToAppear E`)
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
+        mode: state.ModeReducer.mode,
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
+    this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, (data: KeepScreenStruct) => this.onKeepScreen(data))
+    switch (JSON.stringify(this.settingManager.getTimeLapse())) {
       case JSON.stringify(Timer.RESOURCE_OFF):
         this.timerLapse = -1
         break;
@@ -97,22 +114,21 @@ export struct TimeLapseView {
     if (this.timerLapse > 0) {
       clearInterval(this.timer)
       this.timer = setInterval(() => {
-        this.timerLapse --
-        if(this.timerLapse < 1){
+        this.timerLapse--
+        if (this.timerLapse < 1) {
           clearInterval(this.timer)
-          this.state.changeTimeLapse(false)
+          this.mAction.changeTimeLapse(false)
           Log.info(`${this.TAG} calculate mode= ${this.state.mode}`)
           if (!this.state.mode || this.state.mode === 'PHOTO' || this.state.mode === 'MULTI') {
-            this.state.capture()
+            this.mAction.capture()
           } else if (this.state.mode === 'VIDEO') {
-            this.state.startRecording()
+            this.mAction.startRecording()
           }
         }
       }, 1000)
     }
-    Log.debug(`${this.TAG} aboutToAppear X`)
+    Log.info(`${this.TAG} aboutToAppear X`)
   }
-
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
@@ -120,9 +136,8 @@ export struct TimeLapseView {
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
-
   build() {
-    Flex({direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End}){
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
       Text(this.timerLapse.toString())
         .fontSize(120)
         .fontColor(Color.White)
