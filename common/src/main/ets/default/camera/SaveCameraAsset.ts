@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import fileIO from '@ohos.fileio';
+import fs, { Filter, ConflictFiles } from '@ohos.file.fs';
 import image from '@ohos.multimedia.image';
 import UserFileManager from '@ohos.filemanagement.userFileManager';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -81,19 +81,27 @@ export default class SaveCameraAsset {
         Log.info(`${TAG} fileAsset is null`);
         return;
       }
+      // @ts-ignore
+      await fileAsset.setPending(true);
       this.lastFileMessage = {
         fileId: fileAsset.uri, bufferLength: buffer.byteLength
       };
       this.photoUri = fileAsset.uri;
       Log.info(`${TAG} saveImage photoUri: ${this.photoUri}`);
-
       await this.fileAssetOperate(fileAsset, async (fd: number) => {
-        await fileIO.write(fd, buffer);
+        Log.info(`${TAG} saveImage fileio write begin`);
+        try {
+          fs.writeSync(fd, buffer);
+          fs.fsyncSync(fd);
+        } catch (e) {
+          Log.error(`${TAG} fileAssetOperate fileio writeSync ${JSON.stringify(e)}`);
+        }
         Log.info(`${TAG} saveImage fileio write done`);
       }).catch(error => {
         Log.error(`${TAG} saveImage error: ${JSON.stringify(error)}`);
       });
-
+      // @ts-ignore
+      await fileAsset.setPending(false);
       thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, this.photoUri).then(thumbnail => {
         Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
         captureCallBack.onCaptureSuccess(thumbnail, this.photoUri);
