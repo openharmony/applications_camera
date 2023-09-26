@@ -16,22 +16,52 @@
 import deviceInfo from '@ohos.deviceInfo';
 import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
 import { SettingItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/phone/SettingItem'
 import { SettingListModel } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
+import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store';
+import { SettingGroupItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/SettingData';
 
 class StateStruct {
-  isCloseFlag
-  mode
-  zoomRatio
-  closeDialog : Function
-  hideSettingView : Function
-  changeXComponentSize : Function
-  assistiveGridView : Function
-  reStartPreview : Function
+  isCloseFlag: boolean = false;
+  mode: string = '';
+  zoomRatio: number = 1;
+}
+
+class SettingViewDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public closeDialog(isCloseFlag: boolean): void {
+    this.mDispatch(Action.closeDialog(isCloseFlag));
+  }
+
+  public hideSettingView(): void {
+    this.mDispatch(Action.showSettingView(false));
+  }
+
+  public changeXComponentSize(xComponentWidth: number, xComponentHeight: number): void {
+    this.mDispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight));
+  }
+
+  public assistiveGridView(isViewShow: number): void {
+    this.mDispatch(Action.assistiveGridView(isViewShow));
+  }
+
+  public reStartPreview(zoomRatio: number): void {
+    this.mDispatch(Action.reStartPreview(zoomRatio));
+  }
+}
+
+class SizeStruct {
+  width: number = 0;
+  height: number = 0;
 }
 
 @Component
@@ -42,50 +72,34 @@ export struct SettingView {
   @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
-  @State settingsList: any[] = new SettingListModel().getSettingList()
+  @State settingsList: SettingGroupItem[] = new SettingListModel().getSettingList()
   @State state: StateStruct = new StateStruct()
   private mEventBus = EventBusManager.getInstance().getEventBus()
   private WH_100_100: string = "100%";
+  private mAction: SettingViewDispatcher = new SettingViewDispatcher();
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         isCloseFlag: state.SettingReducer.isCloseFlag,
         mode: state.ModeReducer.mode,
         zoomRatio: state.ZoomReducer.zoomRatio
-      }
-    }, (dispatch) => {
-      return {
-        closeDialog: (isCloseFlag: boolean): void =>  {
-          dispatch(Action.closeDialog(isCloseFlag))
-        },
-        hideSettingView: (): void =>  {
-          dispatch(Action.showSettingView(false))
-        },
-        changeXComponentSize: (xComponentWidth: number, xComponentHeight: number): void =>  {
-          dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
-        },
-        assistiveGridView: (isViewShow: number): void =>  {
-          dispatch(Action.assistiveGridView(isViewShow))
-        },
-        reStartPreview: (zoomRatio?: number): void =>  {
-          dispatch(Action.reStartPreview(zoomRatio))
-        }
-      }
-    })(this.state)
-
-    this.mEventBus.on("AspectRatio", this.aspectRatioChange.bind(this))
-    this.mEventBus.on("Resolution", this.resolutionChange.bind(this))
-    this.mEventBus.on("AssistiveGrid", this.assistiveGridChange.bind(this))
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
+    this.mEventBus.on("AspectRatio", (data: SizeStruct) => this.aspectRatioChange(data));
+    this.mEventBus.on("Resolution", (data: SizeStruct) => this.resolutionChange(data));
+    this.mEventBus.on("AssistiveGrid", (data: number) => this.assistiveGridChange(data));
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.mEventBus.off("AspectRatio", this.aspectRatioChange.bind(this))
-    this.mEventBus.off("Resolution", this.resolutionChange.bind(this))
-    this.mEventBus.off("AssistiveGrid", this.assistiveGridChange.bind(this))
+    this.mEventBus.off("AspectRatio", (data: SizeStruct) => this.aspectRatioChange(data));
+    this.mEventBus.off("Resolution", (data: SizeStruct) => this.resolutionChange(data));
+    this.mEventBus.off("AssistiveGrid", (data: number) => this.assistiveGridChange(data));
   }
 
   onBackPress(): boolean {
@@ -93,27 +107,27 @@ export struct SettingView {
     if (this.state.isCloseFlag) {
       this.closeFlag = !this.closeFlag
     } else {
-      this.state.hideSettingView()
+      this.mAction.hideSettingView()
     }
     return true;
   }
 
-  private aspectRatioChange(xComponentSize): void {
+  private aspectRatioChange(xComponentSize: SizeStruct): void {
     if (this.state.mode != 'VIDEO') {
-      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
-      this.state.reStartPreview(this.state.zoomRatio)
+      this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.mAction.reStartPreview(this.state.zoomRatio)
     }
   }
 
-  private resolutionChange(xComponentSize): void {
+  private resolutionChange(xComponentSize: SizeStruct): void {
     if (this.state.mode == 'VIDEO') {
-      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
-      this.state.reStartPreview(this.state.zoomRatio)
+      this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.mAction.reStartPreview(this.state.zoomRatio)
     }
   }
 
-  private assistiveGridChange(mAssistiveGrid): void {
-    this.state.assistiveGridView(mAssistiveGrid)
+  private assistiveGridChange(mAssistiveGrid: number): void {
+    this.mAction.assistiveGridView(mAssistiveGrid)
   }
 
   build() {
@@ -124,7 +138,7 @@ export struct SettingView {
           .height(24)
           .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
           .onClick(() => {
-            this.state.hideSettingView()
+            this.mAction.hideSettingView()
           })
         Text($r('app.string.settings'))
           .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
@@ -141,7 +155,7 @@ export struct SettingView {
         Column() {
           GridContainer({ columns: 4, gutter: this.tempGutter, margin: this.tempMargin }) {
             List() {
-              ForEach(this.settingsList, (item, index) => {
+              ForEach(this.settingsList, (item: SettingGroupItem, index: number) => {
                 ListItem() {
                   SettingItem({
                     settingsList: $settingsList,
@@ -168,7 +182,7 @@ export struct SettingView {
             .width('52%')
             .onClick(() => {
               this.settingManager.restoreValues(this.state.mode)
-              this.state.hideSettingView()
+              this.mAction.hideSettingView()
             })
           }
           .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })

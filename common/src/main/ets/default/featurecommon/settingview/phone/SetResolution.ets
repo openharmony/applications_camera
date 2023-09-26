@@ -15,50 +15,60 @@
 
 import { Action } from '../../../redux/actions/Action'
 import Timer from '../../../setting/settingitem/Timer'
-import type { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
+import { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
 import { CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView'
 import { Log } from '../../../utils/Log'
-import type { OhCombinedState } from '../../../redux/store'
+import { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store'
 import { SettingManager } from '../../../setting/SettingManager'
-import type { SettingData, SettingGroupItem } from '../model/SettingData'
+import { SettingData, SettingGroupItem } from '../model/SettingData'
+import { Dispatch } from '../../../redux/core/redux/types/store'
 
 class StateStruct {
-  closeDialog : Function
 }
+
+class SetResolutionDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public closeDialog(isCloseFlag: boolean): void {
+    this.mDispatch(Action.closeDialog(isCloseFlag));
+  }
+}
+
 
 @Component
 export struct SetResolution {
-  private TAG: string = '[SetResolution]:'
-  @Link settingsList: SettingGroupItem[]
-  @Link @Watch('onCloseDialog') closeFlag: boolean
-  private itemValue: SettingData
-  private getCheckValue: Promise<string>
-  private WH_100_100: string = "100%"
-  private settingManager = SettingManager.getInstance()
-  private setAlias: string= undefined
-  @StorageLink("settingDialogFlag") settingDialogFlag: boolean = true
-
-  @State curCheckName: Resource = $r("app.string.default_value")
-
-  @State state: StateStruct = new StateStruct()
-
+  private TAG: string = '[SetResolution]:';
+  @Link settingsList: SettingGroupItem[];
+  @Link @Watch('onCloseDialog') closeFlag: boolean;
+  private itemValue: SettingData = {};
+  private WH_100_100: string = "100%";
+  private settingManager = SettingManager.getInstance();
+  private setAlias: string = '';
+  @StorageLink("settingDialogFlag") settingDialogFlag: boolean = true;
+  @State curCheckName: Resource = $r("app.string.default_value");
+  @State state: StateStruct = new StateStruct();
+  private mAction: SetResolutionDispatcher = new SetResolutionDispatcher();
   @Provide customDialogDetails: CustomDialogDetails = {
-    confirmCallback: null,
+    confirmCallback: Function,
     confirmItem: true,
     height: 256,
     width: 256,
     setAlias: this.setAlias,
     childrenList: [],
     settingTitle: ''
-  }
+  };
   CustomDialogView: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogView({ cancel: this.existView.bind(this) }),
+    builder: CustomDialogView({ cancel: () => this.existView() }),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     cancel: this.existView,
     customStyle: true
-  })
+  });
 
   existView(): void {
     Log.info(`${this.TAG} existView E`)
@@ -66,21 +76,16 @@ export struct SetResolution {
       this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
       Log.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
     }
-    this.state.closeDialog(false)
+    this.mAction.closeDialog(false)
   }
 
   aboutToAppear(): void {
-    Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-      }
-    }, (dispatch) => {
-      return {
-        closeDialog: (isCloseFlag: boolean) => {
-          dispatch(Action.closeDialog(isCloseFlag))
-        }
-      }
-    })(this.state)
+    Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`);
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {};
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     if (this.settingManager.getSettingValue(this.itemValue.settingAlias) !== undefined) {
       this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
@@ -91,13 +96,13 @@ export struct SetResolution {
   public onCloseDialog(): void {
     Log.info(`${this.TAG} onCloseDialog E`)
     if (this.customDialogDetails.setAlias !== undefined) {
-      this.state.closeDialog(false)
+      this.mAction.closeDialog(false)
       this.CustomDialogView.close()
     }
     Log.info(`${this.TAG} onCloseDialog X`)
   }
 
-  public formatCurCheckName(name) {
+  public formatCurCheckName(name: Resource): Resource {
     if (name.id === Timer.DEFAULT_VALUE.id) {
       name = Timer.RESOURCE_OFF_ALREADY
     }
@@ -161,7 +166,7 @@ export struct SetResolution {
     this.customDialogDetails.settingTitle = itemValue.settingName
     this.customDialogDetails.setAlias = itemValue.settingAlias
     Log.info(`${this.TAG} childrenList: ${JSON.stringify(itemValue.radio)}`)
-    this.state.closeDialog(true)
+    this.mAction.closeDialog(true)
     this.CustomDialogView.open()
     Log.info(`${this.TAG} openDetailsDialog end`)
   }

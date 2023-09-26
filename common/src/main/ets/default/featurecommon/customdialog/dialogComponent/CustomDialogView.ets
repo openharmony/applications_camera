@@ -17,53 +17,72 @@ import deviceInfo from '@ohos.deviceInfo'
 
 import { Action } from '../../../redux/actions/Action'
 import { Log } from '../../../utils/Log'
-import type { OhCombinedState } from '../../../redux/store'
+import { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store'
 import EntryComponent from './EntryComponent'
+import { Dispatch } from '../../../redux/core/redux/types/store'
 
 @Observed
 export class CustomDialogDetails {
-  confirmCallback: Function
-  confirmItem: boolean
-  height: number
-  width: number
-  setAlias: string
-  childrenList: any[]
-  settingTitle: string
+  confirmCallback: Function = () => {
+  };
+  confirmItem: boolean = false;
+  height: number = 0;
+  width: number = 0;
+  setAlias: string = '';
+  childrenList: ChildrenItemStruct[] = [];
+  settingTitle: string = '';
 }
 
 class StateStruct {
-  closeDialog : Function
+}
+
+class CustomDialogViewDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public closeDialog(isCloseFlag: boolean): void {
+    this.mDispatch(Action.closeDialog(isCloseFlag));
+  }
+}
+
+class ChildrenItemStruct {
+  itemValue: Resource = $r('app.string.photo_ratio_4_3');
+}
+
+class StyleStruct {
+  columns: number = 0;
+  offset: number = 0;
 }
 
 @CustomDialog
 export struct CustomDialogView {
   private TAG: string = '[CustomDialogView]:'
-  localStyle = { "columns": 4, "offset": 0 }
-  controller: CustomDialogController
-  cancel: () => void
-  confirm: () => void
-  @Consume customDialogDetails: CustomDialogDetails
-  @State settingAlias: string= ""
-  @State getValue: string= ""
-  @State childrenList: Array<any> = []
-
-  @State state: StateStruct = new StateStruct()
+  localStyle: StyleStruct = { columns: 4, offset: 0 };
+  controller?: CustomDialogController;
+  cancel: () => void = () => {
+  };
+  confirm: () => void = () => {
+  };
+  @Consume customDialogDetails: CustomDialogDetails;
+  @State settingAlias: string = "";
+  @State getValue: string = "";
+  @State childrenList: Array<ChildrenItemStruct> = [];
+  @State state: StateStruct = new StateStruct();
+  private mAction: CustomDialogViewDispatcher = new CustomDialogViewDispatcher();
 
   async aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
     this.childrenList = this.customDialogDetails.childrenList
     Log.info(`${this.TAG} childrenList ${JSON.stringify(this.childrenList)}`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-      }
-    }, (dispatch) => {
-      return {
-        closeDialog: (isCloseFlag: boolean) => {
-          dispatch(Action.closeDialog(isCloseFlag))
-        }
-      }
-    })(this.state)
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {};
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     this.settingAlias = this.customDialogDetails.setAlias
     Log.info(`${this.TAG} aboutToAppear end`)
@@ -71,8 +90,10 @@ export struct CustomDialogView {
 
   public onChange(): void {
     Log.info(`${this.TAG} onChange start`)
-    this.state.closeDialog(false)
-    this.controller.close()
+    this.mAction.closeDialog(false)
+    if (this.controller) {
+      this.controller.close()
+    }
     this.cancel()
     Log.info(`${this.TAG} onChange end`)
   }
@@ -93,7 +114,7 @@ export struct CustomDialogView {
           .height(56)
 
           List() {
-            ForEach(this.customDialogDetails.childrenList, (item) => {
+            ForEach(this.customDialogDetails.childrenList, (item: ChildrenItemStruct) => {
               ListItem() {
                 EntryComponent({
                   itemValue: item.itemValue,
@@ -121,8 +142,10 @@ export struct CustomDialogView {
             .height('100%')
             .backgroundColor('#00ffffff')
             .onClick(() => {
-              this.state.closeDialog(false)
-              this.controller.close()
+              this.mAction.closeDialog(false)
+              if (this.controller) {
+                this.controller?.close()
+              }
             })
           }
           .height(56)
@@ -152,7 +175,7 @@ export struct CustomDialogView {
           GridContainer({ columns: this.localStyle.columns, gutter: 12, margin: 12 }) {
 
             List() {
-              ForEach(this.customDialogDetails.childrenList, (item) => {
+              ForEach(this.customDialogDetails.childrenList, (item: ChildrenItemStruct) => {
                 ListItem() {
                   EntryComponent({
                     itemValue: item.itemValue,
@@ -180,8 +203,10 @@ export struct CustomDialogView {
               .height('100%')
               .backgroundColor('#00ffffff')
               .onClick(() => {
-                this.state.closeDialog(false)
-                this.controller.close()
+                this.mAction.closeDialog(false)
+                if (this.controller) {
+                  this.controller?.close()
+                }
               })
             }
             .height(56)

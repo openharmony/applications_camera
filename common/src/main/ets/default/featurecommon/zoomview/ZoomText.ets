@@ -14,29 +14,37 @@
  */
 
 import { Log } from '../../utils/Log'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
+import { Dispatch } from '../../redux/core/redux/types/store'
 
 class StateStruct {
-  zoomRatio: number
+  zoomRatio: number = 1;
+}
+
+class ZoomTextDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
 }
 
 @Component
 export struct ZoomText {
   private TAG: string = '[ZoomText]'
-
-  @Link state : StateStruct
+  @Link state: StateStruct
+  private mAction: ZoomTextDispatcher = new ZoomTextDispatcher();
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-        zoomRatio: state.ZoomReducer.zoomRatio
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
+        zoomRatio: state.ZoomReducer.zoomRatio,
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 

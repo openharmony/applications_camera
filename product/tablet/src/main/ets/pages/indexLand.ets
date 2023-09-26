@@ -18,9 +18,9 @@ import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
 import { CameraWorker } from '@ohos/common/src/main/ets/default/worker/CameraWorker';
 import { ComponentPosition } from '@ohos/common/src/main/ets/default/utils/ComponentPosition';
 import { Constants } from '@ohos/common/src/main/ets/default/utils/Constants';
-import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
-import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/moreList';
@@ -37,6 +37,7 @@ import { PreviewAreaLand } from './PreviewAreaLand';
 import { SettingView } from './SettingView';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import { ModeMap } from '../common/ModeMap';
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 CameraWorker.getInstance(new ModeMap());
 var mScreenLockManager = new ScreenLockManager();
@@ -181,40 +182,41 @@ struct Index {
       let atManager = abilityAccessCtrl.createAtManager();
       try {
         // @ts-ignore
-        atManager.requestPermissionsFromUser(globalThis.cameraAbilityContext, permissionList).then((data) => {
-          Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`);
-          Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`);
-          let sum = 0;
-          for (let i = 0; i < data.authResults.length; i++) {
-            sum += data.authResults[i];
-          }
-          if (sum >= 0) {
-            globalThis.permissionFlag = true;
-            this.state.setPermissionFlag(true);
-          } else {
-            globalThis.permissionFlag = false;
-            this.state.setPermissionFlag(false);
-          }
-          Log.info(`${this.TAG} request permissions result: ${globalThis.permissionFlag}`);
-        }, (err) => {
-          Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`);
-        });
+        atManager.requestPermissionsFromUser(GlobalContext.get().getCameraAbilityContext(), permissionList)
+          .then((data) => {
+            Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`);
+            Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`);
+            let sum = 0;
+            for (let i = 0; i < data.authResults.length; i++) {
+              sum += data.authResults[i];
+            }
+            if (sum >= 0) {
+              GlobalContext.get().setObject('permissionFlag', true);
+              this.state.setPermissionFlag(true);
+            } else {
+              GlobalContext.get().setObject('permissionFlag', false);
+              this.state.setPermissionFlag(false);
+            }
+            Log.info(`${this.TAG} request permissions result: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
+          }, (err) => {
+            Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`);
+          });
       } catch (error) {
         Log.info(`${this.TAG} catch error: ${JSON.stringify(error)}`);
       }
     }
 
-    if (globalThis.cameraFormParam != undefined) {
-      this.state.initAction(globalThis.cameraFormParam.action);
-      this.state.initMode(globalThis.cameraFormParam.mode);
-      globalThis.cameraFormParam = undefined;
+    if (GlobalContext.get().getCameraFormParam() != undefined) {
+      this.state.initAction(GlobalContext.get().getCameraFormParam().action);
+      this.state.initMode(GlobalContext.get().getCameraFormParam().mode);
+      GlobalContext.get().setCameraFormParam(undefined);
     }
 
-    globalThis.stopCameraRecording = (() => {
+    GlobalContext.get().setObject('stopCameraRecording', () => {
       this.stopCameraRecording();
     })
 
-    globalThis.resetZoomRatio = (() => {
+    GlobalContext.get().setObject('resetZoomRatio', () => {
       this.state.resetZoomRatio();
     })
 
@@ -238,8 +240,9 @@ struct Index {
   }
 
   onPageShow(): void {
-    Log.info(`${this.TAG} onPageShow E this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`);
-    this.state.setPermissionFlag(globalThis.permissionFlag);
+    Log.info(`${this.TAG} onPageShow E this.permissionFlag: ${this.state.permissionFlag}
+    globalThis.permissionFlag: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
+    this.state.setPermissionFlag(GlobalContext.get().getT<boolean>('permissionFlag'));
     let cameraId = AppStorage.Get<string>('storageCameraId');
     if (cameraId) this.state.initCameraPosition(cameraId);
     Log.info(`${this.TAG} initCameraPosition ${cameraId}`);
@@ -299,7 +302,7 @@ struct Index {
       }
     };
 
-    globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
+    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error, data) => {
       if (error) {
         Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
         return;

@@ -14,19 +14,19 @@
  */
 
 export class CameraSwitchController {
-  icon: Resource
-  width: number
-  height: number
-  margin: number
-  type: ButtonType
-  stateEffect: boolean
+  icon: Resource = $r('app.media.small_switch_camera');
+  width: number = 0;
+  height: number = 0;
+  margin: number = 0;
+  type: ButtonType = ButtonType.Circle;
+  stateEffect: boolean = true;
 
   getParam(): void {
-    this.icon = $r("app.media.small_switch_camera")
-    this.width = 40
-    this.height = 40
-    this.margin = 48
-    this.type = ButtonType.Circle
-    this.stateEffect = true
+    this.icon = $r('app.media.small_switch_camera');
+    this.width = 40;
+    this.height = 40;
+    this.margin = 48;
+    this.type = ButtonType.Circle;
+    this.stateEffect = true;
   }
 }

@@ -18,9 +18,9 @@ import deviceInfo from '@ohos.deviceInfo';
 import { ModeMap } from '../common/ModeMap';
 import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
 import { CameraWorker } from '@ohos/common/src/main/ets/default/worker/CameraWorker';
-import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
-import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/moreList';
@@ -35,45 +35,94 @@ import { Control } from './Control';
 import { FootBar } from './FootBar';
 import { PreviewArea } from './PreviewArea';
 import { SettingView } from './SettingView';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store';
+import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId';
+import { BusinessError } from '@ohos.base';
+import ability from '@ohos.ability.ability';
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 CameraWorker.getInstance(new ModeMap());
 
 PersistentStorage.PersistProp("storageCameraId", "");
 
 class StateStruct {
-  permissionFlag
-  mode
-  curMode
-  isBigVideoTimerVisible
-  isSmallVideoTimerVisible
-  videoState
-  isShowtimeLapse
-  isShowMoreList
-  isThirdPartyCall
-  showZoomLabelValue
-  cameraPosition
-  isShowPinch
-  xComponentWidth
-  xComponentHeight
-  isShowPageView
-  isInitiated
-  initShowFlag
-  curCameraPosition
-  footBarHeight
-  initFootBarHeight: Function
-  setPermissionFlag: Function
-  initAction: Function
-  initCameraPosition: Function
-  initMode: Function
-  changeTimeLapse: Function
-  stopRecording: Function
-  resetRecordingTime: Function
-  hideSettingView: Function
-  updateModeIndex: Function
-  faCall: Function
-  thirdPartyCall: Function
+  footBarHeight: number = 0;
+  permissionFlag: boolean = false;
+  mode: string = '';
+  curMode: string = '';
+  isShowtimeLapse: boolean = false;
+  videoState: string = '';
+  isShowMoreList: boolean = false;
+  isThirdPartyCall: boolean = false;
+  showZoomLabelValue: boolean = true;
+  isShowPinch: boolean = false;
+  isShowPageView: boolean = false;
+  isInitiated: boolean = false;
+  curCameraPosition: CameraId = CameraId.BACK
 }
+
+class IndexDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public initFootBarHeight(footBarHeight: number): void {
+    this.mDispatch(Action.initFootBarHeight(footBarHeight));
+  }
+
+  public setPermissionFlag(permissionFlag: boolean): void {
+    Log.info(`CameraApp setPermissionFlag: ${permissionFlag}`);
+    this.mDispatch(Action.setPermissionFlag(permissionFlag));
+  }
+
+  public initAction(action: string): void {
+    this.mDispatch(Action.initAction(action));
+  }
+
+  public initCameraPosition(cameraPosition: string): void {
+    this.mDispatch(Action.setCameraPosition(cameraPosition));
+  }
+
+  public initMode(mode: string): void {
+    this.mDispatch(Action.initMode(mode));
+  }
+
+  public changeTimeLapse(isShowtimeLapse: boolean): void {
+    this.mDispatch(Action.changeTimeLapse(isShowtimeLapse));
+  }
+
+  public stopRecording(): void {
+    this.mDispatch(Action.stopRecording());
+    this.mDispatch(Action.updateVideoState('beforeTakeVideo'));
+    this.mDispatch(Action.updateBigVideoTimerVisible(false));
+    this.mDispatch(Action.updateSmallVideoTimerVisible(false));
+  }
+
+  public resetRecordingTime(): void {
+    this.mDispatch(Action.updateRecordingTime(0));
+    this.mDispatch(Action.updateRecordingTimeDisplay('00:00'));
+  }
+
+  public hideSettingView(): void {
+    this.mDispatch(Action.showSettingView(false));
+  }
+
+  public updateModeIndex(index: number): void {
+    this.mDispatch(Action.updateModeIndex(index));
+  }
+
+  public faCall(isFaCall: boolean): void {
+    this.mDispatch(Action.faCall(isFaCall));
+  }
+
+  public thirdPartyCall(isThirdPartyCall: boolean, action: string): void {
+    this.mDispatch(Action.thirdPartyCall(isThirdPartyCall, action));
+  }
+}
+
 
 @Entry
 @Component
@@ -83,13 +132,14 @@ struct Index {
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance();
   private TAG: string = '[Index]:';
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'];
+  private mAction: IndexDispatcher = new IndexDispatcher();
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`);
-    let dbStore = RdbStoreManager.getInstance();
+    let dbStore: RdbStoreManager = RdbStoreManager.getInstance();
     dbStore.initRdbConfig();
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         footBarHeight: state.ContextReducer.footBarHeight,
         permissionFlag: state.ContextReducer.permissionFlag,
         mode: state.ModeReducer.mode,
@@ -99,70 +149,27 @@ struct Index {
         isShowMoreList: state.ModeReducer.isShowMoreList,
         isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
         showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-        curCameraPosition: state.CameraReducer.curCameraPosition,
         isShowPinch: state.ZoomReducer.isShowPinch,
         isShowPageView: state.SettingReducer.isShowSettingView,
-        isInitiated: state.ModeReducer.isInitiated
-      }
-    }, (dispatch) => {
-      return {
-        initFootBarHeight: (footBarHeight: number): void => {
-          dispatch(Action.initFootBarHeight(footBarHeight));
-        },
-        setPermissionFlag: (permissionFlag: boolean): void => {
-          Log.info(`CameraApp setPermissionFlag: ${permissionFlag}`);
-          dispatch(Action.setPermissionFlag(permissionFlag));
-        },
-        initAction: (action: string): void => {
-          dispatch(Action.initAction(action));
-        },
-        initCameraPosition: (cameraPosition: string): void => {
-          dispatch(Action.setCameraPosition(cameraPosition));
-        },
-        initMode: (mode: string): void => {
-          dispatch(Action.initMode(mode));
-        },
-        changeTimeLapse: (isShowtimeLapse: boolean): void => {
-          dispatch(Action.changeTimeLapse(isShowtimeLapse));
-        },
-        stopRecording: (): void => {
-          dispatch(Action.stopRecording());
-          dispatch(Action.updateVideoState('beforeTakeVideo'));
-          dispatch(Action.updateBigVideoTimerVisible(false));
-          dispatch(Action.updateSmallVideoTimerVisible(false));
-        },
-        resetRecordingTime: (): void => {
-          dispatch(Action.updateRecordingTime(0));
-          dispatch(Action.updateRecordingTimeDisplay('00:00'));
-        },
-        hideSettingView: (): void => {
-          dispatch(Action.showSettingView(false));
-        },
-        updateModeIndex: (index: number): void => {
-          dispatch(Action.updateModeIndex(index));
-        },
-        faCall: (isFaCall: boolean): void => {
-          dispatch(Action.faCall(isFaCall));
-        },
-        thirdPartyCall: (isThirdPartyCall: boolean, action: string): void => {
-          dispatch(Action.thirdPartyCall(isThirdPartyCall, action));
-        }
-      }
-    })(this.state)
-
+        isInitiated: state.ModeReducer.isInitiated,
+        curCameraPosition: state.CameraReducer.curCameraPosition,
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    })
     display.getDefaultDisplay().then((dis) => {
       Log.info(`${this.TAG} dis data = ${JSON.stringify(dis)}`);
-      let footBarHeight;
+      let footBarHeight: number = 0;
       if (deviceInfo.deviceType === "default") {
         footBarHeight = px2vp(dis.width) * (4 / 3) - 160;
       } else {
         footBarHeight = px2vp(dis.width) * (4 / 3) - 82;
       }
-      this.state.initFootBarHeight(footBarHeight);
+      this.mAction.initFootBarHeight(footBarHeight);
     })
 
     if (!this.state.permissionFlag) {
-      let permissionList: Array<string> = [
+      let permissionList: Array<Permissions> = [
         "ohos.permission.MEDIA_LOCATION",
         "ohos.permission.READ_IMAGEVIDEO",
         "ohos.permission.WRITE_IMAGEVIDEO",
@@ -176,8 +183,7 @@ struct Index {
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`);
       let atManager = abilityAccessCtrl.createAtManager();
       try {
-        // @ts-ignore
-        atManager.requestPermissionsFromUser(globalThis.cameraAbilityContext, permissionList).then((data) => {
+        atManager.requestPermissionsFromUser(GlobalContext.get().getCameraAbilityContext(), permissionList).then((data) => {
           Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`);
           Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`);
           let sum = 0
@@ -185,14 +191,14 @@ struct Index {
             sum += data.authResults[i];
           }
           if (sum >= 0) {
-            globalThis.permissionFlag = true;
-            this.state.setPermissionFlag(true);
+            GlobalContext.get().setObject('permissionFlag', true);
+            this.mAction.setPermissionFlag(true);
           } else {
-            globalThis.permissionFlag = false;
-            this.state.setPermissionFlag(false);
+            GlobalContext.get().setObject('permissionFlag', false);
+            this.mAction.setPermissionFlag(false);
           }
-          Log.info(`${this.TAG} request permissions result: ${globalThis.permissionFlag}`);
-        }, (err) => {
+          Log.info(`${this.TAG} request permissions result: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
+        }, (err: BusinessError) => {
           Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`);
         })
       } catch (error) {
@@ -200,32 +206,32 @@ struct Index {
       }
     }
 
-    if (globalThis.cameraFormParam != undefined) {
-      this.state.initAction(globalThis.cameraFormParam.action);
-      this.state.initMode(globalThis.cameraFormParam.mode);
-      globalThis.cameraFormParam = undefined;
+    if (GlobalContext.get().getCameraFormParam() != undefined) {
+      this.mAction.initAction(GlobalContext.get().getCameraFormParam().action);
+      this.mAction.initMode(GlobalContext.get().getCameraFormParam().mode);
+      GlobalContext.get().setCameraFormParam(undefined);
     }
 
-    globalThis.stopCameraRecording = (() => {
+    GlobalContext.get().setObject('stopCameraRecording', () => {
       this.stopCameraRecording();
     })
 
     if (!this.state.isInitiated) {
-      let initIndex = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 1);
+      let initIndex: number = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 1);
       Log.info(`${this.TAG} initModeIndex: ${initIndex}`);
-      this.state.initMode(this.modeArray[initIndex]);
-      this.state.updateModeIndex(initIndex);
+      this.mAction.initMode(this.modeArray[initIndex]);
+      this.mAction.updateModeIndex(initIndex);
     }
 
     Log.info(`${this.TAG} aboutToAppear X`);
   }
 
   onPageShow(): void {
-    Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} globalThis.permissionFlag: ${globalThis.permissionFlag}`);
-    this.state.setPermissionFlag(globalThis.permissionFlag);
+    Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} permissionFlag: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
+    this.mAction.setPermissionFlag(GlobalContext.get().getT<boolean>('permissionFlag'));
     let curCameraId = AppStorage.Get<string>('storageCameraId');
-    if (curCameraId) this.state.initCameraPosition(curCameraId);
-    this.state.resetRecordingTime();
+    if (curCameraId) this.mAction.initCameraPosition(curCameraId);
+    this.mAction.resetRecordingTime();
     Log.info(`${this.TAG} onPageShow X`);
   }
 
@@ -236,21 +242,22 @@ struct Index {
   onBackPress(): boolean {
     Log.info(`${this.TAG} onBackPress E`);
     if (this.state.isShowPageView) {
-      this.state.hideSettingView();
+      this.mAction.hideSettingView();
       return true;
     } else if (this.state.isShowtimeLapse) {
-      this.state.changeTimeLapse(false);
+      this.mAction.changeTimeLapse(false);
       return true
     } else if (this.state.isThirdPartyCall) {
       this.terminateSelfWithResult();
     } else {
       if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
-        this.state.stopRecording();
+        this.mAction.stopRecording();
         return true;
       }
       Log.info(`${this.TAG} onBackPress X`);
       return false;
     }
+    return false;
   }
 
   onPageHide(): void {
@@ -262,17 +269,17 @@ struct Index {
   public stopCameraRecording() {
     Log.info(`${this.TAG} stopCameraRecording E`);
     if (this.state.isShowtimeLapse) {
-      this.state.changeTimeLapse(false);
+      this.mAction.changeTimeLapse(false);
     }
     if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
-      this.state.stopRecording();
+      this.mAction.stopRecording();
     }
     Log.info(`${this.TAG} stopCameraRecording X`);
   }
 
   terminateSelfWithResult() {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
-    let abilityResult = {
+    let abilityResult: ability.AbilityResult = {
       "resultCode": 200,
       "want": {
         "parameters": {
@@ -285,12 +292,12 @@ struct Index {
       }
     };
 
-    globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
+    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error:BusinessError) => {
       if (error) {
         Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
         return;
       }
-      Log.info(`${this.TAG} Operation succeeded: ${data}`);
+      Log.info(`${this.TAG} Operation succeeded`);
     })
   }
 
@@ -340,7 +347,7 @@ struct Index {
     }.width('100%').height('100%').backgroundColor('#000')
   }
 
-  private onBackClicked() {
+  private onBackClicked(): void {
     Log.info(`${this.TAG} onBackClicked E`);
     this.terminateSelfWithResult();
   }
