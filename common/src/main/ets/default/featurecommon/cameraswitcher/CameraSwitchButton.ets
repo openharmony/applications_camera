@@ -15,21 +15,38 @@
 
 import { Action } from '../../redux/actions/Action'
 import { CameraSwitchController } from './CameraSwitchController'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Log } from '../../utils/Log'
 import MultiCameraDialog from '../customdialog/MultiCameraDialog'
 import deviceInfo from '@ohos.deviceInfo'
+import { Dispatch } from '../../redux/core/redux/types/store'
+import { GlobalContext } from '../../utils/GlobalContext'
 
-let storageCameraId = AppStorage.Link('storageCameraId')
+let storageCameraId: string = AppStorage.Link('storageCameraId') as string;
 
 class StateStruct {
-  mode
-  uiEnable
-  cameraPosition
-  videoState
-  changeCameraPosition : Function
+  mode: string = 'PHOTO';
+  uiEnable: boolean = true;
+  cameraPosition: string = 'BACK';
+  videoState: string = 'beforeTakeVideo';
 }
+
+
+class CameraSwitchDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public changeCameraPosition(cameraPosition: string): void {
+    this.mDispatch(Action.uiState(false));
+    this.mDispatch(Action.switchCamera(cameraPosition));
+    this.mDispatch(Action.resetZoomRatio(1));
+  }
+}
+
 
 @Component
 export struct CameraSwitchButton {
@@ -37,44 +54,37 @@ export struct CameraSwitchButton {
   @State state: StateStruct = new StateStruct()
   @State deviceType: string = deviceInfo.deviceType
   @StorageLink('storageCameraId') storageCameraId: string = ''
-
   icon: Resource = $r('app.media.small_switch_camera')
-  mWidth: number
-  mHeight: number
-  mMargin: number
-  type: ButtonType
-  stateEffect: boolean
+  mWidth: number = 0;
+  mHeight: number = 0;
+  mMargin: number = 0;
+  type: ButtonType = ButtonType.Capsule;
+  stateEffect: boolean = false;
+  private mAction: CameraSwitchDispatcher = new CameraSwitchDispatcher();
   cameraSwitchController: CameraSwitchController = new CameraSwitchController()
   multiDialogController: CustomDialogController = new CustomDialogController({
     builder: MultiCameraDialog({
-      cancel: this.existView.bind(this),
+      cancel: () => this.existView(),
       deviceType: $deviceType
     }),
     autoCancel: true,
-    alignment:DialogAlignment.Center,
+    alignment: DialogAlignment.Center,
     customStyle: true,
     cancel: this.existView
   })
 
   aboutToAppear() {
-    Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    Log.info(`${this.TAG} aboutToAppear E`);
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         mode: state.ModeReducer.mode,
         uiEnable: state.ContextReducer.uiEnable,
         cameraPosition: state.CameraReducer.cameraPosition,
         videoState: state.RecordReducer.videoState
-      }
-    }, (dispatch) => {
-      return {
-        changeCameraPosition: (cameraPosition: string) => {
-          dispatch(Action.uiState(false))
-          dispatch(Action.switchCamera(cameraPosition))
-          dispatch(Action.resetZoomRatio(1))
-        }
-      }
-    })(this.state)
-
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
     this.cameraSwitchController.getParam()
     this.icon = this.cameraSwitchController.icon
     this.mWidth = this.cameraSwitchController.width
@@ -100,7 +110,7 @@ export struct CameraSwitchButton {
           .width('67.5%').aspectRatio(1)
           .clip(new Circle({ width: '100%', height: '100%' }))
         Column() {}.width(44).height(44)
-          .border({ width: 1, color: Color.White, radius: 22, style: BorderStyle.Solid })
+        .border({ width: 1, color: Color.White, radius: 22, style: BorderStyle.Solid })
       }
       .width('100%').height('100%').enabled(this.state.uiEnable)
       .onClick(() => {
@@ -111,12 +121,12 @@ export struct CameraSwitchButton {
           if (this.state.mode === 'MULTI') {
             this.openMultiDialog()
           } else {
-            globalThis.switchCameraTime = new Date().getTime()
+            GlobalContext.get().setObject('switchCameraTime',new Date().getTime())
             if (this.state.cameraPosition !== 'BACK') {
-              this.state.changeCameraPosition('BACK')
+              this.mAction.changeCameraPosition('BACK')
               this.storageCameraId = 'BACK'
             } else {
-              this.state.changeCameraPosition('FRONT')
+              this.mAction.changeCameraPosition('FRONT')
               this.storageCameraId = 'FRONT'
             }
           }

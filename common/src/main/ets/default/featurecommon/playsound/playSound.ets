@@ -18,7 +18,7 @@ import fileIO from '@ohos.fileio'
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
-import type { EventBus } from '../../worker/eventbus/EventBus'
+import { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import { SettingManager } from '../../setting/SettingManager'
 import { Voice } from '../../setting/settingitem/Voice'
@@ -29,13 +29,14 @@ export class PlaySound {
   private settingManager = SettingManager.getInstance()
   private fdNumber: number = 0
   private fdPath
-    // @ts-ignore
+  // @ts-ignore
   private mAVPlayer: media.AVPlayer
+  private static sInstancePlaySound: PlaySound;
 
   constructor() {
     Log.info(`${this.TAG} constructor start, enroll playCapture to ACTION_CAPTURE`)
     this.appEventBus.on(Action.ACTION_CAPTURE, this.playCapture.bind(this))
-      // @ts-ignore
+    // @ts-ignore
     media.createAVPlayer().then((avPlayer) => {
       Log.info(`${this.TAG} createAVPlayer then ${avPlayer}`)
       this.mAVPlayer = avPlayer;
@@ -88,12 +89,11 @@ export class PlaySound {
   }
 
   public static getInstance(): PlaySound {
-    if (!globalThis?.sInstancePlaySound) {
-      globalThis.sInstancePlaySound = new PlaySound()
+    if (!PlaySound.sInstancePlaySound) {
+      PlaySound.sInstancePlaySound = new PlaySound();
     }
-    return globalThis.sInstancePlaySound;
+    return PlaySound.sInstancePlaySound;
   }
-
   private playCapture(data): void {
     Log.debug(`${this.TAG} playCapture invoke E`)
     if (this.settingManager.getCaptureMute() == Voice.SOUND) {

@@ -27,6 +27,7 @@ import SaveCameraAsset from './SaveCameraAsset';
 import { SettingManager } from '../setting/SettingManager';
 import { CameraPlatformCapability } from './CameraPlatformCapability';
 import EventLog from '../utils/EventLog';
+import { GlobalContext } from '../utils/GlobalContext';
 
 const TAG = '[CameraService]:';
 
@@ -133,7 +134,7 @@ export class CameraService {
     Log.start(`${TAG} initCamera`);
     if (!this.mCameraManager) {
       try {
-        this.mCameraManager = camera.getCameraManager(globalThis.cameraAbilityContext);
+        this.mCameraManager = camera.getCameraManager(GlobalContext.get().getCameraAbilityContext());
         const cameras = this.mCameraManager.getSupportedCameras();
         this.camerasCache = cameras;
         this.mCameraCount = cameras.length;
@@ -250,7 +251,7 @@ export class CameraService {
     Log.start(`${TAG} createPreviewOutput`);
     const size = SettingManager.getInstance().getPreviewSize(mode);
     Log.info(`${TAG} createPreviewOutput size.width = ${size.width} size.height = ${size.height}`);
-    globalThis.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height });
+    GlobalContext.get().getXComponentController().setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height });
     let previewProfiles = this.outputCapability.previewProfiles;
     let previewProfile;
     if (deviceInfo.deviceType == 'default') {
@@ -330,9 +331,9 @@ export class CameraService {
 
   public async createSession(surfaceId: string, isVideo: boolean) {
     Log.start(`${TAG} createSession`);
-    globalThis.isSessionCreating = true;
+    GlobalContext.get().setObject('isSessionCreating', true)
     this.mCaptureSession = this.mCameraManager.createCaptureSession();
-    globalThis.isSessionCreating = false;
+    GlobalContext.get().setObject('isSessionCreating', false)
     Log.info(`${TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput},
     videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`);
     Log.info(`${TAG} createSession beginConfig.`);
@@ -366,10 +367,10 @@ export class CameraService {
         EventLog.write(EventLog.OPEN_FAIL);
       }
     }
-    if (globalThis.cameraStartFlag && (new Date().getTime() - globalThis.cameraStartTime) > 2000) {
+    if (GlobalContext.get().getT<boolean>('cameraStartFlag') && (new Date().getTime() - GlobalContext.get().getT<number>('cameraStartTime')) > 2000) {
       EventLog.write(EventLog.START_TIMEOUT);
     }
-    globalThis.cameraStartFlag = false;
+    GlobalContext.get().setObject('cameraStartFlag', false);
     Log.end(`${TAG} createSession`);
   }
 
@@ -448,7 +449,7 @@ export class CameraService {
       }
     }
     Log.end(`${TAG} takePicture`);
-    if ((new Date().getTime() - globalThis.startCaptureTime) > 2000) {
+    if ((new Date().getTime() - GlobalContext.get().getT<number>('startCaptureTime')) > 2000) {
       EventLog.write(EventLog.CAPTURE_TIMEOUT);
     }
   }
@@ -558,7 +559,7 @@ export class CameraService {
       await this.mCaptureSession.start();
       Log.info(`${TAG} StartRecording Session.start finished.`);
     } catch (err) {
-      globalThis.startRecordingFlag = false;
+      GlobalContext.get().setObject('startRecordingFlag', false);
       EventLog.writeFaultLog(error);
       Log.error(`${TAG} remove videoOutput ${err}`);
     }

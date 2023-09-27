@@ -14,61 +14,71 @@
  */
 
 import { Log } from '../../utils/Log'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
+import { Dispatch } from '../../redux/core/redux/types/store';
 import { Action } from '../../redux/actions/Action'
-import EventLog from '../../utils/EventLog'
 
 class StateStruct {
-  isThirdPartyCall
-  showSettingView: Function
+  isThirdPartyCall: boolean = false;
 }
+
+class TabBarDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public showSettingView(isShowSettingView: boolean): void {
+    this.mDispatch(Action.showSettingView(isShowSettingView));
+  }
+}
+
 
 @Component
 export struct TabBar {
-  private TAG: string = '[TabBar]'
-  @State state: StateStruct = new StateStruct()
-  private onBackClicked:Function
+  private TAG: string = '[TabBar]';
+  @State state: StateStruct = new StateStruct();
+  private onBackClicked: Function = () => {};
+  private mAction: TabBarDispatcher = new TabBarDispatcher();
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-        xComponentWidth: state.PreviewReducer.xComponentWidth,
-        xComponentHeight: state.PreviewReducer.xComponentHeight
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
-
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
+        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Column() {
-//        TabBarOther()
+        //        TabBarOther()
       }.width('40%').height('100%')
       Column() {
-            if (this.state.isThirdPartyCall) {
-              Row() {
-                Image($r("app.media.ic_public_back")).width(24).height(24)
-                  .onClick(() => {
-                    this.state.showSettingView()
-                    this.onBackClicked()
-                  })
-              }.width(48).height(48)
-              .padding({left: 12})
-              .margin({ bottom: 12 })
-            }
+        if (this.state.isThirdPartyCall) {
+          Row() {
+            Image($r("app.media.ic_public_back")).width(24).height(24)
+              .onClick(() => {
+                this.mAction.showSettingView(false)
+                this.onBackClicked()
+              })
+          }.width(48).height(48)
+          .padding({left: 12})
+          .margin({ bottom: 12 })
+        }
       }.width('40%').height('100%')
       Column() {
         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
           Image($r('app.media.setting')).width(24).height(24)
         }.width('100%').height('100%')
       }.width('20%').height('100%').onClick(() => {
-        this.state.showSettingView()
+        this.mAction.showSettingView(true)
       })
     }.width('100%').height('100%')
   }

@@ -16,77 +16,88 @@
 import deviceInfo from '@ohos.deviceInfo'
 import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
 import { CameraSwitchButton } from '@ohos/common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
-import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { ShutterButton } from '@ohos/common/src/main/ets/default/featurecommon/shutterbutton/ShutterButton'
 import { ThumbnailView } from '@ohos/common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
+import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store'
+import { CameraPlatformCapability } from '@ohos/common/src/main/ets/default/camera/CameraPlatformCapability'
 
 class StateStruct {
-  platformCapability
-  isThirdPartyCall
-  videoState
-  showZoomLabelValue
-  mode
-  isRecording
+  platformCapability: CameraPlatformCapability | undefined = undefined;
+  isThirdPartyCall: boolean = false;
+  videoState: string = '';
+  showZoomLabelValue: boolean = true;
+  mode: string = '';
+}
+
+class FootBarDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
 }
 
 @Component
 export struct FootBar {
-  private TAG: string = '[FootBar]:'
+  private TAG: string = '[FootBar]:';
+  @State state: StateStruct = new StateStruct();
+  @State isRecording: boolean = false;
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private mAction: FootBarDispatcher = new FootBarDispatcher();
 
-  @State state: StateStruct = new StateStruct()
-
-  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-
-  private async onRecordStart(data) {
-    this.state.isRecording = true
+  private async onRecordStart(): Promise<void> {
+    this.isRecording = true
     Log.info(`${this.TAG} onRecordStart`)
   }
 
-  private async onRecordStop(data) {
-    this.state.isRecording = false
+  private async onRecordStop(): Promise<void> {
+    this.isRecording = false
     Log.info(`${this.TAG} onRecordStop`)
   }
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         platformCapability: state.CameraInitReducer.platformCapability,
         isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
         videoState: state.RecordReducer.videoState,
         showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-        mode: state.ModeReducer.mode
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
-
-    this.state.isRecording = false
-    this.appEventBus.on(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
+        mode: state.ModeReducer.mode,
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
+    this.isRecording = false
+    this.appEventBus.on(Action.ACTION_RECORD_START, () => this.onRecordStart())
+    this.appEventBus.on(Action.ACTION_RECORD_STOP, () => this.onRecordStop())
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
-    this.appEventBus.off(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_START, () => this.onRecordStart())
+    this.appEventBus.off(Action.ACTION_RECORD_STOP, () => this.onRecordStop())
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
   private isThumbnailViewVisibility(): boolean {
-    return!this.state.isRecording && !this.state.isThirdPartyCall &&
+    return!this.isRecording && !this.state.isThirdPartyCall &&
     this.state.videoState !== "startTakeVideo" && this.state.videoState !== "pauseTakeVideo"
   }
 
   private isPhoneSwitchShow(): boolean {
-    return deviceInfo.deviceType !== 'default' && this.state.platformCapability?.mCameraCount > 1 &&
-    !this.state.isRecording
+    if (this.state.platformCapability) {
+      return deviceInfo.deviceType !== 'default' && this.state.platformCapability?.mCameraCount > 1 &&
+      !this.isRecording
+    } else {
+      return false;
+    }
   }
 
   build() {

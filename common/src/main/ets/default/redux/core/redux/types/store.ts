@@ -14,12 +14,12 @@ import '../utils/symbol-observable';
  */
 export type ExtendState<State, Extension> = [Extension] extends [never]
   ? State
-  : State & Extension
+  : State & Extension;
 
 /**
  * Internal "virtual" symbol used to make the `CombinedState` type unique.
  */
-declare const $CombinedState: unique symbol
+declare const $CombinedState: unique symbol;
 
 /**
  * State base type for reducers created with `combineReducers()`.
@@ -40,7 +40,8 @@ declare const $CombinedState: unique symbol
 interface EmptyObject {
   readonly [$CombinedState]?: undefined
 }
-export type CombinedState<S> = EmptyObject & S
+
+export type CombinedState<S> = EmptyObject & S;
 
 /**
  * Recursively makes combined state objects partial. Only combined state _root
@@ -49,15 +50,15 @@ export type CombinedState<S> = EmptyObject & S
  */
 export type PreloadedState<S> = Required<S> extends EmptyObject
   ? S extends CombinedState<infer S1>
-    ? {
-        [K in keyof S1]?: S1[K] extends object ? PreloadedState<S1[K]> : S1[K]
-      }
-    : S
+      ? {
+          [K in keyof S1]?: S1[K] extends object ? PreloadedState<S1[K]> : S1[K]
+        }
+      : S
   : {
       [K in keyof S]: S[K] extends string | number | boolean | symbol
-        ? S[K]
-        : PreloadedState<S[K]>
-    }
+      ? S[K]
+      : PreloadedState<S[K]>
+    };
 
 /**
  * A *dispatching function* (or simply *dispatch function*) is a function that
@@ -112,8 +113,10 @@ export type Observable<T> = {
    * emission of values from the observable.
    */
   subscribe: (observer: Observer<T>) => { unsubscribe: Unsubscribe }
-  [Symbol.observable](): Observable<T>
-}
+  [Symbol.observable]
+
+  (): Observable<T>
+};
 
 /**
  * An Observer is used to receive data from an Observable, and is supplied as
@@ -121,7 +124,7 @@ export type Observable<T> = {
  */
 export type Observer<T> = {
   next?(value: T): void
-}
+};
 
 /**
  * A store is an object that holds the application's state tree.
@@ -133,12 +136,10 @@ export type Observer<T> = {
  * @template StateExt any extension to state from store enhancers
  * @template Ext any extensions to the store from store enhancers
  */
-export interface Store<
-  S = any,
-  A extends Action = AnyAction,
-  StateExt = never,
-  Ext = {}
-> {
+export interface Store<S = any,
+A extends Action = AnyAction,
+StateExt = never,
+Ext = {}> {
   /**
    * Dispatches an action. It is the only way to trigger a state change.
    *
@@ -219,7 +220,9 @@ export interface Store<
    * For more information, see the observable proposal:
    * https://github.com/tc39/proposal-observable
    */
-  [Symbol.observable](): Observable<S>
+  [Symbol.observable]
+
+  (): Observable<S>
 }
 
 /**
@@ -238,6 +241,7 @@ export interface StoreCreator {
     reducer: Reducer<S, A>,
     enhancer?: StoreEnhancer<Ext, StateExt>
   ): Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext
+
   <S, A extends Action, Ext = {}, StateExt = never>(
     reducer: Reducer<S, A>,
     preloadedState?: PreloadedState<S>,
@@ -268,11 +272,10 @@ export interface StoreCreator {
  */
 export type StoreEnhancer<Ext = {}, StateExt = never> = (
   next: StoreEnhancerStoreCreator<Ext, StateExt>
-) => StoreEnhancerStoreCreator<Ext, StateExt>
-export type StoreEnhancerStoreCreator<Ext = {}, StateExt = never> = <
-  S = any,
-  A extends Action = AnyAction
->(
+) => StoreEnhancerStoreCreator<Ext, StateExt>;
+
+export type StoreEnhancerStoreCreator<Ext = {}, StateExt = never> = <S = any,
+A extends Action = AnyAction>(
   reducer: Reducer<S, A>,
   preloadedState?: PreloadedState<S>
-) => Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext
+) => Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext;

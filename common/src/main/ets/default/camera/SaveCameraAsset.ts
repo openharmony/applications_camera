@@ -20,9 +20,10 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 import { Log } from '../utils/Log';
 import DateTimeUtil from '../utils/DateTimeUtil';
-import type { FunctionCallBack, VideoCallBack } from './CameraService';
-import type ThumbnailGetter from './ThumbnailGetter';
+import { FunctionCallBack, VideoCallBack } from './CameraService';
+import ThumbnailGetter from './ThumbnailGetter';
 import EventLog from '../utils/EventLog';
+import { GlobalContext } from '../utils/GlobalContext';
 
 const TAG = '[SaveCameraAsset]:';
 
@@ -41,13 +42,15 @@ export default class SaveCameraAsset {
   private saveIndex = 0;
   private mUserFileManager: UserFileManager.UserFileManager;
   public videoPrepareFile: UserFileManager.FileAsset;
-  private lastFileMessage: FileMessageType;
+  private lastFileMessage: FileMessageType = {
+    fileId: '', bufferLength: 0
+  };
   private mCameraAlbum: UserFileManager.Album;
-  private photoUri: string;
-  private videoUri: string;
+  private photoUri: string = '';
+  private videoUri: string = '';
 
   constructor() {
-    this.mUserFileManager = UserFileManager.getUserFileMgr(globalThis.cameraAbilityContext);
+    this.mUserFileManager = UserFileManager.getUserFileMgr(GlobalContext.get().getCameraAbilityContext());
   }
 
   public getPhotoUri() {
@@ -111,17 +114,18 @@ export default class SaveCameraAsset {
     Log.info(`${TAG} saveImage X`);
   }
 
-  public async getThumbnailInfo(width?: number, height?: number, uri?: string): Promise<image.PixelMap | undefined> {
-    Log.info(`${TAG} getThumbnailInfo E width: ${width}, height: ${height}, uri: ${uri}`);
+  public async getThumbnailInfo(width: number, height: number): Promise<image.PixelMap | undefined> {
+    Log.info(`${TAG} getThumbnailInfo E width: ${width}, height: ${height}`);
     Log.info(`${TAG} getThumbnailInfo E`);
     const fileAsset: UserFileManager.FileAsset = await this.getLastFileAsset();
     if (!fileAsset) {
       Log.info(`${TAG} getThumbnailInfo getLastFileAsset error: fileAsset undefined.`);
       return undefined;
     }
-    let thumbnailPixelMap: image.PixelMap = <image.PixelMap> await fileAsset.getThumbnail({
+    let thumbnailSize: image.Size = {
       width: width, height: height
-    }).catch(e => {
+    };
+    let thumbnailPixelMap: image.PixelMap = <image.PixelMap> await fileAsset.getThumbnail(thumbnailSize).catch(e => {
       Log.error(`${TAG} getThumbnail error: ${JSON.stringify(e)}`);
     });
     if (thumbnailPixelMap === undefined) {
@@ -183,7 +187,7 @@ export default class SaveCameraAsset {
     }
   }
 
-  private async getBufferByReceiver(mReceiver: image.ImageReceiver): Promise<ArrayBuffer> {
+  private async getBufferByReceiver(mReceiver: image.ImageReceiver): Promise<ArrayBuffer | undefined> {
     const imageInfo: image.Image = <image.Image> await mReceiver.readNextImage().catch(error => {
       Log.error(`${TAG} saveImage receiver read next image error: ${JSON.stringify(error)}`);
       return undefined;
@@ -240,14 +244,14 @@ export default class SaveCameraAsset {
     }
   }
 
-  public async createVideoFd(captureCallBack: VideoCallBack): Promise<number> {
+  public async createVideoFd(captureCallBack: VideoCallBack): Promise<number | undefined> {
     Log.info(`${TAG} createVideoFd E`);
     const fileAsset: UserFileManager.FileAsset = await this.createAsset(UserFileManager.FileType.VIDEO);
     if (!fileAsset) {
       Log.error(`${TAG} createVideoFd mediaLibrary createAsset error: fileAsset undefined.`);
       return undefined;
     }
-    let fdNumber: number = undefined;
+    let fdNumber: number = 0;
     try {
       this.videoPrepareFile = fileAsset;
       this.videoUri = fileAsset.uri;

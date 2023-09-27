@@ -17,21 +17,17 @@ import { SettingManager } from '../../../setting/SettingManager'
 import { Log } from '../../../utils/Log'
 import { SetResolution } from './SetResolution'
 import { SetToggle } from './SetToggle'
-import type { BaseData } from '../model/BaseData'
-import type { SettingData, SettingGroupItem } from '../model/SettingData'
+import { BaseData } from '../model/BaseData'
+import { SettingData, SettingGroupItem } from '../model/SettingData'
 
 @Component
 export struct SettingItem {
-  private TAG: string = '[SettingItem]:'
-  @Link settingsList: SettingGroupItem[]
-  @Link closeFlag: Boolean
-  private item: BaseData
-  private index: number
-  private settingsListIndex: number
-  private getPhotoValue: Promise<string>
-  private getVideoValue: Promise<string>
-  private WH_100_100: string = "100%"
-  private settingManager = SettingManager.getInstance()
+  private TAG: string = '[SettingItem]:';
+  @Link settingsList: SettingGroupItem[];
+  @Link closeFlag: Boolean;
+  private item: SettingGroupItem = {};
+  private index: number = 0;
+  private WH_100_100: string = "100%";
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
