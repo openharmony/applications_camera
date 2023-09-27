@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { CameraId } from '../../setting/settingitem/CameraId';
 
-import type { ActionData } from '../actions/Action';
+import { ActionData } from '../actions/Action';
 import { Action } from '../actions/Action';
 
 export type CameraState = {
-  cameraPosition: string,
-  curCameraPosition: string,
+  cameraPosition: CameraId,
+  curCameraPosition: CameraId,
   cameraId: string,
   curCameraName: string,
   cameraCount: number,
@@ -26,8 +27,8 @@ export type CameraState = {
 }
 
 const initState: CameraState = {
-  cameraPosition: 'BACK',
-  curCameraPosition: 'BACK',
+  cameraPosition: CameraId.BACK,
+  curCameraPosition: CameraId.BACK,
   cameraId: '',
   curCameraName: 'BACK',
   cameraCount: 0,
@@ -36,17 +37,17 @@ const initState: CameraState = {
 
 export default function CameraReducer(state = initState, action: ActionData): CameraState {
   switch (action.type) {
-  case Action.ACTION_SET_CAMERA_POSITION:
-    return { ...state, cameraPosition: action.data.cameraPosition }
-  case Action.ACTION_SWITCH_CAMERA:
-    return { ...state, cameraPosition: action.data.cameraId }
-  case Action.ACTION_UPDATE_CAMERA_POSITION:
-    return { ...state, curCameraPosition: action.data.cameraPosition }
-  case Action.ACTION_UPDATE_SHUTTER_ICON:
-    return { ...state, shutterIcon: action.data.shutterIcon }
+    case Action.ACTION_SET_CAMERA_POSITION:
+      return { ...state, cameraPosition: action.data.cameraPosition }
+    case Action.ACTION_SWITCH_CAMERA:
+      return { ...state, cameraPosition: action.data.cameraId }
+    case Action.ACTION_UPDATE_CAMERA_POSITION:
+      return { ...state, curCameraPosition: action.data.cameraPosition }
+    case Action.ACTION_UPDATE_SHUTTER_ICON:
+      return { ...state, shutterIcon: action.data.shutterIcon }
     case Action.ACTION_UPDATE_CAMERA_STATUS:
       return { ...state }
-  default:
-    return state;
+    default:
+      return state;
   }
 }

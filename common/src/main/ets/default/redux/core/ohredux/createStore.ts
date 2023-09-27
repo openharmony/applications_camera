@@ -13,43 +13,51 @@
  * limitations under the License.
  */
 
-import type { Action, ExtendState, PreloadedState, Reducer, Store, StoreEnhancer } from '../redux/index';
 import { createStore } from '../redux/index';
 import { connect } from './connect';
+import { subscribe } from './subscribe';
+import type { MapDispatchProp, MapStateProp } from './subscribe';
+import type { Action, ExtendState, PreloadedState, Reducer, Store, StoreEnhancer } from '../redux/index';
+import type { Unsubscribe } from '../../store';
 
 export default function _createStore<S,
 A extends Action,
 Ext = {},
 StateExt = never>(
-    reducer: Reducer<S, A>,
-    enhancer?: StoreEnhancer<Ext, StateExt>
-): Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext
+        reducer: Reducer<S, A>,
+        enhancer?: StoreEnhancer<Ext, StateExt>
+): Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext;
 
 export default function _createStore<S,
 A extends Action,
 Ext = {},
 StateExt = never>(
-    reducer: Reducer<S, A>,
-    preloadedState?: PreloadedState<S>,
-    enhancer?: StoreEnhancer<Ext, StateExt>
-): Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext
+        reducer: Reducer<S, A>,
+        preloadedState?: PreloadedState<S>,
+        enhancer?: StoreEnhancer<Ext, StateExt>
+): Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext;
 
 export default function _createStore<S,
 A extends Action,
 Ext = {},
 StateExt = never>(
-  reducer: Reducer<S, A>,
-  preloadedState?: PreloadedState<S>,
-  enhancer?: StoreEnhancer<Ext, StateExt>
+        reducer: Reducer<S, A>,
+        preloadedState?: PreloadedState<S>,
+        enhancer?: StoreEnhancer<Ext, StateExt>
 ): Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext {
-  const store = createStore(reducer, preloadedState, enhancer)
+    const store = createStore(reducer, preloadedState, enhancer);
 
-  function _connect(mapToProps, mapToDispatch) {
-    return connect(store, mapToProps, mapToDispatch)
-  }
+    function _connect(mapToProps, mapToDispatch) {
+        return connect(store, mapToProps, mapToDispatch);
+    }
 
-  return {
-    ...store,
-    connect: _connect
-  }
-}
+    function _subscribe(mapToProps: MapStateProp | null, mapToDispatch: MapDispatchProp | null): Unsubscribe | null {
+        return subscribe<S, A, StateExt, Ext>(store, mapToProps, mapToDispatch);
+    }
+
+    return {
+        ...store,
+        connect: _connect,
+        subscribe: _subscribe
+    };
+};

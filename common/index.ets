@@ -106,3 +106,5 @@ export { WorkerManager } from './src/main/ets/default/worker/WorkerManager';
 export { EventBus } from './src/main/ets/default/worker/eventbus/EventBus';
 
 export { EventBusManager } from './src/main/ets/default/worker/eventbus/EventBusManager';
+
+export { GlobalContext } from './src/main/ets/default/utils/GlobalContext';

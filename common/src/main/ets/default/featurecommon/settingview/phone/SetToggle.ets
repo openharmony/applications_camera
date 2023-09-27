@@ -15,36 +15,44 @@
 
 import { Log } from '../../../utils/Log'
 import { SettingManager } from '../../../setting/SettingManager'
-import type { SettingData, SettingGroupItem } from '../model/SettingData'
-import type { OhCombinedState } from '../../../redux/store'
+import { SettingData, SettingGroupItem } from '../model/SettingData'
+import { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store';
+import { Dispatch } from '../../../redux/core/redux/types/store'
 
 class StateStruct {
-  mode
+  mode: string = '';
+}
+
+class SetToggleDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
 }
 
 @Component
 export struct SetToggle {
-  private TAG: string = '[SetToggle]:'
-  @Link settingsList: SettingGroupItem[]
-  @State isOn: boolean = false
-  private itemValue: SettingData
-  private getToggleStatus: Promise<string>
-  private WH_100_100: string = "100%"
-  private settingManager = SettingManager.getInstance()
-  @State generalStatusValue: boolean = false
-  @State state: StateStruct = new StateStruct()
+  private TAG: string = '[SetToggle]:';
+  @Link settingsList: SettingGroupItem[];
+  @State isOn: boolean = false;
+  private itemValue: SettingData = {};
+  private WH_100_100: string = "100%";
+  private settingManager = SettingManager.getInstance();
+  @State generalStatusValue: boolean = false;
+  @State state: StateStruct = new StateStruct();
+  private mAction: SetToggleDispatcher = new SetToggleDispatcher();
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         mode: state.ModeReducer.mode
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     try {
       if (this.settingManager.getSettingValue(this.itemValue.settingAlias) === "1") {
