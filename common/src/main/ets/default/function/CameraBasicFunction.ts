@@ -19,16 +19,16 @@ import { CameraPlatformCapability } from '../camera/CameraPlatformCapability';
 import { Log } from '../utils/Log';
 import { CameraStatus } from '../utils/Constants';
 import { BaseFunction } from './BaseFunction';
-import type { FunctionCallBack } from '../camera/CameraService';
+import { FunctionCallBack } from '../camera/CameraService';
 import EventLog from '../utils/EventLog';
+import { GlobalContext } from '../utils/GlobalContext';
 
 export class CameraBasicFunction extends BaseFunction {
-  private TAG = '[CameraBasicFunction]:'
-
-  private mCameraId: string = CameraId.BACK
-  private mSurfaceId = ''
-  private mCurrentMode = ''
-  private mSessionList = []
+  private TAG = '[CameraBasicFunction]:';
+  private mCameraId: string = CameraId.BACK;
+  private mSurfaceId: string = '';
+  private mCurrentMode: string = '';
+  private mSessionList: string[] = [];
   private isSessionReleasing: boolean = false
   private initDataCache: any = null
   public startIdentification: boolean = false
@@ -61,7 +61,7 @@ export class CameraBasicFunction extends BaseFunction {
   }
 
   public async initCamera(data, callType?: string) {
-    globalThis.cameraStatus = CameraStatus.CAMERA_BEGIN_INIT
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_INIT);
     if (this.startIdentification) return;
     if (callType) this.startIdentification = true
     Log.start(`${this.TAG} initCamera`)
@@ -72,7 +72,7 @@ export class CameraBasicFunction extends BaseFunction {
     }
     Log.info(`${this.TAG} initData:${JSON.stringify(data)} `)
     this.initDataCache = data
-    if (globalThis.isSessionCreating || this.isSessionReleasing) {
+    if (GlobalContext.get().getT<boolean>('isSessionCreating') || this.isSessionReleasing) {
       Log.info(`${this.TAG} initCamera isSessionCreating or isSessionReleasing return`)
       return
     }
@@ -83,7 +83,7 @@ export class CameraBasicFunction extends BaseFunction {
     await platformCapability.init(mCameraCount)
     this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability))
     this.mCameraService.getThumbnail(this.functionBackImpl)
-    globalThis.cameraStatus = CameraStatus.CAMERA_INIT_FINISHED
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_INIT_FINISHED);
     this.mWorkerManager.postMessage(Action.updateCameraStatus())
     Log.end(`${this.TAG} initCamera`)
   }
@@ -110,7 +110,7 @@ export class CameraBasicFunction extends BaseFunction {
 
   private async startPreview(data?) {
     Log.start(`${this.TAG} startPreview`)
-    globalThis.cameraStatus = CameraStatus.CAMERA_BEGIN_PREVIEW
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_PREVIEW);
     if (!this.mSurfaceId) {
       Log.info(`${this.TAG} startPreview error mSurfaceId is null`)
       this.enableUi()
@@ -131,7 +131,7 @@ export class CameraBasicFunction extends BaseFunction {
     }
     this.mSessionList = []
     this.enableUi()
-    globalThis.cameraStatus = CameraStatus.CAMERA_PREVIEW_FINISHED
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_PREVIEW_FINISHED);
     this.mWorkerManager.postMessage(Action.updateCameraStatus())
     Log.end(`${this.TAG} startPreview`)
   }
@@ -144,10 +144,10 @@ export class CameraBasicFunction extends BaseFunction {
       return
     }
     this.mCameraService.setCameraId(this.mCameraId)
-    globalThis.cameraStatus = CameraStatus.CAMERA_RELEASING
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_RELEASING);
     await this.mCameraService.releaseCamera()
-    globalThis.cameraStatus = CameraStatus.CAMERA_RELEASE_FINISHED
-    globalThis.cameraStatus = CameraStatus.CAMERA_BEGIN_PREVIEW
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_RELEASE_FINISHED);
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_PREVIEW);
     await this.mCameraService.createCameraInput(this.mCameraId)
     await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
     if (await this.isVideoMode()) {
@@ -164,7 +164,7 @@ export class CameraBasicFunction extends BaseFunction {
     }
     this.mSessionList = []
     this.enableUi()
-    globalThis.cameraStatus = CameraStatus.CAMERA_PREVIEW_FINISHED
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_PREVIEW_FINISHED);
     this.mWorkerManager.postMessage(Action.updateCameraStatus())
     Log.end(`${this.TAG} reStartPreview`)
   }
@@ -173,7 +173,7 @@ export class CameraBasicFunction extends BaseFunction {
     Log.start(`${this.TAG} changeMode`)
     EventLog.write(EventLog.SWITCH_MODE)
     this.mCurrentMode = data.mode
-    this.mCameraId = this.mCameraId.split('_').pop()
+    this.mCameraId = this.mCameraId.split('_').pop() as string;
     Log.info(`${this.TAG} this.mCurrentMode = ${this.mCurrentMode}`)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId, 'modeChange')
@@ -186,7 +186,7 @@ export class CameraBasicFunction extends BaseFunction {
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
     this.mWorkerManager.postMessage(Action.onModeChanged(this.mCurrentMode))
     this.mWorkerManager.postMessage(Action.swipeModeChangeDone(false))
-    globalThis.cameraStatus = CameraStatus.CAMERA_PREVIEW_FINISHED
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_PREVIEW_FINISHED);
     this.mWorkerManager.postMessage(Action.updateCameraStatus())
     this.enableUi()
     Log.end(`${this.TAG} changeMode`)
@@ -199,7 +199,7 @@ export class CameraBasicFunction extends BaseFunction {
     this.mCameraService.setCameraId(this.mCameraId)
     await this.mCameraService.releaseCamera()
     await this.mCameraService.createCameraInput(this.mCameraId)
-    if (data?.curMode && data.curMode !== undefined && data.curMode !== this.mCurrentMode){
+    if (data?.curMode && data.curMode !== undefined && data.curMode !== this.mCurrentMode) {
       this.mCurrentMode = data.curMode
     }
     await this.mCameraService.createPreviewOutput(this.mSurfaceId, this.mCurrentMode)
@@ -209,9 +209,9 @@ export class CameraBasicFunction extends BaseFunction {
       await this.mCameraService.createPhotoOutput(this.functionBackImpl)
     }
     await this.mCameraService.createSession(this.mSurfaceId, await this.isVideoMode())
-    globalThis.cameraStatus = CameraStatus.CAMERA_PREVIEW_FINISHED
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_PREVIEW_FINISHED);
     this.mWorkerManager.postMessage(Action.updateCameraStatus())
-    if (new Date().getTime() - globalThis.switchCameraTime > 2000) {
+    if (new Date().getTime() - GlobalContext.get().getT<number>('switchCameraTime') > 2000) {
       EventLog.write(EventLog.SWITCH_TIMEOUT)
     }
     this.enableUi()
@@ -221,19 +221,19 @@ export class CameraBasicFunction extends BaseFunction {
   private async close() {
     Log.start(`${this.TAG} close`)
     this.mSessionList.push('RELEASE')
-    if (globalThis.isSessionCreating || this.isSessionReleasing) {
+    if (GlobalContext.get().getT<boolean>('isSessionCreating') || this.isSessionReleasing) {
       Log.info(`${this.TAG} isSessionCreating or isSessionReleasing return`)
       return
     }
     this.isSessionReleasing = true
     await this.mCameraService.releaseCamera()
-    globalThis.cameraStatus = CameraStatus.CAMERA_RELEASE_FINISHED
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_RELEASE_FINISHED);
     this.mWorkerManager.postMessage(Action.updateCameraStatus())
     this.startIdentification = false
     this.isSessionReleasing = false
     if ([...this.mSessionList].pop() === 'CREATE') {
       await this.initCamera(this.initDataCache)
-      globalThis.cameraStatus = CameraStatus.CAMERA_INIT_FINISHED
+      GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_INIT_FINISHED);
       this.mWorkerManager.postMessage(Action.updateCameraStatus())
     }
     this.mSessionList = []

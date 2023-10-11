@@ -1,0 +1,12 @@
+{
+  "license": "ISC",
+  "devDependencies": {},
+  "name": "@ohos/video",
+  "description": "video mode",
+  "main": "index.ets",
+  "repository": {},
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/common": "../../common"
+  }
+}

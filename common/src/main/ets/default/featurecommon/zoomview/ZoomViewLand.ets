@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
-import type { EventBus } from '../../worker/eventbus/EventBus'
+import { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 
 let SHOW_FOLD_CANVAS: number = 0

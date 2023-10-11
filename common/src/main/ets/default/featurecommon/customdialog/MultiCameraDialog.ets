@@ -17,55 +17,64 @@ import { CameraService } from '../../camera/CameraService'
 import { CameraId } from '../../setting/settingitem/CameraId'
 import { Log } from '../../utils/Log'
 import EntryComponentForMulti from './EntryComponentForMulti'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
+import { Dispatch } from '../../redux/core/redux/types/store'
 
-let storageCameraId = AppStorage.Link('storageCameraId')
+let storageCameraId: string = AppStorage.Link('storageCameraId') as string;
 
 class StateStruct {
-  changeCameraPosition : Function
 }
+
+class MultiCameraDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public changeCameraPosition(cameraPosition: string): void {
+    this.mDispatch(Action.uiState(false));
+    this.mDispatch(Action.switchCamera(cameraPosition));
+    this.mDispatch(Action.resetZoomRatio(1));
+  }
+}
+
 
 @CustomDialog
 export default struct MultiCameraDialog {
-  private TAG: string = '[MultiCameraDialog]:'
-  private cameraService = CameraService.getInstance()
-  controller: CustomDialogController
-  cancel: () => void
-  confirm: () => void
+  private TAG: string = '[MultiCameraDialog]:';
+  private cameraService = CameraService.getInstance();
+  controller?: CustomDialogController;
+  cancel: () => void = () => {};
+  confirm: () => void = () => {};
   private localList: string[] = [
-    CameraId.FRONT,
-    CameraId.BACK
-  ]
-  @State private moreList: string[] = []
-  @State state: StateStruct = new StateStruct()
-  @State isShowMore: boolean = false
-  @State gridColumns: number = 12
-  @State useSizeTypeOffset: number = 4
-  @Link deviceType: string
-  @StorageLink('storageCameraId') storageCameraId: string = ''
+  CameraId.FRONT,
+  CameraId.BACK
+  ];
+  @State private moreList: string[] = [];
+  @State state: StateStruct = new StateStruct();
+  @State isShowMore: boolean = false;
+  @State gridColumns: number = 12;
+  @State useSizeTypeOffset: number = 4;
+  @Link deviceType: string;
+  @StorageLink('storageCameraId') storageCameraId: string = '';
+  private mAction: MultiCameraDispatcher = new MultiCameraDispatcher();
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear.`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-
-      }
-    }, (dispatch) => {
-      return {
-        changeCameraPosition: (cameraPosition: string): void => {
-          dispatch(Action.uiState(false))
-          dispatch(Action.switchCamera(cameraPosition))
-          dispatch(Action.resetZoomRatio(1))
-        }
-      }
-    })(this.state)
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     this.cameraService.getMultiCameraInfo(() => {
-      let cameraMap = new Map(this.cameraService.getCameraMap())
-      let keys = cameraMap.keys()
-      this.moreList = [...keys]
+      let cameraMap = new Map(this.cameraService.getCameraMap());
+      let keys = cameraMap.keys();
+      this.moreList = Array.from(keys);
       Log.info(`${this.TAG} cameraMap length: ${this.moreList.length}`)
       if (this.moreList.length !== 0) {
         this.isShowMore = true
@@ -90,16 +99,18 @@ export default struct MultiCameraDialog {
     }
   }
 
-  private onChange(item): void {
+  private onChange(item: string): void {
     Log.info(`${this.TAG} MultiCameraPosition ${JSON.stringify(item)}`)
     if (item.includes('BACK')) {
       this.storageCameraId = 'BACK'
     } else if(item.includes('FRONT')) {
       this.storageCameraId = 'FRONT'
     }
-    this.state.changeCameraPosition(item)
-    this.cancel()
-    this.controller.close()
+    this.mAction.changeCameraPosition(item);
+    this.cancel();
+    if (this.controller) {
+      this.controller.close();
+    }
   }
 
   build() {
@@ -128,12 +139,12 @@ export default struct MultiCameraDialog {
           .padding({top: 20, bottom: 8})
 
           List() {
-            ForEach(this.localList, (item) => {
+            ForEach(this.localList, (item: string) => {
               ListItem() {
                 EntryComponentForMulti({
                   item: item,
                   localList: this.localList.toString(),
-                  onChange: (data) => this.onChange(data)
+                  onChange: (data:string) => this.onChange(data)
                 })
               }
               .width('100%')
@@ -155,12 +166,12 @@ export default struct MultiCameraDialog {
 
           if (this.isShowMore) {
             List() {
-              ForEach(this.moreList, (item) => {
+              ForEach(this.moreList, (item: string) => {
                 ListItem() {
                   EntryComponentForMulti({
                     item: item,
                     localList: this.localList.toString(),
-                    onChange: (data) => this.onChange(data)
+                    onChange: (data: string) => this.onChange(data)
                   })
                 }
                 .width('100%')
@@ -184,7 +195,9 @@ export default struct MultiCameraDialog {
             .height('100%')
             .backgroundColor('#00ffffff')
             .onClick(() => {
-              this.controller.close()
+              if (this.controller) {
+                this.controller.close();
+              }
             })
           }
           .height(56)

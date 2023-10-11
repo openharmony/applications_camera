@@ -17,13 +17,14 @@ import router from '@system.router'
 
 import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
-import type { EventBus } from '../../worker/eventbus/EventBus'
+import { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { SettingManager } from '../../setting/SettingManager'
 import Timer from '../../setting/settingitem/Timer'
 import { ComponentPosition } from '../../utils/ComponentPosition'
+import { GlobalContext } from '../../utils/GlobalContext'
 
 class StateStruct {
   uiEnable
@@ -147,7 +148,7 @@ export struct ShutterButtonLand {
           mode: this.state.mode,
           uri: this.state.resourceUri,
           videoUri: this.state.videoUri,
-          callBundleName:globalThis.cameraAbilityWant?.parameters?.callBundleName
+          callBundleName:GlobalContext.get().getCameraAbilityWant()?.parameters?.callBundleName
         }
       })
     }

@@ -1,19 +1,4 @@
-/*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import type { Message } from '../worker/AsyncManager';
+import { Message } from '../worker/AsyncManager';
 import { AsyncManager } from '../worker/AsyncManager';
 import { EventBusManager } from '../worker/eventbus/EventBusManager';
 import { Log } from '../utils/Log';
@@ -60,32 +45,38 @@ export type OhCombinedState = CombinedState<{
   ZoomReducer: ZoomState
 }>
 
-export function getStore(): {
+export interface Unsubscribe {
+  destroy(): void
+}
+
+export type StoreStruct = {
   getState: () => OhCombinedState,
   dispatch: Dispatch<ActionData>,
-  subscribe: (listener: () => void) => Unsubscribe,
+  subscribe: (mapToProps: MapStateProp | null, mapToDispatch: MapDispatchProp | null) => Unsubscribe | null,
   connect: (mapStateProp: MapStateProp, mapDispatchProp: MapDispatchProp) => (target: any) => void
-  } {
+};
+
+export function getStore(): StoreStruct {
   Log.info(`${TAG} store init.`)
   if (!AppStorage.Has(STORE_KEY)) {
     const store = createStore(
-      combineReducers({
-        CameraInitReducer,
-        ContextReducer,
-        CameraReducer,
-        PreviewReducer,
-        CaptureReducer,
-        RecordReducer,
-        ModeChangeReducer,
-        ModeReducer,
-        SettingReducer,
-        ZoomReducer,
-      }),
-      applyMiddleware(logger, reduxWorkerMiddle)
+    combineReducers({
+      CameraInitReducer,
+      ContextReducer,
+      CameraReducer,
+      PreviewReducer,
+      CaptureReducer,
+      RecordReducer,
+      ModeChangeReducer,
+      ModeReducer,
+      SettingReducer,
+      ZoomReducer,
+    }),
+    applyMiddleware(logger, reduxWorkerMiddle)
     )
     AppStorage.SetOrCreate(STORE_KEY, store)
     AsyncManager.getInstance().onMessage = (msg: Message) => {
-      const action = {type: '', data: undefined, tag: 'FROM_WORKER'}
+      const action = { type: '', data: undefined, tag: 'FROM_WORKER' }
       Log.info(`${TAG} store dispatch msg: ${JSON.stringify(msg)}`)
       action.type = msg.type
       action.data = msg.data

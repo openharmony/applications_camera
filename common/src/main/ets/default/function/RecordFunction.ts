@@ -18,6 +18,7 @@ import { Log } from '../utils/Log';
 import { CameraStatus } from '../utils/Constants';
 import { BaseFunction } from './BaseFunction';
 import type { VideoCallBack } from '../camera/CameraService';
+import { GlobalContext } from '../utils/GlobalContext';
 
 const TAG = '[RecordFunction]:';
 
@@ -34,8 +35,8 @@ export class RecordFunction extends BaseFunction {
 
   private async startRecording() {
     Log.info(`${TAG} startRecording E`);
-    globalThis.startRecordingFlag = true;
-    globalThis.cameraStatus = CameraStatus.CAMERA_BEGIN_TAKE_VIDEO;
+    GlobalContext.get().setObject('startRecordingFlag', true);
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_TAKE_VIDEO);
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
     await this.mCameraService.StartRecording(this.functionBackImpl);
     // TODO update video status in State by sending action
@@ -43,11 +44,11 @@ export class RecordFunction extends BaseFunction {
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(false));
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
 
-    globalThis.startRecordingFlag = false;
-    Log.info(`${TAG} globalThis.stopRecording : ` + globalThis.stopRecordingFlag);
-    if (globalThis.stopRecordingFlag) {
+    GlobalContext.get().setObject('startRecordingFlag', false);
+    Log.info(`${TAG} globalThis.stopRecording : ` + GlobalContext.get().getT<boolean>('stopRecordingFlag'));
+    if (GlobalContext.get().getT<boolean>('stopRecordingFlag')) {
       this.stopRecording();
-      globalThis.stopRecordingFlag = false;
+      GlobalContext.get().setObject('stopRecordingFlag', false);
     }
     Log.info(`${TAG} startRecording X`);
   }
@@ -77,8 +78,8 @@ export class RecordFunction extends BaseFunction {
   private async stopRecording() {
     Log.info(`${TAG} stopRecording E`);
 
-    Log.info(`${TAG} globalThis.startRecording : ${JSON.stringify(globalThis.startRecordingFlag)}`);
-    if (globalThis.startRecordingFlag) {
+    Log.info(`${TAG} globalThis.startRecording : ${JSON.stringify(GlobalContext.get().getT<boolean>('startRecordingFlag'))}`);
+    if (GlobalContext.get().getT<boolean>('startRecordingFlag')) {
       return;
     }
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
@@ -90,7 +91,7 @@ export class RecordFunction extends BaseFunction {
     this.mWorkerManager.postMessage(Action.updateRecordingSpotVisible(false));
     this.mWorkerManager.postMessage(Action.updateRecordingPaused(false));
     this.mWorkerManager.postMessage(Action.updateThumbnail(thumbnailPixelMap, ''));
-    globalThis.cameraStatus = CameraStatus.CAMERA_TAKE_VIDEO_FINISHED;
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_TAKE_VIDEO_FINISHED);
     this.mWorkerManager.postMessage(Action.updateCameraStatus());
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
     Log.info(`${TAG} stopRecording X`);

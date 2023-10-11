@@ -13,58 +13,65 @@
  * limitations under the License.
  */
 import deviceInfo from '@ohos.deviceInfo';
-
-import { Action } from '../../redux/actions/Action'
-import { Log } from '../../utils/Log'
-import type { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
+import { Action } from '../../redux/actions/Action';
+import { Log } from '../../utils/Log';
+import { OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Dispatch } from '../../redux/core/redux/types/store';
 
 class MoreListInfo {
-  itemIcon: string | Resource = ''
-  itemValue: number | string = ''
+  itemIcon: Resource = $r("app.media.photo");
+  itemValue: string = 'photo';
 }
 
 class StateStruct {
-  modeIndex
-  swipeChangeMode : Function
+  modeIndex: number = 1;
+}
+
+class MoreListDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public swipeChangeMode(swipeModeIndex: number): void {
+    this.mDispatch(Action.swipeChangeMode(swipeModeIndex));
+  }
 }
 
 @Component
 export struct MoreList {
-  private TAG: string = '[moreList]:'
-  @State state: StateStruct = new StateStruct()
-  private mDirection: any
+  private TAG: string = '[moreList]:';
+  @State state: StateStruct = new StateStruct();
+  private mAction: MoreListDispatcher = new MoreListDispatcher();
+  private mDirection: PanDirection = PanDirection.Right;
   private moreList: MoreListInfo[] = [{
-                                        "itemIcon": $r("app.media.photo"),
-                                        "itemValue": "photo"
-                                      }, {
-                                        "itemIcon": $r("app.media.sd_card"),
-                                        "itemValue": "sd_card"
-                                      }, {
-                                        "itemIcon": $r("app.media.setting"),
-                                        "itemValue": "setting"
-                                      }, {
-                                        "itemIcon": $r("app.media.small_switch_camera"),
-                                        "itemValue": "switch"
-                                      }, {
-                                        "itemIcon": $r("app.media.sound_mute"),
-                                        "itemValue": "sound_mute"
-                                      }]
+    itemIcon: $r("app.media.photo"),
+    itemValue: 'photo'
+  }, {
+    itemIcon: $r("app.media.sd_card"),
+    itemValue: 'sd_card'
+  }, {
+    itemIcon: $r("app.media.setting"),
+    itemValue: 'setting'
+  }, {
+    itemIcon: $r("app.media.small_switch_camera"),
+    itemValue: 'switch'
+  }, {
+    itemIcon: $r("app.media.sound_mute"),
+    itemValue: 'sound_mute'
+  }]
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-        modeIndex: state.ModeReducer.modeIndex
-      }
-    }, (dispatch) => {
-      return {
-        swipeChangeMode: (swipeModeIndex: number): void => {
-          dispatch(Action.swipeChangeMode(swipeModeIndex))
-        }
-      }
-    })(this.state)
-
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
+        modeIndex: state.ModeReducer.modeIndex,
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
     this.setDirection()
     Log.info(`${this.TAG} aboutToAppear end`)
   }
@@ -86,7 +93,7 @@ export struct MoreList {
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
       Grid() {
-        ForEach(this.moreList, (item) => {
+        ForEach(this.moreList, (item: MoreListInfo) => {
           GridItem() {
             Column() {
               Image(item.itemIcon)
@@ -112,10 +119,10 @@ export struct MoreList {
     .width("100%")
     .height("70%")
     .gesture(
-      PanGesture({ direction: this.mDirection })
-        .onActionEnd(() => {
-          this.state.swipeChangeMode(this.state.modeIndex - 1)
-        })
+    PanGesture({ direction: this.mDirection })
+      .onActionEnd(() => {
+        this.mAction.swipeChangeMode(this.state.modeIndex - 1)
+      })
     )
   }
 }
