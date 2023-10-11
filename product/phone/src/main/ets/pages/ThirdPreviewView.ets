@@ -16,19 +16,21 @@
 import router from '@system.router';
 import fileshare from '@ohos.fileshare';
 import wantConstant from '@ohos.ability.wantConstant';
-
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { BusinessError } from '@ohos.base';
+import ability from '@ohos.ability.ability';
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 @Entry
 @Component
 struct ThirdPreviewView {
   private TAG: string = '[ThirdPreviewView]:';
-  private photoWidth: string;
-  private photoHeight: string;
-  private photoUri: string;
-  private videoUri: string;
-  private mode: string;
-  private callBundleName: string;
+  private photoWidth: string = '';
+  private photoHeight: string = '';
+  private photoUri: string = '';
+  private videoUri: string = '';
+  private mode: string = '';
+  private callBundleName: string = '';
   @State controls: boolean = false;
   @State isShowVideoButton: boolean = true;
   myVideoController: VideoController = new VideoController();
@@ -49,22 +51,22 @@ struct ThirdPreviewView {
     Log.info(`${this.TAG} aboutToAppear X`);
   }
 
-  backCalledApp(resourceUri): void {
+  backCalledApp(resourceUri: string): void {
     Log.info(`${this.TAG} backCalledApp E`);
     let that = this;
     fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
       .then(() => {
         Log.info(`${this.TAG} grantUriPermission success`);
         that.terminateSelfWithResult(resourceUri);
-      }).catch(function (error) {
+      }).catch((error: BusinessError) => {
       Log.error(`${this.TAG} grantUriPermission error= ${error} `);
     });
     Log.info(`${this.TAG} backCalledApp X`);
   }
 
-  terminateSelfWithResult(resourceUri): void {
+  terminateSelfWithResult(resourceUri: string): void {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
-    let abilityResult = {
+    let abilityResult: ability.AbilityResult = {
       "resultCode": 0,
       "want": {
         "parameters": {
@@ -73,12 +75,12 @@ struct ThirdPreviewView {
       }
     };
 
-    globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
+    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
       if (error) {
         Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
         return;
       }
-      Log.info(`${this.TAG} Operation succeeded: ${data}`);
+      Log.info(`${this.TAG} Operation succeeded`);
     });
   }
 

@@ -16,5 +16,5 @@
 import { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId';
 
 export class MultiModeParam {
-  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION];
+  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION, FunctionId.RECORDING_FUNCTION];
 }

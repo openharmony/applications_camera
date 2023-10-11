@@ -14,6 +14,7 @@
  */
 
 import dataStorage from '@ohos.data.storage';
+import { GlobalContext } from '../../utils/GlobalContext';
 
 export enum PersistType {
   NEVER,
@@ -28,12 +29,12 @@ export class PreferencesService {
   public static getInstance(): PreferencesService {
     if (!globalThis?.sInstancePreferencesService) {
       globalThis.sInstancePreferencesService = new PreferencesService();
-      PreferencesService.modeStorage = dataStorage.getStorageSync(globalThis.cameraAbilityContext.filesDir + '/mode_persist_values');
+      PreferencesService.modeStorage = dataStorage.getStorageSync(GlobalContext.get().getCameraAbilityContext().filesDir + '/mode_persist_values');
     }
     return globalThis.sInstancePreferencesService;
   }
 
-  getModeValue(persistType: PersistType, defaultValue: any) {
+  getModeValue(persistType: PersistType, defaultValue: number): number {
     if (persistType === PersistType.FOR_AWHILE && this.isModeExpire()) {
       return defaultValue;
     }

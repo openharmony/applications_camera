@@ -14,22 +14,25 @@
  */
 
 import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext'
 
 class StateStruct {
   recordingTime
   recordingTimeDisplay
   isRecordingPaused
   isRecordingSpotVisible
+  isThirdPartyCall
   updateRecordingTime: Function
   updateSmallVideoTimerVisible: Function
   updateBigVideoTimerVisible: Function
   updateRecordingSpotVisible: Function
   updateRecordingTimeDisplay: Function
+  stopRecording : Function
 }
 
 @Component
@@ -61,7 +64,8 @@ export struct BigVideoTimer {
         recordingTime: state.RecordReducer.recordingTime,
         recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
         isRecordingPaused: state.RecordReducer.isRecordingPaused,
-        isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible
+        isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible,
+        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
       }
     }, (dispatch) => {
       return {
@@ -79,7 +83,14 @@ export struct BigVideoTimer {
         },
         updateRecordingTimeDisplay: (timeDisplay: string): void => {
           dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
-        }
+        },
+        stopRecording: () : void => {
+          dispatch(Action.stopRecording())
+          dispatch(Action.updateVideoState('beforeTakeVideo'))
+          dispatch(Action.updateBigVideoTimerVisible(false))
+          dispatch(Action.updateSmallVideoTimerVisible(false))
+          dispatch(Action.updateScreenStatus(false))
+        },
       }
     })(this.state)
 
@@ -126,6 +137,17 @@ export struct BigVideoTimer {
         }
       }
       this.state.updateRecordingSpotVisible(!this.state.isRecordingSpotVisible)
+      if (this.state.isThirdPartyCall && GlobalContext.get().getCameraAbilityWant().parameters?.durationLimit) {
+        try {
+          let durationLimit: number = Number.parseInt(GlobalContext.get().getCameraAbilityWant().parameters?.durationLimit as string)
+          Log.info(`${this.TAG} durationLimit is ${durationLimit}`);
+          if (this.state.recordingTime >= durationLimit) {
+            this.state.stopRecording();
+          }
+        } catch (error) {
+          Log.info(`${this.TAG} picker durationLimit --> ${JSON.stringify(error)}}`)
+        }
+      }
     }, 500)
   }
 

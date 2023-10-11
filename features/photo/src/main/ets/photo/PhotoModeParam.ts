@@ -17,5 +17,5 @@ import { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/Fun
 
 export class PhotoModeParam {
   public readonly tabBar: string[] = ['', 'flash', 'zoom', 'focus', 'setup'];
-  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION, FunctionId.ZOOM_FUNCTION];
+  public readonly functions: FunctionId[] = [FunctionId.CAPTURE_FUNCTION, FunctionId.ZOOM_FUNCTION, FunctionId.RECORDING_FUNCTION];
 }

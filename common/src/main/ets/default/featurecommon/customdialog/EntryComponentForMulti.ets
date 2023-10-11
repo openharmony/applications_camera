@@ -14,40 +14,51 @@
  */
 
 import { CameraService } from '../../camera/CameraService'
-import type { OhCombinedState } from '../../redux/store'
+import { Dispatch } from '../../redux/core/redux/types/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Log } from '../../utils/Log'
 
 class StateStruct {
-  uiEnable: boolean
+  uiEnable: boolean = true;
 }
+
+class ComponentForMultiDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+}
+
 
 @Component
 export default struct EntryComponentForMulti {
-  private TAG: string = '[EntryComponentForMulti]:'
-  @State state: StateStruct = new StateStruct()
-  @State isLocalDevice: boolean = false
-  @State switchCameraState: boolean = false
-  @State recCameraState: boolean = true
-  @State defaultChecked: boolean = false
-  @State curCameraName: string = ''
-  private localList: string
-  private item: string
-  private onChange: Function
-  private cameraService = CameraService.getInstance()
-  private deviceName: string
-  private cameraPositionRes: Resource
-  private cameraPositionName: string
+  private TAG: string = '[EntryComponentForMulti]:';
+  @State state: StateStruct = new StateStruct();
+  @State isLocalDevice: boolean = false;
+  @State switchCameraState: boolean = false;
+  @State recCameraState: boolean = true;
+  @State defaultChecked: boolean = false;
+  @State curCameraName: string = '';
+  private localList: string = '';
+  private item: string = '';
+  private onChange: Function = () => {};
+  private cameraService: CameraService = CameraService.getInstance();
+  private deviceName: string = '';
+  private cameraPositionRes:string | Resource = '';
+  private cameraPositionName: string = '';
+  private mAction: ComponentForMultiDispatcher = new ComponentForMultiDispatcher();
 
   aboutToAppear() {
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         uiEnable: state.ContextReducer.uiEnable
-      }
-    }, () => {
-      return {
-      }
-    })(this.state)
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
+
 
     this.getShowName(this.item)
     this.curCameraName = this.cameraService.getCameraName()
@@ -57,7 +68,7 @@ export default struct EntryComponentForMulti {
   }
 
   private getShowName(item: string): void {
-    this.cameraPositionName = item.split('_').pop()
+    this.cameraPositionName = item.split('_').pop() as string;
     switch (this.cameraPositionName) {
       case 'FRONT':
         this.cameraPositionRes = $r("app.string.front")
@@ -71,8 +82,11 @@ export default struct EntryComponentForMulti {
     if (item.split('_').length == 1) {
       this.isLocalDevice = true
     } else {
-      this.deviceName = this.cameraService.getCameraMap().get(item).deviceName
-      this.isLocalDevice = false
+      const cameraItem = this.cameraService.getCameraMap().get(item)
+      if (cameraItem) {
+        this.deviceName = cameraItem.deviceName as string;
+        this.isLocalDevice = false
+      }
     }
   }
 
