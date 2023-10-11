@@ -15,7 +15,6 @@
  */
 
 import camera from '@ohos.multimedia.camera';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 import deviceInfo from '@ohos.deviceInfo';
