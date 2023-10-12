@@ -151,7 +151,11 @@ export class GlobalContext {
     this.xComponentController = controller;
   }
 
-  public getCameraFormParam() {
+  public getCameraFormParam(): {
+    action: '',
+    cameraPosition: '',
+    mode: ''
+  } {
     return this.cameraFormParam;
   }
 

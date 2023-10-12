@@ -15,7 +15,7 @@
 
 import UserFileManager from '@ohos.filemanagement.userFileManager';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
+import type image from '@ohos.multimedia.image';
 import { Log } from '../utils/Log'
 import { GlobalContext } from '../utils/GlobalContext';
 
