@@ -64,8 +64,12 @@ export class CameraBasicFunction extends BaseFunction {
 
   public async initCamera(data, callType?: string) {
     GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_INIT);
-    if (this.startIdentification) return;
-    if (callType) this.startIdentification = true;
+    if (this.startIdentification) {
+      return;
+    }
+    if (callType) {
+      this.startIdentification = true;
+    }
     Log.start(`${TAG} initCamera`);
     this.mSessionList.push('CREATE');
     let curStorageCameraId = AppStorage.Get<string>('storageCameraId');
