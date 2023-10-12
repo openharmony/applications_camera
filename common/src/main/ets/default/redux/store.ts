@@ -41,7 +41,6 @@ import RecordReducer from './reducers/RecordReducer';
 import type { ZoomState } from './reducers/ZoomReducer';
 import ZoomReducer from './reducers/ZoomReducer';
 import type { ActionData } from './actions/Action';
-// @ts-ignore
 import type { CombinedState, Dispatch, Unsubscribe } from './core/redux';
 import type { MapDispatchProp, MapStateProp } from './core/ohredux/connect';
 
@@ -76,23 +75,23 @@ export function getStore(): StoreStruct {
   Log.info(`${TAG} store init.`)
   if (!AppStorage.Has(STORE_KEY)) {
     const store = createStore(
-    combineReducers({
-      CameraInitReducer,
-      ContextReducer,
-      CameraReducer,
-      PreviewReducer,
-      CaptureReducer,
-      RecordReducer,
-      ModeChangeReducer,
-      ModeReducer,
-      SettingReducer,
-      ZoomReducer,
-    }),
-    applyMiddleware(logger, reduxWorkerMiddle)
+      combineReducers({
+        CameraInitReducer,
+        ContextReducer,
+        CameraReducer,
+        PreviewReducer,
+        CaptureReducer,
+        RecordReducer,
+        ModeChangeReducer,
+        ModeReducer,
+        SettingReducer,
+        ZoomReducer,
+      }),
+      applyMiddleware(logger, reduxWorkerMiddle)
     )
     AppStorage.SetOrCreate(STORE_KEY, store)
     AsyncManager.getInstance().onMessage = (msg: Message) => {
-      const action = { type: '', data: undefined, tag: 'FROM_WORKER' }
+      const action = {type: '', data: undefined, tag: 'FROM_WORKER'}
       Log.info(`${TAG} store dispatch msg: ${JSON.stringify(msg)}`)
       action.type = msg.type
       action.data = msg.data
