@@ -29,7 +29,7 @@ export interface MapDispatchProp {
 }
 
 export function subscribe<S, A extends Action, StateExt, Ext>(store: Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext,
-                                                              mapToProps: MapStateProp | null, mapToDispatch: MapDispatchProp | null): Unsubscribe | null {
+  mapToProps: MapStateProp | null, mapToDispatch: MapDispatchProp | null): Unsubscribe | null {
   Log.info(`${TAG} getStore subscribe invoke.`);
   if (mapToDispatch) {
     mapToDispatch(store.dispatch);

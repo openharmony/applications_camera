@@ -20,8 +20,8 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 import { Log } from '../utils/Log';
 import DateTimeUtil from '../utils/DateTimeUtil';
-import { FunctionCallBack, VideoCallBack } from './CameraService';
-import ThumbnailGetter from './ThumbnailGetter';
+import type { FunctionCallBack, VideoCallBack } from './CameraService';
+import type ThumbnailGetter from './ThumbnailGetter';
 import EventLog from '../utils/EventLog';
 import { GlobalContext } from '../utils/GlobalContext';
 
