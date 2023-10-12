@@ -26,13 +26,18 @@ import { GlobalContext } from '../utils/GlobalContext';
 const TAG = '[CameraBasicFunction]:';
 const CAMERA_TIME_2000 = 2000;
 
+export type DataCache = {
+  cameraId: string;
+  mode: string;
+}
+
 export class CameraBasicFunction extends BaseFunction {
   private mCameraId: string = CameraId.BACK;
   private mSurfaceId: string = '';
   private mCurrentMode: string = '';
   private mSessionList: string[] = [];
   private isSessionReleasing: boolean = false;
-  private initDataCache: any = null;
+  private initDataCache: DataCache = null;
   public startIdentification: boolean = false;
 
   private functionBackImpl: FunctionCallBack = {
@@ -62,7 +67,7 @@ export class CameraBasicFunction extends BaseFunction {
     }
   }
 
-  public async initCamera(data, callType?: string) {
+  public async initCamera(data: DataCache, callType?: string) {
     GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_INIT);
     if (this.startIdentification) {
       return;
