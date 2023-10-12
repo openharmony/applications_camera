@@ -37,7 +37,7 @@ export class CaptureFunction extends BaseFunction {
 
   private async capture(): Promise<void> {
     Log.info(`${TAG} capture E`);
-    GlobalContext.get().setObject('startCaptureTime', new Date().getTime())
+    GlobalContext.get().setObject('startCaptureTime', new Date().getTime());
     this.disableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
     await this.mCameraService.takePicture();
     Log.info(`${TAG} capture X`);

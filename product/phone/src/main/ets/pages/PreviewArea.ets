@@ -46,7 +46,7 @@ class StateStruct {
   mode: string = 'PHOTO';
   curMode: string = 'PHOTO';
   isShowPreview: boolean = false;
-  surfaceId: number = 0;
+  surfaceId: string = '';
   xComponentWidth: number = 0;
   xComponentHeight: number = 0;
   cameraPosition: CameraId = CameraId.BACK;
@@ -103,11 +103,11 @@ class PreviewAreaDispatcher {
     this.mDispatch(Action.updateZoomPercentage(zoomPercentage));
   }
 
-  public prepareSurface(surfaceId: number): void {
+  public prepareSurface(surfaceId: string): void {
     this.mDispatch(Action.prepareSurface(surfaceId));
   }
 
-  public updateSurfaceId(surfaceId: number): void {
+  public updateSurfaceId(surfaceId: string): void {
     this.mDispatch(Action.updateSurfaceId(surfaceId));
   }
 
@@ -619,7 +619,7 @@ export struct PreviewArea {
             .onLoad(() => {
               Log.end(Log.X_COMPONENT_LIFE);
               Log.info(`${this.TAG} XComponent_onLoad `);
-              let surfaceId: number = GlobalContext.get().getXComponentController().getXComponentSurfaceId();
+              let surfaceId: string = GlobalContext.get().getXComponentController().getXComponentSurfaceId();
               this.mAction.prepareSurface(surfaceId);
               this.doCameraAction();
             })

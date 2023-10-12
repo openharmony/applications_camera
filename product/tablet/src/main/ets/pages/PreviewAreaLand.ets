@@ -260,7 +260,7 @@ export struct PreviewAreaLand {
         updateZoomPercentage: (zoomPercentage: number): void => {
           dispatch(Action.updateZoomPercentage(zoomPercentage));
         },
-        prepareSurface: (surfaceId: number): void => {
+        prepareSurface: (surfaceId: string): void => {
           dispatch(Action.prepareSurface(surfaceId));
         },
         startPreview: (zoomRatio: number): void => {

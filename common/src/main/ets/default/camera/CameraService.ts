@@ -34,6 +34,7 @@ const TAG = '[CameraService]:';
 const DEFAULT_VIDEO_FRAME_RATE = 30;
 const FRONT_CAMERA_POSITION = 2;
 const CAMERA_CONNECT_TYPE = 2;
+const CAMERA_TIME_2000 = 2000;
 
 export interface FunctionCallBack {
   onCapturePhotoOutput(): void
@@ -331,9 +332,9 @@ export class CameraService {
 
   public async createSession(surfaceId: string, isVideo: boolean) {
     Log.start(`${TAG} createSession`);
-    GlobalContext.get().setObject('isSessionCreating', true)
+    GlobalContext.get().setObject('isSessionCreating', true);
     this.mCaptureSession = this.mCameraManager.createCaptureSession();
-    GlobalContext.get().setObject('isSessionCreating', false)
+    GlobalContext.get().setObject('isSessionCreating', false);
     Log.info(`${TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput},
     videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`);
     Log.info(`${TAG} createSession beginConfig.`);
@@ -367,7 +368,7 @@ export class CameraService {
         EventLog.write(EventLog.OPEN_FAIL);
       }
     }
-    if (GlobalContext.get().getT<boolean>('cameraStartFlag') && (new Date().getTime() - GlobalContext.get().getT<number>('cameraStartTime')) > 2000) {
+    if (GlobalContext.get().getT<boolean>('cameraStartFlag') && (new Date().getTime() - GlobalContext.get().getT<number>('cameraStartTime')) > CAMERA_TIME_2000) {
       EventLog.write(EventLog.START_TIMEOUT);
     }
     GlobalContext.get().setObject('cameraStartFlag', false);
@@ -449,7 +450,7 @@ export class CameraService {
       }
     }
     Log.end(`${TAG} takePicture`);
-    if ((new Date().getTime() - GlobalContext.get().getT<number>('startCaptureTime')) > 2000) {
+    if ((new Date().getTime() - GlobalContext.get().getT<number>('startCaptureTime')) > CAMERA_TIME_2000) {
       EventLog.write(EventLog.CAPTURE_TIMEOUT);
     }
   }
@@ -570,7 +571,7 @@ export class CameraService {
       Log.info(`${TAG} AVRecorder.start()`);
     });
     this.mIsStartRecording = true;
-    if (new Date().getTime() - startRecordingTime > 2000) {
+    if (new Date().getTime() - startRecordingTime > CAMERA_TIME_2000) {
       EventLog.write(EventLog.START_RECORD_TIMEOUT);
     }
     Log.end(`${TAG} StartRecording`);
@@ -607,7 +608,7 @@ export class CameraService {
     Log.start(Log.UPDATE_VIDEO_THUMBNAIL);
     const thumbnailPixelMap: PixelMap | undefined = await this.mThumbnailGetter.getThumbnailInfo(40, 40);
     Log.end(Log.UPDATE_VIDEO_THUMBNAIL);
-    if (new Date().getTime() - stopRecordingTime > 2000) {
+    if (new Date().getTime() - stopRecordingTime > CAMERA_TIME_2000) {
       EventLog.write(EventLog.FINISH_RECORD_TIMEOUT);
     }
     Log.end(Log.STOP_RECORDING);
