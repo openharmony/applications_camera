@@ -21,10 +21,10 @@ import { Action, UiStateMode } from '@ohos/common/src/main/ets/default/redux/act
 import { AssistiveGridView } from '@ohos/common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
 import { BigText } from '@ohos/common/src/main/ets/default/featurecommon/bigtext/BigText'
 import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/default/utils/Constants'
-import type { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId'
-import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
+import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId'
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import type { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
+import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
@@ -36,6 +36,7 @@ import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomvi
 import { SmallVideoTimer } from './SmallVideoTimer'
 import promptAction from '@ohos.promptAction';
 import wantConstant from '@ohos.ability.wantConstant';
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 class StateStruct {
   mode
@@ -104,7 +105,7 @@ class StateStruct {
   hideSettingView: Function
 }
 
-globalThis.mXComponentController = new XComponentController();
+GlobalContext.get().setXComponentController(new XComponentController())
 
 type ScreenSizeType = {
   width: number
@@ -174,8 +175,8 @@ export struct PreviewAreaLand {
       this.state.changeToMode(this.state.mode);
       this.state.updateMode(this.state.mode);
     } else {
-      if (globalThis?.keepCameraZoomRatio && globalThis.keepCameraZoomRatio) {
-        globalThis.keepCameraZoomRatio = false;
+      if (GlobalContext.get().getT<boolean>('keepCameraZoomRatio') && GlobalContext.get().getT<boolean>('keepCameraZoomRatio')) {
+        GlobalContext.get().setObject('keepCameraZoomRatio', false)
         Log.info(`${this.TAG} keep zoomRatio: ` + this.state.zoomRatio);
       } else {
         this.state.changeZoomRatio(1);
@@ -259,7 +260,7 @@ export struct PreviewAreaLand {
         updateZoomPercentage: (zoomPercentage: number): void => {
           dispatch(Action.updateZoomPercentage(zoomPercentage));
         },
-        prepareSurface: (surfaceId: number): void => {
+        prepareSurface: (surfaceId: string): void => {
           dispatch(Action.prepareSurface(surfaceId));
         },
         startPreview: (zoomRatio: number): void => {
@@ -370,11 +371,10 @@ export struct PreviewAreaLand {
     this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this));
     this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this));
     this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this));
-    globalThis.updateCameraStatus = (() => {
+    GlobalContext.get().setObject('updateCameraStatus', () => {
       Log.info(`${this.TAG} globalThis.updateCameraStatus called`);
       this.updateCameraStatus();
-    })
-
+    });
     display.getDefaultDisplay().then((dis) => {
       this.isShowBlurSize = { width: px2vp(dis.width), height: px2vp(dis.height) };
     })
@@ -387,7 +387,7 @@ export struct PreviewAreaLand {
 
   private releaseCamera(): void {
     Log.info(`${this.TAG} globalThis.releaseCamera called`);
-    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO;
+    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NO_NEED_TO_DO);
     if (this.state.videoState === 'startTakeVideo') {
       this.state.stopRecording();
     }
@@ -397,7 +397,7 @@ export struct PreviewAreaLand {
   private async onForegroundInit() {
     Log.info(`${this.TAG} onForegroundInit E `);
     this.pageType = '';
-    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NO_NEED_TO_DO;
+    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NO_NEED_TO_DO);
     this.calledByOther();
     this.state.initCamera(this.state.cameraPosition, this.state.mode);
     await new Promise((resolve) => setTimeout(resolve, 40));
@@ -414,13 +414,13 @@ export struct PreviewAreaLand {
     let from: string = "";
     let action: string = "";
 
-    if (globalThis?.cameraAbilityWant) {
-      Log.info(`${this.TAG} cameraAbilityWant: ${JSON.stringify(globalThis.cameraAbilityWant)}`);
-      if (globalThis.cameraAbilityWant?.parameters?.from) {
-        from = globalThis.cameraAbilityWant.parameters.from;
+    if (GlobalContext.get().getCameraAbilityWant()) {
+      Log.info(`${this.TAG} cameraAbilityWant: ${JSON.stringify(GlobalContext.get().getCameraAbilityWant())}`);
+      if (GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
+        from = GlobalContext.get().getCameraAbilityWant().parameters.from as string;
       }
-      if (globalThis.cameraAbilityWant?.action) {
-        action = globalThis.cameraAbilityWant.action;
+      if (GlobalContext.get().getCameraAbilityWant()?.action) {
+        action = GlobalContext.get().getCameraAbilityWant().action;
       }
     } else {
       this.state.thirdPartyCall(false, "");
@@ -430,15 +430,15 @@ export struct PreviewAreaLand {
 
     if (from === "FA") {
       Log.info(`from === "FA"`);
-      if (globalThis.cameraAbilityWant?.parameters?.action) {
-        action = globalThis.cameraAbilityWant.parameters.action;
+      if (GlobalContext.get().getCameraAbilityWant()?.parameters?.action) {
+        action = GlobalContext.get().getCameraAbilityWant().parameters.action as string;
       }
       this.state.faCall(true);
       this.state.thirdPartyCall(false, "");
       this.initStateMode(action);
     } else if (action != "") {
       this.state.faCall(false);
-      this.state.thirdPartyCall(true, globalThis.cameraAbilityWant.action);
+      this.state.thirdPartyCall(true, GlobalContext.get().getCameraAbilityWant().action);
       this.initStateMode(action);
     } else {
       this.state.faCall(false);
@@ -464,12 +464,12 @@ export struct PreviewAreaLand {
   }
 
   private updateCameraStatus(): void {
-    Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${globalThis.cameraStatus}
-      cameraNeedStatus: ${globalThis.cameraNeedStatus}`);
-    if (this.canInit() && globalThis.cameraNeedStatus == CameraNeedStatus.CAMERA_NEED_INIT) {
+    Log.info(`${this.TAG} updateCameraStatus  cameraStatus: ${GlobalContext.get().getT<string>('cameraStatus')}
+      cameraNeedStatus: ${GlobalContext.get().getT<string>('cameraNeedStatus')}`);
+    if (this.canInit() && GlobalContext.get().getT<string>('cameraNeedStatus') == CameraNeedStatus.CAMERA_NEED_INIT) {
       this.onForegroundInit();
     }
-    if (this.canRelease() && globalThis.cameraNeedStatus == CameraNeedStatus.CAMERA_NEED_RELEASE) {
+    if (this.canRelease() && GlobalContext.get().getT<string>('cameraNeedStatus') == CameraNeedStatus.CAMERA_NEED_RELEASE) {
       this.releaseCamera();
     }
     Log.info(`${this.TAG} updateCameraStatus X`);
@@ -477,13 +477,14 @@ export struct PreviewAreaLand {
 
   private canInit(): boolean {
     //相机状态是首次加载或者session释放完成状态，才能进行初始化操作
-    return globalThis.cameraStatus == CameraStatus.CAMERA_BEFORE_VALUE || globalThis.cameraStatus == CameraStatus.CAMERA_RELEASE_FINISHED;
+    return GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_BEFORE_VALUE ||
+    GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_RELEASE_FINISHED;
   }
 
   private canRelease(): boolean {
     //相机状态是预览完成状态或录像完成状态才能进行释放操作
-    return globalThis.cameraStatus == CameraStatus.CAMERA_PREVIEW_FINISHED ||
-      globalThis.cameraStatus == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED;
+    return GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_PREVIEW_FINISHED ||
+    GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED;
   }
 
   aboutToDisappear(): void {
@@ -494,7 +495,7 @@ export struct PreviewAreaLand {
     this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this));
     this.mConnect?.destroy();
     GeoLocation.getInstance().off();
-    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE;
+    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_RELEASE)
     this.updateCameraStatus();
     Log.info(`${this.TAG} aboutToDisappear X`);
   }
@@ -536,31 +537,6 @@ export struct PreviewAreaLand {
       Log.info(`${this.TAG} btnSwitchSec callback btnSwitchSec= ${this.btnSwitchSec}`);
       this.rotateAngleSec = 0;
       //      this.btnSwitchSec = true
-    })
-  }
-
-  private switchAnimation(): void {
-    Log.info(`${this.TAG} switchAnimation called`);
-    animateTo({ duration: 300,
-      delay: 0,
-      curve: Curve.Sharp,
-    }, () => {
-      this.btnOpacityFirst = 0;
-    })
-    animateTo({ duration: 350,
-      delay: 0,
-      curve: Curve.FastOutSlowIn,
-      onFinish: () => {
-        Log.info(`${this.TAG} btnSwitch onFinish btnSwitch= ${this.btnSwitch}`);
-        this.btnSwitch = false;
-        this.btnOpacityFirst = 1;
-        this.scaleX = 1;
-        this.rotateAngle = 0;
-      }
-    }, () => {
-      Log.info(`${this.TAG} btnSwitch callback btnSwitch= ${this.btnSwitch}`);
-      this.scaleX = 0.8;
-      this.rotateAngle = 80;
     })
   }
 
@@ -648,7 +624,7 @@ export struct PreviewAreaLand {
   private onKeepScreen(data): void {
     Log.info(`${this.TAG} onKeepScreen E`);
     if (data) {
-      globalThis.cameraWinClass.setKeepScreenOn(data.isKeepScreenOn).then((v) => {
+      GlobalContext.get().getCameraWinClass().setKeepScreenOn(data.isKeepScreenOn).then((v) => {
         Log.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(v));
       }).catch((err) => {
         Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
@@ -675,7 +651,7 @@ export struct PreviewAreaLand {
   private async onScreenChange(isScreenOn) {
     Log.info(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`);
     if (!isScreenOn) {
-      globalThis.keepCameraZoomRatio = true;
+      GlobalContext.get().setObject('keepCameraZoomRatio', true);
       if (this.state.isShowPageView) {
         this.state.hideSettingView();
       }
@@ -691,12 +667,12 @@ export struct PreviewAreaLand {
             id: '',
             type: 'surface',
             libraryname: '',
-            controller: globalThis.mXComponentController
+            controller: GlobalContext.get().getXComponentController()
           })
             .onLoad(() => {
               Log.end(Log.X_COMPONENT_LIFE);
               Log.info(`${this.TAG} XComponent_onLoad`);
-              let surfaceId = globalThis.mXComponentController.getXComponentSurfaceId();
+              let surfaceId = GlobalContext.get().getXComponentController().getXComponentSurfaceId();
               this.state.prepareSurface(surfaceId);
               this.doCameraAction();
             })

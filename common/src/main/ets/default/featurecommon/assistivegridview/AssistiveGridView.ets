@@ -15,41 +15,48 @@
 
 import { Log } from '../../utils/Log'
 import { SettingManager } from '../../setting/SettingManager'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
+import { Dispatch } from '../../redux/core/redux/types/store'
 
 class StateStruct {
-  xComponentWidth: number
-  xComponentHeight: number
+  xComponentWidth: number = 0;
+  xComponentHeight: number = 0;
+}
+
+class AssistiveGridViewDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
 }
 
 @Component
 export struct AssistiveGridView {
-  private TAG: string = '[AssistiveGridView]:'
-  private mGlobalAlpha: number = 0.5
-  private mLineWidth: number = 0.5
-  private mShadowColor: string = 'argb(#7F000000)'
-  private mShadowOffsetX: number = 0
-  private mShadowOffsetY: number = 0
-  private mStrokeStyle: string = '#FFFFFF'
-  private scaleLen: number = 4
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private settingManager = SettingManager.getInstance()
-
-  @State state: StateStruct = new StateStruct()
+  private TAG: string = '[AssistiveGridView]:';
+  private mGlobalAlpha: number = 0.5;
+  private mLineWidth: number = 0.5;
+  private mShadowColor: string = 'argb(#7F000000)';
+  private mShadowOffsetX: number = 0;
+  private mShadowOffsetY: number = 0;
+  private mStrokeStyle: string = '#FFFFFF';
+  private scaleLen: number = 4;
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private mAction: AssistiveGridViewDispatcher = new AssistiveGridViewDispatcher();
+  @State state: StateStruct = new StateStruct();
 
   aboutToAppear(): void {
-    Log.info(`${this.TAG} aboutToAppear invoke E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    Log.info(`${this.TAG} aboutToAppear invoke E`);
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         xComponentWidth: state.PreviewReducer.xComponentWidth,
         xComponentHeight: state.PreviewReducer.xComponentHeight
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
