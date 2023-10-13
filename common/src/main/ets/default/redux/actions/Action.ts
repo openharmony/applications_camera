@@ -287,7 +287,7 @@ export class Action {
 
   /** PREVIEW METHODS LIST **/
 
-  public static prepareSurface(surfaceId: number): ActionData {
+  public static prepareSurface(surfaceId: string): ActionData {
     return {
       type: Action.ACTION_PREPARE_SURFACE,
       data: { surfaceId: surfaceId }
@@ -308,7 +308,7 @@ export class Action {
     }
   }
 
-  public static updateSurfaceId(surfaceId: number): ActionData {
+  public static updateSurfaceId(surfaceId: string): ActionData {
     return {
       type: Action.ACTION_UPDATE_SURFACE_ID,
       data: { surfaceId: surfaceId }

@@ -17,6 +17,7 @@ import UserFileManager from '@ohos.filemanagement.userFileManager';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import type image from '@ohos.multimedia.image';
 import { Log } from '../utils/Log'
+import { GlobalContext } from '../utils/GlobalContext';
 
 const TAG = '[ThumbnailGetter]:';
 
@@ -27,7 +28,7 @@ export default class ThumbnailGetter {
   private mRecentFileUri: string = '';
 
   public async getThumbnailInfo(width: number, height: number, uri?: string): Promise<PixelMap | undefined> {
-    this.mUserFileManager = UserFileManager.getUserFileMgr(globalThis.cameraAbilityContext);
+    this.mUserFileManager = UserFileManager.getUserFileMgr(GlobalContext.get().getCameraAbilityContext());
     Log.info(`${TAG} getThumbnailInfo E width: ${width}, height: ${height}, uri: ${uri}`);
     Log.info(`${TAG} getThumbnailInfo E`);
     const fileAsset: UserFileManager.FileAsset = await this.getLastFileAsset();

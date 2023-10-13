@@ -17,6 +17,7 @@ import router from '@system.router';
 import fileshare from '@ohos.fileshare';
 import wantConstant from '@ohos.ability.wantConstant';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 @Entry
 @Component
@@ -72,7 +73,7 @@ struct ThirdPreviewView {
       }
     };
 
-    globalThis.cameraAbilityContext.terminateSelfWithResult(abilityResult, (error, data) => {
+    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error, data) => {
       if (error) {
         Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
         return;

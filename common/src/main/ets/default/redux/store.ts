@@ -41,6 +41,7 @@ import RecordReducer from './reducers/RecordReducer';
 import type { ZoomState } from './reducers/ZoomReducer';
 import ZoomReducer from './reducers/ZoomReducer';
 import type { ActionData } from './actions/Action';
+// @ts-ignore
 import type { CombinedState, Dispatch, Unsubscribe } from './core/redux';
 import type { MapDispatchProp, MapStateProp } from './core/ohredux/connect';
 
@@ -60,12 +61,18 @@ export type OhCombinedState = CombinedState<{
   ZoomReducer: ZoomState
 }>
 
-export function getStore(): {
+export interface Unsubscribe {
+  destroy(): void
+}
+
+export type StoreStruct = {
   getState: () => OhCombinedState,
   dispatch: Dispatch<ActionData>,
-  subscribe: (listener: () => void) => Unsubscribe,
+  subscribe: (mapToProps: MapStateProp | null, mapToDispatch: MapDispatchProp | null) => Unsubscribe | null,
   connect: (mapStateProp: MapStateProp, mapDispatchProp: MapDispatchProp) => (target: any) => void
-  } {
+};
+
+export function getStore(): StoreStruct {
   Log.info(`${TAG} store init.`)
   if (!AppStorage.Has(STORE_KEY)) {
     const store = createStore(

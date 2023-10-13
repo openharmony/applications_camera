@@ -14,32 +14,55 @@
  */
 
 import { Log } from '../../utils/Log'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
-import type { EventBus } from '../../worker/eventbus/EventBus'
+import { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import EventLog from '../../utils/EventLog'
 import { CameraService } from '../../camera/CameraService'
+import { Dispatch } from '../../redux/core/redux/types/store'
+import { GlobalContext } from '../../utils/GlobalContext'
 
 class StateStruct {
-  thumbnail: Resource
+  thumbnail: Resource = $r('app.media.ic_camera_thumbnail_default_white');
+}
+
+class UpdateThumbnailStruct {
+  thumbnail: PixelMap | undefined = undefined;
+  resourceUri: string = '';
+}
+
+class ThumbnailStruct {
+  thumbnail: PixelMap | undefined = undefined;
+}
+
+class StartAbilityParameterStruct {
+  uri: string = '';
+}
+
+class ThumbnailViewDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
 }
 
 @Component
 export struct ThumbnailView {
   private TAG: string = '[ThumbnailView]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State thumbnailBorder: Object = {}
-
+  @State thumbnailBorder: BorderOptions = {};
   @State state: StateStruct = new StateStruct()
-  @State thumbnail: Resource = $r('app.media.ic_camera_thumbnail_default_white')
+  @State thumbnail: Resource | PixelMap = $r('app.media.ic_camera_thumbnail_default_white')
   @State hasThumbnail: boolean = false
   @State scaleValue: number = 1
   @State tempOpacity: number = 1
   private cameraService = CameraService.getInstance()
+  private mAction: ThumbnailViewDispatcher = new ThumbnailViewDispatcher();
 
-  private async onThumbnailUpdate(data) {
+  private async onThumbnailUpdate(data: UpdateThumbnailStruct): Promise<void> {
     Log.info(`${this.TAG} onThumbnailUpdate data: ${JSON.stringify(data)} E`)
     this.thumbnail = (data.thumbnail == null ? $r('app.media.ic_camera_thumbnail_default_white') : data.thumbnail)
     this.hasThumbnail = data.thumbnail != undefined
@@ -59,7 +82,7 @@ export struct ThumbnailView {
     Log.info(`${this.TAG} onThumbnailUpdate this.state.thumbnail: ${JSON.stringify(this.thumbnail)} X`)
   }
 
-  private async onThumbnailLoad(data) {
+  private async onThumbnailLoad(data: ThumbnailStruct): Promise<void> {
     Log.info(`${this.TAG} onThumbnailLoad data: ${JSON.stringify(data)} E`)
     this.thumbnail = (data.thumbnail == null ? $r('app.media.ic_camera_thumbnail_default_white') : data.thumbnail)
     this.hasThumbnail = data.thumbnail != undefined
@@ -75,24 +98,22 @@ export struct ThumbnailView {
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         thumbnail: state.CameraInitReducer.thumbnail
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
-
-    this.appEventBus.on(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
-    this.appEventBus.on(Action.ACTION_LOAD_THUMBNAIL, this.onThumbnailLoad.bind(this))
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
+    this.appEventBus.on(Action.ACTION_UPDATE_THUMBNAIL, (data: UpdateThumbnailStruct) => this.onThumbnailUpdate(data));
+    this.appEventBus.on(Action.ACTION_LOAD_THUMBNAIL, (data: ThumbnailStruct) => this.onThumbnailLoad(data));
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, this.onThumbnailUpdate.bind(this))
-    this.appEventBus.off(Action.ACTION_LOAD_THUMBNAIL, this.onThumbnailLoad.bind(this))
+    this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, (data: UpdateThumbnailStruct) => this.onThumbnailUpdate(data))
+    this.appEventBus.off(Action.ACTION_LOAD_THUMBNAIL, (data: ThumbnailStruct) => this.onThumbnailLoad(data));
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
@@ -107,10 +128,13 @@ export struct ThumbnailView {
       .onClick(async () => {
         Log.info(`${this.TAG} launch bundle com.ohos.photos`)
         EventLog.write(EventLog.CLICK_THUMBNAIL)
-        globalThis.keepCameraZoomRatio = true
-        Log.info(`${this.TAG} uri === `+this.cameraService.getRecentFileUri())
-        await globalThis.cameraAbilityContext.startAbility({
-          parameters: { uri: this.cameraService.getRecentFileUri() },
+        GlobalContext.get().setObject('keepCameraZoomRatio', true);
+        const recentUri: string = this.cameraService.getRecentFileUri();
+        Log.info(`${this.TAG} uri === ` + recentUri)
+        const abilityParameter: StartAbilityParameterStruct = { uri: recentUri };
+        await GlobalContext.get().getCameraAbilityContext().startAbility({
+          // @ts-ignore
+          parameters: abilityParameter,
           action: 'ohos.want.action.viewData',
           bundleName: 'com.ohos.photos',
           abilityName: 'com.ohos.photos.MainAbility'

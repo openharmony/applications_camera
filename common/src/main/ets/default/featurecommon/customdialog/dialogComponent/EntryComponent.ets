@@ -18,34 +18,43 @@ import { SettingManager } from '../../../setting/SettingManager'
 import Timer from '../../../setting/settingitem/Timer'
 import AspectRatio from '../../../setting/settingitem/AspectRatio'
 import Resolution from '../../../setting/settingitem/Resolution'
-import type { OhCombinedState } from '../../../redux/store'
+import { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store';
+import { Dispatch } from '../../../redux/core/redux/types/store'
 
 class StateStruct {
-  mode
+  mode: string = '';
+}
+
+class EntryComponentDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
 }
 
 @Component
 export default struct EntryComponent {
-  private TAG: string = '[EntryComponent]:'
-  @State itemValue: string = ''
-  @State checkedValue: string = ''
-  @State settingAlias: string = ''
-  private getValue: Resource
-  private onChange: Function
-  private settingManager = SettingManager.getInstance()
-  @State state: StateStruct = new StateStruct()
+  private TAG: string = '[EntryComponent]:';
+  @State itemValue: Resource = $r('app.string.photo_ratio_4_3');
+  @State checkedValue: string = '';
+  @State settingAlias: string = '';
+  private getValue: Resource = $r('app.string.resolution_1280_720');
+  private onChange: Function = () => {};
+  private settingManager = SettingManager.getInstance();
+  @State state: StateStruct = new StateStruct();
+  private mAction: EntryComponentDispatcher = new EntryComponentDispatcher();
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear calle1d = ${this.settingAlias}`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         mode: state.ModeReducer.mode
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     try {
       this.getValue = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.settingAlias)))

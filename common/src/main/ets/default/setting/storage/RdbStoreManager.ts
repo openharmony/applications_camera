@@ -14,6 +14,7 @@
  */
 
 import dataRdb from '@ohos.data.rdb';
+import { GlobalContext } from '../../utils/GlobalContext';
 
 import { Log } from '../../utils/Log'
 import SettingItemInfo from './SettingItemInfo'
@@ -40,7 +41,7 @@ export class RdbStoreManager {
    *
    * @return rdbStoreManager instance
    */
-  public static getInstance() {
+  public static getInstance(): RdbStoreManager {
     if (globalThis.RdbStoreManagerInstance == null) {
       globalThis.RdbStoreManagerInstance = new RdbStoreManager();
     }
@@ -49,7 +50,7 @@ export class RdbStoreManager {
 
   public async initRdbConfig() {
     Log.info(this.TAG + 'initRdbConfig start');
-    const promise = dataRdb.getRdbStore(globalThis.cameraAbilityContext,
+    const promise = dataRdb.getRdbStore(GlobalContext.get().getCameraAbilityContext(),
       {
         name: DB_NAME
       }, DB_VERSION);

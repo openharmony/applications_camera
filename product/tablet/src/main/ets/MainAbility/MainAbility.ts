@@ -24,6 +24,7 @@ import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService';
 import { ModeMap } from '../common/ModeMap';
 import wantConstant from '@ohos.ability.wantConstant';
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 export default class MainAbility extends Ability {
   private cameraBasicFunction: CameraBasicFunction = null;
@@ -34,23 +35,24 @@ export default class MainAbility extends Ability {
   onCreate(): void {
     // Ability is creating, initialize resources for this ability
     Log.start(Log.ABILITY_WHOLE_LIFE);
-    if (globalThis.cameraFormParam != undefined) {
-      new FeatureManager(globalThis.cameraFormParam.mode, new ModeMap());
+    if (GlobalContext.get().getCameraFormParam() !== undefined) {
+      new FeatureManager(GlobalContext.get().getCameraFormParam().mode, new ModeMap());
     } else {
       new FeatureManager('PHOTO', new ModeMap());
     }
     Log.info('Camera MainAbility onCreate.');
-    globalThis.cameraAbilityContext = this.context;
-    globalThis.cameraAbilityWant = this.launchWant;
-    globalThis.permissionFlag = false;
-
-    Log.info(`Camera MainAbility onCreate launchWant. ${JSON.stringify(globalThis.cameraAbilityWant )}`);
-    globalThis.cameraStartTime = new Date().getTime();
-    globalThis.cameraStartFlag = true;
-    globalThis.stopRecordingFlag = false;
-    globalThis.doOnForeground = false;
+    GlobalContext.get().setCameraAbilityContext(this.context);
+    GlobalContext.get().setCameraAbilityWant(this.launchWant);
+    GlobalContext.get().setObject('permissionFlag', false);
+    Log.info(`Camera MainAbility onCreate launchWant. ${JSON.stringify(GlobalContext.get().getCameraAbilityWant())}`);
+    GlobalContext.get().setObject('cameraStartTime', new Date().getTime());
+    GlobalContext.get().setObject('cameraStartFlag', true);
+    GlobalContext.get().setObject('stopRecordingFlag', false);
+    GlobalContext.get().setObject('doOnForeground', false);
     this.cameraBasicFunction = CameraBasicFunction.getInstance();
-    this.cameraBasicFunction.initCamera({ cameraId: 'BACK', mode: 'PHOTO' }, 'onCreate');
+    this.cameraBasicFunction.initCamera({
+      cameraId: 'BACK', mode: 'PHOTO'
+    }, 'onCreate');
   }
 
   onDestroy() {
@@ -72,17 +74,17 @@ export default class MainAbility extends Ability {
         if (++this.foreRoundOverCount > 1) {
           this.foreRoundOverCount = 1;
           Log.info('multi task interface: reset zoomRatio to 1');
-          globalThis?.resetZoomRatio && globalThis.resetZoomRatio();
+          GlobalContext.get().apply('resetZoomRatio');
         }
       } else if (event === window.WindowStageEventType.HIDDEN) {
         this.foreRoundOverCount--;
       }
-      globalThis.cameraWindowStageEvent = event;
+      GlobalContext.get().setCameraWindowStageEvent(event);
       if (event === window.WindowStageEventType.INACTIVE) {
-        globalThis.stopRecordingFlag = true;
-        globalThis?.stopCameraRecording && globalThis.stopCameraRecording();
+        GlobalContext.get().setObject('stopRecordingFlag', true);
+        GlobalContext.get().apply('stopCameraRecording');
       } else {
-        globalThis.stopRecordingFlag = false;
+        GlobalContext.get().setObject('stopRecordingFlag', false);
       }
     })
 
@@ -106,7 +108,7 @@ export default class MainAbility extends Ability {
           AppStorage.SetOrCreate(Constants.APP_KEY_WINDOW_SIZE, data);
           this.appEventBus.emit('windowSize', [data]);
         });
-        globalThis.cameraWinClass = win;
+        GlobalContext.get().setCameraWinClass(win);
       } catch (err) {
         Log.error('Camera setFullScreen err: ' + err);
       }
@@ -114,18 +116,18 @@ export default class MainAbility extends Ability {
 
     if (this.launchWant?.action === wantConstant.Action.ACTION_IMAGE_CAPTURE ||
     this.launchWant?.parameters?.action === wantConstant.Action.ACTION_IMAGE_CAPTURE) {
-      globalThis.cameraFormParam = {
+      GlobalContext.get().setCameraFormParam({
         action: 'capture',
         cameraPosition: 'PHOTO',
         mode: 'PHOTO'
-      }
+      })
     } else if (this.launchWant?.action === wantConstant.Action.ACTION_VIDEO_CAPTURE ||
     this.launchWant?.parameters?.action === wantConstant.Action.ACTION_VIDEO_CAPTURE) {
-      globalThis.cameraFormParam = {
+      GlobalContext.get().setCameraFormParam({
         action: 'video',
         cameraPosition: 'VIDEO',
         mode: 'VIDEO'
-      };
+      });
     }
 
     windowStage.setUIContent(this.context, 'pages/indexLand', null);
@@ -139,12 +141,12 @@ export default class MainAbility extends Ability {
   onForeground() {
     Log.start(Log.ABILITY_FOREGROUND_LIFE);
     Log.info('Camera MainAbility onForeground.');
-    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_INIT;
-    if (globalThis?.doOnForeground && globalThis.doOnForeground) {
+    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_INIT);
+    if (GlobalContext.get().getT<boolean>('doOnForeground')) {
       Log.info('Camera MainAbility onForeground.');
-      globalThis?.updateCameraStatus && globalThis.updateCameraStatus();
+      GlobalContext.get().apply('updateCameraStatus');
     } else {
-      globalThis.doOnForeground = true;
+      GlobalContext.get().setObject('doOnForeground', true);
     }
     Log.info('Camera MainAbility onForeground end.');
   }
@@ -153,13 +155,13 @@ export default class MainAbility extends Ability {
     Log.end(Log.ABILITY_FOREGROUND_LIFE);
     Log.info('Camera MainAbility onBackground.');
     this.cameraBasicFunction.startIdentification = false;
-    globalThis.cameraNeedStatus = CameraNeedStatus.CAMERA_NEED_RELEASE;
-    globalThis?.updateCameraStatus && globalThis.updateCameraStatus();
+    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_RELEASE);
+    GlobalContext.get().apply('updateCameraStatus');
   }
 
   onNewWant(want) {
     Log.info('Camera MainAbility onNewWant.');
-    globalThis.cameraAbilityWant = want;
-    Log.info(`Camera MainAbility E newWantAction: ${JSON.stringify(globalThis.cameraAbilityWant )}`);
+    GlobalContext.get().setCameraAbilityWant(want);
+    Log.info(`Camera MainAbility E newWantAction: ${JSON.stringify(GlobalContext.get().getCameraAbilityWant())}`);
   }
 }

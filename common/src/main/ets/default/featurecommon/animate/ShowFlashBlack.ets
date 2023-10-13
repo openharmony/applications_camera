@@ -14,37 +14,46 @@
  */
 
 import { Log } from '../../utils/Log'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
+import { Dispatch } from '../../redux/core/redux/types/store'
 
 class StateStruct {
-  xComponentWidth: number
-  xComponentHeight: number
-  updateShowFlashBlackFlag : Function
+  xComponentWidth: number = 0;
+  xComponentHeight: number = 0;
+}
+
+
+class ShowFlashBlackDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public updateShowFlashBlackFlag(flag: boolean): void {
+    this.mDispatch(Action.updateShowFlashBlackFlag(flag));
+  }
 }
 
 @Component
 export struct ShowFlashBlack {
   private TAG: string = '[ShowFlashBlack]:'
-
   @State state: StateStruct = new StateStruct()
   @State opacityValue: number = 1
+  private mAction: ShowFlashBlackDispatcher = new ShowFlashBlackDispatcher();
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         xComponentWidth: state.PreviewReducer.xComponentWidth,
         xComponentHeight: state.PreviewReducer.xComponentHeight
-      }
-    }, (dispatch) => {
-      return {
-        updateShowFlashBlackFlag: (flag: boolean): void => {
-          dispatch(Action.updateShowFlashBlackFlag(flag))
-        }
-      }
-    })(this.state)
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
@@ -62,14 +71,16 @@ export struct ShowFlashBlack {
           animateTo({
             duration: 50,
             delay: 0,
-            onFinish: () => {}
-          }, () => {})
+            onFinish: () => {
+            }
+          }, () => {
+          })
           animateTo({
             duration: 300,
             curve: Curve.Sharp,
             delay: 50,
             onFinish: () => {
-              this.state.updateShowFlashBlackFlag(false)
+              this.mAction.updateShowFlashBlackFlag(false)
               this.opacityValue = 1
             }
           }, () => {

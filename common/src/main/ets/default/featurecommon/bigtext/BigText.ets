@@ -14,53 +14,62 @@
  */
 
 import { Log } from '../../utils/Log'
-import type { OhCombinedState } from '../../redux/store'
+import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
+import { Dispatch } from '../../redux/core/redux/types/store'
 
 class StateStruct {
-  mode
-  updateShowBigTextFlag : Function
-  updateUiState : Function
+  mode:string = '';
+}
+
+class BigTextDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public updateShowBigTextFlag(flag: boolean): void {
+    this.mDispatch(Action.updateShowBigTextFlag(flag));
+  }
+
+  public updateUiState(state: boolean): void {
+    this.mDispatch(Action.uiState(state));
+  }
+}
+
+class ModeResourceStruct {
+  MULTI: Resource = $r('app.string.multi_mode');
+  PHOTO: Resource = $r('app.string.photo_mode');
+  VIDEO: Resource = $r('app.string.video_mode');
 }
 
 @Component
 export struct BigText {
   private TAG: string = '[BigText]:'
-  private mConnect: any
-  private modeResource = {
-    'MULTI': $r('app.string.multi_mode'),
-    'PHOTO': $r('app.string.photo_mode'),
-    'VIDEO': $r('app.string.video_mode')
+  private modeResource: ModeResourceStruct = {
+    MULTI: $r('app.string.multi_mode'),
+    PHOTO: $r('app.string.photo_mode'),
+    VIDEO: $r('app.string.video_mode')
   }
-
   @State state: StateStruct = new StateStruct()
   @State bigTextOpacity: number = 0
+  private mAction: BigTextDispatcher = new BigTextDispatcher();
 
   public aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
-    this.mConnect = getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         mode: state.ModeReducer.mode
-      }
-    }, (dispatch) => {
-      return {
-        updateShowBigTextFlag: (flag: boolean) => {
-          dispatch(Action.updateShowBigTextFlag(flag))
-        },
-        updateUiState: (state: boolean) => {
-          dispatch(Action.uiState(state))
-        }
-      }
-    })(this.state)
-
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   public aboutToDisappear(): void {
-    Log.info(`${this.TAG} aboutToDisappear E`)
-    this.mConnect?.destroy()
-    Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
   build() {
@@ -81,8 +90,8 @@ export struct BigText {
                 curve: Curve.Sharp,
                 delay: 1000,
                 onFinish: () => {
-                  this.state.updateShowBigTextFlag(false)
-                  this.state.updateUiState(true)
+                  this.mAction.updateShowBigTextFlag(false)
+                  this.mAction.updateUiState(true)
                 }
               }, () => {
                 this.bigTextOpacity = 0
