@@ -41,6 +41,7 @@ import RecordReducer from './reducers/RecordReducer';
 import type { ZoomState } from './reducers/ZoomReducer';
 import ZoomReducer from './reducers/ZoomReducer';
 import type { ActionData } from './actions/Action';
+// @ts-ignore
 import type { CombinedState, Dispatch, Unsubscribe } from './core/redux';
 import type { MapDispatchProp, MapStateProp } from './core/ohredux/connect';
 

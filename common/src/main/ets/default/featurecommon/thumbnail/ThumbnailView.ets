@@ -133,6 +133,8 @@ export struct ThumbnailView {
         Log.info(`${this.TAG} uri === ` + recentUri)
         const abilityParameter: StartAbilityParameterStruct = { uri: recentUri };
         await GlobalContext.get().getCameraAbilityContext().startAbility({
+          // @ts-ignore
+          parameters: abilityParameter,
           action: 'ohos.want.action.viewData',
           bundleName: 'com.ohos.photos',
           abilityName: 'com.ohos.photos.MainAbility'
