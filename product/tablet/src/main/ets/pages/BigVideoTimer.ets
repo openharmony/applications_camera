@@ -19,20 +19,51 @@ import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventb
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
+import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store'
 import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext'
 
 class StateStruct {
-  recordingTime
-  recordingTimeDisplay
-  isRecordingPaused
-  isRecordingSpotVisible
-  isThirdPartyCall
-  updateRecordingTime: Function
-  updateSmallVideoTimerVisible: Function
-  updateBigVideoTimerVisible: Function
-  updateRecordingSpotVisible: Function
-  updateRecordingTimeDisplay: Function
-  stopRecording : Function
+  recordingTime: number = 0;
+  recordingTimeDisplay: string = '';
+  isRecordingPaused: boolean = false;
+  isRecordingSpotVisible: boolean = true;
+  isThirdPartyCall: boolean = false;
+}
+
+class BigVideoTimerDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public updateRecordingTime(recordingTime: number): void {
+    this.mDispatch(Action.updateRecordingTime(recordingTime));
+  }
+
+  public updateSmallVideoTimerVisible(visible: boolean): void {
+    this.mDispatch(Action.updateSmallVideoTimerVisible(visible));
+  }
+
+  public updateBigVideoTimerVisible(visible: boolean): void {
+    this.mDispatch(Action.updateBigVideoTimerVisible(visible));
+  }
+
+  public updateRecordingSpotVisible(visible: boolean): void {
+    this.mDispatch(Action.updateRecordingSpotVisible(visible));
+  }
+
+  public updateRecordingTimeDisplay(timeDisplay: string): void {
+    this.mDispatch(Action.updateRecordingTimeDisplay(timeDisplay));
+  }
+
+  public stopRecording(): void {
+    this.mDispatch(Action.stopRecording())
+    this.mDispatch(Action.updateVideoState('beforeTakeVideo'))
+    this.mDispatch(Action.updateBigVideoTimerVisible(false))
+    this.mDispatch(Action.updateSmallVideoTimerVisible(false))
+    this.mDispatch(Action.updateScreenStatus(false))
+  }
 }
 
 @Component
@@ -42,14 +73,15 @@ export struct BigVideoTimer {
   private timerTick: number = 0
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: StateStruct = new StateStruct()
+  private mAction: BigVideoTimerDispatcher = new BigVideoTimerDispatcher();
 
-  private async onRecordPausedBig(data) {
+  private async onRecordPausedBig() {
     Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} onRecordPaused X`)
   }
 
-  private async onRecordResumedBig(data) {
+  private async onRecordResumedBig() {
     Log.info(`${this.TAG} onRecordResumed E`)
     if (this.state.recordingTime <= 2) {
       this.setIntervalTimer()
@@ -59,51 +91,28 @@ export struct BigVideoTimer {
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         recordingTime: state.RecordReducer.recordingTime,
         recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
         isRecordingPaused: state.RecordReducer.isRecordingPaused,
         isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible,
         isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-      }
-    }, (dispatch) => {
-      return {
-        updateRecordingTime: (recordingTime: number): void => {
-          dispatch(Action.updateRecordingTime(recordingTime))
-        },
-        updateSmallVideoTimerVisible: (visible: boolean): void => {
-          dispatch(Action.updateSmallVideoTimerVisible(visible))
-        },
-        updateBigVideoTimerVisible: (visible: boolean): void => {
-          dispatch(Action.updateBigVideoTimerVisible(visible))
-        },
-        updateRecordingSpotVisible: (visible: boolean): void => {
-          dispatch(Action.updateRecordingSpotVisible(visible))
-        },
-        updateRecordingTimeDisplay: (timeDisplay: string): void => {
-          dispatch(Action.updateRecordingTimeDisplay(timeDisplay))
-        },
-        stopRecording: () : void => {
-          dispatch(Action.stopRecording())
-          dispatch(Action.updateVideoState('beforeTakeVideo'))
-          dispatch(Action.updateBigVideoTimerVisible(false))
-          dispatch(Action.updateSmallVideoTimerVisible(false))
-          dispatch(Action.updateScreenStatus(false))
-        },
-      }
-    })(this.state)
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     this.setIntervalTimer()
-    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_PAUSE, () => this.onRecordPausedBig())
+    this.appEventBus.on(Action.ACTION_RECORD_RESUME, () => this.onRecordResumedBig())
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, this.onRecordPausedBig.bind(this))
-    this.appEventBus.off(Action.ACTION_RECORD_RESUME, this.onRecordResumedBig.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_PAUSE, () => this.onRecordPausedBig())
+    this.appEventBus.off(Action.ACTION_RECORD_RESUME, () => this.onRecordResumedBig())
     Log.info(`${this.TAG} clearInterval timer id: ${this.timer}`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} aboutToDisappear X`)
@@ -114,7 +123,7 @@ export struct BigVideoTimer {
     this.timer = setInterval(() => {
       this.timerTick++
       if (this.timerTick % 2 === 0) {
-        this.state.updateRecordingTime(this.state.recordingTime + 1)
+        this.mAction.updateRecordingTime(this.state.recordingTime + 1)
         let shownSec = '00'
         let shownMin = '00'
         let sec = this.state.recordingTime % 60
@@ -129,20 +138,20 @@ export struct BigVideoTimer {
         } else {
           shownMin = `${minute}`
         }
-        this.state.updateRecordingTimeDisplay(`${shownMin}:${shownSec}`)
+        this.mAction.updateRecordingTimeDisplay(`${shownMin}:${shownSec}`)
         if (this.state.recordingTime > 2) {
           clearInterval(this.timer)
-          this.state.updateSmallVideoTimerVisible(true)
-          this.state.updateBigVideoTimerVisible(false)
+          this.mAction.updateSmallVideoTimerVisible(true)
+          this.mAction.updateBigVideoTimerVisible(false)
         }
       }
-      this.state.updateRecordingSpotVisible(!this.state.isRecordingSpotVisible)
+      this.mAction.updateRecordingSpotVisible(!this.state.isRecordingSpotVisible)
       if (this.state.isThirdPartyCall && GlobalContext.get().getCameraAbilityWant().parameters?.durationLimit) {
         try {
           let durationLimit: number = Number.parseInt(GlobalContext.get().getCameraAbilityWant().parameters?.durationLimit as string)
           Log.info(`${this.TAG} durationLimit is ${durationLimit}`);
           if (this.state.recordingTime >= durationLimit) {
-            this.state.stopRecording();
+            this.mAction.stopRecording();
           }
         } catch (error) {
           Log.info(`${this.TAG} picker durationLimit --> ${JSON.stringify(error)}}`)

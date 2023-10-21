@@ -22,24 +22,34 @@ import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
 import { TabletSettingItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/tablet/TabletSettingItem'
 import { SettingListModel } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/SettingListModel'
+import { SettingGroupItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/SettingData'
+import { BaseData } from '@ohos/common/src/main/ets/default/featurecommon/settingview/model/BaseData'
 
-class StateStruct {
-  isCloseFlag
-  mode
-  zoomRatio
-  closeDialog: Function
-  hideSettingView: Function
-  changeXComponentSize: Function
-  assistiveGridView: Function
-  reStartPreview: Function
-  showBlur: Function
-  resetZoomRatio: Function
+const DEFAULT_FUNCTION = () => {
 }
 
-type LocalStyleType = {
+class StateStruct {
+  isCloseFlag: boolean = false;
+  mode: string = '';
+  zoomRatio: number = 0;
+  closeDialog: Function = DEFAULT_FUNCTION;
+  hideSettingView: Function = DEFAULT_FUNCTION;
+  changeXComponentSize: Function = DEFAULT_FUNCTION;
+  assistiveGridView: Function = DEFAULT_FUNCTION;
+  reStartPreview: Function = DEFAULT_FUNCTION;
+  showBlur: Function = DEFAULT_FUNCTION;
+  resetZoomRatio: Function = DEFAULT_FUNCTION;
+}
+
+interface LocalStyleType {
   columns: number
   offset: number
   span: number
+}
+
+interface PositionData {
+  width: number;
+  height: number;
 }
 
 @Component
@@ -51,9 +61,9 @@ export struct SettingView {
   @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
-  @State settingsList: any[] = new SettingListModel().getSettingList()
+  @State settingsList: SettingGroupItem[] = new SettingListModel().getSettingList();
   @State state: StateStruct = new StateStruct()
-  @State localStyle: LocalStyleType = { "columns": 12, "offset": 2, "span": 8 }
+  @State localStyle: LocalStyleType = { columns: 12, offset: 2, span: 8 }
   private WH_100_100: string = "100%";
   private mEventBus: EventBus = EventBusManager.getInstance().getEventBus()
 
@@ -91,18 +101,18 @@ export struct SettingView {
       }
     })(this.state)
 
-    this.mEventBus.on("windowSize", this.windowSizeChange.bind(this))
-    this.mEventBus.on("AspectRatio", this.aspectRatioChange.bind(this))
-    this.mEventBus.on("Resolution", this.resolutionChange.bind(this))
-    this.mEventBus.on("AssistiveGrid", this.assistiveGridChange.bind(this))
-    Log.info(`${this.TAG} aboutToAppear invoke X`)
+    this.mEventBus.on("windowSize", (data: PositionData) => this.windowSizeChange(data));
+    this.mEventBus.on("AspectRatio", (data: PositionData) => this.aspectRatioChange(data));
+    this.mEventBus.on("Resolution", (data: PositionData) => this.resolutionChange(data));
+    this.mEventBus.on("AssistiveGrid", (data: Function) => this.assistiveGridChange(data));
+    Log.info(`${this.TAG} aboutToAppear invoke X`);
   }
 
   aboutToDisappear(): void {
-    Log.info(`${this.TAG} aboutToDisappear E`)
-    this.mEventBus.off("AspectRatio", this.aspectRatioChange.bind(this))
-    this.mEventBus.off("Resolution", this.resolutionChange.bind(this))
-    this.mEventBus.off("AssistiveGrid", this.assistiveGridChange.bind(this))
+    Log.info(`${this.TAG} aboutToDisappear E`);
+    this.mEventBus.off("AspectRatio", (data: PositionData) => this.aspectRatioChange(data));
+    this.mEventBus.off("Resolution", (data: PositionData) => this.resolutionChange(data));
+    this.mEventBus.off("AssistiveGrid", (data: Function) => this.assistiveGridChange(data));
   }
 
   onBackPress(): boolean {
@@ -115,26 +125,26 @@ export struct SettingView {
     return true;
   }
 
-  private windowSizeChange(data): void {
-    this.localStyle =  (data.width >= px2vp(1280)) ? { "columns": 12, "offset": 2, "span": 8 } :
-      { "columns": 8, "offset": 1, "span": 6 }
+  private windowSizeChange(data: PositionData): void {
+    this.localStyle = (data.width >= px2vp(1280)) ? { columns: 12, offset: 2, span: 8 } :
+      { columns: 8, offset: 1, span: 6 };
   }
 
-  private aspectRatioChange(xComponentSize): void {
+  private aspectRatioChange(xComponentSize: PositionData): void {
     if (this.state.mode != 'VIDEO') {
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.state.reStartPreview(this.state.zoomRatio)
     }
   }
 
-  private resolutionChange(xComponentSize): void {
+  private resolutionChange(xComponentSize: PositionData): void {
     if (this.state.mode == 'VIDEO') {
       this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.state.reStartPreview(this.state.zoomRatio)
     }
   }
 
-  private assistiveGridChange(mAssistiveGrid): void {
+  private assistiveGridChange(mAssistiveGrid: Function): void {
     this.state.assistiveGridView(mAssistiveGrid)
   }
 
@@ -164,7 +174,7 @@ export struct SettingView {
             Row() {
               Column() {
                 List() {
-                  ForEach(this.settingsList, (item, index) => {
+                  ForEach(this.settingsList, (item: SettingGroupItem, index: number) => {
                     ListItem() {
                       TabletSettingItem({
                         settingsList: $settingsList,
