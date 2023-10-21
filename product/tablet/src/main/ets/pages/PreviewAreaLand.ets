@@ -37,80 +37,98 @@ import { SmallVideoTimer } from './SmallVideoTimer'
 import promptAction from '@ohos.promptAction';
 import wantConstant from '@ohos.ability.wantConstant';
 import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
+import { CameraPlatformCapability } from '@ohos/common/src/main/ets/default/camera/CameraPlatformCapability';
+import { BusinessError } from '@ohos.base';
+import { MapDispatchProp, MapStateProp } from '@ohos/common/src/main/ets/default/redux/core/ohredux/connect';
+
+const DEFAULT_FUNCTION: Function = () => {
+};
 
 class StateStruct {
-  mode
-  curMode
-  isShowPreview
-  surfaceId
-  xComponentWidth
-  xComponentHeight
-  cameraPosition
-  curCameraPosition
-  minZoomRatio
-  maxZoomRatio
-  zoomRatio
-  platformCapability
-  videoState
-  footBarHeight
-  isShowZoomText
-  showZoomLabelValue
-  modeIndex
-  isThirdPartyCall
-  isShowBigText
-  isShowtimeLapse
-  isBigVideoTimerVisible
-  isSmallVideoTimerVisible
-  isAssGridViewShow
-  isShowFlashBlack
-  modeChangeDone
-  isShowPageView
-  showBlur
-  isFaCall
-  baseZoom
-  initCamera: Function
-  initZoomRatio: Function
-  changeZoomRatio: Function
-  updateZoomPercentage: Function
-  prepareSurface: Function
-  startPreview: Function
-  switchCamera: Function
-  updateCameraPosition: Function
-  startVideoFlag: Function
-  changeXComponentSize: Function
-  updateShowPreviewFlag: Function
-  updateIsShowZoomText: Function
-  updateIsPhotoZoomDetails: Function
-  updateBaseZoom: Function
-  changeImageSize: Function
-  changeVideoSize: Function
-  close: Function
-  stopRecording: Function
-  changeTimeLapse: Function
-  capture: Function
-  startRecording: Function
-  assistiveGridView: Function
-  swipeChangeMode: Function
-  thirdPartyCall: Function
-  faCall: Function
-  initMode: Function
-  updateMode: Function
-  changeToMode: Function
-  updateModeIndex: Function
-  updateShowZoomLabelValue: Function
-  reloadThumbnail: Function
-  updateShowPinch: Function
-  swipeModeChangeDone: Function
-  updateInitShowFlag: Function
-  hideSettingView: Function
+  mode: string = '';
+  curMode: string = '';
+  isShowPreview: boolean = true;
+  surfaceId: number = 0;
+  xComponentWidth: number = 0;
+  xComponentHeight: number = 0;
+  cameraPosition: CameraId = CameraId.BACK;
+  curCameraPosition: CameraId = CameraId.BACK;
+  minZoomRatio: number = 0;
+  maxZoomRatio: number = 0;
+  zoomRatio: number = 0;
+  platformCapability: CameraPlatformCapability | undefined = undefined;
+  videoState: string = '';
+  footBarHeight: number = 0;
+  isShowZoomText: boolean = false;
+  showZoomLabelValue: boolean = false;
+  modeIndex: number = 0;
+  isThirdPartyCall: boolean = false;
+  isShowBigText: boolean = false;
+  isShowtimeLapse: boolean = false;
+  isBigVideoTimerVisible: boolean = false;
+  isSmallVideoTimerVisible: boolean = false;
+  isAssGridViewShow: string = '';
+  isShowFlashBlack: boolean = false;
+  modeChangeDone: boolean = false;
+  isShowPageView: boolean = false;
+  showBlur: boolean = false;
+  isFaCall: boolean = false;
+  baseZoom: number = 0;
+  initCamera: Function = DEFAULT_FUNCTION;
+  initZoomRatio: Function = DEFAULT_FUNCTION;
+  changeZoomRatio: Function = DEFAULT_FUNCTION;
+  updateZoomPercentage: Function = DEFAULT_FUNCTION;
+  prepareSurface: Function = DEFAULT_FUNCTION;
+  startPreview: Function = DEFAULT_FUNCTION;
+  switchCamera: Function = DEFAULT_FUNCTION;
+  updateCameraPosition: Function = DEFAULT_FUNCTION;
+  startVideoFlag: Function = DEFAULT_FUNCTION;
+  changeXComponentSize: Function = DEFAULT_FUNCTION;
+  updateShowPreviewFlag: Function = DEFAULT_FUNCTION;
+  updateIsShowZoomText: Function = DEFAULT_FUNCTION;
+  updateIsPhotoZoomDetails: Function = DEFAULT_FUNCTION;
+  updateBaseZoom: Function = DEFAULT_FUNCTION;
+  changeImageSize: Function = DEFAULT_FUNCTION;
+  changeVideoSize: Function = DEFAULT_FUNCTION;
+  close: Function = DEFAULT_FUNCTION;
+  stopRecording: Function = DEFAULT_FUNCTION;
+  changeTimeLapse: Function = DEFAULT_FUNCTION;
+  capture: Function = DEFAULT_FUNCTION;
+  startRecording: Function = DEFAULT_FUNCTION;
+  assistiveGridView: Function = DEFAULT_FUNCTION;
+  swipeChangeMode: Function = DEFAULT_FUNCTION;
+  thirdPartyCall: Function = DEFAULT_FUNCTION;
+  faCall: Function = DEFAULT_FUNCTION;
+  initMode: Function = DEFAULT_FUNCTION;
+  updateMode: Function = DEFAULT_FUNCTION;
+  changeToMode: Function = DEFAULT_FUNCTION;
+  updateModeIndex: Function = DEFAULT_FUNCTION;
+  updateShowZoomLabelValue: Function = DEFAULT_FUNCTION;
+  reloadThumbnail: Function = DEFAULT_FUNCTION;
+  updateShowPinch: Function = DEFAULT_FUNCTION;
+  swipeModeChangeDone: Function = DEFAULT_FUNCTION;
+  updateInitShowFlag: Function = DEFAULT_FUNCTION;
+  hideSettingView: Function = DEFAULT_FUNCTION;
 }
 
 GlobalContext.get().setXComponentController(new XComponentController())
 
-type ScreenSizeType = {
+interface ScreenSizeType {
   width: number
   height: number
-};
+}
+
+interface PlatformCapability {
+  platformCapability: CameraPlatformCapability
+}
+
+interface ModeData {
+  mode: string
+}
+
+interface KeepScreenData {
+  isKeepScreenOn: boolean
+}
 
 @Component
 export struct PreviewAreaLand {
@@ -131,15 +149,16 @@ export struct PreviewAreaLand {
   @State isSwitchBackground: boolean = false;
   @State pageType: string = '';
   @Link screenSize: ScreenSizeType;
-  @State isShowBlurSize: ScreenSizeType = { width: 0, height: 0};
-  private mConnect: any;
+  @State isShowBlurSize: ScreenSizeType = { width: 0, height: 0 };
+  private mConnect: Function = () => {
+  };
   private isShowPreview: boolean = false;
   private settingManager = SettingManager.getInstance();
-  private pinchGestureTimer: number;
-  private baseZoom: number;
+  private pinchGestureTimer: number = 0;
+  private baseZoom: number = 0;
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'];
 
-  private async onCameraInit(data) {
+  private async onCameraInit(): Promise<void> {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview}
       platformCapability = ${this.state.platformCapability} E`);
     if (this.state.platformCapability) {
@@ -188,7 +207,7 @@ export struct PreviewAreaLand {
     this.state.updateInitShowFlag(true);
   }
 
-  private async onModeChanged(data) {
+  private async onModeChanged(data: ModeData) {
     Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`);
     this.state.changeZoomRatio(1);
     this.state.updateShowPreviewFlag(true);
@@ -290,10 +309,10 @@ export struct PreviewAreaLand {
         updateBaseZoom: (zoomRatio: number): void => {
           dispatch(Action.updateBaseZoom(zoomRatio));
         },
-        changeImageSize: (imageSize): void => {
+        changeImageSize: (imageSize: ScreenSizeType): void => {
           dispatch(Action.changeImageSize(imageSize));
         },
-        changeVideoSize: (videoSize): void => {
+        changeVideoSize: (videoSize: ScreenSizeType): void => {
           dispatch(Action.changeVideoSize(videoSize));
         },
         close: (): void => {
@@ -362,15 +381,15 @@ export struct PreviewAreaLand {
           dispatch(Action.showSettingView(false));
         }
       };
-    })(this.state);
-
-    this.appEventBus.on(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this));
-    this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this));
-    this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, this.onKeepScreen.bind(this));
-    this.appEventBus.on("windowSize", this.windowSizeChange.bind(this));
-    this.appEventBus.on(Action.ACTION_RECORD_ERROR, this.onRecordError.bind(this));
-    this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, this.onScreenChange.bind(this));
-    this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this));
+    });
+    this.mConnect(this.state)
+    this.appEventBus.on(Action.ACTION_INIT_DONE, () => this.onCameraInit);
+    this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, () => this.onModeChanged);
+    this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, () => this.onKeepScreen);
+    this.appEventBus.on("windowSize", () => this.windowSizeChange);
+    this.appEventBus.on(Action.ACTION_RECORD_ERROR, () => this.onRecordError);
+    this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, () => this.onScreenChange);
+    this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, () => this.updateCameraStatus);
     GlobalContext.get().setObject('updateCameraStatus', () => {
       Log.info(`${this.TAG} globalThis.updateCameraStatus called`);
       this.updateCameraStatus();
@@ -400,7 +419,7 @@ export struct PreviewAreaLand {
     GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NO_NEED_TO_DO);
     this.calledByOther();
     this.state.initCamera(this.state.cameraPosition, this.state.mode);
-    await new Promise((resolve) => setTimeout(resolve, 40));
+    await new Promise<Function | string>((resolve: Function | string) => setTimeout(resolve, 40));
     this.doCameraAction();
     this.state.updateInitShowFlag(true);
     if (!this.state.isThirdPartyCall) {
@@ -417,10 +436,11 @@ export struct PreviewAreaLand {
     if (GlobalContext.get().getCameraAbilityWant()) {
       Log.info(`${this.TAG} cameraAbilityWant: ${JSON.stringify(GlobalContext.get().getCameraAbilityWant())}`);
       if (GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
-        from = GlobalContext.get().getCameraAbilityWant().parameters.from as string;
+        from = GlobalContext.get().getCameraAbilityWant()?.parameters?.from as string;
       }
-      if (GlobalContext.get().getCameraAbilityWant()?.action) {
-        action = GlobalContext.get().getCameraAbilityWant().action;
+      let cameraAbilityWant = GlobalContext.get().getCameraAbilityWant();
+      if (cameraAbilityWant?.action) {
+        action = cameraAbilityWant?.action;
       }
     } else {
       this.state.thirdPartyCall(false, "");
@@ -431,7 +451,7 @@ export struct PreviewAreaLand {
     if (from === "FA") {
       Log.info(`from === "FA"`);
       if (GlobalContext.get().getCameraAbilityWant()?.parameters?.action) {
-        action = GlobalContext.get().getCameraAbilityWant().parameters.action as string;
+        action = GlobalContext.get().getCameraAbilityWant()?.parameters?.action as string;
       }
       this.state.faCall(true);
       this.state.thirdPartyCall(false, "");
@@ -489,11 +509,11 @@ export struct PreviewAreaLand {
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`);
-    this.appEventBus.off(Action.ACTION_INIT_DONE, this.onCameraInit.bind(this));
-    this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, this.onModeChanged.bind(this));
-    this.appEventBus.off("windowSize", this.windowSizeChange.bind(this));
-    this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, this.updateCameraStatus.bind(this));
-    this.mConnect?.destroy();
+    this.appEventBus.off(Action.ACTION_INIT_DONE, () => this.onCameraInit);
+    this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, () => this.onModeChanged);
+    this.appEventBus.off("windowSize", () => this.windowSizeChange);
+    this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, () => this.updateCameraStatus);
+    // this.mConnect?.destroy();
     GeoLocation.getInstance().off();
     GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_RELEASE)
     this.updateCameraStatus();
@@ -621,26 +641,26 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} swipeChangeMode X`);
   }
 
-  private onKeepScreen(data): void {
+  private onKeepScreen(data: KeepScreenData): void {
     Log.info(`${this.TAG} onKeepScreen E`);
     if (data) {
       GlobalContext.get().getCameraWinClass().setKeepScreenOn(data.isKeepScreenOn).then((v) => {
         Log.info('Succeeded in setting the screen to be always on. Data: ' + JSON.stringify(v));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
       });
     }
     Log.info(`${this.TAG} onKeepScreen X`);
   }
 
-  private windowSizeChange(data): void {
+  private windowSizeChange(data: ScreenSizeType): void {
     if (this.screenSize != data) {
       this.screenSize = data;
       this.resetScreenSize(data);
     }
   }
 
-  private resetScreenSize(size: any): void {
+  private resetScreenSize(size: ScreenSizeType): void {
     this.settingManager.setScreenHeight(size.height);
     this.settingManager.setScreenWidth(size.width);
     let xComponentSize = this.settingManager.getPreviewDisplaySize(this.state.mode);
@@ -648,7 +668,7 @@ export struct PreviewAreaLand {
     this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height);
   }
 
-  private async onScreenChange(isScreenOn) {
+  private async onScreenChange(isScreenOn: boolean) {
     Log.info(`${this.TAG} onScreenChanged E isScreenOn: ${isScreenOn}`);
     if (!isScreenOn) {
       GlobalContext.get().setObject('keepCameraZoomRatio', true);
@@ -672,7 +692,7 @@ export struct PreviewAreaLand {
             .onLoad(() => {
               Log.end(Log.X_COMPONENT_LIFE);
               Log.info(`${this.TAG} XComponent_onLoad`);
-              let surfaceId = GlobalContext.get().getXComponentController().getXComponentSurfaceId();
+              let surfaceId: string = GlobalContext.get().getXComponentController().getXComponentSurfaceId();
               this.state.prepareSurface(surfaceId);
               this.doCameraAction();
             })
@@ -809,11 +829,11 @@ export struct PreviewAreaLand {
     GestureGroup(
     GestureMode.Exclusive,
     TapGesture({ fingers: 1, count: 1 })
-      .onAction(this.onPreviewClicked.bind(this)),
+      .onAction(() => this.onPreviewClicked),
     PinchGesture({ fingers: 2, distance: 1 })
-      .onActionStart(this.pinchGestureStart.bind(this))
-      .onActionUpdate(this.pinchGestureUpdate.bind(this))
-      .onActionEnd(this.pinchGestureEnd.bind(this)),
+      .onActionStart(() => this.pinchGestureStart)
+      .onActionUpdate(() => this.pinchGestureUpdate)
+      .onActionEnd(() => this.pinchGestureEnd),
     PanGesture({ fingers: 1, direction: PanDirection.Up, distance: 10 })
       .onActionEnd(() => {
         if (!this.state.isThirdPartyCall && !this.state.isFaCall) {
