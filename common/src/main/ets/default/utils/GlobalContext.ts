@@ -19,6 +19,7 @@ import type Want from '@ohos.app.ability.Want';
 import type window from '@ohos.window';
 
 export class GlobalContext {
+  private static TAG: string = '[GlobalContext]:';
 
   private constructor() {
   }
@@ -79,7 +80,7 @@ export class GlobalContext {
     return this.mCutoutInfo;
   }
 
-  public getCameraAbilityContext(): common.UIAbilityContext {
+  public getCameraAbilityContext() {
     return this.cameraAbilityContext;
   }
 
@@ -143,7 +144,7 @@ export class GlobalContext {
     this.cameraWindowStageEvent = event;
   }
 
-  public getXComponentController(): XComponentController {
+  public getXComponentController() {
     return this.xComponentController;
   }
 
@@ -151,11 +152,7 @@ export class GlobalContext {
     this.xComponentController = controller;
   }
 
-  public getCameraFormParam(): {
-    action: '',
-    cameraPosition: '',
-    mode: ''
-  } {
+  public getCameraFormParam() {
     return this.cameraFormParam;
   }
 

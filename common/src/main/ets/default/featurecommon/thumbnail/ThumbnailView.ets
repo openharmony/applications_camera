@@ -23,6 +23,7 @@ import EventLog from '../../utils/EventLog'
 import { CameraService } from '../../camera/CameraService'
 import { Dispatch } from '../../redux/core/redux/types/store'
 import { GlobalContext } from '../../utils/GlobalContext'
+import Want from '@ohos.app.ability.Want'
 
 class StateStruct {
   thumbnail: Resource = $r('app.media.ic_camera_thumbnail_default_white');
@@ -131,19 +132,23 @@ export struct ThumbnailView {
         GlobalContext.get().setObject('keepCameraZoomRatio', true);
         const recentUri: string = this.cameraService.getRecentFileUri();
         Log.info(`${this.TAG} uri === ` + recentUri)
-        const abilityParameter: StartAbilityParameterStruct = { uri: recentUri };
-        await GlobalContext.get().getCameraAbilityContext().startAbility({
-          // @ts-ignore
-          parameters: abilityParameter,
-          action: 'ohos.want.action.viewData',
-          bundleName: 'com.ohos.photos',
-          abilityName: 'com.ohos.photos.MainAbility'
-        })
+        const abilityParameter: Record<string, string> = { 'uri': recentUri };
+        await GlobalContext.get().getCameraAbilityContext().startAbility(this.buildCameraAbilityWant(abilityParameter))
       })
     }
     .width(44).aspectRatio(1)
     .borderRadius(22).border(this.thumbnailBorder)
     .opacity(this.tempOpacity)
     .scale({ x: this.scaleValue, y: this.scaleValue })
+  }
+
+  private buildCameraAbilityWant(parameter: Record<string, string>): Want {
+    let res: Want = {
+      parameters: parameter,
+      action: 'ohos.want.action.viewData',
+      bundleName: 'com.ohos.photos',
+      abilityName: 'com.ohos.photos.MainAbility'
+    };
+    return res;
   }
 }

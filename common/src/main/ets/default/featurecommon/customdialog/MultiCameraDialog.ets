@@ -71,19 +71,6 @@ export default struct MultiCameraDialog {
       this.mAction.setDispatch(dispatch);
     });
 
-    this.cameraService.getMultiCameraInfo(() => {
-      let cameraMap = new Map(this.cameraService.getCameraMap());
-      let keys = cameraMap.keys();
-      this.moreList = Array.from(keys);
-      Log.info(`${this.TAG} cameraMap length: ${this.moreList.length}`)
-      if (this.moreList.length !== 0) {
-        this.isShowMore = true
-        Log.info(`${this.TAG} getMultiCameraInfo finished.`)
-      } else {
-        this.isShowMore = false
-        Log.info(`${this.TAG} getMultiCameraInfo null.`)
-      }
-    })
     let localCameraInfo = this.cameraService.getLocalCameraMap()
     if (!localCameraInfo.get('front')) {
       this.localList.shift()

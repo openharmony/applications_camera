@@ -159,12 +159,12 @@ export struct SetResolution {
     })
   }
 
-  async openDetailsDialog(itemValue): Promise<void> {
+  async openDetailsDialog(itemValue: SettingData): Promise<void> {
     Log.info(`${this.TAG} openDetailsDialog start dataInfo ${JSON.stringify(itemValue)}`)
     // 需要根据相机能力更新这个childrenList，目前是写死状态
-    this.customDialogDetails.childrenList = itemValue.radio
-    this.customDialogDetails.settingTitle = itemValue.settingName
-    this.customDialogDetails.setAlias = itemValue.settingAlias
+    // this.customDialogDetails.childrenList = itemValue.radio
+    // this.customDialogDetails.settingTitle = itemValue.settingName
+    // this.customDialogDetails.setAlias = itemValue.settingAlias
     Log.info(`${this.TAG} childrenList: ${JSON.stringify(itemValue.radio)}`)
     this.mAction.closeDialog(true)
     this.CustomDialogView.open()
