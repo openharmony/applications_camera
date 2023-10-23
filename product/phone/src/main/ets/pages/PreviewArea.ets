@@ -456,10 +456,11 @@ export struct PreviewArea {
     if (GlobalContext.get().getCameraAbilityWant()) {
       Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(GlobalContext.get().getCameraAbilityWant())}`);
       if (GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
-        from = GlobalContext.get().getCameraAbilityWant().parameters.from as string;
+        from = GlobalContext.get().getCameraAbilityWant()?.parameters?.from as string;
       }
-      if (GlobalContext.get().getCameraAbilityWant()?.action) {
-        action = GlobalContext.get().getCameraAbilityWant().action;
+      const wantAction: string | undefined = GlobalContext.get().getCameraAbilityWant()?.action;
+      if (wantAction) {
+        action = wantAction;
       }
     } else {
       this.mAction.thirdPartyCall(false, "");
@@ -470,14 +471,14 @@ export struct PreviewArea {
     if (from === "FA") {
       Log.info(`from === "FA"`);
       if (GlobalContext.get().getCameraAbilityWant()?.parameters?.action) {
-        action = GlobalContext.get().getCameraAbilityWant().parameters.action as string;
+        action = GlobalContext.get().getCameraAbilityWant()?.parameters?.action as string;
       }
       this.mAction.faCall(true);
       this.mAction.thirdPartyCall(false, "");
       this.initStateMode(action);
     } else if (action != "") {
       this.mAction.faCall(false);
-      this.mAction.thirdPartyCall(true, GlobalContext.get().getCameraAbilityWant().action);
+      this.mAction.thirdPartyCall(true, GlobalContext.get().getCameraAbilityWant()?.action);
       this.initStateMode(action);
     } else {
       this.mAction.faCall(false);
