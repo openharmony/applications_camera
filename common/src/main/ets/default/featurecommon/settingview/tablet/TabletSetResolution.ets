@@ -24,38 +24,36 @@ import { SettingManager } from '../../../setting/SettingManager'
 import { SettingData, SettingGroupItem } from '../model/SettingData'
 
 class StateStruct {
-  isCloseFlag
-  closeDialog: Function
+  isCloseFlag: boolean = false;
+  closeDialog: Function = () => {
+  }
 }
 
 @Component
 export struct TabletSetResolution {
-  private TAG: string = '[TabletSetResolution]:'
-  @Link settingsList: SettingGroupItem[]
-  @Link @Watch('onCloseDialog') closeFlag: boolean
-  private itemValue: SettingData
-  private getCheckValue: Promise<string>
-  private WH_100_100: string = "100%"
-  private settingManager = SettingManager.getInstance()
-  private setAlias: string= undefined
-  @StorageLink("settingDialogFlag") settingDialogFlag: boolean = true
-
-  @State curCheckName: Resource = $r("app.string.default_value")
-
-  @State state: StateStruct = new StateStruct()
+  private TAG: string = '[TabletSetResolution]:';
+  @Link settingsList: SettingGroupItem[];
+  @Link @Watch('onCloseDialog') closeFlag: boolean;
+  private itemValue: SettingData = new SettingData();
+  private WH_100_100: string = "100%";
+  private settingManager: SettingManager = SettingManager.getInstance();
+  private setAlias: string = '';
+  @StorageLink("settingDialogFlag") settingDialogFlag: boolean = true;
+  @State curCheckName: Resource = $r("app.string.default_value");
+  @State state: StateStruct = new StateStruct();
 
   @Provide customDialogDetails: CustomDialogDetails = {
-    confirmCallback: null,
+    confirmCallback: () => {},
     confirmItem: true,
     height: 256,
     width: 256,
     setAlias: this.setAlias,
     childrenList: [],
     settingTitle: '',
-//    dialogCloseFlag:false
+    //    dialogCloseFlag:false
   }
   CustomDialogView: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogView({ cancel: this.existView.bind(this) }),
+    builder: CustomDialogView({ cancel: () => this.existView }),
     autoCancel: true,
     alignment: DialogAlignment.Center,
     cancel: this.existView,
@@ -101,11 +99,11 @@ export struct TabletSetResolution {
     Log.info(`${this.TAG} onCloseDialog X`)
   }
 
-  public formatCurCheckName(name) {
+  public formatCurCheckName(name: Resource): Resource | string {
     if (name.id === Timer.DEFAULT_VALUE.id) {
       name = Timer.RESOURCE_OFF_ALREADY
     }
-    return name
+    return name;
   }
 
   build() {
@@ -159,13 +157,13 @@ export struct TabletSetResolution {
     })
   }
 
-  async openDetailsDialog(itemValue): Promise<void> {
+  async openDetailsDialog(itemValue: SettingData): Promise<void> {
     Log.info(`${this.TAG} openDetailsDialog start`)
     Log.info(`${this.TAG} openDetailsDialog dataInfo ${JSON.stringify(itemValue)}`)
     // 需要根据相机能力更新这个childrenList，目前是写死状态
-    this.customDialogDetails.childrenList = itemValue.radio;
-    this.customDialogDetails.settingTitle = itemValue.settingName;
-    this.customDialogDetails.setAlias = itemValue.settingAlias;
+    // this.customDialogDetails.childrenList = itemValue.radio;
+    // this.customDialogDetails.settingTitle = itemValue.settingName;
+    // this.customDialogDetails.setAlias = itemValue.settingAlias;
     Log.info(`${this.TAG} childrenList: ${JSON.stringify(itemValue.radio)}`)
     this.state.closeDialog(true)
     this.CustomDialogView.open()
