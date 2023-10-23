@@ -17,7 +17,7 @@ import Ability from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { CameraBasicFunction } from '@ohos/common/src/main/ets/default/function/CameraBasicFunction';
 import { CameraNeedStatus, Constants } from '@ohos/common/src/main/ets/default/utils/Constants';
-import type { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
 import { FeatureManager } from '@ohos/common/src/main/ets/default/featureservice/FeatureManager';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
@@ -35,17 +35,17 @@ export default class MainAbility extends Ability {
   onCreate(): void {
     // Ability is creating, initialize resources for this ability
     Log.start(Log.ABILITY_WHOLE_LIFE);
-    if (GlobalContext.get().getCameraFormParam() !== undefined) {
+    if (GlobalContext.get().getCameraFormParam() != undefined) {
       new FeatureManager(GlobalContext.get().getCameraFormParam().mode, new ModeMap());
     } else {
       new FeatureManager('PHOTO', new ModeMap());
     }
     Log.info('Camera MainAbility onCreate.');
-    GlobalContext.get().setCameraAbilityContext(this.context);
+    GlobalContext.get().setCameraAbilityContext(this.context)
     GlobalContext.get().setCameraAbilityWant(this.launchWant);
     GlobalContext.get().setObject('permissionFlag', false);
     Log.info(`Camera MainAbility onCreate launchWant. ${JSON.stringify(GlobalContext.get().getCameraAbilityWant())}`);
-    GlobalContext.get().setObject('cameraStartTime', new Date().getTime());
+    GlobalContext.get().setObject('cameraStartTime', new Date().getTime())
     GlobalContext.get().setObject('cameraStartFlag', true);
     GlobalContext.get().setObject('stopRecordingFlag', false);
     GlobalContext.get().setObject('doOnForeground', false);
@@ -74,7 +74,7 @@ export default class MainAbility extends Ability {
         if (++this.foreRoundOverCount > 1) {
           this.foreRoundOverCount = 1;
           Log.info('multi task interface: reset zoomRatio to 1');
-          GlobalContext.get().apply('resetZoomRatio');
+          GlobalContext.get().apply('resetZoomRatio')
         }
       } else if (event === window.WindowStageEventType.HIDDEN) {
         this.foreRoundOverCount--;

@@ -25,11 +25,11 @@ export struct TabletSettingItem {
   private TAG: string = '[TabletSettingItem]:'
   @Link settingsList: SettingGroupItem[]
   @Link closeFlag: Boolean
-  private item: BaseData
-  private index: number
-  private settingsListIndex: number
-  private getPhotoValue: Promise<string>
-  private getVideoValue: Promise<string>
+  private item: SettingGroupItem = new SettingGroupItem();
+  private index: number = 0
+  private settingsListIndex: number = 0
+  private getPhotoValue: Promise<string> = new Promise(() => {});
+  private getVideoValue: Promise<string> = new Promise(() => {});
   private WH_100_100: string = "100%"
   private settingManager = SettingManager.getInstance()
 

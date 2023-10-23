@@ -17,32 +17,58 @@ import { OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import { Action } from '../../redux/actions/Action'
 import { EventBus } from '../../worker/eventbus/EventBus'
+import { Dispatch } from '../../redux/core/redux/types/store';
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
+import { CameraId } from '../../setting/settingitem/CameraId'
 
 let SHOW_FOLD_CANVAS: number = 0
 let SHOW_NOT_TAKE_VIDEO_CANVAS: number = 1
 let SHOW_TAKING_VIDEO_CANVAS: number = 2
 
 class StateStruct {
-  mode
-  videoState
-  cameraPosition
-  isShowPressScrollDetailPhotoButton
-  minZoomRatio
-  maxZoomRatio
-  scrollDetailsBox
-  isPhotoZoomDetails
-  photoDetailsOffsetX
-  photoDetailsOffsetXInit
-  updateZoomRatio: Function
-  updateShowZoomFlag: Function
-  updateShowZoomLabelValue: Function
+  mode: string = 'PHOTO';
+  videoState: string = 'beforeTakeVideo';
+  cameraPosition: CameraId = CameraId.BACK;
+  zoomRatio: number = 1;
+  isShowZoomText: boolean = false;
+  showZoomLabelValue: boolean = true;
+  minZoomRatio: number = 1;
+  maxZoomRatio: number = 6;
+}
+
+
+class ZoomViewDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public updateZoomRatio(zoomRatio: number): void {
+    this.mDispatch(Action.changeZoomRatio(zoomRatio));
+  }
+
+  public updateShowZoomFlag(flag: boolean): void {
+    this.mDispatch(Action.updateShowZoomTextFlag(flag));
+  }
+
+  public updateShowZoomLabelValue(flag: boolean): void {
+    this.mDispatch(Action.updateShowZoomLabelValue(flag));
+  }
+}
+
+class ZoomRatioStruct {
+  zoomRatio: number = 0;
+}
+
+class VideoStateStruct {
+  videoState: string = '';
 }
 
 @Component
 export struct ZoomViewLand {
-  private mConnect: any
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
+  private mAction: ZoomViewDispatcher = new ZoomViewDispatcher();
 
   @State state: StateStruct = new StateStruct()
   @State @Watch('onZoomRatioRefresh') zoomRatio: number = 0
@@ -65,11 +91,11 @@ export struct ZoomViewLand {
   private takingVideoExtCanvasCxt: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.canvasSettings)
   private foldCanvasCxt: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.canvasSettings)
   private notTakeVideoExtOffCanvasCxt: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(
-    this.canvasWidth, this.notTakeVideoExtCanvasHeight, this.canvasSettings)
+  this.canvasWidth, this.notTakeVideoExtCanvasHeight, this.canvasSettings)
   private takingVideoExtOffCanvasCxt: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(
-    this.canvasWidth, this.notTakeVideoExtCanvasHeight, this.canvasSettings)
+  this.canvasWidth, this.notTakeVideoExtCanvasHeight, this.canvasSettings)
   private foldOffCanvasCxt: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(
-    this.canvasWidth, this.foldCanvasHeight, this.canvasSettings)
+  this.canvasWidth, this.foldCanvasHeight, this.canvasSettings)
 
   private lpgTimer: number = 0
   private pgTimer: number = 0
@@ -85,52 +111,36 @@ export struct ZoomViewLand {
   private refreshSwitchCanvas: number = -1
 
   aboutToAppear(): void {
-    this.mConnect = getStore().connect((state: OhCombinedState) => {
-      this.zoomRatio = state.ZoomReducer.zoomRatio
-      this.showZoomLabelValue = state.ZoomReducer.showZoomLabelValue
-      this.isShowZoomText = state.ZoomReducer.isShowZoomText
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         mode: state.ModeReducer.mode,
         videoState: state.RecordReducer.videoState,
         cameraPosition: state.CameraReducer.cameraPosition,
-        isShowPressScrollDetailPhotoButton: state.ZoomReducer.isShowPressScrollDetailPhotoButton,
+        zoomRatio: state.ZoomReducer.zoomRatio,
+        isShowZoomText: state.ZoomReducer.isShowZoomText,
+        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
         minZoomRatio: state.ZoomReducer.minZoomRatio,
-        maxZoomRatio: state.ZoomReducer.maxZoomRatio,
-        scrollDetailsBox: state.ZoomReducer.scrollDetailsBox,
-        isPhotoZoomDetails: state.ZoomReducer.isPhotoZoomDetails,
-        photoDetailsOffsetX: state.ZoomReducer.photoDetailsOffsetX,
-        photoDetailsOffsetXInit: state.ZoomReducer.photoDetailsOffsetXInit
-      }
-    }, (dispatch) => {
-      return {
-        updateZoomRatio: (zoomRatio: number): void => {
-          dispatch(Action.changeZoomRatio(zoomRatio))
-        },
-        updateShowZoomFlag: (flag: boolean): void => {
-          dispatch(Action.updateShowZoomTextFlag(flag))
-        },
-        updateShowZoomLabelValue: (flag: boolean): void => {
-          dispatch(Action.updateShowZoomLabelValue(flag))
-        }
-      }
-    })(this.state)
+        maxZoomRatio: state.ZoomReducer.maxZoomRatio
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
-    this.appEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
-    this.appEventBus.on(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
+    this.appEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, (data: ZoomRatioStruct) => this.updateZoomOffset(data))
+    this.appEventBus.on(Action.ACTION_UPDATE_VIDEO_STATE, (data: VideoStateStruct) => this.updateZoomState(data))
   }
 
   aboutToDisappear(): void {
-    this.appEventBus.off(Action.ACTION_CHANGE_ZOOM_RATIO, this.updateZoomOffset.bind(this))
-    this.appEventBus.off(Action.ACTION_UPDATE_VIDEO_STATE, this.updateZoomState.bind(this))
-    this.mConnect?.destroy()
+    this.appEventBus.off(Action.ACTION_CHANGE_ZOOM_RATIO, (data: ZoomRatioStruct) => this.updateZoomOffset(data))
+    this.appEventBus.off(Action.ACTION_UPDATE_VIDEO_STATE, (data: VideoStateStruct) => this.updateZoomState(data))
   }
 
   private getCurrentCanvasType(): number {
     if (this.isShowZoomText && (this.state.videoState === 'beforeTakeVideo'
-      && (this.state.mode === 'PHOTO' || this.state.mode === 'VIDEO'))) {
+    && (this.state.mode === 'PHOTO' || this.state.mode === 'VIDEO'))) {
       return SHOW_NOT_TAKE_VIDEO_CANVAS
     } else if (this.state.mode === 'VIDEO'
-      && (this.isShowZoomText || this.state.videoState !== 'beforeTakeVideo')) {
+    && (this.isShowZoomText || this.state.videoState !== 'beforeTakeVideo')) {
       return SHOW_TAKING_VIDEO_CANVAS
     } else {
       return SHOW_FOLD_CANVAS
@@ -144,7 +154,7 @@ export struct ZoomViewLand {
       this.subtractZoomRatio()
     } else {
       this.triggerRebuildNum = this.triggerRebuildNum + 0.0001
-      this.state.updateShowZoomFlag(false)
+      this.mAction.updateShowZoomFlag(false)
     }
   }
 
@@ -153,8 +163,8 @@ export struct ZoomViewLand {
     if (this.curZoomRatio > this.state.maxZoomRatio) {
       this.curZoomRatio = this.state.maxZoomRatio
     }
-    this.state.updateZoomRatio(this.curZoomRatio)
-    this.state.updateShowZoomFlag(true)
+    this.mAction.updateZoomRatio(this.curZoomRatio)
+    this.mAction.updateShowZoomFlag(true)
     this.triggerRebuildNum = this.triggerRebuildNum + 0.0001
   }
 
@@ -163,12 +173,15 @@ export struct ZoomViewLand {
     if (this.curZoomRatio < this.state.minZoomRatio) {
       this.curZoomRatio = this.state.minZoomRatio
     }
-    this.state.updateZoomRatio(this.curZoomRatio)
-    this.state.updateShowZoomFlag(true)
+    this.mAction.updateZoomRatio(this.curZoomRatio)
+    this.mAction.updateShowZoomFlag(true)
     this.triggerRebuildNum = this.triggerRebuildNum - 0.0001
   }
 
-  private takingVideoExtTouched(event: TouchEvent): void {
+  private takingVideoExtTouched(event?: TouchEvent): void {
+    if (!event) {
+      return;
+    }
     if (event.type === TouchType.Down) {
       this.touchedOffsetY = event.touches[0].y
       this.startOffsetY = event.touches[0].y
@@ -180,22 +193,32 @@ export struct ZoomViewLand {
     }
   }
 
-  private takingVideoExtLongPgAction(event: GestureEvent): void {
+  private takingVideoExtLongPgAction(event?: GestureEvent): void {
+    if (!event) {
+      return;
+    }
     this.touchedOffsetY = event.fingerList[0].localY
     this.changeZoomRatioOnTakingVideoExt()
   }
+
 
   private takingVideoExtLongPgActionEnd(): void {
     this.touchedOffsetY = this.takingVideoExtCanvasHeight / 2
     this.changeZoomRatioOnTakingVideoExt()
   }
 
-  private takingVideoExtPgActionStart(event: GestureEvent): void {
+  private takingVideoExtPgActionStart(event?: GestureEvent): void {
+    if (!event) {
+      return;
+    }
     this.touchedOffsetY = this.startOffsetY + event.offsetY
     this.changeZoomRatioOnTakingVideoExt()
   }
 
-  private takingVideoExtPgActionUpdate(event: GestureEvent): void {
+  private takingVideoExtPgActionUpdate(event?: GestureEvent): void {
+    if (!event) {
+      return;
+    }
     this.touchedOffsetY = this.startOffsetY + event.offsetY
     let takingVideoExtMaxOffsetY = this.takingVideoExtCanvasHeight - this.getZoomBtnRadius() - this.secDotRadius
     let takingVideoExtMinOffsetY = this.getZoomBtnRadius() + this.secDotRadius
@@ -207,49 +230,61 @@ export struct ZoomViewLand {
     this.changeZoomRatioOnTakingVideoExt()
   }
 
-  private takingVideoExtPgActionEnd(event: GestureEvent): void {
+  private takingVideoExtPgActionEnd(event?: GestureEvent): void {
+    if (!event) {
+      return;
+    }
     this.touchedOffsetY = this.takingVideoExtCanvasHeight / 2
     this.startOffsetY = 0
     this.changeZoomRatioOnTakingVideoExt()
   }
 
-  private subtractTouched(event: TouchEvent): void {
+  private subtractTouched(event?: TouchEvent): void {
+    if (!event) {
+      return;
+    }
     if (event.type === TouchType.Down) {
       this.subtractZoomRatio()
     }
     if (event.type === TouchType.Up) {
-      this.state.updateShowZoomFlag(false)
+      this.mAction.updateShowZoomFlag(false)
     }
   }
 
-  private subtractLongOnAction(event: GestureEvent): void {
+  private subtractLongOnAction(event?: GestureEvent): void {
+    if (!event) {
+      return;
+    }
     this.subtractZoomRatio()
   }
 
   private subtractLongOnActionEnd(): void {
-    this.state.updateShowZoomFlag(false)
+    this.mAction.updateShowZoomFlag(false)
   }
 
-  private addTouched(event: TouchEvent): void {
+  private addTouched(event?: TouchEvent): void {
+    if (!event) {
+      return;
+    }
     if (event.type === TouchType.Down) {
       this.addZoomRatio()
     }
     if (event.type === TouchType.Up) {
-      this.state.updateShowZoomFlag(false)
+      this.mAction.updateShowZoomFlag(false)
     }
   }
 
-  private addLongOnAction(event: GestureEvent): void {
+  private addLongOnAction(): void {
     this.addZoomRatio()
   }
 
   private addLongOnActionEnd(): void {
-    this.state.updateShowZoomFlag(false)
+    this.mAction.updateShowZoomFlag(false)
   }
 
-  private lpgOnAction(event: GestureEvent): void {
+  private lpgOnAction(): void {
     this.clearTimer()
-    this.state.updateShowZoomFlag(true)
+    this.mAction.updateShowZoomFlag(true)
     this.baseZoomRatio = this.zoomRatio
     this.offsetY = (this.zoomRatio - 1) * this.getZoomOffsetUnit()
     this.lpgExp = true
@@ -263,35 +298,38 @@ export struct ZoomViewLand {
     }
     this.lpgTimer = setTimeout(() => {
       if (this.lpgExp && !this.pgExp) {
-        this.state.updateShowZoomFlag(false)
+        this.mAction.updateShowZoomFlag(false)
         this.triggerRebuildNum = this.triggerRebuildNum - 0.0001
       }
       this.lpgExp = false
     }, 3000)
   }
 
-  private pgOnActionStart(event: GestureEvent): void {
+  private pgOnActionStart(): void {
     this.clearTimer()
-    this.state.updateShowZoomFlag(true)
-    this.state.updateShowZoomLabelValue(false)
-    this.baseZoomRatio = this.zoomRatio
+    this.mAction.updateShowZoomFlag(true)
+    this.mAction.updateShowZoomLabelValue(false)
+    this.baseZoomRatio = this.state.zoomRatio
     this.pgExp = true
     this.lpgExp = false
   }
 
-  private pgOnActionUpdate(event: GestureEvent): void {
-    this.offsetY = (this.baseZoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit() - event.offsetY
+  private pgOnActionUpdate(event?: GestureEvent): void {
+    if (!event) {
+      return;
+    }
+    this.offsetY = (this.baseZoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit() + event.offsetY
     this.updateZoomRatio()
   }
 
-  private pgOnActionEnd(event: GestureEvent): void {
-    this.state.updateShowZoomLabelValue(true)
+  private pgOnActionEnd(): void {
+    this.mAction.updateShowZoomLabelValue(true)
     if (this.pgTimer) {
       clearTimeout(this.pgTimer)
     }
     this.pgTimer = setTimeout(() => {
       if (this.pgExp && !this.lpgExp) {
-        this.state.updateShowZoomFlag(false)
+        this.mAction.updateShowZoomFlag(false)
       }
       this.pgExp = false
     }, 3000)
@@ -300,7 +338,7 @@ export struct ZoomViewLand {
   private mOnTouch(event: TouchEvent): void {
     if (event.type === TouchType.Down) {
       this.clearTimer()
-      this.state.updateShowZoomFlag(true)
+      this.mAction.updateShowZoomFlag(true)
       this.pgExp = true
       this.lpgExp = false
 
@@ -327,7 +365,7 @@ export struct ZoomViewLand {
       }
       this.pgTimer = setTimeout(() => {
         if (this.pgExp && !this.lpgExp) {
-          this.state.updateShowZoomFlag(false)
+          this.mAction.updateShowZoomFlag(false)
         }
         this.pgExp = false
       }, 3000)
@@ -355,16 +393,17 @@ export struct ZoomViewLand {
     return fullHeight / (this.state.maxZoomRatio - this.state.minZoomRatio)
   }
 
-  private updateZoomOffset(data): void {
-    let offset = (data.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit()
-    this.offsetY = offset
+
+  private updateZoomOffset(data: ZoomRatioStruct): void {
+    let offset = (data.zoomRatio - this.state.minZoomRatio) * this.getZoomOffsetUnit();
+    this.offsetY = offset;
   }
 
-  private updateZoomState(data): void {
+  private updateZoomState(data: VideoStateStruct): void {
     if (data.videoState === 'beforeTakeVideo') {
-      this.clearTimer()
-      this.state.updateShowZoomFlag(false)
-      this.pgExp = false
+      this.clearTimer();
+      this.mAction.updateShowZoomFlag(false);
+      this.pgExp = false;
     }
   }
 
@@ -387,7 +426,7 @@ export struct ZoomViewLand {
     if (this.curZoomRatio < this.state.minZoomRatio) {
       this.curZoomRatio = this.state.minZoomRatio
     }
-    this.state.updateZoomRatio(this.curZoomRatio)
+    this.mAction.updateZoomRatio(this.curZoomRatio)
   }
 
   private getPadding(): number {
@@ -574,29 +613,35 @@ export struct ZoomViewLand {
           .height(this.notTakeVideoExtCanvasHeight)
           .onReady(() => this.canvasInit(SHOW_NOT_TAKE_VIDEO_CANVAS))
           .gesture(
-            GestureGroup(
-              GestureMode.Parallel,
-              PanGesture({ fingers: 1, distance: 1, direction: PanDirection.Vertical})
-                .onActionStart(this.pgOnActionStart.bind(this))
-                .onActionUpdate(this.pgOnActionUpdate.bind(this))
-                .onActionEnd(this.pgOnActionEnd.bind(this))
-            )
-          )
-          .onTouch(this.mOnTouch.bind(this))
+          GestureGroup(
+          GestureMode.Parallel,
+          PanGesture({ fingers: 1, distance: 1, direction: PanDirection.Vertical})
+            .onActionStart(() => this.pgOnActionStart())
+            .onActionUpdate((event?: GestureEvent) => {
+              if (event) {
+                return this.pgOnActionUpdate(event);
+              }
+            })
+            .onActionEnd(() => this.pgOnActionEnd())))
+          .onTouch((event?: TouchEvent) => {
+            if (event) {
+              return this.mOnTouch(event);
+            }
+          })
       } else if (this.getCurrentCanvasType() === SHOW_TAKING_VIDEO_CANVAS) {
         Column() {
           Image($r('app.media.ic_camera_public_focus_ev_bright_add'))
             .width(24)
             .height(24)
             .fillColor(Color.White)
-            .onTouch(this.addTouched.bind(this))
+            .onTouch((event?: TouchEvent) => this.addTouched(event))
             .gesture(
-              GestureGroup(
-                GestureMode.Parallel,
-                LongPressGesture({ repeat: true })
-                  .onAction(this.addLongOnAction.bind(this))
-                  .onActionEnd(this.addLongOnActionEnd.bind(this))
-              )
+            GestureGroup(
+            GestureMode.Parallel,
+            LongPressGesture({ repeat: true })
+              .onAction(() => this.addLongOnAction())
+              .onActionEnd(() => this.addLongOnActionEnd()),
+            )
             )
           Canvas(this.takingVideoExtCanvasCxt)
             .width(this.canvasWidth)
@@ -604,29 +649,28 @@ export struct ZoomViewLand {
             .onReady(() => this.canvasInit(SHOW_TAKING_VIDEO_CANVAS))
             .gesture(
             GestureGroup(
-              GestureMode.Parallel,
-              LongPressGesture({ repeat: true })
-                .onAction(this.takingVideoExtLongPgAction.bind(this))
-                .onActionEnd(this.takingVideoExtLongPgActionEnd.bind(this)),
-              PanGesture({ fingers: 1, distance: 1, direction: PanDirection.Vertical })
-                .onActionStart(this.takingVideoExtPgActionStart.bind(this))
-                .onActionUpdate(this.takingVideoExtPgActionUpdate.bind(this))
-                .onActionEnd(this.takingVideoExtPgActionEnd.bind(this))
-              )
-            )
-            .onTouch(this.takingVideoExtTouched.bind(this))
+            GestureMode.Parallel,
+            LongPressGesture({ repeat: true })
+              .onAction((event?: GestureEvent) => this.takingVideoExtLongPgAction(event))
+              .onActionEnd(() => this.takingVideoExtLongPgActionEnd()),
+            PanGesture({ fingers: 1, distance: 1, direction: PanDirection.Horizontal })
+              .onActionStart((event?: GestureEvent) => this.takingVideoExtPgActionStart(event))
+              .onActionUpdate((event?: GestureEvent) => this.takingVideoExtPgActionUpdate(event))
+              .onActionEnd((event?: GestureEvent) => this.takingVideoExtPgActionEnd(event))
+            ))
+            .onTouch((event?: TouchEvent) => this.takingVideoExtTouched(event))
           Image($r('app.media.ic_camera_public_focus_ev_bright_subtract'))
             .width(24)
             .height(24)
             .fillColor(Color.White)
-            .onTouch(this.subtractTouched.bind(this))
+            .onTouch((event?: TouchEvent) => this.subtractTouched(event))
             .gesture(
-              GestureGroup(
-                GestureMode.Parallel,
-                LongPressGesture({ repeat: true })
-                  .onAction(this.subtractLongOnAction.bind(this))
-                  .onActionEnd(this.subtractLongOnActionEnd.bind(this))
-              )
+            GestureGroup(
+            GestureMode.Parallel,
+            LongPressGesture({ repeat: true })
+              .onAction((event?: GestureEvent) => this.subtractLongOnAction(event))
+              .onActionEnd(() => this.subtractLongOnActionEnd()),
+            )
             )
         }.width('100%').height(this.notTakeVideoExtCanvasHeight).padding({ top: 58, bottom: 58 })
       } else {
@@ -635,16 +679,16 @@ export struct ZoomViewLand {
           .height(this.foldCanvasHeight)
           .onReady(() => this.canvasInit(SHOW_FOLD_CANVAS))
           .gesture(
-            GestureGroup(
-              GestureMode.Parallel,
-              LongPressGesture({ repeat: true })
-                .onAction(this.lpgOnAction.bind(this))
-                .onActionEnd(this.lpgOnActionEnd.bind(this)),
-              PanGesture({ fingers: 1, distance: 1, direction: PanDirection.Vertical })
-                .onActionStart(this.pgOnActionStart.bind(this))
-                .onActionUpdate(this.pgOnActionUpdate.bind(this))
-                .onActionEnd(this.pgOnActionEnd.bind(this))
-            )
+          GestureGroup(
+          GestureMode.Parallel,
+          LongPressGesture({ repeat: true })
+            .onAction(() => this.lpgOnAction())
+            .onActionEnd(() => this.lpgOnActionEnd()),
+          PanGesture({ fingers: 1, distance: 1, direction: PanDirection.Horizontal })
+            .onActionStart(() => this.pgOnActionStart())
+            .onActionUpdate((event?: GestureEvent) => this.pgOnActionUpdate(event))
+            .onActionEnd(() => this.pgOnActionEnd())
+          )
           )
       }
     }.width(82).height('100%')

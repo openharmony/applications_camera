@@ -25,65 +25,74 @@ import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 import { ShutterButtonLand } from '@ohos/common/src/main/ets/default/featurecommon/shutterbutton/ShutterButtonLand'
 import { ThumbnailView } from '@ohos/common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
 import { ControlLand } from './ControlLand'
+import { CameraPlatformCapability } from '@ohos/common/src/main/ets/default/camera/CameraPlatformCapability'
+import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store'
 
 class StateStruct {
-  platformCapability
-  videoState
-  isThirdPartyCall
-  showZoomLabelValue
-  xComponentHeight
+  platformCapability: CameraPlatformCapability | undefined = undefined;
+  isThirdPartyCall: boolean = false;
+  videoState: string = '';
+  showZoomLabelValue: boolean = true;
+  mode: string = '';
+  xComponentHeight: number = 0;
 }
 
-type ScreenSizeType = {
-  width: number
-  height: number
+class ScreenSizeType {
+  width: number = 0;
+  height: number = 0;
+}
+
+class FootBarDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
 }
 
 @Component
 export struct FootBarLand {
-  private TAG: string = '[FootBarLand]:'
+  private TAG: string = '[FootBarLand]:';
+  @State state: StateStruct = new StateStruct();
+  @State isRecording: boolean = false;
+  @Link screenSize: ScreenSizeType;
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private mAction: FootBarDispatcher = new FootBarDispatcher();
 
-  @State state: StateStruct = new StateStruct()
-  @State isRecording: boolean = false
-  @Link screenSize: ScreenSizeType
-
-  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-
-  private async onRecordStart(data) {
+  private async onRecordStart() {
     this.isRecording = true
     Log.info(`${this.TAG} onRecordStart`)
   }
 
-  private async onRecordStop(data) {
+  private async onRecordStop() {
     this.isRecording = false
     Log.info(`${this.TAG} onRecordStop`)
   }
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         platformCapability: state.CameraInitReducer.platformCapability,
-        videoState: state.RecordReducer.videoState,
         isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+        videoState: state.RecordReducer.videoState,
         showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
+        mode: state.ModeReducer.mode,
         xComponentHeight: state.PreviewReducer.xComponentHeight
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
-
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
     this.isRecording = false
-    this.appEventBus.on(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
-    this.appEventBus.on(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
+    this.appEventBus.on(Action.ACTION_RECORD_START, () => this.onRecordStart())
+    this.appEventBus.on(Action.ACTION_RECORD_STOP, () => this.onRecordStop())
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_RECORD_START, this.onRecordStart.bind(this))
-    this.appEventBus.off(Action.ACTION_RECORD_STOP, this.onRecordStop.bind(this))
+    this.appEventBus.off(Action.ACTION_RECORD_START, () => this.onRecordStart())
+    this.appEventBus.off(Action.ACTION_RECORD_STOP, () => this.onRecordStop())
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
@@ -98,7 +107,8 @@ export struct FootBarLand {
       }.width('100%').height(ComponentPosition.getControlHeight(this.screenSize.width, this.screenSize.height))
 
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        if (this.state.platformCapability?.mCameraCount > 1 && !this.isRecording && deviceInfo.deviceType !== "default") {
+        if (this.state.platformCapability && this.state.platformCapability?.mCameraCount > 1 &&
+        !this.isRecording && deviceInfo.deviceType !== "default") {
           CameraSwitchButton()
         } else {
           Column() {
