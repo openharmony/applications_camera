@@ -44,7 +44,7 @@ export default class MainAbility extends Ability {
       cameraId: 'BACK', mode: 'PHOTO'
     }, 'onCreate');
     Log.info('Camera MainAbility onCreate.x');
-    if (GlobalContext.get().getCameraFormParam() !== undefined) {
+    if (GlobalContext.get().getCameraFormParam() != undefined) {
       new FeatureManager(GlobalContext.get().getCameraFormParam().mode, new ModeMap());
     } else {
       new FeatureManager('PHOTO', new ModeMap());
@@ -119,10 +119,10 @@ export default class MainAbility extends Ability {
 
   onForeground() {
     Log.start(Log.ABILITY_FOREGROUND_LIFE);
-    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_INIT);
+    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_INIT)
     if (GlobalContext.get().getT<boolean>('doOnForeground')) {
       Log.info('Camera MainAbility onForeground.');
-      GlobalContext.get().apply('updateCameraStatus');
+      GlobalContext.get().apply('updateCameraStatus')
     } else {
       GlobalContext.get().setObject('doOnForeground', true);
     }
@@ -133,7 +133,7 @@ export default class MainAbility extends Ability {
     Log.end(Log.ABILITY_FOREGROUND_LIFE);
     Log.info('Camera MainAbility onBackground.');
     this.cameraBasicFunction.startIdentification = false;
-    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_RELEASE);
+    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_RELEASE)
     GlobalContext.get().apply('updateCameraStatus');
   }
 

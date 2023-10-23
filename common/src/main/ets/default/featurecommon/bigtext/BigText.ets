@@ -39,19 +39,13 @@ class BigTextDispatcher {
   }
 }
 
-class ModeResourceStruct {
-  MULTI: Resource = $r('app.string.multi_mode');
-  PHOTO: Resource = $r('app.string.photo_mode');
-  VIDEO: Resource = $r('app.string.video_mode');
-}
-
 @Component
 export struct BigText {
   private TAG: string = '[BigText]:'
-  private modeResource: ModeResourceStruct = {
-    MULTI: $r('app.string.multi_mode'),
-    PHOTO: $r('app.string.photo_mode'),
-    VIDEO: $r('app.string.video_mode')
+  private modeResource: Record<string, Resource> = {
+    'MULTI': $r('app.string.multi_mode'),
+    'PHOTO': $r('app.string.photo_mode'),
+    'VIDEO': $r('app.string.video_mode')
   }
   @State state: StateStruct = new StateStruct()
   @State bigTextOpacity: number = 0
