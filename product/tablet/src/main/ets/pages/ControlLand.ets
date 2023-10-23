@@ -25,52 +25,90 @@ import {
   PreferencesService
 } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
 import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
+import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store'
 
 class StateStruct {
-  isThirdPartyCall
-  isFaCall
-  action
-  uiEnable
-  modeIndex
-  mode
-  isShowMoreList
-  changeToMode: Function
-  updateModeIndex: Function
-  updateShowMoreList: Function
-  thirdPartyCall: Function
-  initAction: Function
-  initMode: Function
-  changeXComponentSize: Function
-
+  isThirdPartyCall: boolean = false;
+  isFaCall: boolean = false;
+  action: string = '';
+  uiEnable: boolean = true;
+  modeIndex: number = 1;
+  mode: string = 'PHOTO';
+  isShowMoreList: boolean = false;
 }
 
-type ScreenSizeType = {
-  width: number
-  height: number
+class ControlDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public changeToMode(mode: string): void {
+    this.mDispatch(Action.uiState(false));
+    this.mDispatch(Action.changeMode(mode));
+    this.mDispatch(Action.updateShowBigTextFlag(true));
+  }
+
+  public updateModeIndex(index: number): void {
+    this.mDispatch(Action.updateModeIndex(index));
+  }
+
+  public updateShowMoreList(isShowMoreList: boolean): void {
+    this.mDispatch(Action.updateShowMoreList(isShowMoreList));
+  }
+
+  public thirdPartyCall(isThirdPartyCall: boolean, action: string): void {
+    this.mDispatch(Action.thirdPartyCall(isThirdPartyCall, action));
+  }
+
+  public initAction(action: string): void {
+    this.mDispatch(Action.initAction(action));
+  }
+
+  public initMode(mode: string): void {
+    this.mDispatch(Action.initMode(mode));
+  }
+
+  public updateListStatus(enable: boolean): void {
+    this.mDispatch(Action.uiState(enable));
+  }
+
+  public changeXComponentSize(xComponentWidth: number, xComponentHeight: number): void {
+    this.mDispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight));
+  }
+}
+
+class ScreenSizeType {
+  width: number = 0;
+  height: number = 0;
+}
+
+class SwipeModeIndexStruct {
+  swipeModeIndex: number = 0;
 }
 
 @Component
 export struct ControlLand {
-  private TAG: string = '[ControlLand]:'
-  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  private scroller: Scroller = new Scroller()
-  private settingManager = SettingManager.getInstance()
-  private mConnect: any
-  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'] //, 'MORE'
-  private touchOff: boolean = true
-  private scrollDistance: number = 0
-  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
-
-  @State state: StateStruct = new StateStruct()
-  @State startScroll: number = 0
-  @State endScroll: number = 0
-  @State index: number = 0
-  @Link screenSize: ScreenSizeType
+  private TAG: string = '[ControlLand]:';
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private scroller: Scroller = new Scroller();
+  private settingManager = SettingManager.getInstance();
+  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']; //, 'MORE'
+  private touchOff: boolean = true;
+  private scrollDistance: number = 0;
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance();
+  @State state: StateStruct = new StateStruct();
+  private mAction: ControlDispatcher = new ControlDispatcher();
+  @State startScroll: number = 0;
+  @State endScroll: number = 0;
+  @State index: number = 0;
+  @Link screenSize: ScreenSizeType;
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
-    this.mConnect = getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
         isFaCall: state.ContextReducer.isFaCall,
         action: state.ContextReducer.action,
@@ -78,44 +116,17 @@ export struct ControlLand {
         modeIndex: state.ModeReducer.modeIndex,
         mode: state.ModeReducer.mode,
         isShowMoreList: state.ModeReducer.isShowMoreList
-      }
-    }, (dispatch) => {
-      return {
-        changeToMode: (mode: string): void => {
-          dispatch(Action.uiState(false))
-          dispatch(Action.updateMode(mode))
-          dispatch(Action.changeMode(mode))
-          dispatch(Action.updateShowBigTextFlag(true))
-        },
-        updateModeIndex: (index: number): void => {
-          dispatch(Action.updateModeIndex(index))
-        },
-        updateShowMoreList: (isShowMoreList: boolean): void => {
-          dispatch(Action.updateShowMoreList(isShowMoreList))
-        },
-        thirdPartyCall: (isThirdPartyCall: boolean, action: string): void => {
-          dispatch(Action.thirdPartyCall(isThirdPartyCall, action))
-        },
-        initAction: (action: string): void => {
-          dispatch(Action.initAction(action))
-        },
-        initMode: (mode: string): void => {
-          dispatch(Action.initMode(mode))
-        },
-        changeXComponentSize: (xComponentWidth: number, xComponentHeight: number): void => {
-          dispatch(Action.changeXComponentSize(xComponentWidth, xComponentHeight))
-        }
-      }
-    })(this.state)
-
-    this.appEventBus.on(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
+    this.appEventBus.on(Action.ACTION_SWIPE_MODE, (data: SwipeModeIndexStruct) => this.swipeChangeMode(data));
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_SWIPE_MODE, this.swipeChangeMode.bind(this))
-    this.mConnect?.destroy()
+    this.appEventBus.off(Action.ACTION_SWIPE_MODE, (data: SwipeModeIndexStruct) => this.swipeChangeMode(data))
     Log.info(`${this.TAG} aboutToDisappear X`)
   }
 
@@ -125,9 +136,9 @@ export struct ControlLand {
     if (callType === 'begin') return;
     if (this.modeArray[modeIndex] !== this.state.mode) {
       Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
-      this.state.changeToMode(this.modeArray[modeIndex])
+      this.mAction.changeToMode(this.modeArray[modeIndex])
       let xComponentSize = this.settingManager.getPreviewDisplaySize(this.state.mode)
-      this.state.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
       this.mPreferencesService.flushMode()
     }
@@ -142,7 +153,7 @@ export struct ControlLand {
     }
   }
 
-  private swipeChangeMode(data): void {
+  private swipeChangeMode(data: SwipeModeIndexStruct): void {
     this.changeToMode(data.swipeModeIndex)
   }
 
@@ -253,7 +264,7 @@ export struct ControlLand {
           .chainAnimation(false)
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
             Log.debug(`${this.TAG} Control scroll index first: ${firstIndex}, last: ${lastIndex}`)
-            this.state.updateModeIndex(firstIndex)
+            this.mAction.updateModeIndex(firstIndex)
             Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
           // @ts-ignore
@@ -278,6 +289,7 @@ export struct ControlLand {
         Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Center }) {
           Column() {
           }.borderRadius(3).width(6).height(6).backgroundColor('#007DFF')
+
           //            .shadow({radius: 5, color: 'argb(#7F000000)', offsetX: 0, offsetY: 0})
         }.width(18).height('100%').margin({ left: 8 })
       }.width('100%').height('100%')

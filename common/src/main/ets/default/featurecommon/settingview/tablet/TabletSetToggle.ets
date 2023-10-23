@@ -20,7 +20,7 @@ import { OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store';
 
 class StateStruct {
-  mode
+  mode: string = ''
 }
 
 @Component
@@ -28,8 +28,8 @@ export struct TabletSetToggle {
   private TAG: string = '[TabletSetToggle]:'
   @Link settingsList: SettingGroupItem[]
   @State isOn: boolean = false
-  private itemValue: SettingData
-  private getToggleStatus: Promise<string>
+  private itemValue: SettingData = new SettingData();
+  // private getToggleStatus: Promise<string>
   private WH_100_100: string = "100%"
   private settingManager = SettingManager.getInstance()
   @State generalStatusValue: boolean = false

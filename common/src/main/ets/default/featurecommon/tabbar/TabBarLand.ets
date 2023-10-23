@@ -23,12 +23,13 @@ import EventLog from '../../utils/EventLog'
 
 class StateStruct {
   isThirdPartyCall: boolean = false
-  showSettingView: Function = () => {}
+  showSettingView: Function = () => {
+  }
 }
 
-type ScreenSizeType = {
-  width: number
-  height: number
+class ScreenSizeType {
+  width: number = 0
+  height: number = 0
 }
 
 @Component

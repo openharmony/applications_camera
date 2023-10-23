@@ -15,7 +15,6 @@
  */
 
 import camera from '@ohos.multimedia.camera';
-import deviceManager from '@ohos.distributedHardware.deviceManager';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 import deviceInfo from '@ohos.deviceInfo';
@@ -34,7 +33,6 @@ const TAG = '[CameraService]:';
 const DEFAULT_VIDEO_FRAME_RATE = 30;
 const FRONT_CAMERA_POSITION = 2;
 const CAMERA_CONNECT_TYPE = 2;
-const CAMERA_TIME_2000 = 2000;
 
 export interface FunctionCallBack {
   onCapturePhotoOutput(): void
@@ -332,9 +330,9 @@ export class CameraService {
 
   public async createSession(surfaceId: string, isVideo: boolean) {
     Log.start(`${TAG} createSession`);
-    GlobalContext.get().setObject('isSessionCreating', true);
+    GlobalContext.get().setObject('isSessionCreating', true)
     this.mCaptureSession = this.mCameraManager.createCaptureSession();
-    GlobalContext.get().setObject('isSessionCreating', false);
+    GlobalContext.get().setObject('isSessionCreating', false)
     Log.info(`${TAG} createSession captureSession: ${this.mCaptureSession}, cameraInput: ${this.mCameraInput},
     videoOutPut: ${this.mVideoOutput}, photoOutPut: ${this.mPhotoOutPut},  mPreviewOutput: ${this.mPreviewOutput}`);
     Log.info(`${TAG} createSession beginConfig.`);
@@ -368,7 +366,7 @@ export class CameraService {
         EventLog.write(EventLog.OPEN_FAIL);
       }
     }
-    if (GlobalContext.get().getT<boolean>('cameraStartFlag') && (new Date().getTime() - GlobalContext.get().getT<number>('cameraStartTime')) > CAMERA_TIME_2000) {
+    if (GlobalContext.get().getT<boolean>('cameraStartFlag') && (new Date().getTime() - GlobalContext.get().getT<number>('cameraStartTime')) > 2000) {
       EventLog.write(EventLog.START_TIMEOUT);
     }
     GlobalContext.get().setObject('cameraStartFlag', false);
@@ -450,7 +448,7 @@ export class CameraService {
       }
     }
     Log.end(`${TAG} takePicture`);
-    if ((new Date().getTime() - GlobalContext.get().getT<number>('startCaptureTime')) > CAMERA_TIME_2000) {
+    if ((new Date().getTime() - GlobalContext.get().getT<number>('startCaptureTime')) > 2000) {
       EventLog.write(EventLog.CAPTURE_TIMEOUT);
     }
   }
@@ -571,7 +569,7 @@ export class CameraService {
       Log.info(`${TAG} AVRecorder.start()`);
     });
     this.mIsStartRecording = true;
-    if (new Date().getTime() - startRecordingTime > CAMERA_TIME_2000) {
+    if (new Date().getTime() - startRecordingTime > 2000) {
       EventLog.write(EventLog.START_RECORD_TIMEOUT);
     }
     Log.end(`${TAG} StartRecording`);
@@ -608,7 +606,7 @@ export class CameraService {
     Log.start(Log.UPDATE_VIDEO_THUMBNAIL);
     const thumbnailPixelMap: PixelMap | undefined = await this.mThumbnailGetter.getThumbnailInfo(40, 40);
     Log.end(Log.UPDATE_VIDEO_THUMBNAIL);
-    if (new Date().getTime() - stopRecordingTime > CAMERA_TIME_2000) {
+    if (new Date().getTime() - stopRecordingTime > 2000) {
       EventLog.write(EventLog.FINISH_RECORD_TIMEOUT);
     }
     Log.end(Log.STOP_RECORDING);
@@ -723,54 +721,6 @@ export class CameraService {
       Log.end(`${TAG} getThumbnail`);
     });
     return this.mThumbnail;
-  }
-
-  public async getMultiCameraInfo(callback: Callback) {
-    Log.info(`${TAG} getMultiCameraInfo called.`);
-    //    return ['MatePad Pro（前置）', 'MatePad Pro（后置）']
-    const deviceNames = [];
-    const deviceIds = [];
-    const cameraMap = new Map();
-    const cameras = await this.getCameraLists();
-    deviceManager.createDeviceManager('com.ohos.camera', (err, manager) => {
-      if (err) {
-        Log.info(`${TAG} deviceManager.createDeviceManager failed.`);
-      }
-      Log.info(`${TAG} deviceManager.createDeviceManager success.`);
-      const deviceInfoList = manager.getTrustedDeviceListSync();
-      Log.info(`${TAG} deviceManager.deviceInfoList: ${JSON.stringify(deviceInfoList)}`);
-      if (typeof (deviceInfoList) != undefined && typeof (deviceInfoList.length) != undefined) {
-        deviceInfoList.forEach(item => {
-          deviceNames.push(item.deviceName);
-          deviceIds.push(item.deviceId);
-          let hasFront = false;
-          let hasBack = false;
-          let cameraName;
-          for (let i = 0; i < cameras.length; i++) {
-            if (cameras[i].connectionType == 2) {
-              if (cameras[i].cameraId.split('_')[0] == item.deviceId) {
-                if (cameras[i].cameraPosition == 2 && !hasFront) {
-                  cameraName = item.deviceId + '_FRONT';
-                  cameraMap.set(cameraName, { deviceName: item.deviceName, cameraId: cameras[i].cameraId });
-                  Log.info(`${TAG} deviceManager add cameraName: ${cameraName}`);
-                  hasFront = true;
-                } else if (cameras[i].cameraPosition === 1 && !hasBack) {
-                  cameraName = item.deviceId + '_BACK';
-                  cameraMap.set(cameraName, { deviceName: item.deviceName, cameraId: cameras[i].cameraId });
-                  Log.info(`${TAG} deviceManager add cameraName: ${cameraName}`);
-                  hasBack = true;
-                }
-                if (hasFront && hasBack) {
-                  break;
-                }
-              }
-            }
-          }
-        })
-        this.mCameraMap = new Map(cameraMap);
-        callback();
-      }
-    });
   }
 
   public getCameraName(): string {

@@ -35,49 +35,55 @@ import { ZoomViewLand } from '@ohos/common/src/main/ets/default/featurecommon/zo
 import { FootBarLand } from './FootBarLand';
 import { PreviewAreaLand } from './PreviewAreaLand';
 import { SettingView } from './SettingView';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 import { ModeMap } from '../common/ModeMap';
 import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
+import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId';
+import { BusinessError } from '@ohos.base';
+import ability from '@ohos.ability.ability';
+
+const DEFAULT_FUNCTION = () => {
+}
 
 CameraWorker.getInstance(new ModeMap());
-var mScreenLockManager = new ScreenLockManager();
+let mScreenLockManager = new ScreenLockManager();
 
 PersistentStorage.PersistProp("storageCameraId", "");
 
 class StateStruct {
-  permissionFlag
-  mode
-  curMode
-  isBigVideoTimerVisible
-  isSmallVideoTimerVisible
-  videoState
-  isShowtimeLapse
-  isShowMoreList
-  isThirdPartyCall
-  showZoomLabelValue
-  cameraPosition
-  isShowPinch
-  xComponentWidth
-  xComponentHeight
-  isShowPageView
-  isInitiated
-  initShowFlag
-  initFootBarHeight: Function
-  setPermissionFlag: Function
-  initAction: Function
-  initCameraPosition: Function
-  initMode: Function
-  changeTimeLapse: Function
-  stopRecording: Function
-  resetRecordingTime: Function
-  resetZoomRatio
-  hideSettingView: Function
-  updateModeIndex: Function
-  faCall: Function
-  thirdPartyCall: Function
+  permissionFlag: boolean = false;
+  mode: string = '';
+  curMode: string = '';
+  isBigVideoTimerVisible: boolean = false;
+  isSmallVideoTimerVisible: boolean = false;
+  videoState: string = '';
+  isShowtimeLapse: boolean = false;
+  isShowMoreList: boolean = false;
+  isThirdPartyCall: boolean = false;
+  showZoomLabelValue: boolean = false;
+  cameraPosition: CameraId = CameraId.FRONT;
+  isShowPinch: boolean = false;
+  xComponentWidth: number = 0;
+  xComponentHeight: number = 0;
+  isShowPageView: boolean = false;
+  isInitiated: boolean = false;
+  initShowFlag: boolean = false;
+  initFootBarHeight: Function = DEFAULT_FUNCTION;
+  setPermissionFlag: Function = DEFAULT_FUNCTION;
+  initAction: Function = DEFAULT_FUNCTION;
+  initCameraPosition: Function = DEFAULT_FUNCTION;
+  initMode: Function = DEFAULT_FUNCTION;
+  changeTimeLapse: Function = DEFAULT_FUNCTION;
+  stopRecording: Function = DEFAULT_FUNCTION;
+  resetRecordingTime: Function = DEFAULT_FUNCTION;
+  resetZoomRatio: Function = DEFAULT_FUNCTION;
+  hideSettingView: Function = DEFAULT_FUNCTION;
+  updateModeIndex: Function = DEFAULT_FUNCTION;
+  faCall: Function = DEFAULT_FUNCTION;
+  thirdPartyCall: Function = DEFAULT_FUNCTION;
 }
 
-type ScreenSizeType = {
+interface ScreenSizeType {
   width: number
   height: number
 }
@@ -167,7 +173,7 @@ struct Index {
     mScreenLockManager.init();
 
     if (!this.state.permissionFlag) {
-      let permissionList: Array<string> = [
+      let permissionList: Array<Permissions> = [
         "ohos.permission.MEDIA_LOCATION",
         "ohos.permission.READ_IMAGEVIDEO",
         "ohos.permission.WRITE_IMAGEVIDEO",
@@ -181,7 +187,6 @@ struct Index {
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`);
       let atManager = abilityAccessCtrl.createAtManager();
       try {
-        // @ts-ignore
         atManager.requestPermissionsFromUser(GlobalContext.get().getCameraAbilityContext(), permissionList)
           .then((data) => {
             Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`);
@@ -198,7 +203,7 @@ struct Index {
               this.state.setPermissionFlag(false);
             }
             Log.info(`${this.TAG} request permissions result: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
-          }, (err) => {
+          }, (err: BusinessError) => {
             Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`);
           });
       } catch (error) {
@@ -221,7 +226,10 @@ struct Index {
     })
 
     if (AppStorage.Has(Constants.APP_KEY_WINDOW_SIZE)) {
-      this.screenSize = AppStorage.Get(Constants.APP_KEY_WINDOW_SIZE);
+      const screenSizeData: ScreenSizeType | undefined = AppStorage.Get(Constants.APP_KEY_WINDOW_SIZE);
+      if (screenSizeData) {
+        this.screenSize = screenSizeData;
+      }
     } else {
       display.getDefaultDisplay().then((dis) => {
         this.screenSize.width = px2vp(dis.width);
@@ -260,6 +268,7 @@ struct Index {
       return true;
     } else if (this.state.isThirdPartyCall) {
       this.terminateSelfWithResult();
+      return true;
     } else {
       if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
         this.state.stopRecording();
@@ -289,20 +298,20 @@ struct Index {
 
   terminateSelfWithResult(): void {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
-    let abilityResult = {
-      "resultCode": 200,
-      "want": {
-        "parameters": {
-          "resourceUri": "",
-          "width": "",
-          "height": ""
+    let abilityResult: ability.AbilityResult = {
+      resultCode: 200,
+      want: {
+        parameters: {
+          resourceUri: "",
+          width: "",
+          height: ""
         },
-        "bundleName": "com.ohos.camera",
-        "abilityName": "com.ohos.camera.MainAbility"
+        bundleName: "com.ohos.camera",
+        abilityName: "com.ohos.camera.MainAbility"
       }
     };
 
-    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error, data) => {
+    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error: BusinessError, data: Object) => {
       if (error) {
         Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
         return;

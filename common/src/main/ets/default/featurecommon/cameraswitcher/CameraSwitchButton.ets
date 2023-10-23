@@ -22,13 +22,14 @@ import MultiCameraDialog from '../customdialog/MultiCameraDialog'
 import deviceInfo from '@ohos.deviceInfo'
 import { Dispatch } from '../../redux/core/redux/types/store'
 import { GlobalContext } from '../../utils/GlobalContext'
+import { CameraId } from '../../setting/settingitem/CameraId'
 
 let storageCameraId: string = AppStorage.Link('storageCameraId') as string;
 
 class StateStruct {
   mode: string = 'PHOTO';
   uiEnable: boolean = true;
-  cameraPosition: string = 'BACK';
+  cameraPosition: CameraId = CameraId.BACK;
   videoState: string = 'beforeTakeVideo';
 }
 
