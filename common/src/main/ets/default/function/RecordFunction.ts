@@ -27,7 +27,8 @@ export class RecordFunction extends BaseFunction {
       this.mWorkerManager.postMessage(Action.updateVideoUri(videoUri))
     },
     onRecodeError:(data: any): void => {
-      this.mWorkerManager.postMessage(Action.recordError())
+      this.mWorkerManager.postMessage(Action.recordError());
+      this.mWorkerManager.postMessage(Action.reStartPreview(1));
     }
   }
 
