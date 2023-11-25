@@ -18,14 +18,23 @@ import Timer from '../../../setting/settingitem/Timer'
 import { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
 import { CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView'
 import { Log } from '../../../utils/Log'
-import { OhCombinedState } from '../../../redux/store'
+import { Dispatch, OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store'
 import { SettingManager } from '../../../setting/SettingManager'
 import { SettingData, SettingGroupItem } from '../model/SettingData'
 
 class StateStruct {
   isCloseFlag: boolean = false;
-  closeDialog: Function = () => {
+}
+class SetResolutionDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public closeDialog(isCloseFlag: boolean): void {
+    this.mDispatch(Action.closeDialog(isCloseFlag));
   }
 }
 
@@ -41,6 +50,7 @@ export struct TabletSetResolution {
   @StorageLink("settingDialogFlag") settingDialogFlag: boolean = true;
   @State curCheckName: Resource = $r("app.string.default_value");
   @State state: StateStruct = new StateStruct();
+  private mAction: SetResolutionDispatcher = new SetResolutionDispatcher();
 
   @Provide customDialogDetails: CustomDialogDetails = {
     confirmCallback: () => {},
@@ -66,22 +76,18 @@ export struct TabletSetResolution {
       this.curCheckName = JSON.parse(JSON.stringify(this.settingManager.getSettingValue(this.itemValue.settingAlias)))
       Log.info(`${this.TAG} existView curCheckName: ${this.curCheckName} X`)
     }
-    this.state.closeDialog(false)
+    this.mAction.closeDialog(false)
   }
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-        isCloseFlag: state.SettingReducer.isCloseFlag
-      }
-    }, (dispatch) => {
-      return {
-        closeDialog: (isCloseFlag: boolean): void => {
-          dispatch(Action.closeDialog(isCloseFlag))
-        }
-      }
-    })(this.state)
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
+        isCloseFlag:state.SettingReducer.isCloseFlag
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     Log.info(`${this.TAG} aboutToAppear this.closeFlag ${this.closeFlag}`)
     if (this.settingManager.getSettingValue(this.itemValue.settingAlias) !== undefined) {
@@ -93,7 +99,7 @@ export struct TabletSetResolution {
   public onCloseDialog() {
     Log.info(`${this.TAG} onCloseDialog E`)
     if (this.customDialogDetails.setAlias !== undefined) {
-      this.state.closeDialog(false)
+      this.mAction.closeDialog(false)
       this.CustomDialogView.close()
     }
     Log.info(`${this.TAG} onCloseDialog X`)
@@ -165,7 +171,7 @@ export struct TabletSetResolution {
     // this.customDialogDetails.settingTitle = itemValue.settingName;
     // this.customDialogDetails.setAlias = itemValue.settingAlias;
     Log.info(`${this.TAG} childrenList: ${JSON.stringify(itemValue.radio)}`)
-    this.state.closeDialog(true)
+    this.mAction.closeDialog(true)
     this.CustomDialogView.open()
     Log.info(`${this.TAG} openDetailsDialog end`)
   }

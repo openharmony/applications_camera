@@ -44,7 +44,7 @@ const initState: ContextState = {
   initShowFlag: false
 }
 
-export default function ContextReducer(state = initState, action: ActionData): ContextState {
+export function ContextReducer(state = initState, action: ActionData): ContextState {
   switch (action.type) {
     case Action.ACTION_UI_STATE:
       return {

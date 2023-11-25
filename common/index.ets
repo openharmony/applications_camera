@@ -65,7 +65,7 @@ export { FunctionId } from './src/main/ets/default/featureservice/FunctionId';
 
 export { FeatureManager } from './src/main/ets/default/featureservice/FeatureManager';
 
-export type { IModeMap } from './src/main/ets/default/featureservice/IModeMap';
+export { IModeMap } from './src/main/ets/default/featureservice/IModeMap';
 
 export { CameraBasicFunction } from './src/main/ets/default/function/CameraBasicFunction';
 
@@ -77,11 +77,7 @@ export { ZoomFunction } from './src/main/ets/default/function/ZoomFunction';
 
 export { Action, UiStateMode } from './src/main/ets/default/redux/actions/Action';
 
-export { getStore } from './src/main/ets/default/redux/store';
-
-export type { OhCombinedState } from './src/main/ets/default/redux/store';
-
-export type { Dispatch } from './src/main/ets/default/redux/core/redux/types/store';
+export { getStore, Dispatch, OhCombinedState } from './src/main/ets/default/redux/store';
 
 export { SettingManager } from './src/main/ets/default/setting/SettingManager';
 

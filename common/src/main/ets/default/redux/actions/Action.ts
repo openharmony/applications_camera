@@ -15,10 +15,9 @@
 
 import type { CameraPlatformCapability } from '../../camera/CameraPlatformCapability';
 import type { CameraId } from '../../setting/settingitem/CameraId';
-import type { AnyAction } from '../../redux/core/redux';
 
 interface Data {
- [prop: string]: any;
+  [prop: string]: any;
 }
 
 export enum UiStateMode {
@@ -26,12 +25,13 @@ export enum UiStateMode {
   EXCLUDE_PREVIEW
 }
 
-export interface ActionData extends AnyAction {
-  data: Data
+export interface ActionData {
+  isEvent?: boolean;
+  data: Data;
+  type: string
 }
 
 export class Action {
-
   // Context
   public static readonly ACTION_INIT_FOOT_BAR_WIDTH = 'ACTION_INIT_FOOT_BAR_WIDTH';
   public static readonly ACTION_INIT_FOOT_BAR_HEIGHT = 'ACTION_INIT_FOOT_BAR_HEIGHT';
@@ -182,9 +182,9 @@ export class Action {
 
 
   /** CAMERA METHODS LIST **/
-
   public static initCamera(cameraId: CameraId, mode: string): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_INIT,
       data: { cameraId: cameraId, mode: mode }
     }
@@ -192,6 +192,7 @@ export class Action {
 
   public static initCameraDone(platformCapability: CameraPlatformCapability): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_INIT_DONE,
       data: { platformCapability: platformCapability }
     }
@@ -199,6 +200,7 @@ export class Action {
 
   public static switchCamera(cameraId: string, curMode?: string): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_SWITCH_CAMERA,
       data: { cameraId: cameraId, curMode: curMode }
     }
@@ -220,6 +222,7 @@ export class Action {
 
   public static updateCameraStatus(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_UPDATE_CAMERA_STATUS,
       data: {}
     }
@@ -227,6 +230,7 @@ export class Action {
 
   public static close(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CLOSE_CAMERA,
       data: {}
     }
@@ -237,6 +241,7 @@ export class Action {
 
   public static initMode(mode: string): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_INIT_MODE,
       data: { mode: mode }
     }
@@ -244,6 +249,7 @@ export class Action {
 
   public static changeMode(mode: string): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CHANGE_MODE,
       data: { mode: mode }
     }
@@ -251,6 +257,7 @@ export class Action {
 
   public static setMode(mode: string): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_SET_MODE,
       data: { mode: mode }
     }
@@ -258,6 +265,7 @@ export class Action {
 
   public static updateMode(mode: string): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_UPDATE_MODE,
       data: { mode: mode }
     }
@@ -265,6 +273,7 @@ export class Action {
 
   public static onModeChanged(mode: string): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_ON_MODE_CHANGED,
       data: { mode: mode }
     }
@@ -280,7 +289,7 @@ export class Action {
   public static faCall(isFaCall: boolean): ActionData {
     return {
       type: Action.ACTION_FA_CALL,
-      data: { isFaCall: isFaCall}
+      data: { isFaCall: isFaCall }
     }
   }
 
@@ -289,6 +298,7 @@ export class Action {
 
   public static prepareSurface(surfaceId: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_PREPARE_SURFACE,
       data: { surfaceId: surfaceId }
     }
@@ -296,6 +306,7 @@ export class Action {
 
   public static startPreview(zoomRatio?: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_START_PREVIEW,
       data: { zoomRatio: zoomRatio }
     }
@@ -303,6 +314,7 @@ export class Action {
 
   public static reStartPreview(zoomRatio?: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_RESTART_PREVIEW,
       data: { zoomRatio: zoomRatio }
     }
@@ -317,6 +329,7 @@ export class Action {
 
   public static changeXComponentSize(xComponentWidth: number, xComponentHeight: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CHANGE_X_COMPONENT_SIZE,
       data: { xComponentWidth: xComponentWidth, xComponentHeight: xComponentHeight }
     }
@@ -334,6 +347,7 @@ export class Action {
 
   public static capture(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CAPTURE,
       data: {}
     }
@@ -370,6 +384,7 @@ export class Action {
 
   public static updateThumbnail(thumbnailPixelMap, resourceUri): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_UPDATE_THUMBNAIL,
       data: { thumbnail: thumbnailPixelMap, resourceUri: resourceUri }
     }
@@ -377,6 +392,7 @@ export class Action {
 
   public static loadThumbnail(thumbnailPixelMap): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_LOAD_THUMBNAIL,
       data: { thumbnail: thumbnailPixelMap }
     }
@@ -384,6 +400,7 @@ export class Action {
 
   public static reloadThumbnail(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_RELOAD_THUMBNAIL,
       data: {}
     }
@@ -394,6 +411,7 @@ export class Action {
 
   public static startRecording(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_RECORD_START,
       data: {}
     }
@@ -401,6 +419,7 @@ export class Action {
 
   public static pauseRecording(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_RECORD_PAUSE,
       data: {}
     }
@@ -408,6 +427,7 @@ export class Action {
 
   public static resumeRecording(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_RECORD_RESUME,
       data: {}
     }
@@ -415,6 +435,7 @@ export class Action {
 
   public static stopRecording(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_RECORD_STOP,
       data: {}
     }
@@ -422,6 +443,7 @@ export class Action {
 
   public static recordDone(thumbnail): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_RECORD_STOP,
       data: { thumbnail: thumbnail }
     }
@@ -429,6 +451,7 @@ export class Action {
 
   public static recordError(): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_RECORD_ERROR,
       data: {}
     }
@@ -481,6 +504,7 @@ export class Action {
 
   public static changeImageSize(imageSize): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CHANGE_IMAGE_SIZE,
       data: { imageSize: imageSize }
     }
@@ -488,6 +512,7 @@ export class Action {
 
   public static changeVideoSize(videoSize): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CHANGE_VIDEO_SIZE,
       data: { videoSize: videoSize }
     }
@@ -495,6 +520,7 @@ export class Action {
 
   public static changeZoomRatio(zoomRatio: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_CHANGE_ZOOM_RATIO,
       data: { zoomRatio: zoomRatio }
     }
@@ -503,14 +529,14 @@ export class Action {
   public static changeTimeLapse(isShowtimeLapse: boolean): ActionData {
     return {
       type: Action.ACTION_CHANGE_TIME_LAPSE,
-      data: { isShowtimeLapse: isShowtimeLapse}
+      data: { isShowtimeLapse: isShowtimeLapse }
     }
   }
 
   public static swipeModeChangeDone(modeChangeDone: boolean): ActionData {
     return {
       type: Action.ACTION_SWIPE_MODE_DONE,
-      data: { modeChangeDone: modeChangeDone}
+      data: { modeChangeDone: modeChangeDone }
     }
   }
 
@@ -662,6 +688,7 @@ export class Action {
 
   public static initPhotoDetailsOffsetX(offsetX: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_INIT_PHOTO_DETAILS_OFFSET_X,
       data: { photoDetailsOffsetXInit: offsetX }
     }
@@ -669,6 +696,7 @@ export class Action {
 
   public static updatePhotoDetailsOffsetX(offsetX: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_UPDATE_PHOTO_DETAILS_OFFSET_X,
       data: { photoDetailsOffsetX: offsetX }
     }
@@ -676,6 +704,7 @@ export class Action {
 
   public static updateCaptureBtnScale(scale: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_UPDATE_CAPTURE_BTN_SCALE,
       data: { captureBtnScale: scale }
     }
@@ -732,6 +761,7 @@ export class Action {
 
   public static swipeChangeMode(swipeModeIndex: number): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_SWIPE_MODE,
       data: { swipeModeIndex: swipeModeIndex }
     }

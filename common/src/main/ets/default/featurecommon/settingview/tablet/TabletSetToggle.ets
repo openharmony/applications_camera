@@ -16,11 +16,19 @@
 import { Log } from '../../../utils/Log'
 import { SettingManager } from '../../../setting/SettingManager'
 import { SettingData, SettingGroupItem } from '../model/SettingData'
-import { OhCombinedState } from '../../../redux/store'
+import { Dispatch, OhCombinedState } from '../../../redux/store'
 import { getStore } from '../../../redux/store';
 
 class StateStruct {
   mode: string = ''
+}
+
+class SetToggleDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
 }
 
 @Component
@@ -34,17 +42,17 @@ export struct TabletSetToggle {
   private settingManager = SettingManager.getInstance()
   @State generalStatusValue: boolean = false
   @State state: StateStruct = new StateStruct()
+  private mAction: SetToggleDispatcher = new SetToggleDispatcher();
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
         mode: state.ModeReducer.mode
-      }
-    }, (dispatch) => {
-      return {
-      }
-    })(this.state)
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     try {
       if (this.settingManager.getSettingValue(this.itemValue.settingAlias) === "1") {

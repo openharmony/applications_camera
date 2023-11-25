@@ -15,27 +15,26 @@
 
 import router from '@system.router';
 import display from '@ohos.display';
-import deviceInfo from '@ohos.deviceInfo'
-import { Action, UiStateMode } from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { AssistiveGridView } from '@ohos/common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
-import { BigText } from '@ohos/common/src/main/ets/default/featurecommon/bigtext/BigText'
-import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/default/utils/Constants'
-import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId'
-import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
-import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
-import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
-import { ShowFlashBlack } from '@ohos/common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
-import { TimeLapseView } from '@ohos/common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
-import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomText'
-import { BigVideoTimer } from './BigVideoTimer'
-import { SmallVideoTimer } from './SmallVideoTimer'
+import deviceInfo from '@ohos.deviceInfo';
+import { Action, UiStateMode } from '@ohos/common/src/main/ets/default/redux/actions/Action';
+import { AssistiveGridView } from '@ohos/common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView';
+import { BigText } from '@ohos/common/src/main/ets/default/featurecommon/bigtext/BigText';
+import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/default/utils/Constants';
+import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation';
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager';
+import { ShowFlashBlack } from '@ohos/common/src/main/ets/default/featurecommon/animate/ShowFlashBlack';
+import { TimeLapseView } from '@ohos/common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView';
+import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomText';
+import { BigVideoTimer } from './BigVideoTimer';
+import { SmallVideoTimer } from './SmallVideoTimer';
 import promptAction from '@ohos.promptAction';
 import wantConstant from '@ohos.ability.wantConstant';
-import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store';
 import { CameraPlatformCapability } from '@ohos/common/src/main/ets/default/camera/CameraPlatformCapability';
 import { BusinessError } from '@ohos.base';
 import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
@@ -328,7 +327,8 @@ export struct PreviewArea {
     }
     this.mAction.updateCameraPosition(this.state.cameraPosition);
     this.mAction.updateMode(this.state.mode);
-    if (GlobalContext.get().getT<boolean>('keepCameraZoomRatio') && GlobalContext.get().getT<boolean>('keepCameraZoomRatio')) {
+    if (GlobalContext.get().getT<boolean>('keepCameraZoomRatio') && GlobalContext.get()
+      .getT<boolean>('keepCameraZoomRatio')) {
       GlobalContext.get().setObject('keepCameraZoomRatio', false)
     } else {
       this.mAction.changeZoomRatio(1);
@@ -398,12 +398,11 @@ export struct PreviewArea {
         rotateAngle: 0,
         rotateAngleSec: 0,
         switchBackgroundOpacity: 1,
-
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
     });
-
+    this.state.platformCapability;
     this.appEventBus.on(Action.ACTION_INIT_DONE, (data: CameraInitStruct) => this.onCameraInit(data));
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, (data: ModeStruct) => this.onModeChanged(data));
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, (data: KeepScreenOnStruct) => this.onKeepScreen(data));
@@ -510,7 +509,8 @@ export struct PreviewArea {
     if (this.canInit() && GlobalContext.get().getT<string>('cameraNeedStatus') == CameraNeedStatus.CAMERA_NEED_INIT) {
       this.onForegroundInit();
     }
-    if (this.canRelease() && GlobalContext.get().getT<string>('cameraNeedStatus') == CameraNeedStatus.CAMERA_NEED_RELEASE) {
+    if (this.canRelease() && GlobalContext.get()
+      .getT<string>('cameraNeedStatus') == CameraNeedStatus.CAMERA_NEED_RELEASE) {
       this.releaseCamera();
     }
     Log.info(`${this.TAG} updateCameraStatus X`);
@@ -519,13 +519,13 @@ export struct PreviewArea {
   private canInit(): boolean {
     //相机状态是首次加载或者session释放完成状态，才能进行初始化操作
     return GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_BEFORE_VALUE ||
-    GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_RELEASE_FINISHED;
+      GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_RELEASE_FINISHED;
   }
 
   private canRelease(): boolean {
     //相机状态是预览完成状态或录像完成状态才能进行释放操作
     return GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_PREVIEW_FINISHED ||
-    GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED;
+      GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED;
   }
 
   onBackPress(): void {
@@ -598,11 +598,15 @@ export struct PreviewArea {
   private onKeepScreen(data: KeepScreenOnStruct): void {
     Log.info(`${this.TAG} onKeepScreen E`);
     if (data) {
-      GlobalContext.get().getCameraWinClass().setKeepScreenOn(data.isKeepScreenOn).then(() => {
-        Log.info('Succeeded in setting the screen to be always on');
-      }).catch((err: BusinessError) => {
-        Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
-      });
+      GlobalContext.get()
+        .getCameraWinClass()
+        .setKeepScreenOn(data.isKeepScreenOn)
+        .then(() => {
+          Log.info('Succeeded in setting the screen to be always on');
+        })
+        .catch((err: BusinessError) => {
+          Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+        });
     }
     Log.info(`${this.TAG} onKeepScreen X`);
   }
@@ -724,36 +728,36 @@ export struct PreviewArea {
     .margin({ top: 0 })
     .backgroundColor('#000')
     .gesture(
-    GestureGroup(
-    GestureMode.Exclusive,
-    TapGesture({ fingers: 1, count: 1 })
-      .onAction(() => this.onPreviewClicked()),
-    PinchGesture({ fingers: 2, distance: 1 })
-      .onActionStart((event) => {
-        if (event === undefined) return;
-        this.pinchGestureStart(event)
-      })
-      .onActionUpdate((event) => {
-        if (event === undefined) return;
-        this.pinchGestureUpdate(event)
-      })
-      .onActionEnd((event) => {
-        if (event === undefined) return;
-        this.pinchGestureEnd(event)
-      }),
-    PanGesture({ fingers: 1, direction: PanDirection.Left, distance: 10 })
-      .onActionEnd(() => {
-        if (!this.state.isThirdPartyCall && !GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
-          this.swipeChangeMode(1);
-        }
-      }),
-    PanGesture({ fingers: 1, direction: PanDirection.Right, distance: 10 })
-      .onActionEnd(() => {
-        if (!this.state.isThirdPartyCall && !GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
-          this.swipeChangeMode(-1);
-        }
-      })
-    )
+      GestureGroup(
+        GestureMode.Exclusive,
+        TapGesture({ fingers: 1, count: 1 })
+          .onAction(() => this.onPreviewClicked()),
+        PinchGesture({ fingers: 2, distance: 1 })
+          .onActionStart((event) => {
+            if (event === undefined) return;
+            this.pinchGestureStart(event)
+          })
+          .onActionUpdate((event) => {
+            if (event === undefined) return;
+            this.pinchGestureUpdate(event)
+          })
+          .onActionEnd((event) => {
+            if (event === undefined) return;
+            this.pinchGestureEnd(event)
+          }),
+        PanGesture({ fingers: 1, direction: PanDirection.Left, distance: 10 })
+          .onActionEnd(() => {
+            if (!this.state.isThirdPartyCall && !GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
+              this.swipeChangeMode(1);
+            }
+          }),
+        PanGesture({ fingers: 1, direction: PanDirection.Right, distance: 10 })
+          .onActionEnd(() => {
+            if (!this.state.isThirdPartyCall && !GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
+              this.swipeChangeMode(-1);
+            }
+          })
+      )
     )
   }
 }

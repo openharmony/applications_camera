@@ -29,7 +29,7 @@ const initState: ModeChangeState = {
   tabItem: ['', 'flash', 'zoom', 'focus', 'setup']
 }
 
-export default function ModeChangeReducer(state = initState, action: ActionData): ModeChangeState {
+export function ModeChangeReducer(state = initState, action: ActionData): ModeChangeState {
   switch (action.type) {
     case ACTION_CHANGE_PREVIEW_SIZE:
       return {

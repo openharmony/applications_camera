@@ -15,9 +15,8 @@
 import deviceInfo from '@ohos.deviceInfo';
 import { Action } from '../../redux/actions/Action';
 import { Log } from '../../utils/Log';
-import { OhCombinedState } from '../../redux/store';
+import { Dispatch, OhCombinedState } from '../../redux/store';
 import { getStore } from '../../redux/store';
-import { Dispatch } from '../../redux/core/redux/types/store';
 
 class MoreListInfo {
   itemIcon: Resource = $r("app.media.photo");

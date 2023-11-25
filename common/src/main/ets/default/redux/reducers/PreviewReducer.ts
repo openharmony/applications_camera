@@ -32,7 +32,7 @@ const initState: PreviewState = {
   isShowFlashBlack: false,
 }
 
-export default function PreviewReducer(state = initState, action: ActionData): PreviewState {
+export function PreviewReducer(state = initState, action: ActionData): PreviewState {
   switch (action.type) {
   case Action.ACTION_UPDATE_SURFACE_ID:
     return { ...state, surfaceId: action.data.surfaceId }

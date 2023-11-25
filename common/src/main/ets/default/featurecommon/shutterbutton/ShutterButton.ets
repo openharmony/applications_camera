@@ -13,19 +13,17 @@
  * limitations under the License.
  */
 
-import router from '@system.router'
-import image from '@ohos.multimedia.image'
-import { Log } from '../../utils/Log'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Action } from '../../redux/actions/Action'
-import { EventBus } from '../../worker/eventbus/EventBus'
-import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-import { SettingManager } from '../../setting/SettingManager'
-import Timer from '../../setting/settingitem/Timer'
-import { Dispatch } from '../../redux/core/redux/types/store'
-import { GlobalContext } from '../../utils/GlobalContext'
-import Want from '@ohos.app.ability.Want'
+import router from '@system.router';
+import image from '@ohos.multimedia.image';
+import { Log } from '../../utils/Log';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Action } from '../../redux/actions/Action';
+import { EventBus } from '../../worker/eventbus/EventBus';
+import { EventBusManager } from '../../worker/eventbus/EventBusManager';
+import { SettingManager } from '../../setting/SettingManager';
+import Timer from '../../setting/settingitem/Timer';
+import { GlobalContext } from '../../utils/GlobalContext';
 
 class StateStruct {
   uiEnable: boolean = true;

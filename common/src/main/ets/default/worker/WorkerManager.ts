@@ -19,6 +19,9 @@ import { ActionHandler } from './ActionHandler';
 import { Log } from '../utils/Log';
 import type { EventBus } from './eventbus/EventBus';
 import { EventBusManager } from './eventbus/EventBusManager';
+import { Message } from './AsyncManager';
+import { ActionData } from '../redux/actions/Action';
+import { getStore } from '../redux/store';
 
 const TAG = '[WorkerManager]:';
 
@@ -27,8 +30,9 @@ export class WorkerManager {
   private actionHandler: ActionHandler = new ActionHandler();
   private _appEventBus: EventBus = EventBusManager.getCameraInstance().getEventBus();
 
-  public onMessage(action: any): void {
-    this.actionHandler.handleAction(action);
+  public onMessage(action: ActionData): void {
+    // this.actionHandler.handleAction(action);
+    getStore().dispatch(action)
   }
 
   //todo 预留实现，待能力稳定后开放
@@ -39,8 +43,9 @@ export class WorkerManager {
   //  }
 
   // worker线程中通过该方法向UI线程发送消息，消息中包含type和data
-  public postMessage(msg: any): void {
+  public postMessage(msg: ActionData): void {
     Log.info(`${TAG} postMessage: ${JSON.stringify(msg)}`);
-    this._appEventBus.emit('WORKER_TO_MAIN', [msg]);
+    // this._appEventBus.emit('WORKER_TO_MAIN', [msg]);
+    this.onMessage(msg);
   }
 }
