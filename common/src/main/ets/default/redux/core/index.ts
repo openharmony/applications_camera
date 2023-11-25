@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+export type { Enhancer, Middleware } from './applyMiddleware'
 
-import createStore from './createStore'
+export { applyMiddleware } from './applyMiddleware'
 
-export { combineReducers, applyMiddleware } from '../redux/index'
+export type { Reducer } from './combineReducers'
 
-export {
-  createStore
-}
+export { combineReducers } from './combineReducers'

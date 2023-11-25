@@ -35,7 +35,7 @@ const initState: CameraState = {
   shutterIcon: $r('app.media.ic_circled_filled')
 }
 
-export default function CameraReducer(state = initState, action: ActionData): CameraState {
+export function CameraReducer(state = initState, action: ActionData): CameraState {
   switch (action.type) {
     case Action.ACTION_SET_CAMERA_POSITION:
       return { ...state, cameraPosition: action.data.cameraPosition }

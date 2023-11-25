@@ -13,18 +13,17 @@
  * limitations under the License.
  */
 
-import deviceInfo from '@ohos.deviceInfo'
-import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { CameraSwitchButton } from '@ohos/common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton'
-import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
-import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import { ShutterButton } from '@ohos/common/src/main/ets/default/featurecommon/shutterbutton/ShutterButton'
-import { ThumbnailView } from '@ohos/common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView'
-import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store'
-import { CameraPlatformCapability } from '@ohos/common/src/main/ets/default/camera/CameraPlatformCapability'
+import deviceInfo from '@ohos.deviceInfo';
+import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
+import { CameraSwitchButton } from '@ohos/common/src/main/ets/default/featurecommon/cameraswitcher/CameraSwitchButton';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { ShutterButton } from '@ohos/common/src/main/ets/default/featurecommon/shutterbutton/ShutterButton';
+import { ThumbnailView } from '@ohos/common/src/main/ets/default/featurecommon/thumbnail/ThumbnailView';
+import { CameraPlatformCapability } from '@ohos/common/src/main/ets/default/camera/CameraPlatformCapability';
 
 class StateStruct {
   platformCapability: CameraPlatformCapability | undefined = undefined;

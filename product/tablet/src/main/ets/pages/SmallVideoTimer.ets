@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 
-import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
-import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store'
-import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext'
+import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { Dispatch, getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 class StateStruct {
   recordingTime: number = 0;

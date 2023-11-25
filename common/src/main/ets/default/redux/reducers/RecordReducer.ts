@@ -44,7 +44,7 @@ const initState: RecordState = {
   recordingTimeDisplay: '00:00'
 }
 
-export default function RecordReducer(state = initState, action: ActionData): RecordState {
+export function RecordReducer(state = initState, action: ActionData): RecordState {
   switch (action.type) {
   case Action.ACTION_START_VIDEO_FLAG:
     return { ...state, isStartVideo: action.data.isStartVideo }

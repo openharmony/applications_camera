@@ -13,18 +13,17 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display'
-import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
-import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import display from '@ohos.display';
+import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import {
   PersistType,
   PreferencesService
-} from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
-import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store'
+} from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService';
 
 class StateStruct {
   isThirdPartyCall: boolean = false;

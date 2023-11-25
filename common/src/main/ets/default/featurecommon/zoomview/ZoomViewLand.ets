@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Action } from '../../redux/actions/Action'
-import { EventBus } from '../../worker/eventbus/EventBus'
-import { Dispatch } from '../../redux/core/redux/types/store';
-import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-import { CameraId } from '../../setting/settingitem/CameraId'
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Action } from '../../redux/actions/Action';
+import { EventBus } from '../../worker/eventbus/EventBus';
+import { EventBusManager } from '../../worker/eventbus/EventBusManager';
+import { CameraId } from '../../setting/settingitem/CameraId';
 
 let SHOW_FOLD_CANVAS: number = 0
 let SHOW_NOT_TAKE_VIDEO_CANVAS: number = 1
