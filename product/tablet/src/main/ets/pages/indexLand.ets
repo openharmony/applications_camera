@@ -20,7 +20,7 @@ import { ComponentPosition } from '@ohos/common/src/main/ets/default/utils/Compo
 import { Constants } from '@ohos/common/src/main/ets/default/utils/Constants';
 import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
-import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/moreList';
@@ -68,19 +68,71 @@ class StateStruct {
   isShowPageView: boolean = false;
   isInitiated: boolean = false;
   initShowFlag: boolean = false;
-  initFootBarHeight: Function = DEFAULT_FUNCTION;
-  setPermissionFlag: Function = DEFAULT_FUNCTION;
-  initAction: Function = DEFAULT_FUNCTION;
-  initCameraPosition: Function = DEFAULT_FUNCTION;
-  initMode: Function = DEFAULT_FUNCTION;
-  changeTimeLapse: Function = DEFAULT_FUNCTION;
-  stopRecording: Function = DEFAULT_FUNCTION;
-  resetRecordingTime: Function = DEFAULT_FUNCTION;
-  resetZoomRatio: Function = DEFAULT_FUNCTION;
-  hideSettingView: Function = DEFAULT_FUNCTION;
-  updateModeIndex: Function = DEFAULT_FUNCTION;
-  faCall: Function = DEFAULT_FUNCTION;
-  thirdPartyCall: Function = DEFAULT_FUNCTION;
+}
+
+class IndexDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public setPermissionFlag(permissionFlag: boolean): void {
+    Log.info(`CameraApp setPermissionFlag: ${permissionFlag}`);
+    this.mDispatch(Action.setPermissionFlag(permissionFlag));
+  }
+
+  public initAction(action: string): void {
+    this.mDispatch(Action.initAction(action));
+  }
+
+  public initCameraPosition(cameraPosition: string): void {
+    this.mDispatch(Action.setCameraPosition(cameraPosition));
+  }
+
+  public initMode(mode: string): void {
+    this.mDispatch(Action.initMode(mode));
+  }
+
+  public changeTimeLapse(isShowtimeLapse: boolean): void {
+    this.mDispatch(Action.changeTimeLapse(isShowtimeLapse));
+  }
+
+  public stopRecording(): void {
+    this.mDispatch(Action.stopRecording());
+    this.mDispatch(Action.updateVideoState('beforeTakeVideo'));
+    this.mDispatch(Action.updateBigVideoTimerVisible(false));
+    this.mDispatch(Action.updateSmallVideoTimerVisible(false));
+  }
+
+  public resetRecordingTime(): void {
+    this.mDispatch(Action.updateRecordingTime(0));
+    this.mDispatch(Action.updateRecordingTimeDisplay('00:00'));
+  }
+
+  public hideSettingView(): void {
+    this.mDispatch(Action.showSettingView(false));
+  }
+
+  public updateModeIndex(index: number): void {
+    this.mDispatch(Action.updateModeIndex(index));
+  }
+
+  public faCall(isFaCall: boolean): void {
+    this.mDispatch(Action.faCall(isFaCall));
+  }
+
+  public updateInitShowFlag(initShowFlag: boolean): void {
+    this.mDispatch(Action.updateInitShowFlag(initShowFlag))
+  }
+
+  public thirdPartyCall(isThirdPartyCall: boolean, action: string): void {
+    this.mDispatch(Action.thirdPartyCall(isThirdPartyCall, action));
+  }
+
+  public resetZoomRatio(): void {
+    this.mDispatch(Action.changeZoomRatio(1));
+  }
 }
 
 interface ScreenSizeType {
@@ -97,78 +149,35 @@ struct Index {
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance();
   private TAG: string = '[IndexLand]:';
   private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'];
+  private mAction: IndexDispatcher = new IndexDispatcher();
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`);
     let dbStore = RdbStoreManager.getInstance();
     dbStore.initRdbConfig();
-    getStore().connect((state: OhCombinedState) => {
-      return {
-        permissionFlag: state.ContextReducer.permissionFlag,
-        mode: state.ModeReducer.mode,
-        curMode: state.ModeReducer.curMode,
-        isBigVideoTimerVisible: state.RecordReducer.isBigVideoTimerVisible,
-        isSmallVideoTimerVisible: state.RecordReducer.isSmallVideoTimerVisible,
-        videoState: state.RecordReducer.videoState,
-        isShowtimeLapse: state.SettingReducer.isShowtimeLapse,
-        isShowMoreList: state.ModeReducer.isShowMoreList,
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-        cameraPosition: state.CameraReducer.cameraPosition,
-        isShowPinch: state.ZoomReducer.isShowPinch,
-        xComponentWidth: state.PreviewReducer.xComponentWidth,
-        xComponentHeight: state.PreviewReducer.xComponentHeight,
-        isShowPageView: state.SettingReducer.isShowSettingView,
-        isInitiated: state.ModeReducer.isInitiated,
-        initShowFlag: state.ContextReducer.initShowFlag
-      }
-    }, (dispatch) => {
-      return {
-        setPermissionFlag: (permissionFlag: boolean): void => {
-          dispatch(Action.setPermissionFlag(permissionFlag));
-        },
-        initAction: (action: string): void => {
-          dispatch(Action.initAction(action));
-        },
-        initCameraPosition: (cameraPosition: string): void => {
-          dispatch(Action.setCameraPosition(cameraPosition));
-        },
-        initMode: (mode: string): void => {
-          dispatch(Action.initMode(mode));
-        },
-        changeTimeLapse: (isShowtimeLapse: boolean): void => {
-          dispatch(Action.changeTimeLapse(isShowtimeLapse));
-        },
-        stopRecording: (): void => {
-          dispatch(Action.stopRecording());
-          dispatch(Action.updateVideoState('beforeTakeVideo'));
-          dispatch(Action.updateBigVideoTimerVisible(false));
-          dispatch(Action.updateSmallVideoTimerVisible(false));
-        },
-        resetRecordingTime: (): void => {
-          dispatch(Action.updateRecordingTime(0));
-          dispatch(Action.updateRecordingTimeDisplay('00:00'));
-        },
-        hideSettingView: (): void => {
-          dispatch(Action.showSettingView(false));
-        },
-        updateModeIndex: (index: number): void => {
-          dispatch(Action.updateModeIndex(index));
-        },
-        faCall: (isFaCall: boolean): void => {
-          dispatch(Action.faCall(isFaCall));
-        },
-        updateInitShowFlag: (initShowFlag: boolean): void => {
-          dispatch(Action.updateInitShowFlag(initShowFlag));
-        },
-        thirdPartyCall: (isThirdPartyCall: boolean, action: string): void => {
-          dispatch(Action.thirdPartyCall(isThirdPartyCall, action));
-        },
-        resetZoomRatio: (): void => {
-          dispatch(Action.changeZoomRatio(1));
-        }
-      }
-    })(this.state)
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
+        permissionFlag: state.contextReducer.permissionFlag,
+        mode: state.modeReducer.mode,
+        curMode: state.modeReducer.curMode,
+        isBigVideoTimerVisible: state.recordReducer.isBigVideoTimerVisible,
+        isSmallVideoTimerVisible: state.recordReducer.isSmallVideoTimerVisible,
+        videoState: state.recordReducer.videoState,
+        isShowtimeLapse: state.settingReducer.isShowtimeLapse,
+        isShowMoreList: state.modeReducer.isShowMoreList,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        showZoomLabelValue: state.zoomReducer.showZoomLabelValue,
+        cameraPosition: state.cameraReducer.cameraPosition,
+        isShowPinch: state.zoomReducer.isShowPinch,
+        xComponentWidth: state.previewReducer.xComponentWidth,
+        xComponentHeight: state.previewReducer.xComponentHeight,
+        isShowPageView: state.settingReducer.isShowSettingView,
+        isInitiated: state.modeReducer.isInitiated,
+        initShowFlag: state.contextReducer.initShowFlag
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    })
 
     mScreenLockManager.init();
 
@@ -197,10 +206,10 @@ struct Index {
             }
             if (sum >= 0) {
               GlobalContext.get().setObject('permissionFlag', true);
-              this.state.setPermissionFlag(true);
+              this.mAction.setPermissionFlag(true);
             } else {
               GlobalContext.get().setObject('permissionFlag', false);
-              this.state.setPermissionFlag(false);
+              this.mAction.setPermissionFlag(false);
             }
             Log.info(`${this.TAG} request permissions result: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
           }, (err: BusinessError) => {
@@ -212,8 +221,8 @@ struct Index {
     }
 
     if (GlobalContext.get().getCameraFormParam() != undefined) {
-      this.state.initAction(GlobalContext.get().getCameraFormParam().action);
-      this.state.initMode(GlobalContext.get().getCameraFormParam().mode);
+      this.mAction.initAction(GlobalContext.get().getCameraFormParam().action);
+      this.mAction.initMode(GlobalContext.get().getCameraFormParam().mode);
       GlobalContext.get().setCameraFormParam(undefined);
     }
 
@@ -222,7 +231,7 @@ struct Index {
     })
 
     GlobalContext.get().setObject('resetZoomRatio', () => {
-      this.state.resetZoomRatio();
+      this.mAction.resetZoomRatio();
     })
 
     if (AppStorage.Has(Constants.APP_KEY_WINDOW_SIZE)) {
@@ -240,8 +249,8 @@ struct Index {
     if (!this.state.isInitiated) {
       let initIndex = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 1);
       Log.info(`${this.TAG} initModeIndex: ${initIndex}`);
-      this.state.initMode(this.modeArray[initIndex]);
-      this.state.updateModeIndex(initIndex);
+      this.mAction.initMode(this.modeArray[initIndex]);
+      this.mAction.updateModeIndex(initIndex);
     }
 
     Log.info(`${this.TAG} aboutToAppear X`);
@@ -250,28 +259,28 @@ struct Index {
   onPageShow(): void {
     Log.info(`${this.TAG} onPageShow E this.permissionFlag: ${this.state.permissionFlag}
     globalThis.permissionFlag: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
-    this.state.setPermissionFlag(GlobalContext.get().getT<boolean>('permissionFlag'));
+    this.mAction.setPermissionFlag(GlobalContext.get().getT<boolean>('permissionFlag'));
     let cameraId = AppStorage.Get<string>('storageCameraId');
-    if (cameraId) this.state.initCameraPosition(cameraId);
+    if (cameraId) this.mAction.initCameraPosition(cameraId);
     Log.info(`${this.TAG} initCameraPosition ${cameraId}`);
-    this.state.resetRecordingTime();
+    this.mAction.resetRecordingTime();
     Log.info(`${this.TAG} onPageShow X`);
   }
 
   onBackPress(): boolean {
     Log.info(`${this.TAG} onBackPress E`);
     if (this.state.isShowPageView) {
-      this.state.hideSettingView();
+      this.mAction.hideSettingView();
       return true;
     } else if (this.state.isShowtimeLapse) {
-      this.state.changeTimeLapse(false);
+      this.mAction.changeTimeLapse(false);
       return true;
     } else if (this.state.isThirdPartyCall) {
       this.terminateSelfWithResult();
       return true;
     } else {
       if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
-        this.state.stopRecording();
+        this.mAction.stopRecording();
         return true;
       }
       Log.info(`${this.TAG} onBackPress X`);
@@ -288,10 +297,10 @@ struct Index {
   public stopCameraRecording(): void {
     Log.info(`${this.TAG} stopCameraRecording E`);
     if (this.state.isShowtimeLapse) {
-      this.state.changeTimeLapse(false);
+      this.mAction.changeTimeLapse(false);
     }
     if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
-      this.state.stopRecording();
+      this.mAction.stopRecording();
     }
     Log.info(`${this.TAG} stopCameraRecording X`);
   }

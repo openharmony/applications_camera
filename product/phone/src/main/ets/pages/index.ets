@@ -20,7 +20,7 @@ import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
 import { CameraWorker } from '@ohos/common/src/main/ets/default/worker/CameraWorker';
 import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
-import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/moreList';
@@ -36,7 +36,6 @@ import { FootBar } from './FootBar';
 import { PreviewArea } from './PreviewArea';
 import { SettingView } from './SettingView';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store';
 import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId';
 import { BusinessError } from '@ohos.base';
 import ability from '@ohos.ability.ability';
@@ -140,19 +139,19 @@ struct Index {
     dbStore.initRdbConfig();
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        footBarHeight: state.ContextReducer.footBarHeight,
-        permissionFlag: state.ContextReducer.permissionFlag,
-        mode: state.ModeReducer.mode,
-        curMode: state.ModeReducer.curMode,
-        isShowtimeLapse: state.SettingReducer.isShowtimeLapse,
-        videoState: state.RecordReducer.videoState,
-        isShowMoreList: state.ModeReducer.isShowMoreList,
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-        isShowPinch: state.ZoomReducer.isShowPinch,
-        isShowPageView: state.SettingReducer.isShowSettingView,
-        isInitiated: state.ModeReducer.isInitiated,
-        curCameraPosition: state.CameraReducer.curCameraPosition,
+        footBarHeight: state.contextReducer.footBarHeight,
+        permissionFlag: state.contextReducer.permissionFlag,
+        mode: state.modeReducer.mode,
+        curMode: state.modeReducer.curMode,
+        isShowtimeLapse: state.settingReducer.isShowtimeLapse,
+        videoState: state.recordReducer.videoState,
+        isShowMoreList: state.modeReducer.isShowMoreList,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        showZoomLabelValue: state.zoomReducer.showZoomLabelValue,
+        isShowPinch: state.zoomReducer.isShowPinch,
+        isShowPageView: state.settingReducer.isShowSettingView,
+        isInitiated: state.modeReducer.isInitiated,
+        curCameraPosition: state.cameraReducer.curCameraPosition,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
