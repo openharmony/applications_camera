@@ -92,11 +92,11 @@ export struct BigVideoTimer {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        recordingTime: state.RecordReducer.recordingTime,
-        recordingTimeDisplay: state.RecordReducer.recordingTimeDisplay,
-        isRecordingPaused: state.RecordReducer.isRecordingPaused,
-        isRecordingSpotVisible: state.RecordReducer.isRecordingSpotVisible,
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+        recordingTime: state.recordReducer.recordingTime,
+        recordingTimeDisplay: state.recordReducer.recordingTimeDisplay,
+        isRecordingPaused: state.recordReducer.isRecordingPaused,
+        isRecordingSpotVisible: state.recordReducer.isRecordingSpotVisible,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

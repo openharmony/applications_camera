@@ -30,16 +30,16 @@ const TAG = '[store]:';
 const INIT_TAG = 'StoreInit';
 
 export type OhCombinedState = {
-  CameraInitReducer: CameraInitState;
-  ContextReducer: ContextState;
-  CameraReducer: CameraState;
-  PreviewReducer: PreviewState;
-  CaptureReducer: CaptureState;
-  RecordReducer: RecordState;
-  ModeChangeReducer: ModeChangeState;
-  ModeReducer: ModeState
-  SettingReducer: SettingState
-  ZoomReducer: ZoomState
+  cameraInitReducer: CameraInitState;
+  contextReducer: ContextState;
+  cameraReducer: CameraState;
+  previewReducer: PreviewState;
+  captureReducer: CaptureState;
+  recordReducer: RecordState;
+  modeChangeReducer: ModeChangeState;
+  modeReducer: ModeState
+  settingReducer: SettingState
+  zoomReducer: ZoomState
 };
 
 function getReducers(): Reducer {

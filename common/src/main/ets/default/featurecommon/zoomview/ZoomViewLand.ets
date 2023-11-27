@@ -112,14 +112,14 @@ export struct ZoomViewLand {
   aboutToAppear(): void {
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode,
-        videoState: state.RecordReducer.videoState,
-        cameraPosition: state.CameraReducer.cameraPosition,
-        zoomRatio: state.ZoomReducer.zoomRatio,
-        isShowZoomText: state.ZoomReducer.isShowZoomText,
-        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-        minZoomRatio: state.ZoomReducer.minZoomRatio,
-        maxZoomRatio: state.ZoomReducer.maxZoomRatio
+        mode: state.modeReducer.mode,
+        videoState: state.recordReducer.videoState,
+        cameraPosition: state.cameraReducer.cameraPosition,
+        zoomRatio: state.zoomReducer.zoomRatio,
+        isShowZoomText: state.zoomReducer.isShowZoomText,
+        showZoomLabelValue: state.zoomReducer.showZoomLabelValue,
+        minZoomRatio: state.zoomReducer.minZoomRatio,
+        maxZoomRatio: state.zoomReducer.maxZoomRatio
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

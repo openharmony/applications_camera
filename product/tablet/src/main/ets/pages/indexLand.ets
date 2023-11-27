@@ -157,23 +157,23 @@ struct Index {
     dbStore.initRdbConfig();
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        permissionFlag: state.ContextReducer.permissionFlag,
-        mode: state.ModeReducer.mode,
-        curMode: state.ModeReducer.curMode,
-        isBigVideoTimerVisible: state.RecordReducer.isBigVideoTimerVisible,
-        isSmallVideoTimerVisible: state.RecordReducer.isSmallVideoTimerVisible,
-        videoState: state.RecordReducer.videoState,
-        isShowtimeLapse: state.SettingReducer.isShowtimeLapse,
-        isShowMoreList: state.ModeReducer.isShowMoreList,
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-        cameraPosition: state.CameraReducer.cameraPosition,
-        isShowPinch: state.ZoomReducer.isShowPinch,
-        xComponentWidth: state.PreviewReducer.xComponentWidth,
-        xComponentHeight: state.PreviewReducer.xComponentHeight,
-        isShowPageView: state.SettingReducer.isShowSettingView,
-        isInitiated: state.ModeReducer.isInitiated,
-        initShowFlag: state.ContextReducer.initShowFlag
+        permissionFlag: state.contextReducer.permissionFlag,
+        mode: state.modeReducer.mode,
+        curMode: state.modeReducer.curMode,
+        isBigVideoTimerVisible: state.recordReducer.isBigVideoTimerVisible,
+        isSmallVideoTimerVisible: state.recordReducer.isSmallVideoTimerVisible,
+        videoState: state.recordReducer.videoState,
+        isShowtimeLapse: state.settingReducer.isShowtimeLapse,
+        isShowMoreList: state.modeReducer.isShowMoreList,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        showZoomLabelValue: state.zoomReducer.showZoomLabelValue,
+        cameraPosition: state.cameraReducer.cameraPosition,
+        isShowPinch: state.zoomReducer.isShowPinch,
+        xComponentWidth: state.previewReducer.xComponentWidth,
+        xComponentHeight: state.previewReducer.xComponentHeight,
+        isShowPageView: state.settingReducer.isShowSettingView,
+        isInitiated: state.modeReducer.isInitiated,
+        initShowFlag: state.contextReducer.initShowFlag
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

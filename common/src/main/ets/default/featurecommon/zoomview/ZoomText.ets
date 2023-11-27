@@ -39,7 +39,7 @@ export struct ZoomText {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        zoomRatio: state.ZoomReducer.zoomRatio,
+        zoomRatio: state.zoomReducer.zoomRatio,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

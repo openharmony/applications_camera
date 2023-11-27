@@ -54,7 +54,7 @@ export struct BigText {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode
+        mode: state.modeReducer.mode
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

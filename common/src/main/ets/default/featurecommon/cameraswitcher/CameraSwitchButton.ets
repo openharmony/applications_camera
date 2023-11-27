@@ -77,10 +77,10 @@ export struct CameraSwitchButton {
     Log.info(`${this.TAG} aboutToAppear E`);
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode,
-        uiEnable: state.ContextReducer.uiEnable,
-        cameraPosition: state.CameraReducer.cameraPosition,
-        videoState: state.RecordReducer.videoState
+        mode: state.modeReducer.mode,
+        uiEnable: state.contextReducer.uiEnable,
+        cameraPosition: state.cameraReducer.cameraPosition,
+        videoState: state.recordReducer.videoState
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
