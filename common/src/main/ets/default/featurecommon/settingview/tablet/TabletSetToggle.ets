@@ -48,7 +48,7 @@ export struct TabletSetToggle {
     Log.info(`${this.TAG} aboutToAppear start`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode
+        mode: state.modeReducer.mode
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

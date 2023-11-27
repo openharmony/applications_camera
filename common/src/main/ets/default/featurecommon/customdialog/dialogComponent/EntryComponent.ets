@@ -49,7 +49,7 @@ export default struct EntryComponent {
     Log.info(`${this.TAG} aboutToAppear calle1d = ${this.settingAlias}`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode
+        mode: state.modeReducer.mode
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

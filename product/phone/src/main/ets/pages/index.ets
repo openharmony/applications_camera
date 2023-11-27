@@ -139,19 +139,19 @@ struct Index {
     dbStore.initRdbConfig();
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        footBarHeight: state.ContextReducer.footBarHeight,
-        permissionFlag: state.ContextReducer.permissionFlag,
-        mode: state.ModeReducer.mode,
-        curMode: state.ModeReducer.curMode,
-        isShowtimeLapse: state.SettingReducer.isShowtimeLapse,
-        videoState: state.RecordReducer.videoState,
-        isShowMoreList: state.ModeReducer.isShowMoreList,
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-        isShowPinch: state.ZoomReducer.isShowPinch,
-        isShowPageView: state.SettingReducer.isShowSettingView,
-        isInitiated: state.ModeReducer.isInitiated,
-        curCameraPosition: state.CameraReducer.curCameraPosition,
+        footBarHeight: state.contextReducer.footBarHeight,
+        permissionFlag: state.contextReducer.permissionFlag,
+        mode: state.modeReducer.mode,
+        curMode: state.modeReducer.curMode,
+        isShowtimeLapse: state.settingReducer.isShowtimeLapse,
+        videoState: state.recordReducer.videoState,
+        isShowMoreList: state.modeReducer.isShowMoreList,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        showZoomLabelValue: state.zoomReducer.showZoomLabelValue,
+        isShowPinch: state.zoomReducer.isShowPinch,
+        isShowPageView: state.settingReducer.isShowSettingView,
+        isInitiated: state.modeReducer.isInitiated,
+        curCameraPosition: state.cameraReducer.curCameraPosition,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

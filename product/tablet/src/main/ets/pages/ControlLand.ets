@@ -108,13 +108,13 @@ export struct ControlLand {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-        isFaCall: state.ContextReducer.isFaCall,
-        action: state.ContextReducer.action,
-        uiEnable: state.ContextReducer.uiEnable,
-        modeIndex: state.ModeReducer.modeIndex,
-        mode: state.ModeReducer.mode,
-        isShowMoreList: state.ModeReducer.isShowMoreList
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        isFaCall: state.contextReducer.isFaCall,
+        action: state.contextReducer.action,
+        uiEnable: state.contextReducer.uiEnable,
+        modeIndex: state.modeReducer.modeIndex,
+        mode: state.modeReducer.mode,
+        isShowMoreList: state.modeReducer.isShowMoreList
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

@@ -83,7 +83,7 @@ export struct TabletSetResolution {
     Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        isCloseFlag:state.SettingReducer.isCloseFlag
+        isCloseFlag:state.settingReducer.isCloseFlag
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

@@ -63,11 +63,11 @@ export struct FootBar {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        platformCapability: state.CameraInitReducer.platformCapability,
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-        videoState: state.RecordReducer.videoState,
-        showZoomLabelValue: state.ZoomReducer.showZoomLabelValue,
-        mode: state.ModeReducer.mode,
+        platformCapability: state.cameraInitReducer.platformCapability,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        videoState: state.recordReducer.videoState,
+        showZoomLabelValue: state.zoomReducer.showZoomLabelValue,
+        mode: state.modeReducer.mode,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

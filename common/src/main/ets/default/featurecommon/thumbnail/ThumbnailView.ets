@@ -100,7 +100,7 @@ export struct ThumbnailView {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        thumbnail: state.CameraInitReducer.thumbnail
+        thumbnail: state.cameraInitReducer.thumbnail
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

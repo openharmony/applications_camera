@@ -66,7 +66,7 @@ export struct MoreList {
     Log.info(`${this.TAG} aboutToAppear start`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        modeIndex: state.ModeReducer.modeIndex,
+        modeIndex: state.modeReducer.modeIndex,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

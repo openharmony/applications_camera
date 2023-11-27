@@ -81,9 +81,9 @@ export struct SettingView {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        isCloseFlag: state.SettingReducer.isCloseFlag,
-        mode: state.ModeReducer.mode,
-        zoomRatio: state.ZoomReducer.zoomRatio
+        isCloseFlag: state.settingReducer.isCloseFlag,
+        mode: state.modeReducer.mode,
+        zoomRatio: state.zoomReducer.zoomRatio
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

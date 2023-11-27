@@ -52,7 +52,7 @@ export default struct EntryComponentForMulti {
   aboutToAppear() {
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        uiEnable: state.ContextReducer.uiEnable
+        uiEnable: state.contextReducer.uiEnable
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

@@ -46,7 +46,7 @@ export struct TabBar {
     Log.info(`${this.TAG} aboutToAppear invoke E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

@@ -49,8 +49,8 @@ export struct AssistiveGridView {
     Log.info(`${this.TAG} aboutToAppear invoke E`);
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        xComponentWidth: state.PreviewReducer.xComponentWidth,
-        xComponentHeight: state.PreviewReducer.xComponentHeight
+        xComponentWidth: state.previewReducer.xComponentWidth,
+        xComponentHeight: state.previewReducer.xComponentHeight
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
