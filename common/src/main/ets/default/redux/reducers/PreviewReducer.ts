@@ -34,17 +34,17 @@ const initState: PreviewState = {
 
 export function previewReducer(state = initState, action: ActionData): PreviewState {
   switch (action.type) {
-  case Action.ACTION_UPDATE_SURFACE_ID:
-    return { ...state, surfaceId: action.data.surfaceId }
-  case Action.ACTION_PREPARE_SURFACE:
-    return { ...state, surfaceId: action.data.surfaceId }
-  case Action.ACTION_CHANGE_X_COMPONENT_SIZE:
-    return { ...state, xComponentWidth: action.data.xComponentWidth, xComponentHeight: action.data.xComponentHeight}
-  case Action.ACTION_UPDATE_SHOW_PREVIEW_FLAG:
-    return { ...state, isShowPreview: action.data.isShowPreview }
-  case Action.ACTION_UPDATE_SHOW_FLASH_BLACK_FLAG:
-    return { ...state, isShowFlashBlack: action.data.isShowFlashBlack }
-  default:
-    return state;
+    case Action.ACTION_UPDATE_SURFACE_ID:
+      return { ...state, surfaceId: action.data.surfaceId };
+    case Action.ACTION_PREPARE_SURFACE:
+      return { ...state, surfaceId: action.data.surfaceId };
+    case Action.ACTION_CHANGE_X_COMPONENT_SIZE:
+      return { ...state, xComponentWidth: action.data.xComponentWidth, xComponentHeight: action.data.xComponentHeight };
+    case Action.ACTION_UPDATE_SHOW_PREVIEW_FLAG:
+      return { ...state, isShowPreview: action.data.isShowPreview };
+    case Action.ACTION_UPDATE_SHOW_FLASH_BLACK_FLAG:
+      return { ...state, isShowFlashBlack: action.data.isShowFlashBlack };
+    default:
+      return state;
   }
 }

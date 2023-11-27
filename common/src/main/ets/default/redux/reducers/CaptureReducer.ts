@@ -34,4 +34,5 @@ export function captureReducer(state = initState, action: ActionData): CaptureSt
       return state;
   }
   return state;
-};
+}
+;

@@ -30,7 +30,7 @@ export class WorkerManager {
   private _appEventBus: EventBus = EventBusManager.getCameraInstance().getEventBus();
 
   public onMessage(action: ActionData): void {
-    getStore().dispatch(action)
+    getStore().dispatch(action);
   }
 
   //todo 预留实现，待能力稳定后开放

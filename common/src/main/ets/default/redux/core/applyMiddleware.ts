@@ -44,8 +44,6 @@ function compose(functions: Function[]): Function {
   }
 
   return functions.reduce(
-    (a, b): Function =>
-    (...args): void =>
-    a(b(...args))
+    (a, b): Function => (...args): void => a(b(...args))
   );
 }
