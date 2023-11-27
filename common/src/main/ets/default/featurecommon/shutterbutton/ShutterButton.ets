@@ -13,19 +13,17 @@
  * limitations under the License.
  */
 
-import router from '@system.router'
-import image from '@ohos.multimedia.image'
-import { Log } from '../../utils/Log'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Action } from '../../redux/actions/Action'
-import { EventBus } from '../../worker/eventbus/EventBus'
-import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-import { SettingManager } from '../../setting/SettingManager'
-import Timer from '../../setting/settingitem/Timer'
-import { Dispatch } from '../../redux/core/redux/types/store'
-import { GlobalContext } from '../../utils/GlobalContext'
-import Want from '@ohos.app.ability.Want'
+import router from '@system.router';
+import image from '@ohos.multimedia.image';
+import { Log } from '../../utils/Log';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Action } from '../../redux/actions/Action';
+import { EventBus } from '../../worker/eventbus/EventBus';
+import { EventBusManager } from '../../worker/eventbus/EventBusManager';
+import { SettingManager } from '../../setting/SettingManager';
+import Timer from '../../setting/settingitem/Timer';
+import { GlobalContext } from '../../utils/GlobalContext';
 
 class StateStruct {
   uiEnable: boolean = true;
@@ -116,17 +114,17 @@ export struct ShutterButton {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        uiEnable: state.ContextReducer.uiEnable,
-        shutterIcon: state.CameraReducer.shutterIcon,
-        captureBtnScale: state.CaptureReducer.captureBtnScale,
-        videoState: state.RecordReducer.videoState,
-        mode: state.ModeReducer.mode,
-        resourceUri: state.CameraInitReducer.resourceUri,
-        videoUri: state.CameraInitReducer.videoUri,
-        thumbnail: state.CameraInitReducer.thumbnail,
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-        xComponentWidth: state.PreviewReducer.xComponentWidth,
-        xComponentHeight: state.PreviewReducer.xComponentHeight
+        uiEnable: state.contextReducer.uiEnable,
+        shutterIcon: state.cameraReducer.shutterIcon,
+        captureBtnScale: state.captureReducer.captureBtnScale,
+        videoState: state.recordReducer.videoState,
+        mode: state.modeReducer.mode,
+        resourceUri: state.cameraInitReducer.resourceUri,
+        videoUri: state.cameraInitReducer.videoUri,
+        thumbnail: state.cameraInitReducer.thumbnail,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        xComponentWidth: state.previewReducer.xComponentWidth,
+        xComponentHeight: state.previewReducer.xComponentHeight
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

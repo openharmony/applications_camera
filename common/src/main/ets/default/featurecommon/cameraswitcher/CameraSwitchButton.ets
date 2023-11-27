@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 
-import { Action } from '../../redux/actions/Action'
-import { CameraSwitchController } from './CameraSwitchController'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Log } from '../../utils/Log'
-import MultiCameraDialog from '../customdialog/MultiCameraDialog'
-import deviceInfo from '@ohos.deviceInfo'
-import { Dispatch } from '../../redux/core/redux/types/store'
-import { GlobalContext } from '../../utils/GlobalContext'
-import { CameraId } from '../../setting/settingitem/CameraId'
+import { Action } from '../../redux/actions/Action';
+import { CameraSwitchController } from './CameraSwitchController';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Log } from '../../utils/Log';
+import MultiCameraDialog from '../customdialog/MultiCameraDialog';
+import deviceInfo from '@ohos.deviceInfo';
+import { GlobalContext } from '../../utils/GlobalContext';
+import { CameraId } from '../../setting/settingitem/CameraId';
 
 let storageCameraId: string = AppStorage.Link('storageCameraId') as string;
 
@@ -78,10 +77,10 @@ export struct CameraSwitchButton {
     Log.info(`${this.TAG} aboutToAppear E`);
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode,
-        uiEnable: state.ContextReducer.uiEnable,
-        cameraPosition: state.CameraReducer.cameraPosition,
-        videoState: state.RecordReducer.videoState
+        mode: state.modeReducer.mode,
+        uiEnable: state.contextReducer.uiEnable,
+        cameraPosition: state.cameraReducer.cameraPosition,
+        videoState: state.recordReducer.videoState
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
