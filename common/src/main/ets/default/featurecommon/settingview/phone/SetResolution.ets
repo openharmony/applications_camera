@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 
-import { Action } from '../../../redux/actions/Action'
-import Timer from '../../../setting/settingitem/Timer'
-import { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
-import { CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView'
-import { Log } from '../../../utils/Log'
-import { OhCombinedState } from '../../../redux/store'
-import { getStore } from '../../../redux/store'
-import { SettingManager } from '../../../setting/SettingManager'
-import { SettingData, SettingGroupItem } from '../model/SettingData'
-import { Dispatch } from '../../../redux/core/redux/types/store'
+import { Action } from '../../../redux/actions/Action';
+import Timer from '../../../setting/settingitem/Timer';
+import { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView';
+import { CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView';
+import { Log } from '../../../utils/Log';
+import { Dispatch, OhCombinedState } from '../../../redux/store';
+import { getStore } from '../../../redux/store';
+import { SettingManager } from '../../../setting/SettingManager';
+import { SettingData, SettingGroupItem } from '../model/SettingData';
 
 class StateStruct {
 }

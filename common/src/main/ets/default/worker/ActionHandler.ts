@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import type { ActionData } from '../redux/actions/Action';
 import { Log } from '../utils/Log';
 import type { EventBus } from './eventbus/EventBus';
 import { EventBusManager } from './eventbus/EventBusManager';
@@ -24,7 +24,7 @@ export class ActionHandler {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
 
   // 在worker线程中通过EventBus发送action，相关后台能力需要注册对应的action.type
-  public handleAction(action: any): void {
+  public handleAction(action: ActionData): void {
     Log.debug(`${TAG} handle action: ${JSON.stringify(action)}`);
     this.appEventBus.emit(action.type, [action.data]);
   }

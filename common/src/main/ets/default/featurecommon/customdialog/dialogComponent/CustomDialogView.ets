@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-import deviceInfo from '@ohos.deviceInfo'
+import deviceInfo from '@ohos.deviceInfo';
 
-import { Action } from '../../../redux/actions/Action'
-import { Log } from '../../../utils/Log'
-import { OhCombinedState } from '../../../redux/store'
-import { getStore } from '../../../redux/store'
-import EntryComponent from './EntryComponent'
-import { Dispatch } from '../../../redux/core/redux/types/store'
+import { Action } from '../../../redux/actions/Action';
+import { Log } from '../../../utils/Log';
+import { Dispatch, OhCombinedState } from '../../../redux/store';
+import { getStore } from '../../../redux/store';
+import EntryComponent from './EntryComponent';
 
 @Observed
 export class CustomDialogDetails {

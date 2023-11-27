@@ -31,7 +31,7 @@ const initState: CameraInitState = {
   videoUri: ''
 }
 
-export default function CameraInitReducer(state = initState, action: ActionData): CameraInitState {
+export function cameraInitReducer(state = initState, action: ActionData): CameraInitState {
   switch (action.type) {
     case Action.ACTION_INIT_DONE:
       return {
