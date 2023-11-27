@@ -17,8 +17,8 @@
  * @template Ext Dispatch signature added by a middleware.
  * @template S The type of the state supported by a middleware.
  */
-import { ActionData } from '../actions/Action';
-import { Dispatch } from '../store';
+import type { ActionData } from '../actions/Action';
+import type { Dispatch } from '../store';
 
 export interface Middleware {
   (): (next: Dispatch) => (action: ActionData) => ActionData
@@ -30,9 +30,9 @@ export interface Enhancer {
 
 export function applyMiddleware(...middlewares: Middleware[]): Enhancer {
   return (dispatch: Dispatch) => {
-    const chain: Function[] = middlewares.map(middleware => middleware())
-    return compose(chain)(dispatch)
-  }
+    const chain: Function[] = middlewares.map(middleware => middleware());
+    return compose(chain)(dispatch);
+  };
 }
 
 function compose(functions: Function[]): Function {

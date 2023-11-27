@@ -24,7 +24,7 @@ const initState = {
   captureBtnScale: 0
 };
 
-export function CaptureReducer(state = initState, action: ActionData): CaptureState {
+export function captureReducer(state = initState, action: ActionData): CaptureState {
   switch (action.type) {
     case Action.ACTION_UPDATE_CAPTURE_BTN_SCALE:
       return {

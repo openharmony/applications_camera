@@ -38,7 +38,7 @@ const initState: ModeState = {
   modeChangeDone: false,
 }
 
-export function ModeReducer(state = initState, action: ActionData): ModeState {
+export function modeReducer(state = initState, action: ActionData): ModeState {
   switch (action.type) {
   case Action.ACTION_SWIPE_MODE_DONE:
     return { ...state, modeChangeDone: action.data.modeChangeDone }

@@ -17,16 +17,16 @@
  *   object, and builds a state object with the same shape.
  */
 import { Log } from '../../utils/Log';
-import { ActionData } from '../actions/Action';
-import { OhCombinedState } from '../store';
+import type { ActionData } from '../actions/Action';
+import type { OhCombinedState } from '../store';
 
 export type Reducer = (state: OhCombinedState | undefined,
                        action: ActionData) => OhCombinedState;
 
 export function combineReducers(reducers: Array<Function>): Reducer {
   return function combination(
-      state: OhCombinedState | undefined,
-      action: ActionData
+    state: OhCombinedState | undefined,
+    action: ActionData
   ) {
     const nextState: unknown = {};
     const currentState = state || {};
@@ -37,7 +37,7 @@ export function combineReducers(reducers: Array<Function>): Reducer {
         Log.error('reducer error, result is undefined.');
       }
       nextState[reducer.name] = nextStateForKey;
-    })
+    });
     return nextState as OhCombinedState;
-  }
+  };
 }

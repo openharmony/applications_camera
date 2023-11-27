@@ -14,10 +14,10 @@
  */
 
 import { Log } from '../../utils/Log';
-import { ActionData } from '../actions/Action';
+import type { ActionData } from '../actions/Action';
 import { EventBusManager } from '../../worker/eventbus/EventBusManager';
-import { Middleware } from '../core';
-import { Dispatch } from '../store';
+import type { Middleware } from '../core';
+import type { Dispatch } from '../store';
 
 const TAG = '[reduxWorkerMiddle]:';
 const ACTION_LENGTH: number = 2;
@@ -39,4 +39,4 @@ export const eventBusMiddle: Middleware = () => (next: Dispatch) => (action: Act
   }
   Log.info(`${TAG} logger: new state`);
   return result;
-}
+};

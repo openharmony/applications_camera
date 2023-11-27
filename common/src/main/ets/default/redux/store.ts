@@ -1,27 +1,28 @@
 import { Log } from '../utils/Log';
 import { loggerMiddle } from './middlewares/loggerMiddle';
 import type { CameraInitState } from './reducers/CameraInitReducer';
-import { CameraInitReducer } from './reducers/CameraInitReducer';
+import { cameraInitReducer } from './reducers/CameraInitReducer';
 import type { ContextState } from './reducers/ContextReducer';
-import { ContextReducer } from './reducers/ContextReducer';
+import { contextReducer } from './reducers/ContextReducer';
 import type { CameraState } from './reducers/CameraReducer';
-import { CameraReducer } from './reducers/CameraReducer';
+import { cameraReducer } from './reducers/CameraReducer';
 import type { PreviewState } from './reducers/PreviewReducer';
-import { PreviewReducer } from './reducers/PreviewReducer';
+import { previewReducer } from './reducers/PreviewReducer';
 import type { CaptureState } from './reducers/CaptureReducer';
-import { CaptureReducer } from './reducers/CaptureReducer';
+import { captureReducer } from './reducers/CaptureReducer';
 import type { ModeChangeState } from './reducers/ModeChangeReducer';
-import { ModeChangeReducer } from './reducers/ModeChangeReducer';
+import { modeChangeReducer } from './reducers/ModeChangeReducer';
 import type { ModeState } from './reducers/ModeReducer';
-import { ModeReducer } from './reducers/ModeReducer';
+import { modeReducer } from './reducers/ModeReducer';
 import type { SettingState } from './reducers/SettingReducer';
-import { SettingReducer } from './reducers/SettingReducer';
+import { settingReducer } from './reducers/SettingReducer';
 import type { RecordState } from './reducers/RecordReducer';
-import { RecordReducer } from './reducers/RecordReducer';
+import { recordReducer } from './reducers/RecordReducer';
 import type { ZoomState } from './reducers/ZoomReducer';
-import { ZoomReducer } from './reducers/ZoomReducer';
+import { zoomReducer } from './reducers/ZoomReducer';
 import type { ActionData } from './actions/Action';
-import { applyMiddleware, Enhancer, Reducer } from './core';
+import { applyMiddleware } from './core';
+import type { Enhancer, Reducer } from './core';
 import { eventBusMiddle } from './middlewares/EventBusMiddle';
 import { combineReducers } from './core'
 
@@ -39,21 +40,21 @@ export type OhCombinedState = {
   ModeReducer: ModeState
   SettingReducer: SettingState
   ZoomReducer: ZoomState
-}
+};
 
 function getReducers(): Reducer {
   return combineReducers([
-    CameraInitReducer,
-    ContextReducer,
-    CameraReducer,
-    PreviewReducer,
-    CaptureReducer,
-    RecordReducer,
-    ModeChangeReducer,
-    ModeReducer,
-    SettingReducer,
-    ZoomReducer,
-  ])
+    cameraInitReducer,
+    contextReducer,
+    cameraReducer,
+    previewReducer,
+    captureReducer,
+    recordReducer,
+    modeChangeReducer,
+    modeReducer,
+    settingReducer,
+    zoomReducer,
+  ]);
 }
 
 export interface Unsubscribe {
@@ -69,7 +70,7 @@ function getEnhancer(): Enhancer {
 }
 
 export function getStore(): Store {
-  Log.info('getStore')
+  Log.info('getStore');
   return Store.getInstance();
 }
 
@@ -176,7 +177,7 @@ export class Store {
       const index = this.nextListeners.indexOf(listener);
       this.nextListeners.slice(index, 1);
       this.currentListeners = null;
-    }
+    };
   }
 
   private ensureCanMutateNextListeners(): void {
