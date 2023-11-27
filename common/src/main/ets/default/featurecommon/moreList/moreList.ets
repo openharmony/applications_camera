@@ -15,9 +15,8 @@
 import deviceInfo from '@ohos.deviceInfo';
 import { Action } from '../../redux/actions/Action';
 import { Log } from '../../utils/Log';
-import { OhCombinedState } from '../../redux/store';
+import { Dispatch, OhCombinedState } from '../../redux/store';
 import { getStore } from '../../redux/store';
-import { Dispatch } from '../../redux/core/redux/types/store';
 
 class MoreListInfo {
   itemIcon: Resource = $r("app.media.photo");
@@ -67,7 +66,7 @@ export struct MoreList {
     Log.info(`${this.TAG} aboutToAppear start`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        modeIndex: state.ModeReducer.modeIndex,
+        modeIndex: state.modeReducer.modeIndex,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { Log } from '../../utils/Log'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Dispatch } from '../../redux/core/redux/types/store'
+import { Log } from '../../utils/Log';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
 
 class StateStruct {
   zoomRatio: number = 1;
@@ -40,7 +39,7 @@ export struct ZoomText {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        zoomRatio: state.ZoomReducer.zoomRatio,
+        zoomRatio: state.zoomReducer.zoomRatio,
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

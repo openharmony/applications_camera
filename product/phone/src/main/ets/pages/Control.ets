@@ -13,18 +13,17 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display'
-import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
-import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import display from '@ohos.display';
+import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import {
   PersistType,
   PreferencesService
-} from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService'
-import { Dispatch } from '@ohos/common/src/main/ets/default/redux/core/redux/types/store'
+} from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService';
 
 class StateStruct {
   isThirdPartyCall: boolean = false;
@@ -100,13 +99,13 @@ export struct Control {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall,
-        isFaCall: state.ContextReducer.isFaCall,
-        action: state.ContextReducer.action,
-        uiEnable: state.ContextReducer.uiEnable,
-        modeIndex: state.ModeReducer.modeIndex,
-        mode: state.ModeReducer.mode,
-        isShowMoreList: state.ModeReducer.isShowMoreList
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        isFaCall: state.contextReducer.isFaCall,
+        action: state.contextReducer.action,
+        uiEnable: state.contextReducer.uiEnable,
+        modeIndex: state.modeReducer.modeIndex,
+        mode: state.modeReducer.mode,
+        isShowMoreList: state.modeReducer.isShowMoreList
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

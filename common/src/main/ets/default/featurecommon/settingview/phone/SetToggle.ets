@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../utils/Log'
-import { SettingManager } from '../../../setting/SettingManager'
-import { SettingData, SettingGroupItem } from '../model/SettingData'
-import { OhCombinedState } from '../../../redux/store'
+import { Log } from '../../../utils/Log';
+import { SettingManager } from '../../../setting/SettingManager';
+import { SettingData, SettingGroupItem } from '../model/SettingData';
+import { Dispatch, OhCombinedState } from '../../../redux/store';
 import { getStore } from '../../../redux/store';
-import { Dispatch } from '../../../redux/core/redux/types/store'
 
 class StateStruct {
   mode: string = '';
@@ -48,7 +47,7 @@ export struct SetToggle {
     Log.info(`${this.TAG} aboutToAppear start`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode
+        mode: state.modeReducer.mode
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
