@@ -38,15 +38,15 @@ const initState: CameraState = {
 export function cameraReducer(state = initState, action: ActionData): CameraState {
   switch (action.type) {
     case Action.ACTION_SET_CAMERA_POSITION:
-      return { ...state, cameraPosition: action.data.cameraPosition }
+      return { ...state, cameraPosition: action.data.cameraPosition };
     case Action.ACTION_SWITCH_CAMERA:
-      return { ...state, cameraPosition: action.data.cameraId }
+      return { ...state, cameraPosition: action.data.cameraId };
     case Action.ACTION_UPDATE_CAMERA_POSITION:
-      return { ...state, curCameraPosition: action.data.cameraPosition }
+      return { ...state, curCameraPosition: action.data.cameraPosition };
     case Action.ACTION_UPDATE_SHUTTER_ICON:
-      return { ...state, shutterIcon: action.data.shutterIcon }
+      return { ...state, shutterIcon: action.data.shutterIcon };
     case Action.ACTION_UPDATE_CAMERA_STATUS:
-      return { ...state }
+      return { ...state };
     default:
       return state;
   }

@@ -20,8 +20,9 @@ import { Log } from '../../utils/Log';
 import type { ActionData } from '../actions/Action';
 import type { OhCombinedState } from '../store';
 
-export type Reducer = (state: OhCombinedState | undefined,
-                       action: ActionData) => OhCombinedState;
+export type Reducer = (
+  state: OhCombinedState | undefined,
+  action: ActionData) => OhCombinedState;
 
 export function combineReducers(reducers: Array<Function>): Reducer {
   return function combination(

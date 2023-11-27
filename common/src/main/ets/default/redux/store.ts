@@ -24,7 +24,7 @@ import type { ActionData } from './actions/Action';
 import { applyMiddleware } from './core';
 import type { Enhancer, Reducer } from './core';
 import { eventBusMiddle } from './middlewares/EventBusMiddle';
-import { combineReducers } from './core'
+import { combineReducers } from './core';
 
 const TAG = '[store]:';
 const INIT_TAG = 'StoreInit';
@@ -115,7 +115,7 @@ export class Store {
   public dispatch(action: ActionData): ActionData {
     if (this.isDispatching) {
       Log.error('isDispatching get error');
-      return;
+      return null;
     }
     try {
       this.isDispatching = true;
@@ -153,11 +153,11 @@ export class Store {
   private stateSubscribe(listener: () => void): () => void {
     if (typeof listener !== 'function') {
       Log.error('listener is not function');
-      return;
+      return () => {};
     }
     if (this.isDispatching) {
       Log.error('isDispatching stateSubscribe error');
-      return;
+      return () => {};
     }
     let isSubScribed = true;
 

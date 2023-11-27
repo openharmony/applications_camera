@@ -45,29 +45,29 @@ const initState: ZoomState = {
 
 export function zoomReducer(state = initState, action: ActionData): ZoomState {
   switch (action.type) {
-  case Action.ACTION_CHANGE_ZOOM_RATIO:
-    return { ...state, zoomRatio: action.data.zoomRatio }
-  case Action.ACTION_RESET_ZOOM_RATIO:
-    return { ...state, zoomRatio: action.data.zoomRatio }
-  case Action.ACTION_INIT_ZOOM_RATIO:
-    return { ...state, minZoomRatio: action.data.minZoomRatio, maxZoomRatio: action.data.maxZoomRatio }
-  case Action.ACTION_UPDATE_SCROLL_DETAILS_BOX:
-    return { ...state, scrollDetailsBox: action.data.scrollDetailsBox }
-  case Action.ACTION_UPDATE_PHOTO_ZOOM_DETAILS_FLAG:
-    return { ...state, isPhotoZoomDetails: action.data.isPhotoZoomDetails }
-  case Action.ACTION_UPDATE_PHOTO_DETAILS_OFFSET_X:
-    return { ...state, photoDetailsOffsetX: action.data.photoDetailsOffsetX }
-  case Action.ACTION_INIT_PHOTO_DETAILS_OFFSET_X:
-    return { ...state, photoDetailsOffsetXInit: action.data.photoDetailsOffsetXInit }
-  case Action.ACTION_UPDATE_SHOW_ZOOM_TEXT_FLAG:
-    return { ...state, isShowZoomText: action.data.isShowZoomText }
-  case Action.ACTION_UPDATE_SHOW_PRESS_SCROLL_DETAIL_PHOTO_BUTTON:
-    return { ...state, isShowPressScrollDetailPhotoButton: action.data.isShowPressScrollDetailPhotoButton }
-  case Action.ACTION_SHOW_ZOOM_LABEL_VALUE:
-    return { ...state, showZoomLabelValue: action.data.showZoomLabelValue }
-  case Action.ACTION_UPDATE_SHOW_PINCH:
-    return { ...state, isShowPinch: action.data.isShowPinch }
-  default:
-    return state;
+    case Action.ACTION_CHANGE_ZOOM_RATIO:
+      return { ...state, zoomRatio: action.data.zoomRatio };
+    case Action.ACTION_RESET_ZOOM_RATIO:
+      return { ...state, zoomRatio: action.data.zoomRatio };
+    case Action.ACTION_INIT_ZOOM_RATIO:
+      return { ...state, minZoomRatio: action.data.minZoomRatio, maxZoomRatio: action.data.maxZoomRatio };
+    case Action.ACTION_UPDATE_SCROLL_DETAILS_BOX:
+      return { ...state, scrollDetailsBox: action.data.scrollDetailsBox };
+    case Action.ACTION_UPDATE_PHOTO_ZOOM_DETAILS_FLAG:
+      return { ...state, isPhotoZoomDetails: action.data.isPhotoZoomDetails };
+    case Action.ACTION_UPDATE_PHOTO_DETAILS_OFFSET_X:
+      return { ...state, photoDetailsOffsetX: action.data.photoDetailsOffsetX };
+    case Action.ACTION_INIT_PHOTO_DETAILS_OFFSET_X:
+      return { ...state, photoDetailsOffsetXInit: action.data.photoDetailsOffsetXInit };
+    case Action.ACTION_UPDATE_SHOW_ZOOM_TEXT_FLAG:
+      return { ...state, isShowZoomText: action.data.isShowZoomText };
+    case Action.ACTION_UPDATE_SHOW_PRESS_SCROLL_DETAIL_PHOTO_BUTTON:
+      return { ...state, isShowPressScrollDetailPhotoButton: action.data.isShowPressScrollDetailPhotoButton };
+    case Action.ACTION_SHOW_ZOOM_LABEL_VALUE:
+      return { ...state, showZoomLabelValue: action.data.showZoomLabelValue };
+    case Action.ACTION_UPDATE_SHOW_PINCH:
+      return { ...state, isShowPinch: action.data.isShowPinch };
+    default:
+      return state;
   }
 }
