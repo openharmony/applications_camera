@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../utils/Log'
-import { SettingManager } from '../../../setting/SettingManager'
-import Timer from '../../../setting/settingitem/Timer'
-import AspectRatio from '../../../setting/settingitem/AspectRatio'
-import Resolution from '../../../setting/settingitem/Resolution'
-import { OhCombinedState } from '../../../redux/store'
+import { Log } from '../../../utils/Log';
+import { SettingManager } from '../../../setting/SettingManager';
+import Timer from '../../../setting/settingitem/Timer';
+import AspectRatio from '../../../setting/settingitem/AspectRatio';
+import Resolution from '../../../setting/settingitem/Resolution';
+import { Dispatch, OhCombinedState } from '../../../redux/store';
 import { getStore } from '../../../redux/store';
-import { Dispatch } from '../../../redux/core/redux/types/store'
 
 class StateStruct {
   mode: string = '';
@@ -50,7 +49,7 @@ export default struct EntryComponent {
     Log.info(`${this.TAG} aboutToAppear calle1d = ${this.settingAlias}`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode
+        mode: state.modeReducer.mode
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

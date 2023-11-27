@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 
-import { CameraService } from '../../camera/CameraService'
-import { Dispatch } from '../../redux/core/redux/types/store'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Log } from '../../utils/Log'
+import { CameraService } from '../../camera/CameraService';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Log } from '../../utils/Log';
 
 class StateStruct {
   uiEnable: boolean = true;
@@ -53,7 +52,7 @@ export default struct EntryComponentForMulti {
   aboutToAppear() {
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        uiEnable: state.ContextReducer.uiEnable
+        uiEnable: state.contextReducer.uiEnable
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

@@ -38,27 +38,27 @@ const initState: ModeState = {
   modeChangeDone: false,
 }
 
-export default function ModeReducer(state = initState, action: ActionData): ModeState {
+export function modeReducer(state = initState, action: ActionData): ModeState {
   switch (action.type) {
-  case Action.ACTION_SWIPE_MODE_DONE:
-    return { ...state, modeChangeDone: action.data.modeChangeDone }
-  case Action.ACTION_INIT_MODE:
-    return { ...state, mode: action.data.mode, isInitiated: true }
-  case Action.ACTION_CHANGE_MODE:
-    return { ...state, mode: action.data.mode }
-  case Action.ACTION_SET_MODE:
-    return { ...state, mode: action.data.mode }
-  case Action.ACTION_UPDATE_MODE:
-    return { ...state, curMode: action.data.mode }
-  case Action.ACTION_UPDATE_MODE_INDEX:
-    return { ...state, modeIndex: action.data.modeIndex }
-  case Action.ACTION_SWIPE_MODE:
-    return {...state, swipeModeIndex: action.data.swipeModeIndex}
-  case Action.ACTION_UPDATE_SHOW_BIG_TEXT_FLAG:
-    return { ...state, isShowBigText: action.data.isShowBigText }
-  case Action.ACTION_UPDATE_SHOW_MORE_LIST:
-    return {...state, isShowMoreList: action.data.isShowMoreList}
-  default:
-    return state;
+    case Action.ACTION_SWIPE_MODE_DONE:
+      return { ...state, modeChangeDone: action.data.modeChangeDone };
+    case Action.ACTION_INIT_MODE:
+      return { ...state, mode: action.data.mode, isInitiated: true };
+    case Action.ACTION_CHANGE_MODE:
+      return { ...state, mode: action.data.mode };
+    case Action.ACTION_SET_MODE:
+      return { ...state, mode: action.data.mode };
+    case Action.ACTION_UPDATE_MODE:
+      return { ...state, curMode: action.data.mode };
+    case Action.ACTION_UPDATE_MODE_INDEX:
+      return { ...state, modeIndex: action.data.modeIndex };
+    case Action.ACTION_SWIPE_MODE:
+      return { ...state, swipeModeIndex: action.data.swipeModeIndex };
+    case Action.ACTION_UPDATE_SHOW_BIG_TEXT_FLAG:
+      return { ...state, isShowBigText: action.data.isShowBigText };
+    case Action.ACTION_UPDATE_SHOW_MORE_LIST:
+      return { ...state, isShowMoreList: action.data.isShowMoreList };
+    default:
+      return state;
   }
 }
