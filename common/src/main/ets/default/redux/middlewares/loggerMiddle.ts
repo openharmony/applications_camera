@@ -14,9 +14,9 @@
  */
 
 import { Log } from '../../utils/Log';
-import { ActionData } from '../actions/Action';
-import { Middleware } from '../core';
-import { Dispatch } from '../store';
+import type { ActionData } from '../actions/Action';
+import type { Middleware } from '../core';
+import type { Dispatch } from '../store';
 
 /**
  * Middleware to log the behaviors of dispatch.
@@ -29,4 +29,4 @@ export const loggerMiddle: Middleware = () => (next: Dispatch) => (action: Actio
   Log.info(`logger: dispatch ${JSON.stringify(action)}`);
   const result = next(action);
   return result as ActionData;
-}
+};

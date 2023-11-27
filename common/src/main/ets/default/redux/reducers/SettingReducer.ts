@@ -32,7 +32,7 @@ const initState = {
   opacityValueForTabBar: 0
 }
 
-export function SettingReducer(state = initState, action: ActionData): SettingState {
+export function settingReducer(state = initState, action: ActionData): SettingState {
   switch (action.type) {
     case Action.ACTION_ASSISTIVE_GRID_VIEW:
       return {

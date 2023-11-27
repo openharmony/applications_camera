@@ -43,7 +43,7 @@ const initState: ZoomState = {
   showZoomLabelValue: true,
 }
 
-export function ZoomReducer(state = initState, action: ActionData): ZoomState {
+export function zoomReducer(state = initState, action: ActionData): ZoomState {
   switch (action.type) {
   case Action.ACTION_CHANGE_ZOOM_RATIO:
     return { ...state, zoomRatio: action.data.zoomRatio }

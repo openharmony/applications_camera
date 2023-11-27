@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export type { Enhancer, Middleware } from './applyMiddleware'
+export type { Enhancer, Middleware } from './applyMiddleware';
 
-export { applyMiddleware } from './applyMiddleware'
+export { applyMiddleware } from './applyMiddleware';
 
-export type { Reducer } from './combineReducers'
+export type { Reducer } from './combineReducers';
 
-export { combineReducers } from './combineReducers'
+export { combineReducers } from './combineReducers';

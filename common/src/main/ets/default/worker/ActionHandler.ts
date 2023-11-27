@@ -12,10 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ActionData } from '../redux/actions/Action';
-
+import type { ActionData } from '../redux/actions/Action';
 import { Log } from '../utils/Log';
-import { Message } from './AsyncManager';
 import type { EventBus } from './eventbus/EventBus';
 import { EventBusManager } from './eventbus/EventBusManager';
 
