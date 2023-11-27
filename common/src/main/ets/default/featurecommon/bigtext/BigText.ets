@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 
-import { Log } from '../../utils/Log'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Action } from '../../redux/actions/Action'
-import { Dispatch } from '../../redux/core/redux/types/store'
+import { Log } from '../../utils/Log';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Action } from '../../redux/actions/Action';
 
 class StateStruct {
   mode:string = '';
@@ -55,7 +54,7 @@ export struct BigText {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        mode: state.ModeReducer.mode
+        mode: state.modeReducer.mode
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

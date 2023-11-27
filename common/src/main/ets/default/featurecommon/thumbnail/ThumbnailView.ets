@@ -13,17 +13,16 @@
  * limitations under the License.
  */
 
-import { Log } from '../../utils/Log'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Action } from '../../redux/actions/Action'
-import { EventBus } from '../../worker/eventbus/EventBus'
-import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-import EventLog from '../../utils/EventLog'
-import { CameraService } from '../../camera/CameraService'
-import { Dispatch } from '../../redux/core/redux/types/store'
-import { GlobalContext } from '../../utils/GlobalContext'
-import Want from '@ohos.app.ability.Want'
+import { Log } from '../../utils/Log';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Action } from '../../redux/actions/Action';
+import { EventBus } from '../../worker/eventbus/EventBus';
+import { EventBusManager } from '../../worker/eventbus/EventBusManager';
+import EventLog from '../../utils/EventLog';
+import { CameraService } from '../../camera/CameraService';
+import { GlobalContext } from '../../utils/GlobalContext';
+import Want from '@ohos.app.ability.Want';
 
 class StateStruct {
   thumbnail: Resource = $r('app.media.ic_camera_thumbnail_default_white');
@@ -101,7 +100,7 @@ export struct ThumbnailView {
     Log.info(`${this.TAG} aboutToAppear E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        thumbnail: state.CameraInitReducer.thumbnail
+        thumbnail: state.cameraInitReducer.thumbnail
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

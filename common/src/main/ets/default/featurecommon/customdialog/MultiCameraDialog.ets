@@ -13,14 +13,13 @@
  * limitations under the License.
  */
 
-import { CameraService } from '../../camera/CameraService'
-import { CameraId } from '../../setting/settingitem/CameraId'
-import { Log } from '../../utils/Log'
-import EntryComponentForMulti from './EntryComponentForMulti'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Action } from '../../redux/actions/Action'
-import { Dispatch } from '../../redux/core/redux/types/store'
+import { CameraService } from '../../camera/CameraService';
+import { CameraId } from '../../setting/settingitem/CameraId';
+import { Log } from '../../utils/Log';
+import EntryComponentForMulti from './EntryComponentForMulti';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
+import { Action } from '../../redux/actions/Action';
 
 let storageCameraId: string = AppStorage.Link('storageCameraId') as string;
 

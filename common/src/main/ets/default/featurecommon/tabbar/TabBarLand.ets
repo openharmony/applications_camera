@@ -17,19 +17,29 @@ import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-import { OhCombinedState } from '../../redux/store'
+import { Dispatch, OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
 import EventLog from '../../utils/EventLog'
 
 class StateStruct {
   isThirdPartyCall: boolean = false
-  showSettingView: Function = () => {
-  }
 }
 
 class ScreenSizeType {
   width: number = 0
   height: number = 0
+}
+
+class TabBarDispatcher {
+  private mDispatch: Dispatch = (data) => data;
+
+  public setDispatch(dispatch: Dispatch) {
+    this.mDispatch = dispatch;
+  }
+
+  public showSettingView(isShowSettingView: boolean): void {
+    this.mDispatch(Action.showSettingView(isShowSettingView));
+  }
 }
 
 @Component
@@ -41,20 +51,17 @@ export struct TabBarLand {
   @Link screenSize: ScreenSizeType;
   private onBackClicked:Function = ()=>{};
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private mAction: TabBarDispatcher = new TabBarDispatcher();
 
   aboutToAppear(): void {
-    Log.info(`${this.TAG} aboutToAppear invoke E`)
-    getStore().connect((state: OhCombinedState) => {
-      return {
-        isThirdPartyCall: state.ContextReducer.isThirdPartyCall
-      }
-    }, (dispatch) => {
-      return {
-        showSettingView: (): void => {
-          dispatch(Action.showSettingView(true))
-        }
-      }
-    })(this.state)
+    Log.info(`${this.TAG} aboutToAppear invoke E`);
+    getStore().subscribe((state: OhCombinedState) => {
+      this.state = {
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
 
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
@@ -76,7 +83,7 @@ export struct TabBarLand {
         Image($r("app.media.setting")).width(24).height(24)
           .onClick(() => {
             EventLog.write(EventLog.CLICK_SETTINGS)
-            this.state.showSettingView()
+            this.mAction.showSettingView(true);
           })
       }.width(48).height(48)
       .padding({ left: 12 })

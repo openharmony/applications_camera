@@ -13,11 +13,9 @@
  * limitations under the License.
  */
 
-import { Log } from '../../utils/Log'
-import { SettingManager } from '../../setting/SettingManager'
-import { OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
-import { Dispatch } from '../../redux/core/redux/types/store'
+import { Log } from '../../utils/Log';
+import { Dispatch, OhCombinedState } from '../../redux/store';
+import { getStore } from '../../redux/store';
 
 class StateStruct {
   xComponentWidth: number = 0;
@@ -51,8 +49,8 @@ export struct AssistiveGridView {
     Log.info(`${this.TAG} aboutToAppear invoke E`);
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        xComponentWidth: state.PreviewReducer.xComponentWidth,
-        xComponentHeight: state.PreviewReducer.xComponentHeight
+        xComponentWidth: state.previewReducer.xComponentWidth,
+        xComponentHeight: state.previewReducer.xComponentHeight
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
