@@ -28,6 +28,8 @@ export class RecordFunction extends BaseFunction {
     },
     onRecodeError:(data: any): void => {
       this.mWorkerManager.postMessage(Action.recordError());
+      this.mWorkerManager.postMessage(Action.updateRecordingTime(0))
+      this.mWorkerManager.postMessage(Action.updateRecordingTimeDisplay('00:00'))
       this.mWorkerManager.postMessage(Action.reStartPreview(1));
     }
   }
