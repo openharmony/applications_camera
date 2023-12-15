@@ -168,6 +168,7 @@ export class Action {
 
   public static updateScreenStatus(isKeepScreenOn: boolean): ActionData {
     return {
+      isEvent: true,
       type: Action.ACTION_KEEP_SCREEN_ON,
       data: { isKeepScreenOn: isKeepScreenOn }
     }
