@@ -19,7 +19,7 @@ import { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
 import { Dispatch, OhCombinedState } from '../../redux/store'
 import { getStore } from '../../redux/store'
-import EventLog from '../../utils/EventLog'
+import ReportUtil from '../../utils/ReportUtil'
 
 class StateStruct {
   isThirdPartyCall: boolean = false
@@ -47,9 +47,10 @@ export struct TabBarLand {
   private TAG: string = '[TabBarLand]';
   @State state: StateStruct = new StateStruct();
   @State opacityTabBar: number = 0;
-  @State isShowTabBarOther: boolean= false;
+  @State isShowTabBarOther: boolean = false;
   @Link screenSize: ScreenSizeType;
-  private onBackClicked:Function = ()=>{};
+  private onBackClicked: Function = () => {
+  };
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
   private mAction: TabBarDispatcher = new TabBarDispatcher();
 
@@ -75,19 +76,20 @@ export struct TabBarLand {
               this.onBackClicked()
             })
         }.width(48).height(48)
-        .padding({left: 12})
+        .padding({ left: 12 })
         .margin({ bottom: 12 })
       }
 
-      Row()  {
+      Row() {
         Image($r("app.media.setting")).width(24).height(24)
           .onClick(() => {
-            EventLog.write(EventLog.CLICK_SETTINGS)
+            ReportUtil.write(ReportUtil.CLICK_SETTINGS)
             this.mAction.showSettingView(true);
           })
       }.width(48).height(48)
       .padding({ left: 12 })
-      .position(this.state.isThirdPartyCall ? {x:0,y:12} : {x:0,y: this.screenSize.height - 144})
+      .position(this.state.isThirdPartyCall ? { x: 0, y: 12 } : { x: 0, y: this.screenSize.height - 144 })
+
       //        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       //          TabBarOther()
       //        }.width('100%').height('20%')
