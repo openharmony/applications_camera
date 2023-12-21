@@ -22,7 +22,7 @@ import { Log } from '../utils/Log';
 import DateTimeUtil from '../utils/DateTimeUtil';
 import { FunctionCallBack, VideoCallBack } from './CameraService';
 import ThumbnailGetter from './ThumbnailGetter';
-import EventLog from '../utils/EventLog';
+import ReportUtil from '../utils/ReportUtil';
 import { GlobalContext } from '../utils/GlobalContext';
 
 const TAG = '[SaveCameraAsset]:';
@@ -181,7 +181,7 @@ export default class SaveCameraAsset {
     } finally {
       Log.info(`${TAG} fileAsset operate close`);
       await fileAsset.close(fd).catch(error => {
-        EventLog.write(EventLog.SAVE_FAIL);
+        ReportUtil.write(ReportUtil.SAVE_FAIL);
         Log.error(`${TAG} fileAsset open error: ${JSON.stringify(error)}`);
       });
     }
