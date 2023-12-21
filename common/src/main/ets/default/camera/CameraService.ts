@@ -25,7 +25,7 @@ import ThumbnailGetter from './ThumbnailGetter';
 import SaveCameraAsset from './SaveCameraAsset';
 import { SettingManager } from '../setting/SettingManager';
 import { CameraPlatformCapability } from './CameraPlatformCapability';
-import EventLog from '../utils/EventLog';
+import ReportUtil from '../utils/ReportUtil';
 import { GlobalContext } from '../utils/GlobalContext';
 
 const TAG = '[CameraService]:';
@@ -159,7 +159,7 @@ export class CameraService {
         }
       } catch (error) {
         Log.error(`${TAG} initCamera failed: ${JSON.stringify(error)}`);
-        EventLog.writeFaultLog(error);
+        ReportUtil.writeFaultLog(error);
       }
     }
     this.curCameraName = cameraId;
@@ -227,7 +227,7 @@ export class CameraService {
       SettingManager.getInstance().setCameraPlatformCapability(platformCapability);
     } catch (error) {
       Log.error(`${TAG} createCameraInput failed: ${JSON.stringify(error)}`);
-      EventLog.writeFaultLog(error);
+      ReportUtil.writeFaultLog(error);
     }
     Log.end(`${TAG} createCameraInput`);
   }
@@ -239,7 +239,7 @@ export class CameraService {
         await this.mCameraInput.release();
       } catch (error) {
         Log.error(`${TAG} releaseCameraInput failed: ${JSON.stringify(error)}`);
-        EventLog.writeFaultLog(error);
+        ReportUtil.writeFaultLog(error);
       }
       this.mCameraInput = null;
     }
@@ -250,7 +250,10 @@ export class CameraService {
     Log.start(`${TAG} createPreviewOutput`);
     const size = SettingManager.getInstance().getPreviewSize(mode);
     Log.info(`${TAG} createPreviewOutput size.width = ${size.width} size.height = ${size.height}`);
-    GlobalContext.get().getXComponentController().setXComponentSurfaceSize({ surfaceWidth: size.width, surfaceHeight: size.height });
+    GlobalContext.get().getXComponentController().setXComponentSurfaceSize({
+      surfaceWidth: size.width,
+      surfaceHeight: size.height
+    });
     let previewProfiles = this.outputCapability.previewProfiles;
     let previewProfile;
     if (deviceInfo.deviceType == 'default') {
@@ -258,14 +261,14 @@ export class CameraService {
     } else {
       Log.info(`${TAG} previewProfiles length.` + previewProfiles.length);
       previewProfile = previewProfiles.find(item => item.size.width === size.width &&
-      item.size.height === size.height && item.format === 1003);
+        item.size.height === size.height && item.format === 1003);
     }
     await this.releasePreviewOutput();
     try {
       this.mPreviewOutput = this.mCameraManager.createPreviewOutput(previewProfile, surfaceId);
     } catch (error) {
       Log.error(`${TAG} createPreviewOutput failed: ${JSON.stringify(error)}`);
-      EventLog.writeFaultLog(error);
+      ReportUtil.writeFaultLog(error);
     }
     Log.end(`${TAG} createPreviewOutput`);
   }
@@ -278,7 +281,7 @@ export class CameraService {
         this.mPreviewOutput = null;
       } catch (error) {
         Log.error(`${TAG} releasePreviewOutput failed: ${JSON.stringify(error)}`);
-        EventLog.writeFaultLog(error);
+        ReportUtil.writeFaultLog(error);
       }
     }
     Log.end(`${TAG} releasePreviewOutput`);
@@ -303,7 +306,7 @@ export class CameraService {
       this.mPhotoOutPut = this.mCameraManager.createPhotoOutput(photoProfile, surfaceId);
     } catch (error) {
       Log.error(`${TAG} createPhotoOutput failed: ${JSON.stringify(error)}`);
-      EventLog.writeFaultLog(error);
+      ReportUtil.writeFaultLog(error);
     }
     Log.info(`${TAG} createPhotoOutput mPhotoOutPut: ${this.mPhotoOutPut}.`);
     this.mSaveCameraAsset.saveImage(this.mImageReceiver, 40, 40, this.mThumbnailGetter, functionCallback);
@@ -318,7 +321,7 @@ export class CameraService {
         this.mPhotoOutPut = null;
       } catch (error) {
         Log.error(`${TAG} releasePhotoOutput failed: ${JSON.stringify(error)}`);
-        EventLog.writeFaultLog(error);
+        ReportUtil.writeFaultLog(error);
       }
     }
     if (this.mImageReceiver) {
@@ -351,7 +354,7 @@ export class CameraService {
     } catch (error) {
       Log.error(`${TAG} createSession failed: ${JSON.stringify(error)}`);
       if (error) {
-        EventLog.write(EventLog.CAMERA_ERROR);
+        ReportUtil.write(ReportUtil.CAMERA_ERROR);
       }
     }
     Log.info(`${TAG} createSession commitConfig.`);
@@ -363,11 +366,11 @@ export class CameraService {
       await this.mCaptureSession?.start();
     } catch (err) {
       if (err) {
-        EventLog.write(EventLog.OPEN_FAIL);
+        ReportUtil.write(ReportUtil.OPEN_FAIL);
       }
     }
     if (GlobalContext.get().getT<boolean>('cameraStartFlag') && (new Date().getTime() - GlobalContext.get().getT<number>('cameraStartTime')) > 2000) {
-      EventLog.write(EventLog.START_TIMEOUT);
+      ReportUtil.write(ReportUtil.START_TIMEOUT);
     }
     GlobalContext.get().setObject('cameraStartFlag', false);
     Log.end(`${TAG} createSession`);
@@ -382,7 +385,7 @@ export class CameraService {
         this.mCaptureSession = null;
       } catch (error) {
         Log.error(`${TAG} releaseSession failed: ${JSON.stringify(error)}`);
-        EventLog.writeFaultLog(error);
+        ReportUtil.writeFaultLog(error);
       }
     }
     Log.end(`${TAG} releaseSession`);
@@ -397,7 +400,7 @@ export class CameraService {
       await this.mCaptureSession.start();
     } catch (error) {
       Log.error(`${TAG} startPreview failed: ${JSON.stringify(error)}`);
-      EventLog.writeFaultLog(error);
+      ReportUtil.writeFaultLog(error);
     }
     Log.end(`${TAG} startPreview`);
   }
@@ -411,14 +414,14 @@ export class CameraService {
       await this.mCaptureSession.stop();
     } catch (error) {
       Log.error(`${TAG} stopPreview failed: ${JSON.stringify(error)}`);
-      EventLog.writeFaultLog(error);
+      ReportUtil.writeFaultLog(error);
     }
     Log.end(`${TAG} stopPreview`);
   }
 
   public async takePicture() {
     Log.start(`${TAG} takePicture`);
-    EventLog.write(EventLog.CAPTURE);
+    ReportUtil.write(ReportUtil.CAPTURE);
     if (!this.mCaptureSession) {
       Log.info(`${TAG} takePicture session is release`);
       return;
@@ -444,12 +447,12 @@ export class CameraService {
       this.mPhotoOutPut.capture(this.mCaptureSetting);
     } catch (err) {
       if (err) {
-        EventLog.write(EventLog.CAPTURE_FAIL);
+        ReportUtil.write(ReportUtil.CAPTURE_FAIL);
       }
     }
     Log.end(`${TAG} takePicture`);
     if ((new Date().getTime() - GlobalContext.get().getT<number>('startCaptureTime')) > 2000) {
-      EventLog.write(EventLog.CAPTURE_TIMEOUT);
+      ReportUtil.write(ReportUtil.CAPTURE_TIMEOUT);
     }
   }
 
@@ -507,7 +510,7 @@ export class CameraService {
       Log.info(`${TAG} videoProfiles length.` + videoProfiles.length);
       profileVideo = videoProfiles.find(item =>
       item.size.width === size.width && item.size.height === size.height
-      && item.frameRateRange.min === DEFAULT_VIDEO_FRAME_RATE && item.frameRateRange.max === DEFAULT_VIDEO_FRAME_RATE
+        && item.frameRateRange.min === DEFAULT_VIDEO_FRAME_RATE && item.frameRateRange.max === DEFAULT_VIDEO_FRAME_RATE
       );
     }
 
@@ -517,7 +520,7 @@ export class CameraService {
       this.mVideoOutput = this.mCameraManager.createVideoOutput(profileVideo, videoId);
     } catch (error) {
       Log.error(`${TAG} createVideoOutput failed: ${JSON.stringify(error)}`);
-      EventLog.writeFaultLog(error);
+      ReportUtil.writeFaultLog(error);
     }
     Log.end(`${TAG} createVideoOutput`);
   }
@@ -530,7 +533,7 @@ export class CameraService {
         await this.mVideoOutput.release();
       } catch (error) {
         Log.error(`${TAG} releaseVideoOutput failed: ${JSON.stringify(error)}`);
-        EventLog.writeFaultLog(error);
+        ReportUtil.writeFaultLog(error);
       }
       Log.info(`${TAG} releaseVideoOutput end`);
       this.mVideoOutput = null;
@@ -542,7 +545,7 @@ export class CameraService {
     let startRecordingTime = new Date().getTime();
     Log.start(`${TAG} StartRecording`);
     Log.info(`${TAG} StartRecording codec ${this.mVideoConfig.profile.videoCodec}`);
-    EventLog.write(EventLog.VIDEO_RECORD);
+    ReportUtil.write(ReportUtil.VIDEO_RECORD);
     try {
       await this.mCaptureSession.stop();
       this.mCaptureSession.beginConfig();
@@ -559,7 +562,7 @@ export class CameraService {
       Log.info(`${TAG} StartRecording Session.start finished.`);
     } catch (err) {
       GlobalContext.get().setObject('startRecordingFlag', false);
-      EventLog.writeFaultLog(error);
+      ReportUtil.writeFaultLog(error);
       Log.error(`${TAG} remove videoOutput ${err}`);
     }
     await this.mVideoOutput.start().then(() => {
@@ -570,7 +573,7 @@ export class CameraService {
     });
     this.mIsStartRecording = true;
     if (new Date().getTime() - startRecordingTime > 2000) {
-      EventLog.write(EventLog.START_RECORD_TIMEOUT);
+      ReportUtil.write(ReportUtil.START_RECORD_TIMEOUT);
     }
     Log.end(`${TAG} StartRecording`);
   }
@@ -578,7 +581,7 @@ export class CameraService {
   public async stopRecording(): Promise<PixelMap | undefined> {
     Log.start(Log.STOP_RECORDING);
     let stopRecordingTime = new Date().getTime();
-    EventLog.write(EventLog.STOP_RECORD);
+    ReportUtil.write(ReportUtil.STOP_RECORD);
     if (!this.mVideoOutput || !this.mAVRecorder) {
       Log.error(`${TAG} stopRecording error videoOutPut: ${this.mVideoOutput},
               AVRecorder: ${this.mAVRecorder} .`);
@@ -607,7 +610,7 @@ export class CameraService {
     const thumbnailPixelMap: PixelMap | undefined = await this.mThumbnailGetter.getThumbnailInfo(40, 40);
     Log.end(Log.UPDATE_VIDEO_THUMBNAIL);
     if (new Date().getTime() - stopRecordingTime > 2000) {
-      EventLog.write(EventLog.FINISH_RECORD_TIMEOUT);
+      ReportUtil.write(ReportUtil.FINISH_RECORD_TIMEOUT);
     }
     Log.end(Log.STOP_RECORDING);
     return thumbnailPixelMap;
