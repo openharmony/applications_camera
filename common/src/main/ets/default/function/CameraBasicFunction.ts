@@ -20,7 +20,7 @@ import { Log } from '../utils/Log';
 import { CameraStatus } from '../utils/Constants';
 import { BaseFunction } from './BaseFunction';
 import { FunctionCallBack } from '../camera/CameraService';
-import EventLog from '../utils/EventLog';
+import ReportUtil from '../utils/ReportUtil';
 import { GlobalContext } from '../utils/GlobalContext';
 
 export class CameraBasicFunction extends BaseFunction {
@@ -171,7 +171,7 @@ export class CameraBasicFunction extends BaseFunction {
 
   private async changeMode(data) {
     Log.start(`${this.TAG} changeMode`)
-    EventLog.write(EventLog.SWITCH_MODE)
+    ReportUtil.write(ReportUtil.SWITCH_MODE)
     this.mCurrentMode = data.mode
     this.mCameraId = this.mCameraId.split('_').pop() as string;
     Log.info(`${this.TAG} this.mCurrentMode = ${this.mCurrentMode}`)
@@ -194,7 +194,7 @@ export class CameraBasicFunction extends BaseFunction {
 
   private async switchCamera(data) {
     Log.start(`${this.TAG} switchCamera`)
-    EventLog.write(EventLog.SWITCH_CAMERA)
+    ReportUtil.write(ReportUtil.SWITCH_CAMERA)
     this.mCameraId = data.cameraId
     this.mCameraService.setCameraId(this.mCameraId)
     await this.mCameraService.releaseCamera()
@@ -212,7 +212,7 @@ export class CameraBasicFunction extends BaseFunction {
     GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_PREVIEW_FINISHED);
     this.mWorkerManager.postMessage(Action.updateCameraStatus())
     if (new Date().getTime() - GlobalContext.get().getT<number>('switchCameraTime') > 2000) {
-      EventLog.write(EventLog.SWITCH_TIMEOUT)
+      ReportUtil.write(ReportUtil.SWITCH_TIMEOUT)
     }
     this.enableUi()
     Log.end(`${this.TAG} switchCamera`)

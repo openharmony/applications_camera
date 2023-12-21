@@ -19,7 +19,7 @@ import { getStore } from '../../redux/store';
 import { Action } from '../../redux/actions/Action';
 import { EventBus } from '../../worker/eventbus/EventBus';
 import { EventBusManager } from '../../worker/eventbus/EventBusManager';
-import EventLog from '../../utils/EventLog';
+import ReportUtil from '../../utils/ReportUtil';
 import { CameraService } from '../../camera/CameraService';
 import { GlobalContext } from '../../utils/GlobalContext';
 import Want from '@ohos.app.ability.Want';
@@ -127,7 +127,7 @@ export struct ThumbnailView {
       .enabled(this.hasThumbnail)
       .onClick(async () => {
         Log.info(`${this.TAG} launch bundle com.ohos.photos`)
-        EventLog.write(EventLog.CLICK_THUMBNAIL)
+        ReportUtil.write(ReportUtil.CLICK_THUMBNAIL)
         GlobalContext.get().setObject('keepCameraZoomRatio', true);
         const recentUri: string = this.cameraService.getRecentFileUri();
         Log.info(`${this.TAG} uri === ` + recentUri)
@@ -135,8 +135,10 @@ export struct ThumbnailView {
         await GlobalContext.get().getCameraAbilityContext().startAbility(this.buildCameraAbilityWant(abilityParameter))
       })
     }
-    .width(44).aspectRatio(1)
-    .borderRadius(22).border(this.thumbnailBorder)
+    .width(44)
+    .aspectRatio(1)
+    .borderRadius(22)
+    .border(this.thumbnailBorder)
     .opacity(this.tempOpacity)
     .scale({ x: this.scaleValue, y: this.scaleValue })
   }
