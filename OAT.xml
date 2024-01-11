@@ -69,8 +69,9 @@
                 <filteritem type="filepath" name="features/video/src/main/resources/base/media/.*.png" desc="self developed image"/>
                 <filteritem type="filepath" name="features/video/src/main/resources/base/media/.*.svg" desc="self developed image"/>
 
-
                 <filteritem type="filepath" name="figures/.*.png" desc="self developed image"/>
+
+                <filteritem type="filepath" name="common/src/main/ets/default/redux/core/*" desc="Open source component redux"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
