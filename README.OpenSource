@@ -1,0 +1,10 @@
+[
+    {
+        "Name": "redux",
+        "License": "MIT license",
+        "License File": "COPYING",
+        "Version Number": "4.1.1",
+        "Upstream URL": "https://codeload.github.com/reduxjs/redux/zip/refs/heads/master",
+        "Description": "Redux is a predictable state container for JavaScript apps."
+    }
+]
