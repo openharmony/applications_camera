@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,6 +17,7 @@ import display from '@ohos.display';
 import type common from '@ohos.app.ability.common';
 import type Want from '@ohos.app.ability.Want';
 import type window from '@ohos.window';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
 export class GlobalContext {
   private static TAG: string = '[GlobalContext]:';
@@ -38,6 +39,8 @@ export class GlobalContext {
   private cameraWindowStageEvent: window.WindowStageEventType;
   private xComponentController;
   private cameraFormParam;
+  private isPicker: boolean = false;
+  private cameraUIExtensionContentSession: UIExtensionContentSession;
 
   public static get(): GlobalContext {
     if (!Boolean(GlobalContext.instance).valueOf()) {
@@ -158,5 +161,21 @@ export class GlobalContext {
 
   public setCameraFormParam(cameraParam): void {
     this.cameraFormParam = cameraParam;
+  }
+
+  public setIsPicker(isPicker: boolean): void {
+    this.isPicker = isPicker;
+  }
+
+  public getIsPicker(isPicker: boolean): void {
+    this.isPicker = isPicker;
+  }
+
+  public setSession(session: UIExtensionContentSession): void {
+    this.cameraUIExtensionContentSession = session;
+  }
+
+  public getSession(): UIExtensionContentSession {
+    return this.cameraUIExtensionContentSession;
   }
 }
