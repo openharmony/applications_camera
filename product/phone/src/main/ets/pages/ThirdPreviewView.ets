@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -67,21 +67,33 @@ struct ThirdPreviewView {
   terminateSelfWithResult(resourceUri: string): void {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
     let abilityResult: ability.AbilityResult = {
-      "resultCode": 0,
-      "want": {
-        "parameters": {
-          "resourceUri": resourceUri
-        },
+      resultCode: 0,
+      want: {
+        parameters: {
+          resourceUri: resourceUri,
+          mode: ''
+        }
       }
     };
+    if (GlobalContext.get().getSession()) {
+      GlobalContext.get().getSession().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
+        if (error) {
+          Log.error(`${this.TAG} 1Operation failed. Cause: ${error.code}`);
+          Log.error(`${this.TAG} 2Operation failed. Cause: ${error?.data}`);
+          return;
+        }
+        Log.info(`${this.TAG} Operation succeeded`);
+      });
+    } else {
+      GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
+        if (error) {
+          Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
+          return;
+        }
+        Log.info(`${this.TAG} Operation succeeded`);
+      });
+    }
 
-    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
-      if (error) {
-        Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
-        return;
-      }
-      Log.info(`${this.TAG} Operation succeeded`);
-    });
   }
 
   private getVideoPlayIcon() {
