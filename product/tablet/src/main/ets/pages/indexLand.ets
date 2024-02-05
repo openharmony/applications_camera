@@ -148,7 +148,7 @@ struct Index {
   @State screenSize: ScreenSizeType = { width: 0, height: 0 };
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance();
   private TAG: string = '[IndexLand]:';
-  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'];
+  private modeArray: Array<string> = ['PHOTO', 'VIDEO'];
   private mAction: IndexDispatcher = new IndexDispatcher();
 
   aboutToAppear(): void {

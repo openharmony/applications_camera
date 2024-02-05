@@ -21,6 +21,9 @@ import { PreferencesService } from '@ohos/common/src/main/ets/default/featurecom
 import { ModeMap } from '../common/ModeMap';
 import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import hilog from '@ohos.hilog';
 
 export default class ExtensionPickerAbility extends UIExtensionAbility {
   private cameraBasicFunction: any = null;
@@ -82,10 +85,10 @@ export default class ExtensionPickerAbility extends UIExtensionAbility {
     GlobalContext.get().apply('updateCameraStatus');
   }
 
-  onSessionCreate(want, session): void {
-    Log.info('Camera ExtensionPickerAbility onForeground');
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    Log.info('Camera ExtensionPickerAbility onSessionCreate' + want.uri);
     GlobalContext.get().setCameraAbilityWant(want);
-
+    GlobalContext.get().setPickerUri(want.uri);
     GlobalContext.get().setSession(session);
     let storage: LocalStorage = new LocalStorage(
       {
@@ -94,6 +97,11 @@ export default class ExtensionPickerAbility extends UIExtensionAbility {
       }
     )
     session.loadContent('pages/index', storage);
+    try {
+      session.setWindowPrivacyMode(true);
+    } catch (e) {
+      Log.error('Camera ExtensionPickerAbility setWindowPrivacyMode error');
+    }
   }
 
   onSessionDestroy(session): void {

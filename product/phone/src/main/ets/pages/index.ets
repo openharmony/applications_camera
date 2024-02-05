@@ -116,10 +116,6 @@ class IndexDispatcher {
   public faCall(isFaCall: boolean): void {
     this.mDispatch(Action.faCall(isFaCall));
   }
-
-  public thirdPartyCall(isThirdPartyCall: boolean, action: string): void {
-    this.mDispatch(Action.thirdPartyCall(isThirdPartyCall, action));
-  }
 }
 
 
@@ -130,7 +126,7 @@ struct Index {
   @State state: StateStruct = new StateStruct();
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance();
   private TAG: string = '[Index]:';
-  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'];
+  private modeArray: Array<string> = ['PHOTO', 'VIDEO'];
   private mAction: IndexDispatcher = new IndexDispatcher();
 
   aboutToAppear(): void {
@@ -216,7 +212,7 @@ struct Index {
     })
 
     if (!this.state.isInitiated) {
-      let initIndex: number = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 1);
+      let initIndex: number = this.mPreferencesService.getModeValue(PersistType.FOR_AWHILE, 0);
       Log.info(`${this.TAG} initModeIndex: ${initIndex}`);
       this.mAction.initMode(this.modeArray[initIndex]);
       this.mAction.updateModeIndex(initIndex);
@@ -247,7 +243,8 @@ struct Index {
       this.mAction.changeTimeLapse(false);
       return true
     } else if (this.state.isThirdPartyCall) {
-      this.terminateSelfWithResult();
+      let that = this;
+      that.terminateSelfWithResult();
     } else {
       if (this.state.videoState === 'startTakeVideo' || this.state.videoState === 'pauseTakeVideo') {
         this.mAction.stopRecording();
@@ -279,25 +276,33 @@ struct Index {
   terminateSelfWithResult() {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
     let abilityResult: ability.AbilityResult = {
-      "resultCode": 200,
-      "want": {
-        "parameters": {
-          "resourceUri": "",
-          "width": "",
-          "height": ""
-        },
-        "bundleName": "com.ohos.camera",
-        "abilityName": "com.ohos.camera.MainAbility"
+      resultCode: -1,
+      want: {
+        parameters: {
+          resourceUri: '',
+          mode: this.state.mode
+        }
       }
     };
-
-    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error:BusinessError) => {
-      if (error) {
-        Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
-        return;
-      }
-      Log.info(`${this.TAG} Operation succeeded`);
-    })
+    Log.info(`${this.TAG} terminateSelfWithResult start1`);
+    if (GlobalContext.get().getSession()) {
+      Log.info(`${this.TAG} terminateSelfWithResult start2`);
+      GlobalContext.get().getSession().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
+        if (error) {
+          Log.error(`${this.TAG} Operation failed. Cause: ${error?.code}`);
+          return;
+        }
+        Log.info(`${this.TAG} Operation succeeded`);
+      });
+    } else {
+      GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
+        if (error) {
+          Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
+          return;
+        }
+        Log.info(`${this.TAG} Operation succeeded`);
+      });
+    }
   }
 
   build() {
@@ -331,6 +336,9 @@ struct Index {
             }
             .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
             .width('100%')
+            .offset({
+              x: 156, y: 0
+            })
           }
           Column() {
             FootBar()
@@ -348,6 +356,7 @@ struct Index {
 
   private onBackClicked(): void {
     Log.info(`${this.TAG} onBackClicked E`);
-    this.terminateSelfWithResult();
+    let that = this;
+    that.terminateSelfWithResult();
   }
 }

@@ -31,7 +31,7 @@ class StateStruct {
   isFaCall: boolean = false;
   action: string = '';
   uiEnable: boolean = true;
-  modeIndex: number = 1;
+  modeIndex: number = 0;
   mode: string = 'PHOTO';
   isShowMoreList: boolean = false;
 }
@@ -93,7 +93,7 @@ export struct ControlLand {
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
   private scroller: Scroller = new Scroller();
   private settingManager = SettingManager.getInstance();
-  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']; //, 'MORE'
+  private modeArray: Array<string> = ['PHOTO', 'VIDEO']; //, 'MORE'
   private touchOff: boolean = true;
   private scrollDistance: number = 0;
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance();

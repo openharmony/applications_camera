@@ -18,6 +18,7 @@ import type common from '@ohos.app.ability.common';
 import type Want from '@ohos.app.ability.Want';
 import type window from '@ohos.window';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { Log } from './Log';
 
 export class GlobalContext {
   private static TAG: string = '[GlobalContext]:';
@@ -41,6 +42,7 @@ export class GlobalContext {
   private cameraFormParam;
   private isPicker: boolean = false;
   private cameraUIExtensionContentSession: UIExtensionContentSession;
+  private pickerUri: string;
 
   public static get(): GlobalContext {
     if (!Boolean(GlobalContext.instance).valueOf()) {
@@ -172,10 +174,23 @@ export class GlobalContext {
   }
 
   public setSession(session: UIExtensionContentSession): void {
+    Log.info('setSession' + session)
     this.cameraUIExtensionContentSession = session;
   }
 
   public getSession(): UIExtensionContentSession {
     return this.cameraUIExtensionContentSession;
+  }
+
+  public setPickerUri(pickerUri: string): void {
+    if (pickerUri) {
+      this.pickerUri = pickerUri;
+    } else {
+      this.pickerUri = '';
+    }
+  }
+
+  public getPickerUri(): string {
+    return this.pickerUri;
   }
 }
