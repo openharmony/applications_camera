@@ -24,6 +24,7 @@ import { FunctionCallBack, VideoCallBack } from './CameraService';
 import ThumbnailGetter from './ThumbnailGetter';
 import ReportUtil from '../utils/ReportUtil';
 import { GlobalContext } from '../utils/GlobalContext';
+import buffer from '@ohos.buffer';
 
 const TAG = '[SaveCameraAsset]:';
 
@@ -78,38 +79,53 @@ export default class SaveCameraAsset {
         return;
       }
       captureCallBack.onCapturePhotoOutput();
-
-      const fileAsset: UserFileManager.FileAsset = await this.createAsset(UserFileManager.FileType.IMAGE);
-      if (!fileAsset) {
-        Log.info(`${TAG} fileAsset is null`);
-        return;
-      }
-      // @ts-ignore
-      await fileAsset.setPending(true);
-      this.lastFileMessage = {
-        fileId: fileAsset.uri, bufferLength: buffer.byteLength
-      };
-      this.photoUri = fileAsset.uri;
-      Log.info(`${TAG} saveImage photoUri: ${this.photoUri}`);
-      await this.fileAssetOperate(fileAsset, async (fd: number) => {
-        Log.info(`${TAG} saveImage fileio write begin`);
-        try {
-          fs.writeSync(fd, buffer);
-          fs.fsyncSync(fd);
-        } catch (e) {
-          Log.error(`${TAG} fileAssetOperate fileio writeSync ${JSON.stringify(e)}`);
+      let pickerUri = GlobalContext.get().getPickerUri();
+      Log.info('uri' + pickerUri)
+      if (pickerUri === '') {
+        const fileAsset: UserFileManager.FileAsset = await this.createAsset(UserFileManager.FileType.IMAGE);
+        if (!fileAsset) {
+          Log.info(`${TAG} fileAsset is null`);
+          return;
         }
-        Log.info(`${TAG} saveImage fileio write done`);
-      }).catch(error => {
-        Log.error(`${TAG} saveImage error: ${JSON.stringify(error)}`);
-      });
-      // @ts-ignore
-      await fileAsset.setPending(false);
-      thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, this.photoUri).then(thumbnail => {
-        Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
-        captureCallBack.onCaptureSuccess(thumbnail, this.photoUri);
-        Log.end(Log.UPDATE_PHOTO_THUMBNAIL);
-      })
+        // @ts-ignore
+        await fileAsset.setPending(true);
+
+        this.lastFileMessage = {
+          fileId: (pickerUri === '' ? fileAsset.uri : pickerUri), bufferLength: buffer.byteLength
+        };
+        this.photoUri = fileAsset.uri;
+        Log.info(`${TAG} saveImage photoUri: ${this.photoUri}`);
+        await this.fileAssetOperate(fileAsset, async (fd: number) => {
+          Log.info(`${TAG} saveImage fileio write begin`);
+          try {
+            fs.writeSync(fd, buffer);
+            fs.fsyncSync(fd);
+          } catch (e) {
+            Log.error(`${TAG} fileAssetOperate fileio writeSync ${JSON.stringify(e)}`);
+          }
+          Log.info(`${TAG} saveImage fileio write done`);
+        }).catch(error => {
+          Log.error(`${TAG} saveImage error: ${JSON.stringify(error)}`);
+        });
+        // @ts-ignore
+        await fileAsset.setPending(false);
+        thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, this.photoUri).then(thumbnail => {
+          Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
+          captureCallBack.onCaptureSuccess(thumbnail, this.photoUri);
+          Log.end(Log.UPDATE_PHOTO_THUMBNAIL);
+        })
+      } else {
+        try {
+          Log.info(`${TAG} save Picker image`);
+          const file: fs.File = await fs.open(pickerUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+          Log.debug(`${TAG} open Picker image byteLength` + buffer.byteLength);
+          await fs.write(file.fd, buffer);
+          Log.debug(`${TAG} write Picker image byteLength`);
+          captureCallBack.onCaptureSuccess('thumbnail', pickerUri);
+        } catch (e) {
+          Log.error(`${TAG} Picker fileio writeSync error ${JSON.stringify(e)}`);
+        }
+      }
     })
     Log.info(`${TAG} saveImage X`);
   }
@@ -205,9 +221,9 @@ export default class SaveCameraAsset {
       Log.error(`${TAG} saveImage get buffer from receiver error: ${JSON.stringify(error)}`);
     } finally {
       if (imageInfo) {
-        await imageInfo.release().catch(error => {
-          Log.error(`${TAG} image info release error: ${JSON.stringify(error)}`);
-        });
+        // await imageInfo.release().catch(error => {
+        //   Log.error(`${TAG} image info release error: ${JSON.stringify(error)}`);
+        // });
       }
     }
     return undefined;
