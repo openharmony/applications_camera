@@ -54,13 +54,13 @@ struct ThirdPreviewView {
   backCalledApp(resourceUri: string): void {
     Log.info(`${this.TAG} backCalledApp E resourceUri` + resourceUri);
     let that = this;
-    if (GlobalContext.get().getPickerUri() !== '') {
-      that.terminateSelfWithResult(resourceUri);
+    if (GlobalContext.get().getPickerUri() !== '' && GlobalContext.get().getPickerUri() !== undefined) {
+      that.terminateSelfWithResult(resourceUri, resourceUri === '' ? -1 : 0);
     } else {
       fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
         .then(() => {
           Log.info(`${this.TAG} grantUriPermission success`);
-          that.terminateSelfWithResult(resourceUri);
+          that.terminateSelfWithResult(resourceUri, 0);
         }).catch((error: BusinessError) => {
         Log.error(`${this.TAG} grantUriPermission error= ${error} `);
       });
@@ -68,10 +68,10 @@ struct ThirdPreviewView {
     Log.info(`${this.TAG} backCalledApp X`);
   }
 
-  terminateSelfWithResult(resourceUri: string): void {
+  terminateSelfWithResult(resourceUri: string, resultCode : number): void {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
     let abilityResult: ability.AbilityResult = {
-      resultCode: 0,
+      resultCode: resultCode,
       want: {
         parameters: {
           resourceUri: resourceUri,

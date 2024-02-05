@@ -81,7 +81,7 @@ export default class SaveCameraAsset {
       captureCallBack.onCapturePhotoOutput();
       let pickerUri = GlobalContext.get().getPickerUri();
       Log.info('uri' + pickerUri)
-      if (pickerUri === '') {
+      if (pickerUri === '' || pickerUri === undefined) {
         const fileAsset: UserFileManager.FileAsset = await this.createAsset(UserFileManager.FileType.IMAGE);
         if (!fileAsset) {
           Log.info(`${TAG} fileAsset is null`);
@@ -123,6 +123,7 @@ export default class SaveCameraAsset {
           Log.debug(`${TAG} write Picker image byteLength`);
           captureCallBack.onCaptureSuccess('thumbnail', pickerUri);
         } catch (e) {
+          captureCallBack.onCaptureSuccess('thumbnail', '');
           Log.error(`${TAG} Picker fileio writeSync error ${JSON.stringify(e)}`);
         }
       }
