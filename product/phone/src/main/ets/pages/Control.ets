@@ -24,13 +24,15 @@ import {
   PersistType,
   PreferencesService
 } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService';
+import hilog from '@ohos.hilog';
 
 class StateStruct {
   isThirdPartyCall: boolean = false;
+  thirdCallAction: string = '';
   isFaCall: boolean = false;
   action: string = '';
   uiEnable: boolean = true;
-  modeIndex: number = 1;
+  modeIndex: number = 0;
   mode: string = 'PHOTO';
   isShowMoreList: boolean = false;
 }
@@ -56,10 +58,6 @@ class ControlDispatcher {
     this.mDispatch(Action.updateShowMoreList(isShowMoreList));
   }
 
-  public thirdPartyCall(isThirdPartyCall: boolean, action: string): void {
-    this.mDispatch(Action.thirdPartyCall(isThirdPartyCall, action));
-  }
-
   public initAction(action: string): void {
     this.mDispatch(Action.initAction(action));
   }
@@ -83,14 +81,13 @@ export struct Control {
   private TAG: string = '[Control]'
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private scroller: Scroller = new Scroller()
-  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO']
+  private modeArray: Array<string> = ['PHOTO', 'VIDEO']
   private isScroll: boolean = false
   private scrollDistance: number = 0
+  private itemWidth: number = 56
   protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
   @State state: StateStruct = new StateStruct()
   private mAction: ControlDispatcher = new ControlDispatcher();
-  @State modeBarItemLeftWidth: number = 225
-  @State modeBarItemRightWidth: number = 225
   @State startScroll: number = 0
   @State endScroll: number = 0
   @State index: number = 0
@@ -100,6 +97,7 @@ export struct Control {
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
         isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        thirdCallAction: state.contextReducer.thirdCallAction,
         isFaCall: state.contextReducer.isFaCall,
         action: state.contextReducer.action,
         uiEnable: state.contextReducer.uiEnable,
@@ -111,10 +109,6 @@ export struct Control {
       this.mAction.setDispatch(dispatch);
     });
 
-    display.getDefaultDisplay().then((dis) => {
-      this.modeBarItemLeftWidth = px2vp(dis.width) / 2 - 156
-      this.modeBarItemRightWidth = px2vp(dis.width) / 2 - 148
-    })
     this.appEventBus.on(Action.ACTION_SWIPE_MODE, (data: SwipeModeIndexStruct) => this.swipeChangeMode(data));
     Log.info(`${this.TAG} aboutToAppear X`)
   }
@@ -151,40 +145,10 @@ export struct Control {
     this.changeToMode(data.swipeModeIndex)
   }
 
-  private scrollSwitchMode(): void {
-    if (this.index == 1 && Math.abs(this.scrollDistance) <= px2vp(28)) {
-      this.changeToMode(1)
-    }
-    if (this.index == 1 && (this.scrollDistance) > px2vp(28)) {
-      this.changeToMode(2)
-    }
-    if (this.index == 1 && (this.scrollDistance) < px2vp(-28)) {
-      this.changeToMode(0)
-    }
-    if (this.index == 0 && (this.scrollDistance < px2vp(36))) {
-      this.changeToMode(0)
-    }
-    if (this.index == 0 && this.scrollDistance <= px2vp(92) && this.scrollDistance >= px2vp(36)) {
-      this.changeToMode(1)
-    }
-    if (this.index == 0 && this.scrollDistance > px2vp(92)) {
-      this.changeToMode(2)
-    }
-    if (this.index == 2 && (this.scrollDistance > px2vp(-28))) {
-      this.changeToMode(2)
-    }
-    if (this.index == 2 && this.scrollDistance <= px2vp(-28) && this.scrollDistance >= px2vp(-92)) {
-      this.changeToMode(1)
-    }
-    if (this.index == 2 && this.scrollDistance < px2vp(-92)) {
-      this.changeToMode(0)
-    }
-  }
-
   build() {
     Column() {
       Stack({ alignContent: Alignment.BottomStart }) {
-        if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO') {
+        if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO' && (this.state.thirdCallAction != 'ALL')) {
           Row() {
             Text($r('app.string.photo_mode'))
               .width('100%')
@@ -193,8 +157,8 @@ export struct Control {
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
               .textAlign(TextAlign.Center)
-          }.width('100%').height('100%')
-        } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO') {
+          }.width('100%').height('100%').offset({ x: -156, y: 0 })
+        } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO' && (this.state.thirdCallAction != 'ALL')) {
           Row() {
             Text($r('app.string.video_mode'))
               .width('100%')
@@ -203,20 +167,14 @@ export struct Control {
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
               .textAlign(TextAlign.Center)
-          }.width('100%').height('100%')
+          }.width('100%').height('100%').offset({ x: -156, y: 0 })
         } else {
           List({ initialIndex: this.state.modeIndex, scroller: this.scroller }) {
-            ListItem() {
-            }.width(64).height('100%')
-
             ListItem() {
             }.width(56).height('100%')
 
             ListItem() {
-            }.width(this.modeBarItemLeftWidth).height('100%')
-
-            ListItem() {
-              Text($r('app.string.multi_mode'))
+              Text($r('app.string.photo_mode'))
                 .width('100%')
                 .height('100%')
                 .fontColor('#fff')
@@ -227,10 +185,10 @@ export struct Control {
                 .onClick(() => {
                   this.changeToMode(0)
                 })
-            }.width(72).height('100%')
+            }.width(56).height('100%')
 
             ListItem() {
-              Text($r('app.string.photo_mode'))
+              Text($r('app.string.video_mode'))
                 .width('100%')
                 .height('100%')
                 .fontColor('#fff')
@@ -244,72 +202,29 @@ export struct Control {
             }.width(56).height('100%')
 
             ListItem() {
-              Text($r('app.string.video_mode'))
-                .width('100%')
-                .height('100%')
-                .fontColor('#fff')
-                .fontSize($r("sys.float.ohos_id_text_size_sub_title3"))
-                .fontWeight(this.getModeFontWeight(2))
-                .textAlign(TextAlign.Center)
-                .enabled(this.state.uiEnable)
-                .onClick(() => {
-                  this.changeToMode(2)
-                })
-            }.width(56).height('100%')
-
-            ListItem() {
-            }.width(this.modeBarItemRightWidth).height('100%')
-
-            ListItem() {
-            }.width(64).height('100%')
-
-            ListItem() {
             }.width(56).height('100%')
           }
-          .width('100%')
+          .width(this.itemWidth * 3)
           .height('100%')
           .listDirection(Axis.Horizontal)
           .edgeEffect(EdgeEffect.None)
           .chainAnimation(false)
           .enabled(this.state.uiEnable)
-          .onScrollIndex((firstIndex: number, lastIndex: number) => {
-            Log.debug(`${this.TAG} Control scroll index first: ${firstIndex}, last: ${lastIndex}`)
-            this.mAction.updateModeIndex(firstIndex)
+          .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
+            Log.debug(`${this.TAG} Control scroll index first: ${firstIndex}, centerIndex: ${centerIndex}, last: ${lastIndex}`)
+            this.index = firstIndex;
+            this.mAction.updateModeIndex(firstIndex);
             Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
           .onScrollStop(() => {
-            Log.info(`${this.TAG} onScrollStop`)
-            this.scrollSwitchMode()
-          })
-          .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-            if (scrollState === ScrollState.Fling) {
-              this.scrollDistance += px2vp(scrollOffset)
-              if (!this.isScroll) {
-                this.isScroll = true
-                this.mAction.updateListStatus(false)
-              }
-            }
-          })
-          .onTouch((event?: TouchEvent) => {
-            if (!event) {
-              return;
-            }
-            if (event.type === TouchType.Down) {
-              this.scrollDistance = 0
-              this.index = this.modeArray.indexOf(this.state.mode)
-              this.startScroll = event.touches[0].screenX
-            }
-            if (event.type === TouchType.Up) {
-              this.endScroll = event.touches[0].screenX
-              this.scrollDistance = px2vp(this.startScroll - this.endScroll)
-              this.isScroll = false
-            }
+            Log.info(`${this.TAG} onScrollStop`);
+            this.changeToMode(this.index);
           })
         }
         Column() {
           Column() {
           }.width(6).height(6).borderRadius(3).backgroundColor('#007DFF')
-        }.width('100%').height(18)
+        }.width('100%').height(18).offset({ x: -156, y: 0 })
       }.width('100%').height(58)
     }
   }

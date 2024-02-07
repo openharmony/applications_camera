@@ -23,6 +23,7 @@ export type ContextState = {
   footBarWidth: number,
   footBarHeight: number,
   isThirdPartyCall: boolean,
+  thirdCallAction: string,
   isFaCall: boolean,
   permissionFlag: boolean,
   action: string,
@@ -37,6 +38,7 @@ const initState: ContextState = {
   footBarWidth: 0,
   footBarHeight: 0,
   isThirdPartyCall: false,
+  thirdCallAction: '',
   isFaCall: false,
   permissionFlag: false,
   action: '',
@@ -60,7 +62,7 @@ export function contextReducer(state = initState, action: ActionData): ContextSt
       };
     case Action.ACTION_THIRD_PARTY_CALL:
       return {
-        ...state, isThirdPartyCall: action.data.isThirdPartyCall, action: action.data.action
+        ...state, isThirdPartyCall: action.data.isThirdPartyCall, thirdCallAction: action.data.thirdCallAction
       };
     case Action.ACTION_FA_CALL:
       return {

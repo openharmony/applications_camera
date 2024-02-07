@@ -58,7 +58,7 @@ class StateStruct {
   footBarHeight: number = 0;
   isShowZoomText: boolean = false;
   showZoomLabelValue: boolean = true;
-  modeIndex: number = 1;
+  modeIndex: number = 0;
   isThirdPartyCall: boolean = false;
   isShowBigText: boolean = false;
   isShowtimeLapse: boolean = false;
@@ -186,8 +186,8 @@ class PreviewAreaDispatcher {
     this.mDispatch(Action.assistiveGridView(isViewShow));
   }
 
-  public thirdPartyCall(isThirdPartyCall: boolean, action: string): void {
-    this.mDispatch(Action.thirdPartyCall(isThirdPartyCall, action));
+  public thirdPartyCall(isThirdPartyCall: boolean, thirdCallAction: string): void {
+    this.mDispatch(Action.thirdPartyCall(isThirdPartyCall, thirdCallAction));
   }
 
   public faCall(isFaCall: boolean): void {
@@ -267,7 +267,7 @@ export struct PreviewArea {
   private settingManager = SettingManager.getInstance();
   private pinchGestureTimer: number = 0;
   private baseZoom: number = 0;
-  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'];
+  private modeArray: Array<string> = ['PHOTO', 'VIDEO'];
   private mAction: PreviewAreaDispatcher = new PreviewAreaDispatcher();
 
   private async onCameraInit(data: CameraInitStruct): Promise<void> {
@@ -475,10 +475,16 @@ export struct PreviewArea {
       this.mAction.faCall(true);
       this.mAction.thirdPartyCall(false, "");
       this.initStateMode(action);
-    } else if (action != "") {
+    } else if (GlobalContext.get().getCameraAbilityWant()?.parameters?.supportMultiMode || action != "") {
       this.mAction.faCall(false);
-      this.mAction.thirdPartyCall(true, GlobalContext.get().getCameraAbilityWant()?.action);
-      this.initStateMode(action);
+      if (GlobalContext.get().getCameraAbilityWant()?.parameters?.supportMultiMode) {
+        action = 'ALL';
+        this.mAction.thirdPartyCall(true, action);
+        this.initStateMode(action);
+      } else {
+        this.mAction.thirdPartyCall(true, action);
+        this.initStateMode(action);
+      }
     } else {
       this.mAction.faCall(false);
       this.mAction.thirdPartyCall(false, "");
@@ -490,11 +496,16 @@ export struct PreviewArea {
     switch (action) {
       case wantConstant.Action.ACTION_IMAGE_CAPTURE:
         this.mAction.initMode('PHOTO');
-        this.mAction.updateModeIndex(1);
+        this.mAction.updateModeIndex(0);
         break;
       case wantConstant.Action.ACTION_VIDEO_CAPTURE:
         this.mAction.initMode('VIDEO');
-        this.mAction.updateModeIndex(2);
+        this.mAction.updateModeIndex(1);
+        break;
+      case 'ALL':
+        this.mAction.initMode(this.state.mode);
+        this.mAction.updateModeIndex(this.state.modeIndex);
+      // private modeArray: Array<string> = ['PHOTO', 'VIDEO']; //, 'MORE'this.modeArray[modeIndex]
         break;
       default:
         Log.info(`${this.TAG} FA default`);
