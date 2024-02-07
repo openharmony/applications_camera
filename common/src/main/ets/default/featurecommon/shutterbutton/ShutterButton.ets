@@ -159,14 +159,14 @@ export struct ShutterButton {
           mode: this.state.mode,
           uri: this.state.resourceUri,
           videoUri: this.state.videoUri,
-          callBundleName: this.getCameraAbilityWant(),
+          callBundleName: this.getCallBundleName(),
         }
       })
     }
     Log.info(`${this.TAG} onThumbnailUpdate this.state.thumbnail: ${JSON.stringify(this.state.thumbnail)} X`)
   }
 
-  private getCameraAbilityWant(): string {
+  private getCallBundleName(): string {
     let parameters = GlobalContext.get().getCameraAbilityWant().parameters;
     if (!parameters) {
       return '';

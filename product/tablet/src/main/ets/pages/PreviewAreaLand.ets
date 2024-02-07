@@ -285,7 +285,7 @@ export struct PreviewAreaLand {
   private settingManager = SettingManager.getInstance();
   private pinchGestureTimer: number = 0;
   private baseZoom: number = 0;
-  private modeArray: Array<string> = ['MULTI', 'PHOTO', 'VIDEO'];
+  private modeArray: Array<string> = ['PHOTO', 'VIDEO'];
   private mAction: PreviewAreaDispatcher = new PreviewAreaDispatcher();
 
   private async onCameraInit(): Promise<void> {
@@ -490,11 +490,11 @@ export struct PreviewAreaLand {
     switch (action) {
       case wantConstant.Action.ACTION_IMAGE_CAPTURE:
         this.mAction.initMode('PHOTO');
-        this.mAction.updateModeIndex(1);
+        this.mAction.updateModeIndex(0);
         break;
       case wantConstant.Action.ACTION_VIDEO_CAPTURE:
         this.mAction.initMode('VIDEO');
-        this.mAction.updateModeIndex(2);
+        this.mAction.updateModeIndex(1);
         break;
       default:
         Log.info(`${this.TAG} FA default`);
