@@ -33,19 +33,11 @@ export type FetchOpType = {
   predicates: dataSharePredicates.DataSharePredicates,
 };
 
-type FileMessageType = {
-  fileId: string;
-  bufferLength: number;
-};
-
 export default class SaveCameraAsset {
   private lastSaveTime = '';
   private saveIndex = 0;
   private mUserFileManager: UserFileManager.UserFileManager;
   public videoPrepareFile: UserFileManager.FileAsset;
-  private lastFileMessage: FileMessageType = {
-    fileId: '', bufferLength: 0
-  };
   private mCameraAlbum: UserFileManager.Album;
   private photoUri: string = '';
   private videoUri: string = '';
@@ -89,10 +81,6 @@ export default class SaveCameraAsset {
         }
         // @ts-ignore
         await fileAsset.setPending(true);
-
-        this.lastFileMessage = {
-          fileId: (pickerUri === '' ? fileAsset.uri : pickerUri), bufferLength: buffer.byteLength
-        };
         this.photoUri = fileAsset.uri;
         Log.info(`${TAG} saveImage photoUri: ${this.photoUri}`);
         await this.fileAssetOperate(fileAsset, async (fd: number) => {
@@ -222,9 +210,9 @@ export default class SaveCameraAsset {
       Log.error(`${TAG} saveImage get buffer from receiver error: ${JSON.stringify(error)}`);
     } finally {
       if (imageInfo) {
-        // await imageInfo.release().catch(error => {
-        //   Log.error(`${TAG} image info release error: ${JSON.stringify(error)}`);
-        // });
+        await imageInfo.release().catch(error => {
+          Log.error(`${TAG} image info release error: ${JSON.stringify(error)}`);
+        });
       }
     }
     return undefined;
