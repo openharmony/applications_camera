@@ -32,8 +32,8 @@ const initState: ModeState = {
   mode: 'PHOTO',
   curMode: 'PHOTO',
   isShowBigText: false,
-  modeIndex: 1,
-  swipeModeIndex: 1,
+  modeIndex: 0,
+  swipeModeIndex: 0,
   isShowMoreList: false,
   modeChangeDone: false,
 }

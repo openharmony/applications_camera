@@ -280,10 +280,10 @@ export class Action {
     }
   }
 
-  public static thirdPartyCall(isThirdPartyCall: boolean, action: string): ActionData {
+  public static thirdPartyCall(isThirdPartyCall: boolean, thirdCallAction: string): ActionData {
     return {
       type: Action.ACTION_THIRD_PARTY_CALL,
-      data: { isThirdPartyCall: isThirdPartyCall, action: action }
+      data: { isThirdPartyCall: isThirdPartyCall, thirdCallAction: thirdCallAction }
     }
   }
 

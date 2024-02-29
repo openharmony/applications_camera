@@ -24,6 +24,7 @@ import { FunctionCallBack, VideoCallBack } from './CameraService';
 import ThumbnailGetter from './ThumbnailGetter';
 import ReportUtil from '../utils/ReportUtil';
 import { GlobalContext } from '../utils/GlobalContext';
+import buffer from '@ohos.buffer';
 
 const TAG = '[SaveCameraAsset]:';
 
@@ -32,19 +33,11 @@ export type FetchOpType = {
   predicates: dataSharePredicates.DataSharePredicates,
 };
 
-type FileMessageType = {
-  fileId: string;
-  bufferLength: number;
-};
-
 export default class SaveCameraAsset {
   private lastSaveTime = '';
   private saveIndex = 0;
   private mUserFileManager: UserFileManager.UserFileManager;
   public videoPrepareFile: UserFileManager.FileAsset;
-  private lastFileMessage: FileMessageType = {
-    fileId: '', bufferLength: 0
-  };
   private mCameraAlbum: UserFileManager.Album;
   private photoUri: string = '';
   private videoUri: string = '';
@@ -78,38 +71,50 @@ export default class SaveCameraAsset {
         return;
       }
       captureCallBack.onCapturePhotoOutput();
-
-      const fileAsset: UserFileManager.FileAsset = await this.createAsset(UserFileManager.FileType.IMAGE);
-      if (!fileAsset) {
-        Log.info(`${TAG} fileAsset is null`);
-        return;
-      }
-      // @ts-ignore
-      await fileAsset.setPending(true);
-      this.lastFileMessage = {
-        fileId: fileAsset.uri, bufferLength: buffer.byteLength
-      };
-      this.photoUri = fileAsset.uri;
-      Log.info(`${TAG} saveImage photoUri: ${this.photoUri}`);
-      await this.fileAssetOperate(fileAsset, async (fd: number) => {
-        Log.info(`${TAG} saveImage fileio write begin`);
-        try {
-          fs.writeSync(fd, buffer);
-          fs.fsyncSync(fd);
-        } catch (e) {
-          Log.error(`${TAG} fileAssetOperate fileio writeSync ${JSON.stringify(e)}`);
+      let pickerUri = GlobalContext.get().getPickerUri();
+      Log.info('uri' + pickerUri)
+      if (pickerUri === '' || pickerUri === undefined) {
+        const fileAsset: UserFileManager.FileAsset = await this.createAsset(UserFileManager.FileType.IMAGE);
+        if (!fileAsset) {
+          Log.info(`${TAG} fileAsset is null`);
+          return;
         }
-        Log.info(`${TAG} saveImage fileio write done`);
-      }).catch(error => {
-        Log.error(`${TAG} saveImage error: ${JSON.stringify(error)}`);
-      });
-      // @ts-ignore
-      await fileAsset.setPending(false);
-      thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, this.photoUri).then(thumbnail => {
-        Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
-        captureCallBack.onCaptureSuccess(thumbnail, this.photoUri);
-        Log.end(Log.UPDATE_PHOTO_THUMBNAIL);
-      })
+        // @ts-ignore
+        await fileAsset.setPending(true);
+        this.photoUri = fileAsset.uri;
+        Log.info(`${TAG} saveImage photoUri: ${this.photoUri}`);
+        await this.fileAssetOperate(fileAsset, async (fd: number) => {
+          Log.info(`${TAG} saveImage fileio write begin`);
+          try {
+            fs.writeSync(fd, buffer);
+            fs.fsyncSync(fd);
+          } catch (e) {
+            Log.error(`${TAG} fileAssetOperate fileio writeSync ${JSON.stringify(e)}`);
+          }
+          Log.info(`${TAG} saveImage fileio write done`);
+        }).catch(error => {
+          Log.error(`${TAG} saveImage error: ${JSON.stringify(error)}`);
+        });
+        // @ts-ignore
+        await fileAsset.setPending(false);
+        thumbnailGetter.getThumbnailInfo(thumbWidth, thumbHeight, this.photoUri).then(thumbnail => {
+          Log.info(`${TAG} saveImage thumbnailInfo: ${thumbnail}`);
+          captureCallBack.onCaptureSuccess(thumbnail, this.photoUri);
+          Log.end(Log.UPDATE_PHOTO_THUMBNAIL);
+        })
+      } else {
+        try {
+          Log.info(`${TAG} save Picker image`);
+          const file: fs.File = await fs.open(pickerUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+          Log.debug(`${TAG} open Picker image byteLength` + buffer.byteLength);
+          await fs.write(file.fd, buffer);
+          Log.debug(`${TAG} write Picker image byteLength`);
+          captureCallBack.onCaptureSuccess('thumbnail', pickerUri);
+        } catch (e) {
+          captureCallBack.onCaptureSuccess('thumbnail', '');
+          Log.error(`${TAG} Picker fileio writeSync error ${JSON.stringify(e)}`);
+        }
+      }
     })
     Log.info(`${TAG} saveImage X`);
   }

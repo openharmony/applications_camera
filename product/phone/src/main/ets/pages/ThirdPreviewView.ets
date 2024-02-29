@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -52,36 +52,58 @@ struct ThirdPreviewView {
   }
 
   backCalledApp(resourceUri: string): void {
-    Log.info(`${this.TAG} backCalledApp E`);
+    Log.info(`${this.TAG} backCalledApp E resourceUri` + resourceUri);
     let that = this;
-    fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
-      .then(() => {
-        Log.info(`${this.TAG} grantUriPermission success`);
-        that.terminateSelfWithResult(resourceUri);
-      }).catch((error: BusinessError) => {
-      Log.error(`${this.TAG} grantUriPermission error= ${error} `);
-    });
+    if (GlobalContext.get().getPickerUri() !== '' && GlobalContext.get().getPickerUri() !== undefined) {
+      that.terminateSelfWithResult(resourceUri, resourceUri === '' ? -1 : 0);
+    } else {
+      try {
+        fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
+          .then(() => {
+            Log.info(`${this.TAG} grantUriPermission success`);
+            that.terminateSelfWithResult(resourceUri, 0);
+          }).catch((error: BusinessError) => {
+          Log.error(`${this.TAG} grantUriPermission error= ${error} `);
+        });
+      } catch (error) {
+        Log.error(`${this.TAG} grantUriPermission error= ${error} `);
+        that.terminateSelfWithResult(resourceUri, 0);
+      }
+
+    }
     Log.info(`${this.TAG} backCalledApp X`);
   }
 
-  terminateSelfWithResult(resourceUri: string): void {
+  terminateSelfWithResult(resourceUri: string, resultCode : number): void {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
     let abilityResult: ability.AbilityResult = {
-      "resultCode": 0,
-      "want": {
-        "parameters": {
-          "resourceUri": resourceUri
-        },
+      resultCode: resultCode,
+      want: {
+        parameters: {
+          resourceUri: resourceUri,
+          mode: this.mode
+        }
       }
     };
+    if (GlobalContext.get().getSession()) {
+      GlobalContext.get().getSession().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
+        if (error) {
+          Log.error(`${this.TAG} 1Operation failed. Cause: ${error.code}`);
+          Log.error(`${this.TAG} 2Operation failed. Cause: ${error?.data}`);
+          return;
+        }
+        Log.info(`${this.TAG} Operation succeeded`);
+      });
+    } else {
+      GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
+        if (error) {
+          Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
+          return;
+        }
+        Log.info(`${this.TAG} Operation succeeded`);
+      });
+    }
 
-    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error: BusinessError) => {
-      if (error) {
-        Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
-        return;
-      }
-      Log.info(`${this.TAG} Operation succeeded`);
-    });
   }
 
   private getVideoPlayIcon() {
