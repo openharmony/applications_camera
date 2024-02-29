@@ -24,7 +24,7 @@ class MoreListInfo {
 }
 
 class StateStruct {
-  modeIndex: number = 1;
+  modeIndex: number = 0;
 }
 
 class MoreListDispatcher {

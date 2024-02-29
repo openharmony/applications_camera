@@ -145,15 +145,15 @@ export struct BigVideoTimer {
         }
       }
       this.mAction.updateRecordingSpotVisible(!this.state.isRecordingSpotVisible)
-      if (this.state.isThirdPartyCall && GlobalContext.get().getCameraAbilityWant().parameters?.durationLimit) {
+      if (this.state.isThirdPartyCall && GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration) {
         try {
-          let durationLimit: number = Number.parseInt(GlobalContext.get().getCameraAbilityWant().parameters?.durationLimit as string)
-          Log.info(`${this.TAG} durationLimit is ${durationLimit}`);
-          if (this.state.recordingTime >= durationLimit) {
+          let videoDuration: number = Number.parseInt(GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration as string)
+          Log.info(`${this.TAG} videoDuration is ${videoDuration}`);
+          if (this.state.recordingTime >= videoDuration) {
             this.mAction.stopRecording();
           }
         } catch (error) {
-          Log.info(`${this.TAG} picker durationLimit --> ${JSON.stringify(error)}}`)
+          Log.info(`${this.TAG} picker videoDuration --> ${JSON.stringify(error)}}`)
         }
       }
     }, 500)
