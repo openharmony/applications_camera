@@ -54,13 +54,18 @@ struct ThirdPreviewView {
   backCalledApp(resourceUri: string): void {
     Log.info(`${this.TAG} backCalledApp E`);
     let that = this;
-    fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
-      .then(() => {
-        Log.info(`${this.TAG} grantUriPermission success`);
-        that.terminateSelfWithResult(resourceUri);
-      }).catch((error: BusinessError) => {
-      Log.error(`${this.TAG} grantUriPermission error= ${error} `);
-    });
+    try {
+      fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
+        .then(() => {
+          Log.info(`${this.TAG} grantUriPermission success`);
+          that.terminateSelfWithResult(resourceUri);
+        }).catch((error: BusinessError) => {
+        Log.error(`${this.TAG} grantUriPermission error= ${error} `);
+      });
+    } catch (error) {
+      Log.error(`${this.TAG}grantUriPermission error= ${error} `);
+      that.terminateSelfWithResult(resourceUri);
+    }
     Log.info(`${this.TAG} backCalledApp X`);
   }
 
