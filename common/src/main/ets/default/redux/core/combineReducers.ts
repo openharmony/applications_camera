@@ -1,21 +1,18 @@
-/**
- * Turns an object whose values are different reducer functions, into a single
- * reducer function. It will call every child reducer, and gather their results
- * into a single state object, whose keys correspond to the keys of the passed
- * reducer functions.
+/*
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * @template S Combined state object type.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * @param reducers An object whose values correspond to different reducer
- *   functions that need to be combined into one. One handy way to obtain it
- *   is to use ES6 `import * as reducers` syntax. The reducers may never
- *   return undefined for any action. Instead, they should return their
- *   initial state if the state passed to them was undefined, and the current
- *   state for any unrecognized action.
- *
- * @returns A reducer function that invokes every reducer inside the passed
- *   object, and builds a state object with the same shape.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 import { Log } from '../../utils/Log';
 import type { ActionData } from '../actions/Action';
 import type { OhCombinedState } from '../store';
