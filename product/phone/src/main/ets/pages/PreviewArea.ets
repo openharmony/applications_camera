@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -281,7 +281,6 @@ export struct PreviewArea {
       this.isForegroundInit = false;
     }
     if (this.state.platformCapability) {
-      //      if (!this.state.isShowPreview) {
       this.settingManager.loadAllSetting().then(() => {
         this.settingManager.setCameraId(this.state.cameraPosition);
 
@@ -293,9 +292,6 @@ export struct PreviewArea {
 
         let isAssGridViewShow: number = Number(this.settingManager.getAssistiveGrid());
         this.mAction.assistiveGridView(isAssGridViewShow);
-
-        //          GeoLocation.getInstance().on()
-
         display.getDefaultDisplay().then((dis) => {
           let screenHeight = px2vp(dis.height - 176);
           let screenWidth = px2vp(dis.width);
@@ -306,11 +302,9 @@ export struct PreviewArea {
           let xComponentSize = this.settingManager.getPreviewDisplaySize(this.state.mode);
           Log.info(this.TAG + " PreviewArea xComponentSize = " + JSON.stringify(xComponentSize));
           this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height);
-          //            this.isShowPreview = true
           this.mAction.updateShowPreviewFlag(true);
         })
       })
-      //      }
     }
     Log.info(`${this.TAG} onCameraInit isShowPreview = ${this.state.isShowPreview}  X`);
   }
