@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -62,7 +62,12 @@ export class CameraBasicFunction extends BaseFunction {
 
   public async initCamera(data, callType?: string) {
     GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_INIT);
-    if (this.startIdentification) return;
+    Log.info(`${this.TAG} initCamera this.startIdentification:${JSON.stringify(this.startIdentification)} `);
+    if (this.startIdentification) {
+      const platformCapability = CameraPlatformCapability.getInstance();
+      this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability));
+      return;
+    }
     if (callType) this.startIdentification = true
     Log.start(`${this.TAG} initCamera`)
     this.mSessionList.push('CREATE')
