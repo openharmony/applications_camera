@@ -266,10 +266,9 @@ export struct ControlLand {
             this.mAction.updateModeIndex(firstIndex)
             Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
-          // @ts-ignore
-          .onScrollBegin(() => {
-            if (!this.touchOff) this.scrollSwitchMode('begin')
-          })
+          // .onScrollBegin(() => {
+          //   if (!this.touchOff) this.scrollSwitchMode('begin')
+          // })
           .enabled(this.state.uiEnable)
           .onTouch((event: TouchEvent) => {
             if (event.type === TouchType.Down) {
