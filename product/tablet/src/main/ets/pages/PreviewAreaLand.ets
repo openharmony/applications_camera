@@ -477,7 +477,7 @@ export struct PreviewAreaLand {
       this.initStateMode(action);
     } else if (action != "") {
       this.mAction.faCall(false);
-      this.mAction.thirdPartyCall(true, GlobalContext.get().getCameraAbilityWant().action);
+      this.mAction.thirdPartyCall(true, GlobalContext.get().getCameraAbilityWant().action as string);
       this.initStateMode(action);
     } else {
       this.mAction.faCall(false);
