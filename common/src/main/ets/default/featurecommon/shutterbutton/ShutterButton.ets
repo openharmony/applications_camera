@@ -24,6 +24,7 @@ import { EventBusManager } from '../../worker/eventbus/EventBusManager';
 import { SettingManager } from '../../setting/SettingManager';
 import Timer from '../../setting/settingitem/Timer';
 import { GlobalContext } from '../../utils/GlobalContext';
+import { ComponentIdKeys } from '../../utils/ComponentIdKeys';
 
 class StateStruct {
   uiEnable: boolean = true;
@@ -197,6 +198,7 @@ export struct ShutterButton {
       Stack({ alignContent: Alignment.Center }) {
         if (this.state.mode === 'VIDEO') {
           Image(this.state.shutterIcon)
+            .key(ComponentIdKeys.SHUTTER_VIDEO_1)
             .width(76).aspectRatio(1).enabled(this.state.uiEnable)
             .onTouch((event?: TouchEvent) => {
               if (!event) {
@@ -217,6 +219,7 @@ export struct ShutterButton {
         } else {
           Image($r('app.media.ic_circled')).fillColor(Color.White)
           Image(this.state.shutterIcon).width(54).aspectRatio(1).fillColor(Color.White)
+            .key(ComponentIdKeys.SHUTTER_PHOTO_1)
             .scale({ x: this.captureBtnScale, y: this.captureBtnScale, z: this.captureBtnScale })
             .enabled(this.state.uiEnable)
             .onTouch((event?: TouchEvent) => {
@@ -250,6 +253,7 @@ export struct ShutterButton {
         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
           Column() {
             Image($r('app.media.ic_video_end'))
+              .key(ComponentIdKeys.SHUTTER_VIDEO_END_1)
               .width(20)
               .aspectRatio(1)
               .fillColor(Color.White)
