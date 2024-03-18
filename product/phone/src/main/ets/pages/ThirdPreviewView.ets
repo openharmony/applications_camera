@@ -20,6 +20,7 @@ import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { BusinessError } from '@ohos.base';
 import ability from '@ohos.ability.ability';
 import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
+import { ComponentIdKeys } from '@ohos/common/src/main/ets/default/utils/ComponentIdKeys';
 
 @Entry
 @Component
@@ -172,12 +173,14 @@ struct ThirdPreviewView {
         justifyContent: FlexAlign.SpaceBetween
       }) {
         Image($r('app.media.ic_system_cancel'))
+          .key(ComponentIdKeys.THIRDPARTYCALL_REMAKE_1)
           .width(24)
           .aspectRatio(1)
           .onClick(() => {
             router.back();
           })
         Image($r('app.media.ic_system_confirm'))
+          .key(ComponentIdKeys.THIRDPARTYCALL_CONFIRM_1)
           .width(24)
           .aspectRatio(1)
           .onClick(() => {
