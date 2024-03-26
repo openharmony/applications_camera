@@ -106,9 +106,9 @@ export default class SaveCameraAsset {
         try {
           Log.info(`${TAG} save Picker image`);
           const file: fs.File = await fs.open(pickerUri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-          Log.debug(`${TAG} open Picker image byteLength` + buffer.byteLength);
+          Log.info(`${TAG} open Picker image byteLength` + buffer.byteLength);
           await fs.write(file.fd, buffer);
-          Log.debug(`${TAG} write Picker image byteLength`);
+          Log.info(`${TAG} write Picker image byteLength`);
           captureCallBack.onCaptureSuccess('thumbnail', pickerUri);
         } catch (e) {
           captureCallBack.onCaptureSuccess('thumbnail', '');
