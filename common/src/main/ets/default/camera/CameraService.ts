@@ -714,7 +714,7 @@ export class CameraService {
     } else {
       Log.info(`${TAG} setCaptureSetting captureSetting is null.`);
     }
-    Log.debug(`${TAG} setCaptureSetting invoke X.`);
+    Log.info(`${TAG} setCaptureSetting invoke X.`);
   }
 
   public getThumbnail(functionCallBack: FunctionCallBack): image.PixelMap {

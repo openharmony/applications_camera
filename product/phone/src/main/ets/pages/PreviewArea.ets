@@ -44,7 +44,7 @@ GlobalContext.get().setXComponentController(new XComponentController())
 class StateStruct {
   mode: string = 'PHOTO';
   curMode: string = 'PHOTO';
-  isShowPreview: boolean = false;
+  isShowPreview: boolean = true;
   surfaceId: number = 0;
   xComponentWidth: number = 0;
   xComponentHeight: number = 0;
@@ -316,7 +316,7 @@ export struct PreviewArea {
   }
 
   private async doCameraAction() {
-    Log.debug(`${this.TAG} doCameraAction E`);
+    Log.info(`${this.TAG} doCameraAction E`);
     this.settingManager.setCameraId(this.state.cameraPosition);
     if (this.state.curCameraPosition != this.state.cameraPosition) {
       this.mAction.switchCamera(this.state.cameraPosition);
@@ -333,15 +333,15 @@ export struct PreviewArea {
     } else {
       this.mAction.changeZoomRatio(1);
     }
-    Log.debug(`${this.TAG} doCameraAction X`);
+    Log.info(`${this.TAG} doCameraAction X`);
   }
 
   private async onModeChanged(data: ModeStruct): Promise<void> {
-    Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`);
+    Log.info(`${this.TAG} onModeChanged E data.mode: ${data.mode}`);
     let xComponentSize = this.settingManager.getPreviewDisplaySize(data.mode);
     this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height);
     this.mAction.updateShowPreviewFlag(true);
-    Log.debug(`${this.TAG} onModeChanged X`);
+    Log.info(`${this.TAG} onModeChanged X`);
   }
 
   private async onRecordError(): Promise<void> {
@@ -453,7 +453,7 @@ export struct PreviewArea {
     let action: string = "";
 
     if (GlobalContext.get().getCameraAbilityWant()) {
-      Log.debug(`${this.TAG} cameraAbilityWant: ${JSON.stringify(GlobalContext.get().getCameraAbilityWant())}`);
+      Log.info(`${this.TAG} cameraAbilityWant: ${JSON.stringify(GlobalContext.get().getCameraAbilityWant())}`);
       if (GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
         from = GlobalContext.get().getCameraAbilityWant()?.parameters?.from as string;
       }
