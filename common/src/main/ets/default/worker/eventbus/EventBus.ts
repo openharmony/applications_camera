@@ -31,7 +31,7 @@ export class EventBus {
     * @param callback event related callbacck
     */
   public on(event: string | string[], callback: Callback): void {
-    Log.debug(`${this.TAG} on event = ${JSON.stringify(event)}  ${JSON.stringify(callback)}`);
+    Log.info(`${this.TAG} on event = ${JSON.stringify(event)}  ${JSON.stringify(callback)}`);
     if (Array.isArray(event)) {
       for (let i = 0, l = event.length; i < l; i++) {
         this.on(event[i], callback)

@@ -119,7 +119,7 @@ export struct ShutterButtonLand {
   private mAction: ShutterButtonDispatcher = new ShutterButtonDispatcher();
 
   aboutToAppear(): void {
-    Log.debug(`${this.TAG} aboutToAppear E`)
+    Log.info(`${this.TAG} aboutToAppear E`);
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
         uiEnable: state.contextReducer.uiEnable,
@@ -145,18 +145,18 @@ export struct ShutterButtonLand {
   }
 
   aboutToDisappear(): void {
-    Log.debug(`${this.TAG} aboutToDisappear E`)
+    Log.info(`${this.TAG} aboutToDisappear E`);
     this.appEventBus.off(Action.ACTION_CHANGE_MODE, (data: ModeStruct) => this.changeShutterIcon(data))
     this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, (data: UpdateThumbnailStruct) => this.onThumbnailUpdate(data))
     this.appEventBus.off(Action.ACTION_INIT_MODE, (data: ModeStruct) => this.changeShutterIcon(data));
-    Log.debug(`${this.TAG} aboutToDisappear X`)
+    Log.info(`${this.TAG} aboutToDisappear X`);
   }
 
   private async onThumbnailUpdate(data: UpdateThumbnailStruct): Promise<void> {
     Log.info(`${this.TAG} onThumbnailUpdate data: ${JSON.stringify(data)} E`)
-    Log.debug(`${this.TAG} onThumbnailUpdate resourceUri= ${JSON.stringify(this.state.resourceUri)} E`)
+    Log.info(`${this.TAG} onThumbnailUpdate resourceUri= ${JSON.stringify(this.state.resourceUri)} E`);
     Log.info(`${this.TAG} onThumbnailUpdate isThirdPartyCall= ${this.state.isThirdPartyCall} E`)
-    Log.debug(`${this.TAG} onThumbnailUpdate videoUri= ${this.state.videoUri} E`)
+    Log.info(`${this.TAG} onThumbnailUpdate videoUri= ${this.state.videoUri} E`);
     if (this.state.isThirdPartyCall) {
       Log.info(`${this.TAG} onThumbnailUpdate start router to ThirdPreviewView`)
       router.push({
@@ -175,13 +175,13 @@ export struct ShutterButtonLand {
   }
 
   private async changeShutterIcon(data: ModeStruct): Promise<void> {
-    Log.debug(`${this.TAG} resetShutterIcon E`)
+    Log.info(`${this.TAG} resetShutterIcon E`);
     this.refreshIcon(data.mode)
-    Log.debug(`${this.TAG} resetShutterIcon X`)
+    Log.info(`${this.TAG} resetShutterIcon X`);
   }
 
   private async refreshIcon(mode: string): Promise<void> {
-    Log.debug(`${this.TAG} refreshIcon E`)
+    Log.info(`${this.TAG} refreshIcon E`);
     if (mode === 'PHOTO') {
       this.mAction.updateShutterIcon($r('app.media.ic_circled_filled'))
     } else if (mode === 'VIDEO') {
@@ -189,7 +189,7 @@ export struct ShutterButtonLand {
     } else {
       this.mAction.updateShutterIcon($r('app.media.ic_circled_filled'))
     }
-    Log.debug(`${this.TAG} refreshIcon X`)
+    Log.info(`${this.TAG} refreshIcon X`);
   }
 
   build() {
