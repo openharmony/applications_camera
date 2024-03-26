@@ -95,11 +95,11 @@ export class PlaySound {
     return PlaySound.sInstancePlaySound;
   }
   private playCapture(data): void {
-    Log.debug(`${this.TAG} playCapture invoke E`)
+    Log.info(`${this.TAG} playCapture invoke E`);
     if (this.settingManager.getCaptureMute() == Voice.SOUND) {
       this.playSound(Voice.CAPTURE_URI)
     }
-    Log.debug(`${this.TAG} playCapture invoke X`)
+    Log.info(`${this.TAG} playCapture invoke X`);
   }
 
   private async playSound(soundUri) {
@@ -109,7 +109,7 @@ export class PlaySound {
       this.fdPath = this.fdPath + '' + fdData
       this.mAVPlayer.url = this.fdPath
       this.fdNumber = fdData
-      Log.debug(`${this.TAG} fileIO open then ${this.fdPath}`)
+      Log.info(`${this.TAG} fileIO open then ${this.fdPath}`);
     }).catch((err) => {
       Log.info(`${this.TAG} open soundUri failed, err: ${err}`)
     })
