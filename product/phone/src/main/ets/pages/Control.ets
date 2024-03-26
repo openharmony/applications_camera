@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-import display from '@ohos.display';
 import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
 import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
@@ -24,7 +23,6 @@ import {
   PersistType,
   PreferencesService
 } from '@ohos/common/src/main/ets/default/featurecommon/preferences/PreferencesService';
-import hilog from '@ohos.hilog';
 
 class StateStruct {
   isThirdPartyCall: boolean = false;
@@ -78,22 +76,20 @@ class SwipeModeIndexStruct {
 
 @Component
 export struct Control {
-  private TAG: string = '[Control]'
-  appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  private scroller: Scroller = new Scroller()
-  private modeArray: Array<string> = ['PHOTO', 'VIDEO']
-  private isScroll: boolean = false
-  private scrollDistance: number = 0
-  private itemWidth: number = 56
-  protected mPreferencesService: PreferencesService = PreferencesService.getInstance()
-  @State state: StateStruct = new StateStruct()
+  private TAG: string = '[Control]';
+  appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private scroller: Scroller = new Scroller();
+  private modeArray: Array<string> = ['PHOTO', 'VIDEO'];
+  private itemWidth: number = 56;
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance();
+  @State state: StateStruct = new StateStruct();
   private mAction: ControlDispatcher = new ControlDispatcher();
-  @State startScroll: number = 0
-  @State endScroll: number = 0
-  @State index: number = 0
+  @State startScroll: number = 0;
+  @State endScroll: number = 0;
+  @State index: number = 0;
 
   aboutToAppear(): void {
-    Log.info(`${this.TAG} aboutToAppear E`)
+    Log.info(`${this.TAG} aboutToAppear E`);
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
         isThirdPartyCall: state.contextReducer.isThirdPartyCall,
@@ -110,39 +106,39 @@ export struct Control {
     });
 
     this.appEventBus.on(Action.ACTION_SWIPE_MODE, (data: SwipeModeIndexStruct) => this.swipeChangeMode(data));
-    Log.info(`${this.TAG} aboutToAppear X`)
+    Log.info(`${this.TAG} aboutToAppear X`);
   }
 
   aboutToDisappear(): void {
-    Log.info(`${this.TAG} aboutToDisappear E`)
-    this.appEventBus.off(Action.ACTION_SWIPE_MODE, (data: SwipeModeIndexStruct) => this.swipeChangeMode(data))
-    Log.info(`${this.TAG} aboutToDisappear X`)
+    Log.info(`${this.TAG} aboutToDisappear E`);
+    this.appEventBus.off(Action.ACTION_SWIPE_MODE, (data: SwipeModeIndexStruct) => this.swipeChangeMode(data));
+    Log.info(`${this.TAG} aboutToDisappear X`);
   }
 
   private changeToMode(modeIndex: number): void {
-    Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
-    this.scroller.scrollToIndex(modeIndex)
+    Log.info(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`);
+    this.scroller.scrollToIndex(modeIndex);
     if (this.modeArray[modeIndex] !== this.state.mode) {
-      Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
-      this.mAction.changeToMode(this.modeArray[modeIndex])
-      this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
-      this.mPreferencesService.flushMode()
+      Log.info(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`);
+      this.mAction.changeToMode(this.modeArray[modeIndex]);
+      this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex);
+      this.mPreferencesService.flushMode();
     } else {
-      this.mAction.updateListStatus(true)
+      this.mAction.updateListStatus(true);
     }
-    Log.debug(`${this.TAG} changeToMode X`)
+    Log.info(`${this.TAG} changeToMode X`);
   }
 
   private getModeFontWeight(modeIndex: number): FontWeight {
     if (this.state.mode === this.modeArray[modeIndex]) {
-      return FontWeight.Bold
+      return FontWeight.Bold;
     } else {
-      return FontWeight.Regular
+      return FontWeight.Regular;
     }
   }
 
   private swipeChangeMode(data: SwipeModeIndexStruct): void {
-    this.changeToMode(data.swipeModeIndex)
+    this.changeToMode(data.swipeModeIndex);
   }
 
   build() {
@@ -206,15 +202,16 @@ export struct Control {
           }
           .width(this.itemWidth * 3)
           .height('100%')
+          .scrollBar(BarState.Off)
           .listDirection(Axis.Horizontal)
           .edgeEffect(EdgeEffect.None)
           .chainAnimation(false)
           .enabled(this.state.uiEnable)
           .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-            Log.debug(`${this.TAG} Control scroll index first: ${firstIndex}, centerIndex: ${centerIndex}, last: ${lastIndex}`)
+            Log.info(`${this.TAG} Control scroll index first: ${firstIndex}, centerIndex: ${centerIndex}, last: ${lastIndex}`)
             this.index = firstIndex;
             this.mAction.updateModeIndex(firstIndex);
-            Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
+            Log.info(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
           })
           .onScrollStop(() => {
             Log.info(`${this.TAG} onScrollStop`);

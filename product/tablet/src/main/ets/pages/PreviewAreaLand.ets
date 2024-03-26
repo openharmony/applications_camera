@@ -339,10 +339,10 @@ export struct PreviewAreaLand {
   }
 
   private async onModeChanged(data: ModeData) {
-    Log.debug(`${this.TAG} onModeChanged E data.mode: ${data.mode}`);
+    Log.info(`${this.TAG} onModeChanged E data.mode: ${data.mode}`);
     this.mAction.changeZoomRatio(1);
     this.mAction.updateShowPreviewFlag(true);
-    Log.debug(`${this.TAG} onModeChanged X`);
+    Log.info(`${this.TAG} onModeChanged X`);
   }
 
   private async onRecordError() {
