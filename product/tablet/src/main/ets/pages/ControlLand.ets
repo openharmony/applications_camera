@@ -130,18 +130,18 @@ export struct ControlLand {
   }
 
   private changeToMode(modeIndex: number, callType?: string): void {
-    Log.debug(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`)
+    Log.info(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`);
     this.scroller.scrollToIndex(modeIndex)
     if (callType === 'begin') return;
     if (this.modeArray[modeIndex] !== this.state.mode) {
-      Log.debug(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`)
+      Log.info(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`);
       this.mAction.changeToMode(this.modeArray[modeIndex])
       let xComponentSize = this.settingManager.getPreviewDisplaySize(this.state.mode)
       this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height)
       this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex)
       this.mPreferencesService.flushMode()
     }
-    Log.debug(`${this.TAG} changeToMode X`)
+    Log.info(`${this.TAG} changeToMode X`);
   }
 
   private getModeFontWeight(modeIndex: number): FontWeight {
@@ -262,9 +262,9 @@ export struct ControlLand {
           .edgeEffect(EdgeEffect.None)
           .chainAnimation(false)
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
-            Log.debug(`${this.TAG} Control scroll index first: ${firstIndex}, last: ${lastIndex}`)
+            Log.info(`${this.TAG} Control scroll index first: ${firstIndex}, last: ${lastIndex}`);
             this.mAction.updateModeIndex(firstIndex)
-            Log.debug(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`)
+            Log.info(`${this.TAG} onScrollIndex this.state.modeIndex: ${this.state.modeIndex}`);
           })
           // .onScrollBegin(() => {
           //   if (!this.touchOff) this.scrollSwitchMode('begin')
