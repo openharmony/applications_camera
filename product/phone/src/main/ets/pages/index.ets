@@ -118,6 +118,7 @@ class IndexDispatcher {
   }
 }
 
+const ZOOM_HEIGHT = 140;
 
 @Entry
 @Component
@@ -345,7 +346,7 @@ struct Index {
           }
           .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
         }
-      }.width('100%').height(302).position({ y: this.state.footBarHeight })
+      }.width('100%').height(302 - ZOOM_HEIGHT).position({ y: this.state.footBarHeight + ZOOM_HEIGHT })
       .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)
 
       if (this.state.isShowPageView) {
