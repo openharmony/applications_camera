@@ -576,7 +576,6 @@ export struct PreviewAreaLand {
     }, () => {
       Log.info(`${this.TAG} btnSwitchSec callback btnSwitchSec= ${this.btnSwitchSec}`);
       this.rotateAngleSec = 0;
-      //      this.btnSwitchSec = true
     })
   }
 
@@ -746,7 +745,7 @@ export struct PreviewAreaLand {
               .syncLoad(false)
               .scale({ x: this.scaleX, y: 1.0 })
               .rotate({ x: 0, y: 10, z: 0, angle: this.rotateAngle })// .opacity(this.state.btnOpacity_first)
-              .onComplete(() => { /* this.switchAnimation() */
+              .onComplete(() => {
               })
           }
 
@@ -757,7 +756,7 @@ export struct PreviewAreaLand {
               .syncLoad(false)
               .scale({ x: this.scaleX, y: 1.0 })
               .rotate({ x: 0, y: 10, z: 0, angle: this.rotateAngleSec })// .opacity(this.state.btnOpacity_sec)
-              .onComplete(() => { /* this.switchAnimationSec() */
+              .onComplete(() => {
               })
           }
 

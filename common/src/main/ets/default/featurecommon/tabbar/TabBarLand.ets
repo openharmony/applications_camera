@@ -89,32 +89,6 @@ export struct TabBarLand {
       }.width(48).height(48)
       .padding({ left: 12 })
       .position(this.state.isThirdPartyCall ? { x: 0, y: 12 } : { x: 0, y: this.screenSize.height - 144 })
-
-      //        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      //          TabBarOther()
-      //        }.width('100%').height('20%')
-      //        .opacity(this.state.opacityValueForTabBar)
-      //        .animation({
-      //          duration: 2000,
-      //          curve: Curve.Sharp,
-      //          delay: 0,
-      //          iterations: 1,
-      //          playMode: PlayMode.Normal
-      //        })
-      //
-      //        Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      //          TabBarSame()
-      //        }
-      //        .position({ y: this.state.widthTabBar })
-      //        .width('100%')
-      //        .height('20%')
-      //        .animation({
-      //          duration: 2000,
-      //          curve: Curve.Sharp,
-      //          delay: 0,
-      //          iterations: 1,
-      //          playMode: PlayMode.Normal
-      //        })
     }.width(48).height('100%')
   }
 }
