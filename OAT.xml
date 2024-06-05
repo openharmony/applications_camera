@@ -49,10 +49,25 @@
     <oatconfig>
         <filefilterlist>
             <filefilter name="binaryFileTypePolicyFilter" desc="Filters for binary file policies">
+                <filteritem type="filepath" name="AppScope/resources/base/media/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="AppScope/resources/base/media/.*.svg" desc="self developed image"/>
+
                 <filteritem type="filepath" name="product/phone/src/main/resources/base/media/.*.png" desc="self developed image"/>
                 <filteritem type="filepath" name="product/phone/src/main/resources/base/media/.*.svg" desc="self developed image"/>
+                <filteritem type="filepath" name="product/phone/src/main/ets/res/image/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="product/phone/src/main/ets/res/image/.*.svg" desc="self developed image"/>
+                <filteritem type="filepath" name="product/phone/src/ohosTest/resources/base/media/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="product/phone/src/ohosTest/resources/base/media/.*.svg" desc="self developed image"/>
+
                 <filteritem type="filepath" name="product/tablet/src/main/resources/base/media/.*.png" desc="self developed image"/>
                 <filteritem type="filepath" name="product/tablet/src/main/resources/base/media/.*.svg" desc="self developed image"/>
+                <filteritem type="filepath" name="product/tablet/src/main/ets/res/image/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="product/tablet/src/main/ets/res/image/.*.svg" desc="self developed image"/>
+                <filteritem type="filepath" name="product/tablet/src/ohosTest/resources/base/media/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="product/tablet/src/ohosTest/resources/base/media/.*.svg" desc="self developed image"/>
+
+                <filteritem type="filepath" name="common/src/main/resources/base/media/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="common/src/main/resources/base/media/.*.svg" desc="self developed image"/>
 
                 <filteritem type="filepath" name="features/featurecommon/src/main/resources/base/media/.*.png" desc="self developed image"/>
                 <filteritem type="filepath" name="features/featurecommon/src/main/resources/base/media/.*.svg" desc="self developed image"/>
@@ -63,6 +78,8 @@
                 <filteritem type="filepath" name="features/video/src/main/resources/base/media/.*.png" desc="self developed image"/>
                 <filteritem type="filepath" name="features/video/src/main/resources/base/media/.*.svg" desc="self developed image"/>
 
+                <filteritem type="filepath" name="features/multi/src/main/resources/base/media/.*.png" desc="self developed image"/>
+                <filteritem type="filepath" name="features/multi/src/main/resources/base/media/.*.svg" desc="self developed image"/>
 
                 <filteritem type="filepath" name="figures/.*.png" desc="self developed image"/>
             </filefilter>

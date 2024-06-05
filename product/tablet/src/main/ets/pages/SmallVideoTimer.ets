@@ -171,8 +171,6 @@ export struct SmallVideoTimer {
           .fontSize('28fp')
           .fontWeight(300)
           .fontColor('#FFFFFF')
-        //TODO 需要确认UX样式
-        //        Text(this.showMinute).margin({ left: 8 }).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
       }.layoutWeight(1)
 
       Text(":").fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
@@ -183,7 +181,6 @@ export struct SmallVideoTimer {
         .textAlign(TextAlign.Start)
         .align(Alignment.Start)
         .layoutWeight(1)
-      //      Text(this.showSecond).fontSize('28fp').fontWeight(300).fontColor('#FFFFFF').textAlign(TextAlign.Start).layoutWeight(1)
     }.width('100%').height(48)
   }
 }
