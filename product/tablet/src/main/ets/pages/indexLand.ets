@@ -48,7 +48,7 @@ const DEFAULT_FUNCTION = () => {
 CameraWorker.getInstance(new ModeMap());
 let mScreenLockManager = new ScreenLockManager();
 
-PersistentStorage.PersistProp("storageCameraId", "");
+PersistentStorage.PersistProp('storageCameraId', '');
 
 class StateStruct {
   permissionFlag: boolean = false;

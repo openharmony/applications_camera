@@ -21,7 +21,7 @@ export class ShutterController {
   stateEffect: boolean
 
   getParam(): void {
-    this.icon = $r("app.media.ic_circled_filled")
+    this.icon = $r('app.media.ic_circled_filled')
     this.width = 76
     this.height = 76
     this.type = ButtonType.Circle

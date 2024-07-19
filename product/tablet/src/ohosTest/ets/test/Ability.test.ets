@@ -19,7 +19,7 @@ import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
 export default function abilityTest() {
     describe('ActsAbilityTest', function () {
         it('assertContain',0, function () {
-            Log.info("it begin")
+            Log.info('it begin')
             let a = 'abc'
             let b = 'b'
             expect(a).assertContain(b)

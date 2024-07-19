@@ -26,11 +26,11 @@ import { ThumbnailView } from '@ohos/common/src/main/ets/default/featurecommon/t
 import { CameraPlatformCapability } from '@ohos/common/src/main/ets/default/camera/CameraPlatformCapability';
 
 class StateStruct {
-  platformCapability: CameraPlatformCapability | undefined = undefined;
-  isThirdPartyCall: boolean = false;
-  videoState: string = '';
-  showZoomLabelValue: boolean = true;
-  mode: string = '';
+  private platformCapability: CameraPlatformCapability | undefined = undefined;
+  private isThirdPartyCall: boolean = false;
+  private videoState: string = '';
+  private showZoomLabelValue: boolean = true;
+  private mode: string = '';
 }
 
 class FootBarDispatcher {

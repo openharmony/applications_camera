@@ -105,19 +105,19 @@ export default struct MultiCameraDialog {
         Column() {
           Row() {
             Text($r('app.string.select_camera'))
-              .fontSize($r("sys.float.ohos_id_text_size_dialog_tittle"))
+              .fontSize($r('sys.float.ohos_id_text_size_dialog_tittle'))
               .fontColor('#E6000000')
               .opacity(0.9)
               .fontWeight(FontWeight.Medium)
-              .opacity($r("sys.float.ohos_id_alpha_content_primary"))
+              .opacity($r('sys.float.ohos_id_alpha_content_primary'))
           }
           .width('100%')
           .height('56vp')
 
           Row() {
             Text($r('app.string.local_device'))
-              .fontSize($r("sys.float.ohos_id_text_size_body2"))
-              .fontColor("#99182431")
+              .fontSize($r('sys.float.ohos_id_text_size_body2'))
+              .fontColor('#99182431')
               .fontWeight(FontWeight.Medium)
           }
           .width('100%')
@@ -138,12 +138,12 @@ export default struct MultiCameraDialog {
             })
           }
           .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: '1vp', color: "#33182431", startMargin: 0, endMargin: 12})
+          .divider({ strokeWidth: '1vp', color: '#33182431', startMargin: 0, endMargin: 12})
 
           Row() {
             Text($r('app.string.more_devices'))
-              .fontSize($r("sys.float.ohos_id_text_size_body2"))
-              .fontColor("#99182431")
+              .fontSize($r('sys.float.ohos_id_text_size_body2'))
+              .fontColor('#99182431')
               .fontWeight(FontWeight.Medium)
           }
           .width('100%')
@@ -171,7 +171,7 @@ export default struct MultiCameraDialog {
           Column() {
             Button({ type: ButtonType.Capsule, stateEffect: true }) {
               Text($r('app.string.cancel'))
-                .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
+                .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
                 .fontColor('#1095E8')
                 .fontWeight(FontWeight.Medium)
                 .height('100%')
@@ -193,7 +193,7 @@ export default struct MultiCameraDialog {
         .width('100%')
         .backgroundColor(Color.White)
         .padding({ left: 24, right: 24 })
-        .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
+        .borderRadius($r('sys.float.ohos_id_corner_radius_default_xl'))
         .useSizeType({
           xs: { span: 4, offset: this.useSizeTypeOffset },
           sm: { span: 4, offset: this.useSizeTypeOffset },
