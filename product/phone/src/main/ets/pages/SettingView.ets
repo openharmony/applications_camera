@@ -132,7 +132,7 @@ export struct SettingView {
   build() {
     Flex({ direction: FlexDirection.Column }) {
       Row() {
-        Image($r('app.media.ic_public_back"))
+        Image($r('app.media.ic_public_back'))
           .width(24)
           .height(24)
           .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
