@@ -19,7 +19,7 @@ import { Dispatch, OhCombinedState } from '../../redux/store';
 import { getStore } from '../../redux/store';
 
 class MoreListInfo {
-  itemIcon: Resource = $r("app.media.photo");
+  itemIcon: Resource = $r('app.media.photo');
   itemValue: string = 'photo';
 }
 
@@ -46,19 +46,19 @@ export struct MoreList {
   private mAction: MoreListDispatcher = new MoreListDispatcher();
   private mDirection: PanDirection = PanDirection.Right;
   private moreList: MoreListInfo[] = [{
-    itemIcon: $r("app.media.photo"),
+    itemIcon: $r('app.media.photo'),
     itemValue: 'photo'
   }, {
-    itemIcon: $r("app.media.sd_card"),
+    itemIcon: $r('app.media.sd_card'),
     itemValue: 'sd_card'
   }, {
-    itemIcon: $r("app.media.setting"),
+    itemIcon: $r('app.media.setting'),
     itemValue: 'setting'
   }, {
-    itemIcon: $r("app.media.small_switch_camera"),
+    itemIcon: $r('app.media.small_switch_camera'),
     itemValue: 'switch'
   }, {
-    itemIcon: $r("app.media.sound_mute"),
+    itemIcon: $r('app.media.sound_mute'),
     itemValue: 'sound_mute'
   }]
 
@@ -113,10 +113,10 @@ export struct MoreList {
       .rowsTemplate('1fr 1fr 1fr')
       .columnsGap(1)
       .rowsGap(1)
-      .backgroundColor("rgba(205,201,201,0.6)")
+      .backgroundColor('rgba(205,201,201,0.6)')
     }
-    .width("100%")
-    .height("70%")
+    .width('100%')
+    .height('70%')
     .gesture(
     PanGesture({ direction: this.mDirection })
       .onActionEnd(() => {

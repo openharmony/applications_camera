@@ -43,7 +43,7 @@ export struct SettingItem {
         Row() {
           Text(this.item.settingTitle)
             .margin({ top: $r('app.float.margin_value_20'),
-              left: $r("sys.float.ohos_id_card_margin_start"),
+              left: $r('sys.float.ohos_id_card_margin_start'),
               bottom: $r('app.float.margin_value_8') })
             .fontColor($r('app.color.font_color_FFFFFF'))
             .opacity($r('app.float.opacity_6'))
@@ -80,8 +80,8 @@ export struct SettingItem {
         }
         .listDirection(Axis.Vertical)
         .divider({ strokeWidth: 0.5, color: '#33FFFFFF', startMargin: 56, endMargin: 12 })
-        .borderRadius($r("sys.float.ohos_id_corner_radius_card"))
-        .backgroundColor("#202224")
+        .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
+        .backgroundColor('#202224')
         .padding({ top: 4, bottom: 4 })
       }.width(this.WH_100_100)
     }

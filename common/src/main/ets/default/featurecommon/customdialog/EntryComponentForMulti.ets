@@ -61,7 +61,7 @@ export default struct EntryComponentForMulti {
 
     this.getShowName(this.item)
     this.curCameraName = this.cameraService.getCameraName()
-    if (this.localList.split(",").length === 1 && this.curCameraName === 'BACK') {
+    if (this.localList.split(',').length === 1 && this.curCameraName === 'BACK') {
       this.curCameraName = 'FRONT'
     }
   }
@@ -70,10 +70,10 @@ export default struct EntryComponentForMulti {
     this.cameraPositionName = item.split('_').pop() as string;
     switch (this.cameraPositionName) {
       case 'FRONT':
-        this.cameraPositionRes = $r("app.string.front")
+        this.cameraPositionRes = $r('app.string.front')
         break
       case 'BACK':
-        this.cameraPositionRes = $r("app.string.back")
+        this.cameraPositionRes = $r('app.string.back')
         break
       default:
         break
@@ -93,19 +93,19 @@ export default struct EntryComponentForMulti {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
       Row() {
         if (this.isLocalDevice) {
-          Text($r("app.string.local"))
+          Text($r('app.string.local'))
             .fontColor('#E6000000')
-            .fontSize($r("sys.float.ohos_id_text_size_body1"))
+            .fontSize($r('sys.float.ohos_id_text_size_body1'))
             .fontWeight(FontWeight.Medium)
         } else {
           Text(this.deviceName)
             .fontColor('#E6000000')
-            .fontSize($r("sys.float.ohos_id_text_size_body1"))
+            .fontSize($r('sys.float.ohos_id_text_size_body1'))
             .fontWeight(FontWeight.Medium)
         }
         Text(this.cameraPositionRes)
           .fontColor('#E6000000')
-          .fontSize($r("sys.float.ohos_id_text_size_body1"))
+          .fontSize($r('sys.float.ohos_id_text_size_body1'))
           .fontWeight(FontWeight.Medium)
       }
 

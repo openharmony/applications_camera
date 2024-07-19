@@ -43,7 +43,7 @@ import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalCon
 
 CameraWorker.getInstance(new ModeMap());
 
-PersistentStorage.PersistProp("storageCameraId", "");
+PersistentStorage.PersistProp('storageCameraId', '');
 
 class StateStruct {
   footBarHeight: number = 0;
