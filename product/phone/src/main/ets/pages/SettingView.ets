@@ -67,7 +67,7 @@ class SizeStruct {
 export struct SettingView {
   private TAG: string = '[SettingView]:'
   private settingManager = SettingManager.getInstance()
-  @State checkNameList: Array<string> = ["4:3", "[16:9] 720p"]
+  @State checkNameList: Array<string> = ['4:3', '[16:9] 720p']
   @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
@@ -88,17 +88,17 @@ export struct SettingView {
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
     });
-    this.mEventBus.on("AspectRatio", (data: SizeStruct) => this.aspectRatioChange(data));
-    this.mEventBus.on("Resolution", (data: SizeStruct) => this.resolutionChange(data));
-    this.mEventBus.on("AssistiveGrid", (data: number) => this.assistiveGridChange(data));
+    this.mEventBus.on('AspectRatio', (data: SizeStruct) => this.aspectRatioChange(data));
+    this.mEventBus.on('Resolution', (data: SizeStruct) => this.resolutionChange(data));
+    this.mEventBus.on('AssistiveGrid', (data: number) => this.assistiveGridChange(data));
     Log.info(`${this.TAG} aboutToAppear invoke X`)
   }
 
   aboutToDisappear(): void {
     Log.info(`${this.TAG} aboutToDisappear E`)
-    this.mEventBus.off("AspectRatio", (data: SizeStruct) => this.aspectRatioChange(data));
-    this.mEventBus.off("Resolution", (data: SizeStruct) => this.resolutionChange(data));
-    this.mEventBus.off("AssistiveGrid", (data: number) => this.assistiveGridChange(data));
+    this.mEventBus.off('AspectRatio', (data: SizeStruct) => this.aspectRatioChange(data));
+    this.mEventBus.off('Resolution', (data: SizeStruct) => this.resolutionChange(data));
+    this.mEventBus.off('AssistiveGrid', (data: number) => this.assistiveGridChange(data));
   }
 
   onBackPress(): boolean {
@@ -132,7 +132,7 @@ export struct SettingView {
   build() {
     Flex({ direction: FlexDirection.Column }) {
       Row() {
-        Image($r("app.media.ic_public_back"))
+        Image($r('app.media.ic_public_back"))
           .width(24)
           .height(24)
           .fillColor($r('app.color.settings_ic_public_back_FFFFFF'))
@@ -140,7 +140,7 @@ export struct SettingView {
             this.mAction.hideSettingView()
           })
         Text($r('app.string.settings'))
-          .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
+          .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l') })
           .fontColor($r('app.color.settings_ic_public_back_FFFFFF'))
           .fontSize($r('sys.float.ohos_id_text_size_headline8'))
           .fontWeight(FontWeight.Medium)
@@ -184,7 +184,7 @@ export struct SettingView {
               this.mAction.hideSettingView()
             })
           }
-          .margin({ top: $r("sys.float.ohos_id_text_paragraph_margin_l") })
+          .margin({ top: $r('sys.float.ohos_id_text_paragraph_margin_l') })
         }
       }
       .width(this.WH_100_100)

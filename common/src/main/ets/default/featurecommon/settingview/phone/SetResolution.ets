@@ -48,8 +48,8 @@ export struct SetResolution {
   private WH_100_100: string = "100%";
   private settingManager = SettingManager.getInstance();
   private setAlias: string = '';
-  @StorageLink("settingDialogFlag") settingDialogFlag: boolean = true;
-  @State curCheckName: Resource = $r("app.string.default_value");
+  @StorageLink('settingDialogFlag') settingDialogFlag: boolean = true;
+  @State curCheckName: Resource = $r('app.string.default_value');
   @State state: StateStruct = new StateStruct();
   private mAction: SetResolutionDispatcher = new SetResolutionDispatcher();
   @Provide customDialogDetails: CustomDialogDetails = {
@@ -119,21 +119,21 @@ export struct SetResolution {
           Image(this.itemValue.imagePath)
             .width(24)
             .height(24)
-            .fillColor("#FFFFFF")
+            .fillColor('#FFFFFF')
           Text(this.itemValue.settingName)
-            .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
-            .fontColor("#FFFFFF")
-            .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
+            .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l') })
+            .fontColor('#FFFFFF')
+            .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
             .fontWeight(FontWeight.Regular)
         }
 
         Row() {
           Text(this.formatCurCheckName(this.curCheckName))
             .fontColor($r('app.color.font_color_FFFFFF'))
-            .fontSize($r("sys.float.ohos_id_text_size_body2"))
+            .fontSize($r('sys.float.ohos_id_text_size_body2'))
             .opacity(0.6)
             .fontWeight(FontWeight.Regular)
-          Image($r("app.media.ic_public_arrow_right"))
+          Image($r('app.media.ic_public_arrow_right'))
             .width(12)
             .height(24)
             .fillColor('#33FFFFFF')
@@ -142,7 +142,7 @@ export struct SetResolution {
             .margin({ left: 4 })
         }
       }
-      .height("100%")
+      .height('100%')
     }
     .padding({ left: 12, right: 12 })
     .width(this.WH_100_100)

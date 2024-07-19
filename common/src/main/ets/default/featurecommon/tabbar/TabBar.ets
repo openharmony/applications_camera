@@ -62,7 +62,7 @@ export struct TabBar {
       Column() {
         if (this.state.isThirdPartyCall) {
           Row() {
-            Image($r("app.media.ic_public_back")).width(24).height(24)
+            Image($r('app.media.ic_public_back')).width(24).height(24)
               .onClick(() => {
                 this.mAction.showSettingView(false)
                 this.onBackClicked()

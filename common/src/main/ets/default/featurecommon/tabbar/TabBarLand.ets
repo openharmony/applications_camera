@@ -71,7 +71,7 @@ export struct TabBarLand {
     Flex({ direction: FlexDirection.ColumnReverse, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {
       if (this.state.isThirdPartyCall) {
         Row() {
-          Image($r("app.media.ic_public_back")).width(24).height(24)
+          Image($r('app.media.ic_public_back')).width(24).height(24)
             .onClick(() => {
               this.onBackClicked()
             })
@@ -81,7 +81,7 @@ export struct TabBarLand {
       }
 
       Row() {
-        Image($r("app.media.setting")).width(24).height(24)
+        Image($r('app.media.setting')).width(24).height(24)
           .onClick(() => {
             ReportUtil.write(ReportUtil.CLICK_SETTINGS)
             this.mAction.showSettingView(true);

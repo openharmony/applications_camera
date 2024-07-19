@@ -110,7 +110,7 @@ struct ThirdPreviewView {
         } else {
           Video({
             src: this.videoUri,
-            previewUri: `${this.videoUri}/thumbnail/${this.photoWidth?.split("px")[0]}/${this.photoHeight?.split("px")[0]}`,
+            previewUri: `${this.videoUri}/thumbnail/${this.photoWidth?.split('px')[0]}/${this.photoHeight?.split('px')[0]}`,
             controller: this.myVideoController
           })
             .controls(this.controls)

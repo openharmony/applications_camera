@@ -210,7 +210,7 @@ export struct ShutterButtonLand {
               }
             })
         } else {
-          Image($r("app.media.ic_circled")).fillColor(Color.White).width(76).aspectRatio(1)
+          Image($r('app.media.ic_circled')).fillColor(Color.White).width(76).aspectRatio(1)
           Image(this.state.shutterIcon)
             .width(54)
             .aspectRatio(1)
