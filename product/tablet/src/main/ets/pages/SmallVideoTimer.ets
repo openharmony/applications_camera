@@ -173,7 +173,7 @@ export struct SmallVideoTimer {
           .fontColor('#FFFFFF')
       }.layoutWeight(1)
 
-      Text(":").fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
+      Text(':').fontSize('28fp').fontWeight(300).fontColor('#FFFFFF')
       Text(`${this.state.recordingTimeDisplay.split(':')[1]}`)
         .fontSize('28fp')
         .fontWeight(300)

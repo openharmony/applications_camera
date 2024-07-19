@@ -405,7 +405,7 @@ export struct PreviewAreaLand {
     this.appEventBus.on(Action.ACTION_INIT_DONE, () => this.onCameraInit);
     this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, () => this.onModeChanged);
     this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, () => this.onKeepScreen);
-    this.appEventBus.on("windowSize", () => this.windowSizeChange);
+    this.appEventBus.on('windowSize', () => this.windowSizeChange);
     this.appEventBus.on(Action.ACTION_RECORD_ERROR, () => this.onRecordError);
     this.appEventBus.on(ScreenLockManager.SCREEN_CHANGE_EVENT, () => this.onScreenChange);
     this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, () => this.updateCameraStatus);
@@ -531,7 +531,7 @@ export struct PreviewAreaLand {
     Log.info(`${this.TAG} aboutToDisappear E`);
     this.appEventBus.off(Action.ACTION_INIT_DONE, () => this.onCameraInit);
     this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, () => this.onModeChanged);
-    this.appEventBus.off("windowSize", () => this.windowSizeChange);
+    this.appEventBus.off('windowSize', () => this.windowSizeChange);
     this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, () => this.updateCameraStatus);
     // this.mConnect?.destroy();
     GeoLocation.getInstance().off();

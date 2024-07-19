@@ -103,11 +103,11 @@ export struct CustomDialogView {
         Column() {
           Row() {
             Text(this.customDialogDetails.settingTitle)
-              .fontSize($r("sys.float.ohos_id_text_size_dialog_tittle"))
+              .fontSize($r('sys.float.ohos_id_text_size_dialog_tittle'))
               .fontColor('#E6000000')
               .opacity(0.9)
               .fontWeight(FontWeight.Medium)
-              .opacity($r("sys.float.ohos_id_alpha_content_primary"))
+              .opacity($r('sys.float.ohos_id_alpha_content_primary'))
           }
           .width('100%')
           .height(56)
@@ -131,7 +131,7 @@ export struct CustomDialogView {
           Column() {
             Button({ type: ButtonType.Capsule, stateEffect: true }) {
               Text($r('app.string.cancel'))
-                .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
+                .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
                 .fontColor('#1095E8')
                 .fontWeight(FontWeight.Medium)
                 .height('100%')
@@ -155,18 +155,18 @@ export struct CustomDialogView {
         .margin({ left: '12vp', right: '12vp', bottom: '16vp' })
         .backgroundColor(Color.White)
         .padding({ left: '24vp', right: '24vp' })
-        .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
+        .borderRadius($r('sys.float.ohos_id_corner_radius_default_xl'))
       }
     } else {
       Flex({ justifyContent: FlexAlign.Center }) {
         Column() {
           Row() {
             Text(this.customDialogDetails.settingTitle)
-              .fontSize($r("sys.float.ohos_id_text_size_dialog_tittle"))
+              .fontSize($r('sys.float.ohos_id_text_size_dialog_tittle'))
               .fontColor('#E6000000')
               .opacity(0.9)
               .fontWeight(FontWeight.Medium)
-              .opacity($r("sys.float.ohos_id_alpha_content_primary"))
+              .opacity($r('sys.float.ohos_id_alpha_content_primary'))
           }
           .width('100%')
           .height(56)
@@ -192,7 +192,7 @@ export struct CustomDialogView {
             Column() {
               Button({ type: ButtonType.Capsule, stateEffect: true }) {
                 Text($r('app.string.cancel'))
-                  .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
+                  .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
                   .fontColor('#1095E8')
                   .fontWeight(FontWeight.Medium)
                   .height('100%')
@@ -217,7 +217,7 @@ export struct CustomDialogView {
         .margin({ left: '12vp', right: '12vp', bottom: '16vp' })
         .backgroundColor(Color.White)
         .padding({ left: '24vp', right: '24vp' })
-        .borderRadius($r("sys.float.ohos_id_corner_radius_default_xl"))
+        .borderRadius($r('sys.float.ohos_id_corner_radius_default_xl'))
         .useSizeType({
           xs: { span: 4, offset: this.localStyle.offset },
           sm: { span: 4, offset: this.localStyle.offset },

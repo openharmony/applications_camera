@@ -78,23 +78,23 @@ export struct TabletSetToggle {
             Image(this.itemValue.imagePath)
               .width(24)
               .height(24)
-              .fillColor("#FFFFFF")
+              .fillColor('#FFFFFF')
             Text(this.itemValue.settingName)
-              .fontColor("#FFFFFF")
-              .fontSize($r("sys.float.ohos_id_text_size_sub_title2"))
+              .fontColor('#FFFFFF')
+              .fontSize($r('sys.float.ohos_id_text_size_sub_title2'))
               .fontWeight(FontWeight.Regular)
-              .margin({ left: $r("sys.float.ohos_id_elements_margin_horizontal_l") })
+              .margin({ left: $r('sys.float.ohos_id_elements_margin_horizontal_l') })
           }
 
           if (this.itemValue?.description) {
             Row() {
               Text(this.itemValue.description)
-                .fontColor("#FFFFFF")
-                .fontSize($r("sys.float.ohos_id_text_size_body2"))
+                .fontColor('#FFFFFF')
+                .fontSize($r('sys.float.ohos_id_text_size_body2'))
                 .fontWeight(FontWeight.Regular)
-                .opacity($r("sys.float.ohos_id_alpha_content_secondary"))
+                .opacity($r('sys.float.ohos_id_alpha_content_secondary'))
             }.margin({
-              top: $r("sys.float.ohos_id_text_margin_vertical"),
+              top: $r('sys.float.ohos_id_text_margin_vertical'),
               left: 40 })
           }
         }
@@ -117,7 +117,7 @@ export struct TabletSetToggle {
               this.settingManager.setSettingValue(this.itemValue.settingAlias, setToggle, this.state.mode)
             })
         }
-        .margin({ left: $r("sys.float.ohos_id_card_margin_end") })
+        .margin({ left: $r('sys.float.ohos_id_card_margin_end') })
       }
       .padding({ left: 12, right: 12, top: 4, bottom: 4 })
     }

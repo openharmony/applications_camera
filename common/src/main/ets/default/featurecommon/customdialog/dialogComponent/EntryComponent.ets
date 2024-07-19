@@ -75,7 +75,7 @@ export default struct EntryComponent {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
       Text(this.itemValue)
         .fontColor('#E6000000')
-        .fontSize($r("sys.float.ohos_id_text_size_body1"))
+        .fontSize($r('sys.float.ohos_id_text_size_body1'))
         .fontWeight(FontWeight.Regular)
 
       Radio({ group: 'settingChildren', value: this.itemValue.toString() })

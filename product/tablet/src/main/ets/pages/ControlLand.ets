@@ -192,14 +192,14 @@ export struct ControlLand {
         if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO') {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.photo_mode'))
-              .fontSize($r("sys.float.ohos_id_text_size_body1"))
+              .fontSize($r('sys.float.ohos_id_text_size_body1'))
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
           }.layoutWeight(1).height('100%')
         } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO') {
           Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
             Text($r('app.string.video_mode'))
-              .fontSize($r("sys.float.ohos_id_text_size_body1"))
+              .fontSize($r('sys.float.ohos_id_text_size_body1'))
               .fontColor(Color.White)
               .fontWeight(FontWeight.Bold)
           }.layoutWeight(1).height('100%')
@@ -215,7 +215,7 @@ export struct ControlLand {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.multi_mode'))
-                  .fontSize($r("sys.float.ohos_id_text_size_body1"))
+                  .fontSize($r('sys.float.ohos_id_text_size_body1'))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)
                   .onClick(async () => {
@@ -228,7 +228,7 @@ export struct ControlLand {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.photo_mode'))
-                  .fontSize($r("sys.float.ohos_id_text_size_body1"))
+                  .fontSize($r('sys.float.ohos_id_text_size_body1'))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)
                   .onClick(async () => {
@@ -241,7 +241,7 @@ export struct ControlLand {
             ListItem() {
               Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.End }) {
                 Text($r('app.string.video_mode'))
-                  .fontSize($r("sys.float.ohos_id_text_size_body1"))
+                  .fontSize($r('sys.float.ohos_id_text_size_body1'))
                   .fontColor(Color.White)
                   .enabled(this.state.uiEnable)
                   .onClick(async () => {

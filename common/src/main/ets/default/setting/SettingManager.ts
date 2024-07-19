@@ -68,15 +68,15 @@ export class SettingManager {
     let needCommit = false
     if (settingAlias == AspectRatio.ALIAS) {
       this.mAspectRatio = itemValue
-      this.mEventBus.emit("AspectRatio", [this.getPreviewDisplaySize(mode)])
+      this.mEventBus.emit('AspectRatio', [this.getPreviewDisplaySize(mode)])
       needCommit = true
     } else if (settingAlias == Resolution.ALIAS) {
       this.mResolution = itemValue
-      this.mEventBus.emit("Resolution", [this.getPreviewDisplaySize(mode)])
+      this.mEventBus.emit('Resolution', [this.getPreviewDisplaySize(mode)])
       needCommit = true
     } else if (settingAlias == AssistiveGrid.ALIAS) {
       this.mAssistiveGrid = itemValue
-      this.mEventBus.emit("AssistiveGrid", [this.mAssistiveGrid])
+      this.mEventBus.emit('AssistiveGrid', [this.mAssistiveGrid])
       needCommit = true
     } else if (settingAlias == Timer.ALIAS) {
       this.mTimer = itemValue
