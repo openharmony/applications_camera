@@ -34,7 +34,13 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.MEDIA_LOCATION"
+        "name": "ohos.permission.MEDIA_LOCATION",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.INTERNET"
@@ -43,31 +49,79 @@
         "name": "ohos.permission.MODIFY_AUDIO_SETTINGS"
       },
       {
-        "name": "ohos.permission.READ_IMAGEVIDEO"
+        "name": "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
-        "name": "ohos.permission.WRITE_IMAGEVIDEO"
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.GET_BUNDLE_INFO"
       },
       {
-        "name": "ohos.permission.CAMERA"
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
-        "name": "ohos.permission.MICROPHONE"
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
-        "name": "ohos.permission.LOCATION"
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
-        "name": "ohos.permission.LOCATION_IN_BACKGROUND"
+        "name": "ohos.permission.LOCATION_IN_BACKGROUND",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
-        "name": "ohos.permission.APPROXIMATELY_LOCATION"
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "$string:mainability_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.ACCESS_SERVICE_DM"
