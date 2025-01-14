@@ -111,7 +111,8 @@
         ],
         "supportWindowMode": [
           "fullscreen"
-        ]
+        ],
+        "srcEntry": ""
       }
     ],
     "extensionAbilities": [
