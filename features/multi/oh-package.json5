@@ -3,7 +3,7 @@
   "devDependencies": {},
   "name": "@ohos/multi",
   "description": "multi mode",
-  "main": "index.ets",
+  "main": "index.ts",
   "repository": {},
   "version": "1.0.0",
   "dependencies": {
