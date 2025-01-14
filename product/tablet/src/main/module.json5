@@ -133,7 +133,7 @@
     "abilities": [
       {
         "name": "com.ohos.camera.MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:startWindowBackground",
         "launchType": "singleton",
@@ -163,7 +163,7 @@
     "extensionAbilities": [
       {
         "name": "com.ohos.camera.FormAbility",
-        "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+        "srcEntry": "./ets/FormAbility/FormAbility.ts",
         "label": "$string:app_name",
         "description": "$string:app_name",
         "type": "form",
