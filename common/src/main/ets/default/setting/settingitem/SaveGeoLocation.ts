@@ -14,7 +14,7 @@
  */
 
 export default class SaveGeoLocation {
-  private static TAG = '[SaveGeoLocation]:'
   public static readonly ALIAS = 'SaveGeoLocation'
   public static readonly DEFAULT_VALUE = '1'
+  private static TAG = '[SaveGeoLocation]:'
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Log } from '../../utils/Log'
+import { Log } from '../../utils/Log';
 
 type Callback = (args: any) => void
 
@@ -25,11 +25,11 @@ export class EventBus {
   }
 
   /**
-    * Register events and handlers
-    *
-    * @param event event to handle.
-    * @param callback event related callbacck
-    */
+   * Register events and handlers
+   *
+   * @param event event to handle.
+   * @param callback event related callbacck
+   */
   public on(event: string | string[], callback: Callback): void {
     Log.info(`${this.TAG} on event = ${JSON.stringify(event)}  ${JSON.stringify(callback)}`);
     if (Array.isArray(event)) {
@@ -48,11 +48,11 @@ export class EventBus {
   }
 
   /**
-    * Register events and processing functions, and destroy them after triggering once
-    *
-    * @param event event to handle
-    * @param callback event related callback
-    */
+   * Register events and processing functions, and destroy them after triggering once
+   *
+   * @param event event to handle
+   * @param callback event related callback
+   */
   public once(event: string | string[], callback: Callback): void {
     const _self = this
 
@@ -67,11 +67,11 @@ export class EventBus {
   }
 
   /**
-    * Destroy events and handlers
-    *
-    * @param event event to handle
-    * @param callback event related callback
-    */
+   * Destroy events and handlers
+   *
+   * @param event event to handle
+   * @param callback event related callback
+   */
   public off(event: string | string[], callback: Callback | undefined): void {
     // Array cyclic emptying
     if (Array.isArray(event)) {
@@ -96,11 +96,11 @@ export class EventBus {
   }
 
   /**
-    * Trigger all callbacks of an event with parameters
-    *
-    * @param event event to handle
-    * @param argument parameter for the related callback
-    */
+   * Trigger all callbacks of an event with parameters
+   *
+   * @param event event to handle
+   * @param argument parameter for the related callback
+   */
   public emit(event: string, argument: any): void {
     // once deleting the event will cause this in the following loop this._events moves forward in fn,
     // so it is copied here as a new array
