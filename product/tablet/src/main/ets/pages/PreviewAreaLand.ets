@@ -15,25 +15,24 @@
 
 import router from '@system.router';
 import display from '@ohos.display';
-import deviceInfo from '@ohos.deviceInfo'
-import { BigVideoTimer } from './BigVideoTimer'
-import { Action, UiStateMode } from '@ohos/common/src/main/ets/default/redux/actions/Action'
-import { AssistiveGridView } from '@ohos/common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView'
-import { BigText } from '@ohos/common/src/main/ets/default/featurecommon/bigtext/BigText'
-import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/default/utils/Constants'
-import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId'
-import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus'
-import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager'
-import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store'
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store'
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
-import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation'
-import { ScreenLockManager } from '@ohos/common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager'
-import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager'
-import { ShowFlashBlack } from '@ohos/common/src/main/ets/default/featurecommon/animate/ShowFlashBlack'
-import { TimeLapseView } from '@ohos/common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView'
-import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomText'
-import { SmallVideoTimer } from './SmallVideoTimer'
+import deviceInfo from '@ohos.deviceInfo';
+import { BigVideoTimer } from './BigVideoTimer';
+import { Action, UiStateMode } from '@ohos/common/src/main/ets/default/redux/actions/Action';
+import { AssistiveGridView } from '@ohos/common/src/main/ets/default/featurecommon/assistivegridview/AssistiveGridView';
+import { BigText } from '@ohos/common/src/main/ets/default/featurecommon/bigtext/BigText';
+import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/default/utils/Constants';
+import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId';
+import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
+import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
+import { Dispatch, getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
+import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation';
+import { ScreenLockManager } from '@ohos/common/src/main/ets/default/featurecommon/screenlock/ScreenLockManager';
+import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager';
+import { ShowFlashBlack } from '@ohos/common/src/main/ets/default/featurecommon/animate/ShowFlashBlack';
+import { TimeLapseView } from '@ohos/common/src/main/ets/default/featurecommon/timelapseview/TimeLapseView';
+import { ZoomText } from '@ohos/common/src/main/ets/default/featurecommon/zoomview/ZoomText';
+import { SmallVideoTimer } from './SmallVideoTimer';
 import promptAction from '@ohos.promptAction';
 import wantConstant from '@ohos.ability.wantConstant';
 import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
@@ -547,7 +546,8 @@ export struct PreviewAreaLand {
 
   private switchAnimationSec(): void {
     Log.info(`${this.TAG} switchAnimationSec called`);
-    animateTo({ duration: 200,
+    animateTo({
+      duration: 200,
       delay: 0,
       curve: Curve.Sharp,
     }, () => {
@@ -580,7 +580,8 @@ export struct PreviewAreaLand {
   }
 
   private switchBackgroundAnimation(): void {
-    animateTo({ duration: 350,
+    animateTo({
+      duration: 350,
       delay: 0,
       curve: Curve.Sharp,
       onFinish: () => {
@@ -653,7 +654,8 @@ export struct PreviewAreaLand {
 
   private swipeChangeMode(swipe: number): void {
     Log.info(`${this.TAG} swipeChangeMode E`);
-    if (!this.state.modeChangeDone && this.state.modeIndex + swipe >= 0 && this.state.modeIndex + swipe <= this.modeArray.length - 1 && !this.state.isShowtimeLapse) {
+    if (!this.state.modeChangeDone && this.state.modeIndex + swipe >= 0 &&
+      this.state.modeIndex + swipe <= this.modeArray.length - 1 && !this.state.isShowtimeLapse) {
       this.mAction.swipeChangeMode(this.state.modeIndex + swipe);
       this.mAction.swipeModeChangeDone(true);
     }
@@ -744,7 +746,12 @@ export struct PreviewAreaLand {
               .height(this.state.xComponentHeight)
               .syncLoad(false)
               .scale({ x: this.scaleX, y: 1.0 })
-              .rotate({ x: 0, y: 10, z: 0, angle: this.rotateAngle })// .opacity(this.state.btnOpacity_first)
+              .rotate({
+                x: 0,
+                y: 10,
+                z: 0,
+                angle: this.rotateAngle
+              })// .opacity(this.state.btnOpacity_first)
               .onComplete(() => {
               })
           }
@@ -755,7 +762,12 @@ export struct PreviewAreaLand {
               .height(this.state.xComponentHeight)
               .syncLoad(false)
               .scale({ x: this.scaleX, y: 1.0 })
-              .rotate({ x: 0, y: 10, z: 0, angle: this.rotateAngleSec })// .opacity(this.state.btnOpacity_sec)
+              .rotate({
+                x: 0,
+                y: 10,
+                z: 0,
+                angle: this.rotateAngleSec
+              })// .opacity(this.state.btnOpacity_sec)
               .onComplete(() => {
               })
           }
@@ -764,7 +776,7 @@ export struct PreviewAreaLand {
             ShowFlashBlack();
           }
 
-          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default" && !this.state.isShowtimeLapse) {
+          if (this.state.isShowZoomText && deviceInfo.deviceType !== 'default' && !this.state.isShowtimeLapse) {
             Stack({ alignContent: Alignment.Top }) {
               Column() {
                 Column() {
