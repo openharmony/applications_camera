@@ -14,8 +14,7 @@
  */
 import { CameraId } from '../../setting/settingitem/CameraId';
 
-import { ActionData } from '../actions/Action';
-import { Action } from '../actions/Action';
+import { Action, ActionData } from '../actions/Action';
 
 export type CameraState = {
   cameraPosition: CameraId,

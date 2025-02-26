@@ -14,9 +14,6 @@
  */
 
 export class SettingData {
-  constructor() {
-  }
-
   settingTitle?: string | Resource;
   imagePath?: string | Resource;
   settingName?: Resource;
@@ -26,6 +23,9 @@ export class SettingData {
   radio?: string;
   toggle?: string;
   description?: string;
+
+  constructor() {
+  }
 }
 
 

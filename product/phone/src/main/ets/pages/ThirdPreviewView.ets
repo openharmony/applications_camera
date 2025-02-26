@@ -25,6 +25,9 @@ import { ComponentIdKeys } from '@ohos/common/src/main/ets/default/utils/Compone
 @Entry
 @Component
 struct ThirdPreviewView {
+  @State controls: boolean = false;
+  @State isShowVideoButton: boolean = true;
+  myVideoController: VideoController = new VideoController();
   private TAG: string = '[ThirdPreviewView]:';
   private photoWidth: string = '';
   private photoHeight: string = '';
@@ -32,9 +35,6 @@ struct ThirdPreviewView {
   private videoUri: string = '';
   private mode: string = '';
   private callBundleName: string = '';
-  @State controls: boolean = false;
-  @State isShowVideoButton: boolean = true;
-  myVideoController: VideoController = new VideoController();
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`);
@@ -75,7 +75,7 @@ struct ThirdPreviewView {
     Log.info(`${this.TAG} backCalledApp X`);
   }
 
-  terminateSelfWithResult(resourceUri: string, resultCode : number): void {
+  terminateSelfWithResult(resourceUri: string, resultCode: number): void {
     Log.info(`${this.TAG} terminateSelfWithResult start`);
     let abilityResult: ability.AbilityResult = {
       resultCode: resultCode,
@@ -105,18 +105,6 @@ struct ThirdPreviewView {
       });
     }
 
-  }
-
-  private getVideoPlayIcon() {
-    if (vp2px(1) >= 1 && vp2px(1) < 2) {
-      return $r('app.media.ic_video_play_btn_hdpi');
-    } else if (vp2px(1) == 2) {
-      return $r('app.media.ic_video_play_btn_xhdpi');
-    } else if (vp2px(1) == 3) {
-      return $r('app.media.ic_video_play_btn_xxhdpi');
-    } else {
-      return $r('app.media.ic_video_play_btn_xxxhdpi');
-    }
   }
 
   build() {
@@ -193,5 +181,17 @@ struct ThirdPreviewView {
       .padding({ top: '12vp', left: '24vp', right: '24vp' })
       .position({ x: 0, y: 0 })
     }.width('100%').height('100%').backgroundColor('#000')
+  }
+
+  private getVideoPlayIcon() {
+    if (vp2px(1) >= 1 && vp2px(1) < 2) {
+      return $r('app.media.ic_video_play_btn_hdpi');
+    } else if (vp2px(1) == 2) {
+      return $r('app.media.ic_video_play_btn_xhdpi');
+    } else if (vp2px(1) == 3) {
+      return $r('app.media.ic_video_play_btn_xxhdpi');
+    } else {
+      return $r('app.media.ic_video_play_btn_xxxhdpi');
+    }
   }
 }

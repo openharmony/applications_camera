@@ -17,8 +17,7 @@ import { Action } from '../../redux/actions/Action'
 import { Log } from '../../utils/Log'
 import { EventBus } from '../../worker/eventbus/EventBus'
 import { EventBusManager } from '../../worker/eventbus/EventBusManager'
-import { Dispatch, OhCombinedState } from '../../redux/store'
-import { getStore } from '../../redux/store'
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store'
 import ReportUtil from '../../utils/ReportUtil'
 
 class StateStruct {
@@ -31,8 +30,6 @@ class ScreenSizeType {
 }
 
 class TabBarDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -40,18 +37,18 @@ class TabBarDispatcher {
   public showSettingView(isShowSettingView: boolean): void {
     this.mDispatch(Action.showSettingView(isShowSettingView));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 @Component
 export struct TabBarLand {
-  private TAG: string = '[TabBarLand]';
   @State state: StateStruct = new StateStruct();
   @State opacityTabBar: number = 0;
   @State isShowTabBarOther: boolean = false;
   @Link screenSize: ScreenSizeType;
-  private onBackClicked: Function = () => {
-  };
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private TAG: string = '[TabBarLand]';
   private mAction: TabBarDispatcher = new TabBarDispatcher();
 
   aboutToAppear(): void {
@@ -91,4 +88,7 @@ export struct TabBarLand {
       .position(this.state.isThirdPartyCall ? { x: 0, y: 12 } : { x: 0, y: this.screenSize.height - 144 })
     }.width(48).height('100%')
   }
+
+  private onBackClicked: Function = () => {
+  };
 }

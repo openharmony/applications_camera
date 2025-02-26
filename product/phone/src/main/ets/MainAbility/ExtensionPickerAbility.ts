@@ -23,7 +23,6 @@ import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalCon
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import hilog from '@ohos.hilog';
 
 export default class ExtensionPickerAbility extends UIExtensionAbility {
   private cameraBasicFunction: any = null;

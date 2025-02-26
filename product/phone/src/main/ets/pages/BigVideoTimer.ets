@@ -17,8 +17,7 @@ import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
 import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
-import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Dispatch, getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
 
 class StateStruct {
@@ -30,8 +29,6 @@ class StateStruct {
 }
 
 class BigVideoTimerDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -63,31 +60,19 @@ class BigVideoTimerDispatcher {
     this.mDispatch(Action.updateSmallVideoTimerVisible(false))
     this.mDispatch(Action.updateScreenStatus(false))
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 
 @Component
 export struct BigVideoTimer {
+  @State state: StateStruct = new StateStruct()
   private TAG: string = '[BigVideoTimer]'
   private timer: number = 0
   private timerTick: number = 0
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
-  @State state: StateStruct = new StateStruct()
   private mAction: BigVideoTimerDispatcher = new BigVideoTimerDispatcher();
-
-  private async onRecordPaused(): Promise<void> {
-    Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
-    clearInterval(this.timer)
-    Log.info(`${this.TAG} onRecordPaused X`)
-  }
-
-  private async onRecordResumed(): Promise<void> {
-    Log.info(`${this.TAG} onRecordResumed E`)
-    if (this.state.recordingTime <= 2) {
-      this.setIntervalTimer()
-    }
-    Log.info(`${this.TAG} onRecordResumed X`)
-  }
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -116,48 +101,6 @@ export struct BigVideoTimer {
     Log.info(`${this.TAG} clearInterval timer id: ${this.timer}`)
     clearInterval(this.timer)
     Log.info(`${this.TAG} aboutToDisappear X`)
-  }
-
-  private setIntervalTimer(): void {
-    clearInterval(this.timer)
-    this.timer = setInterval(() => {
-      this.timerTick++
-      if (this.timerTick % 2 === 0) {
-        this.mAction.updateRecordingTime(this.state.recordingTime + 1)
-        let shownSec = '00'
-        let shownMin = '00'
-        let sec = this.state.recordingTime % 60
-        if (sec < 10) {
-          shownSec = `0${sec}`
-        } else {
-          shownSec = `${sec}`
-        }
-        let minute = Math.floor(this.state.recordingTime / 60)
-        if (minute < 10) {
-          shownMin = `0${minute}`
-        } else {
-          shownMin = `${minute}`
-        }
-        this.mAction.updateRecordingTimeDisplay(`${shownMin}:${shownSec}`)
-        if (this.state.recordingTime > 2) {
-          clearInterval(this.timer)
-          this.mAction.updateSmallVideoTimerVisible(true)
-          this.mAction.updateBigVideoTimerVisible(false)
-        }
-      }
-      this.mAction.updateRecordingSpotVisible(!this.state.isRecordingSpotVisible)
-      if (this.state.isThirdPartyCall && GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration) {
-        try {
-          let videoDuration: number = Number.parseInt(GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration as string)
-          Log.info(`${this.TAG} videoDuration is ${videoDuration}`);
-          if (this.state.recordingTime >= videoDuration) {
-            this.mAction.stopRecording();
-          }
-        } catch (error) {
-          Log.info(`${this.TAG} picker videoDuration --> ${JSON.stringify(error)}}`)
-        }
-      }
-    }, 500)
   }
 
   build() {
@@ -199,5 +142,62 @@ export struct BigVideoTimer {
         }
       }
     }.width('100%').height(96).position({ x: 0, y: 0 })
+  }
+
+  private async onRecordPaused(): Promise<void> {
+    Log.info(`${this.TAG} onRecordPaused timer id: ${this.timer} E`)
+    clearInterval(this.timer)
+    Log.info(`${this.TAG} onRecordPaused X`)
+  }
+
+  private async onRecordResumed(): Promise<void> {
+    Log.info(`${this.TAG} onRecordResumed E`)
+    if (this.state.recordingTime <= 2) {
+      this.setIntervalTimer()
+    }
+    Log.info(`${this.TAG} onRecordResumed X`)
+  }
+
+  private setIntervalTimer(): void {
+    clearInterval(this.timer)
+    this.timer = setInterval(() => {
+      this.timerTick++
+      if (this.timerTick % 2 === 0) {
+        this.mAction.updateRecordingTime(this.state.recordingTime + 1)
+        let shownSec = '00'
+        let shownMin = '00'
+        let sec = this.state.recordingTime % 60
+        if (sec < 10) {
+          shownSec = `0${sec}`
+        } else {
+          shownSec = `${sec}`
+        }
+        let minute = Math.floor(this.state.recordingTime / 60)
+        if (minute < 10) {
+          shownMin = `0${minute}`
+        } else {
+          shownMin = `${minute}`
+        }
+        this.mAction.updateRecordingTimeDisplay(`${shownMin}:${shownSec}`)
+        if (this.state.recordingTime > 2) {
+          clearInterval(this.timer)
+          this.mAction.updateSmallVideoTimerVisible(true)
+          this.mAction.updateBigVideoTimerVisible(false)
+        }
+      }
+      this.mAction.updateRecordingSpotVisible(!this.state.isRecordingSpotVisible)
+      if (this.state.isThirdPartyCall && GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration) {
+        try {
+          let videoDuration: number =
+            Number.parseInt(GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration as string)
+          Log.info(`${this.TAG} videoDuration is ${videoDuration}`);
+          if (this.state.recordingTime >= videoDuration) {
+            this.mAction.stopRecording();
+          }
+        } catch (error) {
+          Log.info(`${this.TAG} picker videoDuration --> ${JSON.stringify(error)}}`)
+        }
+      }
+    }, 500)
   }
 }

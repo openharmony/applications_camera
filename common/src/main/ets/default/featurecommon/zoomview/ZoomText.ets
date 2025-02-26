@@ -14,25 +14,24 @@
  */
 
 import { Log } from '../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 
 class StateStruct {
   zoomRatio: number = 1;
 }
 
 class ZoomTextDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 @Component
 export struct ZoomText {
-  private TAG: string = '[ZoomText]'
   @Link state: StateStruct
+  private TAG: string = '[ZoomText]'
   private mAction: ZoomTextDispatcher = new ZoomTextDispatcher();
 
   aboutToAppear() {

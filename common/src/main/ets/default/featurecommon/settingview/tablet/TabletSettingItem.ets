@@ -17,19 +17,20 @@ import { SettingManager } from '../../../setting/SettingManager'
 import { Log } from '../../../utils/Log'
 import { TabletSetResolution } from './TabletSetResolution'
 import { TabletSetToggle } from './TabletSetToggle'
-import { BaseData } from '../model/BaseData'
 import { SettingData, SettingGroupItem } from '../model/SettingData'
 
 @Component
 export struct TabletSettingItem {
-  private TAG: string = '[TabletSettingItem]:'
   @Link settingsList: SettingGroupItem[]
   @Link closeFlag: Boolean
+  private TAG: string = '[TabletSettingItem]:'
   private item: SettingGroupItem = new SettingGroupItem();
   private index: number = 0
   private settingsListIndex: number = 0
-  private getPhotoValue: Promise<string> = new Promise(() => {});
-  private getVideoValue: Promise<string> = new Promise(() => {});
+  private getPhotoValue: Promise<string> = new Promise(() => {
+  });
+  private getVideoValue: Promise<string> = new Promise(() => {
+  });
   private WH_100_100: string = "100%"
   private settingManager = SettingManager.getInstance()
 
@@ -40,15 +41,19 @@ export struct TabletSettingItem {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column,
+    Flex({
+      direction: FlexDirection.Column,
       alignItems: ItemAlign.Center,
-      justifyContent: FlexAlign.SpaceBetween }) {
+      justifyContent: FlexAlign.SpaceBetween
+    }) {
       Column() {
         Row() {
           Text(this.item.settingTitle)
-            .margin({ top: $r('app.float.margin_value_20'),
+            .margin({
+              top: $r('app.float.margin_value_20'),
               left: $r('sys.float.ohos_id_card_margin_start'),
-              bottom: $r('app.float.margin_value_8') })
+              bottom: $r('app.float.margin_value_8')
+            })
             .fontColor($r('app.color.font_color_FFFFFF'))
             .opacity($r('app.float.opacity_6'))
             .fontSize($r('app.float.font_14'))
@@ -83,7 +88,12 @@ export struct TabletSettingItem {
           })
         }
         .listDirection(Axis.Vertical)
-        .divider({ strokeWidth: 0.5, color: '#33FFFFFF', startMargin: 56, endMargin: 12 })
+        .divider({
+          strokeWidth: 0.5,
+          color: '#33FFFFFF',
+          startMargin: 56,
+          endMargin: 12
+        })
         .borderRadius($r('sys.float.ohos_id_corner_radius_card'))
         .backgroundColor('#202224')
         .padding({ top: 4, bottom: 4 })

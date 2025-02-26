@@ -16,13 +16,12 @@
 import UserFileManager from '@ohos.filemanagement.userFileManager';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import image from '@ohos.multimedia.image';
-import { Log } from '../utils/Log'
+import { Log } from '../utils/Log';
 import { GlobalContext } from '../utils/GlobalContext';
 
 const TAG = '[ThumbnailGetter]:';
 
 export default class ThumbnailGetter {
-
   private mUserFileManager: UserFileManager.UserFileManager;
   private mCameraAlbum: UserFileManager.Album;
   private mRecentFileUri: string = '';
@@ -62,16 +61,6 @@ export default class ThumbnailGetter {
     return this.getFileAssetByFetchOp(fetchOptions);
   }
 
-  private async createCameraAlbum(): Promise<void> {
-    Log.log(`${TAG} createCameraAlbum E`);
-    if (!this.mCameraAlbum) {
-      let fetchResult = await this.mUserFileManager?.getAlbums(UserFileManager.AlbumType.SYSTEM, UserFileManager.AlbumSubType.CAMERA);
-      this.mCameraAlbum = await fetchResult?.getFirstObject();
-      Log.log(`${TAG} createCameraAlbum albumUri: ${JSON.stringify(this.mCameraAlbum.albumUri)}`);
-    }
-    Log.log(`${TAG} createCameraAlbum X`);
-  }
-
   public getRecentFileUri(): string {
     return this.mRecentFileUri;
   }
@@ -97,5 +86,16 @@ export default class ThumbnailGetter {
     this.mRecentFileUri = fileAsset?.uri;
     Log.info(`${TAG} mRecentFileUri : ${JSON.stringify(this.mRecentFileUri)}`);
     return fileAsset;
+  }
+
+  private async createCameraAlbum(): Promise<void> {
+    Log.log(`${TAG} createCameraAlbum E`);
+    if (!this.mCameraAlbum) {
+      let fetchResult =
+        await this.mUserFileManager?.getAlbums(UserFileManager.AlbumType.SYSTEM, UserFileManager.AlbumSubType.CAMERA);
+      this.mCameraAlbum = await fetchResult?.getFirstObject();
+      Log.log(`${TAG} createCameraAlbum albumUri: ${JSON.stringify(this.mCameraAlbum.albumUri)}`);
+    }
+    Log.log(`${TAG} createCameraAlbum X`);
   }
 }
