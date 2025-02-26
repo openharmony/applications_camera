@@ -428,7 +428,7 @@ export struct PreviewArea {
             ShowFlashBlack();
           }
 
-          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default" && !this.state.isShowtimeLapse) {
+          if (this.state.isShowZoomText && deviceInfo.deviceType !== 'default' && !this.state.isShowtimeLapse) {
             Stack({ alignContent: Alignment.Top }) {
               ZoomText({ state: $state })
             }
