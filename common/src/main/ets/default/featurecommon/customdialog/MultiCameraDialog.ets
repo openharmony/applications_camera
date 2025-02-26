@@ -17,8 +17,7 @@ import { CameraService } from '../../camera/CameraService';
 import { CameraId } from '../../setting/settingitem/CameraId';
 import { Log } from '../../utils/Log';
 import EntryComponentForMulti from './EntryComponentForMulti';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 import { Action } from '../../redux/actions/Action';
 
 let storageCameraId: string = AppStorage.Link('storageCameraId') as string;
@@ -27,8 +26,6 @@ class StateStruct {
 }
 
 class MultiCameraDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -38,34 +35,39 @@ class MultiCameraDispatcher {
     this.mDispatch(Action.switchCamera(cameraPosition));
     this.mDispatch(Action.resetZoomRatio(1));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 
 @CustomDialog
 export default struct MultiCameraDialog {
-  private TAG: string = '[MultiCameraDialog]:';
-  private cameraService = CameraService.getInstance();
   controller?: CustomDialogController;
-  cancel: () => void = () => {};
-  confirm: () => void = () => {};
-  private localList: string[] = [
-  CameraId.FRONT,
-  CameraId.BACK
-  ];
-  @State private moreList: string[] = [];
   @State state: StateStruct = new StateStruct();
   @State isShowMore: boolean = false;
   @State gridColumns: number = 12;
   @State useSizeTypeOffset: number = 4;
   @Link deviceType: string;
   @StorageLink('storageCameraId') storageCameraId: string = '';
+  private TAG: string = '[MultiCameraDialog]:';
+  private cameraService = CameraService.getInstance();
+  private localList: string[] = [
+    CameraId.FRONT,
+    CameraId.BACK
+  ];
+  @State private moreList: string[] = [];
   private mAction: MultiCameraDispatcher = new MultiCameraDispatcher();
+
+  cancel: () => void = () => {
+  };
+
+  confirm: () => void = () => {
+  };
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear.`)
     getStore().subscribe((state: OhCombinedState) => {
-      this.state = {
-      };
+      this.state = {};
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);
     });
@@ -76,26 +78,12 @@ export default struct MultiCameraDialog {
     } else if (!localCameraInfo.get('back')) {
       this.localList.pop()
     }
-    if (this.deviceType === 'phone' || this .deviceType === 'default') {
+    if (this.deviceType === 'phone' || this.deviceType === 'default') {
       this.gridColumns = 4
       this.useSizeTypeOffset = 0
     } else {
       this.gridColumns = 12
       this.useSizeTypeOffset = 4
-    }
-  }
-
-  private onChange(item: string): void {
-    Log.info(`${this.TAG} MultiCameraPosition ${JSON.stringify(item)}`)
-    if (item.includes('BACK')) {
-      this.storageCameraId = 'BACK'
-    } else if(item.includes('FRONT')) {
-      this.storageCameraId = 'FRONT'
-    }
-    this.mAction.changeCameraPosition(item);
-    this.cancel();
-    if (this.controller) {
-      this.controller.close();
     }
   }
 
@@ -122,7 +110,7 @@ export default struct MultiCameraDialog {
           }
           .width('100%')
           .height('48vp')
-          .padding({top: 20, bottom: 8})
+          .padding({ top: 20, bottom: 8 })
 
           List() {
             ForEach(this.localList, (item: string) => {
@@ -130,7 +118,7 @@ export default struct MultiCameraDialog {
                 EntryComponentForMulti({
                   item: item,
                   localList: this.localList.toString(),
-                  onChange: (data:string) => this.onChange(data)
+                  onChange: (data: string) => this.onChange(data)
                 })
               }
               .width('100%')
@@ -138,7 +126,12 @@ export default struct MultiCameraDialog {
             })
           }
           .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: '1vp', color: '#33182431', startMargin: 0, endMargin: 12})
+          .divider({
+            strokeWidth: '1vp',
+            color: '#33182431',
+            startMargin: 0,
+            endMargin: 12
+          })
 
           Row() {
             Text($r('app.string.more_devices'))
@@ -148,7 +141,7 @@ export default struct MultiCameraDialog {
           }
           .width('100%')
           .height('48vp')
-          .padding({top: 20, bottom: 8})
+          .padding({ top: 20, bottom: 8 })
 
           if (this.isShowMore) {
             List() {
@@ -165,7 +158,12 @@ export default struct MultiCameraDialog {
               })
             }
             .listDirection(Axis.Vertical)
-            .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 })
+            .divider({
+              strokeWidth: 0.5,
+              color: '#33000000',
+              startMargin: 0,
+              endMargin: 12
+            })
           }
 
           Column() {
@@ -201,6 +199,20 @@ export default struct MultiCameraDialog {
           lg: { span: 4, offset: this.useSizeTypeOffset }
         })
       }.width('100%')
+    }
+  }
+
+  private onChange(item: string): void {
+    Log.info(`${this.TAG} MultiCameraPosition ${JSON.stringify(item)}`)
+    if (item.includes('BACK')) {
+      this.storageCameraId = 'BACK'
+    } else if (item.includes('FRONT')) {
+      this.storageCameraId = 'FRONT'
+    }
+    this.mAction.changeCameraPosition(item);
+    this.cancel();
+    if (this.controller) {
+      this.controller.close();
     }
   }
 }

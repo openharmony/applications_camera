@@ -16,8 +16,7 @@
 import router from '@system.router';
 import image from '@ohos.multimedia.image';
 import { Log } from '../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 import { Action } from '../../redux/actions/Action';
 import { EventBus } from '../../worker/eventbus/EventBus';
 import { EventBusManager } from '../../worker/eventbus/EventBusManager';
@@ -42,8 +41,6 @@ class StateStruct {
 
 
 class ShutterButtonDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -89,6 +86,8 @@ class ShutterButtonDispatcher {
   public changeTimeLapse(isShowtimeLapse: boolean): void {
     this.mDispatch(Action.changeTimeLapse(isShowtimeLapse));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 class ModeStruct {
@@ -102,13 +101,13 @@ class UpdateThumbnailStruct {
 
 @Component
 export struct ShutterButton {
-  private TAG: string = '[ShutterButton]:';
-  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
-  private settingManager = SettingManager.getInstance();
   type: ButtonType = ButtonType.Capsule;
   stateEffect: boolean = false;
   @State state: StateStruct = new StateStruct();
   @State captureBtnScale: number = 1;
+  private TAG: string = '[ShutterButton]:';
+  private appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
+  private settingManager = SettingManager.getInstance();
   private mAction: ShutterButtonDispatcher = new ShutterButtonDispatcher();
 
   aboutToAppear() {
@@ -143,6 +142,122 @@ export struct ShutterButton {
     this.appEventBus.off(Action.ACTION_UPDATE_THUMBNAIL, (data: UpdateThumbnailStruct) => this.onThumbnailUpdate(data))
     this.appEventBus.off(Action.ACTION_INIT_MODE, (data: ModeStruct) => this.changeShutterIcon(data));
     Log.info(`${this.TAG} aboutToDisappear X`);
+  }
+
+  build() {
+    if (this.state.videoState === 'beforeTakeVideo') {
+      Stack({ alignContent: Alignment.Center }) {
+        if (this.state.mode === 'VIDEO') {
+          Image(this.state.shutterIcon)
+            .key(ComponentIdKeys.SHUTTER_VIDEO_1)
+            .width(76)
+            .aspectRatio(1)
+            .enabled(this.state.uiEnable)
+            .onTouch((event?: TouchEvent) => {
+              if (!event) {
+                return;
+              }
+              if (event.type === TouchType.Up) {
+                let timerLapse = this.settingManager.getTimeLapse()
+                Log.log(`${this.TAG} ShutterButton startRecording getValue= ${JSON.stringify(timerLapse)}`)
+                if (timerLapse && timerLapse.id !== Timer.RESOURCE_OFF.id) {
+                  Log.log('ShutterButton startRecording changeTimeLapse called')
+                  this.mAction.changeTimeLapse(true)
+                } else {
+                  Log.log('ShutterButton startRecording changeTimeLapse not called')
+                  this.mAction.startRecording()
+                }
+              }
+            })
+        } else {
+          Image($r('app.media.ic_circled')).fillColor(Color.White)
+          Image(this.state.shutterIcon)
+            .width(54)
+            .aspectRatio(1)
+            .fillColor(Color.White)
+            .key(ComponentIdKeys.SHUTTER_PHOTO_1)
+            .scale({ x: this.captureBtnScale, y: this.captureBtnScale, z: this.captureBtnScale })
+            .enabled(this.state.uiEnable)
+            .onTouch((event?: TouchEvent) => {
+              if (!event) {
+                return;
+              }
+              if (event.type === TouchType.Down) {
+                animateTo(
+                  { duration: 125, curve: Curve.Sharp, delay: 0 },
+                  () => {
+                    this.captureBtnScale = 0.85
+                  })
+              } else if (event.type === TouchType.Up) {
+                animateTo(
+                  {
+                    duration: 125,
+                    curve: Curve.Sharp,
+                    delay: 0,
+                    onFinish: () => {
+                      this.captureBtnScale = 1
+                    }
+                  },
+                  () => {
+                    this.captureBtnScale = 1
+                  })
+                let timerLapse = this.settingManager.getTimeLapse()
+                Log.log(`${this.TAG} ShutterButton start capture getValue= ${JSON.stringify(timerLapse)}`)
+                if (timerLapse && timerLapse.id !== Timer.RESOURCE_OFF.id) {
+                  Log.log('ShutterButton startRecording changeTimeLapse called')
+                  this.mAction.changeTimeLapse(true)
+                } else {
+                  Log.log('ShutterButton capture changeTimeLapse not called')
+                  this.mAction.capture()
+                }
+              }
+            })
+        }
+      }.width(76).aspectRatio(1).margin({ left: 48, right: 48 })
+    } else {
+      Column() {
+        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+          Column() {
+            Image($r('app.media.ic_video_end'))
+              .key(ComponentIdKeys.SHUTTER_VIDEO_END_1)
+              .width(20)
+              .aspectRatio(1)
+              .fillColor(Color.White)
+              .enabled(this.state.uiEnable)
+          }
+          .width(40)
+          .padding({ left: 10, right: 10 })
+          .margin({ right: 6 })
+          .enabled(this.state.uiEnable)
+          .onClick(() => {
+            this.mAction.stopRecording()
+          })
+
+          Column() {
+            if (this.state.videoState === 'startTakeVideo') {
+              Image($r('app.media.ic_video_recording'))
+                .width(20).aspectRatio(1).fillColor(Color.White)
+                .enabled(this.state.uiEnable)
+            } else if (this.state.videoState === 'pauseTakeVideo') {
+              Image($r('app.media.ic_video_pause')).width(20).aspectRatio(1).fillColor(Color.Red)
+                .enabled(this.state.uiEnable)
+            }
+          }
+          .width(40)
+          .padding({ left: 10, right: 10 })
+          .margin({ left: 6 })
+          .enabled(this.state.uiEnable)
+          .onClick(() => {
+            this.state.videoState === 'startTakeVideo' ? this.mAction.pauseRecording() : this.mAction.resumeRecording()
+          })
+        }.width('100%').height('100%')
+      }
+      .width(120)
+      .height(56)
+      .borderRadius(28)
+      .border({ width: 1, color: Color.White, style: BorderStyle.Solid })
+      .margin({ left: 24, right: 24 })
+    }
   }
 
   private async onThumbnailUpdate(data: UpdateThumbnailStruct): Promise<void> {
@@ -191,104 +306,5 @@ export struct ShutterButton {
       this.mAction.updateShutterIcon($r('app.media.ic_circled_filled'))
     }
     Log.info(`${this.TAG} refreshIcon X`);
-  }
-
-  build() {
-    if (this.state.videoState === 'beforeTakeVideo') {
-      Stack({ alignContent: Alignment.Center }) {
-        if (this.state.mode === 'VIDEO') {
-          Image(this.state.shutterIcon)
-            .key(ComponentIdKeys.SHUTTER_VIDEO_1)
-            .width(76).aspectRatio(1).enabled(this.state.uiEnable)
-            .onTouch((event?: TouchEvent) => {
-              if (!event) {
-                return;
-              }
-              if (event.type === TouchType.Up) {
-                let timerLapse = this.settingManager.getTimeLapse()
-                Log.log(`${this.TAG} ShutterButton startRecording getValue= ${JSON.stringify(timerLapse)}`)
-                if (timerLapse && timerLapse.id !== Timer.RESOURCE_OFF.id) {
-                  Log.log('ShutterButton startRecording changeTimeLapse called')
-                  this.mAction.changeTimeLapse(true)
-                } else {
-                  Log.log('ShutterButton startRecording changeTimeLapse not called')
-                  this.mAction.startRecording()
-                }
-              }
-            })
-        } else {
-          Image($r('app.media.ic_circled')).fillColor(Color.White)
-          Image(this.state.shutterIcon).width(54).aspectRatio(1).fillColor(Color.White)
-            .key(ComponentIdKeys.SHUTTER_PHOTO_1)
-            .scale({ x: this.captureBtnScale, y: this.captureBtnScale, z: this.captureBtnScale })
-            .enabled(this.state.uiEnable)
-            .onTouch((event?: TouchEvent) => {
-              if (!event) {
-                return;
-              }
-              if (event.type === TouchType.Down) {
-                animateTo(
-                  { duration: 125, curve: Curve.Sharp, delay: 0 },
-                  () => { this.captureBtnScale = 0.85 })
-              } else if (event.type === TouchType.Up) {
-                animateTo(
-                  { duration: 125, curve: Curve.Sharp, delay: 0,
-                    onFinish: () => { this.captureBtnScale = 1 }},
-                  () => { this.captureBtnScale = 1 })
-                let timerLapse = this.settingManager.getTimeLapse()
-                Log.log(`${this.TAG} ShutterButton start capture getValue= ${JSON.stringify(timerLapse)}`)
-                if (timerLapse && timerLapse.id !== Timer.RESOURCE_OFF.id) {
-                  Log.log('ShutterButton startRecording changeTimeLapse called')
-                  this.mAction.changeTimeLapse(true)
-                } else {
-                  Log.log('ShutterButton capture changeTimeLapse not called')
-                  this.mAction.capture()
-                }
-              }
-            })
-        }
-      }.width(76).aspectRatio(1).margin({ left: 48, right: 48 })
-    } else {
-      Column() {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-          Column() {
-            Image($r('app.media.ic_video_end'))
-              .key(ComponentIdKeys.SHUTTER_VIDEO_END_1)
-              .width(20)
-              .aspectRatio(1)
-              .fillColor(Color.White)
-              .enabled(this.state.uiEnable)
-          }
-          .width(40)
-          .padding({ left: 10, right: 10 })
-          .margin({ right: 6 })
-          .enabled(this.state.uiEnable)
-          .onClick(() => {
-            this.mAction.stopRecording()
-          })
-
-          Column() {
-            if (this.state.videoState === 'startTakeVideo') {
-              Image($r('app.media.ic_video_recording'))
-                .width(20).aspectRatio(1).fillColor(Color.White)
-                .enabled(this.state.uiEnable)
-            } else if (this.state.videoState === 'pauseTakeVideo') {
-              Image($r('app.media.ic_video_pause')).width(20).aspectRatio(1).fillColor(Color.Red)
-                .enabled(this.state.uiEnable)
-            }
-          }
-          .width(40)
-          .padding({ left: 10, right: 10 })
-          .margin({ left: 6 })
-          .enabled(this.state.uiEnable)
-          .onClick(() => {
-              this.state.videoState === 'startTakeVideo' ? this.mAction.pauseRecording() : this.mAction.resumeRecording()
-          })
-        }.width('100%').height('100%')
-      }
-      .width(120).height(56).borderRadius(28)
-      .border({ width: 1, color: Color.White, style: BorderStyle.Solid })
-      .margin({ left: 24, right: 24 })
-    }
   }
 }

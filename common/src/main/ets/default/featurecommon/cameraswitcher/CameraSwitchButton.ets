@@ -15,8 +15,7 @@
 
 import { Action } from '../../redux/actions/Action';
 import { CameraSwitchController } from './CameraSwitchController';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 import { Log } from '../../utils/Log';
 import MultiCameraDialog from '../customdialog/MultiCameraDialog';
 import deviceInfo from '@ohos.deviceInfo';
@@ -34,8 +33,6 @@ class StateStruct {
 
 
 class CameraSwitchDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -45,12 +42,13 @@ class CameraSwitchDispatcher {
     this.mDispatch(Action.switchCamera(cameraPosition));
     this.mDispatch(Action.resetZoomRatio(1));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 
 @Component
 export struct CameraSwitchButton {
-  private TAG: string = '[CameraSwitchButton]:'
   @State state: StateStruct = new StateStruct()
   @State deviceType: string = deviceInfo.deviceType
   @StorageLink('storageCameraId') storageCameraId: string = ''
@@ -60,7 +58,6 @@ export struct CameraSwitchButton {
   mMargin: number = 0;
   type: ButtonType = ButtonType.Capsule;
   stateEffect: boolean = false;
-  private mAction: CameraSwitchDispatcher = new CameraSwitchDispatcher();
   cameraSwitchController: CameraSwitchController = new CameraSwitchController()
   multiDialogController: CustomDialogController = new CustomDialogController({
     builder: MultiCameraDialog({
@@ -72,6 +69,8 @@ export struct CameraSwitchButton {
     customStyle: true,
     cancel: this.existView
   })
+  private TAG: string = '[CameraSwitchButton]:'
+  private mAction: CameraSwitchDispatcher = new CameraSwitchDispatcher();
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`);
@@ -95,22 +94,20 @@ export struct CameraSwitchButton {
     Log.info(`${this.TAG} aboutToAppear X`)
   }
 
-  private openMultiDialog() {
-    Log.info(`${this.TAG} openMultiDialog E`)
-    this.multiDialogController.open()
-    Log.info(`${this.TAG} openMultiDialog X`)
-  }
-
-  private existView(): void {}
-
   build() {
     Column() {
       Stack() {
         Image($r('app.media.small_switch_camera'))
           .width('67.5%').aspectRatio(1)
           .clip(new Circle({ width: '100%', height: '100%' }))
-        Column() {}.width(44).height(44)
-        .border({ width: 1, color: Color.White, radius: 22, style: BorderStyle.Solid })
+        Column() {
+        }.width(44).height(44)
+        .border({
+          width: 1,
+          color: Color.White,
+          radius: 22,
+          style: BorderStyle.Solid
+        })
       }
       .width('100%').height('100%').enabled(this.state.uiEnable)
       .onClick(() => {
@@ -121,7 +118,7 @@ export struct CameraSwitchButton {
           if (this.state.mode === 'MULTI') {
             this.openMultiDialog()
           } else {
-            GlobalContext.get().setObject('switchCameraTime',new Date().getTime())
+            GlobalContext.get().setObject('switchCameraTime', new Date().getTime())
             if (this.state.cameraPosition !== 'BACK') {
               this.mAction.changeCameraPosition('BACK')
               this.storageCameraId = 'BACK'
@@ -134,5 +131,14 @@ export struct CameraSwitchButton {
         Log.info(`${this.TAG} onClick invoke X`)
       })
     }.width(44).aspectRatio(1)
+  }
+
+  private openMultiDialog() {
+    Log.info(`${this.TAG} openMultiDialog E`)
+    this.multiDialogController.open()
+    Log.info(`${this.TAG} openMultiDialog X`)
+  }
+
+  private existView(): void {
   }
 }

@@ -16,8 +16,7 @@
 import deviceInfo from '@ohos.deviceInfo';
 import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
-import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Dispatch, getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager';
 import { SettingItem } from '@ohos/common/src/main/ets/default/featurecommon/settingview/phone/SettingItem';
@@ -31,8 +30,6 @@ class StateStruct {
 }
 
 class SettingViewDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -56,6 +53,8 @@ class SettingViewDispatcher {
   public reStartPreview(zoomRatio: number): void {
     this.mDispatch(Action.reStartPreview(zoomRatio));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 class SizeStruct {
@@ -65,14 +64,14 @@ class SizeStruct {
 
 @Component
 export struct SettingView {
-  private TAG: string = '[SettingView]:'
-  private settingManager = SettingManager.getInstance()
   @State checkNameList: Array<string> = ['4:3', '[16:9] 720p']
   @State closeFlag: boolean = false
   @State tempGutter: number = 12; //列间距
   @State tempMargin: number = 12; //两侧间距
   @State settingsList: SettingGroupItem[] = new SettingListModel().getSettingList()
   @State state: StateStruct = new StateStruct()
+  private TAG: string = '[SettingView]:'
+  private settingManager = SettingManager.getInstance()
   private mEventBus = EventBusManager.getInstance().getEventBus()
   private WH_100_100: string = "100%";
   private mAction: SettingViewDispatcher = new SettingViewDispatcher();
@@ -109,24 +108,6 @@ export struct SettingView {
       this.mAction.hideSettingView()
     }
     return true;
-  }
-
-  private aspectRatioChange(xComponentSize: SizeStruct): void {
-    if (this.state.mode != 'VIDEO') {
-      this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height)
-      this.mAction.reStartPreview(this.state.zoomRatio)
-    }
-  }
-
-  private resolutionChange(xComponentSize: SizeStruct): void {
-    if (this.state.mode == 'VIDEO') {
-      this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height)
-      this.mAction.reStartPreview(this.state.zoomRatio)
-    }
-  }
-
-  private assistiveGridChange(mAssistiveGrid: number): void {
-    this.mAction.assistiveGridView(mAssistiveGrid)
   }
 
   build() {
@@ -193,5 +174,23 @@ export struct SettingView {
     }
     .height(this.WH_100_100)
     .backgroundColor(Color.Black)
+  }
+
+  private aspectRatioChange(xComponentSize: SizeStruct): void {
+    if (this.state.mode != 'VIDEO') {
+      this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.mAction.reStartPreview(this.state.zoomRatio)
+    }
+  }
+
+  private resolutionChange(xComponentSize: SizeStruct): void {
+    if (this.state.mode == 'VIDEO') {
+      this.mAction.changeXComponentSize(xComponentSize.width, xComponentSize.height)
+      this.mAction.reStartPreview(this.state.zoomRatio)
+    }
+  }
+
+  private assistiveGridChange(mAssistiveGrid: number): void {
+    this.mAction.assistiveGridView(mAssistiveGrid)
   }
 }

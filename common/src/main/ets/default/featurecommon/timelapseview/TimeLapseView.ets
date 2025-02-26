@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@ohos.base';
 import { Log } from '../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 import { Action } from '../../redux/actions/Action';
 import { SettingManager } from '../../setting/SettingManager';
 import Timer from '../../setting/settingitem/Timer';
@@ -29,8 +28,6 @@ class StateStruct {
 }
 
 class TimeLapseViewDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -50,6 +47,8 @@ class TimeLapseViewDispatcher {
     this.mDispatch(Action.updateBigVideoTimerVisible(true));
     this.mDispatch(Action.updateScreenStatus(true));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 class KeepScreenStruct {
@@ -58,29 +57,13 @@ class KeepScreenStruct {
 
 @Component
 export struct TimeLapseView {
-  private TAG: string = '[TimeLapseView]:'
-  private timer: number = 0
-  private settingManager = SettingManager.getInstance()
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   @State state: StateStruct = new StateStruct()
   @State timerLapse: number = 0
+  private TAG: string = '[TimeLapseView]:'
+  private timer: number = 0
+  private settingManager = SettingManager.getInstance()
   private mAction: TimeLapseViewDispatcher = new TimeLapseViewDispatcher();
-
-  private onKeepScreen(data: KeepScreenStruct): void {
-    Log.info(`${this.TAG} onKeepScreen E`)
-    if (data) {
-      GlobalContext.get()
-        .getCameraWinClass()
-        .setKeepScreenOn(data.isKeepScreenOn)
-        .then(() => {
-          Log.info('Succeeded in setting the screen to be always on');
-        })
-        .catch((err: BusinessError) => {
-          Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
-        });
-    }
-    Log.info(`${this.TAG} onKeepScreen X`)
-  }
 
   aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear E`)
@@ -143,5 +126,21 @@ export struct TimeLapseView {
         .fontWeight(300)
         .textAlign(TextAlign.Center)
     }.width('100%').height('100%')
+  }
+
+  private onKeepScreen(data: KeepScreenStruct): void {
+    Log.info(`${this.TAG} onKeepScreen E`)
+    if (data) {
+      GlobalContext.get()
+        .getCameraWinClass()
+        .setKeepScreenOn(data.isKeepScreenOn)
+        .then(() => {
+          Log.info('Succeeded in setting the screen to be always on');
+        })
+        .catch((err: BusinessError) => {
+          Log.error('Failed to set the screen to be always on. Cause: ' + JSON.stringify(err));
+        });
+    }
+    Log.info(`${this.TAG} onKeepScreen X`)
   }
 }

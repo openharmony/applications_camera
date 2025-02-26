@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { Action, ActionData } from '../actions/Action'
+import { Action, ActionData } from '../actions/Action';
 
 export type ZoomState = {
   zoomRatio: number,

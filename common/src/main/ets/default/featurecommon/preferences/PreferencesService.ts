@@ -29,7 +29,8 @@ export class PreferencesService {
   public static getInstance(): PreferencesService {
     if (!globalThis?.sInstancePreferencesService) {
       globalThis.sInstancePreferencesService = new PreferencesService();
-      PreferencesService.modeStorage = dataStorage.getStorageSync(GlobalContext.get().getCameraAbilityContext().filesDir + '/mode_persist_values');
+      PreferencesService.modeStorage =
+        dataStorage.getStorageSync(GlobalContext.get().getCameraAbilityContext().filesDir + '/mode_persist_values');
     }
     return globalThis.sInstancePreferencesService;
   }
@@ -49,7 +50,8 @@ export class PreferencesService {
   }
 
   flush(): void {
-    PreferencesService.modeStorage.putSync(this.getModePersistKey(PersistType.FOR_AWHILE, 'Timestamp'), new Date().getTime());
+    PreferencesService.modeStorage.putSync(this.getModePersistKey(PersistType.FOR_AWHILE, 'Timestamp'),
+      new Date().getTime());
     this.flushMode();
   }
 

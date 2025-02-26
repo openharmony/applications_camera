@@ -15,20 +15,17 @@
 
 import { Action } from '../../../redux/actions/Action'
 import Timer from '../../../setting/settingitem/Timer'
-import { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView'
-import { CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView'
+import { CustomDialogDetails, CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView'
 import { Log } from '../../../utils/Log'
-import { Dispatch, OhCombinedState } from '../../../redux/store'
-import { getStore } from '../../../redux/store'
+import { Dispatch, getStore, OhCombinedState } from '../../../redux/store'
 import { SettingManager } from '../../../setting/SettingManager'
 import { SettingData, SettingGroupItem } from '../model/SettingData'
 
 class StateStruct {
   isCloseFlag: boolean = false;
 }
-class SetResolutionDispatcher {
-  private mDispatch: Dispatch = (data) => data;
 
+class SetResolutionDispatcher {
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -36,24 +33,34 @@ class SetResolutionDispatcher {
   public closeDialog(isCloseFlag: boolean): void {
     this.mDispatch(Action.closeDialog(isCloseFlag));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 @Component
 export struct TabletSetResolution {
-  private TAG: string = '[TabletSetResolution]:';
   @Link settingsList: SettingGroupItem[];
   @Link @Watch('onCloseDialog') closeFlag: boolean;
+  @StorageLink('settingDialogFlag') settingDialogFlag: boolean = true;
+  @State curCheckName: Resource = $r('app.string.default_value');
+  @State state: StateStruct = new StateStruct();
+  CustomDialogView: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogView({ cancel: () => this.existView }),
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
+    cancel: this.existView,
+    customStyle: true
+  })
+  private TAG: string = '[TabletSetResolution]:';
   private itemValue: SettingData = new SettingData();
   private WH_100_100: string = "100%";
   private settingManager: SettingManager = SettingManager.getInstance();
   private setAlias: string = '';
-  @StorageLink('settingDialogFlag') settingDialogFlag: boolean = true;
-  @State curCheckName: Resource = $r('app.string.default_value');
-  @State state: StateStruct = new StateStruct();
   private mAction: SetResolutionDispatcher = new SetResolutionDispatcher();
 
   @Provide customDialogDetails: CustomDialogDetails = {
-    confirmCallback: () => {},
+    confirmCallback: () => {
+    },
     confirmItem: true,
     height: 256,
     width: 256,
@@ -62,13 +69,6 @@ export struct TabletSetResolution {
     settingTitle: '',
     //    dialogCloseFlag:false
   }
-  CustomDialogView: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogView({ cancel: () => this.existView }),
-    autoCancel: true,
-    alignment: DialogAlignment.Center,
-    cancel: this.existView,
-    customStyle: true
-  })
 
   existView() {
     Log.info(`${this.TAG} existView E`)
@@ -83,7 +83,7 @@ export struct TabletSetResolution {
     Log.info(`${this.TAG} aboutToAppear settingsList: ${JSON.stringify(this.settingsList)} E`)
     getStore().subscribe((state: OhCombinedState) => {
       this.state = {
-        isCloseFlag:state.settingReducer.isCloseFlag
+        isCloseFlag: state.settingReducer.isCloseFlag
       };
     }, (dispatch: Dispatch) => {
       this.mAction.setDispatch(dispatch);

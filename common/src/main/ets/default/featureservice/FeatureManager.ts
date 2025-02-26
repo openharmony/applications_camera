@@ -22,7 +22,6 @@ import type { EventBus } from '../worker/eventbus/EventBus';
 import { EventBusManager } from '../worker/eventbus/EventBusManager';
 import { ModeAssembler } from './ModeAssembler';
 import { RecordFunction } from '../function/RecordFunction';
-import { WorkerManager } from '../worker/WorkerManager';
 import { ZoomFunction } from '../function/ZoomFunction';
 import type { IModeMap } from './IModeMap';
 

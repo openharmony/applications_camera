@@ -142,10 +142,12 @@ export class CameraService {
           for (let i = 0; i < cameras.length; i++) {
             Log.info(`${TAG} camera_id: ${cameras[i].cameraId}  cameraPosition: ${cameras[i].cameraPosition}
               cameraType: ${cameras[i].cameraType} connectionType: ${cameras[i].connectionType}`);
-            if (cameras[i].cameraPosition === FRONT_CAMERA_POSITION && cameras[i].connectionType !== CAMERA_CONNECT_TYPE) {
+            if (cameras[i].cameraPosition === FRONT_CAMERA_POSITION &&
+              cameras[i].connectionType !== CAMERA_CONNECT_TYPE) {
               this.mLocalCameraMap.set('front', 'true');
             }
-            if (cameras[i].cameraPosition !== FRONT_CAMERA_POSITION && cameras[i].connectionType !== CAMERA_CONNECT_TYPE) {
+            if (cameras[i].cameraPosition !== FRONT_CAMERA_POSITION &&
+              cameras[i].connectionType !== CAMERA_CONNECT_TYPE) {
               this.mLocalCameraMap.set('back', 'true');
             }
           }
@@ -369,7 +371,8 @@ export class CameraService {
         ReportUtil.write(ReportUtil.OPEN_FAIL);
       }
     }
-    if (GlobalContext.get().getT<boolean>('cameraStartFlag') && (new Date().getTime() - GlobalContext.get().getT<number>('cameraStartTime')) > 2000) {
+    if (GlobalContext.get().getT<boolean>('cameraStartFlag') &&
+      (new Date().getTime() - GlobalContext.get().getT<number>('cameraStartTime')) > 2000) {
       ReportUtil.write(ReportUtil.START_TIMEOUT);
     }
     GlobalContext.get().setObject('cameraStartFlag', false);

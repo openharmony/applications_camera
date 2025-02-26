@@ -24,6 +24,7 @@ import { SettingManager } from '../../setting/SettingManager'
 import { Voice } from '../../setting/settingitem/Voice'
 
 export class PlaySound {
+  private static sInstancePlaySound: PlaySound;
   private TAG: string = '[PlaySound]:'
   private appEventBus: EventBus = EventBusManager.getInstance().getEventBus()
   private settingManager = SettingManager.getInstance()
@@ -31,7 +32,6 @@ export class PlaySound {
   private fdPath
   // @ts-ignore
   private mAVPlayer: media.AVPlayer
-  private static sInstancePlaySound: PlaySound;
 
   constructor() {
     Log.info(`${this.TAG} constructor start, enroll playCapture to ACTION_CAPTURE`)
@@ -44,6 +44,13 @@ export class PlaySound {
     })
   }
 
+  public static getInstance(): PlaySound {
+    if (!PlaySound.sInstancePlaySound) {
+      PlaySound.sInstancePlaySound = new PlaySound();
+    }
+    return PlaySound.sInstancePlaySound;
+  }
+
   setAVPlayerCallback(): void {
     Log.info(`${this.TAG} setAudioCallback`)
     this.mAVPlayer.on('stateChange', async (state, reason) => {
@@ -53,7 +60,8 @@ export class PlaySound {
           break;
         case 'initialized':
           Log.info(`${this.TAG} stateChange initialized state`)
-          this.mAVPlayer.prepare().then(() => {}, (err) => {
+          this.mAVPlayer.prepare().then(() => {
+          }, (err) => {
             Log.error(`${this.TAG} case prepare error`)
           })
           break;
@@ -88,12 +96,6 @@ export class PlaySound {
     })
   }
 
-  public static getInstance(): PlaySound {
-    if (!PlaySound.sInstancePlaySound) {
-      PlaySound.sInstancePlaySound = new PlaySound();
-    }
-    return PlaySound.sInstancePlaySound;
-  }
   private playCapture(data): void {
     Log.info(`${this.TAG} playCapture invoke E`);
     if (this.settingManager.getCaptureMute() == Voice.SOUND) {
