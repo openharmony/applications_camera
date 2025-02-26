@@ -15,6 +15,7 @@
 
 import AspectRatio from '../setting/settingitem/AspectRatio'
 import AssistiveGrid from '../setting/settingitem/AssistiveGrid'
+import { CameraId } from './settingitem/CameraId'
 import { Log } from '../utils/Log'
 import { Constants } from '../utils/Constants'
 import DisplayCalculator from '../setting/DisplayCalculator'
@@ -26,12 +27,10 @@ import SettingItemInfo from '../setting/storage/SettingItemInfo'
 import Timer from '../setting/settingitem/Timer'
 import VideoCodec from '../setting/settingitem/VideoCodec'
 import { Voice } from '../setting/settingitem/Voice'
-import { EventBusManager } from '../worker/eventbus/EventBusManager'
+import { EventBusManager } from '../worker/eventbus/EventBusManager';
 
 export class SettingManager {
   private static TAG = '[SettingManager]:'
-  public mScreenWidth: number
-  public mScreenHeight: number
   private mRdbStoreManager: RdbStoreManager = RdbStoreManager.getInstance()
   private mEventBus = EventBusManager.getInstance().getEventBus()
   private mSettingsList = [
@@ -54,8 +53,6 @@ export class SettingManager {
   private mCurGeoLocation = undefined
   private mVideoCodec: string
   private mCaptureMute: string
-  private mPlatformCapability
-  private mCameraId: string
 
   public static getInstance(): SettingManager {
     Log.info(`${this.TAG} getInstance`)
@@ -163,11 +160,45 @@ export class SettingManager {
     Log.info(`${SettingManager.TAG} loadAllSetting X`)
   }
 
+  private setDefault(force: boolean): void {
+    if (!this.mAspectRatio || force) {
+      this.mAspectRatio = AspectRatio.DEFAULT_VALUE
+    }
+    if (!this.mResolution || force) {
+      this.mResolution = Resolution.DEFAULT_VALUE
+    }
+    if (!this.mAssistiveGrid || force) {
+      this.mAssistiveGrid = AssistiveGrid.DEFAULT_VALUE
+    }
+    if (!this.mTimer || force) {
+      this.mTimer = Timer.DEFAULT_VALUE
+    }
+    if (!this.mSaveGeoLocation || force) {
+      this.mSaveGeoLocation = '1'
+    }
+    if (!this.mCaptureMute || force) {
+      this.mCaptureMute = Voice.MUTE
+    }
+  }
+
   public restoreValues(mode: string): void {
     for (let i = 0; i < this.mSettingsList.length; i++) {
       this.setSettingValue(this.mSettingsList[i].ALIAS, this.mSettingsList[i].DEFAULT_VALUE, mode)
     }
   }
+
+  private async commit(settingAlias, itemValue) {
+    Log.info(`${SettingManager.TAG} getInstance  settingAlias: ${settingAlias} itemValue ${itemValue}`)
+    const settingItemInfo: SettingItemInfo = new SettingItemInfo()
+    settingItemInfo.itemName = settingAlias
+    settingItemInfo.itemValue = itemValue
+    await this.mRdbStoreManager.updateValue(settingItemInfo)
+  }
+
+  public mScreenWidth: number
+  public mScreenHeight: number
+  private mPlatformCapability
+  private mCameraId: string
 
   public setCameraPlatformCapability(platformCapability): void {
     this.mPlatformCapability = platformCapability
@@ -203,8 +234,7 @@ export class SettingManager {
 
   public getPreviewDisplaySize(mode: string) {
     const preViewSize = this.getPreviewSize(mode)
-    return DisplayCalculator.calcSurfaceDisplaySize(this.mScreenWidth, this.mScreenHeight, preViewSize.width,
-      preViewSize.height)
+    return DisplayCalculator.calcSurfaceDisplaySize(this.mScreenWidth, this.mScreenHeight, preViewSize.width, preViewSize.height)
   }
 
   public getAssistiveGrid() {
@@ -245,35 +275,6 @@ export class SettingManager {
 
   public getCaptureMute() {
     return this.mCaptureMute
-  }
-
-  private setDefault(force: boolean): void {
-    if (!this.mAspectRatio || force) {
-      this.mAspectRatio = AspectRatio.DEFAULT_VALUE
-    }
-    if (!this.mResolution || force) {
-      this.mResolution = Resolution.DEFAULT_VALUE
-    }
-    if (!this.mAssistiveGrid || force) {
-      this.mAssistiveGrid = AssistiveGrid.DEFAULT_VALUE
-    }
-    if (!this.mTimer || force) {
-      this.mTimer = Timer.DEFAULT_VALUE
-    }
-    if (!this.mSaveGeoLocation || force) {
-      this.mSaveGeoLocation = '1'
-    }
-    if (!this.mCaptureMute || force) {
-      this.mCaptureMute = Voice.MUTE
-    }
-  }
-
-  private async commit(settingAlias, itemValue) {
-    Log.info(`${SettingManager.TAG} getInstance  settingAlias: ${settingAlias} itemValue ${itemValue}`)
-    const settingItemInfo: SettingItemInfo = new SettingItemInfo()
-    settingItemInfo.itemName = settingAlias
-    settingItemInfo.itemValue = itemValue
-    await this.mRdbStoreManager.updateValue(settingItemInfo)
   }
 
   private convertToString(settingAlias, itemValue) {
