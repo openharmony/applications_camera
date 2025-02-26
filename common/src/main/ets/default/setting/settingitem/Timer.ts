@@ -14,7 +14,6 @@
  */
 
 export default class Timer {
-  private static TAG = '[Timer]:'
   public static readonly ALIAS = 'Timer'
   public static readonly TIMER_OFF = 'off'
   public static readonly TIMER_TWO_SECONDS = '2'
@@ -26,30 +25,31 @@ export default class Timer {
   public static readonly RESOURCE_FIVE_SECONDS = $r('app.string.timer_5_seconds')
   public static readonly RESOURCE_TEN_SECONDS = $r('app.string.timer_10_seconds')
   public static readonly RESOURCE_OFF_ALREADY = $r('app.string.already_off')
+  private static TAG = '[Timer]:'
 
   public static convertToResource(timer: string): Resource {
     switch (timer) {
-    case Timer.TIMER_OFF:
-      return Timer.RESOURCE_OFF
-    case Timer.TIMER_TWO_SECONDS:
-      return Timer.RESOURCE_TWO_SECONDS
-    case Timer.TIMER_FIVE_SECONDS:
-      return Timer.RESOURCE_FIVE_SECONDS
-    case Timer.TIMER_TEN_SECONDS:
-      return Timer.RESOURCE_TEN_SECONDS
-    default:
-      return Timer.RESOURCE_OFF
+      case Timer.TIMER_OFF:
+        return Timer.RESOURCE_OFF
+      case Timer.TIMER_TWO_SECONDS:
+        return Timer.RESOURCE_TWO_SECONDS
+      case Timer.TIMER_FIVE_SECONDS:
+        return Timer.RESOURCE_FIVE_SECONDS
+      case Timer.TIMER_TEN_SECONDS:
+        return Timer.RESOURCE_TEN_SECONDS
+      default:
+        return Timer.RESOURCE_OFF
     }
   }
 
   public static convertToString(res: Resource): string {
     if (res.id === Timer.RESOURCE_OFF.id) {
       return Timer.TIMER_OFF
-    } else if(res.id === Timer.RESOURCE_TWO_SECONDS.id) {
+    } else if (res.id === Timer.RESOURCE_TWO_SECONDS.id) {
       return Timer.TIMER_TWO_SECONDS
-    } else if(res.id === Timer.RESOURCE_FIVE_SECONDS.id) {
+    } else if (res.id === Timer.RESOURCE_FIVE_SECONDS.id) {
       return Timer.TIMER_FIVE_SECONDS
-    } else if(res.id === Timer.RESOURCE_TEN_SECONDS.id) {
+    } else if (res.id === Timer.RESOURCE_TEN_SECONDS.id) {
       return Timer.TIMER_TEN_SECONDS
     }
   }

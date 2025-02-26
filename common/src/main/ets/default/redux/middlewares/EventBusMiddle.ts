@@ -29,8 +29,10 @@ const ACTION_LENGTH: number = 2;
  * @returns (next: Dispatch) => (action: AnyAction) => anyAction
  */
 export const eventBusMiddle: Middleware = () => (next: Dispatch) => (action: ActionData) => {
-  const uiAction = { type: action.type,
-    data: action.data };
+  const uiAction = {
+    type: action.type,
+    data: action.data
+  };
 
   //  EventBusManager.getInstance().getEventBus().emit(action.type, [action.data])
   const result = next(uiAction);

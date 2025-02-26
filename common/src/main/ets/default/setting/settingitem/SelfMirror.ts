@@ -14,7 +14,7 @@
  */
 
 export default class SelfMirror {
-  private static TAG = '[SelfMirror]:'
   public static readonly ALIAS = 'SelfMirror'
   public static readonly DEFAULT_VALUE = '0'
+  private static TAG = '[SelfMirror]:'
 }

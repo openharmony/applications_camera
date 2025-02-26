@@ -22,10 +22,6 @@ import { Log } from './Log';
 
 export class GlobalContext {
   private static TAG: string = '[GlobalContext]:';
-
-  private constructor() {
-  }
-
   private static instance: GlobalContext;
   private _objects = new Map<string, Object>();
   private mDisplay: display.Display | undefined = undefined;
@@ -43,6 +39,9 @@ export class GlobalContext {
   private isPicker: boolean = false;
   private cameraUIExtensionContentSession: UIExtensionContentSession;
   private pickerUri: string;
+
+  private constructor() {
+  }
 
   public static get(): GlobalContext {
     if (!Boolean(GlobalContext.instance).valueOf()) {
