@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../utils/Log'
-import { SetResolution } from './SetResolution'
-import { SetToggle } from './SetToggle'
-import { SettingData, SettingGroupItem } from '../model/SettingData'
+import { Log } from '../../../utils/Log';
+import { SetResolution } from './SetResolution';
+import { SetToggle } from './SetToggle';
+import { SettingData, SettingGroupItem } from '../model/SettingData';
 
 @Component
 export struct SettingItem {

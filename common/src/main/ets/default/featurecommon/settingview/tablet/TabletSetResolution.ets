@@ -57,7 +57,6 @@ export struct TabletSetResolution {
   private settingManager: SettingManager = SettingManager.getInstance();
   private setAlias: string = '';
   private mAction: SetResolutionDispatcher = new SetResolutionDispatcher();
-
   @Provide customDialogDetails: CustomDialogDetails = {
     confirmCallback: () => {
     },
