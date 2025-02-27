@@ -18,31 +18,29 @@ import { SettingManager } from '../../../setting/SettingManager';
 import Timer from '../../../setting/settingitem/Timer';
 import AspectRatio from '../../../setting/settingitem/AspectRatio';
 import Resolution from '../../../setting/settingitem/Resolution';
-import { Dispatch, OhCombinedState } from '../../../redux/store';
-import { getStore } from '../../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../../redux/store';
 
 class StateStruct {
   mode: string = '';
 }
 
 class EntryComponentDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 @Component
 export default struct EntryComponent {
-  private TAG: string = '[EntryComponent]:';
   @State itemValue: Resource = $r('app.string.photo_ratio_4_3');
   @State checkedValue: string = '';
   @State settingAlias: string = '';
-  private getValue: Resource = $r('app.string.resolution_1280_720');
-  private onChange: Function = () => {};
-  private settingManager = SettingManager.getInstance();
   @State state: StateStruct = new StateStruct();
+  private TAG: string = '[EntryComponent]:';
+  private getValue: Resource = $r('app.string.resolution_1280_720');
+  private settingManager = SettingManager.getInstance();
   private mAction: EntryComponentDispatcher = new EntryComponentDispatcher();
 
   aboutToAppear(): void {
@@ -93,4 +91,7 @@ export default struct EntryComponent {
     }
     .width('100%')
   }
+
+  private onChange: Function = () => {
+  };
 }

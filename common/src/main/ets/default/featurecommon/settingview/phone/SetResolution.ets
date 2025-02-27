@@ -15,11 +15,9 @@
 
 import { Action } from '../../../redux/actions/Action';
 import Timer from '../../../setting/settingitem/Timer';
-import { CustomDialogDetails } from '../../customdialog/dialogComponent/CustomDialogView';
-import { CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView';
+import { CustomDialogDetails, CustomDialogView } from '../../customdialog/dialogComponent/CustomDialogView';
 import { Log } from '../../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../../redux/store';
-import { getStore } from '../../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../../redux/store';
 import { SettingManager } from '../../../setting/SettingManager';
 import { SettingData, SettingGroupItem } from '../model/SettingData';
 
@@ -27,8 +25,6 @@ class StateStruct {
 }
 
 class SetResolutionDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -36,22 +32,30 @@ class SetResolutionDispatcher {
   public closeDialog(isCloseFlag: boolean): void {
     this.mDispatch(Action.closeDialog(isCloseFlag));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 
 @Component
 export struct SetResolution {
-  private TAG: string = '[SetResolution]:';
   @Link settingsList: SettingGroupItem[];
   @Link @Watch('onCloseDialog') closeFlag: boolean;
+  @StorageLink('settingDialogFlag') settingDialogFlag: boolean = true;
+  @State curCheckName: Resource = $r('app.string.default_value');
+  @State state: StateStruct = new StateStruct();
+  CustomDialogView: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogView({ cancel: () => this.existView() }),
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    cancel: this.existView,
+    customStyle: true
+  });
+  private TAG: string = '[SetResolution]:';
   private itemValue: SettingData = {};
   private WH_100_100: string = "100%";
   private settingManager = SettingManager.getInstance();
   private setAlias: string = '';
-  @StorageLink('settingDialogFlag') settingDialogFlag: boolean = true;
-  @State curCheckName: Resource = $r('app.string.default_value');
-  @State state: StateStruct = new StateStruct();
-  private mAction: SetResolutionDispatcher = new SetResolutionDispatcher();
   @Provide customDialogDetails: CustomDialogDetails = {
     confirmCallback: Function,
     confirmItem: true,
@@ -61,13 +65,7 @@ export struct SetResolution {
     childrenList: [],
     settingTitle: ''
   };
-  CustomDialogView: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogView({ cancel: () => this.existView() }),
-    autoCancel: true,
-    alignment: DialogAlignment.Bottom,
-    cancel: this.existView,
-    customStyle: true
-  });
+  private mAction: SetResolutionDispatcher = new SetResolutionDispatcher();
 
   existView(): void {
     Log.info(`${this.TAG} existView E`)

@@ -45,11 +45,11 @@ export class ModeAssembler {
       this.mNeedAdd = JSON.parse(JSON.stringify(currentModeFun))
       for (let fun of preModeFun) {
         let index = currentModeFun.indexOf(fun)
-          if (index == -1) {
-            this.mNeedDelete.push(fun)
-          } else {
-            this.mNeedAdd.splice(index, 1)
-          }
+        if (index == -1) {
+          this.mNeedDelete.push(fun)
+        } else {
+          this.mNeedAdd.splice(index, 1)
+        }
       }
     }
     Log.info(`${this.TAG} assembler mNeedAdd = ${this.mNeedAdd}  mNeedDelete = ${this.mNeedDelete}`)

@@ -17,28 +17,26 @@ import deviceInfo from '@ohos.deviceInfo';
 
 import { Action } from '../../../redux/actions/Action';
 import { Log } from '../../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../../redux/store';
-import { getStore } from '../../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../../redux/store';
 import EntryComponent from './EntryComponent';
 
 @Observed
 export class CustomDialogDetails {
-  confirmCallback: Function = () => {
-  };
   confirmItem: boolean = false;
   height: number = 0;
   width: number = 0;
   setAlias: string = '';
   childrenList: ChildrenItemStruct[] = [];
   settingTitle: string = '';
+
+  confirmCallback: Function = () => {
+  };
 }
 
 class StateStruct {
 }
 
 class CustomDialogViewDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -46,6 +44,8 @@ class CustomDialogViewDispatcher {
   public closeDialog(isCloseFlag: boolean): void {
     this.mDispatch(Action.closeDialog(isCloseFlag));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 class ChildrenItemStruct {
@@ -59,19 +59,21 @@ class StyleStruct {
 
 @CustomDialog
 export struct CustomDialogView {
-  private TAG: string = '[CustomDialogView]:'
   localStyle: StyleStruct = { columns: 4, offset: 0 };
   controller?: CustomDialogController;
-  cancel: () => void = () => {
-  };
-  confirm: () => void = () => {
-  };
   @Consume customDialogDetails: CustomDialogDetails;
   @State settingAlias: string = "";
   @State getValue: string = "";
   @State childrenList: Array<ChildrenItemStruct> = [];
   @State state: StateStruct = new StateStruct();
+  private TAG: string = '[CustomDialogView]:'
   private mAction: CustomDialogViewDispatcher = new CustomDialogViewDispatcher();
+
+  cancel: () => void = () => {
+  };
+
+  confirm: () => void = () => {
+  };
 
   async aboutToAppear() {
     Log.info(`${this.TAG} aboutToAppear start`)
@@ -127,7 +129,12 @@ export struct CustomDialogView {
             })
           }
           .listDirection(Axis.Vertical)
-          .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 }) // 每行之间的分界线
+          .divider({
+            strokeWidth: 0.5,
+            color: '#33000000',
+            startMargin: 0,
+            endMargin: 12
+          }) // 每行之间的分界线
           Column() {
             Button({ type: ButtonType.Capsule, stateEffect: true }) {
               Text($r('app.string.cancel'))
@@ -188,7 +195,12 @@ export struct CustomDialogView {
               })
             }
             .listDirection(Axis.Vertical)
-            .divider({ strokeWidth: 0.5, color: '#33000000', startMargin: 0, endMargin: 12 }) // 每行之间的分界线
+            .divider({
+              strokeWidth: 0.5,
+              color: '#33000000',
+              startMargin: 0,
+              endMargin: 12
+            }) // 每行之间的分界线
             Column() {
               Button({ type: ButtonType.Capsule, stateEffect: true }) {
                 Text($r('app.string.cancel'))

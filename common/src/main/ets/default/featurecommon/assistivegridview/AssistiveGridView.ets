@@ -14,8 +14,7 @@
  */
 
 import { Log } from '../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 
 class StateStruct {
   xComponentWidth: number = 0;
@@ -23,15 +22,16 @@ class StateStruct {
 }
 
 class AssistiveGridViewDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 @Component
 export struct AssistiveGridView {
+  @State state: StateStruct = new StateStruct();
   private TAG: string = '[AssistiveGridView]:';
   private mGlobalAlpha: number = 0.5;
   private mLineWidth: number = 0.5;
@@ -43,7 +43,6 @@ export struct AssistiveGridView {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private mAction: AssistiveGridViewDispatcher = new AssistiveGridViewDispatcher();
-  @State state: StateStruct = new StateStruct();
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear invoke E`);

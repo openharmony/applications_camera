@@ -23,8 +23,7 @@ import { CameraNeedStatus, CameraStatus } from '@ohos/common/src/main/ets/defaul
 import { CameraId } from '@ohos/common/src/main/ets/default/setting/settingitem/CameraId';
 import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
-import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Dispatch, getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { GeoLocation } from '@ohos/common/src/main/ets/default/featurecommon/geolocation/GeoLocation';
 import { SettingManager } from '@ohos/common/src/main/ets/default/setting/SettingManager';
@@ -76,8 +75,6 @@ class StateStruct {
 }
 
 class PreviewAreaDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -233,6 +230,8 @@ class PreviewAreaDispatcher {
   public swipeModeChangeDone(actionOff: boolean): void {
     this.mDispatch(Action.swipeModeChangeDone(actionOff));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 class SizeStruct {
@@ -254,7 +253,6 @@ class KeepScreenOnStruct {
 
 @Component
 export struct PreviewArea {
-  private TAG: string = '[PreviewArea]:';
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
   @State state: StateStruct = new StateStruct();
   @State mAspectRatio: number = 3 / 4;
@@ -262,6 +260,7 @@ export struct PreviewArea {
   @State btnSwitchSec: boolean = false;
   @State isSwitchBackground: boolean = false;
   @State pageType: string = '';
+  private TAG: string = '[PreviewArea]:';
   private isShowPreview: boolean = false;
   private isForegroundInit: boolean = false;
   private settingManager = SettingManager.getInstance();
@@ -269,6 +268,251 @@ export struct PreviewArea {
   private baseZoom: number = 0;
   private modeArray: Array<string> = ['PHOTO', 'VIDEO'];
   private mAction: PreviewAreaDispatcher = new PreviewAreaDispatcher();
+
+  aboutToAppear(): void {
+    Log.info(`${this.TAG} PreviewArea aboutToAppear ${JSON.stringify(router.getParams())}`);
+    let routerParams = router.getParams();
+    if (routerParams && routerParams.pageType) {
+      this.pageType = routerParams.pageType.toString();
+    }
+
+    getStore().subscribe((state: OhCombinedState) => {
+      let isShowBlur: boolean = !state.contextReducer.uiEnable && state.contextReducer.uiStateMode == UiStateMode.NONE;
+      this.state = {
+        mode: state.modeReducer.mode,
+        curMode: state.modeReducer.curMode,
+        isShowPreview: state.previewReducer.isShowPreview,
+        surfaceId: state.previewReducer.surfaceId,
+        xComponentWidth: state.previewReducer.xComponentWidth,
+        xComponentHeight: state.previewReducer.xComponentHeight,
+        cameraPosition: state.cameraReducer.cameraPosition,
+        curCameraPosition: state.cameraReducer.curCameraPosition,
+        minZoomRatio: state.zoomReducer.minZoomRatio,
+        maxZoomRatio: state.zoomReducer.maxZoomRatio,
+        zoomRatio: state.zoomReducer.zoomRatio,
+        platformCapability: state.cameraInitReducer.platformCapability,
+        videoState: state.recordReducer.videoState,
+        isShowZoomText: state.zoomReducer.isShowZoomText,
+        showZoomLabelValue: state.zoomReducer.showZoomLabelValue,
+        footBarHeight: state.contextReducer.footBarHeight,
+        isShowFlashBlack: state.previewReducer.isShowFlashBlack,
+        isShowBigText: state.modeReducer.isShowBigText,
+        isShowtimeLapse: state.settingReducer.isShowtimeLapse,
+        isBigVideoTimerVisible: state.recordReducer.isBigVideoTimerVisible,
+        isSmallVideoTimerVisible: state.recordReducer.isSmallVideoTimerVisible,
+        isAssGridViewShow: state.settingReducer.isAssGridViewShow,
+        modeIndex: state.modeReducer.modeIndex,
+        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
+        modeChangeDone: state.modeReducer.modeChangeDone,
+        isShowPageView: state.settingReducer.isShowSettingView,
+        showBlur: isShowBlur,
+        isFaCall: state.contextReducer.isFaCall,
+        rotateAngle: 0,
+        rotateAngleSec: 0,
+        switchBackgroundOpacity: 1,
+      };
+    }, (dispatch: Dispatch) => {
+      this.mAction.setDispatch(dispatch);
+    });
+    this.state.platformCapability;
+    this.appEventBus.on(Action.ACTION_INIT_DONE, (data: CameraInitStruct) => this.onCameraInit(data));
+    this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, (data: ModeStruct) => this.onModeChanged(data));
+    this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, (data: KeepScreenOnStruct) => this.onKeepScreen(data));
+    this.appEventBus.on(Action.ACTION_RECORD_ERROR, () => this.onRecordError());
+    this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, () => this.updateCameraStatus());
+    GlobalContext.get().setObject('updateCameraStatus', () => {
+      Log.info(`${this.TAG} globalThis.updateCameraStatus called`);
+      this.updateCameraStatus();
+    });
+    this.calledByOther();
+    this.mAction.initCamera(this.state.curCameraPosition, this.state.mode);
+    this.mAction.initZoomRatio(1, 6); //TODO 需要动态取得实际变焦能力范围
+    Log.start(Log.X_COMPONENT_LIFE);
+  }
+
+  aboutToDisappear(): void {
+    Log.info(`${this.TAG} previewAreaLand aboutToDisappear called`);
+    this.appEventBus.off(Action.ACTION_INIT_DONE, (data: CameraInitStruct) => this.onCameraInit(data));
+    this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, (data: ModeStruct) => this.onModeChanged(data));
+    this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, () => this.updateCameraStatus());
+    GeoLocation.getInstance().off();
+    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_RELEASE);
+    this.updateCameraStatus();
+  }
+
+  onBackPress(): void {
+    Log.info(`${this.TAG} previewAreaLand onBackPress called`);
+  }
+
+  onPageHide(): void {
+    this.mAction.startVideoFlag(false);
+  }
+
+  build() {
+    Column() {
+      if (this.state.isShowPreview) {
+        Stack() {
+          XComponent({
+            id: '',
+            type: 'surface',
+            libraryname: '',
+            controller: GlobalContext.get().getXComponentController()
+          })
+            .onLoad(() => {
+              Log.end(Log.X_COMPONENT_LIFE);
+              Log.info(`${this.TAG} XComponent_onLoad `);
+              let surfaceId: number = GlobalContext.get().getXComponentController().getXComponentSurfaceId();
+              this.mAction.prepareSurface(surfaceId);
+              this.doCameraAction();
+            })
+            .width(this.state.xComponentWidth)
+            .height(this.state.xComponentHeight)
+            .animation({
+              duration: 100,
+              curve: Curve.Sharp,
+              delay: 0,
+              iterations: 1,
+              playMode: PlayMode.Normal
+            })
+
+          if (this.isSwitchBackground) {
+            Column() {
+            }
+            .width(this.state.xComponentWidth)
+            .height(this.state.xComponentHeight)
+            .backgroundColor('#000')
+            .opacity(this.state.switchBackgroundOpacity)
+          }
+
+          if (this.state.showBlur) {
+            Column()
+              .width(this.state.xComponentWidth)
+              .height(this.state.xComponentHeight)
+              .backgroundColor(Color.Black)
+              .border({ width: { top: 0.5, bottom: 0.5 }, color: Color.Black })
+          }
+
+          if (this.btnSwitch) {
+            Image($r('app.media.whitePicture'))
+              .width(this.state.xComponentWidth)
+              .height(this.state.xComponentHeight)
+              .syncLoad(false)
+              .scale({ y: 1.0 })
+              .rotate({
+                x: 0,
+                y: 10,
+                z: 0,
+                angle: this.state.rotateAngle
+              })// .opacity(this.state.btnOpacity_first)
+              .onComplete(() => {
+              })
+          }
+
+          if (this.btnSwitchSec) {
+            Image($r('app.media.whitePicture'))
+              .width(this.state.xComponentWidth)
+              .height(this.state.xComponentHeight)
+              .syncLoad(false)
+              .scale({ y: 1.0 })
+              .rotate({
+                x: 0,
+                y: 10,
+                z: 0,
+                angle: this.state.rotateAngleSec
+              })// .opacity(this.state.btnOpacity_sec)
+              .onComplete(() => {
+              })
+          }
+
+          if (this.state.isShowFlashBlack) {
+            ShowFlashBlack();
+          }
+
+          if (this.state.isShowZoomText && deviceInfo.deviceType !== 'default' && !this.state.isShowtimeLapse) {
+            Stack({ alignContent: Alignment.Top }) {
+              ZoomText({ state: $state })
+            }
+            .width('100%')
+            .height('96%')
+          }
+
+          if (this.state.isShowBigText) {
+            Stack({ alignContent: Alignment.BottomStart }) {
+              BigText()
+            }
+            .width('100%')
+            .height('100%')
+            .padding({ bottom: '40vp' })
+          }
+
+          if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
+            AssistiveGridView();
+          }
+
+          if (this.state.isSmallVideoTimerVisible) {
+            SmallVideoTimer();
+          }
+
+          if (this.state.isBigVideoTimerVisible) {
+            BigVideoTimer();
+          }
+
+          if (this.state.isShowtimeLapse) {
+            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+              Column() {
+                TimeLapseView();
+              }.width('100%').height(150)
+            }
+          }
+        }
+        .width('100%')
+        .height('100%')
+      }
+    }
+    .height('100%')
+    .width(this.state.xComponentWidth)
+    .aspectRatio(this.mAspectRatio)
+    .margin({ top: 0 })
+    .backgroundColor('#000')
+    .gesture(
+      GestureGroup(
+        GestureMode.Exclusive,
+        TapGesture({ fingers: 1, count: 1 })
+          .onAction(() => this.onPreviewClicked()),
+        PinchGesture({ fingers: 2, distance: 1 })
+          .onActionStart((event) => {
+            if (event === undefined) {
+              return;
+            }
+            this.pinchGestureStart(event)
+          })
+          .onActionUpdate((event) => {
+            if (event === undefined) {
+              return;
+            }
+            this.pinchGestureUpdate(event)
+          })
+          .onActionEnd((event) => {
+            if (event === undefined) {
+              return;
+            }
+            this.pinchGestureEnd(event)
+          }),
+        PanGesture({ fingers: 1, direction: PanDirection.Left, distance: 10 })
+          .onActionEnd(() => {
+            if (!this.state.isThirdPartyCall && !GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
+              this.swipeChangeMode(1);
+            }
+          }),
+        PanGesture({ fingers: 1, direction: PanDirection.Right, distance: 10 })
+          .onActionEnd(() => {
+            if (!this.state.isThirdPartyCall && !GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
+              this.swipeChangeMode(-1);
+            }
+          })
+      )
+    )
+  }
 
   private async onCameraInit(data: CameraInitStruct): Promise<void> {
     Log.info(`${this.TAG} EventBus onCameraInit isShowPreview = ${this.isShowPreview} platformCapability = ${this.state.platformCapability} E`);
@@ -351,77 +595,6 @@ export struct PreviewArea {
     Log.info(`${this.TAG} onRecordError invoke X`);
   }
 
-  aboutToAppear(): void {
-    Log.info(`${this.TAG} PreviewArea aboutToAppear ${JSON.stringify(router.getParams())}`);
-    let routerParams = router.getParams();
-    if (routerParams && routerParams.pageType) {
-      this.pageType = routerParams.pageType.toString();
-    }
-
-    getStore().subscribe((state: OhCombinedState) => {
-      let isShowBlur: boolean = !state.contextReducer.uiEnable && state.contextReducer.uiStateMode == UiStateMode.NONE;
-      this.state = {
-        mode: state.modeReducer.mode,
-        curMode: state.modeReducer.curMode,
-        isShowPreview: state.previewReducer.isShowPreview,
-        surfaceId: state.previewReducer.surfaceId,
-        xComponentWidth: state.previewReducer.xComponentWidth,
-        xComponentHeight: state.previewReducer.xComponentHeight,
-        cameraPosition: state.cameraReducer.cameraPosition,
-        curCameraPosition: state.cameraReducer.curCameraPosition,
-        minZoomRatio: state.zoomReducer.minZoomRatio,
-        maxZoomRatio: state.zoomReducer.maxZoomRatio,
-        zoomRatio: state.zoomReducer.zoomRatio,
-        platformCapability: state.cameraInitReducer.platformCapability,
-        videoState: state.recordReducer.videoState,
-        isShowZoomText: state.zoomReducer.isShowZoomText,
-        showZoomLabelValue: state.zoomReducer.showZoomLabelValue,
-        footBarHeight: state.contextReducer.footBarHeight,
-        isShowFlashBlack: state.previewReducer.isShowFlashBlack,
-        isShowBigText: state.modeReducer.isShowBigText,
-        isShowtimeLapse: state.settingReducer.isShowtimeLapse,
-        isBigVideoTimerVisible: state.recordReducer.isBigVideoTimerVisible,
-        isSmallVideoTimerVisible: state.recordReducer.isSmallVideoTimerVisible,
-        isAssGridViewShow: state.settingReducer.isAssGridViewShow,
-        modeIndex: state.modeReducer.modeIndex,
-        isThirdPartyCall: state.contextReducer.isThirdPartyCall,
-        modeChangeDone: state.modeReducer.modeChangeDone,
-        isShowPageView: state.settingReducer.isShowSettingView,
-        showBlur: isShowBlur,
-        isFaCall: state.contextReducer.isFaCall,
-        rotateAngle: 0,
-        rotateAngleSec: 0,
-        switchBackgroundOpacity: 1,
-      };
-    }, (dispatch: Dispatch) => {
-      this.mAction.setDispatch(dispatch);
-    });
-    this.state.platformCapability;
-    this.appEventBus.on(Action.ACTION_INIT_DONE, (data: CameraInitStruct) => this.onCameraInit(data));
-    this.appEventBus.on(Action.ACTION_ON_MODE_CHANGED, (data: ModeStruct) => this.onModeChanged(data));
-    this.appEventBus.on(Action.ACTION_KEEP_SCREEN_ON, (data: KeepScreenOnStruct) => this.onKeepScreen(data));
-    this.appEventBus.on(Action.ACTION_RECORD_ERROR, () => this.onRecordError());
-    this.appEventBus.on(Action.ACTION_UPDATE_CAMERA_STATUS, () => this.updateCameraStatus());
-    GlobalContext.get().setObject('updateCameraStatus', () => {
-      Log.info(`${this.TAG} globalThis.updateCameraStatus called`);
-      this.updateCameraStatus();
-    });
-    this.calledByOther();
-    this.mAction.initCamera(this.state.curCameraPosition, this.state.mode);
-    this.mAction.initZoomRatio(1, 6); //TODO 需要动态取得实际变焦能力范围
-    Log.start(Log.X_COMPONENT_LIFE);
-  }
-
-  aboutToDisappear(): void {
-    Log.info(`${this.TAG} previewAreaLand aboutToDisappear called`);
-    this.appEventBus.off(Action.ACTION_INIT_DONE, (data: CameraInitStruct) => this.onCameraInit(data));
-    this.appEventBus.off(Action.ACTION_ON_MODE_CHANGED, (data: ModeStruct) => this.onModeChanged(data));
-    this.appEventBus.off(Action.ACTION_UPDATE_CAMERA_STATUS, () => this.updateCameraStatus());
-    GeoLocation.getInstance().off();
-    GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NEED_RELEASE);
-    this.updateCameraStatus();
-  }
-
   private releaseCamera(): void {
     Log.info(`${this.TAG} globalThis.releaseCamera called`);
     GlobalContext.get().setObject('cameraNeedStatus', CameraNeedStatus.CAMERA_NO_NEED_TO_DO);
@@ -499,7 +672,7 @@ export struct PreviewArea {
       case 'ALL':
         this.mAction.initMode(this.state.mode);
         this.mAction.updateModeIndex(this.state.modeIndex);
-      // private modeArray: Array<string> = ['PHOTO', 'VIDEO']; //, 'MORE'this.modeArray[modeIndex]
+        // private modeArray: Array<string> = ['PHOTO', 'VIDEO']; //, 'MORE'this.modeArray[modeIndex]
         break;
       default:
         Log.info(`${this.TAG} FA default`);
@@ -531,14 +704,6 @@ export struct PreviewArea {
     //相机状态是预览完成状态或录像完成状态才能进行释放操作
     return GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_PREVIEW_FINISHED ||
       GlobalContext.get().getT<string>('cameraStatus') == CameraStatus.CAMERA_TAKE_VIDEO_FINISHED;
-  }
-
-  onBackPress(): void {
-    Log.info(`${this.TAG} previewAreaLand onBackPress called`);
-  }
-
-  onPageHide(): void {
-    this.mAction.startVideoFlag(false);
   }
 
   private pinchGestureStart(event: GestureEvent): void {
@@ -593,7 +758,8 @@ export struct PreviewArea {
 
   private swipeChangeMode(swipe: number): void {
     Log.info(`${this.TAG} swipeChangeMode E`);
-    if (!this.state.modeChangeDone && this.state.modeIndex + swipe >= 0 && this.state.modeIndex + swipe <= this.modeArray.length - 1 && !this.state.isShowtimeLapse) {
+    if (!this.state.modeChangeDone && this.state.modeIndex + swipe >= 0 &&
+      this.state.modeIndex + swipe <= this.modeArray.length - 1 && !this.state.isShowtimeLapse) {
       this.mAction.swipeChangeMode(this.state.modeIndex + swipe);
       this.mAction.swipeModeChangeDone(true);
     }
@@ -614,155 +780,5 @@ export struct PreviewArea {
         });
     }
     Log.info(`${this.TAG} onKeepScreen X`);
-  }
-
-  build() {
-    Column() {
-      if (this.state.isShowPreview) {
-        Stack() {
-          XComponent({
-            id: '',
-            type: 'surface',
-            libraryname: '',
-            controller: GlobalContext.get().getXComponentController()
-          })
-            .onLoad(() => {
-              Log.end(Log.X_COMPONENT_LIFE);
-              Log.info(`${this.TAG} XComponent_onLoad `);
-              let surfaceId: number = GlobalContext.get().getXComponentController().getXComponentSurfaceId();
-              this.mAction.prepareSurface(surfaceId);
-              this.doCameraAction();
-            })
-            .width(this.state.xComponentWidth)
-            .height(this.state.xComponentHeight)
-            .animation({
-              duration: 100,
-              curve: Curve.Sharp,
-              delay: 0,
-              iterations: 1,
-              playMode: PlayMode.Normal
-            })
-
-          if (this.isSwitchBackground) {
-            Column() {
-            }
-            .width(this.state.xComponentWidth)
-            .height(this.state.xComponentHeight)
-            .backgroundColor('#000')
-            .opacity(this.state.switchBackgroundOpacity)
-          }
-
-          if (this.state.showBlur) {
-            Column()
-              .width(this.state.xComponentWidth)
-              .height(this.state.xComponentHeight)
-              .backgroundColor(Color.Black)
-              .border({ width: { top: 0.5, bottom: 0.5 }, color: Color.Black })
-          }
-
-          if (this.btnSwitch) {
-            Image($r('app.media.whitePicture'))
-              .width(this.state.xComponentWidth)
-              .height(this.state.xComponentHeight)
-              .syncLoad(false)
-              .scale({ y: 1.0 })
-              .rotate({ x: 0, y: 10, z: 0, angle: this.state.rotateAngle })// .opacity(this.state.btnOpacity_first)
-              .onComplete(() => {
-              })
-          }
-
-          if (this.btnSwitchSec) {
-            Image($r('app.media.whitePicture'))
-              .width(this.state.xComponentWidth)
-              .height(this.state.xComponentHeight)
-              .syncLoad(false)
-              .scale({ y: 1.0 })
-              .rotate({ x: 0, y: 10, z: 0, angle: this.state.rotateAngleSec })// .opacity(this.state.btnOpacity_sec)
-              .onComplete(() => {
-              })
-          }
-
-          if (this.state.isShowFlashBlack) {
-            ShowFlashBlack();
-          }
-
-          if (this.state.isShowZoomText && deviceInfo.deviceType !== "default" && !this.state.isShowtimeLapse) {
-            Stack({ alignContent: Alignment.Top }) {
-              ZoomText({ state: $state })
-            }
-            .width('100%')
-            .height('96%')
-          }
-
-          if (this.state.isShowBigText) {
-            Stack({ alignContent: Alignment.BottomStart }) {
-              BigText()
-            }
-            .width('100%')
-            .height('100%')
-            .padding({ bottom: '40vp' })
-          }
-
-          if (this.state.isAssGridViewShow === '1' && this.state.mode !== 'MORE') {
-            AssistiveGridView();
-          }
-
-          if (this.state.isSmallVideoTimerVisible) {
-            SmallVideoTimer();
-          }
-
-          if (this.state.isBigVideoTimerVisible) {
-            BigVideoTimer();
-          }
-
-          if (this.state.isShowtimeLapse) {
-            Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-              Column() {
-                TimeLapseView();
-              }.width('100%').height(150)
-            }
-          }
-        }
-        .width('100%')
-        .height('100%')
-      }
-    }
-    .height('100%')
-    .width(this.state.xComponentWidth)
-    .aspectRatio(this.mAspectRatio)
-    .margin({ top: 0 })
-    .backgroundColor('#000')
-    .gesture(
-      GestureGroup(
-        GestureMode.Exclusive,
-        TapGesture({ fingers: 1, count: 1 })
-          .onAction(() => this.onPreviewClicked()),
-        PinchGesture({ fingers: 2, distance: 1 })
-          .onActionStart((event) => {
-            if (event === undefined) return;
-            this.pinchGestureStart(event)
-          })
-          .onActionUpdate((event) => {
-            if (event === undefined) return;
-            this.pinchGestureUpdate(event)
-          })
-          .onActionEnd((event) => {
-            if (event === undefined) return;
-            this.pinchGestureEnd(event)
-          }),
-        PanGesture({ fingers: 1, direction: PanDirection.Left, distance: 10 })
-          .onActionEnd(() => {
-            if (!this.state.isThirdPartyCall && !GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
-              this.swipeChangeMode(1);
-            }
-          }),
-        PanGesture({ fingers: 1, direction: PanDirection.Right, distance: 10 })
-          .onActionEnd(() => {
-            if (!this.state.isThirdPartyCall && !GlobalContext.get().getCameraAbilityWant()?.parameters?.from) {
-              this.swipeChangeMode(-1);
-            }
-          })
-      )
-    )
   }
 }

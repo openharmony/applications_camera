@@ -20,8 +20,7 @@ import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
 import { CameraWorker } from '@ohos/common/src/main/ets/default/worker/CameraWorker';
 import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
-import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Dispatch, getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import { MoreList } from '@ohos/common/src/main/ets/default/featurecommon/moreList/moreList';
 import {
@@ -62,8 +61,6 @@ class StateStruct {
 }
 
 class IndexDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -116,6 +113,8 @@ class IndexDispatcher {
   public faCall(isFaCall: boolean): void {
     this.mDispatch(Action.faCall(isFaCall));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 const ZOOM_HEIGHT = 140;
@@ -179,24 +178,25 @@ struct Index {
       Log.info(`${this.TAG} permissions need to require from user: ${JSON.stringify(permissionList)}`);
       let atManager = abilityAccessCtrl.createAtManager();
       try {
-        atManager.requestPermissionsFromUser(GlobalContext.get().getCameraAbilityContext(), permissionList).then((data) => {
-          Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`);
-          Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`);
-          let sum = 0
-          for (let i = 0; i < data.authResults.length; i++) {
-            sum += data.authResults[i];
-          }
-          if (sum >= 0) {
-            GlobalContext.get().setObject('permissionFlag', true);
-            this.mAction.setPermissionFlag(true);
-          } else {
-            GlobalContext.get().setObject('permissionFlag', false);
-            this.mAction.setPermissionFlag(false);
-          }
-          Log.info(`${this.TAG} request permissions result: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
-        }, (err: BusinessError) => {
-          Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`);
-        })
+        atManager.requestPermissionsFromUser(GlobalContext.get().getCameraAbilityContext(), permissionList)
+          .then((data) => {
+            Log.info(`${this.TAG} data permissions: ${JSON.stringify(data.permissions)}`);
+            Log.info(`${this.TAG} data authResult: ${JSON.stringify(data.authResults)}`);
+            let sum = 0
+            for (let i = 0; i < data.authResults.length; i++) {
+              sum += data.authResults[i];
+            }
+            if (sum >= 0) {
+              GlobalContext.get().setObject('permissionFlag', true);
+              this.mAction.setPermissionFlag(true);
+            } else {
+              GlobalContext.get().setObject('permissionFlag', false);
+              this.mAction.setPermissionFlag(false);
+            }
+            Log.info(`${this.TAG} request permissions result: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
+          }, (err: BusinessError) => {
+            Log.error(`${this.TAG} Failed to start ability err code: ${err.code}`);
+          })
       } catch (error) {
         Log.info(`${this.TAG} catch error: ${JSON.stringify(error)}`);
       }
@@ -223,10 +223,13 @@ struct Index {
   }
 
   onPageShow(): void {
-    Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} permissionFlag: ${GlobalContext.get().getT<boolean>('permissionFlag')}`);
+    Log.info(`${this.TAG} onPageShow this.permissionFlag: ${this.state.permissionFlag} permissionFlag: ${GlobalContext.get()
+      .getT<boolean>('permissionFlag')}`);
     this.mAction.setPermissionFlag(GlobalContext.get().getT<boolean>('permissionFlag'));
     let curCameraId = AppStorage.Get<string>('storageCameraId');
-    if (curCameraId) this.mAction.initCameraPosition(curCameraId);
+    if (curCameraId) {
+      this.mAction.initCameraPosition(curCameraId);
+    }
     this.mAction.resetRecordingTime();
     Log.info(`${this.TAG} onPageShow X`);
   }
@@ -313,7 +316,8 @@ struct Index {
       }.width('100%').position({ y: 48 })
 
       Stack() {
-        if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" && !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
+        if (deviceInfo.deviceType !== "default" && this.state.videoState === "beforeTakeVideo" &&
+          !this.state.isShowtimeLapse && this.state.showZoomLabelValue) {
           TabBar({ onBackClicked: () => this.onBackClicked() });
         }
       }.width('100%').height(48).position({ x: '0', y: '0' })
@@ -328,14 +332,16 @@ struct Index {
               Column() {
                 ZoomView()
               }
-              .visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible : Visibility.Hidden)
+              .visibility(!this.state.isShowtimeLapse && !this.state.isShowPinch ? Visibility.Visible :
+              Visibility.Hidden)
             }
           }
           if (this.state.videoState === "beforeTakeVideo" && this.state.showZoomLabelValue) {
             Column() {
               Control()
             }
-            .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+            .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible :
+            Visibility.Hidden)
             .width('100%')
             .offset({
               x: 156, y: 0
@@ -344,7 +350,8 @@ struct Index {
           Column() {
             FootBar()
           }
-          .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible : Visibility.Hidden)
+          .visibility((!this.state.isShowtimeLapse && this.state.showZoomLabelValue) ? Visibility.Visible :
+          Visibility.Hidden)
         }
       }.width('100%').height(302 - ZOOM_HEIGHT).position({ y: this.state.footBarHeight + ZOOM_HEIGHT })
       .visibility(!this.state.isShowtimeLapse ? Visibility.Visible : Visibility.Hidden)

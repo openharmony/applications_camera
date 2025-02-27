@@ -14,8 +14,7 @@
  */
 
 import { CameraService } from '../../camera/CameraService';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 import { Log } from '../../utils/Log';
 
 class StateStruct {
@@ -23,29 +22,28 @@ class StateStruct {
 }
 
 class ComponentForMultiDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 
 @Component
 export default struct EntryComponentForMulti {
-  private TAG: string = '[EntryComponentForMulti]:';
   @State state: StateStruct = new StateStruct();
   @State isLocalDevice: boolean = false;
   @State switchCameraState: boolean = false;
   @State recCameraState: boolean = true;
   @State defaultChecked: boolean = false;
   @State curCameraName: string = '';
+  private TAG: string = '[EntryComponentForMulti]:';
   private localList: string = '';
   private item: string = '';
-  private onChange: Function = () => {};
   private cameraService: CameraService = CameraService.getInstance();
   private deviceName: string = '';
-  private cameraPositionRes:string | Resource = '';
+  private cameraPositionRes: string | Resource = '';
   private cameraPositionName: string = '';
   private mAction: ComponentForMultiDispatcher = new ComponentForMultiDispatcher();
 
@@ -63,29 +61,6 @@ export default struct EntryComponentForMulti {
     this.curCameraName = this.cameraService.getCameraName()
     if (this.localList.split(',').length === 1 && this.curCameraName === 'BACK') {
       this.curCameraName = 'FRONT'
-    }
-  }
-
-  private getShowName(item: string): void {
-    this.cameraPositionName = item.split('_').pop() as string;
-    switch (this.cameraPositionName) {
-      case 'FRONT':
-        this.cameraPositionRes = $r('app.string.front')
-        break
-      case 'BACK':
-        this.cameraPositionRes = $r('app.string.back')
-        break
-      default:
-        break
-    }
-    if (item.split('_').length == 1) {
-      this.isLocalDevice = true
-    } else {
-      const cameraItem = this.cameraService.getCameraMap().get(item)
-      if (cameraItem) {
-        this.deviceName = cameraItem.deviceName as string;
-        this.isLocalDevice = false
-      }
     }
   }
 
@@ -126,5 +101,31 @@ export default struct EntryComponentForMulti {
     }
     .height(48)
     .width('100%')
+  }
+
+  private onChange: Function = () => {
+  };
+
+  private getShowName(item: string): void {
+    this.cameraPositionName = item.split('_').pop() as string;
+    switch (this.cameraPositionName) {
+      case 'FRONT':
+        this.cameraPositionRes = $r('app.string.front')
+        break
+      case 'BACK':
+        this.cameraPositionRes = $r('app.string.back')
+        break
+      default:
+        break
+    }
+    if (item.split('_').length == 1) {
+      this.isLocalDevice = true
+    } else {
+      const cameraItem = this.cameraService.getCameraMap().get(item)
+      if (cameraItem) {
+        this.deviceName = cameraItem.deviceName as string;
+        this.isLocalDevice = false
+      }
+    }
   }
 }

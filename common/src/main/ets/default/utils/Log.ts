@@ -92,11 +92,6 @@ export class Log {
     hiTraceMeter.startTrace(methodName, taskId);
   }
 
-  private static init(): void {
-    globalThis.taskIdMap = new Map<string, number>();
-    globalThis.traceIndex = TRACE_BASE_INDEX;
-  }
-
   static end(methodName: string): void {
     this.info(methodName + TRACE_LOG_END);
     if (!RECORD_TRACE) {
@@ -111,5 +106,10 @@ export class Log {
       return;
     }
     hiTraceMeter.finishTrace(methodName, taskId);
+  }
+
+  private static init(): void {
+    globalThis.taskIdMap = new Map<string, number>();
+    globalThis.traceIndex = TRACE_BASE_INDEX;
   }
 }

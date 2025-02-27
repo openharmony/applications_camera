@@ -17,12 +17,11 @@
  * @file: 日期工具
  */
 export default class DateTimeUtil {
-
   /**
-     * 时分秒
-     *
-     * @return {string} - 返回时分秒
-     */
+   * 时分秒
+   *
+   * @return {string} - 返回时分秒
+   */
   getTime() {
     const DATETIME = new Date();
     const HOURS = DATETIME.getHours();
@@ -32,10 +31,10 @@ export default class DateTimeUtil {
   }
 
   /**
-     * 年月日
-     *
-     * @return {string} - 返回年月日
-     */
+   * 年月日
+   *
+   * @return {string} - 返回年月日
+   */
   getDate() {
     const DATETIME = new Date();
     const YEAR = DATETIME.getFullYear();
@@ -45,35 +44,35 @@ export default class DateTimeUtil {
   }
 
   /**
-     * 日期不足两位补 0
-     *
-     * @param {string} value - 数据值
-     * @return {string} - 日期不足两位补 0
-     */
+   * 日期不足两位补 0
+   *
+   * @param {string} value - 数据值
+   * @return {string} - 日期不足两位补 0
+   */
   fill(value): string {
     return (value > 9 ? '' : '0') + value;
   }
 
   /**
-     * 年月日格式修饰
-     *
-     * @param {string} year - 年
-     * @param {string} month - 月
-     * @param {string} date - 日
-     * @return {string} - 年月日格式修饰
-     */
+   * 年月日格式修饰
+   *
+   * @param {string} year - 年
+   * @param {string} month - 月
+   * @param {string} date - 日
+   * @return {string} - 年月日格式修饰
+   */
   concatDate(year, month, date) {
     return `${year}${month}${date}`;
   }
 
   /**
-     * 时分秒格式修饰
-     *
-     * @param {string} hours - 时
-     * @param {string} minutes - 分
-     * @param {string} seconds - 秒
-     * @return {string} - 时分秒格式修饰
-     */
+   * 时分秒格式修饰
+   *
+   * @param {string} hours - 时
+   * @param {string} minutes - 分
+   * @param {string} seconds - 秒
+   * @return {string} - 时分秒格式修饰
+   */
   concatTime(hours, minutes, seconds) {
     return `${this.fill(hours)}${this.fill(minutes)}${this.fill(seconds)}`;
   }

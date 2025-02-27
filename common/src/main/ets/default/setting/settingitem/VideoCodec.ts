@@ -14,7 +14,7 @@
  */
 
 export default class VideoCodec {
-  private static TAG = '[VideoCodec]:'
   public static readonly ALIAS = 'VideoCodec'
   public static readonly DEFAULT_VALUE = '0'
+  private static TAG = '[VideoCodec]:'
 }

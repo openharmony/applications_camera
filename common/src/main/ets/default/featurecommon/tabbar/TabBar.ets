@@ -14,8 +14,7 @@
  */
 
 import { Log } from '../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 import { Action } from '../../redux/actions/Action';
 
 class StateStruct {
@@ -23,8 +22,6 @@ class StateStruct {
 }
 
 class TabBarDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -32,14 +29,15 @@ class TabBarDispatcher {
   public showSettingView(isShowSettingView: boolean): void {
     this.mDispatch(Action.showSettingView(isShowSettingView));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 
 @Component
 export struct TabBar {
-  private TAG: string = '[TabBar]';
   @State state: StateStruct = new StateStruct();
-  private onBackClicked: Function = () => {};
+  private TAG: string = '[TabBar]';
   private mAction: TabBarDispatcher = new TabBarDispatcher();
 
   aboutToAppear(): void {
@@ -59,6 +57,7 @@ export struct TabBar {
       Column() {
         //        TabBarOther()
       }.width('40%').height('100%')
+
       Column() {
         if (this.state.isThirdPartyCall) {
           Row() {
@@ -68,10 +67,11 @@ export struct TabBar {
                 this.onBackClicked()
               })
           }.width(48).height(48)
-          .padding({left: 12})
+          .padding({ left: 12 })
           .margin({ bottom: 12 })
         }
       }.width('40%').height('100%')
+
       Column() {
         Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
           Image($r('app.media.setting')).width(24).height(24)
@@ -81,4 +81,7 @@ export struct TabBar {
       })
     }.width('100%').height('100%')
   }
+
+  private onBackClicked: Function = () => {
+  };
 }

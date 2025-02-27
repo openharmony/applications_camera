@@ -23,8 +23,8 @@ export type Reducer = (
 
 export function combineReducers(reducers: Array<Function>): Reducer {
   return function combination(
-    state: OhCombinedState | undefined,
-    action: ActionData
+      state: OhCombinedState | undefined,
+      action: ActionData
   ) {
     const nextState: unknown = {};
     const currentState = state || {};

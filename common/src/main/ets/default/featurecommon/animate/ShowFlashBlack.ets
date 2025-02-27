@@ -14,9 +14,9 @@
  */
 
 import { Log } from '../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 import { Action } from '../../redux/actions/Action';
+
 class StateStruct {
   xComponentWidth: number = 0;
   xComponentHeight: number = 0;
@@ -24,8 +24,6 @@ class StateStruct {
 
 
 class ShowFlashBlackDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -33,13 +31,15 @@ class ShowFlashBlackDispatcher {
   public updateShowFlashBlackFlag(flag: boolean): void {
     this.mDispatch(Action.updateShowFlashBlackFlag(flag));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 @Component
 export struct ShowFlashBlack {
-  private TAG: string = '[ShowFlashBlack]:'
   @State state: StateStruct = new StateStruct()
   @State opacityValue: number = 1
+  private TAG: string = '[ShowFlashBlack]:'
   private mAction: ShowFlashBlackDispatcher = new ShowFlashBlackDispatcher();
 
   aboutToAppear() {

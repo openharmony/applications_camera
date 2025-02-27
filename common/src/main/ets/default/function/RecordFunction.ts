@@ -23,12 +23,26 @@ import { GlobalContext } from '../utils/GlobalContext';
 const TAG = '[RecordFunction]:';
 
 export class RecordFunction extends BaseFunction {
+  load(): void {
+    this.mEventBus.on(Action.ACTION_RECORD_START, this.startRecording.bind(this));
+    this.mEventBus.on(Action.ACTION_RECORD_PAUSE, this.pauseRecording.bind(this));
+    this.mEventBus.on(Action.ACTION_RECORD_RESUME, this.resumeRecording.bind(this));
+    this.mEventBus.on(Action.ACTION_RECORD_STOP, this.stopRecording.bind(this));
+  }
+
+  unload(): void {
+    this.mEventBus.off(Action.ACTION_RECORD_START, this.startRecording.bind(this));
+    this.mEventBus.off(Action.ACTION_RECORD_PAUSE, this.pauseRecording.bind(this));
+    this.mEventBus.off(Action.ACTION_RECORD_RESUME, this.resumeRecording.bind(this));
+    this.mEventBus.off(Action.ACTION_RECORD_STOP, this.stopRecording.bind(this));
+  }
+
   private functionBackImpl: VideoCallBack = {
     videoUri: (videoUri: any): void => {
       Log.info(`${TAG} functionBackImpl videoUri ${videoUri}`);
       this.mWorkerManager.postMessage(Action.updateVideoUri(videoUri));
     },
-    onRecodeError:(data: any): void => {
+    onRecodeError: (data: any): void => {
       this.mWorkerManager.postMessage(Action.recordError());
       this.mWorkerManager.postMessage(Action.reStartPreview(1));
     }
@@ -79,7 +93,8 @@ export class RecordFunction extends BaseFunction {
   private async stopRecording() {
     Log.info(`${TAG} stopRecording E`);
 
-    Log.info(`${TAG} globalThis.startRecording : ${JSON.stringify(GlobalContext.get().getT<boolean>('startRecordingFlag'))}`);
+    Log.info(`${TAG} globalThis.startRecording : ${JSON.stringify(GlobalContext.get()
+      .getT<boolean>('startRecordingFlag'))}`);
     if (GlobalContext.get().getT<boolean>('startRecordingFlag')) {
       return;
     }
@@ -96,19 +111,5 @@ export class RecordFunction extends BaseFunction {
     this.mWorkerManager.postMessage(Action.updateCameraStatus());
     this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
     Log.info(`${TAG} stopRecording X`);
-  }
-
-  load(): void{
-    this.mEventBus.on(Action.ACTION_RECORD_START, this.startRecording.bind(this));
-    this.mEventBus.on(Action.ACTION_RECORD_PAUSE, this.pauseRecording.bind(this));
-    this.mEventBus.on(Action.ACTION_RECORD_RESUME, this.resumeRecording.bind(this));
-    this.mEventBus.on(Action.ACTION_RECORD_STOP, this.stopRecording.bind(this));
-  }
-
-  unload(): void {
-    this.mEventBus.off(Action.ACTION_RECORD_START, this.startRecording.bind(this));
-    this.mEventBus.off(Action.ACTION_RECORD_PAUSE, this.pauseRecording.bind(this));
-    this.mEventBus.off(Action.ACTION_RECORD_RESUME, this.resumeRecording.bind(this));
-    this.mEventBus.off(Action.ACTION_RECORD_STOP, this.stopRecording.bind(this));
   }
 }

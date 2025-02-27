@@ -20,12 +20,6 @@ import { BaseFunction } from './BaseFunction'
 export class ZoomFunction extends BaseFunction {
   private TAG = '[ZoomFunction]:'
 
-  private async changeZoomRatio(data) {
-    Log.info(`${this.TAG} setZoomRatio ${JSON.stringify(data)}  E`)
-    await this.mCameraService.setZoomRatio(data.zoomRatio)
-    Log.info(`${this.TAG} setZoomRatio X`)
-  }
-
   load(): void {
     Log.info(`${this.TAG} load E`)
     this.mEventBus.on(Action.ACTION_CHANGE_ZOOM_RATIO, this.changeZoomRatio.bind(this))
@@ -36,5 +30,11 @@ export class ZoomFunction extends BaseFunction {
     Log.info(`${this.TAG} unload E`)
     this.mEventBus.off(Action.ACTION_CHANGE_ZOOM_RATIO, this.changeZoomRatio.bind(this))
     Log.info(`${this.TAG} unload X`)
+  }
+
+  private async changeZoomRatio(data) {
+    Log.info(`${this.TAG} setZoomRatio ${JSON.stringify(data)}  E`)
+    await this.mCameraService.setZoomRatio(data.zoomRatio)
+    Log.info(`${this.TAG} setZoomRatio X`)
   }
 }

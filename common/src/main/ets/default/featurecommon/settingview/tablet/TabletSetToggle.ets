@@ -13,35 +13,34 @@
  * limitations under the License.
  */
 
-import { Log } from '../../../utils/Log'
-import { SettingManager } from '../../../setting/SettingManager'
-import { SettingData, SettingGroupItem } from '../model/SettingData'
-import { Dispatch, OhCombinedState } from '../../../redux/store'
-import { getStore } from '../../../redux/store';
+import { Log } from '../../../utils/Log';
+import { SettingManager } from '../../../setting/SettingManager';
+import { SettingData, SettingGroupItem } from '../model/SettingData';
+import { Dispatch, getStore, OhCombinedState } from '../../../redux/store';
 
 class StateStruct {
   mode: string = ''
 }
 
 class SetToggleDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 @Component
 export struct TabletSetToggle {
-  private TAG: string = '[TabletSetToggle]:'
   @Link settingsList: SettingGroupItem[]
   @State isOn: boolean = false
+  @State generalStatusValue: boolean = false
+  @State state: StateStruct = new StateStruct()
+  private TAG: string = '[TabletSetToggle]:'
   private itemValue: SettingData = new SettingData();
   // private getToggleStatus: Promise<string>
   private WH_100_100: string = "100%"
   private settingManager = SettingManager.getInstance()
-  @State generalStatusValue: boolean = false
-  @State state: StateStruct = new StateStruct()
   private mAction: SetToggleDispatcher = new SetToggleDispatcher();
 
   aboutToAppear() {
@@ -95,7 +94,8 @@ export struct TabletSetToggle {
                 .opacity($r('sys.float.ohos_id_alpha_content_secondary'))
             }.margin({
               top: $r('sys.float.ohos_id_text_margin_vertical'),
-              left: 40 })
+              left: 40
+            })
           }
         }
         .layoutWeight(1)
@@ -119,7 +119,12 @@ export struct TabletSetToggle {
         }
         .margin({ left: $r('sys.float.ohos_id_card_margin_end') })
       }
-      .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+      .padding({
+        left: 12,
+        right: 12,
+        top: 4,
+        bottom: 4
+      })
     }
     .height(this.itemValue?.description ? 72 : 56)
     .width(this.WH_100_100)
