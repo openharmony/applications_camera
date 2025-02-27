@@ -16,16 +16,16 @@
 import dataRdb from '@ohos.data.rdb';
 import { GlobalContext } from '../../utils/GlobalContext';
 
-import { Log } from '../../utils/Log'
-import SettingItemInfo from './SettingItemInfo'
+import { Log } from '../../utils/Log';
+import SettingItemInfo from './SettingItemInfo';
 
 const DB_NAME = 'Camera.db'
 const DB_VERSION = 1
 const TABLE_NAME = 'SETTING'
 const CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS SETTING ' +
-'(id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
-'item_name TEXT, ' +
-'item_value TEXT)'
+  '(id INTEGER PRIMARY KEY AUTOINCREMENT, ' +
+  'item_name TEXT, ' +
+  'item_value TEXT)'
 
 /**
  * db manager
@@ -36,6 +36,7 @@ export class RdbStoreManager {
 
   private constructor() {
   }
+
   /**
    * db manager instance
    *
@@ -62,13 +63,6 @@ export class RdbStoreManager {
       Log.error('RdbStoreManager.initRdbConfig Failed to obtain the rdbStore. Cause: ' + error.message);
     });
     Log.info(this.TAG + 'initRdbConfig end');
-  }
-
-  private async createTable() {
-    Log.info(this.TAG + 'create table start');
-    Log.info(this.TAG + `RdbStoreConfig.CREATE_TABLE: ${CREATE_TABLE}`);
-    await this.mRdbStore.executeSql(CREATE_TABLE, []);
-    Log.info(this.TAG + 'create table end');
   }
 
   public async getSettingByItem(itemName: string) {
@@ -128,6 +122,13 @@ export class RdbStoreManager {
       Log.error(this.TAG + 'updateValue error:' + e);
     }
     return result;
+  }
+
+  private async createTable() {
+    Log.info(this.TAG + 'create table start');
+    Log.info(this.TAG + `RdbStoreConfig.CREATE_TABLE: ${CREATE_TABLE}`);
+    await this.mRdbStore.executeSql(CREATE_TABLE, []);
+    Log.info(this.TAG + 'create table end');
   }
 
   private ifStringIsNull(str): boolean {

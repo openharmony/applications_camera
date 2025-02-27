@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import { Log } from '../utils/Log'
+import { Log } from '../utils/Log';
 import deviceInfo from '@ohos.deviceInfo';
 
 export default class DisplayCalculator {
   private static TAG = '[DisplayCalculator]:'
 
-  public static calcSurfaceDisplaySize(screenWidth: number, screenHeight: number, previewWidth: number, previewHeight: number) {
+  public static calcSurfaceDisplaySize(screenWidth: number, screenHeight: number, previewWidth: number,
+    previewHeight: number) {
     const displaySize = {
       width: 1920, height: 1080
     }

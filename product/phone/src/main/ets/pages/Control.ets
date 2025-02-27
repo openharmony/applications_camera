@@ -16,8 +16,7 @@
 import { Action } from '@ohos/common/src/main/ets/default/redux/actions/Action';
 import { EventBus } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBus';
 import { EventBusManager } from '@ohos/common/src/main/ets/default/worker/eventbus/EventBusManager';
-import { Dispatch, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
-import { getStore } from '@ohos/common/src/main/ets/default/redux/store';
+import { Dispatch, getStore, OhCombinedState } from '@ohos/common/src/main/ets/default/redux/store';
 import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 import {
   PersistType,
@@ -36,8 +35,6 @@ class StateStruct {
 }
 
 class ControlDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -67,6 +64,8 @@ class ControlDispatcher {
   public updateListStatus(enable: boolean): void {
     this.mDispatch(Action.uiState(enable));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 class SwipeModeIndexStruct {
@@ -76,17 +75,17 @@ class SwipeModeIndexStruct {
 
 @Component
 export struct Control {
-  private TAG: string = '[Control]';
   appEventBus: EventBus = EventBusManager.getInstance().getEventBus();
-  private scroller: Scroller = new Scroller();
-  private modeArray: Array<string> = ['PHOTO', 'VIDEO'];
-  private itemWidth: number = 56;
-  protected mPreferencesService: PreferencesService = PreferencesService.getInstance();
   @State state: StateStruct = new StateStruct();
-  private mAction: ControlDispatcher = new ControlDispatcher();
   @State startScroll: number = 0;
   @State endScroll: number = 0;
   @State index: number = 0;
+  protected mPreferencesService: PreferencesService = PreferencesService.getInstance();
+  private TAG: string = '[Control]';
+  private scroller: Scroller = new Scroller();
+  private modeArray: Array<string> = ['PHOTO', 'VIDEO'];
+  private itemWidth: number = 56;
+  private mAction: ControlDispatcher = new ControlDispatcher();
 
   aboutToAppear(): void {
     Log.info(`${this.TAG} aboutToAppear E`);
@@ -115,36 +114,11 @@ export struct Control {
     Log.info(`${this.TAG} aboutToDisappear X`);
   }
 
-  private changeToMode(modeIndex: number): void {
-    Log.info(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`);
-    this.scroller.scrollToIndex(modeIndex);
-    if (this.modeArray[modeIndex] !== this.state.mode) {
-      Log.info(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`);
-      this.mAction.changeToMode(this.modeArray[modeIndex]);
-      this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex);
-      this.mPreferencesService.flushMode();
-    } else {
-      this.mAction.updateListStatus(true);
-    }
-    Log.info(`${this.TAG} changeToMode X`);
-  }
-
-  private getModeFontWeight(modeIndex: number): FontWeight {
-    if (this.state.mode === this.modeArray[modeIndex]) {
-      return FontWeight.Bold;
-    } else {
-      return FontWeight.Regular;
-    }
-  }
-
-  private swipeChangeMode(data: SwipeModeIndexStruct): void {
-    this.changeToMode(data.swipeModeIndex);
-  }
-
   build() {
     Column() {
       Stack({ alignContent: Alignment.BottomStart }) {
-        if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO' && (this.state.thirdCallAction != 'ALL')) {
+        if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'PHOTO' &&
+          (this.state.thirdCallAction != 'ALL')) {
           Row() {
             Text($r('app.string.photo_mode'))
               .width('100%')
@@ -154,7 +128,8 @@ export struct Control {
               .fontWeight(FontWeight.Bold)
               .textAlign(TextAlign.Center)
           }.width('100%').height('100%').offset({ x: -156, y: 0 })
-        } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO' && (this.state.thirdCallAction != 'ALL')) {
+        } else if ((this.state.isThirdPartyCall || this.state.isFaCall) && this.state.mode === 'VIDEO' &&
+          (this.state.thirdCallAction != 'ALL')) {
           Row() {
             Text($r('app.string.video_mode'))
               .width('100%')
@@ -224,5 +199,31 @@ export struct Control {
         }.width('100%').height(18).offset({ x: -156, y: 0 })
       }.width('100%').height(58)
     }
+  }
+
+  private changeToMode(modeIndex: number): void {
+    Log.info(`${this.TAG} changeToMode modeIndex: ${modeIndex} E`);
+    this.scroller.scrollToIndex(modeIndex);
+    if (this.modeArray[modeIndex] !== this.state.mode) {
+      Log.info(`${this.TAG} this.state.changeToMode(${this.modeArray[modeIndex]})`);
+      this.mAction.changeToMode(this.modeArray[modeIndex]);
+      this.mPreferencesService.putModeValue(PersistType.FOR_AWHILE, modeIndex);
+      this.mPreferencesService.flushMode();
+    } else {
+      this.mAction.updateListStatus(true);
+    }
+    Log.info(`${this.TAG} changeToMode X`);
+  }
+
+  private getModeFontWeight(modeIndex: number): FontWeight {
+    if (this.state.mode === this.modeArray[modeIndex]) {
+      return FontWeight.Bold;
+    } else {
+      return FontWeight.Regular;
+    }
+  }
+
+  private swipeChangeMode(data: SwipeModeIndexStruct): void {
+    this.changeToMode(data.swipeModeIndex);
   }
 }

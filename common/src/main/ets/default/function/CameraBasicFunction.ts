@@ -24,6 +24,7 @@ import ReportUtil from '../utils/ReportUtil';
 import { GlobalContext } from '../utils/GlobalContext';
 
 export class CameraBasicFunction extends BaseFunction {
+  public startIdentification: boolean = false
   private TAG = '[CameraBasicFunction]:';
   private mCameraId: string = CameraId.BACK;
   private mSurfaceId: string = '';
@@ -31,7 +32,78 @@ export class CameraBasicFunction extends BaseFunction {
   private mSessionList: string[] = [];
   private isSessionReleasing: boolean = false
   private initDataCache: any = null
-  public startIdentification: boolean = false
+
+  static getInstance() {
+    if (!globalThis?.cameraBasicMethod) {
+      globalThis.cameraBasicMethod = new CameraBasicFunction()
+    }
+    return globalThis.cameraBasicMethod
+  }
+
+  public async initCamera(data, callType?: string) {
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_INIT);
+    Log.info(`${this.TAG} initCamera this.startIdentification:${JSON.stringify(this.startIdentification)} `);
+    if (this.startIdentification) {
+      const platformCapability = CameraPlatformCapability.getInstance();
+      this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability));
+      return;
+    }
+    if (callType) {
+      this.startIdentification = true
+    }
+    Log.start(`${this.TAG} initCamera`)
+    this.mSessionList.push('CREATE')
+    let curStorageCameraId = AppStorage.Get<string>('storageCameraId')
+    if (curStorageCameraId) {
+      data.cameraId = curStorageCameraId
+    }
+    Log.info(`${this.TAG} initData:${JSON.stringify(data)} `)
+    this.initDataCache = data
+    if (GlobalContext.get().getT<boolean>('isSessionCreating') || this.isSessionReleasing) {
+      Log.info(`${this.TAG} initCamera isSessionCreating or isSessionReleasing return`)
+      return
+    }
+    this.mCameraId = data.cameraId
+    this.mCurrentMode = data.mode
+    let mCameraCount = await this.mCameraService.initCamera(this.mCameraId)
+    const platformCapability = CameraPlatformCapability.getInstance()
+    await platformCapability.init(mCameraCount)
+    this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability))
+    this.mCameraService.getThumbnail(this.functionBackImpl)
+    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_INIT_FINISHED);
+    this.mWorkerManager.postMessage(Action.updateCameraStatus())
+    Log.end(`${this.TAG} initCamera`)
+  }
+
+  load(): void {
+    Log.info(`${this.TAG} load E`)
+    this.mEventBus.on(Action.ACTION_INIT, this.initCamera.bind(this))
+    this.mEventBus.on(Action.ACTION_CHANGE_IMAGE_SIZE, this.imageSize.bind(this))
+    this.mEventBus.on(Action.ACTION_CHANGE_VIDEO_SIZE, this.videoSize.bind(this))
+    this.mEventBus.on(Action.ACTION_PREPARE_SURFACE, this.onSurfacePrepare.bind(this))
+    this.mEventBus.on(Action.ACTION_START_PREVIEW, this.startPreview.bind(this))
+    this.mEventBus.on(Action.ACTION_RESTART_PREVIEW, this.reStartPreview.bind(this))
+    this.mEventBus.on(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
+    this.mEventBus.on(Action.ACTION_SWITCH_CAMERA, this.switchCamera.bind(this))
+    this.mEventBus.on(Action.ACTION_CLOSE_CAMERA, this.close.bind(this))
+    this.mEventBus.on(Action.ACTION_RELOAD_THUMBNAIL, this.reloadThumbnail.bind(this))
+    Log.info(`${this.TAG} load X`)
+  }
+
+  unload(): void {
+    Log.info(`${this.TAG} unload E`)
+    this.mEventBus.off(Action.ACTION_INIT, this.initCamera.bind(this))
+    this.mEventBus.off(Action.ACTION_CHANGE_IMAGE_SIZE, this.imageSize.bind(this))
+    this.mEventBus.off(Action.ACTION_CHANGE_VIDEO_SIZE, this.videoSize.bind(this))
+    this.mEventBus.off(Action.ACTION_PREPARE_SURFACE, this.onSurfacePrepare.bind(this))
+    this.mEventBus.off(Action.ACTION_START_PREVIEW, this.startPreview.bind(this))
+    this.mEventBus.off(Action.ACTION_RESTART_PREVIEW, this.reStartPreview.bind(this))
+    this.mEventBus.off(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
+    this.mEventBus.off(Action.ACTION_SWITCH_CAMERA, this.switchCamera.bind(this))
+    this.mEventBus.off(Action.ACTION_CLOSE_CAMERA, this.close.bind(this))
+    this.mEventBus.off(Action.ACTION_RELOAD_THUMBNAIL, this.reloadThumbnail.bind(this))
+    Log.info(`${this.TAG} unload X`)
+  }
 
   private functionBackImpl: FunctionCallBack = {
     onCapturePhotoOutput: (): void => {
@@ -58,39 +130,6 @@ export class CameraBasicFunction extends BaseFunction {
       Log.info(`${this.TAG} functionBackImpl thumbnail ${thumbnail}`)
       this.mWorkerManager.postMessage(Action.loadThumbnail(thumbnail))
     }
-  }
-
-  public async initCamera(data, callType?: string) {
-    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_BEGIN_INIT);
-    Log.info(`${this.TAG} initCamera this.startIdentification:${JSON.stringify(this.startIdentification)} `);
-    if (this.startIdentification) {
-      const platformCapability = CameraPlatformCapability.getInstance();
-      this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability));
-      return;
-    }
-    if (callType) this.startIdentification = true
-    Log.start(`${this.TAG} initCamera`)
-    this.mSessionList.push('CREATE')
-    let curStorageCameraId = AppStorage.Get<string>('storageCameraId')
-    if (curStorageCameraId) {
-      data.cameraId = curStorageCameraId
-    }
-    Log.info(`${this.TAG} initData:${JSON.stringify(data)} `)
-    this.initDataCache = data
-    if (GlobalContext.get().getT<boolean>('isSessionCreating') || this.isSessionReleasing) {
-      Log.info(`${this.TAG} initCamera isSessionCreating or isSessionReleasing return`)
-      return
-    }
-    this.mCameraId = data.cameraId
-    this.mCurrentMode = data.mode
-    let mCameraCount = await this.mCameraService.initCamera(this.mCameraId)
-    const platformCapability = CameraPlatformCapability.getInstance()
-    await platformCapability.init(mCameraCount)
-    this.mWorkerManager.postMessage(Action.initCameraDone(platformCapability))
-    this.mCameraService.getThumbnail(this.functionBackImpl)
-    GlobalContext.get().setObject('cameraStatus', CameraStatus.CAMERA_INIT_FINISHED);
-    this.mWorkerManager.postMessage(Action.updateCameraStatus())
-    Log.end(`${this.TAG} initCamera`)
   }
 
   private async imageSize(data) {
@@ -254,42 +293,5 @@ export class CameraBasicFunction extends BaseFunction {
     Log.info(`${this.TAG} loadThumbnail E`)
     this.mCameraService.getThumbnail(this.functionBackImpl)
     Log.info(`${this.TAG} loadThumbnail X`)
-  }
-
-  static getInstance() {
-    if (!globalThis?.cameraBasicMethod) {
-      globalThis.cameraBasicMethod = new CameraBasicFunction()
-    }
-    return globalThis.cameraBasicMethod
-  }
-
-  load(): void {
-    Log.info(`${this.TAG} load E`)
-    this.mEventBus.on(Action.ACTION_INIT, this.initCamera.bind(this))
-    this.mEventBus.on(Action.ACTION_CHANGE_IMAGE_SIZE, this.imageSize.bind(this))
-    this.mEventBus.on(Action.ACTION_CHANGE_VIDEO_SIZE, this.videoSize.bind(this))
-    this.mEventBus.on(Action.ACTION_PREPARE_SURFACE, this.onSurfacePrepare.bind(this))
-    this.mEventBus.on(Action.ACTION_START_PREVIEW, this.startPreview.bind(this))
-    this.mEventBus.on(Action.ACTION_RESTART_PREVIEW, this.reStartPreview.bind(this))
-    this.mEventBus.on(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
-    this.mEventBus.on(Action.ACTION_SWITCH_CAMERA, this.switchCamera.bind(this))
-    this.mEventBus.on(Action.ACTION_CLOSE_CAMERA, this.close.bind(this))
-    this.mEventBus.on(Action.ACTION_RELOAD_THUMBNAIL, this.reloadThumbnail.bind(this))
-    Log.info(`${this.TAG} load X`)
-  }
-
-  unload(): void {
-    Log.info(`${this.TAG} unload E`)
-    this.mEventBus.off(Action.ACTION_INIT, this.initCamera.bind(this))
-    this.mEventBus.off(Action.ACTION_CHANGE_IMAGE_SIZE, this.imageSize.bind(this))
-    this.mEventBus.off(Action.ACTION_CHANGE_VIDEO_SIZE, this.videoSize.bind(this))
-    this.mEventBus.off(Action.ACTION_PREPARE_SURFACE, this.onSurfacePrepare.bind(this))
-    this.mEventBus.off(Action.ACTION_START_PREVIEW, this.startPreview.bind(this))
-    this.mEventBus.off(Action.ACTION_RESTART_PREVIEW, this.reStartPreview.bind(this))
-    this.mEventBus.off(Action.ACTION_CHANGE_MODE, this.changeMode.bind(this))
-    this.mEventBus.off(Action.ACTION_SWITCH_CAMERA, this.switchCamera.bind(this))
-    this.mEventBus.off(Action.ACTION_CLOSE_CAMERA, this.close.bind(this))
-    this.mEventBus.off(Action.ACTION_RELOAD_THUMBNAIL, this.reloadThumbnail.bind(this))
-    Log.info(`${this.TAG} unload X`)
   }
 }

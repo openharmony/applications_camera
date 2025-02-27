@@ -15,8 +15,7 @@
 import deviceInfo from '@ohos.deviceInfo';
 import { Action } from '../../redux/actions/Action';
 import { Log } from '../../utils/Log';
-import { Dispatch, OhCombinedState } from '../../redux/store';
-import { getStore } from '../../redux/store';
+import { Dispatch, getStore, OhCombinedState } from '../../redux/store';
 
 class MoreListInfo {
   itemIcon: Resource = $r('app.media.photo');
@@ -28,8 +27,6 @@ class StateStruct {
 }
 
 class MoreListDispatcher {
-  private mDispatch: Dispatch = (data) => data;
-
   public setDispatch(dispatch: Dispatch) {
     this.mDispatch = dispatch;
   }
@@ -37,12 +34,14 @@ class MoreListDispatcher {
   public swipeChangeMode(swipeModeIndex: number): void {
     this.mDispatch(Action.swipeChangeMode(swipeModeIndex));
   }
+
+  private mDispatch: Dispatch = (data) => data;
 }
 
 @Component
 export struct MoreList {
-  private TAG: string = '[moreList]:';
   @State state: StateStruct = new StateStruct();
+  private TAG: string = '[moreList]:';
   private mAction: MoreListDispatcher = new MoreListDispatcher();
   private mDirection: PanDirection = PanDirection.Right;
   private moreList: MoreListInfo[] = [{
@@ -75,20 +74,6 @@ export struct MoreList {
     Log.info(`${this.TAG} aboutToAppear end`)
   }
 
-  private setDirection(): void {
-    switch (deviceInfo.deviceType) {
-      case 'PAD':
-        this.mDirection = PanDirection.Down
-        break
-      case 'tablet':
-        this.mDirection = PanDirection.Down
-        break
-      default:
-        this.mDirection = PanDirection.Right
-        break
-    }
-  }
-
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
       Grid() {
@@ -118,10 +103,24 @@ export struct MoreList {
     .width('100%')
     .height('70%')
     .gesture(
-    PanGesture({ direction: this.mDirection })
-      .onActionEnd(() => {
-        this.mAction.swipeChangeMode(this.state.modeIndex - 1)
-      })
+      PanGesture({ direction: this.mDirection })
+        .onActionEnd(() => {
+          this.mAction.swipeChangeMode(this.state.modeIndex - 1)
+        })
     )
+  }
+
+  private setDirection(): void {
+    switch (deviceInfo.deviceType) {
+      case 'PAD':
+        this.mDirection = PanDirection.Down
+        break
+      case 'tablet':
+        this.mDirection = PanDirection.Down
+        break
+      default:
+        this.mDirection = PanDirection.Right
+        break
+    }
   }
 }

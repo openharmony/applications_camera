@@ -36,10 +36,9 @@ import { recordReducer } from './reducers/RecordReducer';
 import type { ZoomState } from './reducers/ZoomReducer';
 import { zoomReducer } from './reducers/ZoomReducer';
 import type { ActionData } from './actions/Action';
-import { applyMiddleware } from './core';
 import type { Enhancer, Reducer } from './core';
+import { applyMiddleware, combineReducers } from './core';
 import { eventBusMiddle } from './middlewares/EventBusMiddle';
-import { combineReducers } from './core';
 
 const TAG = '[store]:';
 const INIT_TAG = 'StoreInit';
@@ -90,12 +89,18 @@ export function getStore(): Store {
 }
 
 export class Store {
+  private static mInstance: Store | undefined = undefined;
   private currentReducer: Reducer;
   private currentState = undefined;
   private currentListeners: (() => void)[] | null = [];
   private nextListeners = this.currentListeners;
   private isDispatching = false;
-  private static mInstance: Store | undefined = undefined;
+
+  private constructor(reducer: Reducer, enhancer: Enhancer) {
+    this.currentReducer = reducer;
+    this.dispatch({ type: INIT_TAG, data: null });
+    this.dispatch = enhancer(this.dispatch.bind(this));
+  }
 
   public static hasStore(): boolean {
     return Store.mInstance !== undefined;
@@ -111,12 +116,6 @@ export class Store {
   public static createStore(reducer: Reducer, enhancer: Enhancer): Store {
     Store.mInstance = new Store(reducer, enhancer);
     return Store.mInstance;
-  }
-
-  private constructor(reducer: Reducer, enhancer: Enhancer) {
-    this.currentReducer = reducer;
-    this.dispatch({ type: INIT_TAG, data: null });
-    this.dispatch = enhancer(this.dispatch.bind(this));
   }
 
   public getState(): OhCombinedState {
@@ -152,7 +151,8 @@ export class Store {
     if (mapToDispatch) {
       mapToDispatch(this.dispatch as Dispatch);
     }
-    let unsubscribe: () => void = () => {};
+    let unsubscribe: () => void = () => {
+    };
     if (mapToProps) {
       mapToProps(this.currentState);
       unsubscribe = this.stateSubscribe(() => mapToProps(this.currentState));
@@ -168,11 +168,13 @@ export class Store {
   private stateSubscribe(listener: () => void): () => void {
     if (typeof listener !== 'function') {
       Log.error('listener is not function');
-      return () => {};
+      return () => {
+      };
     }
     if (this.isDispatching) {
       Log.error('isDispatching stateSubscribe error');
-      return () => {};
+      return () => {
+      };
     }
     let isSubScribed = true;
 

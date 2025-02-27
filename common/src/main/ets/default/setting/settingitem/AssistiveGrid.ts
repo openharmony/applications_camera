@@ -14,7 +14,7 @@
  */
 
 export default class AssistiveGrid {
-  private static TAG = '[AssistiveGrid]:'
   public static readonly ALIAS = 'AssistiveGrid'
   public static readonly DEFAULT_VALUE = '0'
+  private static TAG = '[AssistiveGrid]:'
 }

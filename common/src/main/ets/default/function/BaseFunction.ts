@@ -25,6 +25,10 @@ export abstract class BaseFunction {
   protected mWorkerManager: WorkerManager = new WorkerManager();
   protected mEventBus: EventBus = EventBusManager.getInstance().getEventBus();
 
+  abstract load(): void
+
+  abstract unload(): void
+
   protected enableUi(): void {
     this.mWorkerManager.postMessage(Action.uiState(true));
   }
@@ -40,8 +44,4 @@ export abstract class BaseFunction {
   protected disableUiWithMode(uiStateMode: UiStateMode): void {
     this.mWorkerManager.postMessage(Action.uiStateWithMode(false, uiStateMode));
   }
-
-  abstract load(): void
-
-  abstract unload(): void
 }

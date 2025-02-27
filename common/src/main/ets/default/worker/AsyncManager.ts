@@ -26,9 +26,9 @@ export interface Message {
 }
 
 export class AsyncManager {
+  protected mWorker: any;
   private workerName: string;
   private workerUri: string;
-  protected mWorker: any;
   private appEventBus: EventBus = EventBusManager.getWorkerInstance().getEventBus();
   private _appEventBus: EventBus = EventBusManager.getCameraInstance().getEventBus();
 
@@ -60,11 +60,10 @@ export class AsyncManager {
   //    this.mWorker.onexit = this.onexit.bind(this)
   //  }
 
-  private initWorker(): void {
-    this._appEventBus.on('WORKER_TO_MAIN', (...args) => {
-      Log.info(`${TAG} mWorker.onmessage`);
-      this.onMessage(args[0]);
-    })
+  // 向worker线程发送消息
+  public postMessage(msg: Message): void {
+    Log.info(`${TAG} postMessage`);
+    this.appEventBus.emit('MAIN_TO_WORKER', [msg]);
   }
 
   //todo 预留实现，待能力稳定后开放
@@ -73,12 +72,6 @@ export class AsyncManager {
   //    this.mWorker.postMessage(msg)
   //    return this
   //  }
-
-  // 向worker线程发送消息
-  public postMessage(msg: Message): void {
-    Log.info(`${TAG} postMessage`);
-    this.appEventBus.emit('MAIN_TO_WORKER', [msg]);
-  }
 
   // 接收worker线程返回的UiData
   public onMessage(msg: Message): void {
@@ -95,5 +88,12 @@ export class AsyncManager {
 
   public onexit(msg: Message): void {
 
+  }
+
+  private initWorker(): void {
+    this._appEventBus.on('WORKER_TO_MAIN', (...args) => {
+      Log.info(`${TAG} mWorker.onmessage`);
+      this.onMessage(args[0]);
+    })
   }
 }

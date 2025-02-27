@@ -30,22 +30,22 @@ export class CameraPlatformCapability {
   public mPhotoPreviewSize = [
     { width: 640, height: 480 }, //Photo 4:3
     { width: 720, height: 720 }, //Photo 1:1
-    { width: 1920, height: 1080 }, //Photo 16:9
+    { width: 1920, height: 1080 },//Photo 16:9
   ]
   public mVideoPreviewSize = [
     { width: 1280, height: 720 }, //Video 16:9 720p
     { width: 1920, height: 1080 }, //Video 16:9 1080p
-    { width: 1920, height: 1080 } //Video 16:9 4k
+    { width: 1920, height: 1080 }//Video 16:9 4k
   ]
   public mImageSize = [
     { width: 1280, height: 960 }, //4:3
     { width: 3120, height: 3120 }, //1:1
-    { width: 1920, height: 1080 } //16:9
+    { width: 1920, height: 1080 }//16:9
   ]
   public mVideoFrameSize = [
     { width: 1280, height: 720 }, //16:9 720p
     { width: 1920, height: 1080 }, //16:9 1080p
-    { width: 3840, height: 2160 } //16:9 4k
+    { width: 3840, height: 2160 }//16:9 4k
   ]
 
   constructor() {
