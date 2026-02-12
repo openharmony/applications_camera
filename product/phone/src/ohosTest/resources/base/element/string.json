@@ -11,6 +11,10 @@
     {
       "name": "TestAbility_label",
       "value": "tvBase"
+    },
+    {
+      "name": "read_media_permissions",
+      "value": "This is used to display and store photos and videos you take."
     }
   ]
 }

@@ -1,0 +1,1771 @@
+{
+  "photoProfiles": [
+    {
+      "cameraType": 1,
+      "cameraTypeValue": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "PHOTO",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3072,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 1888
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PORTRAIT",
+              "zoomRange": [
+                1,
+                2,
+                5
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3072,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 1888
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "LIGHT PAINTING",
+              "zoomRange": [
+                1,
+                2,
+                5
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "NIGHT",
+              "zoomRange": [
+                1,
+                2,
+                5
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3072,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 1888
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "VIDEO SNAPSHOT",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 2304
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 1888
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 2304
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "HIGH-RES",
+              "zoomRange": [
+                1,
+                3.5
+              ],
+              "data": [
+                {
+                  "LensMode": 0,
+                  "LensData": [
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 8192,
+                          "height": 6144
+                        },
+                        "format": 2000
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 7296,
+                          "height": 5472
+                        },
+                        "format": 2000
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 8000,
+                          "height": 6000
+                        },
+                        "format": 2000
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "modeName": "PROFESSIONPHOTO",
+              "zoomRange": [
+                1,
+                3.5
+              ],
+              "data": [
+                {
+                  "LensMode": 0,
+                  "LensData": [
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 4096,
+                          "height": 3072
+                        },
+                        "format": 4
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 4160,
+                          "height": 3120
+                        },
+                        "format": 4
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 4000,
+                          "height": 3000
+                        },
+                        "format": 4
+                      }
+                    }
+                  ]
+                },
+                {
+                  "LensMode": 1,
+                  "LensData": [
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 4096,
+                          "height": 3072
+                        },
+                        "format": 2000
+                      }
+                    },
+                    {
+                      "ratio": "1:1",
+                      "profile": {
+                        "size": {
+                          "width": 3072,
+                          "height": 3072
+                        },
+                        "format": 2000
+                      }
+                    },
+                    {
+                      "ratio": "full",
+                      "profile": {
+                        "size": {
+                          "width": 4096,
+                          "height": 1888
+                        },
+                        "format": 2000
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "modeName": "SUPER_MACRO",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3072,
+                      "height": 3072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4096,
+                      "height": 1888
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cameraType": 2,
+      "cameraTypeValue": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "PHOTO",
+              "zoomRange": [
+                0.67,
+                0.8,
+                1
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3120,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 1920
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PORTRAIT",
+              "zoomRange": [
+                0.67,
+                0.8,
+                1
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3120,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 1920
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "NIGHT",
+              "zoomRange": [
+                0.67,
+                0.8,
+                1
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3120,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 1920
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "VIDEO SNAPSHOT",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 4576,
+                      "height": 2576
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4576,
+                      "height": 2072
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 4576,
+                      "height": 2576
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "HIGH-RES",
+              "zoomRange": [
+                0.67,
+                0.8,
+                1
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3120,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 1920
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PROFESSIONPHOTO",
+              "zoomRange": [
+                0.67,
+                0.8,
+                1
+              ],
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 3120,
+                      "height": 3120
+                    },
+                    "format": 2000
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 4160,
+                      "height": 1920
+                    },
+                    "format": 2000
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "videoProfiles": [
+    {
+      "cameraType": 1,
+      "cameraTypeValue": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "VIDEO",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 3840,
+                      "height": 2160
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PROFESSIONVIDEO",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 3840,
+                      "height": 2160
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "SUPER_MACRO",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 3840,
+                      "height": 2160
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "SLOW-MO",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 120,
+                      "max": 240
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cameraType": 2,
+      "cameraTypeValue": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "VIDEO",
+              "zoomRange": [
+                0.67,
+                0.8,
+                1
+              ],
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 3840,
+                      "height": 2160
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PROFESSIONVIDEO",
+              "zoomRange": [
+                0.67,
+                0.8,
+                1
+              ],
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 3840,
+                      "height": 2160
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 30,
+                      "max": 60
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "SLOW-MO",
+              "zoomRange": [
+                1,
+                3,
+                6
+              ],
+              "data": [
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003,
+                    "frameRateRange": {
+                      "min": 120,
+                      "max": 240
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "photoPreviewProfiles": [
+    {
+      "cameraType": 1,
+      "cameraTypeValue": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "PHOTO",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1440,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 1088,
+                      "height": 1088
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PORTRAIT",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 960
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 1088,
+                      "height": 1088
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 592
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "NIGHT",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1440,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 1088,
+                      "height": 1088
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "LIGHT PAINTING",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1440,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "HIGH-RES",
+              "data": [
+                {
+                  "LensMode": 0,
+                  "LensData": [
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "modeName": "SUPER_MACRO",
+              "data": [
+                {
+                  "LensMode": 0,
+                  "LensData": [
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "modeName": "PROFESSIONPHOTO",
+              "data": [
+                {
+                  "LensMode": 0,
+                  "LensData": [
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    },
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    }
+                  ]
+                },
+                {
+                  "LensMode": 1,
+                  "LensData": [
+                    {
+                      "ratio": "4:3",
+                      "profile": {
+                        "size": {
+                          "width": 1440,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    },
+                    {
+                      "ratio": "1:1",
+                      "profile": {
+                        "size": {
+                          "width": 1088,
+                          "height": 1088
+                        },
+                        "format": 1003
+                      }
+                    },
+                    {
+                      "ratio": "full",
+                      "profile": {
+                        "size": {
+                          "width": 2336,
+                          "height": 1080
+                        },
+                        "format": 1003
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cameraType": 2,
+      "cameraTypeValue": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "PHOTO",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1440,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 1088,
+                      "height": 1088
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PORTRAIT",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 960
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 1088,
+                      "height": 1088
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "NIGHT",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1440,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 1088,
+                      "height": 1088
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "LIGHT PAINTING",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1440,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "HIGH-RES",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1440,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 1088,
+                      "height": 1088
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PROFESSIONPHOTO",
+              "data": [
+                {
+                  "ratio": "4:3",
+                  "profile": {
+                    "size": {
+                      "width": 1440,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "1:1",
+                  "profile": {
+                    "size": {
+                      "width": 1088,
+                      "height": 1088
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "videoPreviewProfiles": [
+    {
+      "cameraType": 1,
+      "cameraTypeValue": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "VIDEO",
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PROFESSIONVIDEO",
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "SUPER_MACRO",
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "SLOW-MO",
+              "data": [
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cameraType": 2,
+      "cameraTypeValue": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "VIDEO",
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "PROFESSIONVIDEO",
+              "data": [
+                {
+                  "ratio": "4K",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "full",
+                  "profile": {
+                    "size": {
+                      "width": 2336,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                },
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1280,
+                      "height": 720
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            },
+            {
+              "modeName": "SLOW-MO",
+              "data": [
+                {
+                  "ratio": "16:9",
+                  "profile": {
+                    "size": {
+                      "width": 1920,
+                      "height": 1080
+                    },
+                    "format": 1003
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

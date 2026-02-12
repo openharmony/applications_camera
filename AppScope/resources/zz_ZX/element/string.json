@@ -1,0 +1,16 @@
+{
+    "string":[
+        {
+            "name":"app_name",
+            "value":"[TS_800580]_Camera"
+        },
+        {
+            "name":"entry_desc",
+            "value":"[TS_932783]_entry_desc Feature Ability"
+        },
+        {
+            "name":"mainability_description",
+            "value":"[TS_800578]_JS_Phone_Empty Feature Ability"
+        }
+    ]
+}

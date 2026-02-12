@@ -1,0 +1,17 @@
+{
+  "module": {
+    "name": "appnative",
+    "type": "har",
+    "mainElement": "NativeAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "metadata": [
+      {
+        "name": "license_file_path",
+        "value": "/system/etc/noticeFile/Camera_OpenSource.html"
+      }
+    ]
+  }
+}

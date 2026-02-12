@@ -31,7 +31,8 @@
     {
       "name": "wh_value_24",
       "value": "24vp"
-    },    {
+    },
+    {
       "name": "wh_value_40",
       "value": "40vp"
     },
@@ -64,12 +65,36 @@
       "value": "12vp"
     },
     {
+      "name": "margin_value_16",
+      "value": "16vp"
+    },
+    {
       "name": "margin_value_20",
       "value": "20vp"
     },
     {
+      "name": "margin_value_30",
+      "value": "30vp"
+    },
+    {
+      "name": "margin_value_44",
+      "value": "44vp"
+    },
+    {
+      "name": "margin_value_62",
+      "value": "62vp"
+    },
+    {
+      "name": "margin_value_74",
+      "value": "74vp"
+    },
+    {
       "name": "font_20",
       "value": "20fp"
+    },
+    {
+      "name": "font_10",
+      "value": "10fp"
     },
     {
       "name": "font_14",
@@ -102,6 +127,62 @@
     {
       "name": "grid_span_12",
       "value": "12"
+    },
+    {
+      "name": "font_size",
+      "value": "14fp"
+    },
+    {
+      "name": "semi_collapsed_guide_tip_padding",
+      "value": "28"
+    },
+    {
+      "name": "semi_collapsed_guide_tips_bottom_margin",
+      "value": "12"
+    },
+    {
+      "name": "semi_collapsed_guide_icon_bottom_margin",
+      "value": "14"
+    },
+    {
+      "name": "semi_collapsed_guide_icon_width",
+      "value": "36"
+    },
+    {
+      "name": "semi_collapsed_slide_icon_width",
+      "value": "32"
+    },
+    {
+      "name": "semi_collapsed_slide_icon_height",
+      "value": "64"
+    },
+    {
+      "name": "expand_tips_video_size",
+      "value": "172vp"
+    },
+    {
+      "name": "expand_tips_video_border_radius",
+      "value": "86vp"
+    },
+    {
+      "name": "expand_tips_video_margin_top",
+      "value": "20vp"
+    },
+    {
+      "name": "expand_tips_text_width",
+      "value": "146vp"
+    },
+    {
+      "name": "expand_tips_text_margin_top",
+      "value": "160vp"
+    },
+    {
+      "name": "expand_tips_text_max_font_size",
+      "value": "18"
+    },
+    {
+      "name": "expand_tips_text_min_font_size",
+      "value": "14"
     }
   ]
 }

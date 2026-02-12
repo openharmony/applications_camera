@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) Huawei Device Co., Ltd. 2024-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,9 @@
 
 import type TestRunner from '@ohos.application.testRunner';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
+import { HiLog } from '@ohos/common/src/main/ets/utils/HiLog';
+
+const TAG: string = 'OpenHarmonyTestRunner';
 
 let abilityDelegator = undefined;
 let abilityDelegatorArguments = undefined;
@@ -24,7 +26,7 @@ function translateParamsToString(parameters): string {
   const keySet = new Set([
     '-s class', '-s notClass', '-s suite', '-s it',
     '-s level', '-s testType', '-s size', '-s timeout'
-  ])
+  ]);
   let targetParams = '';
   for (const key in parameters) {
     if (keySet.has(key)) {
@@ -34,24 +36,24 @@ function translateParamsToString(parameters): string {
   return targetParams.trim();
 }
 
-async function onAbilityCreateCallback() {
-  Log.log('onAbilityCreateCallback');
+async function onAbilityCreateCallback(): Promise<void> {
+  HiLog.i(TAG, 'onAbilityCreateCallback.');
 }
 
-async function addAbilityMonitorCallback(err: any) {
-  Log.info('addAbilityMonitorCallback : ' + JSON.stringify(err));
+async function addAbilityMonitorCallback(err: string): Promise<void> {
+  HiLog.i(TAG, `addAbilityMonitorCallback : ${JSON.stringify(err)}.`);
 }
 
 export default class OpenHarmonyTestRunner implements TestRunner {
   constructor() {
   }
 
-  onPrepare() {
-    Log.info('OpenHarmonyTestRunner OnPrepare ');
+  onPrepare(): void {
+    HiLog.i(TAG, 'OpenHarmonyTestRunner OnPrepare .');
   }
 
   async onRun() {
-    Log.log('OpenHarmonyTestRunner onRun run');
+    HiLog.i(TAG, 'OpenHarmonyTestRunner onRun run.');
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let testAbilityName = abilityDelegatorArguments.bundleName + '.TestAbility';
@@ -62,13 +64,13 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
     let cmd = 'aa start -d 0 -a TestAbility' + ' -b ' + abilityDelegatorArguments.bundleName;
     cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters);
-    Log.info('cmd : ' + cmd);
+    HiLog.i(TAG, 'cmd : ' + cmd);
     abilityDelegator.executeShellCommand(cmd,
       (err: any, d: any) => {
-        Log.info('executeShellCommand : err : ' + JSON.stringify(err));
-        Log.info('executeShellCommand : data : ' + d.stdResult);
-        Log.info('executeShellCommand : data : ' + d.exitCode);
+        HiLog.i(TAG, `executeShellCommand : err : ${JSON.stringify(err)}.`);
+        HiLog.i(TAG, 'executeShellCommand : data : ' + d.stdResult);
+        HiLog.i(TAG, 'executeShellCommand : data : ' + d.exitCode);
       });
-    Log.info('OpenHarmonyTestRunner onRun end');
+    HiLog.i(TAG, 'OpenHarmonyTestRunner onRun end.');
   }
 };

@@ -1,0 +1,200 @@
+{
+  "string": [
+    {
+      "name": "confirm",
+      "value": "ཆོག",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer_2_seconds",
+      "value": "སྐར་ཆ་ %d",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "video_frame_rate",
+      "value": "བརྙན་ཟློས་ཀྱི་པར་བརྗེའི་མྱུར་ཚད།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "photo_mode",
+      "value": "པར་ལེན།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_title",
+      "value": "བརྙན་རིས་།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "assistive_grid",
+      "value": "དཔྱད་ཐིག",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "already_off",
+      "value": "ཁ་བརྒྱབ་ཟིན།",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "app_name",
+      "value": "པར་ཆས།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "restore_defaults",
+      "value": "སོར་བཞག་རྣམ་པར་ཕྱིར་ལོག",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_resolution",
+      "value": "བརྙན་ཟློས་ཀྱི་དབྱེ་འབྱེད་ཚད།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "geo_location_desp",
+      "value": "འདྲ་པར་དང་བརྙན་ཟློས་ལེན་པའི་ས་གནས་ཀྱི་ཆ་འཕྲིན་ཟིན་ཐོར་འགོད་པར་བཀོལ།",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "self_mirror_desp",
+      "value": "མདུན་གྱི་རང་པར་དང་མདུན་གྱི་བརྙན་ཕབ་སྐབས་ཁོ་ནར་ནུས་པ་འཐོན་ཐུབ།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "off",
+      "value": "ཁ་རྒྱག",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "pic_title",
+      "value": "འདྲ་པར།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "confirm_restore_message",
+      "value": "པར་ཆས་ཀྱི་སྒྲིག་འགོད་སོར་བཞག་གི་སྒྲིག་འགོད་དུ་སླར་གསོ་བྱེད་དམ།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer_10_seconds",
+      "value": "སྐར་ཆ་ %d",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "general",
+      "value": "རྒྱུན་སྤྱོད།",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "sound_mute",
+      "value": "པར་ལེན་གྱི་སྒྲ་མེད་པར་བཟོ་བ།",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "value": "འདྲ་པར་གྱི་བསྡུར་ཚད།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "cancel",
+      "value": "འདོར་བ།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "imagevideo_permission_desc",
+      "value": "པར་རིས་དང་བརྙན་ཟློས་བླངས་པ་རྣམས་འགྲེམ་སྟོན་དང་ཉར་ཚགས་བྱ་བར་བེད་སྤྱོད་བྱེད།",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "timer_5_seconds",
+      "value": "སྐར་ཆ། %d",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "self_mirror",
+      "value": "རང་པར་ལེན་པའི་བརྙན་མིག",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer",
+      "value": "དུས་བཅད་པར་ལེན།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "settings",
+      "value": "སྒྲིག་འགོད།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_mode",
+      "value": "བརྙན་འབེབས།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "microphone_permission_desc",
+      "value": "བརྙན་ཕབ་དང་སྒྲའི་ཚོད་འཛིན་གྱི་པར་ལེན་ལ་བེད་སྤྱོད་བྱེད།",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "camera_permission_desc",
+      "value": "པར་ལེན་པ་དང་བརྙན་ལེན་པར་བེད་སྤྱོད་བྱེད།",
+      "attr": {
+        "priority": "LT"
+      }
+    }
+  ]
+}

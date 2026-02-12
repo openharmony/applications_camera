@@ -1,0 +1,204 @@
+{
+    "string":[
+        {
+            "name":"timer_2_seconds",
+            "value":"[TS_800596]_%d seconds"
+        },
+        {
+            "name":"photo_mode",
+            "value":"[TS_800566]_Photo"
+        },
+        {
+            "name":"assistive_grid",
+            "value":"[TS_800593]_Assistive grid"
+        },
+        {
+            "name":"app_name",
+            "value":"[TS_800580]_Camera"
+        },
+        {
+            "name":"restore_defaults",
+            "value":"[TS_800588]_Restore defaults"
+        },
+        {
+            "name":"video_resolution",
+            "value":"[TS_800567]_Video resolution"
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"[TS_800584]_Tag photos and videos with location information."
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"[TS_800582]_Front camera only."
+        },
+        {
+            "name":"off",
+            "value":"[TS_800589]_Off"
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"[TS_800599]_%d seconds"
+        },
+        {
+            "name":"general",
+            "value":"[TS_800591]_General"
+        },
+        {
+            "name":"sound_mute",
+            "value":"[TS_800579]_Mute"
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"[TS_800595]_Aspect ratio"
+        },
+        {
+            "name":"cancel",
+            "value":"[TS_800602]_Cancel"
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"[TS_800572]_%d seconds"
+        },
+        {
+            "name":"self_mirror",
+            "value":"[TS_800568]_Mirror reflection"
+        },
+        {
+            "name":"timer",
+            "value":"[TS_800565]_Timer"
+        },
+        {
+            "name":"settings",
+            "value":"[TS_800575]_Settings"
+        },
+        {
+            "name":"video_mode",
+            "value":"[TS_800590]_Video"
+        },
+        {
+            "name":"video_title",
+            "value":"[TS_802000]_Video settings"
+        },
+        {
+            "name":"pic_title",
+            "value":"[TS_802001]_Photo settings"
+        },
+        {
+            "name":"confirm",
+            "value":"[TS_800570]_OK"
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"[TS_801976]_Frame rate"
+        },
+        {
+            "name":"already_off",
+            "value":"[TS_800571]_Off"
+        },
+        {
+            "name":"confirm_restore_message",
+            "value":"[TS_800563]_Camera settings will be restored to their default values."
+        },
+        {
+            "name":"mainability_description",
+            "value":"[TS_800578]_JS_Phone_Empty Feature Ability"
+        },
+        {
+            "name":"portrait_mode",
+            "value":"[TS_851014]_Portrait"
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"[TS_851008]_Beauty"
+        },
+        {
+            "name":"portrait_effect",
+            "value":"[TS_851005]_Effects"
+        },
+        {
+            "name":"imagevideo_permission_desc",
+            "value":"[TS_857402]_This is used to display and store photos and videos you take."
+        },
+        {
+            "name":"camera_permission_desc",
+            "value":"[TS_857404]_This is used to take photos and record video."
+        },
+        {
+            "name":"microphone_permission_desc",
+            "value":"[TS_857403]_This is used for recording videos and to enable audio control."
+        },
+        {
+            "name":"no_photos_and_videos",
+            "value":"[TS_867082]_No photos or videos"
+        },
+        {
+            "name":"no_photos_and_videos_desc",
+            "value":"[TS_867079]_Take photos and videos with the camera, or unlock your device to access Gallery."
+        },
+        {
+            "name":"camera_error_title",
+            "value":"[TS_867080]_Camera error"
+        },
+        {
+            "name":"cannot_connect_camera",
+            "value":"[TS_867083]_Cannot connect to camera."
+        },
+        {
+            "name":"got_it",
+            "value":"[TS_867081]_OK"
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"[TS_916986]_High-res"
+        },
+        {
+            "name":"night_mode",
+            "value":"[TS_873418]_Night"
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"[TS_916987]_AI Ultra Clarity is great for shooting still objects and scenery in good light."
+        },
+        {
+            "name":"shutter",
+            "value":"[TS_873414]_Auto"
+        },
+        {
+            "name":"more",
+            "value":"[TS_872125]_More"
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"[TS_872124]_Restore default layout"
+        },
+        {
+            "name":"macro_mode",
+            "value":"[TS_920916]_Super macro"
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"[TS_873415]_Keep the device steady.\nWait for the countdown or tap the shutter to capture a photo."
+        },
+        {
+            "name":"more_development",
+            "value":"[TS_872122]_More modes coming soon…"
+        },
+        {
+            "name":"more_tip_context",
+            "value":"[TS_872123]_Drag icons to adjust layout"
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"[TS_874310]_Restore the default layout?"
+        },
+        {
+            "name":"edit",
+            "value":"[TS_872126]_Edit"
+        },
+        {
+            "name":"blurred_background",
+            "value":"[TS_1085545]_Background blur"
+        }
+    ]
+}

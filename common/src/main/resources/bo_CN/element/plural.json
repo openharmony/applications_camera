@@ -1,0 +1,124 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ལྡབ་ %s ཆུང་དུ་གཏོང་བ།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"བར་མཚམས་སྐར་ཆ་ %f འཇོག",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྐར་ཆ་ %d ཕབ་བཟོ་བྱས་ཟིན།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྐར་མ། %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྐར་ཆ། %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"མང་ཤོས་སུ་རང་སྒྲིག་ཚོན་མདོག་བྱང་བུ་ %d བསྣན་ཆོག ཚོན་མདོག་བྱང་བུ་གཅིག་བདམས་ནས་བརྗེ་རོགས།",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ལྡབ་ %f ཆུང་དུ་གཏོང་བ།",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྐར་ཆ་ %f",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"XMAGE ཡང་བསྐྱར་རིམ་པ་སྤར། སྒེར་གཤིས་ཅན་གྱི་ཚོན་མདོག་བྱང་བུ་གསར་རྐྱང་ཡོད། སྔོན་སྒྲིག་ཁྱད་ཆོས་རིགས་ %1$s ཡོད་ཅིང་། ཚོན་སྒྲིག་སྡེར་མ་མཉམ་དུ་བསྡེབས་ཡོད་པས། བརྙན་ལེན་ཞུགས་གྲངས་རང་སྒྲིག་བྱ་ཆོག ཁྱེད་ཀྱི་ཆེད་གཏོགས་ཚོན་མདོག་སྒྲིག་ཐབས་ལས་སླ་པོར་སྐྲུན་ཐུབ། ཚོན་ཨང་མཉམ་སྤྱོད་བྱ་ཆོག བརྩམས་ཆོས་དེ་བས་ལེགས་པོ་ཆགས་ཐུབ།",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"སྐར་མ་ %d",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

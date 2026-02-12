@@ -1,0 +1,36 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "video",
+      "label": "$string:video_mode",
+      "icon": "$media:ic_short_cut_video",
+      "wants": [
+        {
+          "bundleName": "com.ohos.camera",
+          "moduleName": "phone",
+          "abilityName": "com.ohos.camera.MainAbility",
+          "parameters": {
+            "startByShortCut": "true",
+            "mode": "video"
+          }
+        }
+      ]
+    },
+    {
+      "shortcutId": "photo",
+      "label": "$string:self_portrait",
+      "icon": "$media:ic_short_cut_self_portrait",
+      "wants": [
+        {
+          "bundleName": "com.ohos.camera",
+          "moduleName": "phone",
+          "abilityName": "com.ohos.camera.MainAbility",
+          "parameters": {
+            "startByShortCut": "true",
+            "mode": "photo"
+          }
+        }
+      ]
+    }
+  ]
+}

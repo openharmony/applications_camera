@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"app_name",
+            "value":"카메라",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

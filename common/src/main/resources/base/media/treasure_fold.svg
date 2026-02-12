@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="32px" viewBox="0 0 64 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>BottomSheet/Handle/up 32备份</title>
+    <defs>
+        <path d="M45.4068342,11.9745269 C46.1677364,11.6469304 47.0501388,11.9981941 47.3777352,12.7590963 C47.7053316,13.5199984 47.3540679,14.4024009 46.5931658,14.7299973 L34.231659,20.0520816 C32.849104,20.6473225 31.2830034,20.6499111 29.8984882,20.0592439 L17.4113919,14.7319506 C16.649411,14.4068714 16.2952322,13.525635 16.6203114,12.763654 C16.9453907,12.0016731 17.8266271,11.6474942 18.5886081,11.9725735 L31.0757044,17.2998667 C31.7050294,17.5683518 32.4168934,17.5671752 33.0453275,17.2966112 L45.4068342,11.9745269 Z" id="path-1"></path>
+        <filter x="-14.5%" y="-52.0%" width="129.0%" height="204.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="BottomSheet/Handle/up-32备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="路径" fill-rule="nonzero" transform="translate(31.999999, 16.176131) scale(1, -1) translate(-31.999999, -16.176131) ">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill-opacity="0.86" fill="#FFFFFF" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

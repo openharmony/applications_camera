@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px"
-     height="24px"
-     viewBox="0 0 24 24"
-     version="1.1"
-     xmlns="http://www.w3.org/2000/svg">
-    <title>ic_camera_public_focus_ev_bright_add</title>
-    <g id="ic_camera_public_focus_ev_bright_add" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M13,2 L12.999,10.957 L22,10.9571513 L22,12.9571513 L12.999,12.957 L13,22 L11,22 L10.999,12.957 L2,12.9571513 L2,10.9571513 L10.999,10.957 L11,2 L13,2 Z" id="形状结合" fill="#000000"></path>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>plus</title>
+    <defs>
+        <path d="M12.74,11.26 L12.74,3 C12.74,2.79333333 12.67,2.61666667 12.53,2.47 C12.3833333,2.33 12.2066667,2.26 12,2.26 C11.7933333,2.26 11.6166667,2.33 11.47,2.47 C11.33,2.61666667 11.26,2.79333333 11.26,3 L11.26,11.26 L3,11.26 C2.79333333,11.26 2.61666667,11.33 2.47,11.47 C2.33,11.6166667 2.26,11.7933333 2.26,12 C2.26,12.2066667 2.33,12.3833333 2.47,12.53 C2.61666667,12.67 2.79333333,12.74 3,12.74 L11.26,12.74 L11.26,21 C11.26,21.2066667 11.33,21.3833333 11.47,21.53 C11.6166667,21.67 11.7933333,21.74 12,21.74 C12.2066667,21.74 12.3833333,21.67 12.53,21.53 C12.67,21.3833333 12.74,21.2066667 12.74,21 L12.74,12.74 L21,12.74 C21.2066667,12.74 21.3833333,12.67 21.53,12.53 C21.67,12.3833333 21.74,12.2066667 21.74,12 C21.74,11.7933333 21.67,11.6166667 21.53,11.47 C21.3833333,11.33 21.2066667,11.26 21,11.26 L12.74,11.26 Z" id="path-1"></path>
+        <filter x="-23.1%" y="-23.1%" width="146.2%" height="146.2%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="plus" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="plus-(1)" fill-rule="nonzero">
+            <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="24" height="24"></rect>
+            <g id="路径">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" xlink:href="#path-1"></use>
+            </g>
+        </g>
     </g>
 </svg>

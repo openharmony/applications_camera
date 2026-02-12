@@ -1,0 +1,200 @@
+{
+  "string": [
+    {
+      "name": "confirm",
+      "value": "確定",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer_2_seconds",
+      "value": "%d 秒",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "video_frame_rate",
+      "value": "影片影格率",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "photo_mode",
+      "value": "拍攝",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_title",
+      "value": "影片",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "assistive_grid",
+      "value": "相機窗格線",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "already_off",
+      "value": "已關閉",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "app_name",
+      "value": "相機",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "restore_defaults",
+      "value": "恢復預設值",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_resolution",
+      "value": "影片解析度",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "geo_location_desp",
+      "value": "用於記錄相片或影片拍攝地點資訊",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "self_mirror_desp",
+      "value": "僅在前置相機自拍和錄影時生效",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "off",
+      "value": "關閉",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "pic_title",
+      "value": "相片",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "confirm_restore_message",
+      "value": "將相機設定恢復為預設值？",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer_10_seconds",
+      "value": "%d 秒",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "general",
+      "value": "一般",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "sound_mute",
+      "value": "拍攝靜音",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "value": "相片比例",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "cancel",
+      "value": "取消",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "imagevideo_permission_desc",
+      "value": "用於展示並儲存已拍攝的圖片和影片",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "timer_5_seconds",
+      "value": "%d 秒",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "self_mirror",
+      "value": "自拍鏡像",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer",
+      "value": "定時拍攝",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "settings",
+      "value": "設定",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_mode",
+      "value": "影片",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "microphone_permission_desc",
+      "value": "用於錄影和聲控拍攝",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "camera_permission_desc",
+      "value": "用於拍攝和錄影",
+      "attr": {
+        "priority": "LT"
+      }
+    }
+  ]
+}

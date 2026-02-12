@@ -2,38 +2,30 @@
   "color": [
     {
       "name": "index_background",
-      "value": "#66000000"
+      "value": "#000000"
     },
     {
-      "name": "button_default_background",
-      "value": "#00000000"
+      "name": "card_bg",
+      "value": "#26FFFFFF"
     },
     {
-      "name": "button_click_background",
-      "value": "#DCDCDC"
+      "name": "default_background_color",
+      "value": "#F1F3F5"
     },
     {
-      "name": "settings_ic_public_back_FFFFFF",
-      "value": "#FFFFFF"
+      "name": "black",
+      "value": "#000000"
     },
     {
-      "name": "settings_ic_public_back_DBFFFFFF",
-      "value": "#DBFFFFFF"
+      "name": "btn_bg",
+      "value": "#19FFFFFF"
     },
     {
-      "name": "font_color_FFFFFF",
-      "value": "#FFFFFF"
+      "name": "item_title_font",
+      "value": "#E6000000"
     },
     {
-      "name": "font_color_99FFFFFF",
-      "value": "#99FFFFFF"
-    },
-    {
-      "name": "background_color_333333",
-      "value": "#333333"
-    },
-    {
-      "name": "startWindowBackground",
+      "name": "start_window_background",
       "value": "#FFFFFF"
     }
   ]

@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "timer_2_seconds",
+      "value": "[TS_800596]_%d seconds"
+    },
+    {
+      "name": "photo_mode",
+      "value": "[TS_800566]_Photo"
+    },
+    {
+      "name": "assistive_grid",
+      "value": "[TS_800593]_Assistive grid"
+    },
+    {
+      "name": "app_name",
+      "value": "[TS_800580]_Camera"
+    },
+    {
+      "name": "restore_defaults",
+      "value": "[TS_800588]_Restore defaults"
+    },
+    {
+      "name": "video_resolution",
+      "value": "[TS_800567]_Video resolution"
+    },
+    {
+      "name": "geo_location_desp",
+      "value": "[TS_800584]_Tag photos and videos with location information."
+    },
+    {
+      "name": "self_mirror_desp",
+      "value": "[TS_800582]_Front camera only."
+    },
+    {
+      "name": "off",
+      "value": "[TS_800589]_Off"
+    },
+    {
+      "name": "timer_10_seconds",
+      "value": "[TS_800599]_%d seconds"
+    },
+    {
+      "name": "general",
+      "value": "[TS_800591]_General"
+    },
+    {
+      "name": "sound_mute",
+      "value": "[TS_800579]_Mute"
+    },
+    {
+      "name": "aspect_ratio",
+      "value": "[TS_800595]_Aspect ratio"
+    },
+    {
+      "name": "cancel",
+      "value": "[TS_800602]_Cancel"
+    },
+    {
+      "name": "timer_5_seconds",
+      "value": "[TS_800572]_%d seconds"
+    },
+    {
+      "name": "self_mirror",
+      "value": "[TS_800568]_Mirror reflection"
+    },
+    {
+      "name": "timer",
+      "value": "[TS_800565]_Timer"
+    },
+    {
+      "name": "settings",
+      "value": "[TS_800575]_Settings"
+    },
+    {
+      "name": "video_mode",
+      "value": "[TS_800590]_Video"
+    },
+    {
+      "name": "confirm",
+      "value": "[TS_800570]_OK"
+    },
+    {
+      "name": "video_frame_rate",
+      "value": "[TS_801976]_Frame rate"
+    },
+    {
+      "name": "video_title",
+      "value": "[TS_802000]_Video settings"
+    },
+    {
+      "name": "already_off",
+      "value": "[TS_800571]_Off"
+    },
+    {
+      "name": "pic_title",
+      "value": "[TS_802001]_Photo settings"
+    },
+    {
+      "name": "confirm_restore_message",
+      "value": "[TS_800563]_Camera settings will be restored to their default values."
+    },
+    {
+      "name": "mainability_description",
+      "value": "[TS_800578]_JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "imagevideo_permission_desc",
+      "value": "[TS_857402]_This is used to display and store photos and videos you take."
+    },
+    {
+      "name": "camera_permission_desc",
+      "value": "[TS_857404]_This is used to take photos and record video."
+    },
+    {
+      "name": "microphone_permission_desc",
+      "value": "[TS_857403]_This is used for recording videos and to enable audio control."
+    }
+  ]
+}

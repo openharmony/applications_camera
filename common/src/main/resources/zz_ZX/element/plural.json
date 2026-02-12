@@ -1,0 +1,294 @@
+{
+  "plural": [
+    {
+      "name": "minute",
+      "value": [
+        {
+          "quantity": "other",
+          "value": "[TS_953450]_%d min"
+        },
+        {
+          "quantity": "one",
+          "value": "[TS_953449]_%d min"
+        },
+        {
+          "quantity": "zero",
+          "value": "[TS_953448]_%d min"
+        },
+        {
+          "quantity": "few",
+          "value": "[TS_953451]_%d min"
+        },
+        {
+          "quantity": "many",
+          "value": "[TS_953447]_%d min"
+        },
+        {
+          "quantity": "two",
+          "value": "[TS_953452]_%d min"
+        }
+      ]
+    },
+    {
+      "name": "accessibility_tips_zoom_scale",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "[TS_961850]_%s times zoom"
+        },
+        {
+          "quantity": "other",
+          "value": "[TS_961852]_%s times zoom"
+        },
+        {
+          "quantity": "zero",
+          "value": "[TS_961854]_%s times zoom"
+        },
+        {
+          "quantity": "few",
+          "value": "[TS_961851]_%s times zoom"
+        },
+        {
+          "quantity": "many",
+          "value": "[TS_961853]_%s times zoom"
+        },
+        {
+          "quantity": "two",
+          "value": "[TS_961849]_%s times zoom"
+        }
+      ]
+    },
+    {
+      "name": "accessibility_tips_zoom_scale_new",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "[TS_970299]_%f times zoom"
+        },
+        {
+          "quantity": "other",
+          "value": "[TS_970300]_%f times zoom"
+        },
+        {
+          "quantity": "zero",
+          "value": "[TS_970297]_%f times zoom"
+        },
+        {
+          "quantity": "few",
+          "value": "[TS_970298]_%f times zoom"
+        },
+        {
+          "quantity": "many",
+          "value": "[TS_970296]_%f times zoom"
+        },
+        {
+          "quantity": "two",
+          "value": "[TS_970301]_%f times zoom"
+        }
+      ]
+    },
+    {
+      "name":"preset_replacement_content_new",
+      "value":[
+        {
+          "quantity":"one",
+          "value":"[TS_1037006]_You can have a maximum of %d custom style at a time. Select one to replace."
+        },
+        {
+          "quantity":"other",
+          "value":"[TS_1037007]_You can have a maximum of %d custom styles at a time. Select one to replace."
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_1037003]_You can have a maximum of %d custom styles at a time. Select one to replace."
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_1037004]_You can have a maximum of %d custom styles at a time. Select one to replace."
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_1037005]_You can have a maximum of %d custom styles at a time. Select one to replace."
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_1037002]_You can have a maximum of %d custom styles at a time. Select one to replace."
+        }
+      ]
+    },
+    {
+      "name":"accessibility_recorded_seconds",
+      "value":[
+        {
+          "quantity":"one",
+          "value":"[TS_1058496]_Recorded %d second"
+        },
+        {
+          "quantity":"other",
+          "value":"[TS_1058492]_Recorded %d seconds"
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_1058491]_Recorded %d seconds"
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_1058494]_Recorded %d seconds"
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_1058495]_Recorded %d seconds"
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_1058498]_Recorded %d seconds"
+        }
+      ]
+    },
+    {
+      "name":"accessibility_min",
+      "value":[
+        {
+          "quantity":"one",
+          "value":"[TS_1059792]_%d min"
+        },
+        {
+          "quantity":"other",
+          "value":"[TS_1059797]_%d min"
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_1059794]_%d min"
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_1059798]_%d min"
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_1059793]_%d min"
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_1059799]_%d min"
+        }
+      ]
+    },
+    {
+      "name":"accessibility_sec",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"[TS_1059790]_%ds"
+        },
+        {
+          "quantity":"one",
+          "value":"[TS_1059796]_%ds"
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_1059800]_%ds"
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_1059795]_%ds"
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_1059801]_%ds"
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_1059791]_%ds"
+        }
+      ]
+    },
+    {
+      "name":"xmage_custom_styles_desc",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"[TS_1085028]_You can now create personalized color styles for your photos. Choose from %1$s preset styles or experiment to find a look that's truly yours."
+        },
+        {
+          "quantity":"one",
+          "value":"[TS_1085026]_You can now create personalized color styles for your photos. Choose from %1$s preset style or experiment to find a look that's truly yours."
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_1085025]_You can now create personalized color styles for your photos. Choose from %1$s preset styles or experiment to find a look that's truly yours."
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_1085027]_You can now create personalized color styles for your photos. Choose from %1$s preset styles or experiment to find a look that's truly yours."
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_1085029]_You can now create personalized color styles for your photos. Choose from %1$s preset styles or experiment to find a look that's truly yours."
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_1085030]_You can now create personalized color styles for your photos. Choose from %1$s preset styles or experiment to find a look that's truly yours."
+        }
+      ]
+    },
+    {
+      "name":"timer_interval_seconds",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"[TS_1121946]_%fs intervals"
+        },
+        {
+          "quantity":"one",
+          "value":"[TS_1121949]_%fs intervals"
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_1121954]_%fs intervals"
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_1121948]_%fs intervals"
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_1121953]_%fs intervals"
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_1121956]_%fs intervals"
+        }
+      ]
+    },
+    {
+      "name":"timer_sub_seconds",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"[TS_1121952]_%fs"
+        },
+        {
+          "quantity":"one",
+          "value":"[TS_1121947]_%fs"
+        },
+        {
+          "quantity":"zero",
+          "value":"[TS_1121951]_%fs"
+        },
+        {
+          "quantity":"few",
+          "value":"[TS_1121945]_%fs"
+        },
+        {
+          "quantity":"many",
+          "value":"[TS_1121950]_%fs"
+        },
+        {
+          "quantity":"two",
+          "value":"[TS_1121955]_%fs"
+        }
+      ]
+    }
+  ]
+}

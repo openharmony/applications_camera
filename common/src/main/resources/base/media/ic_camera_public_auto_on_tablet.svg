@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_camera_public_auto_on</title>
+    <g id="icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-opacity="0.3">
+        <g id="ic_camera_public_auto_on" transform="translate(0.641087, 0.819507)" fill-rule="nonzero" stroke="#000000" stroke-width="0.3">
+            <g id="accent-color" fill="#0A59F7">
+                <path d="M12,24 C5.372583,24 0,18.627417 0,12 C0,5.372583 5.372583,0 12,0 C18.627417,0 24,5.372583 24,12 C24,18.627417 18.627417,24 12,24 Z" id="Combined-Shape"></path>
+            </g>
+            <path d="M13.7836912,14.215472 L10.203613,14.215472 L9.45458959,16.3673275 L7.785156,16.3673275 L11.2763669,7.12514 L12.7172849,7.12514 L16.2148435,16.3673275 L14.5390623,16.3673275 L13.7836912,14.215472 Z M10.6542966,12.9205502 L13.3330076,12.9205502 L11.9936521,9.08656578 L10.6542966,12.9205502 Z" id="形状" fill="#FFFFFF"></path>
+        </g>
+    </g>
+</svg>

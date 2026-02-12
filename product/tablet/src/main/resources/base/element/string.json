@@ -7,6 +7,174 @@
     {
       "name": "mainability_description",
       "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "photo_mode",
+      "value": "Photo"
+    },
+    {
+      "name": "video_mode",
+      "value": "Video"
+    },
+    {
+      "name": "night_mode",
+      "value": "Night"
+    },
+    {
+      "name": "portrait_mode",
+      "value": "Portrait"
+    },
+    {
+      "name": "settings",
+      "value": "Settings"
+    },
+    {
+      "name": "aspect_ratio",
+      "value": "Aspect ratio"
+    },
+    {
+      "name": "video_resolution",
+      "value": "Video resolution"
+    },
+    {
+      "name": "timer",
+      "value": "Timer"
+    },
+    {
+      "name": "already_off",
+      "value": "Off"
+    },
+    {
+      "name": "off",
+      "value": "Off"
+    },
+    {
+      "name": "timer_2_seconds",
+      "value": "%d seconds"
+    },
+    {
+      "name": "timer_5_seconds",
+      "value": "%d seconds"
+    },
+    {
+      "name": "timer_10_seconds",
+      "value": "%d seconds"
+    },
+    {
+      "name": "restore_defaults",
+      "value": "Restore defaults"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "confirm",
+      "value": "OK"
+    },
+    {
+      "name": "assistive_grid",
+      "value": "Assistive grid"
+    },
+    {
+      "name": "general",
+      "value": "General"
+    },
+    {
+      "name": "sound_mute",
+      "value": "Mute"
+    },
+    {
+      "name": "self_mirror",
+      "value": "Mirror reflection"
+    },
+    {
+      "name": "geo_location_desp",
+      "value": "This is used to tag photos and videos with location information.",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "self_mirror_desp",
+      "value": "Front camera only."
+    },
+    {
+      "name": "confirm_restore_message",
+      "value": "Camera settings will be restored to their default values."
+    },
+    {
+      "name": "pic_title",
+      "value": "Photo settings"
+    },
+    {
+      "name": "video_title",
+      "value": "Video settings"
+    },
+    {
+      "name": "video_frame_rate",
+      "value": "Frame rate"
+    },
+    {
+      "name": "portrait_effect",
+      "value": "Effects"
+    },
+    {
+      "name": "imagevideo_permission_desc",
+      "value": "This is used to display and store photos and videos you take."
+    },
+    {
+      "name": "camera_permission_desc",
+      "value": "This is used to take photos and record video."
+    },
+    {
+      "name": "microphone_permission_desc",
+      "value": "This is used for recording videos and to enable audio control."
+    },
+    {
+      "name": "no_photos_and_videos",
+      "value": "No photos or videos"
+    },
+    {
+      "name": "no_photos_and_videos_desc",
+      "value": "Take photos and videos with the camera, or unlock your device to access Gallery.",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "got_it",
+      "value": "OK"
+    },
+    {
+      "name": "more_development",
+      "value": "More modes coming soon…"
+    },
+    {
+      "name": "more_confirm_restore_message",
+      "value": "Restore the default layout？"
+    },
+    {
+      "name": "high_pixel_desc",
+      "value": "AI Ultra Clarity is great for shooting still objects and scenery in good light."
+    },
+    {
+      "name": "highPixel_mode",
+      "value": "High-res"
+    },
+    {
+      "name": "camera_app_lock_go_to_photo",
+      "value": "Unlock & access",
+      "attr": {
+        "priority": "LT"
+      }
+    },
+    {
+      "name": "camera_app_lock_tip",
+      "value": "Gallery is locked",
+      "attr": {
+        "priority": "LT"
+      }
     }
   ]
 }

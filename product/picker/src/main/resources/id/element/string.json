@@ -1,0 +1,347 @@
+{
+    "string":[
+        {
+            "name":"timer_2_seconds",
+            "value":"%d detik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"Laju bingkai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"Foto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"Potret",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"Malam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"Pengaturan video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"Ultra Jernih AI sangat bagus untuk memotret objek diam dan pemandangan berpenerangan baik.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_desc",
+            "value":"Ini digunakan untuk merekam video dan untuk mengaktifkan kontrol audio.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"Otomatis",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"Mati",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"app_name",
+            "value":"Kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"Resolusi video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"Kamera depan saja.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Mati",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"got_it",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"Pengaturan foto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"Bisukan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_effect",
+            "value":"Efek",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_desc",
+            "value":"Ini digunakan untuk mengambil foto dan merekam video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Lainnya",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"Pulihkan tata letak standar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"blurred_background",
+            "value":"Pemburaman latar belakang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_error_title",
+            "value":"Kesalahan Kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d detik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"Pantulan cermin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"Video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_photos_and_videos",
+            "value":"Tidak ada foto atau video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"Makro super",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"Cantik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"Kisi bantu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"Jaga agar perangkat tetap kukuh.\nTunggu hitung mundurnya atau ketuk rana untuk mengambil foto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"Lebih banyak mode yang akan datang…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_defaults",
+            "value":"Pulihkan ke standar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"Beri tag informasi lokasi pada foto dan video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_photos_and_videos_desc",
+            "value":"Ambil foto dan video dengan kamera, atau buka kunci perangkat Anda untuk mengakses Galeri.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_restore_message",
+            "value":"Pengaturan Kamera akan dipulihkan ke nilai standarnya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"Resolusi tinggi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d detik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"general",
+            "value":"Umum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"Seret ikon untuk menyesuaikan tata letak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"Pulihkan tata letak standar?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_connect_camera",
+            "value":"Tidak dapat terhubung ke kamera.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"Rasio aspek",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Batal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"Edit",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"imagevideo_permission_desc",
+            "value":"Ini digunakan untuk menampilkan serta menyimpan foto dan video yang Anda ambil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"Pengatur waktu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Pengaturan",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

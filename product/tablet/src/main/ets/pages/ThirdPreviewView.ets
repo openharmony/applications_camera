@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) Huawei Device Co., Ltd. 2024-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,160 +13,184 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
 import fileshare from '@ohos.fileshare';
 import wantConstant from '@ohos.ability.wantConstant';
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
-import { GlobalContext } from '@ohos/common/src/main/ets/default/utils/GlobalContext';
+import { HiLog } from '@ohos/common/src/main/ets/utils/HiLog';
+import { ModeType } from '@ohos/common/src/main/ets/mode/ModeType';
+import { ZIndex } from '@ohos/common/src/main/ets/utils/ZIndex';
+import { OutputOperation } from '@ohos/common/src/main/ets/function/outputswitcher/OutputOperation';
+import { OutputType } from '@ohos/common/src/main/ets/function/outputswitcher/OutputType';
 import { BusinessError } from '@ohos.base';
-import ability from '@ohos.ability.ability';
+import { PickerUiService } from '@ohos/common/src/main/ets/service/picker/PickerUiService';
+import lazy { GlobalContext } from '@ohos/common/src/main/ets/utils/GlobalContext';
 
-@Entry
+const TAG: string = 'ThirdPreviewView';
+
+class NavigationState {
+  public width: number = 0;
+  public height: number = 0;
+  public mode: ModeType = ModeType.NONE;
+  public uri: string = '';
+  public videoUri: string = '';
+  public callBundleName: string = '';
+}
+
 @Component
-struct ThirdPreviewView {
-  private TAG: string = '[ThirdPreviewView]:';
+export struct ThirdPreviewView {
+  @State controls: boolean = false;
+  @State isShowVideoButton: boolean = true;
   private photoWidth: string = '';
   private photoHeight: string = '';
   private photoUri: string = '';
   private videoUri: string = '';
-  private mode: string = '';
+  private mode: ModeType = ModeType.NONE;
+  private myVideoController: VideoController = new VideoController();
   private callBundleName: string = '';
-  @State controls: boolean = false;
-  @State isShowVideoButton: boolean = true;
-  myVideoController: VideoController = new VideoController();
+  @Consume('pageInfos') pageInfos: NavPathStack;
+  private navigationName: string = '';
 
   aboutToAppear() {
-    Log.info(`${this.TAG} aboutToAppear E`);
-    let routerParams = router.getParams();
+    HiLog.begin(TAG, 'aboutToAppear.');
+    let routerParams: NavigationState[] = this.pageInfos.getParamByName('ThirdPreviewView') as NavigationState[];
     if (routerParams === undefined || routerParams === null) {
       return;
     }
-    this.photoWidth = routerParams.width?.toString();
-    this.photoHeight = routerParams.height?.toString();
-    this.photoUri = routerParams.uri?.toString();
-    this.mode = routerParams.mode?.toString();
-    this.videoUri = routerParams.videoUri?.toString();
-    this.callBundleName = routerParams.callBundleName?.toString();
-    Log.info(`${this.TAG} aboutToAppear routerParams= ${JSON.stringify(routerParams)}`);
-    Log.info(`${this.TAG} aboutToAppear X`);
+    this.photoWidth = routerParams[0].width?.toString();
+    this.photoHeight = routerParams[0].height?.toString();
+    this.photoUri = routerParams[0].uri?.toString();
+    this.mode = routerParams[0].mode?.toString() as ModeType;
+    this.videoUri = routerParams[0].videoUri?.toString();
+    this.callBundleName = routerParams[0].callBundleName?.toString();
+    HiLog.i(TAG, `aboutToAppear callBundleName= ${JSON.stringify(routerParams)}.`);
+    HiLog.end(TAG, 'aboutToAppear.');
   }
 
-  backCalledApp(resourceUri: string): void {
-    Log.info(`${this.TAG} backCalledApp E`);
-    let that = this;
+  backCalledApp(resourceUri: string) {
+    HiLog.i(TAG, 'backCalledApp start.');
+    HiLog.d(TAG, `backCalledApp resourceUri is ${resourceUri} callBundleName is ${this.callBundleName}.`);
+    if (!resourceUri || !this.callBundleName) {
+      HiLog.w(TAG, `resourceUri: ${resourceUri}, bundleName:${this.callBundleName}.`);
+      return;
+    }
     fileshare.grantUriPermission(resourceUri, this.callBundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION)
       .then(() => {
-        Log.info(`${this.TAG} grantUriPermission success`);
-        that.terminateSelfWithResult(resourceUri);
+        HiLog.i(TAG, 'grantUriPermission success!.');
+        PickerUiService.getInstance().terminateSelfWithResult(0, resourceUri);
       }).catch((error: BusinessError) => {
-      Log.error(`${this.TAG} grantUriPermission error= ${error} `);
-    });
-    Log.info(`${this.TAG} backCalledApp X`);
+      HiLog.e(TAG, `grantUriPermission err: ${error}.`);
+    })
   }
 
-  terminateSelfWithResult(resourceUri: string): void {
-    Log.info(`${this.TAG} terminateSelfWithResult start`);
-    let abilityResult: ability.AbilityResult = {
-      resultCode: 0,
-      want: {
-        parameters: {
-          resourceUri: resourceUri,
-        },
-      }
-    };
+  build() {
+    NavDestination() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Stack() {
+          if (OutputOperation.isPanPhotoOutput(this.mode, OutputType.NONE)) {
+            Column() {
+              Image(this.photoUri)
+                .width('100%')
+                .height('100%')
+                .draggable(false)
+            }
+            .width(this.photoWidth)
+            .height(this.photoHeight)
+          } else {
+            Video({
+              src: this.videoUri,
+              previewUri: `${this.videoUri}/thumbnail/${this.photoWidth?.split('px')[0]}/${
+              this.photoHeight?.split('px')[0]}`,
+              controller: this.myVideoController
+            })
+              .controls(this.controls)
+              .objectFit(ImageFit.Contain)
+              .width(this.photoWidth)
+              .height(this.photoHeight)
+              .onClick((): void => {
+                this.controls = !this.controls;
+              })
+              .onFinish((): void => {
+                this.controls = true;
+              })
+              .zIndex(ZIndex.MIDDLE_BOTTOM)
+            if (this.isShowVideoButton) {
+              Column() {
+                Flex({
+                  direction: FlexDirection.Column,
+                  alignItems: ItemAlign.Center,
+                  justifyContent: FlexAlign.Center
+                }) {
+                  Image(this.getVideoPlayIcon())
+                    .objectFit(ImageFit.Contain)
+                    .width(56)
+                    .height(56)
+                    .onClick((): void => {
+                      this.myVideoController.start();
+                      this.isShowVideoButton = false;
+                    })
+                    .draggable(false)
+                }
+              }.zIndex(ZIndex.MIDDLE_TOP)
+            }
+          }
+        }
+        .width(this.photoWidth)
+        .height(this.photoHeight)
 
-    GlobalContext.get().getCameraAbilityContext().terminateSelfWithResult(abilityResult, (error: BusinessError, data: Object) => {
-      if (error) {
-        Log.error(`${this.TAG} Operation failed. Cause: ${error}`);
-        return;
-      }
-      Log.info(`${this.TAG} Operation succeeded: ${data}`);
-    });
+        Flex({
+          direction: FlexDirection.Row,
+          alignItems: ItemAlign.Center,
+          justifyContent: FlexAlign.SpaceBetween
+        }) {
+          Image($r('app.media.ic_system_cancel'))
+            .width(24)
+            .aspectRatio(1)
+            .draggable(false)
+            .onClick((): void => {
+              if (!this.isShowVideoButton) {
+                this.isShowVideoButton = true;
+              }
+              this.pageInfos?.pop();
+            })
+          Image($r('app.media.ic_system_confirm'))
+            .width(24)
+            .aspectRatio(1)
+            .draggable(false)
+            .onClick((): void => {
+              if (!this.photoUri && !this.videoUri) {
+                HiLog.i(TAG, `Uri is NULL or UNDEFINED photoUri:${this.photoUri}, videoUri:${this.videoUri}`);
+              }
+              HiLog.i(TAG, 'photoUri and videoUri have valid type');
+              this.backCalledApp(OutputOperation.isPanPhotoOutput(this.mode, OutputType.NONE) ?
+              this.photoUri : this.videoUri);
+            })
+        }
+        .width('100%')
+        .height(48)
+        .margin({ top: $r('sys.float.padding_level12') })
+        .padding({
+          top: $r('sys.float.padding_level6'),
+          left: $r('sys.float.padding_level12'),
+          right: $r('sys.float.padding_level12')
+        })
+        .position({ x: 0, y: 0 })
+      }.width('100%').height('100%').backgroundColor(Color.Black)
+    }
+    .hideTitleBar(true)
   }
 
-  private getVideoPlayIcon() {
+  private getVideoPlayIcon(): Resource {
     if (vp2px(1) >= 1 && vp2px(1) < 2) {
       return $r('app.media.ic_video_play_btn_hdpi');
-    } else if (vp2px(1) == 2) {
+    } else if (vp2px(1) === 2) {
       return $r('app.media.ic_video_play_btn_xhdpi');
-    } else if (vp2px(1) == 3) {
+    } else if (vp2px(1) === 3) {
       return $r('app.media.ic_video_play_btn_xxhdpi');
     } else {
       return $r('app.media.ic_video_play_btn_xxxhdpi');
     }
   }
 
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Stack() {
-        if (this.mode === "PHOTO") {
-          Column() {
-            Image(this.photoUri)
-              .width('100%')
-              .height('100%')
-          }
-          .width(this.photoWidth)
-          .height(this.photoHeight)
-        } else {
-          Video({
-            src: this.videoUri,
-            previewUri: `${this.videoUri}/thumbnail/${this.photoWidth?.split('px')[0]}/${this.photoHeight?.split('px')[0]}`,
-            controller: this.myVideoController
-          })
-            .controls(this.controls)
-            .objectFit(ImageFit.Contain)
-            .width(this.photoWidth)
-            .height(this.photoHeight)
-            .onClick(() => {
-              this.controls = !this.controls;
-            })
-            .onFinish(() => {
-              this.controls = true;
-            })
-            .zIndex(1)
-          if (this.isShowVideoButton) {
-            Column() {
-              Flex({
-                direction: FlexDirection.Column,
-                alignItems: ItemAlign.Center,
-                justifyContent: FlexAlign.Center
-              }) {
-                Image(this.getVideoPlayIcon()).objectFit(ImageFit.Contain).width(56).height(56)
-                  .onClick(() => {
-                    this.myVideoController.start();
-                    this.isShowVideoButton = false;
-                  })
-              }
-            }.zIndex(2)
-          }
-        }
-      }
-      .width(this.photoWidth)
-      .height(this.photoHeight)
-
-      Flex({
-        direction: FlexDirection.Column,
-        alignItems: ItemAlign.Center,
-        justifyContent: FlexAlign.SpaceBetween
-      }) {
-        Image($r('app.media.ic_public_ok'))
-          .width(24)
-          .aspectRatio(1)
-          .onClick(() => {
-            this.backCalledApp(this.mode === "PHOTO" ? this.photoUri : this.videoUri);
-          })
-        Image($r('app.media.ic_public_cancel'))
-          .width(24)
-          .aspectRatio(1)
-          .onClick(() => {
-            router.back();
-          })
-      }
-      .width(48)
-      .height('100%')
-      .margin({ left: 24 })
-      .padding({ top: '64', bottom: '64' })
-      .position({ y: 0 })
-    }.width('100%').height('100%').backgroundColor('#000')
+  onPageShow(): void {
+    HiLog.i(TAG, 'onPageShow.');
   }
 }

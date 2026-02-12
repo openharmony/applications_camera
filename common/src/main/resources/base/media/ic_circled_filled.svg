@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="54px"
-     height="54px"
-     viewBox="0 0 54 54"
+<svg width="48px"
+     height="48px"
+     viewBox="0 0 48 48"
      version="1.1"
-     xmlns="http://www.w3.org/2000/svg">
-    <title>ic_circled_filled</title>
-    <g id="ic_circled_filled" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <circle id="Path" fill="#000000" cx="27" cy="27" r="27"></circle>
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_camera_shootbar_Photo</title>
+    <defs>
+        <path
+            d="M24,48 C37.2548,48 48,37.2548 48,24 C48,10.7452 37.2548,0 24,0 C10.7451,0 0,10.7452 0,24 C0,37.2548 10.7451,48 24,48 Z"
+            id="path-1"></path>
+    </defs>
+    <g
+        id="ic_circled_filled"
+        stroke="#000000"
+        stroke-opacity="0.3"
+        stroke-width="0.3"
+        fill-rule="evenodd">
+        <mask
+            id="mask-2"
+            fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use
+            id="Clip-94"
+            fill="#000000"
+            xlink:href="#path-1"></use>
     </g>
 </svg>

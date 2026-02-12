@@ -1,0 +1,22 @@
+{
+  "name": "phone",
+  "description": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/common": "../../common",
+    "@ohos/extend": "../../features/extend",
+    "@ohos/photo": "../../features/photo",
+    "@ohos/video": "../../features/video",
+//    "@ohos-paf/ui-widget-base": "14.16.10-305",
+//    "@ohos-paf/ui-widget-consent": "14.16.10-305",
+//    "@ohos-paf/ui-widget-permission": "14.16.10-305",
+//    "@ohos-paf/ui-widget-webview": "14.16.10-305",
+//    "@ohos-paf/ui-widget-permissiondesc": "14.16.10-305",
+//    "@ohos-paf/ui-widget-permission-v2": "14.17.5-203",
+//    "@ohos-paf/ui-widget-base-v2": "14.17.5-203"
+  },
+  "dynamicDependencies": {
+//    "@photobrowser/browserlibrary": "1.0.40",
+//    "@ohos/pickersheet":"6.0.0-331"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "license": "",
+  "devDependencies": {},
+  "author": "",
+  "name": "picker",
+  "description": "",
+  "main": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/common": "../../common",
+    "@ohos/extend": "../../features/extend",
+    "@ohos/photo": "../../features/photo",
+    "@ohos/video": "../../features/video",
+//    "@ohos/pickersheet":"6.0.0-331"
+  },
+  "dynamicDependencies": {
+//    "@photobrowser/browserlibrary": "1.0.40"
+  }
+}
