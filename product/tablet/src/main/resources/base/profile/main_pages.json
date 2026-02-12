@@ -1,6 +1,6 @@
 {
   "src": [
-    "pages/indexLand",
-    "pages/ThirdPreviewView"
+    "pages/index",
+    "pages/PermissionExtension"
   ]
 }

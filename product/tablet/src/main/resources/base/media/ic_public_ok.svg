@@ -1,9 +1,47 @@
-<svg height="24"
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Copyright (c) Huawei Device Co., Ltd. 2024-2025. All rights reserved.
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg width="24px"
+     height="24px"
      viewBox="0 0 24 24"
-     width="24"
-     xmlns="http://www.w3.org/2000/svg">
-    <path
-        d="m17.3906114 13.5088835c.6691797.6691796.6831209 1.7454722.0418237 2.4316149l-.0418237.0432588-5.6997475 5.6997475c-.2928932.2928932-.7677669.2928932-1.0606601 0-.2824328-.2824328-.2925197-.7340795-.0302607-1.028599l.0302607-.0320612 5.346194-5.3461941c.2824328-.2824327.2925197-.7340795.0302607-1.028599l-.0302607-.0320611-10.34619398-10.34619412c-.29289322-.29289322-.29289322-.76776695 0-1.06066017.28243275-.28243275.73407952-.29251963 1.02859898-.03026065l.03206119.03026065z"
-        fill="#FFFFFF"
-        transform="matrix(0 1 -1 0 23.903174 .589466)"/>
+     version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Public/ic_public_ok</title>
+    <defs>
+        <path
+            d="M18.4837572,13.0088835 C19.1529369,13.6780631 19.1668781,14.7543557 18.5255809,15.4404984 L18.4837572,15.4837572 L12.7840097,21.1835047 C12.4911165,21.4763979 12.0162428,21.4763979 11.7233496,21.1835047 C11.4409168,20.9010719 11.4308299,20.4494252 11.6930889,20.1549057 L11.7233496,20.1228445 L17.0695436,14.7766504 C17.3519764,14.4942177 17.3620633,14.0425709 17.0998043,13.7480514 L17.0695436,13.7159903 L6.72334957,3.36979618 C6.43045635,3.07690296 6.43045635,2.60202923 6.72334957,2.30913601 C7.00578232,2.02670326 7.45742909,2.01661638 7.75194855,2.27887536 L7.78400974,2.30913601 L18.4837572,13.0088835 Z"
+            id="path-1"></path>
+    </defs>
+    <g
+        id="Public/ic_public_ok"
+        stroke="none"
+        stroke-width="1"
+        fill="none"
+        fill-rule="evenodd">
+        <mask
+            id="mask-2"
+            fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use
+            id="形状结合"
+            fill="#fff"
+            fill-rule="nonzero"
+            transform="translate(12.750000, 11.746320) rotate(-270.000000) translate(-12.750000, -11.746320) "
+            xlink:href="#path-1"></use>
+    </g>
 </svg>

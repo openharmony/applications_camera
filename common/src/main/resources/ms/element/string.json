@@ -1,0 +1,5233 @@
+{
+    "string":[
+        {
+            "name":"option_exit_camera",
+            "value":"Keluar dari aplikasi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"Kejelasan Ultra AI adalah sesuai untuk mengesyot objek pegun dan pemandangan dalam keadaan yang bercahaya terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"Tiada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"Maklumat warna",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"infinity_time",
+            "value":"Tiada had",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"Pegang telefon anda secara menegak untuk gubahan yang lebih baik.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"Bulan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"Langit penuh bintang, butang, dwiketik untuk mengaktifkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"Kembali",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"Matriks",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_on",
+            "value":"Ultrastabil dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"Imej terlampau didedahkan. Pulihkan tetapan pendedahan lalai?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"Gambar bergerak dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"Tahap ton %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"Dengan adanya algoritma pengurangan hingar yang canggih, telefon anda boleh menangkap imej yang tajam dan terang walaupun dalam keadaan cahaya rendah. Kelajuan pengatup boleh dilaraskan secara manual untuk syot yang lebih kreatif. Apabila menggunakan kamera depan untuk mengambil potret, telefon akan memberikan pencahayaan penuh untuk menghapuskan bayang yang tidak diingini, memastikan wajah kelihatan jelas dan terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"Selang bingkai: %1$ss\nSesuai untuk bintang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"Kenyataan Mengenai Kamera dan Privasi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"Bergaya",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"Tidak dipilih",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"Tersuai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"%1$sK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_update_date",
+            "value":"Kemas kini terakhir: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"Bayangan cermin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"Ketik sini untuk bertukar antara gaya XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star",
+            "value":"Leretan bintang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"Leret dalam bahagian pralihat untuk memilih gaya tersuai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"Ketahui lebih lanjut",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"connect_wifi",
+            "value":"Bersambung ke WLAN",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_mode",
+            "value":"Pentas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"Dengan mengetik Setuju, anda bersetuju dengan terma-terma di atas. Untuk butiran lebih lanjut tentang cara maklumat peribadi anda diproses, rujuk kepada %1$s dan %2$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"Gagal mengimport data",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"Panjang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"Lanjutkan sempadan kreatif anda dengan pelbagai gaya warna tersendiri.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"Lalai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"function_under_development",
+            "value":"Ciri akan tersedia tidak lama lagi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"Tera air standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_button",
+            "value":"Butang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"%1$d:%2$d (dicadangkan)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"Tip",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"film_style",
+            "value":"Filem",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_not_detected",
+            "value":"Tiada kamera dikesan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"Hidupkan Mod kecantikan dahulu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"Ambil foto dalam video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"Cahaya siang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_background",
+            "value":"Gaya birai hias",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"Jangan tunjukkan lagi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"Simpan sebagai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_portrait",
+            "value":"Selfie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"Setuju",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy",
+            "value":"Salin %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"natural_style",
+            "value":"Semula jadi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"film_duration_title",
+            "value":"Panjang video muktamad",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"Selamat datang ke Master AI. Auto-laraskan warna berdasarkan latar. Ketik untuk mencuba.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"Tetapan video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"low_angle",
+            "value":"Syot sudut rendah",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"Tingkatkan warna dan kontras. Kesan bergantung pada peranti main balik dan keserasian perisian.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"Rakam inti pati perubahan dengan video yang mempercepat peredaran masa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"Bantuan paparan dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keep_time_title",
+            "value":"Tempoh rakaman",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"Ketahui lebih",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"%s Sila pastikan bahawa anda membaca keseluruhan notis ini sebelum menggunakan mod ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"Tangkap imej %dMP dalam Mod foto. Imej mungkin mengambil masa lebih lama untuk diproses pada resolusi ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"%s Dengan menggunakan mod ini, anda menunjukkan bahawa anda sudah membaca, memahami, bersetuju, dan menerima semua terma yang dinyatakan dalam notis ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"%1$s Lampu isian yang digunakan dalam produk ini mematuhi standard keselamatan %2$s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"Bulatan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"Helah baru",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"Gunakan untuk video %1$s fps dan %2$s fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_car",
+            "value":"Lampu kereta",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"Denyar selepas %d saat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"Tambah ke Kalendar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"Standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword",
+            "value":"Sebut kata kunci",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"Auto-denyar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"Mikrofon terhalang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_jpg",
+            "value":"JPG",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"Video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"Kepanasan %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"Gambar Buruj berjaya ditangkap.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"Nota: Tetapan apertur fizikal tidak boleh dilaraskan semasa pengeditan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"Leret ke kiri untuk bertukar kepada gaya tersuai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"Imej kabur. Cuba mengelap lensa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"Aras bateri terlalu rendah. Denyar tidak tersedia.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"romantic_style",
+            "value":"Pawagam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pop_item_off",
+            "value":"Matikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"Tangkap gambar subjek sedang bergerak yang lebih jelas.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"Gelang zum telah digantikan dengan zum kipas. Selain itu, anda boleh menyentuh & menahan butang pengatup dan kemudian meleret ke kiri untuk mengambil syot letusan, meleret ke kanan untuk merakam video, atau meleret ke atas untuk mengezum.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"Pratetap tersuai %1$d, suhu warna %2$d, penepuan %3$d, rona %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"Tutup menu pantas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"Pastikan peranti anda stabil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"Tolak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"Pemampasan dedahan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinema_mode",
+            "value":"Sinematik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"Mata %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_intro",
+            "value":"Lagi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"Butang untuk mematikan peta Buruj, dwiketik untuk mengaktifkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"Pusaran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"Murung",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"Menyesuaikan kadar bingkai secara automatik mengikut persekitaran untuk meningkatkan kualiti imej. Julat: %1$d–%2$d fps.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"Apertur maya",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"Alih ke bawah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"Lebihan pendedahan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"Kurangkan hingar angin semasa rakaman video untuk menjadikan suara lebih jelas.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_design",
+            "value":"Corak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"Untuk memaparkan foto dan video yang anda ambil, aplikasi ini memerlukan kebenaran %1$s, %2$s, %3$s, dan %4$s, dan perlu membaca maklumat imej, video, dan lokasi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"Kurang pendedahan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"anime_style",
+            "value":"Anime",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"Ton dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"Gaya anime",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"Fokus ikut",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"Potret",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"Hanya terpakai pada foto yang menggunakan gaya tersuai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"Selang bingkai: %ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"Ketik anak panah untuk mengubah arah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"Grid bantu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"Mod pemeteran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"Lampu bantuan fokus dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_details",
+            "value":"Mod potret membolehkan anda mengambil foto yang cantik dengan kesan bokeh dalam latar belakang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"Asli",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"Butang palet warna, dwiketik untuk mengaktifkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"Pastikan peranti anda stabil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"Gantikan gaya tersuai?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"Pemasa selang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"Ketik untuk mengambil selfie dengan kamera belakang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"Alih ke atas.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"Hentikan rakaman video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"Edit",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"Kecantikan dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"Syot bulan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"starry_portrait",
+            "value":"Potret penuh bintang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"Pemasa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d saat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"Kadar bingkai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"Dwipralihat dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"%1$d. Penting",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"Anda boleh menggunakan denyar kamera untuk menangkap orang apabila membuat rakaman dalam mod ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details",
+            "value":"Cipta kesan cahaya dan bayang yang istimewa. Pilih daripada empat mod dipratetap (lampu kereta, grafiti cahaya, air selembut sutera, dan leretan bintang) yang disesuaikan dengan senario lukisan cahaya yang paling biasa digunakan. Untuk hasil terbaik, gunakan tripod.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"Tangkap detik-detik terbaik anda.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"Zum kipas baru membawa pengalaman zum yang lebih lancar dan mudah kepada anda.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name",
+            "value":"Model peranti",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"Denyar sentiasa dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"Hati",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"Tangkap detik-detik dalam cara yang baru sepenuhnya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open",
+            "value":"Buka %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"Kawalan pintar membolehkan anda mengambil foto dan video dengan mengetik pengesan cap jari.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"Alih ke depan %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"Tag lokasi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"Mod pentas sesuai untuk mengesyot gig, konsert, drama, dan persembahan yang lain. Ia dioptimumkan untuk berfungsi baik dalam senario dengan pencahayaan pentas kompleks, supaya anda boleh menangkap ahli persembahan dalam perincian yang jelas dan warna yang terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_an_email",
+            "value":"Hantar mel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"Import berjaya",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"Tingkatkan imej",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"Syot bulan, butang, dwiketik untuk mengaktifkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_soft",
+            "value":"Terang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"AF syot tunggal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"Mono",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"Gaya romantik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"Ditukarkan kepada JPG Standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"Profesional",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"Spesifikasi foto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"Kamera perlu mengakses lokasi anda untuk menambah tag lokasi pada foto dan video. Benarkan?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"%ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"Pijar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"Gaya tersuai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"AF berterusan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"Diletakkan di belakang %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"Dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"Kelajuan pengatup yang sangat perlahan membolehkan anda mencipta kesan eter dengan cahaya. Terdapat empat mod dipratetap, disesuaikan dengan senario lukisan cahaya yang umum (Lampu kereta, Grafiti cahaya, Air selembut sutera, dan Leretan bintang). Untuk hasil terbaik, gunakan tripod.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"Gaya tersuai %1$s. Dwiketik dan tahan, kemudian leret ke kiri atau kanan untuk menukarkan gaya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"Gerak perlahan %dx sahaja tersedia.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"Nada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"Nama gaya tersuai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"Imej & video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"end_shooting",
+            "value":"Tamatkan syot",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"Dipilih",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"Kepala %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"Leret untuk menukar corak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"Denyar selepas %ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_access",
+            "value":"Benarkan akses",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"Ketik sini untuk membolehkan subjek anda melihat pralihat juga.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"Syot stabil dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"Cantik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"Putarkan telefon anda dengan lancar mengikut panduan sambil terus memastikannya stabil. Selepas anda selesai dengan syot anda, kamera akan menggabungkan imej yang ditangkap menjadi foto panorama. Ciri ini sesuai untuk mengambil syot landskap, skap bandar raya, dan pemandangan seumpamanya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"Menu pantas dibuka",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"Kaburkan latar belakang untuk menonjolkan subjek anda.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"Tetapan foto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"Namakan semula",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"Aplikasi ini memerlukan kebenaran %1$s, %2$s, dan %3$s. Untuk memaparkan foto dan video yang anda ambil, ia perlu membaca maklumat imej, video, dan lokasi. Ia mungkin juga perlu menggunakan mikrofon untuk merakam audio.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"Moden",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"Pendedahan dikunci",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"Syot stabil dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse",
+            "value":"Selang masa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"%1$d. Langkah berjaga-jaga",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"Langit biru",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"Pendedahan dan fokus dikunci",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"Denyar dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"Ini membolehkan anda mengambil foto dan video dari jam tangan. Anda boleh mengurus kebenaran ini dalam aplikasi Kesihatan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"Gunakan untuk video %d fps sahaja",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot_details",
+            "value":"Sistem kamera fokus super menggabungkan enjin XD Motion untuk merakam subjek yang bergerak pada kelajuan sehingga %d km/j, sama ada anda merakam dari jarak dekat atau jauh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"Bunyi pengatup dibisukan apabila mengambil gambar bergerak.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"Kelajuan pengatup yang sangat perlahan membolehkan anda mencipta kesan eter dengan cahaya. Terdapat empat mod dipratetap, disesuaikan dengan senario lukisan cahaya yang umum (Lampu kereta, Grafiti cahaya, Air selembut sutera, dan Leretan bintang).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"Leret ke kiri dalam bahagian pralihat untuk menukarkan gaya tersuai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"Ketik anak panah di bahagian atas untuk membuka menu pantas.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"AI akan mengenal pasti latar untuk melaraskan warna dan rona kulit untuk foto yang lebih terang. Ketik ikon AI untuk menghidupkan/mematikan kesan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"Semula jadi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"Peta Buruj dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"Digunakan untuk merekod tempat foto dan video diambil, dan memaparkan maklumat lokasi syot dalam tera air.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"Perlahankan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset",
+            "value":"Tetapkan semula",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"Jejak subjek dipilih dalam bingkai mengikut pergerakannya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"Dalam mod RAW, zum hanya boleh dilaraskan dengan mengetik pratetap atau mencubit skrin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description",
+            "value":"Digunakan untuk merakam tempat foto dan video diambil, memaparkan maklumat lokasi rakaman dalam tera air dan menyediakan ciri peta bintang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"Dalam Mod potret, anda boleh menggunakan kesan kecantikan dan mendapatkan pelbagai jenis bokeh dengan melaraskan apertur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"Denyar sentiasa dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exits_same_card",
+            "value":"Pratetapan dengan parameter warna-warna ini sudah wujud.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"Kawalan audio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"skip",
+            "value":"Langkau",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"Syot Kilat Ultra boleh dinyahdayakan dari tetapan Kamera.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"Pendarfluor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"Denyar selepas %d saat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter",
+            "value":"Penapis",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"Auto-denyar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"(%1$s:%2$s) %3$sp (Disyorkan)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"Denyar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_details",
+            "value":"Hasilkan vlog yang memukau dengan menggabungkan sudut kamera dan kesan yang berbeza.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"Import imej",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"Warna",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_on",
+            "value":"Makro super dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"Bantuan paparan dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"Klasik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"Putarkan mengikut arah anak panah untuk mengambil foto ke-3.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"Fokus manual",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"Fokus hanya boleh dikunci dalam AF-C.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_zoom",
+            "value":"Zum audio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"Digunakan untuk memaparkan maklumat lokasi dalam tera air foto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"Batalkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"Pandang sini untuk hasil lebih baik.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"Dwipreviu tidak tersedia semasa menayangkan skrin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"Buka menu pantas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"Kekalkan data kedalaman dan pergerakan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary",
+            "value":"Lampu bantuan fokus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"Pralihat kamera depan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"%1$d: %2$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"Condongkan peranti anda supaya kedua-dua bulatan sejajar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"Pendedahan terlalu tinggi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"Syot stabil dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_record_remind",
+            "value":"Satu aplikasi perakaman sedang berjalan dalam latar belakang (seperti Perakam, Panggil dll). Untuk merakam video, tutup aplikasi tersebut dahulu.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"Diletakkan di belakang %1$s, pada baris %2$d, lajur %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"Digunakan untuk mengambil foto dan merakam video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"Kesan warna",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"Syot dalam gelap untuk hasil terbaik.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"Orientasi landskap",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"Pastikan kamera belakang bersih dan tidak terhalang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"Putarkan peranti anda mengikut arah yang ditunjukkan. Apabila bulatan sejajar dengan titik, kamera akan mengambil foto. Ketik pengatup untuk menghentikan pada bila-bila masa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_details",
+            "value":"Kamera akan melaraskan pendedahan dan warna secara automatik apabila anda mengesyot video HD.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"Benarkan Kamera mengakses lokasi tepat anda?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"Ketik untuk mengambil foto atau video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"%1$s, suhu warna %2$d, penepuan %3$d, ton %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"Kamera belakang dihalang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"Cerah",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"Orientasi potret",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"Batalkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"Zum tidak disokong pada Syot stabil dihidupkan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"Dalam Mod potret, anda boleh menggunakan kesan kecantikan dan mendapatkan pelbagai jenis bokeh dengan melaraskan apertur. Pendedahan dan warna dilaraskan secara automatik semasa anda mengesyot, untuk memberikan foto yang sebaik mungkin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"common_watermark",
+            "value":"Tera air standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_description",
+            "value":"Penerangan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition",
+            "value":"Komposisi AI",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"Hidung %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"Apabila anda mengambil foto manusia, kucing, atau anjing dalam Mod foto, data kedalaman dan pergerakan akan dikekalkan untuk membolehkan pengeditan selepas tangkapan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"Subjek",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_selfie",
+            "value":"Selfie belakang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"Resolusi video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"Grid bantu, dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Beauty_on",
+            "value":"Dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"Komposisi AI dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"Gambar bergerak dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"Makro super · Kekalkan lebih banyak bahagian bingkai dalam fokus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_off",
+            "value":"Matikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"Dwiketik untuk mengaktifkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"Kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"Prarakam dihidupkan. Sentuh & tahan pengatup untuk menangkap sehingga %d saat rakaman sebelum rakaman bermula.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_parameter",
+            "value":"Masa tangkap",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"Tiada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"Auto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aperture_mode",
+            "value":"Apertur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"Syot stabil ditingkatkan dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"Solekan %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"Tahap ton %1$d, julat boleh laras %2$d hingga %3$d. Dwiketik untuk menggunakan, atau dwiketik dan tahan, kemudian seret ke atas atau bawah untuk menukar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"Tidak dapat menangkap foto buruj. Ubah sudut syot anda dan cuba lagi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"Benarkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"Sentuh & tahan untuk mengunci pendedahan dan fokus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"Gerak perlahan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama",
+            "value":"Panorama",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_light",
+            "value":"Grafiti cahaya",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"Tetapan semasa tidak membenarkan kemasukan cahaya yang mencukupi. Pulihkan tetapan pendedahan lalai?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"Digunakan untuk membuat tag maklumat lokasi pada foto dan video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"Ketik sini untuk menukarkan gaya tersuai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"Pengatup jauh diputuskan sambungan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"Pulihkan tataletak lalai?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"live_photo",
+            "value":"Gambar bergerak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"Suhu peranti tinggi. Gambar dalam Gambar tidak tersedia.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"Zum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"Dwiketik untuk menukarkan, dwiketik dan tahan untuk menyeret ke kiri atau kanan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"Nama gaya tersuai ini sudah wujud.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"Kekalkan anak panah pada garis tengah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"Kamera peranti anda aktif, tetapi aplikasi ini hanya boleh mengakses imej yang anda tangkap.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"Ambil syot kilat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"Leret ke kiri atau kanan untuk bertukar antara gaya tersuai. Cipta gaya anda sendiri dengan meleret pada kad warna, atau tiru gaya orang lain dengan mengimport foto yang diambil oleh mereka.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"Ketik ikon %s untuk menukarkan gaya teks dengan pantas.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"Tahap penepuan %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"%ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"Potret",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"Zum audio dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"make_a_call",
+            "value":"Panggil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting",
+            "value":"Lukisan cahaya",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"Ketik ikon pengatup dan gerakkan peranti dengan perlahan dari kiri ke kanan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"Gunakan AI untuk menajamkan foto diambil pada zum tinggi atau cahaya rendah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"Malam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"Bingkai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"Kebenaran Kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"Ketik sini untuk menukarkan mod fokus.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun",
+            "value":"Matahari terbit/terbenam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"Sebut \"Cheese” untuk mengambil foto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Mati",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"Balikkan untuk menukarkan skrin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"Tidak tersedia apabila Gambar bergerak dihidupkan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"Pulihkan tataletak lalai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_color",
+            "value":"Warna sempadan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_water",
+            "value":"Air selembut sutera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_and_shade",
+            "value":"Ton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"Amaran suhu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d saat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"Alih ke kanan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"Menjanakan imej, pastikan peranti anda stabil…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"Komposisi AI boleh digunakan pada zum kamera %1$sx, %2$sx, atau %3$sx. Hasil adalah terbaik apabila mengambil foto pemandangan, bangunan, dan orang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"Prioriti fokus diberikan kepada objek latar depan dalam pusat bingkai (jarak minimum %d cm).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"Hangat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_a_message",
+            "value":"Hantar mesej",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"Pulihkan tetapan pendedahan lalai?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"Selang bingkai: %1$ss\nSesuai untuk bunga mekar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"Syot stabil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"%1$s fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"Sentuh & tahan ikon EV·, AF·, dan WB· untuk mengunci nilainya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"Ditukarkan kepada HEIF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"Fokus dekat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"Panorama HD",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"Peranti anda terlalu panas. Kamera akan ditutup selepas %1$d saat.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"Tambah tera air secara automatik pada foto yang diambil dengan kamera belakang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_normal",
+            "value":"Asal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"Zum baru",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"Dialihkan ke depan %1$s, pada baris %2$d, lajur %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"Komposisi AI boleh digunakan pada zum %1$sx atau %2$sx. Hasil adalah terbaik dengan pemandangan, bangunan, dan orang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"details",
+            "value":"Butiran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"Leret ke kanan untuk bertukar kepada gaya tersuai %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"Pulihkan tetapan kecantikan lalai?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"Subuh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"horizontal_level",
+            "value":"Aras mendatar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"Ditingkatkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"passion",
+            "value":"Panorama",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"Pegang telefon anda secara mendatar untuk gubahan yang lebih baik.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"Auto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"Denyar selepas %ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_disabled",
+            "value":"Kamera dinyahdayakan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"Kekalkan warna subjek anda dan jadikan yang lain hitam & putih.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"Pralihat kamera belakang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"Selang bingkai: %1$ss\nSesuai untuk matahari terbit/terbenam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"Alih ke kiri.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"Auto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"Tambah butang pengatup boleh alih.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"Mod ini dioptimumkan untuk mengesyot konsert dan persembahan pentas yang lain.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_angle",
+            "value":"Luas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"Denyar dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"Tukar kepada mod selfie belakang secara automatik jika anda menghadap kamera belakang selepas menyahlipat dan membalikkan telefon.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"Tulen",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"Lembut",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"Bisukan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"Tukar kepada",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"Grid bantu, dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details",
+            "value":"Gerakkan kamera secara mendatar atau menegak untuk mengambil foto panorama.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"Persekitaran terlalu terang. Tidak dapat menangkap foto buruj",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"Lembut",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"Memandangkan kesan fluoresen adalah malap, hasil terbaik dicapai dalam persekitaran yang sangat gelap. Sila berjaga-jaga semasa menggunakan mod ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"Tahap kecantikan %1$d, julat boleh dipilih adalah daripada %2$d hingga %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_on",
+            "value":"Hidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"Pendedahan dibuka kunci",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"Pendedahan dan fokus dikunci.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"Leret ke kiri untuk mengambil foto letusan, leret kanan untuk merakam video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_off",
+            "value":"Makro super dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"Tandatangan diperibadikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_auto",
+            "value":"Auto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"Peningkatan malam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_details",
+            "value":"Rakam video gerak perlahan tanpa had panjang. Gerak perlahan super boleh digunakan untuk merakam video pada kadar bingkai ultra tinggi secara manual atau secara automatik. Mod ini amat berkesan dalam persekitaran yang benar-benar terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_occupied",
+            "value":"Aplikasi lain sedang menggunakan kamera. Tutup aplikasi itu, kemudian lancarkan semula aplikasi ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"physical_aperture",
+            "value":"Apertur fizikal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"Menjelaskan foto… Sila stabilkan peranti anda.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_title",
+            "value":"Benarkan \"%1$s\" menggunakan kamera?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"Kecantikan dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"Tingkatkan keadaan pencahayaan untuk kesan kabur yang lebih baik.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"Kadar bingkai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"Objek statik sahaja. Pastikan kamera stabil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"Fokus dikunci",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"Terang · Pelbagai, Amat jelas",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"jpg_description",
+            "value":"Menawarkan keserasian yang lebih baik daripada HEIF.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"Nyahlipat untuk mengambil selfie dengan kamera belakang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_pause",
+            "value":"Jeda",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"Kejelasan ultra AI",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"Foto lebih jelas dan bertekstur, membolehkan anda menangkap gambar haiwan kesayangan dan pemandangan yang lebih hebat.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_access",
+            "value":"Akses peribadi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"Tolak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"Pengurangan hingar angin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_not_detected",
+            "value":"Sambungkan kamera dan lancarkan semula aplikasi ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"Gambar bergerak dinyahdayakan kerana terlalu gelap. Cari tempat yang lebih terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"Kadar bingkai adaptif",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details_more",
+            "value":"Jarak fokus yang lebih dekat membolehkan anda menangkap gambar subjek anda dalam perincian yang sangat halus. Makro super boleh digunakan untuk foto dan video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"Mikrofon",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"Kejelasan Ultra AI adalah sesuai untuk mengesyot objek pegun dan pemandangan dalam keadaan yang bercahaya terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"Pengesanan pergerakan dihentikan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"Digunakan untuk merakam video, mengambil gambar bergerak, dan kawalan audio.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"Tukar kepada panorama mendatar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go",
+            "value":"Pergi ke %1$s untuk membayar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"Putarkan mengikut arah anak panah untuk mengambil foto ke-2.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"Pastikan peranti anda sekata.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro",
+            "value":"Makro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"Lukisan cahaya",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"%1$d. Pengenalan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Lagi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"Ketik pengatup dan gerakkan kamera dengan perlahan mengikut arah anak panah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"Mod pentas sesuai untuk mengesyot gig, konsert, drama, dan persembahan yang lain.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"Butang radio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"Tangkap imej yang jelas dan terang dalam keadaan pencahayaan rendah dengan algoritma pengurangan hingar yang canggih. Dua mod syot tersedia: Syot malam super dan Syot bulan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"Imbangan putih dikunci",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"Garis rambut %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"Dengan denyar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"Pusat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"Makro super",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_heif",
+            "value":"HEIF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"Bateri teramat rendah. Tidak dapat memulakan rakaman.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"Grid",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"Faham",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"Tag maklumat lokasi pada foto dan video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"Pratetap lalai, suhu warna %1$d, penepuan %2$d, ton %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"Tukar ke kamera belakang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"Pendek",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"Ketik sini untuk menukarkan mod fokus.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"Pastikan peranti anda stabil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d saat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details",
+            "value":"Dengan adanya algoritma pengurangan hingar yang canggih, telefon anda boleh menangkap imej yang tajam dan terang walaupun dalam keadaan cahaya rendah. ISO dan kelajuan pengatup boleh dilaraskan secara manual untuk syot yang lebih kreatif. Apabila menggunakan kamera depan untuk mengambil potret, telefon akan memberikan pencahayaan penuh untuk menghapuskan bayang yang tidak diinginkan pada wajah subjek. Selfie yang diambil pada waktu malam juga akan kelihatan jelas dan terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"Tukar kepada panorama menegak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"Tetapan semula diselesaikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"TUTUP KAMERA",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details",
+            "value":"Laraskan tetapan kamera anda dengan lebih terperinci untuk mendapatkan syot yang anda inginkan. Mod Pro membolehkan anda melaraskan pelbagai tetapan lanjutan seperti pemeteran, ISO, kelajuan pengatup, nilai pendedahan (EV), imbangan putih, dan mod fokus.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_raw",
+            "value":"RAW",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"Tidak interaktif",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"right_text",
+            "value":"Teks di sebelah kanan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_watermark",
+            "value":"Video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"Peta Buruj dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"Dwipreviu tidak tersedia semasa merakam skrin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"Format video efisien",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"Matikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"Sesetengah tetapan tidak tersedia pada nilai ISO ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_location",
+            "value":"Lokasi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"Kawasan pelarasan warna. Seret secara mendatar untuk melaraskan suhu warna atau secara menegak untuk melaraskan penepuan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"Untuk Tetapan dan ciri lain, ketik atau leret di anak panah di bahagian bawah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"Skrin penuh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"Denyar selepas %ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"Untuk mendapatkan maklumat lokasi semasa berada dalam bangunan, pastikan sambungan Internet dikekalkan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"Untuk menggunakan komposisi AI, letakkan titik dalam bulatan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"Pengatup jauh disambungkan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture",
+            "value":"Apertur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"Merah jambu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot",
+            "value":"Syot kilat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"Leret ke kiri untuk bertukar kepada gaya tersuai %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"Syot stabil dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_applet",
+            "value":"Buka program mini %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"Kejelasan Ultra AI adalah sesuai untuk mengesyot potret dalam keadaan yang bercahaya terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_record",
+            "value":"Mulakan rakaman",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"Dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"Tanpa denyar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"Dwitekan butang Kelantangan turun apabila skrin dimatikan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"Asal · Tulen, Semula jadi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"Potret penuh bintang, butang, dwiketik untuk mengaktifkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_occupied",
+            "value":"Kamera sibuk",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"Mengimbas untuk objek bergerak…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"Beralih ke lokasi yang lebih terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"frame_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"%ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"Pro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"Perkhidmatan ini memerlukan %d kebenaran:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"Benarkan pada kali ini sahaja",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera",
+            "value":"Buka Kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"Dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"operate_frequently",
+            "value":"Cuba sebentar lagi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"Menu pantas ditutup",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"Skrin penuh | %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"Imbangan putih dibuka kunci",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"Nisbah aspek",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"Leret ke atas atau bawah untuk mengubah tahap zum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"Tukar kepada video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"Prarakam dimatikan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"Tera air masa terhad sahaja",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"Makro super · Tonjolkan subjek",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"Dalam mod Pro, anda boleh melaraskan pelbagai tetapan kamera lanjutan dengan bebas untuk mendapatkan syot yang anda inginkan. Ini termasuklah pemeteran, ISO, kelajuan pengatup, nilai pendedahan (EV), imbangan putih, dan mod fokus, antara lainnya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_new",
+            "value":"Dalam mod Pro, anda boleh melaraskan parameter lanjutan dengan bebas untuk mendapatkan syot yang anda inginkan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"Kawalan pintar membolehkan anda mengunci pendedahan dan fokus dengan menekan lama pengesan cap jari dengan jari anda.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_bright",
+            "value":"Berseri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"Alih ke belakang %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature",
+            "value":"Suhu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"Selang bingkai: %1$ss\nSesuai untuk awan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"Butang untuk menghidupkan peta Buruj, dwiketik untuk mengaktifkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"Ditukarkan kepada RAW",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"Cerah · Elegan, Segar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"Dengan apertur yang lebih luas, anda boleh menangkap subjek anda dengan terperinci sambil menghasilkan kesan bokeh lembut dalam latar belakang. Untuk hasil terbaik, jarak antara kamera dengan subjek hendaklah tidak lebih daripada %d meter. Mod ini membolehkan anda mengawal apertur fizikal dan maya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"Kandungan disalin ke papan klip.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"Pendarfluor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"Bercakap dengan lantang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"Cahaya yang masuk tidak mencukupi. Pulihkan tetapan pendedahan lalai?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"Benarkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_more",
+            "value":"Dalam mod Pro, anda boleh melaraskan pelbagai tetapan kamera lanjutan dengan bebas untuk mendapatkan syot yang anda inginkan. Ini termasuklah pemeteran, ISO, apertur, kelajuan pengatup, nilai pendedahan (EV), imbangan putih, dan mod fokus, antara lainnya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"Dayakan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"Ketik sini untuk melaraskan gaya tersuai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"Objek statik sahaja. Pastikan kamera stabil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"Peta Buruj dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"Manual",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"Merakam…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"Mod kecantikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_resume",
+            "value":"Sambung semula",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"Gaya seluloid",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"Tangkap imej yang tajam dan terang dalam keadaan cahaya rendah dengan adanya algoritma pengurangan hingar yang canggih. Empat mod syot tersedia: Syot malam super, Syot bulan, Langit penuh bintang, dan Potret penuh bintang. Apabila kamera depan digunakan, skrin peranti akan meningkatkan kecerahan untuk memberikan cahaya tambahan, membolehkan wajah tampil cerah dan jelas walaupun dalam kegelapan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gourmet_food",
+            "value":"Sedap",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"Cantik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"Putarkan kamera perlahan-lahan sama ada secara mendatar atau menegak untuk mengambil foto panorama. Ini amat sesuai untuk menangkap pemandangan luas seperti gunung dan latar langit dengan perincian yang menakjubkan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"floating_shutter",
+            "value":"Pengatup apungan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"Akses peribadi ke kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view",
+            "value":"Lihat %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details",
+            "value":"Ambil syot dekat ekstrem dengan kamera belakang, dan tangkap gambar dunia di sekeliling anda yang terperinci.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pop_item_on",
+            "value":"Hidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"Alihkan bingkai untuk memilih bahagian yang lain.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"Menggunakan kurang ruang storan daripada JPG di samping mengekalkan kualiti visual yang sama. Keserasian mungkin terhad berbanding JPG. Anda boleh menukarkan HEIF kepada JPG dalam Galeri.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_details",
+            "value":"Putarkan telefon dengan lancar mengikut panduan untuk mengambil syot panorama.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"Selang bingkai: %1$ss\nSesuai untuk kereta dan orang ramai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"Leret ke tepi untuk syot letusan atau video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"HDR Terang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"Denyar telefoto sedang digunakan untuk meningkatkan kualiti imej.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"Dwipralihat dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"Dengan apertur yang lebih luas, anda boleh menangkap subjek anda dengan terperinci sambil menghasilkan kesan bokeh lembut dalam latar belakang. Untuk hasil terbaik, jarak antara kamera dengan subjek hendaklah tidak lebih daripada %d meter.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"Untuk hasil terbaik bagi potret penuh bintang, hidupkan denyar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"Pencahayaan terlalu rendah. Mengoptimumkan pendedahan…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"Suhu warna, tahap %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"%1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"Foto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_details",
+            "value":"Kamera akan melaraskan pendedahan dan warna secara automatik apabila anda mengambil foto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"Buat pan kamera dengan perlahan-lahan sama ada secara mendatar atau menegak, sambil memastikannya sestabil mungkin. Pastikan anak panah separas dengan garis tengah. Apabila anda selesai mengesyot, kamera akan menggabungkan semua imej yang telah anda tangkap secara automatik menjadi satu foto panorama. Mod ini sesuai untuk foto landskap dan kumpulan besar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"Putarkan mengikut arah anak panah. Apabila titik sejajar dengan bulatan, foto akan diambil secara automatik. Ketik pengatup pada bila-bila masa untuk menghentikan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"Syot stabil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"Mengenal pasti buruj…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smile_capture",
+            "value":"Tangkap senyuman",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"Dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"Kamera depan sahaja",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"Tag lokasi tidak boleh digunakan dalam mod kamera peribadi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_title",
+            "value":"Lokasi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"Denyar manual",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"Imbangan putih hanya boleh dikunci dalam mod AWB.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"Manual",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"Hanya terpakai pada foto yang menggunakan gaya XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"Selamat datang ke",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"Kejelasan Ultra AI adalah sesuai untuk mengesyot potret dalam keadaan yang bercahaya terang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"Dwipralihat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"Video potret",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"Mod fokus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_stage",
+            "value":"Merakam persembahan langsung? Hidupkan mod pentas untuk mendapatkan hasil terbaik.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"Kecantikan: %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_mode",
+            "value":"Vlog",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"Kamera diretrak kerana telefon dikesan terjatuh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"Pralihat kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"Tera air tersuai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_text",
+            "value":"Teks",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"Warna AI",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"Ketik skrin untuk mengaktifkan kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"Penapis semasa tidak tersedia pada %1$dp (%2$d fps). Ditukarkan kepada %3$dp (%4$d fps).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"Dwiketik untuk menukarkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"%s sedang diseret",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"Lokasi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_off",
+            "value":"Ultrastabil dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"Mod ini dioptimumkan untuk mengesyot konsert dan persembahan pentas yang lain, supaya anda boleh menangkap ahli persembahan dan kesan pencahayaan dalam perincian yang jelas dan warna yang terang. Mod ini boleh digunakan untuk foto dan video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"Had dicapai. Menyimpan foto sekarang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"Dialihkan ke belakang %1$s, pada baris %2$d, lajur %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"Ketik lagi untuk mengedit.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"saturation",
+            "value":"Penepuan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw",
+            "value":"Peta Buruj",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"Res tinggi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"Pengambilan audio kini tertumpu pada bahagian yang dizum.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"Lampu bantuan fokus dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"Peranti terlalu panas. Denyar tidak tersedia.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"Sila lancarkan semula aplikasi ini dan cuba lagi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"Leret ke kanan dalam bahagian pralihat untuk menukarkan gaya tersuai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"Syot stabil standard dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"Menyimpan… Jangan keluar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"Hidup",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"Denyar dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_control_off",
+            "value":"Dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"Gaya tersuai XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"Diletakkan di depan %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"Dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_notification",
+            "value":"Hanya tersedia dengan tera air bingkai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"Kawalan pintar membolehkan anda mengezum masuk/keluar dengan meleret di pengesan cap jari.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"Bergerak jauh lagi untuk kesan kabur yang lebih baik.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"Ton %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"Ketik sini untuk lebih banyak mod malam.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"Kunci autofokus dihidupkan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"Zum tidak disokong dalam mod RAW.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"Tera air bingkai",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"Dwiketik untuk Dwipralihat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"Mengambil %d foto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_parameter",
+            "value":"Tetapan Kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"Kecantikan dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"Denyar selepas %d saat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"Denyar dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"Kecantikan dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"Peta Buruj dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_storage_space",
+            "value":"Storan tidak mencukupi. Kamera mungkin tersela masa. Kosongkan ruang untuk memulihkan prestasi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"Genius foto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"Dwiketik untuk mengaktifkan, atau dwiketik dan tahan untuk membuka lebih banyak pilihan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"Selfie belakang pintar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"Diletakkan di depan %1$s, pada baris %2$d, lajur %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"Perihal fotografi pendarfluor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"Zum tidak tersedia dalam Mod panorama.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"Buka Kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"big_text_s",
+            "value":"%ss",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"Dirakam %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"Kamera depan sahaja",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pay",
+            "value":"Buka %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"Foto terkini",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"Zum audio dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"Lebih banyak mod akan datang…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"Ini membolehkan anda melihat pralihat kamera dan mengambil foto serta video dari jam tangan. Anda boleh mengurus kebenaran ini dalam aplikasi Kesihatan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"Gerakkan peranti anda mengikut arah anak panah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picture_watermark",
+            "value":"Imej",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"Kontur %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"general",
+            "value":"Umum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"standard_style",
+            "value":"Standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"Mod malam membolehkan anda menangkap imej yang tajam dan terang walaupun dalam keadaan cahaya rendah dengan adanya algoritma pengurangan hingar yang canggih.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_speed",
+            "value":"Kelajuan pengatup",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Batalkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"Denyar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"Pendedahan terlalu rendah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"Kenyataan privasi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"Peranti terlalu panas. Denyar tidak tersedia.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"Imbangan putih",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"Tukar ke kamera depan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_contact",
+            "value":"Kenalan baru",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"Landskap",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"Perlahankan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"Baru",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"Denyar dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_night_view",
+            "value":"Syot malam super",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace",
+            "value":"Gantikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"Kelajuan %d kali",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"Titik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"Pro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"Skrin penuh | %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"Ambil foto secara automatik apabila orang senyum.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_disabled",
+            "value":"Dasar keselamatan melarang penggunaan kamera.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"Sentiasa dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"Naikkan suara anda untuk mengambil foto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_Confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"Butang perbandingan kesan kecantikan. Dwiketik dan tahan untuk menunjukkan imej tanpa kesan kecantikan.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_agree",
+            "value":"Setuju",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"Resolusi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"Dwiketik dan tahan untuk menyeret",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"Licin %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"Seret petak untuk melaraskan fokus, dan bulatan untuk melaraskan pemeteran.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"Tangkap imej yang jelas dan terang dalam keadaan pencahayaan rendah dengan algoritma pengurangan hingar yang canggih. Dua mod syot tersedia: Syot malam super dan Syot bulan. Apabila kamera depan digunakan, skrin peranti boleh meningkatkan kecerahannya untuk memberikan cahaya tambahan, membolehkan muka kelihatan terang dan jelas walaupun dalam persekitaran gelap.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark",
+            "value":"Tambah tera air",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"Tetapan ini tidak boleh dikunci.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"Tidak boleh melaraskan apertur secara manual pada jarak fokus ini.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"Teruskan penggunaan kamera?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"Fokus dibuka kunci",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"Kontur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"Gaya tersuai baru ditambah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"Mendung",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"Nyahlipat telefon",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"Mod bulan dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"Tanpa denyar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"Sejuk",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"Komposisi AI dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"AI boleh mencadangkan pembingkaian optimum untuk foto anda. Sejajarkan sahaja peranti anda dan zum akan dilaraskan secara automatik. Penghasilan terbaik dengan pemandangan, bangunan, dan orang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"Bantuan paparan sudah dihidupkan. Video masih akan dirakam dalam Log.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"festival_watermark",
+            "value":"Tera air percutian",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"Bateri teramat rendah. Rakaman dihentikan dan disimpan secara automatik.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"Peranti anda terlalu panas. Kamera akan ditutup selepas %1$d saat.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format",
+            "value":"Format foto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details",
+            "value":"Gaya warna",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_res_details",
+            "value":"Fotografi beresolusi tinggi mempunyai kepadatan piksel yang lebih tinggi, untuk kejelasan dan perincian yang lebih mantap.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"global_exposure",
+            "value":"Dedah",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"Dengan denyar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"Menyimpan…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"Berbunga",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"Ini membolehkan anda melihat lokasi foto dan video tepat.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"Digunakan untuk memaparkan dan menyimpan foto dan video yang anda ambil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"Pergi ke Tetapan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"Kamera memerlukan kebenaran Lokasi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"Video mengurangkan penggunaan kira-kira %1$s ruang, tetapi mungkin tidak dapat dimainkan pada peranti lain.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"Tekan kekunci jawapan pada set kepala untuk mengambil foto atau video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"Manual",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"Selang (%d foto)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"Apabila anda mengambil selfie cermin, anda boleh menetapkan skrin kulit untuk memaparkan imej peribadi yang akan muncul bersama anda dalam syot tersebut. Untuk menyediakan ini, pergi ke menu pantas dalam Kamera dan ketik Dwipralihat.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"Mod bulan dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pre_record",
+            "value":"Prarakam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"Ketik ikon %s untuk menukarkan gaya XMAGE dengan pantas.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"Fotografi pendarfluor ialah mod kamera yang menggunakan cahaya isian UV. Cahaya UV yang dipancarkan semula dari bahan tertentu mengeluarkan warna pendarfluor yang boleh ditangkap sebagai fotograf bergaya.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"Mod malam membolehkan anda menangkap imej yang tajam dan terang walaupun dalam keadaan cahaya rendah dengan adanya algoritma pengurangan hingar yang canggih.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"Tangkap imej yang tajam dan terang dalam keadaan cahaya rendah dengan adanya algoritma pengurangan hingar yang canggih. Empat mod syot tersedia: Syot malam super, Syot bulan, Langit penuh bintang, dan Potret penuh bintang.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_speed",
+            "value":"Kelajuan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"Aplikasi ini memerlukan kebenaran %1$s, %2$s, dan %3$s. Ia juga perlu membaca foto dan video untuk memaparkan foto dan video yang anda ambil.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"Dihidupkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"Syot Kilat Ultra",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"Tukar kepada Mod foto",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"request_location_msg",
+            "value":"Benarkan akses lokasi supaya Kamera boleh membuat geotag foto dan video anda. Ini membolehkan anda melihat tempat ia diambil dalam Galeri.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"Padamkan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"Penapis semasa tidak tersedia pada %1$s (%2$d fps). Ditukar secara automatik kepada %3$dp (%4$d) fps.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"Pastikan peranti stabil.\nTunggu hitung undur atau ketik pengatup untuk menangkap foto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"Fotografi beresolusi tinggi mempunyai kepadatan piksel yang lebih tinggi, untuk kejelasan dan perincian yang lebih mantap. Dalam mod Res tinggi, foto mungkin mengambil masa lebih lama sedikit untuk dihasilkan. Pegang telefon dengan stabil sehingga proses selesai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"Storan peranti penuh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"Maklumat lanjut",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"Gaya standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"Ketik sini untuk mengimport gaya tersuai.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"Untuk Tetapan %s, ketik atau leret ke atas pada anak panah di bahagian bawah.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"Aplikasi ini hanya boleh mengakses foto dan video yang anda ambil. Ia tidak boleh melihat item yang ada dalam pemidang tilik. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"Seret ikon untuk melaraskan tataletak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"Apabila Syot stabil dihidupkan, kualiti gambar terhasil adalah terbaik apabila cahaya mencukupi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"small_art_vision",
+            "value":"Celia Lens",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark",
+            "value":"Tambah tera air",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"Sebut \"Cheese” untuk mengambil foto.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"Notis Kebenaran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"Dimatikan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"Langit penuh bintang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"Monokrom · Abadi, Bersuasana",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Tetapan",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Copyright (c) Huawei Device Co., Ltd. 2024-2025. All rights reserved.
+  - Licensed under the Apache License, Version 2.0 (the "License");
+  - you may not use this file except in compliance with the License.
+  - You may obtain a copy of the License at
+  -
+  -     http://www.apache.org/licenses/LICENSE-2.0
+  -
+  - Unless required by applicable law or agreed to in writing, software
+  - distributed under the License is distributed on an "AS IS" BASIS,
+  - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  - See the License for the specific language governing permissions and
+  - limitations under the License.
+  -->
+
+<svg width="24px"
+     height="24px"
+     viewBox="0 0 24 24"
+     version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_camera_confirm</title>
+    <g
+        id="ic_camera_confirm"
+        stroke="#000000"
+        stroke-opacity="0.3"
+        stroke-width="0.3"
+        fill-rule="evenodd">
+        <path
+            d="M17.7337572,13.2625632 C18.4029369,13.9317428 18.4168781,15.0080354 17.7755809,15.6941781 L17.7337572,15.7374369 L12.0340097,21.4371844 C11.7411165,21.7300776 11.2662428,21.7300776 10.9733496,21.4371844 C10.6909168,21.1547516 10.6808299,20.7031049 10.9430889,20.4085854 L10.9733496,20.3765242 L16.3195436,15.0303301 C16.6019764,14.7478974 16.6120633,14.2962506 16.3498043,14.0017311 L16.3195436,13.96967 L5.97334957,3.62347583 C5.68045635,3.33058261 5.68045635,2.85570888 5.97334957,2.56281566 C6.25578232,2.28038291 6.70742909,2.27029603 7.00194855,2.53255501 L7.03400974,2.56281566 L17.7337572,13.2625632 Z"
+            id="path-1"
+            fill="#000000"
+            fill-rule="nonzero"
+            transform="translate(12.000000, 12.000000) rotate(90.000000) translate(-12.000000, -12.000000) "></path>
+    </g>
+</svg>

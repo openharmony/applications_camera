@@ -1,0 +1,334 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%s-krotne powiększenie",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%s-krotne powiększenie",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%s-krotne powiększenie",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%s-krotne powiększenie",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Interwał: %f sek.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Interwał: %f sek.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Interwał: %f sek.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Interwał: %f sek.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Nagrano %d sekundę",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Nagrano %d sekundy",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Nagrano %d sekundy",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Nagrano %d sekund",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d minutę",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d minut",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d minuty",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d minut",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d sekund",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d sekundę",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d sekundy",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d sekund",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Jednocześnie możesz korzystać z maksymalnie %d stylu niestandardowego. Wybierz ten, który chcesz zastąpić.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Jednocześnie możesz korzystać z maksymalnie %d stylu niestandardowego. Wybierz ten, który chcesz zastąpić.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Jednocześnie możesz korzystać z maksymalnie %d stylów niestandardowych. Wybierz ten, który chcesz zastąpić.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Jednocześnie możesz korzystać z maksymalnie %d stylów niestandardowych. Wybierz ten, który chcesz zastąpić.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%f-krotne powiększenie",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%f-krotne powiększenie",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%f-krotne powiększenie",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%f-krotne powiększenie",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%f sek.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%f sek.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%f sek.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%f sek.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Możesz teraz tworzyć spersonalizowane style kolorów dla swoich zdjęć. Wybierz spośród %1$s wstępnie ustawionego stylu albo eksperymentuj, aby znaleźć swój wyjątkowy.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Możesz teraz tworzyć spersonalizowane style kolorów dla swoich zdjęć. Wybierz spośród %1$s wstępnie ustawionego stylu albo eksperymentuj, aby znaleźć swój wyjątkowy.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"Możesz teraz tworzyć spersonalizowane style kolorów dla swoich zdjęć. Wybierz spośród %1$s wstępnie ustawionych stylów albo eksperymentuj, aby znaleźć swój wyjątkowy.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"Możesz teraz tworzyć spersonalizowane style kolorów dla swoich zdjęć. Wybierz spośród %1$s wstępnie ustawionych stylów albo eksperymentuj, aby znaleźć swój wyjątkowy.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"few",
+                    "value":"%d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"many",
+                    "value":"%d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

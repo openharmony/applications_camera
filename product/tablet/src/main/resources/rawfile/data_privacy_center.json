@@ -1,0 +1,6 @@
+{
+  "mainTitleResource": "$string:app_name",
+  "dstBundleName": "com.ohos.camera",
+  "dstAbilityName": "AccessAbility",
+  "displayOOBE": false
+}

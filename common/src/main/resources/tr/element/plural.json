@@ -1,0 +1,194 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%s kat yakınlaştırma",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%s kat yakınlaştırma",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%f sn aralıklarla",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%f sn aralıklarla",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d saniye kaydedildi",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d saniye kaydedildi",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d dk.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d dk.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d sn.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d sn.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"Tek seferde en fazla %d özel stile sahip olabilirsiniz. Değiştirmek için birini seçin.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"Tek seferde en fazla %d özel stile sahip olabilirsiniz. Değiştirmek için birini seçin.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%f kat yakınlaştırma",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%f kat yakınlaştırma",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%fs",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%f sn",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Artık fotoğraflarınız için kişiselleştirilmiş renk stilleri oluşturabilirsiniz. Ön tanımlı%1$s stil arasından seçim yapın veya tamamen size özel bir görünüm bulmak için denemeler yapın.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"Artık fotoğraflarınız için kişiselleştirilmiş renk stilleri oluşturabilirsiniz. Ön tanımlı%1$s stil arasından seçim yapın veya tamamen size özel bir görünüm bulmak için denemeler yapın.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d dk",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d dk",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

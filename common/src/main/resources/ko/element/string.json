@@ -1,0 +1,5233 @@
+{
+    "string":[
+        {
+            "name":"option_exit_camera",
+            "value":"앱 끝내기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"AI 초고화질 기능은 조명이 충분한 정물 및 풍경 촬영 시 효과적입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"색상 정보",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"infinity_time",
+            "value":"제한 없음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"더 나은 구도를 위해 휴대폰을 세로로 잡습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"달",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"별이 빛나는 하늘, 버튼, 두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"뒤로",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"다분할",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_on",
+            "value":"울트라 스테디 켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"이미지가 과다 노출되었습니다. 기본 노출 설정을 복원하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"사진 이동 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"색조 레벨 %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"고급 노이즈 감소 알고리즘 덕분에 조명이 어두운 환경에서도 휴대폰으로 선명하고 밝은 이미지를 촬영할 수 있습니다. 셔터 속도를 직접 조정하여 더욱 창의적인 사진을 촬영할 수 있습니다. 전면 카메라를 사용하여 포트레이트를 촬영하면 휴대폰은 불필요한 그림자를 제거하기 위해 채우기 조명을 제공하여 얼굴이 선명하고 밝게 촬영됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"프레임 간격: %1$s초\n별 촬영에 적합",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"카메라 및 개인 정보 보호에 대한 방침",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"세련되게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"선택되지 않음",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"사용자 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"%1$sK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_update_date",
+            "value":"마지막 업데이트: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"미러 반사",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"여기를 탭하면 XMAGE 스타일 간에 전환됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star",
+            "value":"스타 트레일",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"미리보기 영역에서 스와이프하여 사용자 설정 스타일을 선택합니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"자세히 알아보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_wifi",
+            "value":"WLAN에 연결",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_mode",
+            "value":"스테이지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"동의를 탭하면 위 약관에 동의함을 의미합니다. 개인정보 처리 방법에 대한 상세정보는 %1$s 및 %2$s 내용을 참조하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"데이터 가져오기 실패",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"길게",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"다양한 독특한 색상 스타일로 내재된 창의력의 한계를 넓히십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"기본 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"function_under_development",
+            "value":"출시 예정 기능입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"표준 워터마크",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_button",
+            "value":"버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"%1$d:%2$d(권장)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"팁",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_style",
+            "value":"필름",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_not_detected",
+            "value":"감지된 카메라가 없습니다",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"꾸미기 모드를 먼저 켜세요",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"비디오 모드에서 사진 찍기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"일광",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_background",
+            "value":"테두리",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"다시 보지 않기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"다른 이름으로 저장",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_portrait",
+            "value":"셀카",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"동의",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy",
+            "value":"%s 복사",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"natural_style",
+            "value":"자연스럽게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_duration_title",
+            "value":"최종 비디오 길이",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"Master AI에 오신 것을 환영합니다. 시나리오에 따라 색상을 자동 조정합니다. 체험하려면 탭합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"비디오 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"low_angle",
+            "value":"앙각 촬영",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"색상과 대비를 강조합니다. 효과는 재생 장치 및 소프트웨어 호환성에 따라 달라집니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"시간의 흐름을 빠르게 변화시키는 비디오와 함께 변화의 본질을 담을 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"디스플레이 보조 기능 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"keep_time_title",
+            "value":"녹화 시간",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"자세히 알아보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"%s 이 모드를 사용하기 전에 본 공지를 충분히 읽으십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"사진 모드에서 %dMP 이미지를 캡처합니다. 이 해상도에서는 이미지를 처리하는 데 시간이 약간 더 걸릴 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"%s 이 모드를 사용함으로써 귀하는 이 공지에 명시된 모든 약관을 읽고, 이해하고, 동의하고, 수락했음을 나타냅니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"%1$s 이 제품에 사용된 보조등은 %2$s 안전 표준을 준수합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"원",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"새 트릭",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"%1$sfps 및 %2$sfps 비디오에 사용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_car",
+            "value":"테일라이트 트레일",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"%d초 후 플래시",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"캘린더에 추가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"표준",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword",
+            "value":"키워드 말하기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"자동 플래시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"마이크가 막혔습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_jpg",
+            "value":"JPG",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"비디오",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"따뜻하게 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"별자리를 캡처했습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"참고: 편집 중에는 실제 조리개 설정을 조정할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"왼쪽으로 스와이프하여 사용자 설정 스타일로 전환합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"이미지가 흐립니다. 렌즈를 닦아 보시기 바랍니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"배터리 잔량이 너무 낮습니다. 플래시를 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"romantic_style",
+            "value":"영화",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"움직이는 피사체를 더욱 선명하게 포착합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"줌 링이 팬 줌으로 교체되었습니다. 또한, 셔터 버튼을 길게 터치한 후 왼쪽으로 스와이프하여 연속 촬영, 오른쪽으로 스와이프하여 비디오 녹화, 위로 스와이프하여 확대/축소할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"사용자 사전 설정 %1$d, 색온도 %2$d, 채도 %3$d, 색조 %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"빠른 메뉴 닫기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"장치를 안정적으로 유지합니다",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"거부",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"노출 보정",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinema_mode",
+            "value":"시네마틱",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"눈 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_intro",
+            "value":"더 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"별자리 지도 끄기 버튼, 두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"소용돌이",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"쓸쓸하게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"프레임 속도를 환경에 맞게 자동으로 조정하여 이미지 품질을 향상시킵니다. 범위: %1$d–%2$dfps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"가상 조리개",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"아래로 이동합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"노출 과다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"비디오 녹화 중 바람 소리를 줄여 음성을 더 선명하게 들리게 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_design",
+            "value":"패턴",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"촬영한 사진과 비디오를 표시하려면 %1$s, %2$s, %3$s 및 %4$s 권한이 필요하며, 이미지, 비디오, 위치 정보를 읽어야 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"노출 부족",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"anime_style",
+            "value":"애니메이션",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"스킨톤 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"아니메 스타일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"포커스 팔로우",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"세로 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"사용자 설정 스타일을 사용한 사진에만 적용됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"확인",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"프레임 간격: %d초",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"방향을 변경하려면 화살표를 탭합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"보조 그리드",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"측정 모드",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"초점 보조등 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details",
+            "value":"인물 사진 모드를 사용하면 배경에 보케 효과를 적용하여 아름다운 사진을 촬영할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"자연스럽게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"색상 팔레트 버튼, 두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"장치를 안정적으로 유지합니다",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"사용자 설정 스타일을 바꾸시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"인터벌 타이머",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"탭하여 후면 카메라로 셀카를 촬영할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"위로 이동합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"비디오 녹화 중지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"편집",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"뷰티 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"문 샷",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait",
+            "value":"별이 빛나는 포트레이트",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"타이머",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d초",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"프레임 속도",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"듀얼 미리보기 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"%1$d. 중요",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"이 모드에서 촬영하는 동안 카메라 플래시를 사용하여 인물을 촬영할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details",
+            "value":"특별한 빛과 그림자 효과를 만들 수 있습니다. 가장 일반적인 라이트 페인팅 시나리오에 맞춰진 4가지 사전 설정된 모드(테일라이트 트레일, 라이트 그래피티, 실키 워터, 스타 트레일) 중에서 선택하십시오. 최상의 결과를 얻으려면 삼각대를 사용하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"최고의 순간을 포착할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"새로운 팬 줌 기능은 더욱 부드럽고 간편한 줌 경험을 제공합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name",
+            "value":"장치 모델",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"플래시 항상 켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"하트",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"완전히 새로운 방식으로 모멘트를 캡처하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open",
+            "value":"%1$s 열기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"스마트 제어를 사용하면 지문 센서를 탭하여 사진과 비디오를 촬영할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"%s 앞으로 이동",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"위치 태그",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"무대 모드는 공연, 콘서트, 연극, 기타 공연 촬영에 적합합니다. 복잡한 무대 조명이 있는 시나리오에서 뛰어난 성능을 발휘하도록 최적화되어 있어, 선명한 디테일과 생생한 색감으로 출연자를 포착할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_an_email",
+            "value":"메일 전송",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"가져오기 성공",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"이미지 개선",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"문 샷, 버튼, 두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_soft",
+            "value":"밝게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"싱글 샷 AF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"모노",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"로맨틱 스타일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"표준 JPG로 전환됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"전문가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"사진 사양",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"카메라는 사진과 비디오에 위치 태그를 추가하기 위해 사용자의 위치에 액세스가 필요합니다. 허용하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"%d초",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"눈부시게",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"사용자 설정 스타일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"연속 AF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"%s 뒤에 배치됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"매우 느린 셔터 속도를 사용하면 빛으로 천상의 효과를 만들 수 있습니다. 일반 라이트 페인팅 시나리오(테일라이트 트레일, 라이트 그래피티, 실키 워터, 스타 트레일)에 맞춰진 4가지 사전 설정된 모드가 있습니다. 최상의 결과를 얻으려면 삼각대를 사용하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"%1$s 사용자 설정 스타일입니다. 스타일을 전환하려면 두 번 탭하고 길게 누른 후 왼쪽 또는 오른쪽으로 스와이프합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"%dx 슬로우 모드만 사용할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"색조",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"사용자 설정 스타일 이름",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"이미지 및 비디오",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_shooting",
+            "value":"촬영 종료",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"선택됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"머리 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"스와이프하여 패턴 전환",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"%d초 후 플래시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_access",
+            "value":"액세스 허용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"여기를 탭하면 피사체도 미리 볼 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"스테디 샷 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"뷰티",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"흔들리지 않도록 주의하면서, 안내에 따라 휴대전화를 부드럽게 회전합니다. 촬영이 완료되면 카메라가 캡처된 이미지를 결합하여 파노라마 사진으로 만들어 줍니다. 이 기능은 풍경, 도시 경관, 유사한 시나리오 촬영에 적합합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"빠른 메뉴 열림",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"배경을 흐리게 처리하여 피사체를 강조합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"사진 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"이름 변경",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"이 앱은 %1$s, %2$s, %3$s 권한이 필요합니다. 촬영한 사진 및 비디오를 표시하기 위한 목적으로 이미지, 비디오, 위치 정보를 읽어야 합니다. 또한, 오디오를 녹음하기 위해 마이크를 사용해야 할 수도 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"모던",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"노출 잠김",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"스테디 샷 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse",
+            "value":"시간 경과",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"%1$d. 주의 사항",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"파란 하늘",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"노출 및 포커스가 고정됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"플래시 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"그러면 워치에서 사진 및 비디오 촬영이 허용됩니다. 이 권한은 헬스 앱에서 관리할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"%dfps 비디오에만 사용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details",
+            "value":"슈퍼 포커스 카메라 시스템은 XD Motion 엔진을 통합하여 가까이에서 촬영하든 멀리서 촬영하든 관계없이 최대 %dkm/h의 속도로 움직이는 피사체를 캡처합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"사진 이동 촬영 중에는 셔터가 음소거됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"매우 느린 셔터 속도를 사용하면 빛으로 천상의 효과를 만들 수 있습니다. 일반 라이트 페인팅 시나리오(테일라이트 트레일, 라이트 그래피티, 실키 워터, 스타 트레일)에 맞춰진 4가지 사전 설정된 모드가 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"미리보기 영역에서 왼쪽으로 스와이프하여 사용자 설정 스타일을 전환합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"상단의 화살표를 탭하면 빠른 메뉴가 열립니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"AI가 시나리오를 식별하여 색상과 피부톤을 조정하므로 더욱 생생한 사진이 완성됩니다. AI 아이콘을 탭하여 효과를 켜거나 끕니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"자연스럽게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"별자리 지도 켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"사진 및 비디오가 촬영된 장소를 기록하고, 촬영 위치 정보를 워터마크로 표시하는 데 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"천천히 움직이십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_reset",
+            "value":"재설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"프레임에서 선택한 피사체가 움직이면 따라갑니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"미처리 모드에서는 사전 설정된 모드를 탭하거나 손가락 모으기를 통해서만 줌을 조정할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_permission_description",
+            "value":"사진 및 비디오가 촬영된 장소를 기록하고, 워터마크로 촬영 위치 정보를 표시하며, 별자리 지도 기능을 제공하는 데 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"인물 사진 모드에서는 조리개를 조절하여 뷰티 효과를 사용하고 다양한 종류의 보케를 얻을 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"플래시 항상 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exits_same_card",
+            "value":"색상 매개변수가 포함된 사전 설정이 이미 존재합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"오디오 제어",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"skip",
+            "value":"건너뛰기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"카메라 설정에서 빠른 스냅샷을 종료할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"화사하게",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"%d초 후 플래시",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter",
+            "value":"필터",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"자동 플래시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"(%1$s:%2$s) %3$sp(권장)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"플래시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_details",
+            "value":"다양한 카메라 각도와 효과를 결합하여 매력적인 브이로그를 제작합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"이미지 가져오기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"색상",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_on",
+            "value":"슈퍼 매크로 사용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"디스플레이 보조 기능 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"클래식",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"화살표 방향으로 돌려서 3번째 사진을 촬영합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"수동 초점",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"포커스는 AF-C에서만 잠글 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_zoom",
+            "value":"오디오 줌",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"사진 워터마크에 위치 정보를 표시하는 데 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"취소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"더 나은 결과를 위해 여기를 봅니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"화면 방송 중에는 이중 미리보기를 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"빠른 메뉴 열기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"심도 및 동작 데이터 보존",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary",
+            "value":"초점 보조등",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"전면 카메라 미리보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"%1$d:%2$d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"장치를 기울여 두 원이 정렬되도록 합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"노출이 너무 높습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"스테디 샷 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_record_remind",
+            "value":"녹화 앱이 이미 백그라운드에서 실행되고 있습니다(녹음기, 통화). 비디오를 녹화하려면 먼저 이 앱을 닫으십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"%1$s 뒤, %2$d행, %3$d열에 배치됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"사진을 촬영하고 비디오를 녹화하는 데 사용됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"색상 효과",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"최상의 결과를 위해 어두운 환경에서 촬영하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"가로 보기 방향",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"후면 카메라가 깨끗하고 장애물이 없는지 확인하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"표시된 방향으로 장치를 회전합니다. 링이 점과 일치하면 카메라에서 사진이 촬영됩니다. 언제든지 셔터를 탭하여 종료할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_details",
+            "value":"HD 비디오를 촬영하면 카메라가 자동으로 노출과 색상을 조정합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"카메라가 정확한 위치에 액세스하도록 허용하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"탭하여 사진 또는 비디오 촬영",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"%1$s, 색온도 %2$d, 채도 %3$d, 색조 %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"후면 카메라가 가려져 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"깨끗하게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"세로 보기 방향",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"취소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"스테디 샷이 켜져 있으면 줌이 지원되지 않습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"인물 사진 모드에서는 조리개를 조절하여 뷰티 효과를 사용하고 다양한 종류의 보케를 얻을 수 있습니다. 촬영하는 동안 노출과 색상이 자동으로 조정되어 최상의 사진을 얻을 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"common_watermark",
+            "value":"표준 워터마크",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_description",
+            "value":"설명",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition",
+            "value":"AI 구성",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"코 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"사진 모드에서 사람, 고양이 또는 개 사진을 촬영할 때 나중에 편집할 수 있도록 심도 및 동작 데이터가 보관됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"피사체",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"back_selfie",
+            "value":"후면 셀카",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"비디오 해상도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"보조 그리드, 켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Beauty_on",
+            "value":"켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"AI 구성 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"사진 이동 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"슈퍼 매크로 · 프레임의 더 많은 부분에 포커스를 맞춥니다",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_off",
+            "value":"사용 안 함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"카메라",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"사전 녹화 중입니다. 녹화가 시작되기 전에 최대 %d초 동안 영상을 캡처하려면 셔터를 길게 터치하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_parameter",
+            "value":"캡처 시간",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"없음",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"자동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aperture_mode",
+            "value":"조리개",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"고급 스테디 샷 켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"메이크업 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"색조 레벨 %1$d, %2$d에서 %3$d까지의 범위에서 조정 가능합니다. 두 번 탭하여 적용 또는 두 번 탭하고 길게 누른 상태로 위나 아래로 드래그하여 변경",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"별자리를 캡처하지 못했습니다. 촬영 각도를 변경하고 다시 시도하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"허용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"길게 터치하여 노출 및 포커스 고정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"슬로우 모드",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama",
+            "value":"파노라마",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_light",
+            "value":"라이트 그래피티",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"현재 설정은 충분한 조명을 허용하지 않습니다. 기본 노출 설정값을 복원하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"사진이나 비디오에 위치 정보를 태그하는 데 사용됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"사용자 설정 스타일로 전환하려면 여기를 탭합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"원격 셔터가 연결 해제되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"기본 레이아웃으로 복원하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"live_photo",
+            "value":"사진 이동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"장치 온도가 높습니다. 화면 내 화면을 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"줌",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"두 번 탭하여 전환, 두 번 탭하고 길게 누른 상태로 왼쪽이나 오른쪽으로 드래그",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"이 사용자 설정 스타일 이름은 이미 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"화살표를 중앙선에 유지합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"장치의 카메라가 활성이지만 이 앱은 촬영한 이미지에만 액세스할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"스냅샷 촬영",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"왼쪽이나 오른쪽으로 스와이프하면 사용자 설정 스타일이 전환됩니다. 색상 카드를 스와이프하여 나만의 스타일을 만들거나, 다른 사람이 촬영한 사진을 가져와서 그 사람의 스타일을 따라 할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"%s 아이콘을 탭하면 사용자 설정 스타일이 빠르게 전환됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"채도 레벨 %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"%d초",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"포트레이트",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"오디오 줌 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"make_a_call",
+            "value":"통화",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting",
+            "value":"라이트 페인팅",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"셔터 아이콘을 탭하고 장치를 왼쪽에서 오른쪽으로 천천히 움직입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"AI를 사용하여 높은 줌 또는 어두운 조명에서 촬영한 사진을 선명하게 만듭니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"야간",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"프레임",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"카메라 권한",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"포커스 모드를 변경하려면 여기를 탭합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_sun",
+            "value":"일출/일몰",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"사진을 촬영하려면 \"치즈\"라고 말하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"뒤집어 화면 전환",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"사진 이동이 켜져 있으면 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"기본 레이아웃 복원",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"border_color",
+            "value":"테두리 색상",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_water",
+            "value":"실키 워터",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_and_shade",
+            "value":"색조",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"온도 경고",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d초",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"오른쪽으로 이동합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"이미지 생성 중입니다. 장치를 안정되게 유지하십시오…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"AI 구성은 %1$sx, %2$sx 또는 %3$sx 카메라 줌으로 사용할 수 있습니다. 풍경, 건물, 사람을 촬영할 때 가장 좋은 결과를 기대할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"포커스 우선순위는 프레임 가운데에 있는 전경의 피사체에 적용됩니다(%dcm 이상의 거리).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"따뜻하게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_a_message",
+            "value":"메시지 전송",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"기본 노출 설정을 복원하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"프레임 간격: %1$s초\n개화 촬영에 적합",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"스테디 샷",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"%1$sfps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"해당 값을 잠그려면 EV·, AF· 및 WB· 아이콘을 길게 터치합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"HEIF로 전환됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"포커스 쇼케이스",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"HD 파노라마",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"장치가 너무 뜨겁습니다. 카메라는 %1$d초 후 닫힙니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"후면 카메라로 촬영한 사진에 자동으로 워터마크를 추가합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_normal",
+            "value":"원본",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"새 줌",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"%1$s 앞, %2$d번째 줄, %3$d번째 열로 이동됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"AI 구성은 %1$sx 또는 %2$sx 줌에서 사용할 수 있습니다. 경치, 건물 및 인물 사진에서 가장 좋은 결과를 기대할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"details",
+            "value":"상세정보",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"오른쪽으로 스와이프하여 사용자 설정 스타일 %s(으)로 전환합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"기본 뷰티 설정을 복원하겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"새벽이슬",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"horizontal_level",
+            "value":"가로",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"강화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"passion",
+            "value":"파노라마",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"더 나은 구도를 위해 휴대폰을 가로로 잡습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"자동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"%d초 후 플래시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_disabled",
+            "value":"카메라 종료됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"피사체의 색감은 유지되고 나머지는 모두 흑백이 됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"후면 카메라 미리보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"프레임 간격: %1$s초\n일출/일몰 촬영에 적합",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"왼쪽으로 이동합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"자동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"이동식 셔터 버튼을 추가하여 더욱 편리하게 사용합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"이 모드는 콘서트 및 기타 무대 공연 촬영에 최적화되어 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_angle",
+            "value":"확대",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"플래시 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"휴대폰을 펼쳐서 뒤집고 후면 카메라를 바라보면 자동으로 후면 셀카 모드로 전환됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"순수",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"부드럽게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"음소거",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"보조 그리드, 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details",
+            "value":"카메라를 수평 또는 수직으로 움직여 파노라마 사진을 촬영합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"주위가 너무 밝습니다. 별자리를 캡처하지 못함",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"섬세하게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"화사하게 효과는 약하므로 매우 어두운 환경에서 최상의 결과를 얻을 수 있습니다. 이 모드를 사용할 때는 주의하시기 바랍니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"뷰티 레벨 %1$d, %2$d~%3$d의 선택 가능 범위",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_on",
+            "value":"사용",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"노출 잠금 해제됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"노출 및 초점이 고정되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"왼쪽으로 스와이프하여 연속 사진 촬영, 오른쪽으로 스와이프하여 비디오 녹화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_off",
+            "value":"슈퍼 매크로 사용 안 함",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"맞춤형 서명",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_auto",
+            "value":"자동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"야간 향상",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_details",
+            "value":"길이 제한 없이 슬로우 모션 비디오를 캡처합니다. 슈퍼 슬로우 모드를 사용하면 초고속 프레임 속도로 비디오를 수동 또는 자동으로 캡처할 수 있습니다. 이 모드는 조명이 밝은 환경에서 가장 잘 작동합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_occupied",
+            "value":"다른 앱에서 카메라를 사용 중입니다. 해당 앱을 닫은 후 이 앱을 다시 실행하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"physical_aperture",
+            "value":"실제 조리개",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"사진을 선명하게 하는 중… 장치를 흔들림 없이 똑바로 들고 계십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_title",
+            "value":"\"%1$s\"에서 카메라 사용을 허용하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"뷰티 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"더 우수한 블러 효과를 위해 조명 조건을 개선하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"프레임 속도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"움직이지 않는 객체 전용입니다. 카메라를 안정되게 유지하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"포커스 잠그기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"선명하게 · 풍성하면서도 강렬하게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"jpg_description",
+            "value":"HEIF보다 우수한 호환성을 제공합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"펼쳐서 후면 카메라로 셀피 찍기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_pause",
+            "value":"일시 정지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"AI 초고화질",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"사진이 더욱 생생하고 질감이 살아있어 반려동물과 풍경을 더 잘 포착할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_access",
+            "value":"비공개 액세스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"거부",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"풍음 감소",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_not_detected",
+            "value":"카메라를 연결하고 이 앱을 다시 실행하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"너무 어두워서 사진 이동이 종료되었습니다. 조도가 더 밝은 곳을 찾으십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"적응형 프레임 속도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_details_more",
+            "value":"포커스 거리가 가까워지면 피사체를 아주 세밀하게 포착할 수 있습니다. 슈퍼 매크로는 사진과 비디오 모두에 사용할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"마이크",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"AI 초고화질 기능은 빛이 충분한 정물 및 풍경 촬영 시 효과적입니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"움직임 감지 중단됨.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"비디오 녹화, 사진 이동 촬영 및 오디오 제어에 사용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"가로 파노라마로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go",
+            "value":"%1$s에서 결제",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"화살표 방향으로 돌려서 2번째 사진을 촬영합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"장치를 수평으로 유지하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro",
+            "value":"매크로",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"라이트 페인팅",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"%1$d. 소개",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"더 보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"셔터를 탭하고 카메라를 화살표 방향으로 천천히 이동합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_rate",
+            "value":"%dfps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"무대 모드는 공연, 콘서트, 연극, 기타 공연 촬영에 적합합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"라디오 버튼",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"고급 노이즈 감소 알고리즘 덕분에 저조도 조건에서 선명하고 밝은 이미지를 캡처할 수 있습니다. 두 가지 촬영 모드 제공: 슈퍼 나이트 샷 및 문 샷.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"화이트 밸런스 잠김",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"헤어라인 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"플래시 사용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"가운데",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"슈퍼 매크로",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_heif",
+            "value":"HEIF",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"배터리 잔량이 매우 부족합니다. 녹화를 시작할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"눈금",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"사진 및 비디오에 위치 정보를 태그합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"기본 사전 설정, 색온도 %1$d, 채도 %2$d, 색조 %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"후방 카메라로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"짧게",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"포커스 모드를 전환하려면 여기를 탭합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"장치를 안정적으로 유지하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d초",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_details",
+            "value":"고급 소음 감소 알고리즘 덕분에 휴대폰은 저조도 환경에서도 선명하고 밝은 이미지를 캡처할 수 있습니다. 보다 창의적인 촬영을 위해 ISO와 셔터 속도를 수동으로 조정할 수 있습니다. 전면 카메라를 사용하여 인물 사진을 촬영할 때 휴대폰은 피사체 얼굴에 원치 않는 그림자를 제거하기 위해 채우기 조명을 제공합니다. 야간에 촬영한 셀카도 선명하고 밝게 나옵니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"세로 파노라마로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"재설정 완료됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"카메라 닫기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details",
+            "value":"원하는 사진을 촬영할 수 있도록 카메라 설정을 미세 조정합니다. PRO 모드에서는 측광, ISO, 셔터 속도, 노출 값(EV), 화이트 밸런스, 포커스 모드 등 다양한 고급 설정을 조정할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_raw",
+            "value":"RAW",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"인터랙티브 불가",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"right_text",
+            "value":"오른쪽 텍스트",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_watermark",
+            "value":"비디오",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"별자리 지도 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"화면 녹화 중에는 이중 미리보기를 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"효율적인 비디오 포맷",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"일부 설정은 이 ISO 값에서 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_location",
+            "value":"위치",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"색상 조정 영역입니다. 색온도를 조정하려면 가로로 드래그하고 채도를 조정하려면 세로로 드래그합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"설정 및 기타 기능을 사용하려면 하단의 화살표를 탭하거나 위로 스와이프합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"전체 화면",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"%d초 후 플래시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"실내에서 위치 정보를 가져오려면 인터넷 연결을 유지하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"AI 구성을 사용하려면 점을 원 안에 배치합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"원격 셔터가 연결되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture",
+            "value":"조리개",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"분홍",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot",
+            "value":"스냅샷",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"왼쪽으로 스와이프하여 사용자 설정 스타일 %s(으)로 전환합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"스테디 샷 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_applet",
+            "value":"%1$s 미니 프로그램 열기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"AI 초고화질은 빛이 충분한 인물 사진 촬영 시 효과적입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_record",
+            "value":"녹화 시작",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"플래시 사용 안 함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"화면이 꺼져 있을 때 볼륨 다운 버튼을 두 번 누릅니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"오리지널 · 사실적이면서도 자연스럽게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"별이 빛나는 포트레이트, 버튼, 두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_occupied",
+            "value":"카메라 사용 중",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"움직이는 개체 검색 중…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"더 밝은 장소로 이동합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"frame_rate",
+            "value":"%dfps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"%d초",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"프로",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"이 서비스는 %d개의 권한이 필요합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"이번만 허용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera",
+            "value":"카메라 열기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"operate_frequently",
+            "value":"나중에 다시 시도하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"빠른 메뉴 닫힘",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"전체 화면 | %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"화이트 밸런스 잠금 해제됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"종횡비",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"위아래로 스와이프하여 줌 레벨 변경",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"동영상으로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"사전 녹화가 꺼졌습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"기간 한정 워터마크",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"슈퍼 매크로· 피사체 강조",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"PRO 모드에서는 원하는 사진을 얻을 수 있도록 다양한 고급 카메라 설정을 자유롭게 조정할 수 있습니다. 여기에는 측광, ISO, 셔터 속도, 노출 값(EV), 화이트 밸런스, 포커스 모드 등이 포함됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_new",
+            "value":"프로 모드에서는 원하는 사진을 얻을 수 있도록 고급 매개변수를 자유롭게 조정할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"스마트 제어를 사용하면 지문 센서를 길게 터치하여 노출과 포커스를 고정할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_bright",
+            "value":"선명하게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"%s 뒤로 이동",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature",
+            "value":"온도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"프레임 간격: %1$s초\n구름 촬영에 적합",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"별자리 지도 켜기 버튼, 두 번 탭하여 활성화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"RAW로 전환됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"밝게 · 우아하면서도 신선하게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"조리개가 더 넓어지면 배경에 부드러운 보케 효과를 연출하면서 피사체를 세밀하게 포착할 수 있습니다. 최상의 결과를 얻으려면 카메라와 피사체 사이의 거리가 %d미터를 넘어서는 안 됩니다. 이 모드를 사용하면 물리적 조리개와 가상 조리개를 모두 제어할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"콘텐츠가 클립보드에 복사되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"형광",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"크게 말하기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"빛이 충분히 들어오지 않습니다. 기본 노출 설정을 복원하시겠습니까?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"허용",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more",
+            "value":"프로 모드에서는 원하는 사진을 얻을 수 있도록 다양한 고급 카메라 설정을 자유롭게 조정할 수 있습니다. 여기에는 측광, ISO, 조리개, 셔터 속도, 노출 값(EV), 화이트 밸런스, 포커스 모드 등이 포함됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"실행하기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"사용자 설정 스타일을 조정하려면 여기를 탭합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"움직이지 않는 객체 전용입니다. 카메라를 안정되게 유지하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"별자리 지도 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"수동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"녹음 중…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"꾸미기 모드",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resume",
+            "value":"계속",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"셀룰로이드 스타일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"고급 소음 감소 알고리즘 덕분에 저조도 환경에서도 선명하고 밝은 이미지를 캡처할 수 있습니다. 슈퍼 나이트 샷, 문 샷, 별이 빛나는 하늘, 별이 빛나는 포트레이트의 네 가지 촬영 모드가 제공됩니다. 전면 카메라를 사용하면 장치 화면의 밝기가 증가하여 추가 조명 역할을 하므로, 어두운 곳에서도 얼굴이 밝고 선명하게 보입니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gourmet_food",
+            "value":"맛있게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"뷰티",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"카메라를 수평이나 수직으로 천천히 회전하여 파노라마 사진을 촬영합니다. 산맥이나 스카이라인과 같은 광범위한 장면을 절묘한 디테일로 캡처하는 데 적합합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter",
+            "value":"플로팅 셔터",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"카메라에 비공개 액세스",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"view",
+            "value":"%1$s 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details",
+            "value":"후면 카메라로 최고 성능의 클로즈업을 촬영하여 주변 세상의 생생한 상세정보를 포착할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_on",
+            "value":"켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"프레임을 움직여 다른 영역을 선택하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"동일한 시각적 품질을 유지하면서 JPG보다 저장 공간을 적게 사용합니다. JPG에 비해 호환성이 제한될 수 있습니다. 갤러리에서 HEIF를 JPG로 변환할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details",
+            "value":"안내에 따라 휴대전화를 부드럽게 회전시켜 파노라마 사진을 촬영합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"프레임 간격: %1$s초\n차량 및 군중 촬영에 적합",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"연속 촬영이나 비디오를 보려면 옆으로 스와이프합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"HDR Vivid",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"화질 개선을 위해 망원 플래시를 사용 중입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"듀얼 미리보기 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"조리개가 더 넓어지면 배경에 부드러운 보케 효과를 연출하면서 피사체를 세밀하게 포착할 수 있습니다. 최상의 결과를 얻으려면 카메라와 피사체 사이의 거리가 %d미터를 넘어서는 안 됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"별이 빛나는 포트레이트 모드에서 최상의 결과를 얻으려면 플래시를 켜십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"조명이 너무 어둡습니다. 노출 최적화 중...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"색온도, 레벨 %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"%1$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"사진",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_details",
+            "value":"카메라는 사진 촬영 시 노출과 색상을 자동으로 조정합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"가능한 한 흔들리지 않게 잡고 카메라를 수평 또는 수직으로 천천히 이동합니다. 화살표 위치를 중앙선으로 유지하십시오. 촬영이 끝나면 카메라는 촬영한 모든 장면을 자동으로 파노라마 사진으로 결합합니다. 이 모드는 풍경 사진과 대규모 단체 사진에 적합합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"화살표 방향으로 돌립니다. 점과 원이 정렬되면 사진이 자동으로 촬영됩니다. 언제든지 셔터를 탭하여 끝냅니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"스테디 샷",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"별자리 식별 중…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture",
+            "value":"스마일 캡처",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"전면 카메라만 해당됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"비공개 카메라 모드에서는 위치 태그를 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_title",
+            "value":"위치",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"수동 플래시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"화이트 밸런스는 AWB 모드에서만 고정할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"수동",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"XMAGE 스타일을 사용하여 사진에만 적용됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"환영합니다",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"AI 초고화질은 충분한 조명 조건에서 인물 사진을 촬영하는 데 적합합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"듀얼 미리보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"포트레이트 비디오",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"초점 모드",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_stage",
+            "value":"라이브 공연을 촬영 중입니까? 최상의 결과를 얻기 위해 스테이지 모드를 켭니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"뷰티: %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_mode",
+            "value":"브이로그",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"휴대폰이 떨어진 것으로 감지되어 카메라가 들어갔습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"카메라 미리보기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"사용자 설정 워터마크",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_text",
+            "value":"텍스트",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"AI 색상",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"화면 탭하여 카메라 활성화",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"%1$dp(%2$dfps)에서는 현재 필터를 사용할 수 없습니다. %3$dp(%4$dfps)로 전환되었습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"두 번 탭하여 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"%s 드래그 중",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"위치",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_off",
+            "value":"울트라 스테디 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"이 모드는 콘서트 및 기타 무대 공연 촬영에 최적화되어 있어, 출연자와 조명 효과를 세세한 디테일과 생생한 색감으로 포착할 수 있습니다. 이 모드는 사진과 비디오 모두에 사용할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"제한에 도달했습니다. 지금 사진 저장 중입니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"%1$s 뒤, %2$d번째 줄, %3$d번째 열로 이동됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"편집하려면 다시 탭합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saturation",
+            "value":"채도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw",
+            "value":"별자리 지도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"고해상도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"현재 오디오 픽업은 확대된 영역에 집중되어 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"초점 보조등 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"장치 온도가 너무 높습니다. 플래시를 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"이 앱을 다시 실행하고 다시 시도해 보십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"미리보기 영역에서 오른쪽으로 스와이프하여 사용자 설정 스타일을 전환합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"표준 스테디 샷 켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"저장 중… 끝내지 마십시오",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"켜기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"플래시 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control_off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"XMAGE 사용자 설정 스타일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"%s 앞에 배치됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_notification",
+            "value":"프레임 워터마크로만 사용할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"스마트 제어를 사용하면 지문 센서를 스와이프하여 화면을 확대하거나 축소할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"더 우수한 블러 효과를 위해 더 멀리 이동하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"스킨톤 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"야간 모드를 더 보려면 여기를 탭합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"자동 초점 잠김이 켜졌습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"미처리 모드에서는 줌 기능이 지원되지 않습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"프레임 워터마크",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"두 번 탭하여 이중 미리보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"사진을 %d장 찍습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_parameter",
+            "value":"카메라 설정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"뷰티 켜짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"%d초 후 플래시",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"플래시 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"뷰티 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"별자리 지도 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_storage_space",
+            "value":"저장 공간이 부족합니다. 카메라가 지연될 수 있습니다. 성능을 복원하려면 공간을 확보하십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"사진의 귀재",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"두 번 탭하여 활성화 또는 두 번 탭하고 길게 눌러 옵션 더 보기 열기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"스마트 후면 셀카",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"%1$s 앞, %2$d행, %3$d열에 배치됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"형광 사진 정보",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"파노라마 모드에서는 줌을 사용할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"카메라 열기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"big_text_s",
+            "value":"%s초",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"%1$s %2$s 녹화됨",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"전면 카메라만 해당됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pay",
+            "value":"%1$s 열기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"최근 사진",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"오디오 줌 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"더 많은 모드가 곧 제공될 예정입니다…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"이를 통해 카메라 미리보기를 보고 워치에서 사진과 비디오를 촬영할 수 있습니다. 이 권한은 헬스 앱에서 관리할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"화살표 방향으로 장치를 이동합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picture_watermark",
+            "value":"이미지",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"윤곽 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"일반",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"standard_style",
+            "value":"표준",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"야간 모드를 사용하면 고급 노이즈 감소 알고리즘 덕분에 저조도 조건에서도 선명하고 밝은 이미지를 캡처할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_speed",
+            "value":"셔터 속도",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"취소",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"플래시",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"노출이 너무 낮습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"개인 정보 보호 방침",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"장치 온도가 너무 높습니다. 플래시를 사용할 수 없습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"화이트 밸런스",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"전방 카메라로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_contact",
+            "value":"새 연락처",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"가로 보기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"천천히 움직이십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"신규",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"플래시 꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_night_view",
+            "value":"슈퍼 나이트 샷",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"replace",
+            "value":"바꾸기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"%d배속",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"스팟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"프로",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"전체 화면 | %1$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"웃으면 사진이 자동으로 촬영됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_disabled",
+            "value":"보안 정책에 따라 카메라 사용이 금지되어 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"항상 켜기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"사진을 촬영하려면 목소리를 높입니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_Confirm",
+            "value":"확인",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"뷰티 효과 비교 버튼입니다. 두 번 탭하고 길게 누르면 뷰티 효과 없는 이미지가 표시됩니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_agree",
+            "value":"동의",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"해상도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"두 번 탭하고 길게 눌러 드래그",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"부드럽게 %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"포커스를 조정하려면 사각형을 드래그하고 측광을 조정하려면 원을 드래그하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"고급 노이즈 감소 알고리즘 덕분에 저조도 조건에서 선명하고 밝은 이미지를 캡처할 수 있습니다. 두 가지 촬영 모드 제공: 슈퍼 나이트 샷 및 문 샷. 전면 카메라를 사용하면 장치의 화면 밝기를 높여 추가적인 빛을 제공하여 어두운 곳에서도 얼굴이 밝고 선명하게 보일 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark",
+            "value":"워터마크 추가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"이 설정은 잠글 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"이 초점 거리에서 조리개를 수동으로 조정할 수 없습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"카메라를 계속 사용하시겠습니까?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"포커스 잠금 해제됨",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"윤곽",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"새로운 사용자 설정 스타일이 추가되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"흐림",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"휴대폰 펼치기",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"달 모드 켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"플래시 사용 안 함",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"차갑게",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"AI 구성 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"AI가 사진에 최적의 프레임을 제안할 수 있습니다. 장치를 정렬하면 줌이 자동으로 조정됩니다. 풍경, 건물 및 인물 사진에 가장 적합합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"디스플레이 보조 기능이 켜져 있습니다. 비디오는 여전히 로그 형식으로 촬영됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"festival_watermark",
+            "value":"연휴 워터마크",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"배터리 잔량이 매우 부족합니다. 녹화가 자동으로 중단되고 저장되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"장치가 너무 뜨겁습니다. 카메라는 %1$d초 후 닫힙니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format",
+            "value":"사진 형식",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details",
+            "value":"색상 스타일",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details",
+            "value":"고해상도 사진은 픽셀 밀도가 높아 선명도와 디테일이 향상됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"global_exposure",
+            "value":"노출",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"플래시 사용함",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"저장 중…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"블러썸",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"허용하면 사진 및 비디오의 정확한 위치를 볼 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"촬영한 사진 및 비디오를 표시하고 저장하는 데 사용됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"설정으로 이동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"카메라에 위치 권한 필요",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"비디오는 약 %1$s 미만의 공간만 차지하지만, 다른 장치에서 재생되지 않을 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"사진 또는 동영상을 촬영하려면 헤드셋에서 응답 키를 누르십시오.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"수동",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"인터벌(사진 %d장)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"거울 셀카를 찍을 때 커버 화면에 맞춤형 이미지를 표시하여 사진에 함께 담을 수 있습니다. 설정하려면 카메라의 빠른 메뉴로 이동하고 듀얼 미리보기를 탭하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"달 모드 꺼짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pre_record",
+            "value":"사전 녹화",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"XMAGE 스타일을 빠르게 전환하려면 %s 아이콘을 탭합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"형광 사진은 UV 필라이트를 사용하는 카메라 모드입니다. 자외선은 특정 물질에서 다시 방출될 때 양식화된 사진으로 촬영될 수 있는 형광색을 발산합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"야간 모드에서는 고급 소음 감소 알고리즘을 통해 조명이 어두운 환경에서도 선명하고 밝은 이미지를 캡처할 수 있습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"고급 소음 감소 알고리즘 덕분에 저조도 환경에서도 선명하고 밝은 이미지를 캡처할 수 있습니다. 슈퍼 나이트 샷, 문 샷, 별이 빛나는 하늘, 별이 빛나는 포트레이트의 네 가지 촬영 모드가 제공됩니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_speed",
+            "value":"속도",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"이 앱에는 %1$s, %2$s 및 %3$s 권한이 필요합니다. 또한 촬영한 사진과 비디오를 표시하려면 사진과 비디오를 읽어야 합니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"켜짐",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"빠른 스냅샷",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"사진 모드로 전환",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"request_location_msg",
+            "value":"카메라가 사진과 동영상에 위치정보 태그를 지정할 수 있도록 위치 액세스를 허용합니다. 이를 통해 갤러리에서 촬영된 위치를 확인할 수 있습니다.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"삭제",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"%1$s(%2$dfps)에서는 현재 필터를 사용할 수 없습니다. %3$dp(%4$d)fps로 자동 전환되었습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"장치를 안정되게 유지합니다.\n카운트다운을 기다리거나 셔터를 탭하여 사진을 촬영합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"고해상도 사진은 픽셀 밀도가 높아 선명도와 디테일이 향상됩니다. 고해상도 모드에서는 사진을 생성하는 데 시간이 조금 더 걸릴 수 있습니다. 프로세스가 완료될 때까지 흔들리지 않게 휴대폰을 잡으십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"장치 저장 공간이 가득 찼습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"추가 정보",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"표준 스타일",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"사용자 설정 스타일을 가져오려면 여기를 탭합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"설정(%s)을 사용하려면 하단의 화살표를 탭하거나 위로 스와이프합니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"이 앱은 촬영한 사진과 비디오에만 액세스할 수 있습니다. 뷰파인더에 있는 내용을 볼 수 없습니다. %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"아이콘을 드래그하여 레이아웃 조정",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"스테디 샷을 켜면 빛이 충분할 때 사진 품질이 가장 좋습니다.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"small_art_vision",
+            "value":"Celia 렌즈",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_watermark",
+            "value":"워터마크 추가",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"사진을 촬영하려면 \"치즈\"라고 말하십시오.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"권한 공지",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"꺼짐",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"별이 빛나는 하늘",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"모노크롬 · 시대를 초월하는 분위기",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"설정",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

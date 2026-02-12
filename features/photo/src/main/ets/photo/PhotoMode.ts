@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) Huawei Device Co., Ltd. 2023-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,21 +13,43 @@
  * limitations under the License.
  */
 
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
-import type { FunctionId } from '@ohos/common/src/main/ets/default/featureservice/FunctionId';
-import { PhotoModeParam } from './PhotoModeParam';
+import lazy { BaseMode } from '@ohos/common/src/main/ets/mode/BaseMode';
+import lazy { ConflictParam } from '@ohos/common/src/main/ets/function/core/ConflictParam';
+import lazy { FunctionId } from '@ohos/common/src/main/ets/function/core/functionproperty/FunctionId';
+import lazy { HiLog } from '@ohos/common/src/main/ets/utils/HiLog';
+import lazy { PhotoModeParam } from './PhotoModeParam';
+import lazy { DeviceInfo } from '@ohos/common/src/main/ets/component/deviceinfo/DeviceInfo';
+import lazy { RenderLocation } from '@ohos/common/src/main/ets/function/core/functionproperty/RenderLocation';
+import lazy { CameraAppCapability } from '@ohos/common/src/main/ets/camera/CameraAppCapability';
+import lazy { getStates } from '@ohos/common/src/main/ets/redux';
 
-const TAG: string = '[PhotoMode]:'
+const TAG: string = 'PhotoMode';
 
-export class PhotoMode {
-  private photoModeParam: PhotoModeParam = new PhotoModeParam();
+export class PhotoMode extends BaseMode {
+  private mPhotoModeParam: PhotoModeParam = new PhotoModeParam();
 
-  public getTabBarParam(): string[] {
-    return this.photoModeParam.tabBar;
+  getConflicts(isFront: boolean): Map<FunctionId, ConflictParam> {
+    let map = new Map();
+    // 锁屏相机设置密码状态下地理位置开关禁用
+    /* instrument ignore if*/
+    if (getStates().get<boolean>('securityCameraReducer', 'isSecurityCamera')) {
+      map.set(FunctionId.SAVE_GEO_LOCATION, new ConflictParam().disable());
+    }
+    return map;
   }
 
-  public getFunctions(): FunctionId[] {
-    Log.info(`${TAG} function = ${this.photoModeParam.functions}`);
-    return this.photoModeParam.functions;
+  public getFunctions(): Map<FunctionId, RenderLocation[]> {
+    let result: Map<FunctionId, RenderLocation[]>;
+    /* instrument ignore else*/
+    if (DeviceInfo.isPhone()) {
+      result = this.mPhotoModeParam.phoneFunctions;
+    } else if (DeviceInfo.isPc()) {
+      result = this.mPhotoModeParam.pcFunctions;
+    } else if (DeviceInfo.isTv()) {
+      result = this.mPhotoModeParam.tvFunctions;
+    } else {
+      result = this.mPhotoModeParam.tabletFunctions;
+    }
+    return result;
   }
 }

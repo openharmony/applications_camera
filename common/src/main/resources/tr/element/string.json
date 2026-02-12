@@ -1,0 +1,5233 @@
+{
+    "string":[
+        {
+            "name":"option_exit_camera",
+            "value":"Uygulamadan çık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"AI Süper Netlik, iyi ışıklı ortamlarda sabit süjeleri ve manzaraları çekmek için harikadır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"Yok",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"Renk bilgileri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"infinity_time",
+            "value":"Sınırsız",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"Daha iyi bir kompozisyon için telefonunuzu dikey tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"Ay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"Yıldızlı gökyüzü, düğme, aktive etmek için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"Geri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"Matris",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_on",
+            "value":"Ultra sabitlik açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"Görsel aşırı pozlanmış. Varsayılan pozlama ayarları geri yüklensin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"Hareketli fotoğraf açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"Ton seviyesi %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"Gelişmiş gürültü azaltma algoritması sayesinde telefonunuz düşük ışık koşullarında bile net ve parlak görseller yakalayabilir. Daha yaratıcı çekimler için perde hızı manuel olarak ayarlanabilir. Telefon, portre çekmek için ön kamerayı kullanırken istenmeyen gölgeleri ortadan kaldırmak için dolgu aydınlatması sağlayarak yüzlerin net ve parlak görünmesini sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"Kare aralığı: %1$s sn\nYıldızlar için ideal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"Kamera ve Gizlilik Hakkında Beyan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"Tarz",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"Seçili değil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"Özel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"%1$sK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_update_date",
+            "value":"Son güncelleme: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"Ayna yansıması",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"XMAGE stilleri arasında geçiş yapmak için buraya dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star",
+            "value":"Yıldız izleri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"Özel bir stil seçmek için ön izleme alanında kaydırın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"Daha fazla bilgi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"connect_wifi",
+            "value":"WLAN'a bağlan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_mode",
+            "value":"Sahne",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"Kabul ediyorum düğmesine dokunarak yukarıdaki şartları kabul etmiş olursunuz. Kişisel bilgilerinizin nasıl işlendiği hakkında daha ayrıntılı bilgi için %1$s ve %2$s içeriklerine bakın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"Veriler içe aktarılamadı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"Uzun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"Bir dizi farklı renk stiliyle yaratıcılık sınırlarınızı genişletin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"Varsayılan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"function_under_development",
+            "value":"Özellik yakında gelecek.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"Standart filigran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_button",
+            "value":"Düğme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"%1$d:%2$d (önerilen)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"İpucu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"film_style",
+            "value":"Film",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_not_detected",
+            "value":"Kamera tespit edilemedi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"Önce Güzellik modunu açın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"Videoda bir fotoğraf çek",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"Gün Işığı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_background",
+            "value":"Kenarlık stili",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"Tekrar gösterme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"Farklı kaydet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_portrait",
+            "value":"Selfie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"Kabul ediyorum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy",
+            "value":"%s öğesini kopyala",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"natural_style",
+            "value":"Doğal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"film_duration_title",
+            "value":"Son video uzunluğu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"Uzman Al'a hoş geldiniz. Rengi sahneye göre otomatik olarak ayarlayın. Denemek için dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"Video ayarları",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"low_angle",
+            "value":"Düşük açılı çekim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"Gelişmiş renk ve kontrastın keyfini çıkarın. Uyumluluk cihaza ve uygulamaya göre değişir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"Zamanın geçişini hızlandıran videolarla değişimin özünü yakalayın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"Görüntü yardımı açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keep_time_title",
+            "value":"Kayıt süresi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"Daha fazla bilgi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"%s Lütfen bu modu kullanmadan önce bu bildirimin tamamını okuduğunuzdan emin olun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"Fotoğraf modunda %d MP görseller yakalanır. Görsellerin işlenmesi bu çözünürlükte biraz daha uzun sürebilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"%s Bu modu kullanarak bu bildirimi okuduğunuzu, anladığınızı, onayladığınızı ve bu bildirimde belirtilen tüm şartları kabul ettiğinizi belirtmiş olursunuz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"%1$s Bu üründe kullanılan dolgu ışığı %2$s güvenlik standardı ile uyumludur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"Halkalar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"Yeni numaralar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"%1$s fps ve %2$s fps videolar için kullan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_car",
+            "value":"Trafik izleri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"%d saniye sonra flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"Takvim'e ekle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"Standart",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword",
+            "value":"Anahtar sözcüğü söyle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"Otomatik flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"Mikrofon engellendi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_jpg",
+            "value":"JPG",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"Video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"Sıcaklık %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"Takım uydu başarıyla yakalandı.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"Not: Düzenleme sırasında fiziksel açıklık ayarları yapılamaz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"Özel stillere geçmek için sola kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"Görsel bulanık. Merceği silmeyi deneyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"Pil seviyesi çok düşük. Flaş kullanılamaz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"romantic_style",
+            "value":"Sinema",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pop_item_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"Hareket halindeki süjelerin daha net fotoğraflarını çekin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"Yakınlaştırma halkası fan yakınlaştırma ile değiştirildi. Ayrıca, deklanşör düğmesine dokunup basılı tutabilir ve ardından seri çekim yapmak için sola kaydırabilir, video kaydetmek için sağa kaydırabilir veya yakınlaştırmak için yukarı kaydırabilirsiniz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"Özel ön ayar %1$d, renk sıcaklığı %2$d, doygunluk %3$d, ton %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"Hızlı menüyü kapat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"Cihazınızı sabit tutun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"İzin verme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"Pozlama telafisi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinema_mode",
+            "value":"Sinematik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"Gözler %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_intro",
+            "value":"Diğer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"Takım uydu haritasını kapatmak için düğme, aktive etmek için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"Swirl",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"Değişken",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"Görsel kalitesini iyileştirmek için kare hızı ortama otomatik olarak uyarlanır. Aralık: %1$d-%2$d fps.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"Sanal açıklık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"Aşağı hareket ettirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"Aşırı ışıklama",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"Seslerin daha net duyulmasını sağlamak için video kaydı sırasında rüzgar gürültüsü azaltılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_design",
+            "value":"Desen",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"Çektiğiniz fotoğraf ve videoları görüntülemek için bu uygulama %1$s, %2$s, %3$s ve %4$s izinleri ile görsel, video ve konum bilgilerinin okunmasını gerekir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"Yetersiz ışıklama",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"anime_style",
+            "value":"Anime",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"Ton kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"Anime stili",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"Odak takibi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"Portre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"Yalnızca özel stiller kullanan fotoğraflar için geçerlidir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"Tamam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"Kare aralığı: %d sn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"Yönü değiştirmek için oka dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"Kamera ızgarası",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"Ölçüm modu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"Odak yardımcı ışık açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_details",
+            "value":"Portre modu, arka planda bokeh efekti ile güzel fotoğraflar çekmenizi sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"Doğal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"Renk paleti düğmesi, aktive etmek için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"Cihazınızı sabit tutun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"Özel stil değiştirilsin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"Aralık zamanlayıcı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"Arka kamera ile selfie çekmek için dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"Yukarı hareket ettirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"Video kaydını durdur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"Düzenleme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"Güzellik kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"Ay çekimi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"starry_portrait",
+            "value":"Yıldızlı portre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"Zamanlayıcı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d saniye",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"Kare hızı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"Çift ön izleme kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"%1$d. Önemli",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"Bu modda çekim yaparken insanları çekmek için kameranın flaşını kullanabilirsiniz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details",
+            "value":"Özel ışık ve gölge efektleri oluşturun. En yaygın ışık resmi senaryolarına göre uyarlanmış dört ön tanımlı mod (trafik izleri, ışık graffitisi, ipeksi su ve yıldız izleri) arasından seçim yapın. En iyi sonuçlar için tripod kullanın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"En iyi anlarınızı yakalayın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"Yeni fan yakınlaştırma, size daha akıcı ve daha kullanışlı bir yakınlaştırma deneyimi sunar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name",
+            "value":"Cihaz modeli",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"Flaş her zaman açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"Hearts",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"Anları yepyeni bir yöntemle yakalayın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open",
+            "value":"%1$s uygulamasını aç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"Akıllı kontrol, parmak izi sensörüne dokunarak fotoğraf ve video çekmenizi sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"%s öğesinin önüne taşı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"Konum etiketi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"Sahne modu gösteriler, konserler, oyunlar ve diğer performansları çekmek için mükemmeldir. Karmaşık sahne aydınlatmasına sahip senaryolarda iyi performans gösterecek şekilde optimize edilmiştir, böylece sanatçıları net ayrıntılar ve canlı renklerle çekebilirsiniz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_an_email",
+            "value":"E-posta gönder",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"İçe aktarma başarılı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"Görselleri iyileştir",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"Ay çekimi, düğme, aktive etmek için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_soft",
+            "value":"Parlak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"Tek çekim AF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"Mono",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"Romantik stil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"Standart JPG'ye geçildi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"Profesyonel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"Fotoğraf teknik özellikleri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"Kameranın, fotoğraflarınıza ve videolarınıza konum bilgisi eklemek için konumunuza erişmesi gerekmektedir. İzin verilsin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"%d sn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"Ampul",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"Özel stiller",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"Sürekli AF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"%s öğesinin arkasına yerleştirildi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"Açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"Ekstra yavaş perde hızları, ışıkla ruhani efektler oluşturmanıza olanak tanır. Yaygın ışık resmi senaryolarına göre uyarlanmış dört ön tanımlı mod vardır (Trafik izleri, Işık graffitisi, İpeksi su ve Yıldız izleri). En iyi sonuçlar için tripod kullanın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"%1$s özel stili. Stilleri değiştirmek için çift dokunup basılı tutun, ardından sola veya sağa kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"Yalnızca x%d ağır çekim kullanılabilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"Ton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"Özel stil adı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"Görseller ve videolar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"end_shooting",
+            "value":"Çekimi sonlandır",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"Seçili",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"Baş %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"Desen değiştirmek için kaydırın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"%d sn sonra flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_access",
+            "value":"Erişime izin ver",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"Süjenizin de ön izlemeyi görmesi için buraya dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"Sabit çekim kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"Güzellik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"Telefonunuzu sabit tutarak gösterildiği gibi düzgün bir şekilde döndürün. Çekiminizi tamamladıktan sonra kamera, çekilen görselleri panoramik bir fotoğrafta birleştirecektir. Bu özellik manzara, şehir manzarası ve benzer sahneleri çekmek için mükemmeldir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"Hızlı menü açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"Süjenizi vurgulamak için arka plan bulanıklaştırılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"Fotoğraf ayarları",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"Yeniden adlandır",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"Bu uygulama %1$s, %2$s ve %3$s izinlerini gerektirmektedir. Çektiğiniz fotoğrafları ve videoları görüntülemek için görselleri, videoları ve konum bilgilerini okuması gerekir. Ayrıca ses kaydetmek için mikrofonu da kullanması gerekebilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"Modern",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"Pozlama kilitlendi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"Sabit çekim açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse",
+            "value":"Hızlandırılmış çekim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"%1$d. Dikkat edilmesi gerekenler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"Mavi gökyüzü",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"Pozlama ve odak kilitlendi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"Flaş açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"Bu, saatten fotoğraf ve video çekmenizi sağlar. Bu izni Sağlık uygulamasından yönetebilirsiniz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"Yalnızca %d fps videolar için kullan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"Tamam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot_details",
+            "value":"Süper odaklı kamera sistemi, ister yakından ister uzaktan çekim yapıyor olun, saatte %d km'ye varan hızlarda hareket eden süjeleri yakalamak için XD Hareket motorunu entegre eder.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"Hareketli fotoğraf çekilirken deklanşör sesi kapatılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"Ekstra yavaş perde hızları, ışıkla ruhani efektler oluşturmanıza olanak tanır. Yaygın ışık resmi senaryolarına göre uyarlanmış dört ön tanımlı mod vardır (Trafik izleri, Işık graffitisi, İpeksi su ve Yıldız izleri).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"Özel stiller arasında geçiş yapmak için ön izleme alanında sola kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"Hızlı menüyü açmak için üst kısımdaki oka dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"Yapay zeka, daha canlı bir fotoğraf için renkleri ve cilt tonunu ayarlamak amacıyla sahneyi tanımlar. Efekti açmak/kapatmak için yapay zeka simgesine dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"Doğal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"Takım uydu haritası açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"Bu, fotoğraf ve videoların çekildikleri yeri kaydetmek ve çekim konumu bilgilerini filigranlarda görüntülemek için kullanılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"Yavaşlayın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset",
+            "value":"Sıfırla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"Seçilen bir süje hareket ederken çerçeve içinde takip edilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"RAW modunda yakınlaştırma yalnızca ön tanımlara dokunularak veya kıstırılarak ayarlanabilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description",
+            "value":"Bu, fotoğraf ve videoların çekildikleri yeri kaydetmek, çekim konumu bilgilerini filigranlarda görüntülemek ve yıldız haritası özelliğini sağlamak için kullanılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"Portre modunda, diyafram açıklığını ayarlayarak güzellik efektlerini kullanabilir ve farklı bokeh efektleri elde edebilirsiniz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"Flaş her zaman açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exits_same_card",
+            "value":"Bu renk parametrelerine sahip ön ayar zaten mevcut.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"Sesle kontrol",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"skip",
+            "value":"Atla",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"Süper anlık çekim Kamera ayarlarından devre dışı bırakılabilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"Floresan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"%d saniye sonra flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter",
+            "value":"Filtreler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"Otomatik flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"(%1$s:%2$s) %3$sp (Önerilen)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"Flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_details",
+            "value":"Farklı kamera açılarını ve efektlerini birleştirerek büyüleyici vlog'lar oluşturun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"Görseli içe aktar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"Renkler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_on",
+            "value":"Süper makro açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"Görüntü yardımı kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"Klasik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"Üçüncü fotoğrafı çekmek için cihazı ok yönünde döndürün.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"Manuel odak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"Odak yalnızca AF-C modunda kilitlenebilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_zoom",
+            "value":"Ses yakınlaştırma",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"Bu, fotoğraf filigranlarındaki konum bilgilerini görüntülemek için kullanılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"İptal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"Daha iyi sonuçlar için buraya bakın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"Ekran yansıtılırken çift ön izleme kullanılamaz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"Hızlı menüyü aç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"Derinlik ve hareket verilerini koru",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary",
+            "value":"Odak yardımcı ışık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"Ön kamera ön izleme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"%1$d:%2$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"İki daire aynı hizaya gelecek şekilde cihazınızı eğin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"Pozlama çok yüksek.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"Sabit çekim kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_record_remind",
+            "value":"Bir kayıt uygulaması zaten arka planda çalışıyor (Ses Kaydedici, Çağrı). Video kaydetmek için önce bu uygulamayı kapatın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"%1$s öğesinin arkasına, %2$d. satıra, %3$d. sütuna yerleştirildi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"Fotoğraf çekmek ve video kaydetmek için kullanılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"Renk efekti",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"En iyi sonuçlar için karanlıkta çekim yapın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"Yatay yön",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"Arka kameranın temiz ve engelsiz olduğundan emin olun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"Cihazınızı gösterilen yönde döndürün. Daire noktayla hizalandığında kamera bir fotoğraf çekecektir. Dilediğiniz zaman bitirmek için deklanşöre dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_details",
+            "value":"HD video çekerken kamera pozlamayı ve rengi otomatik olarak ayarlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"Kamera'nın kesin konumunuza erişmesine izin verilsin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"Fotoğraf veya video çekmek için dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"%1$s, renk sıcaklığı %2$d, doygunluk %3$d, ton %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"Arka kamera engelleniyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"Açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"Dikey yön",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"İptal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"Sabit çekim açıkken yakınlaştırma desteklenmiyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"Portre modunda, diyafram açıklığını ayarlayarak güzellik efektlerini kullanabilir ve farklı bokeh efektleri elde edebilirsiniz. Pozlama ve renk, siz çekim yaparken size mümkün olan en iyi fotoğrafları vermek için otomatik olarak ayarlanır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"common_watermark",
+            "value":"Standart filigranlar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_description",
+            "value":"Açıklama",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition",
+            "value":"Yapay zeka kompozisyonu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"Burun %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"Fotoğraf modunda bir insan, kedi veya köpek fotoğrafı çektiğinizde son düzenleme için derinlik ve hareket verileri korunur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"Süje",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_selfie",
+            "value":"Arka selfie",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"Video çözünürlüğü",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"Yardımcı kılavuz, açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Beauty_on",
+            "value":"Açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"Yapay zeka kompozisyonu açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"Hareketli fotoğraf kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"Süper makro · Karenin daha büyük bir kısmını odakta tut",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"Aktive etmek için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"Kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"Ön kayıt açık. Kayıt başlamadan önce %d saniyeye kadar çekim yakalamak için deklanşörü basılı tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_parameter",
+            "value":"Süre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"Yok",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"Otomatik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aperture_mode",
+            "value":"Açıklık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"Gelişmiş sabit çekim açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"Makyaj %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"Ton seviyesi %1$d, %2$d ila %3$d ayarlanabilir aralık. Uygulamak için çift dokunun veya değiştirmek için çift dokunup basılı tutun, ardından yukarı ya da aşağı sürükleyin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"Takım uydu yakalanamadı. Çekim açınızı değiştirin ve tekrar deneyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"İzin ver",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"Pozlamayı ve odaklamayı kilitlemek için basılı tutun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"Ağır çekim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama",
+            "value":"Panorama",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_light",
+            "value":"Işık graffitisi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"Mevcut ayarlar yeterli ışık alınmasına izin vermiyor. Varsayılan pozlama ayarları geri yüklensin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"Bu, fotoğraflara ve videolara konum bilgisini etiketlemek için kullanılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"Özel stiller arasında geçiş yapmak için buraya dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"Uzaktan deklanşör bağlantısı kesildi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"Varsayılan düzen geri yüklensin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"live_photo",
+            "value":"Hareketli fotoğraf",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"Cihaz sıcaklığı yüksek. Resim içinde Resim kullanılamıyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"Yakınlaştırma",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"Değiştirmek için çift dokunun ve sola veya sağa sürüklemek için çift dokunun ve basılı tutun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"Bu özel stil adı zaten mevcut.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"Oku orta çizgide tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"Cihazınızın kamerası aktif, ancak bu uygulama yalnızca çektiğiniz görsellere erişebilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"Anlık çekim yap",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"Özel stiller arasında geçiş yapmak için sola veya sağa kaydırın. Renk kartını kaydırarak kendi stillerinizi oluşturun veya başka birinin çektiği bir fotoğrafı içe aktararak stillerini taklit edin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"Özel stilleri hızlıca değiştirmek için %s simgesine dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"Doygunluk seviyesi %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"%d sn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"Portre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"Ses yakınlaştırma açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"make_a_call",
+            "value":"Ara",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting",
+            "value":"Işık resmi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"Deklanşör simgesine dokunun ve cihazı yavaşça soldan sağa doğru hareket ettirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"Yüksek yakınlaştırmada veya düşük ışıkta çekilen fotoğrafları kesinleştirmek için yapay zeka kullanılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"Gece",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"Kare",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"Kamera izinleri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"Odak modunu değiştirmek için buraya dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun",
+            "value":"Gün doğumu/Gün batımı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"Fotoğraf çekmek için \"Cheese\" deyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"Ekranları değiştirmek için diğer tarafa çevirin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"Hareketli fotoğraf etkin olduğunda kullanılamaz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"Varsayılan düzeni geri yükle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_color",
+            "value":"Kenarlık rengi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_water",
+            "value":"İpeksi su",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_and_shade",
+            "value":"Ton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"Sıcaklık uyarısı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d saniye",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"Sağa hareket ettirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"Görsel oluşturuluyor, cihazınızı sabit tutun…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"Yapay zeka kompozisyonu x%1$s, x%2$s veya x%3$s kamera yakınlaştırmasında kullanılabilir. Manzara, bina ve insanların fotoğraflarını çekerken en iyi sonuçlar alınır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"Odak önceliği, çerçevenin ortasında yer alan ön plandaki nesnelere (en az %d cm uzaklıkta) verilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"Sıcak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_a_message",
+            "value":"Mesaj gönder",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"Varsayılan pozlama ayarları geri yüklensin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"Kare aralığı: %1$s sn\nAçan çiçekler için ideal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"Sabit çekim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"%1$s fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"Değerlerini kilitlemek için EV·, AF· ve WB· simgelerini basılı tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"HEIF'e geçildi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"Odağı öne çıkarma",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"HD panorama",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"Cihazınız çok sıcak. Kamera %1$d saniye sonra kapanacaktır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"Arka kamera ile çekilen fotoğraflara otomatik olarak filigran eklenir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_normal",
+            "value":"Özgün",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"Yeni yakınlaştırma",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"%1$s öğesinin önüne, %2$d. satıra, %3$d. sütuna taşındı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"Yapay zeka kompozisyonu x%1$s veya x%2$s yakınlaştırma ile kullanılabilir. En iyi sonuçlar manzara, binalar ve insanlar ile alınır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"details",
+            "value":"Ayrıntılar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"Özel stillere %s geçiş yapmak için sağa kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"Varsayılan güzellik ayarları geri yüklensin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"Şafak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"horizontal_level",
+            "value":"Yatay seviye",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"Gelişmiş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"passion",
+            "value":"Panorama",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"Daha iyi bir kompozisyon için telefonunuzu yatay tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"Otomatik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"%d sn sonra flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_disabled",
+            "value":"Kamera devre dışı bırakıldı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"Süjeleriniz renkli tutulur, ancak diğer her şey siyah beyaza döner.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"Arka kamera ön izleme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"Kare aralığı: %1$s sn\nGün doğumu/gün batımı için ideal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"Sola hareket ettirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"Otomatik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"Daha rahat kullanım için hareket ettirilebilen bir deklanşör düğmesi eklenir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"Bu mod, konserleri ve diğer sahne performanslarını çekmek için optimize edilmiştir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_angle",
+            "value":"Geniş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"Flaş kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"Telefonun kapağını açıp çevirdiğinizde arka kameraya bakıyorsanız otomatik olarak arka kamera selfie moduna geçilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"Saf",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"Yumuşatma",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"Deklanşör sesini kapat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"Geçiş yap",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"Yardımcı kılavuz, kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details",
+            "value":"Panoramik bir fotoğraf çekmek için kamerayı yatay veya dikey olarak döndürün.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"Ortam çok parlak. Takım uydu yakalanamadı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"Yumuşak",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"Floresan efekti zayıf olduğu için en iyi sonuçlar çok karanlık ortamlarda elde edilir. Lütfen bu modu kullanırken dikkatli olun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"Güzellik seviyesi %1$d, seçilebilir aralık %2$d ile %3$d arasındadır",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_on",
+            "value":"Açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"Pozlamanın kilidi açıldı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"Pozlama ve odak kilitlendi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"Seri fotoğraf çekmek için sola kaydırın, video kaydetmek için sağa kaydırın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_off",
+            "value":"Süper makro kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"Kişiselleştirilmiş imza",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_auto",
+            "value":"Otomatik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"Gece iyileştirmesi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_details",
+            "value":"Uzunluk kısıtlaması olmadan ağır çekim video çekimi yapın. Süper ağır çekim, ultra yüksek kare hızlarında manuel veya otomatik olarak video çekmek için kullanılabilir. Bu mod parlak bir şekilde aydınlatılmış ortamlarda en iyi şekilde çalışır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_occupied",
+            "value":"Başka bir uygulama kamerayı kullanıyor. O uygulamayı kapatın, ardından bu uygulamayı yeniden başlatın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"physical_aperture",
+            "value":"Fiziksel açıklık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"Fotoğraf netleştiriliyor... Lütfen cihazınızı sabit tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_title",
+            "value":"\"%1$s\" uygulamasının kamerayı kullanmasına izin verilsin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"Güzellik modu kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"Daha iyi bir bulanıklık efekti için aydınlatma koşullarını iyileştirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"Kare hızı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"Sadece sabit nesneler. Kamerayı sabit tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"Odak kilitlendi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"Canlı · Zengin, Yoğun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"jpg_description",
+            "value":"HEIF'ten daha iyi uyumluluk sunar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"Arka kamera ile selfie çekmek için kapağı açın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_pause",
+            "value":"Duraklat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"Yapay zeka süper netlik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"Fotoğraflar daha canlı ve dokuludur ve evcil hayvanlar ile manzaraları daha iyi yakalamanızı sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_access",
+            "value":"Özel erişim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"Reddet",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"Rüzgar sesi azaltma",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_not_detected",
+            "value":"Kamerayı bağlayın ve bu uygulamayı yeniden başlatın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"Çok karanlık olduğu için Hareketli fotoğraf devre dışı bırakıldı. Daha aydınlık bir yer bulun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"Adaptif kare hızı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details_more",
+            "value":"Daha yakın odak mesafesi, süjenizi dakika ayrıntısıyla yakalamanıza olanak sağlar. Süper makro hem fotoğraflar hem de videolar için kullanılabilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"Mikrofon",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"AI Ultra Netlik, iyi ışıklı ortamlarda sabit süjeleri ve manzaraları çekmek için harikadır.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"Hareket tespiti durdu.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"Bu; video kaydetmek, hareketli fotoğraf çekmek ve sesle kontrol için kullanılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"Yatay panoramaya geç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go",
+            "value":"Ödeme yapmak için %1$s uygulamasına gidin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"İkinci fotoğrafı çekmek için cihazı ok yönünde döndürün.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"Cihazınızı düz tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro",
+            "value":"Makro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"Işık resmi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"%1$d. Temel bilgiler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Diğer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"Çekim düğmesine dokunun ve kamerayı yavaşça ok yönünde hareket ettirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"Sahne modu gösteriler, konserler, oyunlar ve diğer performansları çekmek için mükemmeldir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"Radyo düğmesi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"Gelişmiş gürültü azaltma algoritması sayesinde düşük ışıklı ortamlarda keskin, parlak görüntüler yakalayın. İki çekim modu mevcuttur: Süper gece çekimi ve Ay çekimi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"Beyaz dengesi kilitlendi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"Saç çizgisi %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"Flaşlı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"Merkez",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"Süper makro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_heif",
+            "value":"HEIF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"Pil aşırı düşük. Kaydetme başlatılamıyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"Izgara",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"Anladım",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"Fotoğraflar ve videolar konum bilgileriyle etiketlenir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"Varsayılan ön ayar, renk sıcaklığı %1$d, doygunluk %2$d, ton %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"Arka kameraya geç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"Kısa",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"Odak modunu değiştirmek için buraya dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"Cihazınızı sabit tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d saniye",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details",
+            "value":"Gelişmiş gürültü azaltma algoritması sayesinde telefonunuz düşük ışık koşullarında bile net ve parlak görseller yakalayabilir. Daha yaratıcı çekimler için ISO ve perde hızı manuel olarak ayarlanabilir. Telefon, portre çekmek için ön kamerayı kullanırken, süjenin yüzündeki istenmeyen gölgeleri ortadan kaldırmak için dolgu aydınlatması sağlar. Gece çekilen selfie'ler de net ve parlak bir şekilde ortaya çıkar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"Dikey panoramaya geç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"Sıfırlama tamamlandı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"KAMERAYI KAPAT",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details",
+            "value":"Tam aradığınız çekimi elde etmek için kamera ayarlarınızda ince ayar yapın. Pro mod; ölçümleme, ISO, perde hızı, pozlama değeri (EV), beyaz dengesi ve odak modu gibi bir dizi gelişmiş ayarı ayarlamanıza olanak tanır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_raw",
+            "value":"RAW",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"Etkileşimli değil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"right_text",
+            "value":"Sağdaki metin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_watermark",
+            "value":"Videolar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"Takım uydu haritası açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"Ekran kaydedilirken çift ön izleme kullanılamaz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"Verimli video formatı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"Bazı ayarlar bu ISO değerinde kullanılamaz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_location",
+            "value":"Konum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"Renk ayarlama alanı. Renk sıcaklığını ayarlamak için yatay olarak, doygunluğu ayarlamak için dikey olarak sürükleyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"Ayarlar ve diğer özellikler için alt kısımdaki oka dokunun veya oku yukarı kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"Tam ekran",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"%d sn sonra flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"Kapalı alanda konum bilgisi almak için İnternet bağlantısının olduğundan emin olun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"Yapay zeka kompozisyonunu kullanmak için noktayı dairenin içine yerleştirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"Uzaktan deklanşör bağlandı.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture",
+            "value":"Açıklık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"Pembe",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot",
+            "value":"Anlık çekim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"Özel stillere %s geçiş yapmak için sola kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"Sabit çekim kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_applet",
+            "value":"%1$s mini programını aç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"AI Süper Netlik, iyi ışıklı ortamlarda portreler çekmek için harikadır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_record",
+            "value":"Kaydı başlat",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"Flaşsız",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"Ekran kapalıyken Ses azaltma düğmesine çift basın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"Orijinal · Gerçek yaşam, Doğal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"Yıldızlı portre, düğme, aktive etmek için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_occupied",
+            "value":"Kamera meşgul",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"Hareketli nesneler taranıyor…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"Daha parlak bir konuma geçin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"frame_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"%d sn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"Pro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"Bu servis %d izin gerektirmektedir:",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"Sadece bu seferlik izin ver",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera",
+            "value":"Kamera'yı aç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"operate_frequently",
+            "value":"Daha sonra tekrar deneyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"Hızlı menü kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"Tam ekran | %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"Beyaz dengesinin kilidi açıldı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"Görüntü oranı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"Yakınlaştırma seviyesini değiştirmek için yukarı veya aşağı kaydırın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"Videoya geç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"Ön kayıt kapalı.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"Sınırlı süreli filigranlar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"Süper makro · Süjeyi vurgula",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"Pro modda, tam da aradığınız çekimi elde etmek için birçok gelişmiş kamera ayarını özgürce ayarlayabilirsiniz. Bunlar arasında ölçümleme, ISO, perde hızı, pozlama değeri (EV), beyaz dengesi ve odak modu bulunur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_new",
+            "value":"Pro modda, tam da aradığınız çekimi yakalamak için gelişmiş parametreleri özgürce ayarlayabilirsiniz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"Akıllı kontrol, parmağınızı parmak izi sensöründe tutarak pozlamayı ve odağı kilitlemenizi sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_bright",
+            "value":"Canlı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"%s öğesinin arkasına taşı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature",
+            "value":"Sıcaklık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"Kare aralığı: %1$s sn\nBulutlar için ideal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"Takım uydu haritasını açmak için düğme, aktive etmek için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"RAW'a geçildi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"Parlak · Zarif, Taze",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"Daha geniş bir açıklık ile arka planda yumuşak bir bokeh efekti oluştururken süjenizi ayrıntılı olarak yakalayabilirsiniz. En iyi sonuçları elde etmek için kamera ile süje arasındaki mesafe %d metreden fazla olmamalıdır. Bu mod hem fiziksel hem de sanal açıklıkları kontrol etmenizi sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"İçerik panoya kopyalandı.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"Floresan",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"Yüksek sesle konuş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"İçeriye yeterince ışık girmiyor. Varsayılan pozlama ayarları geri yüklensin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"İzin ver",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_more",
+            "value":"Pro modda, tam da aradığınız çekimi elde etmek için birçok gelişmiş kamera ayarını özgürce ayarlayabilirsiniz. Bunlar arasında ölçümleme, ISO, diyafram açıklığı, perde hızı, pozlama değeri (EV), beyaz dengesi ve odak modu bulunur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"Etkinleştir",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"Özel stilleri ayarlamak için buraya dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"Yalnızca statik süjeler. Kamerayı sabit tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"Takım uydu haritası kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"Manuel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"Kaydediyor...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"Güzellik modu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_resume",
+            "value":"Devam et",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"Selüloit stil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"Gelişmiş gürültü azaltma algoritması sayesinde düşük ışık koşullarında net, parlak görseller yakalayın. Dört çekim modu mevcuttur: Süper gece çekimi, Ay çekimi, Yıldızlı gökyüzü ve Yıldızlı portre. Ön kamera kullanıldığında, cihazın ekranı ekstra ışık sağlamak için parlaklığını artırır ve yüzlerin karanlıkta bile parlak ve net görünmesini sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gourmet_food",
+            "value":"Lezzetli",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"Güzellik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"Panoramik bir fotoğraf çekmek için kamerayı yavaşça yatay veya dikey olarak döndürün. Bu, dağlar ve ufuk çizgisi gibi etkileyici sahneleri çarpıcı ayrıntılarla yakalamak için mükemmeldir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"floating_shutter",
+            "value":"Kayan çekim düğmesi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"Kameraya özel erişim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view",
+            "value":"%1$s içeriğini görüntüle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details",
+            "value":"Arka kamera ile mükemmel yakın çekimler yapın ve etrafınızdaki canlı ayrıntıları yakalayın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pop_item_on",
+            "value":"Açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"Farklı bir alan seçmek için kareyi hareket ettirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"Aynı görsel kaliteyi korurken JPG'den daha az depolama alanı kullanır. Uyumluluk JPG ile karşılaştırıldığında sınırlı olabilir. HEIF'i Galeri'de JPG'ye dönüştürebilirsiniz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_details",
+            "value":"Bir panorama çekimi yapmak için telefonu gösterildiği gibi düzgün bir şekilde döndürün.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"Kare aralığı: %1$s sn\nArabalar ve kalabalıklar için ideal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"Seri çekim veya video için yana doğru kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"HDR Vivid",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"Görsel kalitesini iyileştirmek için telefoto flaş kullanılıyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"Çift ön izleme açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"Daha geniş bir açıklık ile arka planda yumuşak bir bokeh efekti oluştururken süjenizi ayrıntılı olarak yakalayabilirsiniz. En iyi sonuçları elde etmek için kamera ile süje arasındaki mesafe %d metreden fazla olmamalıdır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"Yıldızlı portreyle en iyi sonuçları almak için flaşı açın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"Aşırı düşük ışıklı ortam. Pozlama optimize ediliyor...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"Renk sıcaklığı, seviye %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"%1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"Fotoğraf",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_details",
+            "value":"Fotoğraf çekerken kamera pozlamayı ve rengi otomatik olarak ayarlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"Kamerayı olabildiğince sabit tutarak yavaşça yatay veya dikey bir şekilde hareket ettirin. Oku orta çizgiyle aynı hizada tutun. Çekimi bitirdiğinizde kamera, çektiğiniz her şeyi otomatik olarak bir araya getirerek panoramik bir fotoğraf oluşturur. Bu mod manzaralar ve büyük grup fotoğrafları için mükemmeldir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"Ok yönünde döndürün. Nokta halka ile hizalandığında fotoğraf otomatik olarak çekilecektir. Sonlandırmak için istediğiniz zaman deklanşöre dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"Sabit çekim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"Takım uydular belirleniyor...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smile_capture",
+            "value":"Gülümsemeleri yakala",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"Yalnızca ön kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"Konum etiketi özel kamera modunda kullanılamaz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_title",
+            "value":"Konum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"Manuel flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"Beyaz dengesi yalnızca AWB modunda kilitlenebilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"Manuel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"Yalnızca XMAGE stillerini kullanan fotoğraflar için geçerlidir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"Hoş geldiniz",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"AI Süper Netlik, iyi ışıklı ortamlarda portreler çekmek için harikadır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"Çift ön izleme",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"Portre videosu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"Odak modu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_stage",
+            "value":"Canlı performans mı çekiyorsunuz? En iyi sonuçları almak için sahne modunu açın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"Güzellik: %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_mode",
+            "value":"Vlog",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"Telefon düşmüş olarak algılandığından kamera geri çekildi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"Kamera ön izlemesi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"Özel filigranlar",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_text",
+            "value":"Metin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"AI renk",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"Kamerayı etkinleştirmek için ekrana dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"Mevcut filtre %1$dp (%2$d fps) için kullanılamıyor. %3$dp (%4$d fps) olarak değiştirildi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"Değiştirmek için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"%s sürükleniyor",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"Konum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_off",
+            "value":"Ultra sabitlik kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"Bu mod, konserleri ve diğer sahne performanslarını çekmek için optimize edilmiştir, böylece sanatçıları ve ışık efektlerini net ayrıntılarla ve canlı renklerle çekebilirsiniz. Bu mod hem fotoğraflar hem de videolar için kullanılabilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"Sınıra ulaşıldı. Fotoğraflar kaydediliyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"%1$s öğesinin arkasına, %2$d. satıra, %3$d. sütuna taşındı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"Terkar düzenlemek için dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"saturation",
+            "value":"Doygunluk",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw",
+            "value":"Takım uydu haritası",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"Yüksek çözünürlük",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"Ses alma şu anda yakınlaştırılan alana odaklanmış durumda.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"Odak yardımcı ışık kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"Cihaz çok sıcak. Flaş kullanılamıyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"Lütfen bu uygulamayı yeniden başlatın ve tekrar deneyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"Özel stiller arasında geçiş yapmak için ön izleme alanında sağa kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"Standart sabit çekim açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"Kaydediliyor… Lütfen çıkmayın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"Açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"Flaş kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_control_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"XMAGE özel stilleri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"%s öğesinin önüne yerleştirildi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_notification",
+            "value":"Yalnızca kare filigranı ile kullanılabilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"Akıllı kontrol, parmak izi sensörünü kaydırarak yakınlaştırmanızı/uzaklaştırmanızı sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"Daha iyi bir bulanıklık efekti için daha uzağa gidin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"Ton %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"Daha fazla gece modu için buraya dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"Otomatik odaklama kilitlendi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"RAW modunda yakınlaştırma desteklenmemektedir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"Kare filigranı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"Çift ön izleme için çift dokunun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"%d fotoğraf çekilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_parameter",
+            "value":"Kamera ayarları",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"Güzellik açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"%d saniye sonra flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"Flaş kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"Güzellik modu açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"Takım uydu haritası kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_storage_space",
+            "value":"Yetersiz depolama alanı. Kamerada gecikme olabilir. Performansı geri yüklemek için depolama alanında yer açın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"Fotoğraf dehası",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"Aktive etmek için çift dokunun veya daha fazla seçenek açmak için çift dokunup basılı tutun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"Akıllı arka kamera selfie'si",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"%1$s öğesinin önüne, %2$d. satıra, %3$d. sütuna yerleştirildi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"Floresan fotoğraf hakkında",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"Yakınlaştırma Panorama modunda kullanılamaz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"Kamerayı aç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"big_text_s",
+            "value":"%s sn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"%1$s %2$s kaydedildi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"Yalnızca ön kamera",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pay",
+            "value":"%1$s uygulamasını aç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"En son fotoğraf",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"Ses yakınlaştırma kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"Daha fazla mod pek yakında…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"Bu, kamera ön izlemesini görüntülemenize ve saatten fotoğraf ve video çekmenize olanak sağlar. Bu izni Sağlık uygulamasından yönetebilirsiniz.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"Cihazınızı ok yönünde hareket ettirin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picture_watermark",
+            "value":"Görseller",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"Kontur %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"general",
+            "value":"Genel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"standard_style",
+            "value":"Standart",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"Gece modu, gelişmiş gürültü azaltma algoritması sayesinde düşük ışık koşullarında bile net ve parlak görseller yakalamanıza olanak sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_speed",
+            "value":"Perde hızı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"İptal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"Flaş",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"Pozlama çok düşük.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"Gizlilik beyanları",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"Cihaz çok sıcak. Flaş kullanılamıyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"Beyaz dengesi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"Ön kameraya geç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_contact",
+            "value":"Yeni kişi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"Yatay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"Yavaşlayın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"Yeni",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"Flaş kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_night_view",
+            "value":"Süper gece çekimi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace",
+            "value":"Değiştir",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"%d kat hız",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"Nokta",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"Pro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"Tam ekran | %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"İnsanlar gülümserken otomatik olarak fotoğraf çekilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_disabled",
+            "value":"Güvenlik politikası kamera kullanımını yasaklamaktadır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"Her zaman açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"Fotoğraf çekmek için sesinizi yükseltin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_Confirm",
+            "value":"Tamam",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"Güzellik efekti karşılaştırma düğmesi. Görseli güzellik efekti olmadan göstermek için çift dokunun ve basılı tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_agree",
+            "value":"Kabul ediyorum",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"Çözünürlük",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"Sürüklemek için çift dokunun ve basılı tutun",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"Düzgün %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"Odağı ayarlamak için kareyi, ölçümü ayarlamak için daireyi sürükleyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"Gelişmiş gürültü azaltma algoritması sayesinde düşük ışıklı ortamlarda keskin, parlak görüntüler yakalayın. İki çekim modu mevcuttur: Süper gece çekimi ve Ay çekimi. Ön kamera kullanıldığında, cihazın ekranı ekstra ışık sağlamak için parlaklığını artırabilir ve yüzlerin karanlıkta bile parlak ve net görünmesini sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark",
+            "value":"Filigran ekle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"Bu ayar kilitlenemez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"Bu odak uzaklığında açıklık manuel olarak ayarlanamıyor.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"Kamerayı kullanmaya devam edilsin mi?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"Odağın kilidi açıldı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"Kontur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"Yeni özel stil eklendi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"Bulutlu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"Telefonu açın",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"Ay modu açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"Flaşsız",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"Soğuk",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"Yapay zeka kompozisyonu kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"Yapay zeka, fotoğrafınız için en uygun kareyi önerebilir. Cihazınızı hizalayın ve yakınlaştırma otomatik olarak ayarlansın. Manzara, binalar ve insanlarla en iyi şekilde çalışır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"Görüntü yardımı açık. Video, Log'da çekilmeye devam edecek.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"festival_watermark",
+            "value":"Tatil filigranları",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"Pil aşırı düşük. Kaydetme otomatik olarak durduruldu ve kaydedildi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"Cihazınız çok sıcak. Kamera %1$d saniye sonra kapanacaktır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format",
+            "value":"Fotoğraf formatı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details",
+            "value":"Renk stilleri",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_res_details",
+            "value":"Yüksek çözünürlüklü fotoğraflar, daha fazla netlik ve ayrıntı için daha yüksek piksel yoğunluğuna sahiptir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"global_exposure",
+            "value":"Poz",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"Flaşlı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"Kaydediliyor…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"Tomurcuk",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"Bu izin fotoğraf ve videoların kesin konumlarını görüntülemenizi sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"Çektiğiniz fotoğrafları ve videoları görüntülemek ve depolamak için kullanılır.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"Ayarlar bölümüne git",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"Kamera, Konum izni gerektirmektedir",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"Videolar yaklaşık %1$s daha az yer kaplar. Ancak diğer cihazlarda oynatılamayabilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"Fotoğraf veya video çekmek için, kulaklıktaki cevaplama tuşuna basın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"Manuel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"Aralık (%d fotoğraf)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"Bir ayna selfie'si çekerken, kapak ekranının çekimde yanınızda görünecek kişiselleştirilmiş bir görsel göstermesini sağlayabilirsiniz. Bunu ayarlamak için Kamera'da hızlı menüye gidin ve Çift ön izleme seçeneğine dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"Ay modu kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pre_record",
+            "value":"Ön kayıt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"XMAGE stilleri arasında hızlıca geçiş yapmak için %s simgesine dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"Floresan fotoğraf, UV destek ışığı kullanan bir kamera modudur. UV ışığı belirli materyallerden geri yansıdığında floresan renkler verir ve böylece tarz sahibi fotoğraflar çekilebilir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"Gece modu, gelişmiş gürültü azaltma algoritması sayesinde düşük ışık koşullarında bile net ve parlak görseller yakalamanıza olanak sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"Gelişmiş gürültü azaltma algoritması sayesinde düşük ışık koşullarında net, parlak görseller yakalayın. Dört çekim modu mevcuttur: Süper gece çekimi, Ay çekimi, Yıldızlı gökyüzü ve Yıldızlı portre.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_speed",
+            "value":"Hız",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"Bu uygulama %1$s, %2$s ve %3$s izinlerini gerektirmektedir. Ayrıca çektiğiniz fotoğrafları ve videoları görüntülemek için fotoğrafları ve videoları okuması da gerekir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"Açık",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"Süper anlık çekim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"Fotoğraf moduna geç",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"request_location_msg",
+            "value":"Kamera'nın fotoğraflarınızı ve videolarınızı coğrafi olarak etiketleyebilmesi için konum erişimine izin verin. Bu, nerede çekildiklerini Galeri'de görmenizi sağlar.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"Sil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"Geçerli filtre %1$s (%2$d fps) ile kullanılamıyor. Otomatik olarak %3$dp (%4$d) fps'ye geçildi.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"Cihazı sabit tutun.\nFotoğraf çekmek için geri sayımı bekleyin veya deklanşöre dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"Yüksek çözünürlüklü fotoğraflar, daha fazla netlik ve ayrıntı için daha yüksek piksel yoğunluğuna sahiptir. Yüksek çözünürlük modunda fotoğrafların işlenmesi biraz daha uzun sürebilir. İşlem tamamlanana kadar telefonu sabit tutun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"Cihaz depolama alanı dolu.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"Ayrıntılı bilgi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"Standart stil",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"Özel bir stili içe aktarmak için buraya dokunun.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"Ayarlar %s için alt kısımdaki oka dokunun veya yukarı kaydırın.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"Bu uygulama yalnızca çektiğiniz fotoğraflara ve videolara erişebilir. Vizörde ne olduğunu görüntüleyemez. %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"Düzeni ayarlamak için simgeleri sürükleyin",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"Sabit çekim açıkken, çok ışık olduğunda fotoğraf en kaliteli halinde olur.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"small_art_vision",
+            "value":"Celia Lens",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark",
+            "value":"Filigran ekle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"Fotoğraf çekmek için \"Cheese\" deyin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"İzin Bildirimi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"Kapalı",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"Yıldızlı gökyüzü",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"Tek renkli · Zamansız, Atmosferik",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Ayarlar",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

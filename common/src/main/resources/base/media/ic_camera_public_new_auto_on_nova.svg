@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>on</title>
+    <defs>
+        <path d="M12,24 C5.372583,24 0,18.627417 0,12 C0,5.372583 5.372583,0 12,0 C18.627417,0 24,5.372583 24,12 C24,18.627417 18.627417,24 12,24 Z" id="path-1"></path>
+        <filter x="-18.8%" y="-18.8%" width="137.5%" height="137.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="on" transform="translate(3.018434, 3.243727)" fill-rule="nonzero">
+            <g id="Combined-Shape">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#0A59F7" xlink:href="#path-1"></use>
+            </g>
+            <g id="A" transform="translate(7.785156, 7.125140)" fill="#FFFFFF">
+                <path d="M5.99853516,7.09033203 L2.41845703,7.09033203 L1.66943359,9.2421875 L0,9.2421875 L3.49121094,0 L4.93212891,0 L8.4296875,9.2421875 L6.75390625,9.2421875 L5.99853516,7.09033203 Z M2.86914062,5.79541016 L5.54785156,5.79541016 L4.20849609,1.96142578 L2.86914062,5.79541016 Z" id="形状"></path>
+            </g>
+        </g>
+    </g>
+</svg>

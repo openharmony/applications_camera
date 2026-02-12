@@ -1,168 +1,481 @@
 {
-  "string": [
-    {
-      "name": "app_name",
-      "value": "相机"
-    },
-    {
-      "name": "mainability_description",
-      "value": "JS_Phone_Empty Feature Ability"
-    },
-    {
-      "name": "photo_mode",
-      "value": "拍照"
-    },
-    {
-      "name": "video_mode",
-      "value": "录像"
-    },
-    {
-      "name": "settings",
-      "value": "设置"
-    },
-    {
-      "name": "multi_mode",
-      "value": "多机位"
-    },
-    {
-      "name": "more_list",
-      "value": "更多"
-    },
-    {
-      "name": "aspect_ratio",
-      "value": "照片比例"
-    },
-    {
-      "name": "default_value",
-      "value": " "
-    },
-    {
-      "name": "photo_ratio_4_3",
-      "value": "4:3"
-    },
-    {
-      "name": "photo_ratio_1_1",
-      "value": "1:1"
-    },
-    {
-      "name": "photo_ratio_16_9",
-      "value": "16:9"
-    },
-    {
-      "name": "video_resolution",
-      "value": "视频分辨率"
-    },
-    {
-      "name": "timer",
-      "value": "定时拍摄"
-    },
-    {
-      "name": "already_off",
-      "value": "已关闭"
-    },
-    {
-      "name": "off",
-      "value": "关闭"
-    },
-    {
-      "name": "timer_2_seconds",
-      "value": "2 秒"
-    },
-    {
-      "name": "timer_5_seconds",
-      "value": "5 秒"
-    },
-    {
-      "name": "timer_10_seconds",
-      "value": "10 秒"
-    },
-    {
-      "name": "resolution_1620_1080",
-      "value": "[16:9] 1080p"
-    },
-    {
-      "name": "resolution_1280_720",
-      "value": "[16:9] 720p"
-    },
-    {
-      "name": "record_time",
-      "value": "录像时长"
-    },
-    {
-      "name": "record_time_5",
-      "value": "5秒"
-    },
-    {
-      "name": "record_time_10",
-      "value": "10秒"
-    },
-    {
-      "name": "restore_defaults",
-      "value": "恢复默认值"
-    },
-    {
-      "name": "cancel",
-      "value": "取消"
-    },
-    {
-      "name": "select_camera",
-      "value": "选择摄像头"
-    },
-    {
-      "name": "local_device",
-      "value": "本地设备"
-    },
-    {
-      "name": "more_devices",
-      "value": "更多设备"
-    },
-    {
-      "name": "local",
-      "value": "本地"
-    },
-    {
-      "name": "front",
-      "value": "（前置）"
-    },
-    {
-      "name": "back",
-      "value": "（后置）"
-    },
-    {
-      "name": "assistive_grid",
-      "value": "参考线"
-    },
-    {
-      "name": "general",
-      "value": "通用"
-    },
-    {
-      "name": "sound_mute",
-      "value": "拍摄静音"
-    },
-    {
-      "name": "save_geo_location",
-      "value": "记录地理位置信息"
-    },
-    {
-      "name": "self_mirror",
-      "value": "自拍镜像"
-    },
-    {
-      "name": "video_codec",
-      "value": "高效视频格式"
-    },
-    {
-      "name": "video_codec_desp",
-      "value": "可节省约35%空间，您可能在其他设备上无法播放此格式视频"
-    },
-    {
-      "name": "geo_location_desp",
-      "value": "用于记录照片拍摄地点信息"
-    },
-    {
-      "name": "self_mirror_desp",
-      "value": "仅在前置自拍时生效"
-    }
-  ]
+    "string":[
+        {
+            "name":"app_name",
+            "value":"相机",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mainability_description",
+            "value":"JS_Phone_Empty Feature Ability"
+        },
+        {
+            "name":"photo_mode",
+            "value":"拍照",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"录像",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"超级微距",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"夜景",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"高像素",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"慢动作",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"人像",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"照片",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"视频",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"设置",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"照片比例",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"声控拍照",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"default_value",
+            "value":" "
+        },
+        {
+            "name":"video_resolution",
+            "value":"视频分辨率",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"定时拍摄",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"已关闭",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"已开启",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"关闭",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d 秒",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d 秒",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d 秒",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_defaults",
+            "value":"恢复默认值",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"取消",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"确定",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"参考线",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"general",
+            "value":"通用",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"拍摄静音",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"自拍镜像",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"用于记录照片或视频拍摄地点信息",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"仅在前置自拍和前置录像时生效",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_restore_message",
+            "value":"是否将相机设置恢复为默认值？",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"视频帧率",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_effect",
+            "value":"效果",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"美颜",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"自动",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"拍摄中请保持相机稳定。\n倒计时过程中可点击快门提前结束拍摄。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"AI 超清适合拍摄光照充足的静物和风景，拍摄时请持稳手机",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"imagevideo_permission_desc",
+            "value":"用于展示并保存拍摄的图片和视频",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_desc",
+            "value":"用于拍照和录像",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"microphone_permission_desc",
+            "value":"用于录像和声控拍照",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_photos_and_videos",
+            "value":"没有照片和视频",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_photos_and_videos_desc",
+            "value":"您可以使用相机拍摄照片和视频，或解锁后浏览所有拍摄内容",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_app_lock_go_to_photo",
+            "value":"解锁并访问",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_app_lock_tip",
+            "value":"图库已上锁，照片或视频无法访问",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_error_title",
+            "value":"相机错误",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_connect_camera",
+            "value":"无法连接到相机。",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"got_it",
+            "value":"知道了",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more",
+            "value":"更多",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"专业",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"专业",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"专业",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"拖动图标可调整布局",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"恢复默认布局",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"编辑",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"HDR Vivid 录制",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"拖动对焦框和测光框，可分别调整对焦点和测光点",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"自动",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"手动",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"高画质模式",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"拍照模式下，将优先保存更高画质 %dMP 的照片，部分场景下可能影响成片时间",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_title",
+            "value":"使用引导",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_take_photo",
+            "value":"单击可拍照或录像",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_change_lens",
+            "value":"双击可切换镜头",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_change_mode",
+            "value":"上下滑动可切换模式",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_capture",
+            "value":"旋转手机获得更佳拍摄效果",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_guide_start",
+            "value":"开始",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_guide_next",
+            "value":"下一步",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
 }

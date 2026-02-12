@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px"
-     height="24px"
-     viewBox="0 0 24 24"
-     version="1.1"
-     xmlns="http://www.w3.org/2000/svg">
-    <title>ic_camera_public_focus_ev_bright_subtract</title>
-    <g id="ic_camera_public_focus_ev_bright_subtract" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="Rectangle" fill="#000000" fill-rule="nonzero" x="2" y="11" width="20" height="2"></rect>
+<svg width="26px" height="8px" viewBox="0 0 26 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>矩形</title>
+    <defs>
+        <rect id="path-1" x="3" y="3" width="20" height="1.6" rx="0.75"></rect>
+        <filter x="-22.5%" y="-225.0%" width="145.0%" height="550.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="矩形" fill-rule="nonzero">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" xlink:href="#path-1"></use>
+        </g>
     </g>
 </svg>

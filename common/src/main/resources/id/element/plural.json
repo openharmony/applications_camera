@@ -1,0 +1,124 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Zum %s kali",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Interval %f dtk",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Telah merekam %d detik",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d mnt",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d dtk",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Anda dapat memiliki maksimum %d gaya khusus dalam satu waktu. Pilih satu yang akan digantikan.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Zum %f kali",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%f dtk",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Anda kini dapat membuat gaya warna yang dipersonalisasi untuk foto Anda. Pilih dari %1$s gaya praatur atau lakukan eksperimen untuk menemukan penampilan yang benar-benar mencerminkan diri Anda.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d mnt",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

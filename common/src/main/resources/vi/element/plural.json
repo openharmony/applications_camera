@@ -1,0 +1,124 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Thu phóng gấp %s lần",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Khoảng thời gian %f giây",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Đã ghi lại %d giây",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d phút",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d giây",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Bạn có thể có tối đa %d kiểu tùy chỉnh cùng lúc. Hãy chọn một kiểu để thay thế.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Thu phóng gấp %f lần",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%f giây",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"Giờ đây bạn có thể tạo kiểu màu sắc cá nhân cho ảnh của mình. Chọn trong số %1$s kiểu có sẵn hoặc thử nghiệm để tìm ra kiểu phù hợp nhất với bạn.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d phút",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

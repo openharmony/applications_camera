@@ -17,12 +17,20 @@
       "value": "录像"
     },
     {
-      "name": "multi_mode",
-      "value": "多机位"
+      "name": "night_mode",
+      "value": "夜景"
     },
     {
-      "name": "more_list",
-      "value": "更多"
+      "name": "portrait_mode",
+      "value": "人像"
+    },
+    {
+      "name": "pic_title",
+      "value": "照片"
+    },
+    {
+      "name": "video_title",
+      "value": "视频"
     },
     {
       "name": "settings",
@@ -31,22 +39,6 @@
     {
       "name": "aspect_ratio",
       "value": "照片比例"
-    },
-    {
-      "name": "default_value",
-      "value": " "
-    },
-    {
-      "name": "photo_ratio_4_3",
-      "value": "4:3"
-    },
-    {
-      "name": "photo_ratio_1_1",
-      "value": "1:1"
-    },
-    {
-      "name": "photo_ratio_16_9",
-      "value": "16:9"
     },
     {
       "name": "video_resolution",
@@ -66,35 +58,15 @@
     },
     {
       "name": "timer_2_seconds",
-      "value": "2 秒"
+      "value": "%d 秒"
     },
     {
       "name": "timer_5_seconds",
-      "value": "5 秒"
+      "value": "%d 秒"
     },
     {
       "name": "timer_10_seconds",
-      "value": "10 秒"
-    },
-    {
-      "name": "resolution_1620_1080",
-      "value": "[16:9] 1080p"
-    },
-    {
-      "name": "resolution_1280_720",
-      "value": "[16:9] 720p"
-    },
-    {
-      "name": "record_time",
-      "value": "录像时长"
-    },
-    {
-      "name": "record_time_5",
-      "value": "5秒"
-    },
-    {
-      "name": "record_time_10",
-      "value": "10秒"
+      "value": "%d 秒"
     },
     {
       "name": "restore_defaults",
@@ -105,28 +77,8 @@
       "value": "取消"
     },
     {
-      "name": "select_camera",
-      "value": "选择摄像头"
-    },
-    {
-      "name": "local_device",
-      "value": "本地设备"
-    },
-    {
-      "name": "more_devices",
-      "value": "更多设备"
-    },
-    {
-      "name": "local",
-      "value": "本地"
-    },
-    {
-      "name": "front",
-      "value": "（前置）"
-    },
-    {
-      "name": "back",
-      "value": "（后置）"
+      "name": "confirm",
+      "value": "确定"
     },
     {
       "name": "assistive_grid",
@@ -141,28 +93,79 @@
       "value": "拍摄静音"
     },
     {
-      "name": "save_geo_location",
-      "value": "记录地理位置信息"
-    },
-    {
       "name": "self_mirror",
       "value": "自拍镜像"
     },
     {
-      "name": "video_codec",
-      "value": "高效视频格式"
-    },
-    {
-      "name": "video_codec_desp",
-      "value": "可节省约35%空间，您可能在其他设备上无法播放此格式视频"
-    },
-    {
       "name": "geo_location_desp",
-      "value": "用于记录照片拍摄地点信息"
+      "value": "用于记录照片或视频拍摄地点信息。",
+      "attr": {
+        "priority": "translate"
+      }
     },
     {
       "name": "self_mirror_desp",
       "value": "仅在前置自拍时生效"
+    },
+    {
+      "name": "confirm_restore_message",
+      "value": "是否将相机设置恢复为默认值？"
+    },
+    {
+      "name": "video_frame_rate",
+      "value": "视频帧率"
+    },
+    {
+      "name": "portrait_effect",
+      "value": "效果"
+    },
+    {
+      "name": "imagevideo_permission_desc",
+      "value": "用于展示并保存拍摄的图片和视频"
+    },
+    {
+      "name": "camera_permission_desc",
+      "value": "用于拍照和录像"
+    },
+    {
+      "name": "microphone_permission_desc",
+      "value": "用于录像和声控拍照"
+    },
+    {
+      "name": "no_photos_and_videos",
+      "value": "没有照片和视频"
+    },
+    {
+      "name": "no_photos_and_videos_desc",
+      "value": "您可以使用相机拍摄照片和视频，或解锁后浏览所有拍摄内容"
+    },
+    {
+      "name": "camera_app_lock_go_to_photo",
+      "value": "解锁并访问"
+    },
+    {
+      "name": "camera_app_lock_tip",
+      "value": "图库已上锁，照片或视频无法访问"
+    },
+    {
+      "name": "got_it",
+      "value": "知道了"
+    },
+    {
+      "name": "more_development",
+      "value": "更多模式开发中"
+    },
+    {
+      "name": "more_confirm_restore_message",
+      "value": "是否将相机模式恢复为默认布局？"
+    },
+    {
+      "name": "high_pixel_desc",
+      "value": "AI超清适合拍摄光照充足的静物和风景，拍摄时请持稳手机。"
+    },
+    {
+      "name": "highPixel_mode",
+      "value": "高像素"
     }
   ]
 }

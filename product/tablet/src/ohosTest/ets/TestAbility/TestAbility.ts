@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) Huawei Device Co., Ltd. 2024-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,45 +13,37 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.application.Ability';
-import type AbilityDelegator from '@ohos.application.AbilityDelegator';
-import type AbilityDelegatorArgs from '@ohos.application.AbilityDelegatorArgs';
+import Ability from '@ohos.app.ability.UIAbility';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import { Hypium } from 'hypium/index';
+import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log';
 
+let abilityDelegator: any;
+abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let abilityDelegatorArguments: any;
+abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+
+/**
+ * tablet--TestAbility
+ */
 export default class TestAbility extends Ability {
-  onCreate(want, launchParam) {
-    Log.log('TestAbility onCreate');
-    let abilityDelegator: AbilityDelegator;
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    let abilityDelegatorArguments: AbilityDelegatorArgs;
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
-    Log.info('start run testcase!!!');
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+  onCreate(want, launchParam): void {
   }
 
-  onDestroy() {
-    Log.log('TestAbility onDestroy');
+  onDestroy(): void {
   }
 
-  onWindowStageCreate(windowStage) {
-    Log.log('TestAbility onWindowStageCreate');
+  onWindowStageCreate(windowStage): void {
     windowStage.setUIContent(this.context, 'TestAbility/pages/index', null);
-
-    globalThis.abilityContext = this.context;
   }
 
-  onWindowStageDestroy() {
-    Log.log('TestAbility onWindowStageDestroy');
+  onWindowStageDestroy(): void {
   }
 
-  onForeground() {
-    Log.log('TestAbility onForeground');
+  onForeground(): void {
   }
 
-  onBackground() {
-    Log.log('TestAbility onBackground');
+  onBackground(): void {
   }
 };

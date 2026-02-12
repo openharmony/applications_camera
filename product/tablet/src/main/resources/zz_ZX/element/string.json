@@ -1,0 +1,168 @@
+{
+  "string": [
+    {
+      "name": "timer_2_seconds",
+      "value": "[TS_785045]_%d seconds"
+    },
+    {
+      "name": "photo_mode",
+      "value": "[TS_785061]_Photo"
+    },
+    {
+      "name": "assistive_grid",
+      "value": "[TS_785078]_Assistive grid"
+    },
+    {
+      "name": "app_name",
+      "value": "[TS_783822]_Camera"
+    },
+    {
+      "name": "restore_defaults",
+      "value": "[TS_785049]_Restore defaults"
+    },
+    {
+      "name": "video_resolution",
+      "value": "[TS_785067]_Video resolution"
+    },
+    {
+      "name": "geo_location_desp",
+      "value": "[TS_785073]_This is used to tag photos and videos with location information."
+    },
+    {
+      "name": "self_mirror_desp",
+      "value": "[TS_785079]_Front camera only."
+    },
+    {
+      "name": "off",
+      "value": "[TS_785074]_Off"
+    },
+    {
+      "name": "timer_10_seconds",
+      "value": "[TS_785068]_%d seconds"
+    },
+    {
+      "name": "general",
+      "value": "[TS_785057]_General"
+    },
+    {
+      "name": "sound_mute",
+      "value": "[TS_785064]_Mute"
+    },
+    {
+      "name": "aspect_ratio",
+      "value": "[TS_785059]_Aspect ratio"
+    },
+    {
+      "name": "cancel",
+      "value": "[TS_785066]_Cancel"
+    },
+    {
+      "name": "timer_5_seconds",
+      "value": "[TS_785047]_%d seconds"
+    },
+    {
+      "name": "self_mirror",
+      "value": "[TS_785072]_Mirror reflection"
+    },
+    {
+      "name": "timer",
+      "value": "[TS_785048]_Timer"
+    },
+    {
+      "name": "settings",
+      "value": "[TS_785055]_Settings"
+    },
+    {
+      "name": "video_mode",
+      "value": "[TS_785076]_Video"
+    },
+    {
+      "name": "video_title",
+      "value": "[TS_846567]_Video settings"
+    },
+    {
+      "name": "pic_title",
+      "value": "[TS_846568]_Photo settings"
+    },
+    {
+      "name": "confirm",
+      "value": "[TS_846572]_OK"
+    },
+    {
+      "name": "video_frame_rate",
+      "value": "[TS_846571]_Frame rate"
+    },
+    {
+      "name": "already_off",
+      "value": "[TS_846569]_Off"
+    },
+    {
+      "name": "confirm_restore_message",
+      "value": "[TS_846570]_Camera settings will be restored to their default values."
+    },
+    {
+      "name": "mainability_description",
+      "value": "[TS_846566]_JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "portrait_mode",
+      "value": "[TS_876428]_Portrait"
+    },
+    {
+      "name": "portrait_effect",
+      "value": "[TS_876427]_Effects"
+    },
+    {
+      "name": "imagevideo_permission_desc",
+      "value": "[TS_857406]_This is used to display and store photos and videos you take."
+    },
+    {
+      "name": "camera_permission_desc",
+      "value": "[TS_857405]_This is used to take photos and record video."
+    },
+    {
+      "name": "microphone_permission_desc",
+      "value": "[TS_857407]_This is used for recording videos and to enable audio control."
+    },
+    {
+      "name": "no_photos_and_videos",
+      "value": "[TS_876433]_No photos or videos"
+    },
+    {
+      "name": "no_photos_and_videos_desc",
+      "value": "[TS_876431]_Take photos and videos with the camera, or unlock your device to access Gallery."
+    },
+    {
+      "name": "got_it",
+      "value": "[TS_876426]_OK"
+    },
+    {
+      "name": "more_development",
+      "value": "[TS_876436]_More modes coming soon…"
+    },
+    {
+      "name": "more_confirm_restore_message",
+      "value": "[TS_876425]_Restore the default layout？"
+    },
+    {
+      "name": "night_mode",
+      "value": "[TS_876435]_Night"
+    },
+    {
+      "name": "high_pixel_desc",
+      "value": "[TS_916988]_AI Ultra Clarity is great for shooting still objects and scenery in good light."
+    },
+    {
+      "name": "highPixel_mode",
+      "value": "[TS_916989]_High-res"
+    },
+    {
+      "name": "camera_app_lock_tip",
+      "value": "[TS_1018123]_Gallery is locked"
+    },
+    {
+      "name": "camera_app_lock_go_to_photo",
+      "value": "[TS_1018124]_Unlock & access"
+    }
+  ]
+}

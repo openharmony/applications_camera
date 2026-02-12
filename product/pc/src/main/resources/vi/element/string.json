@@ -1,0 +1,200 @@
+{
+    "string":[
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"Tốc độ khung hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"Ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"Cài đặt video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"Lưới hỗ trợ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_desc",
+            "value":"Quyền này dùng để quay video và bật điều khiển âm thanh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_name",
+            "value":"Máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_defaults",
+            "value":"Khôi phục mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"Độ phân giải video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"Gắn thẻ thông tin vị trí cho ảnh và video.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"Chỉ sử dụng máy ảnh trước.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"Cài đặt ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_restore_message",
+            "value":"Cài đặt Máy ảnh sẽ được khôi phục về các giá trị mặc định.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"Cài đặt chung",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"Tắt tiếng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_permission_desc",
+            "value":"Quyền này dùng để chụp ảnh và quay video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"Tỷ lệ khung hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imagevideo_permission_desc",
+            "value":"Quyền này dùng để hiển thị cũng như lưu trữ ảnh bạn chụp và video bạn quay.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"Phản chiếu gương",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"Bộ hẹn giờ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"Video",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "index_background",
+      "value": "#000000"
+    },
+    {
+      "name": "card_bg",
+      "value": "#26FFFFFF"
+    },
+    {
+      "name": "default_background_color",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "black",
+      "value": "#000000"
+    },
+    {
+      "name": "btn_bg",
+      "value": "#19FFFFFF"
+    },
+    {
+      "name": "text_color",
+      "value": "#000000"
+    }
+  ]
+}

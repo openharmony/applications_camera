@@ -1,0 +1,347 @@
+{
+    "string":[
+        {
+            "name":"timer_2_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"معدل الإطار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"صورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"بورتريه",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"الوضع الليلي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"إعدادات الفيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"وضع النقاوة الفائقة مناسب لتصوير المشاهد والأجسام الثابتة في ظروف إضاءة جيدة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_desc",
+            "value":"يُستخدم هذا الإذن لتسجيل الفيديوهات وتشغيل ميزة التحكم الصوتي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"تلقائي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_name",
+            "value":"الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"دقة الفيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"تعمل هذه الميزة مع الكاميرا الأمامية فقط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"got_it",
+            "value":"حسنًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"إعدادات الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"كتم صوت الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_effect",
+            "value":"المؤثرات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_permission_desc",
+            "value":"يُستخدم هذا الإذن لالتقاط الصور وتسجيل الفيديوهات.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more",
+            "value":"المزيد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"استعادة الترتيب الافتراضي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"blurred_background",
+            "value":"تمويه الخلفية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_error_title",
+            "value":"خطأ في الكاميرا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"عكس الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"فيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_photos_and_videos",
+            "value":"لا توجد صور أو فيديوهات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"لقطة مقرَّبة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"موافق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"التجميل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"الخطوط المساعدة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"لا تحرّك جهازك أثناء التصوير.\nانتظر العد التنازلي أو انقر على زر التقاط الصور لالتقاط صورة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"المزيد من الأوضاع قادمة قريبًا…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_defaults",
+            "value":"استعادة الإعدادات الافتراضية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"إضافة وسم يحتوي على معلومات الموقع الجغرافي على الصور والفيديوهات التي تلتقطها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_photos_and_videos_desc",
+            "value":"التقط صورة أو فيديو باستخدام الكاميرا، أو افتح قفل الجهاز للوصول إلى المعرض.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_restore_message",
+            "value":"ستستعيد إعدادات الكاميرا الافتراضية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"دقة عالية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"إعدادات عامة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"اسحب الأيقونات لضبط الترتيب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"هل تريد استعادة الترتيب الافتراضي للأيقونات؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cannot_connect_camera",
+            "value":"لا يمكن الاتصال بالكاميرا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"أبعاد الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"تعديل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imagevideo_permission_desc",
+            "value":"يُستخدم هذا الإذن لعرض وتخزين الصور والفيديوهات التي تلتقطها.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"المؤقت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"الإعدادات",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

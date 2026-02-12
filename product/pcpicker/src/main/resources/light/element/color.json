@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "index_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "activated",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "text_primary_activated",
+      "value": "#3F97E9"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "path": "OhosCamera/camera_custom_filter_style",
+  "type": "rdb",
+  "scope": "application",
+  "allowLists": [
+    {
+      "appIdentifier": "1207824849184017472",
+      "onlyMain": false
+    },
+    {
+      "appIdentifier": "5765880207854258995",
+      "onlyMain": false
+    }
+  ]
+}

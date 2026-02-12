@@ -1,12 +1,24 @@
 {
-  "modelVersion": "5.0.2",
+  "modelVersion": "5.0.0",
   "license": "ISC",
   "devDependencies": {
-    "@ohos/hypium": "1.0.6"
+    "@ohos/hypium": "1.0.16",
   },
   "name": "camera",
   "description": "example description",
   "repository": {},
   "version": "1.0.0",
-  "dependencies": {}
+  "dynamicDependencies": {},
+  "dependencies": {
+    "@ohos/lottie": "2.0.23"
+  },
+  "overrides": {
+//    "@ohos-paf/ui-widget-base": "14.16.10-305",
+//    "@ohos-paf/ui-widget-consent": "14.16.10-305",
+//    "@ohos-paf/ui-widget-permission": "14.16.10-305",
+//    "@ohos-paf/ui-widget-webview": "14.16.10-305",
+//    "@ohos-paf/ui-widget-permissiondesc": "14.16.10-305",
+//    "@ohos-paf/ui-widget-permission-v2": "14.17.5-203",
+//    "@ohos-paf/ui-widget-base-v2": "14.17.5-203"
+  }
 }

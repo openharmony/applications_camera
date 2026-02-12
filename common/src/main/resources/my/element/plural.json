@@ -1,0 +1,124 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ဇူးမ် %s ဆ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%fs ကြာ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d စက္ကန့် ရိုက်ကူးထားသည်",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d မိနစ်",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d စက္ကန့်",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"တစ်ကြိမ်လျှင် အများဆုံးအနေဖြင့် စိတ်ကြိုက် စတိုင် %d ခုအထိသာ ရရှိနိုင်ပါသည်။ အစားထိုးရန် တစ်ခုကို ရွေးပါ။",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ဇူးမ် %f ဆ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%fs",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ယခုအခါ သင့်ဓာတ်ပုံများအတွက် တစ်ဦးချင်းအလိုက် ကိုက်ညီမှုရှိသည့် အရောင်စတိုင်များကို ဖန်တီးနိုင်ပါသည်။ သင့်ပုံစံ အစစ်အမှန်ကို ရှာဖွေရန် ကြိုတင်သတ်မှတ်ထားသော စတိုင် %1$s ခုထဲမှ ရွေးချယ်ပါ သို့မဟုတ် လက်တွေ့စမ်းကြည့်ပါ။",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d min",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) Huawei Device Co., Ltd. 2024-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 
-import { Log } from '@ohos/common/src/main/ets/default/utils/Log'
+import router from '@ohos.router';
 
 @Entry
 @Component
 struct Index {
-  aboutToAppear() {
-    Log.info('TestAbility index aboutToAppear')
-  }
+  @State message: string = 'Hello World!';
 
-  @State message: string = 'Hello World'
+  aboutToAppear() {
+  }
 
   build() {
     Row() {
@@ -42,7 +41,7 @@ struct Index {
         .backgroundColor('#0D9FFB')
         .width('35%')
         .height('5%')
-        .onClick(() => {
+        .onClick((): void => {
         })
       }
       .width('100%')

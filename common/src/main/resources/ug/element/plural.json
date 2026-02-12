@@ -1,0 +1,194 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"چوڭ-كىچىكلىكىنى %s ھەسسىلەش",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"چوڭ-كىچىكلىكىنى %s ھەسسىلەش",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"ئارىلىق %f سېكۇنت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"ئارىلىق %f سېكۇنت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d سېكۇنت خاتىرىلەندى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d سېكۇنت خاتىرىلەندى",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%dمىنۇت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%dمىنۇت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d س",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d س",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"كۆپىدە %d ئۆزلەشتۈرمە رەڭ كارتىسى قوشۇلىدۇ، بىرنى تاللاپ ئالماشتۇرۇڭ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"كۆپىدە %d ئۆزلەشتۈرمە رەڭ كارتىسى قوشۇلىدۇ، بىرنى تاللاپ ئالماشتۇرۇڭ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"چوڭ-كىچىكلىكىنى %f ھەسسىلەش",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"چوڭ-كىچىكلىكىنى %f ھەسسىلەش",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%f سېكۇنت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"other",
+                    "value":"%f سېكۇنت",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"يېڭىلانغان XMAGE ئۆزلەشتۈرمە رەڭ كارتىسى ئىقتىدارى بىلەن تەمىنلەيدۇ، %1$s خىل تەييار ئۇسلۇب، رەڭ تەڭشەش تاختىسى ۋە ئۆزلەشتۈرمە ئۆلچەم ئارقىلىق ئۆزگىچە ئۇسلۇب قۇرۇپ چىقالايسىز؛ يەنە رەڭ نومۇرىنى ئورتاقلىشىپ، ئەسەرلىرىڭىزنى تېخىمۇ گەۋدىلەندۈرەلەيسىز.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"يېڭىلانغان XMAGE ئۆزلەشتۈرمە رەڭ كارتىسى ئىقتىدارى بىلەن تەمىنلەيدۇ، %1$s خىل تەييار ئۇسلۇب، رەڭ تەڭشەش تاختىسى ۋە ئۆزلەشتۈرمە ئۆلچەم ئارقىلىق ئۆزگىچە ئۇسلۇب قۇرۇپ چىقالايسىز؛ يەنە رەڭ نومۇرىنى ئورتاقلىشىپ، ئەسەرلىرىڭىزنى تېخىمۇ گەۋدىلەندۈرەلەيسىز.",
+                    "attr":{
+                        "priority":"LT"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d مىنۇت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                },
+                {
+                    "quantity":"one",
+                    "value":"%d مىنۇت",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

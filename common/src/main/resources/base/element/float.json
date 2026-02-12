@@ -5,6 +5,30 @@
       "value": "20"
     },
     {
+      "name": "control_point_size",
+      "value": "8"
+    },
+    {
+      "name": "control_point_radius",
+      "value": "4"
+    },
+    {
+      "name": "video_timer_icon_size",
+      "value": "12"
+    },
+    {
+      "name": "video_timer_icon_radius",
+      "value": "6"
+    },
+    {
+      "name": "thumbnail_size",
+      "value": "44"
+    },
+    {
+      "name": "thumbnail_radius",
+      "value": "22"
+    },
+    {
       "name": "notification_expanded_text_maxheight",
       "value": "295"
     },
@@ -107,6 +131,170 @@
     {
       "name": "displayicon_height",
       "value": "20"
+    },
+    {
+      "name": "margin_value_8",
+      "value": "8vp"
+    },
+    {
+      "name": "margin_value_16",
+      "value": "16vp"
+    },
+    {
+      "name": "margin_value_20",
+      "value": "20vp"
+    },
+    {
+      "name": "margin_value_24",
+      "value": "24vp"
+    },
+    {
+      "name": "opacity_2",
+      "value": "0.2"
+    },
+    {
+      "name": "opacity_4",
+      "value": "0.4"
+    },
+    {
+      "name": "opacity_6",
+      "value": "0.6"
+    },
+    {
+      "name": "font_14",
+      "value": "14fp"
+    },
+    {
+      "name": "font_16",
+      "value": "16fp"
+    },
+    {
+      "name": "font_30",
+      "value": "30fp"
+    },
+    {
+      "name": "text_shadow_radios",
+      "value": "2"
+    },
+    {
+      "name": "big_button_length",
+      "value": "64vp"
+    },
+    {
+      "name": "mode_bar_text_max_font_size",
+      "value": "24vp"
+    },
+    {
+      "name": "mode_bar_text_max_font_size_non_ch",
+      "value": "21vp"
+    },
+    {
+      "name": "mode_bar_list_space",
+      "value": "24"
+    },
+    {
+      "name": "tip_text_max_font_size",
+      "value": "18vp"
+    },
+    {
+      "name": "second_level_list_element_text_size",
+      "value": "12vp"
+    },
+    {
+      "name": "first_level_list_element_text_size",
+      "value": "12vp"
+    },
+    {
+      "name": "first_level_list_element_sec_text_size",
+      "value": "10vp"
+    },
+    {
+      "name": "aperture_text_size",
+      "value": "21vp"
+    },
+    {
+      "name": "portrait_beauty_text_size",
+      "value": "19vp"
+    },
+    {
+      "name": "slider_title_text_size",
+      "value": "21vp"
+    },
+    {
+      "name": "beauty_skin_title_text_size",
+      "value": "21vp"
+    },
+    {
+      "name": "fps_desc_and_title_text_size",
+      "value": "15vp"
+    },
+    {
+      "name": "fps_desc_and_title_max_text_size",
+      "value": "24vp"
+    },
+    {
+      "name": "high_pixel_text_size",
+      "value": "24vp"
+    },
+    {
+      "name": "more_mode_index_text_size",
+      "value": "19vp"
+    },
+    {
+      "name": "card_detail_huge_size",
+      "value": "21vp"
+    },
+    {
+      "name": "more_mode_index_max_text_size",
+      "value": "24vp"
+    },
+    {
+      "name": "more_restore_text_size",
+      "value": "20.8vp"
+    },
+    {
+      "name": "button_padding_value_4",
+      "value": "4"
+    },
+    {
+      "name": "button_padding_value_8",
+      "value": "8"
+    },
+    {
+      "name": "button_padding_value_16",
+      "value": "16"
+    },
+    {
+      "name": "button_padding_value_32",
+      "value": "32"
+    },
+    {
+      "name": "toggle_width",
+      "value": "36"
+    },
+    {
+      "name": "toggle_height",
+      "value": "20"
+    },
+    {
+      "name": "dialog_title_max_font_size",
+      "value": "40vp"
+    },
+    {
+      "name": "dialog_button_max_font_size",
+      "value": "32vp"
+    },
+    {
+      "name": "2x_font_size_sys_subtitle_m",
+      "value": "32vp"
+    },
+    {
+      "name": "padding_2",
+      "value": "2vp"
+    },
+    {
+      "name": "radius_32",
+      "value": "32vp"
     }
   ]
 }

@@ -1,0 +1,60 @@
+{
+    "string":[
+        {
+            "name":"scene_galaxy_tip",
+            "value":"Intervalo de cuadros: %1$s s\nIdeal para estrellas",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"Intervalo de cuadros: %d s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"Intervalo de cuadros: %1$s s\nIdeal para flores en floración",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"Intervalo de cuadros: %1$s s\nIdeal para amaneceres/atardeceres",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"Reducción del ruido del viento",
+            "attr":{
+                "priority":"code"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"Intervalo de cuadros: %1$s s\nIdeal para nubes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"Intervalo de cuadros: %1$s s\nIdeal para vehículos y multitudes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"El zoom no está disponible en modo Panorámica.",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>向上</title>
+    <defs>
+        <path d="M15.0052038,11.2928932 C15.3957281,11.6834175 15.3957281,12.3165825 15.0052038,12.7071068 L10.4090097,17.3033009 C10.0184855,17.6938252 9.38532047,17.6938252 8.99479618,17.3033009 C8.60427189,16.9127766 8.60427189,16.2796116 8.99479618,15.8890873 L12.8838835,12 L8.99479618,8.1109127 C8.60427189,7.72038841 8.60427189,7.08722343 8.99479618,6.69669914 C9.38532047,6.30617485 10.0184855,6.30617485 10.4090097,6.69669914 L15.0052038,11.2928932 Z" id="path-1"></path>
+        <filter x="-45.5%" y="-26.8%" width="191.0%" height="153.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="向上" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="路径" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) ">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

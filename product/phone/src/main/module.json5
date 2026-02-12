@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) Huawei Device Co., Ltd. 2023-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@
   "module": {
     "name": "phone",
     "type": "entry",
-    "srcEntry": "./ets/Application/AbilityStage.ts",
+    "srcEntry": "./ets/Application/AbilityStage.ets",
     "description": "$string:entry_desc",
     "mainElement": "com.ohos.camera.MainAbility",
     "deviceTypes": [
@@ -30,48 +30,54 @@
       {
         "name": "ArkTSPartialUpdate",
         "value": "true"
+      },
+      {
+        "name": "client_id",
+        "value": "110873395"
+      },
+      {
+        "name": "action.settings.app.can_not_disable",
+        "value": "true"
+      },
+      {
+        "name": "ohos.graphics2d.text.adapter_text_height"
+      },
+      {
+        "name": "license_file_path",
+        "value": "/system/etc/noticeFile/Camera_OpenSource.html"
       }
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.MEDIA_LOCATION",
-        "reason": "$string:mainability_description",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.camera.MainAbility"
-          ]
-        }
+        "name": "ohos.permission.PERMISSION_USED_STATS"
       },
       {
-        "name": "ohos.permission.INTERNET"
+        "name": "ohos.permission.INPUT_MONITORING"
+      },
+      {
+        "name": "ohos.permission.MANAGE_FINGERPRINT_AUTH"
       },
       {
         "name": "ohos.permission.MODIFY_AUDIO_SETTINGS"
       },
       {
-        "name": "ohos.permission.READ_IMAGEVIDEO",
-        "reason": "$string:mainability_description",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.camera.MainAbility"
-          ]
-        }
-      },
-      {
-        "name": "ohos.permission.WRITE_IMAGEVIDEO",
-        "reason": "$string:mainability_description",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.camera.MainAbility"
-          ]
-        }
-      },
-      {
         "name": "ohos.permission.GET_BUNDLE_INFO"
       },
       {
+        "name": "ohos.permission.GYROSCOPE"
+      },
+      {
+        "name": "ohos.permission.ACCELEROMETER"
+      },
+      {
+        "name": "ohos.permission.READ_PROTECTION_ADVICE_POLICY"
+      },
+      {
+        "name": "ohos.permission.READ_CLOUD_SYNC_CONFIG"
+      },
+      {
         "name": "ohos.permission.CAMERA",
-        "reason": "$string:mainability_description",
+        "reason": "$string:camera_permission_desc",
         "usedScene": {
           "abilities": [
             "com.ohos.camera.MainAbility"
@@ -80,34 +86,7 @@
       },
       {
         "name": "ohos.permission.MICROPHONE",
-        "reason": "$string:mainability_description",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.camera.MainAbility"
-          ]
-        }
-      },
-      {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
-        "reason": "$string:mainability_description",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.camera.MainAbility"
-          ]
-        }
-      },
-      {
-        "name": "ohos.permission.LOCATION",
-        "reason": "$string:mainability_description",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.camera.MainAbility"
-          ]
-        }
-      },
-      {
-        "name": "ohos.permission.LOCATION_IN_BACKGROUND",
-        "reason": "$string:mainability_description",
+        "reason": "$string:microphone_permission_desc",
         "usedScene": {
           "abilities": [
             "com.ohos.camera.MainAbility"
@@ -116,7 +95,7 @@
       },
       {
         "name": "ohos.permission.APPROXIMATELY_LOCATION",
-        "reason": "$string:mainability_description",
+        "reason": "$string:location_permission_description",
         "usedScene": {
           "abilities": [
             "com.ohos.camera.MainAbility"
@@ -124,21 +103,137 @@
         }
       },
       {
-        "name": "ohos.permission.ACCESS_SERVICE_DM"
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:location_permission_description",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.VIBRATE"
+      },
+      {
+        "name": "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:imagevideo_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
+        "reason": "$string:imagevideo_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
       },
       {
         "name": "ohos.permission.PROXY_AUTHORIZATION_URI"
+      },
+      {
+        "name": "ohos.permission.SUBSCRIBE_SWING_ABILITY"
+      },
+      {
+        "name": "ohos.permission.CLOUDFILE_SYNC"
+      },
+      {
+        "name": "ohos.permission.WAKEUP_VISION"
+      },
+      {
+        "name": "ohos.permission.ACTIVATE_THEME_PACKAGE"
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.LAUNCH_DATA_PRIVACY_CENTER"
+      },
+      {
+        "name": "ohos.permission.MANAGE_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.MANAGE_SECURE_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.ACCESS_SCAN_SERVICE"
+      },
+      {
+        "name": "ohos.permission.READ_APP_LOCK"
+      },
+      {
+        "name": "ohos.permission.START_SYSTEM_DIALOG"
+      },
+      {
+        "name": "ohos.permission.POWER_MANAGER"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.PRINT"
+      },
+      {
+        "name": "ohos.permission.PRELOAD_UI_EXTENSION_ABILITY"
+      },
+      {
+        'name': "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:imagevideo_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
+      },
+      {
+        'name': "ohos.permission.MEDIA_LOCATION",
+        "reason": "$string:imagevideo_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
+      },
+      {
+        'name': "ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN",
+        "reason": "$string:imagevideo_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.MainAbility"
+          ]
+        }
+      }
+    ],
+    "definePermissions": [
+      {
+        "name": "ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN",
+        "grantMode": "system_grant",
+        "availableLevel": "system_core",
+        "provisionEnable": true,
+        "distributedSceneEnable": false
+      },
+      {
+        "name": "ohos.permission.READ_APP_LOCK",
+        "grantMode": "system_grant",
+        "availableLevel": "system_core",
+        "provisionEnable": true,
+        "distributedSceneEnable": false
       }
     ],
     "abilities": [
       {
         "name": "com.ohos.camera.MainAbility",
         "srcEntry": "./ets/MainAbility/MainAbility.ts",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:startWindowBackground",
         "launchType": "singleton",
         "description": "$string:mainability_description",
-        "icon": "$media:icon",
+        "icon": "$media:adaptive_icon_phone_launcher",
+        "startWindowIcon": "$media:backSplash",
+        "orientation": "follow_desktop",
+        "startWindowBackground": "$color:index_background",
         "label": "$string:app_name",
         "visible": true,
         "skills": [
@@ -148,73 +243,110 @@
             ],
             "actions": [
               "action.system.home",
-              "ohos.want.action.imageCapture",
-              "ohos.want.action.videoCapture"
-            ],
-            "uris": [
-              {
-                "scheme": "file",
-                "pathStartWith": "file:\/\/"
-              },
-              {
-                "scheme": "",
-                "type": ""
-              }
+              "ohos.want.action.home"
             ]
           }
         ],
+        "metadata": [
+          {
+            "name": "ohos.ability.shortcuts",
+            "resource": "$profile:shortcuts_config"
+          }
+        ],
         "supportWindowMode": [
-          "fullscreen"
-        ]
+          "fullscreen",
+          'split',
+          'floating'
+        ],
+        "preferMultiWindowOrientation": "portrait"
+      }
+    ],
+    "dependencies": [
+      {
+        "bundleName": "com.ohos.photobrowser",
+        "moduleName": "browserlibrary"
+      }
+    ],
+    "proxyData": [
+      {
+        "uri": "datashareproxy://com.ohos.camera/data",
+        "requiredReadPermission": "ohos.permission.READ_PROTECTION_ADVICE_POLICY",
+        "requiredWritePermission": "ohos.permission.WRITE_PROTECTION_ADVICE_POLICY",
+        "metadata": {
+          "name": "dataProperties",
+          "resource": "$profile:data_share_config"
+        }
       }
     ],
     "extensionAbilities": [
       {
-        "name": "com.ohos.camera.FormAbility",
-        "srcEntry": "./ets/FormAbility/FormAbility.ts",
+        "name": "AuthorizeExtAbility",
+        "srcEntry": "./ets/UIExtensionAbility/AuthorizeExtAbility.ts",
+        "description": "AuthorizeExtAbility",
         "label": "$string:app_name",
-        "description": "$string:app_name",
-        "type": "form",
-        "metadata": [
-          {
-            "name": "ohos.extension.form",
-            "resource": "$profile:form_config"
-          }
-        ]
+        "type": "sys/commonUI",
+        "exported": true
       },
+            {
+              "name": "FormAbility",
+              "srcEntry": "./ets/formAbility/FormAbility.ets",
+              "description": "FormAbility",
+              "type": "form",
+              "metadata": [
+                {
+                  "name": "ohos.extension.form",
+                  "resource": "$profile:form_config"
+                }
+              ]
+            },
+            {
+              "name": "com.ohos.camera.ServiceExtAbility",
+              "srcEntry": "./ets/ServiceExtensionAbility/ServiceExtAbility.ts",
+              "description": "service",
+              "visible": true,
+              "type": "service",
+              "icon": "$media:foreground_icon_phone"
+            },
+            {
+              "name": "com.ohos.camera.SysDialogCallServiceExtAbility",
+              "srcEntry": "./ets/ServiceExtensionAbility/SysDialogCallServiceExtAbility.ets",
+              "description": "service",
+              "visible": true,
+              "type": "service",
+              "icon": "$media:foreground_icon_phone"
+            },
+            {
+              "name": "AccessAbility",
+              "srcEntry": "./ets/UIExtensionAbility/AccessAbility.ets",
+              "description": "AccessAbility",
+              "icon": "$media:foreground_icon_phone",
+              "label": "$string:app_name",
+              "exported": true,
+              "type": 'sys/commonUI',
+              "skills": [
+                {
+                  "entities": [
+                    "entity.system.home"
+                  ],
+                  "actions": [
+                    "action.system.home",
+                    "action.access.business_and_privacy_statement",
+                  ],
+                }
+              ],
+              "metadata": [
+                {
+                  "name": "metadata.access.business_and_privacy_statement",
+                  "value": 'data_privacy_center.json'
+                },
+              ],
+            },
       {
-        "name": "com.ohos.camera.ExtensionPickerAbility",
-        "srcEntry": "./ets/MainAbility/ExtensionPickerAbility.ts",
-        "label": "$string:app_name",
-        "description": "ExtensionPickerAbility",
-        "visible": true,
-        "type": "sysPicker/camera",
-        "skills": [
-          {
-            "actions": [
-              "ohos.want.action.imageCapture",
-              "ohos.want.action.videoCapture",
-              "collaborationFwk.CameraAbility.TakePhoto"
-            ],
-            "uris": [
-              {
-                "scheme": "file",
-                "pathStartWith": "file:\/\/"
-              },
-              {
-                "scheme": "",
-                "type": ""
-              }
-            ]
-          }
-        ],
-        "metadata": [
-          {
-            "name": "collaborationService",
-            "value": "true",
-            "resource": "$profile:form_config"
-          }
-        ]
+        "name": "RemoteCaptureDialogAbility",
+        "srcEntry": "./ets/UIExtensionAbility/RemoteCaptureDialogAbility.ets",
+        "description": "RemoteCaptureDialogAbility",
+        "exported": false,
+        "type": "sysDialog/common"
       }
     ]
   }

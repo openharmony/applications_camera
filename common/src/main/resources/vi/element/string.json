@@ -1,0 +1,5233 @@
+{
+    "string":[
+        {
+            "name":"option_exit_camera",
+            "value":"Thoát ứng dụng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"Độ nét AI siêu rõ là lựa chọn tuyệt vời khi chụp đối tượng tĩnh và phong cảnh ở điều kiện ánh sáng tốt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"Không",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"Thông tin màu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"infinity_time",
+            "value":"Không giới hạn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"Giữ điện thoại theo chiều dọc để tạo bố cục tốt hơn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"Mặt Trăng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"Bầu trời đầy sao, nút, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"Quay lại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"Ma trận",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_on",
+            "value":"Siêu chống rung đang bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"Hình ảnh bị phơi sáng quá mức. Khôi phục cài đặt phơi sáng mặc định?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"Chế độ Hình ảnh động đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"Mức tông màu %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"Nhờ thuật toán giảm nhiễu tiên tiến, điện thoại của bạn có thể chụp được những bức ảnh sáng, sắc nét ngay cả trong điều kiện thiếu sáng. Tốc độ màn trập có thể được điều chỉnh thủ công để có những bức ảnh sáng tạo hơn. Khi sử dụng máy ảnh trước để chụp ảnh chân dung, điện thoại sẽ cung cấp chế độ chiếu sáng bổ sung để loại bỏ bóng tối không mong muốn, đảm bảo khuôn mặt trở nên sáng và rõ nét.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"Quãng khung hình: %1$s giây\nLý tưởng cho bầu trời sao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"Tuyên bố về Máy ảnh và Quyền riêng tư",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"Thời trang",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"Chưa chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"Tùy chỉnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"%1$sK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_update_date",
+            "value":"Cập nhật mới nhất: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"Phản chiếu gương",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"Nhấn vào đây để chuyển đổi giữa các kiểu XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star",
+            "value":"Vệt sáng ngôi sao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"Vuốt trong vùng xem trước để chọn kiểu tùy chỉnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"Tìm hiểu thêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_wifi",
+            "value":"Kết nối với WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_mode",
+            "value":"Sân khấu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"Bằng việc chạm vào Đồng ý, bạn đồng ý với các điều khoản trên. Để biết thêm chi tiết về cách thông tin của bạn được xử lý, hãy tham khảo %1$s và %2$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"Nhập dữ liệu thất bại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"Dài",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"Mở rộng ranh giới sáng tạo với nhiều kiểu màu độc đáo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"Mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"function_under_development",
+            "value":"Tính năng sắp ra mắt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"Hình chìm mờ tiêu chuẩn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_button",
+            "value":"Nút",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"%1$d:%2$d (đề xuất)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"Mẹo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_style",
+            "value":"Phim",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_not_detected",
+            "value":"Không phát hiện thấy máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"Trước hết hãy bật Chế độ Làm đẹp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"Chụp ảnh trong video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"Ánh sáng ban ngày",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_background",
+            "value":"Viền",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"Không hiện lại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"Lưu dưới dạng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_portrait",
+            "value":"Ảnh tự chụp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"Đồng ý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy",
+            "value":"Sao chép %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"natural_style",
+            "value":"Tự nhiên",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_duration_title",
+            "value":"Độ dài video cuối cùng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"Chào mừng bạn đến với Master AI. Tự động điều chỉnh màu theo bối cảnh. Chạm để thử.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"Cài đặt video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"low_angle",
+            "value":"Chụp góc thấp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"Tăng cường màu sắc và độ tương phản. Tính năng này có thể không được hỗ trợ trên tất cả thiết bị và ứng dụng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"Ghi trọn quá trình thay đổi bằng những video tua nhanh thời gian.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"Hỗ trợ hiển thị đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"keep_time_title",
+            "value":"Thời lượng quay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"Tìm hiểu thêm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"%s Vui lòng đảm bảo rằng bạn đã đọc toàn bộ thông báo này trước khi sử dụng chế độ này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"Chụp ảnh %d MP ở chế độ Ảnh. Hình ảnh có thể mất nhiều thời gian hơn để xử lý ở độ phân giải này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"%s Bằng việc sử dụng chế độ này, bạn thừa nhận rằng bạn đã đọc, hiểu, đồng ý với và chấp nhận tất cả điều khoản được nêu trong thông báo này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"%1$s Đèn phụ được sử dụng trong sản phẩm này tuân thủ tiêu chuẩn an toàn %2$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"Vòng tròn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"Thủ thuật mới",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"Chỉ sử dụng cho video %1$s fps và %2$s fps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_car",
+            "value":"Vệt sáng xe",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"Nháy sáng sau %d giây",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"Thêm vào Lịch",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"Chuẩn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword",
+            "value":"Nói từ khóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"Đèn flash tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"Micrô bị che.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_jpg",
+            "value":"JPG",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"Video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"Độ ấm %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"Đã chụp chòm sao thành công.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"Lưu ý: Không thể điều chỉnh cài đặt khẩu độ vật lý trong quá trình chỉnh sửa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"Vuốt sang trái để chuyển sang các kiểu tùy chỉnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"Hình ảnh bị mờ. Hãy thử lau ống kính.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"Mức pin quá thấp. Đèn flash không sử dụng được.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"romantic_style",
+            "value":"Điện ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"Chụp ảnh rõ nét hơn các đối tượng đang chuyển động.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"Vòng tròn thu phóng đã được thay thế bằng tính năng thu phóng hình quạt. Ngoài ra, bạn có thể chạm và giữ nút chụp rồi vuốt sang trái để chụp liên tiếp, vuốt sang phải để quay video hoặc vuốt lên để thu phóng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"Cài đặt sẵn tuỳ chỉnh %1$d, nhiệt độ màu %2$d, độ bão hòa %3$d, tông màu %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"Đóng menu nhanh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"Giữ ổn định thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"Từ chối",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"Bù phơi sáng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinema_mode",
+            "value":"Điện ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"Mắt %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_intro",
+            "value":"Thêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"Nút để tắt Bản đồ chòm sao, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"Xoắn ốc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"Buồn bã",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"Tự động điều chỉnh tốc độ khung hình theo môi trường để cải thiện chất lượng hình ảnh. Phạm vi: %1$d – %2$d fps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"Khẩu độ ảo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"Di chuyển xuống dưới.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"Bị quá sáng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"Giảm tiếng ồn của gió trong khi quay video để giọng nói trở nên rõ ràng hơn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_design",
+            "value":"Họa tiết",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"Để hiển thị ảnh bạn chụp và video bạn quay, ứng dụng này yêu cầu quyền truy cập %1$s, %2$s, %3$s và %4$s, đồng thời cần đọc hình ảnh, video và thông tin vị trí.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"Thiếu sáng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"anime_style",
+            "value":"Anime",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"Tông da đã tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"Phong cách Anime",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"Theo sát chủ thể lấy nét",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"Dọc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"Chỉ áp dụng cho ảnh sử dụng kiểu tùy chỉnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"Quãng khung hình: %d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"Chạm vào mũi tên để thay đổi hướng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"Lưới hỗ trợ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"Chế độ Đo sáng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"Đèn hỗ trợ lấy nét đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details",
+            "value":"Chế độ Ảnh chân dung cho phép bạn chụp những bức ảnh đẹp với hiệu ứng làm mờ hậu cảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"Tự nhiên",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"Nút bảng màu, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"Giữ ổn định thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"Thay thế kiểu tùy chỉnh?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"Bộ hẹn giờ khoảng thời gian",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"Chạm để chụp ảnh selfie bằng máy ảnh sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"Di chuyển lên trên.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"Dừng quay video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"Sửa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"Chế độ Làm đẹp đã tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"Chụp mặt trăng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait",
+            "value":"Ảnh chân dung đầy sao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"Bộ hẹn giờ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"Tốc độ khung hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"Đã tắt Xem trước kép",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"%1$d. Quan trọng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"Bạn có thể sử dụng đèn flash của máy ảnh để chụp ảnh người khi đang chụp trong chế độ này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details",
+            "value":"Tạo hiệu ứng ánh sáng và bóng đặc biệt. Chọn từ bốn chế độ cài đặt sẵn (vệt sáng xe, graffiti ánh sáng, thảm nước mượt mà và vệt sáng ngôi sao) phù hợp với hầu hết các tình huống vẽ bằng ánh sáng phổ biến. Để có kết quả tốt nhất, hãy sử dụng chân máy.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"Ghi lại những khoảnh khắc đẹp nhất của bạn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"Chế độ thu phóng hình quạt mới mang đến cho bạn trải nghiệm thu phóng mượt mà và tiện lợi hơn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name",
+            "value":"Model thiết bị",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"Luôn bật đèn flash",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"Trái tim",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"Chụp lại các khoảnh khắc theo cách hoàn toàn mới.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open",
+            "value":"Mở %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"Điều khiển thông minh cho phép bạn chụp ảnh và quay video bằng cách chạm vào cảm biến vân tay.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"Di chuyển phía trước %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"Thẻ vị trí",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"Chế độ Sân khấu rất phù hợp để quay phim/chụp ảnh các buổi biểu diễn, hòa nhạc, vở kịch và các tiết mục biểu diễn khác. Chế độ này được tối ưu để hoạt động tốt trong các tình huống có ánh sáng sân khấu phức tạp, giúp bạn chụp người biểu diễn với chi tiết sắc nét và màu sắc sống động.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_an_email",
+            "value":"Gửi email",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"Nhập thành công",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"Cải thiện hình ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"Chụp mặt trăng, nút, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_soft",
+            "value":"Tươi sáng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"Tự động lấy nét chụp một lần",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"Đơn sắc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"Phong cách Lãng mạn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"Đã chuyển sang JPG chuẩn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"Chuyên nghiệp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"Thông số kỹ thuật ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"Máy ảnh cần truy cập thông tin vị trí của bạn để thêm thẻ vị trí vào ảnh và video. Cho phép?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"Ánh đèn sợi đốt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"Kiểu tùy chỉnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"Tự động lấy nét chụp liên tục",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"Đặt phía sau %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"Tốc độ màn trập cực chậm cho phép bạn tạo hiệu ứng huyền ảo bằng ánh sáng. Có bốn chế độ cài đặt sẵn, được thiết kế riêng cho các tình huống vẽ bằng ánh sáng phổ biến (Vệt sáng xe, Graffiti ánh sáng, Thảm nước mượt mà và Vệt sáng ngôi sao). Để có kết quả tốt nhất, hãy sử dụng chân máy.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"Kiểu tùy chỉnh %1$s. Chạm đúp và giữ, sau đó vuốt sang trái hoặc phải để chuyển đổi kiểu.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"Chỉ có chuyển động chậm %dx.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"Âm báo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"Tên kiểu tùy chỉnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"Hình ảnh và video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_shooting",
+            "value":"Kết thúc quay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"Đã chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"Đầu %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"Vuốt để chuyển đổi kiểu mẫu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"Bật Đèn flash sau %d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_access",
+            "value":"Cho phép truy cập",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"Chạm vào đây để cho cả chủ thể xem hình xem trước.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"Đã tắt Ổn định hình ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"Làm đẹp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"Xoay điện thoại của bạn mượt mà theo hướng dẫn trong khi giữ ổn định. Sau khi chụp xong, máy ảnh sẽ kết hợp các hình ảnh đã chụp thành một bức ảnh toàn cảnh. Tính năng này rất tuyệt vời để chụp phong cảnh, cảnh quan thành phố và các cảnh tương tự.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"Menu nhanh đang mở",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"Làm mờ nền để làm nổi bật các chủ thể.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"Cài đặt ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"Đổi tên",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"Ứng dụng này yêu cầu quyền truy cập %1$s, %2$s và %3$s. Để hiển thị ảnh và video của bạn, ứng dụng này cần đọc thông tin hình ảnh, video và vị trí. Ứng dụng có thể cũng cần sử dụng micrô để ghi âm.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"Hiện đại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"Đã khóa phơi sáng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"Ổn định hình ảnh đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse",
+            "value":"Tua nhanh thời gian",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"%1$d. Cảnh báo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"Bầu trời xanh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"Đã khóa phơi sáng và lấy nét",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"Đã bật đèn flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"Quyền này cho phép bạn chụp ảnh và quay video từ đồng hồ. Bạn có thể quản lý quyền này trong ứng dụng Sức khỏe.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"Chỉ sử dụng cho video %d fps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details",
+            "value":"Hệ thống máy ảnh siêu lấy nét tích hợp công nghệ XD Motion để chụp các đối tượng chuyển động với tốc độ lên tới %d km/h, dù bạn chụp cận cảnh hay từ xa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"Tiếng màn trập tắt khi chụp ảnh động.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"Tốc độ màn trập cực chậm cho phép bạn tạo hiệu ứng huyền ảo bằng ánh sáng. Có bốn chế độ cài đặt sẵn, được thiết kế riêng cho các tình huống vẽ bằng ánh sáng phổ biến (Vệt sáng xe, Graffiti ánh sáng, Thảm nước mượt mà và Vệt sáng ngôi sao).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"Vuốt sang trái trong vùng xem trước để chuyển đổi kiểu tùy chỉnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"Chạp vào mũi tên ở trên cùng để mở menu nhanh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"AI sẽ xác định bối cảnh để điều chỉnh màu sắc và tông màu da để ảnh sống động hơn. Chạm vào biểu tượng AI để bật/tắt hiệu ứng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"Tự nhiên",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"Bản đồ chòm sao đang bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"Quyền này được dùng để ghi lại nơi đã chụp ảnh và quay video, cũng như hiển thị thông tin vị trí chụp trong hình chìm mờ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"Chậm lại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_reset",
+            "value":"Đặt lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"Theo dõi một chủ thể đã chọn trong khung hình khi chủ thể di chuyển.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"Ở chế độ RAW, bạn chỉ có thể điều chỉnh thu phóng bằng cách chạm vào các mức cài đặt sẵn hoặc chụm ngón tay.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_permission_description",
+            "value":"Quyền này được dùng để ghi lại địa điểm chụp ảnh và quay video, hiển thị thông tin địa điểm chụp trong hình mờ và cung cấp tính năng bản đồ sao.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"Ở chế độ Ảnh chân dung, bạn có thể sử dụng các hiệu ứng làm đẹp và tạo ra nhiều loại hiệu ứng làm mờ khác nhau bằng cách điều chỉnh khẩu độ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"Luôn bật đèn flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exits_same_card",
+            "value":"Đã tồn tại một cài đặt sẵn với các thông số màu này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"Điều khiển âm thanh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"skip",
+            "value":"Bỏ qua",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"Có thể tắt chụp siêu tốc từ cài đặt Máy ảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"Ánh đèn huỳnh quang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"Nháy sáng sau %d giây",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter",
+            "value":"Bộ lọc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"Đèn flash tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"(%1$s:%2$s) %3$sp (Khuyến nghị)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"Đèn flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_details",
+            "value":"Tạo vlog hấp dẫn bằng cách kết hợp các góc máy ảnh và hiệu ứng khác nhau.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"Nhập hình ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"Màu sắc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_on",
+            "value":"Super macro đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"Hỗ trợ hiển thị đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"Cổ điển",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"Xoay theo hướng mũi tên để chụp ảnh thứ 3.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"Lấy nét bằng tay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"Chỉ có thể khóa lấy nét ở chế độ AF-C.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_zoom",
+            "value":"Thu phóng âm thanh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"Quyền này được dùng để hiển thị thông tin vị trí trong hình chìm mờ của ảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"Hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"Nhìn vào đây để có kết quả tốt hơn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"Tính năng Xem trước hai màn hình không hoạt động khi đang phát màn hình.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"Mở menu nhanh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"Bảo toàn dữ liệu độ sâu và chuyển động",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary",
+            "value":"Đèn hỗ trợ lấy nét",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"Xem trước máy ảnh trước",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"%1$d:%2$d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"Nghiêng thiết bị sao cho hai vòng tròn thẳng hàng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"Độ phơi sáng quá cao.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"Chế độ Ổn định hình ảnh đã tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_record_remind",
+            "value":"Có một ứng dụng ghi âm đang chạy ngầm (Máy ghi âm, Cuộc gọi). Để ghi video, trước tiên cần đóng ứng dụng ngầm đó.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"Đặt phía sau %1$s, trên dòng %2$d, cột %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"Quyền này dùng để chụp ảnh và quay video.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"Hiệu ứng màu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"Chụp trong tối để có kết quả tốt nhất.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"Hướng ngang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"Đảm bảo máy ảnh sau sạch sẽ và không bị che khuất.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"Xoay thiết bị của bạn theo chiều mũi tên hiển thị trên màn hình. Máy ảnh sẽ chụp ngay khi vòng tròn thẳng hàng với dấu chấm. Chạm vào nút chụp để kết thúc bất cứ lúc nào.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_details",
+            "value":"Máy ảnh sẽ tự động điều chỉnh độ phơi sáng và màu sắc khi bạn quay video HD.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"Cho phép Máy ảnh truy cập vị trí chính xác của bạn?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"Chạm để chụp ảnh hoặc quay video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"%1$s, nhiệt độ màu %2$d, độ bão hòa %3$d, tông màu %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"Máy ảnh sau bị che khuất.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"Nhạt màu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"Hướng dọc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"Hủy",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"Chức năng thu phóng không được hỗ trợ khi bật chế độ Ổn định hình ảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"Ở chế độ Ảnh chân dung, bạn có thể sử dụng các hiệu ứng làm đẹp và tạo ra nhiều loại hiệu ứng làm mờ khác nhau bằng cách điều chỉnh khẩu độ. Độ phơi sáng và màu sắc sẽ được tự động điều chỉnh khi bạn chụp, nhằm mang đến những bức ảnh đẹp nhất có thể.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"common_watermark",
+            "value":"Hình chìm mờ tiêu chuẩn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_description",
+            "value":"Mô tả",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition",
+            "value":"Tạo bố cục bằng AI",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"Mũi %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"Khi bạn chụp ảnh người, mèo hoặc chó ở chế độ Ảnh, dữ liệu độ sâu và chuyển động sẽ được giữ lại để cho phép chỉnh sửa sau khi chụp.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"Chủ thể",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"back_selfie",
+            "value":"Tự chụp bằng máy ảnh sau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"Độ phân giải video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"Lưới hỗ trợ, bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Beauty_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"Tạo bố cục bằng AI đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"Chế độ Hình ảnh động đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"Super macro · Lấy nét nhiều vùng hơn trong khung hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"Chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"Máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"Chế độ Quay trước đang bật. Chạm và giữ nút chụp để quay trước tối đa %d giây trước khi bắt đầu ghi hình.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_parameter",
+            "value":"Thời gian chụp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"Không",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"Tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aperture_mode",
+            "value":"Khẩu độ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"Chế độ Ổn định hình ảnh tăng cường đang bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"Trang điểm %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"Mức tông màu %1$d, phạm vi điều chỉnh từ %2$d đến %3$d. Chạm đúp để áp dụng hoặc chạm đúp và giữ, sau đó kéo lên hoặc xuống để thay đổi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"Không chụp được chòm sao. Hãy thay đổi góc chụp rồi thử lại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"Cho phép",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"Chạm và giữ để khóa phơi sáng và lấy nét",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"Chuyển động chậm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama",
+            "value":"Toàn cảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_light",
+            "value":"Graffiti ánh sáng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"Cài đặt hiện tại không cho phép đủ ánh sáng. Khôi phục cài đặt phơi sáng mặc định?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"Quyền này dùng để gắn thẻ thông tin vị trí vào ảnh và video.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"Chạm vào đây để chuyển sang các kiểu tùy chỉnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"Chụp ảnh từ xa bị ngắt kết nối.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"Khôi phục bố cục mặc định?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"live_photo",
+            "value":"Hình ảnh động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"Nhiệt độ thiết bị cao. Hình trong hình không khả dụng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"Thu phóng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"Chạm đúp để chuyển đổi, chạm đúp và giữ để kéo sang trái hoặc phải",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"Tên kiểu tùy chỉnh này đã tồn tại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"Giữ mũi tên ngang đường tâm.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"Máy ảnh của thiết bị đang hoạt động, nhưng ứng dụng này chỉ có thể truy cập hình ảnh bạn chụp.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"Chụp ảnh tức thời",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"Vuốt sang trái hoặc phải để chuyển đổi giữa các kiểu tùy chỉnh. Tạo kiểu của riêng bạn bằng cách vuốt trên thẻ màu hoặc mô phỏng kiểu của người khác bằng cách nhập ảnh họ chụp.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"Chạm vào biểu tượng %s để nhanh chóng chuyển đổi phong cách tùy chỉnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"Mức độ bão hòa %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"Ảnh chân dung",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"Chế độ Thu phóng âm thanh đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"make_a_call",
+            "value":"Gọi điện",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting",
+            "value":"Vẽ bằng ánh sáng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"Chạm vào biểu tượng màn trập và di chuyển chậm thiết bị từ trái sang phải.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"Dùng AI để làm sắc nét ảnh chụp ở chế độ thu phóng cao hoặc trong điều kiện thiếu sáng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"Ban đêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"Khung",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"Các quyền cho Máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"Chạm vào đây để thay đổi chế độ lấy nét.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_sun",
+            "value":"Bình minh/Hoàng hôn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"Hãy nói \"Cheese\" để chụp ảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"Lật để chuyển màn hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"Không hoạt động khi bật Hình ảnh động.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"Khôi phục bố cục mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"border_color",
+            "value":"Màu viền",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_water",
+            "value":"Thảm nước mượt mà",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_and_shade",
+            "value":"Tông màu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"Cảnh báo nhiệt độ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"Di chuyển sang phải.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"Đang tạo hình ảnh, hãy giữ thiết bị cân bằng…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"Có thể sử dụng tính năng Tạo bố cục bằng AI ở chế độ thu phóng máy ảnh %1$sx, %2$sx hoặc %3$sx. Kết quả đạt được tốt nhất khi chụp ảnh phong cảnh, tòa nhà và người.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"Hiệu ứng ưu tiên đối tượng lấy nét dành cho các đối tượng ở tiền cảnh giữa khung hình (cách xa ít nhất %d cm).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"Ấm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_a_message",
+            "value":"Gửi tin nhắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"Khôi phục cài đặt phơi sáng mặc định?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"Quãng khung hình: %1$s giây\nLý tưởng cho cảnh hoa nở",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"Ổn định hình ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"%1$s fps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"Chạm và giữ các biểu tượng EV·, AF· cũng như WB· để khóa giá trị tương ứng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"Đã chuyển sang HEIF",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"Làm nổi bật chủ thể lấy nét",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"Toàn cảnh HD",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"Thiết bị của bạn quá nóng. Máy ảnh sẽ đóng sau %1$d giây.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"Tự động thêm hình chìm mờ vào ảnh chụp bằng máy ảnh sau.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_normal",
+            "value":"Bản gốc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"Tính năng thu phóng mới",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"Đã di chuyển ra trước %1$s, trên hàng %2$d, cột %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"Có thể sử dụng tính năng Tạo bố cục bằng AI ở chế độ thu phóng %1$sx hoặc %2$sx. Kết quả tốt nhất với phong cảnh, tòa nhà và con người.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"details",
+            "value":"Chi tiết",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"Vuốt sang phải để chuyển sang các phong cách tùy chỉnh %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"Khôi phục cài đặt làm đẹp mặc định?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"Bình minh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"horizontal_level",
+            "value":"Mức cân bằng ngang",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"Nâng cao",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"passion",
+            "value":"Toàn cảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"Giữ điện thoại theo chiều ngang để tạo bố cục tốt hơn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"Tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"Bật Đèn flash sau %d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_disabled",
+            "value":"Máy ảnh đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"Duy trì màu sắc cho chủ thể nhưng hiển thị tất cả chi tiết khác bằng màu đen trắng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"Xem trước máy ảnh sau",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"Quãng khung hình: %1$s giây\nLý tưởng cho cảnh bình minh/hoàng hôn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"Di chuyển sang trái.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"Tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"Thêm nút chụp di động để tiện lợi hơn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"Chế độ này được tối ưu để quay phim/chụp ảnh buổi hòa nhạc và các màn biểu diễn trên sân khấu khác.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_angle",
+            "value":"Rộng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"Đèn flash đã tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"Tự động chuyển sang chế độ ảnh tự chụp thông minh bằng máy ảnh sau nếu bạn đối diện với máy ảnh sau sau khi mở và lật điện thoại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"Tinh khiết",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"Làm mềm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"Tắt tiếng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"Chuyển sang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"Lưới hỗ trợ, tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details",
+            "value":"Di chuyển máy ảnh theo chiều ngang hoặc chiều dọc để chụp ảnh toàn cảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"Môi trường quá sáng. Không chụp được chòm sao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"Thanh tú",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"Do hiệu ứng đèn huỳnh quang thường mờ nhạt nên môi trường cực tối sẽ cho kết quả tốt nhất. Hãy thận trọng khi sử dụng chế độ này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"Mức độ làm đẹp %1$d, phạm vi có thể chọn là từ %2$d đến %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"Đã mở khóa phơi sáng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"Phơi sáng và lấy nét bị khóa.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"Vuốt sang trái để chụp ảnh liên tục, vuốt sang phải để quay video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_off",
+            "value":"Super macro đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"Chữ ký cá nhân",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_auto",
+            "value":"Tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"Tăng cường chụp đêm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_details",
+            "value":"Quay video chuyển động chậm không bị giới hạn độ dài. Có thể sử dụng chế độ Chuyển động siêu chậm để quay video thủ công hoặc tự động ở tốc độ khung hình cực cao. Chế độ này hoạt động tốt nhất trong môi trường có ánh sáng tốt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_occupied",
+            "value":"Một ứng dụng khác đang sử dụng máy ảnh. Hãy đóng ứng dụng đó, rồi khởi chạy lại ứng dụng này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"physical_aperture",
+            "value":"Khẩu độ vật lý",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"Làm sắc nét bức ảnh... Vui lòng cầm chắc thiết bị của bạn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_title",
+            "value":"Cho phép \"%1$s\" sử dụng máy ảnh?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"Làm đẹp đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"Cải thiện điều kiện ánh sáng để có hiệu ứng làm mờ tốt hơn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"Tốc độ khung hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"Chỉ các đối tượng tĩnh. Giữ máy ảnh ổn định.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"Đã khóa lấy nét",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"Sống động · Rực rỡ, Mãnh liệt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"jpg_description",
+            "value":"Tương thích tốt hơn HEIF.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"Mở điện thoại để chụp ảnh selfie bằng máy ảnh sau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_pause",
+            "value":"Tạm dừng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"Độ nét AI siêu rõ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"Ảnh sống động và giàu chi tiết hơn, cho phép bạn chụp ảnh thú cưng và phong cảnh đẹp hơn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_access",
+            "value":"Quyền truy cập riêng tư",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"Từ chối",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"Giảm tiếng ồn gió",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_not_detected",
+            "value":"Hãy kết nối máy ảnh và khởi chạy lại ứng dụng này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"Hình ảnh động đã bị tắt vì quá tối. Hãy tìm nơi có nhiều ánh sáng hơn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"Tốc độ khung hình thích ứng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_details_more",
+            "value":"Khoảng cách lấy nét gần hơn cho phép bạn chụp được chủ thể với từng chi tiết nhỏ nhất. Có thể sử dụng chế độ Siêu macro cho cả ảnh và video.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"Micrô",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"Độ nét AI siêu rõ là lựa chọn tuyệt vời khi chụp đối tượng tĩnh và phong cảnh ở điều kiện ánh sáng tốt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"Đã dừng phát hiện chuyển động.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"Quyền này được dùng để quay video, chụp ảnh động và điều khiển âm thanh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"Chuyển sang toàn cảnh ngang",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go",
+            "value":"Vào %1$s để thanh toán",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"Xoay theo hướng mũi tên để chụp ảnh thứ 2.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"Giữ thiết bị cân bằng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro",
+            "value":"Macro",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"Vẽ bằng ánh sáng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"%1$d. Giới thiệu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Thêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"Chạm vào màn trập và di chuyển máy ảnh chậm theo hướng mũi tên.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"Chế độ Sân khấu rất phù hợp để quay phim/chụp ảnh các buổi biểu diễn, hòa nhạc, vở kịch và các tiết mục biểu diễn khác.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"Nút radio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"Chụp những hình ảnh sắc nét, sáng rõ trong điều kiện ánh sáng yếu nhờ một thuật toán giảm nhiễu nâng cao. Có hai chế độ chụp: Chụp đêm siêu đẹp và Chụp mặt trăng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"Đã khóa cân bằng trắng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"Đường chân tóc %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"Có flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"Trung tâm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"Siêu macro",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_heif",
+            "value":"HEIF",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"Pin cực kỳ yếu. Không bắt đầu quay được.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"Lưới",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"Đã hiểu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"Gắn thẻ thông tin vị trí cho ảnh và video.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"Cài đặt sẵn mặc định, nhiệt độ màu %1$d, độ bão hòa %2$d, tông màu %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"Chuyển sang máy ảnh sau",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"Ngắn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"Chạm vào đây để chuyển chế độ lấy nét.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"Giữ ổn định thiết bị.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_details",
+            "value":"Nhờ thuật toán giảm nhiễu nâng cao, điện thoại của bạn có thể chụp được những hình ảnh sáng, sắc nét ngay cả trong điều kiện thiếu sáng. Có thể điều chỉnh thủ công ISO và tốc độ màn trập để có những bức ảnh sáng tạo hơn. Khi dùng máy ảnh trước để chụp ảnh chân dung, điện thoại sẽ chiếu sáng bổ sung để loại bỏ bóng đổ không mong muốn trên khuôn mặt của chủ thể. Ảnh tự chụp vào ban đêm cũng rõ nét và sáng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"Chuyển sang toàn cảnh dọc",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"Đặt lại hoàn tất",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"ĐÓNG MÁY ẢNH",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details",
+            "value":"Tinh chỉnh cài đặt máy ảnh để có được bức ảnh bạn mong muốn. Chế độ chuyên nghiệp cho phép bạn điều chỉnh nhiều cài đặt nâng cao như đo sáng, ISO, tốc độ màn trập, giá trị phơi sáng (EV), cân bằng trắng và chế độ lấy nét.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_raw",
+            "value":"RAW",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"Không tương tác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"right_text",
+            "value":"Văn bản ở bên phải",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_watermark",
+            "value":"Video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"Bản đồ chòm sao đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"Tính năng Xem trước hai màn hình không hoạt động khi đang quay phim màn hình.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"Định dạng video hiệu quả",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"Một số cài đặt không có sẵn ở giá trị ISO này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_location",
+            "value":"Vị trí",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"Khu vực điều chỉnh màu. Kéo theo chiều ngang để điều chỉnh nhiệt độ màu hoặc theo chiều dọc để điều chỉnh độ bão hòa.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"Để vào Cài đặt và các tính năng khác, hãy chạm hoặc vuốt mũi tên ở cuối lên.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"Toàn màn hình",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"Bật Đèn flash sau %d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"Để nhận thông tin vị trí khi ở trong nhà, hãy đảm bảo duy trì kết nối Internet.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"Để sử dụng tính năng Tạo bố cục bằng AI, hãy điều chỉnh để dấu chấm nằm trong vòng tròn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"Đã kết nối chụp ảnh từ xa.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture",
+            "value":"Khẩu độ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"Màu hồng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot",
+            "value":"Ảnh chụp nhanh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"Vuốt sang trái để chuyển sang các phong cách tùy chỉnh %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"Ổn định hình ảnh đã tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_applet",
+            "value":"Mở chương trình nhỏ %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"Độ nét AI siêu rõ là lựa chọn tuyệt vời khi chụp ảnh chân dung ở điều kiện ánh sáng tốt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_record",
+            "value":"Bắt đầu quay",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"Không flash",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"Nhấn hai lần nút giảm âm lượng khi màn hình tắt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"Nguyên bản · Chân thực, Tự nhiên",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"Ảnh chân dung đầy sao, nút, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_occupied",
+            "value":"Máy ảnh bận",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"Đang quét vật thể chuyển động…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"Di chuyển đến một vị trí sáng hơn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"frame_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"Chuyên nghiệp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"Dịch vụ này yêu cầu %d quyền:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"Chỉ cho phép lần này",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera",
+            "value":"Mở Máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"operate_frequently",
+            "value":"Hãy thử lại sau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"Menu nhanh đã đóng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"Toàn màn hình | %1$s p",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"Đã mở khóa cân bằng trắng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"Tỷ lệ khung hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"Vuốt lên hoặc xuống để thay đổi mức thu phóng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"Chuyển sang video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"Chế độ Quay trước đã tắt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"Hình chìm mờ chỉ trong thời gian hữu hạn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"Super macro · Tập trung vào chủ thể",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"Ở Chế độ chuyên nghiệp, bạn có thể thoải mái điều chỉnh nhiều cài đặt máy ảnh nâng cao để có được bức ảnh như mong muốn. Những cài đặt này bao gồm đo sáng, ISO, tốc độ màn trập, giá trị phơi sáng (EV), cân bằng trắng và chế độ lấy nét, cùng nhiều thông số khác.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_new",
+            "value":"Ở Chế độ chuyên nghiệp, bạn có thể thoải mái điều chỉnh các thống số nâng cao để có được bức ảnh như mong muốn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"Điều khiển thông minh cho phép bạn khóa phơi sáng và lấy nét bằng cách giữ ngón tay trên cảm biến vân tay.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_bright",
+            "value":"Sống động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"Di chuyển phía sau %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature",
+            "value":"Nhiệt độ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"Quãng khung hình: %1$s giây\nLý tưởng cho cảnh mây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"Nút để bật Bản đồ chòm sao, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"Đã chuyển sang RAW",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"Sáng · Thanh lịch, Tươi tắn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"Với khẩu độ rộng hơn, bạn có thể chụp được chủ thể một cách chi tiết đồng thời tạo hiệu ứng làm mờ mềm mại ở hậu cảnh. Để đạt kết quả tốt nhất, khoảng cách giữa máy ảnh và chủ thể không được quá %d mét. Chế độ này cho phép bạn điều khiển cả khẩu độ vật lý và ảo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"Đã sao chép nội dung vào bộ nhớ tạm.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"Huỳnh quang",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"Nói to",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"Không thu nhận đủ ánh sáng. Khôi phục cài đặt phơi sáng mặc định?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"Cho phép",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more",
+            "value":"Ở Chế độ chuyên nghiệp, bạn có thể thoải mái điều chỉnh nhiều cài đặt máy ảnh nâng cao để có được bức ảnh như mong muốn. Những cài đặt này bao gồm đo sáng, ISO, khẩu độ, tốc độ màn trập, giá trị phơi sáng (EV), cân bằng trắng và chế độ lấy nét, cùng nhiều thông số khác.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"Bật ngay",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"Chạm vào đây để điều chỉnh các kiểu tùy chỉnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"Chỉ các đối tượng tĩnh. Hãy giữ máy ảnh ổn định.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"Bản đồ chòm sao đã tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"Thủ công",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"Đang quay…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"Chế độ Làm đẹp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resume",
+            "value":"Tiếp tục",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"Phong cách Phim",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"Chụp ảnh sắc nét, tươi sáng trong điều kiện ánh sáng yếu nhờ thuật toán giảm nhiễu tiên tiến. Bốn chế độ chụp có sẵn: Chụp đêm siêu đẹp, Chụp mặt trăng, Bầu trời đầy sao và Ảnh chân dung đầy sao. Khi sử dụng máy ảnh trước, màn hình của thiết bị sẽ tăng độ sáng để cung cấp thêm ánh sáng, cho phép khuôn mặt xuất hiện sáng và rõ ràng ngay cả trong bóng tối.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gourmet_food",
+            "value":"Ẩm thực",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"Làm đẹp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"Từ từ xoay máy ảnh theo chiều ngang hoặc chiều dọc để chụp ảnh toàn cảnh. Chế độ này rất phù hợp để chụp những cảnh rộng lớn như núi non và đường chân trời với độ chi tiết ấn tượng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter",
+            "value":"Nút chụp di động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"Quyền truy cập riêng tư vào máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"view",
+            "value":"Xem %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details",
+            "value":"Chụp ảnh cận cảnh với máy ảnh sau và chụp các chi tiết sinh động của thế giới xung quanh bạn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"Di chuyển khung để chọn một khu vực khác.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"Sử dụng ít dung lượng lưu trữ hơn JPG nhưng vẫn giữ được cùng một chất lượng hình ảnh. Khả năng tương thích có thể bị hạn chế hơn so với JPG. Bạn có thể chuyển đổi HEIF sang JPG trong Bộ sưu tập.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details",
+            "value":"Xoay điện thoại mượt mà theo hướng dẫn để chụp ảnh toàn cảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"Quãng khung hình: %1$s giây\nLý tưởng cho cảnh xe cộ và đám đông",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"Vuốt sang hai bên để chụp liên tiếp hoặc quay video.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"HDR Vivid",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"Đèn flash tele được sử dụng để cải thiện chất lượng hình ảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"Đã bật Xem trước kép",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"Với khẩu độ rộng hơn, bạn có thể chụp được chủ thể một cách chi tiết đồng thời tạo hiệu ứng làm mờ mềm mại ở hậu cảnh. Để đạt kết quả tốt nhất, khoảng cách giữa máy ảnh và chủ thể không được quá %d mét.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"Để có kết quả tốt nhất với ảnh chụp chân dung đầy sao, hãy bật đèn flash.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"Điều kiện ánh sáng cực thấp. Đang tối ưu phơi sáng…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"Nhiệt độ màu, mức %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"%1$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"Ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_details",
+            "value":"Máy ảnh sẽ tự động điều chỉnh mức độ phơi sáng và màu sắc khi bạn chụp ảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"Từ từ di chuyển máy ảnh theo chiều ngang hoặc chiều dọc, trong khi vẫn giữ máy ảnh ổn định nhất có thể. Giữ mũi tên ngang hàng với đường tâm. Khi bạn chụp xong, máy ảnh sẽ tự động kết hợp tất cả những gì bạn chụp được thành một bức ảnh toàn cảnh. Chế độ này rất phù hợp để chụp ảnh phong cảnh và ảnh nhóm lớn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"Xoay theo hướng mũi tên. Khi dấu chấm được căn chỉnh với vòng tròn, ảnh sẽ được chụp tự động. Chạm vào nút chụp bất kỳ lúc nào để kết thúc.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"Ổn định hình ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"Đang xác định chòm sao…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture",
+            "value":"Chụp khi cười",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"Chỉ sử dụng máy ảnh trước.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"Không thể sử dụng Thẻ vị trí ở chế độ máy ảnh riêng tư.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_title",
+            "value":"Vị trí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"Bật đèn flash thủ công",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"Chỉ có thể khóa cân bằng trắng ở chế độ AWB.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"Thủ công",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"Chỉ áp dụng cho ảnh sử dụng kiểu XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"Chào mừng bạn đến với",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"Độ nét AI siêu rõ là lựa chọn tuyệt vời khi chụp ảnh chân dung ở điều kiện ánh sáng tốt.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"Xem trước kép",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"Chế độ chân dung cho video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"Chế độ lấy nét",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_stage",
+            "value":"Đang chụp một buổi biểu diễn trực tiếp? Hãy bật chế độ sân khấu để có kết quả tốt nhất.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"Làm đẹp: %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_mode",
+            "value":"Vlog",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"Máy ảnh đã được thu lại vì có vẻ như điện thoại bị rơi.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"Xem trước máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"Hình chìm mờ tùy chỉnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_text",
+            "value":"Văn bản",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"Màu sắc AI",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"Chạm vào màn hình để kích hoạt máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"Bộ lọc hiện tại không khả dụng ở độ phân giải %1$dp (%2$d khung hình/giây). Đã chuyển sang %3$dp (%4$d khung hình/giây).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"Chạm đúp để chuyển đổi",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"Đang kéo %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"Vị trí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_off",
+            "value":"Siêu chống rung đã tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"Chế độ này được tối ưu để quay phim/chụp ảnh buổi hòa nhạc và các màn biểu diễn trên sân khấu khác, nhờ vậy bạn có thể chụp người biểu diễn và hiệu ứng ánh sáng với chi tiết sắc nét và màu sắc sống động. Chế độ này dùng được cho cả ảnh và video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"Đã đạt giới hạn. Hiện đang lưu ảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"Đã di chuyển ra sau %1$s, trên hàng %2$d, cột %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"Chạm lại để sửa.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saturation",
+            "value":"Độ bão hòa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw",
+            "value":"Bản đồ chòm sao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"Độ phân giải cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"Âm thanh hiện đang được tập trung thu tại vùng đang phóng to.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"Đèn hỗ trợ lấy nét đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"Thiết bị quá nóng. Đèn flash không khả dụng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"Vui lòng khởi chạy lại ứng dụng này và thử lại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"Vuốt sang phải trong vùng xem trước để chuyển đổi kiểu tùy chỉnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"Chế độ Ổn định hình ảnh chuẩn đang bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"Đang lưu… Vui lòng không thoát",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"Đã tắt đèn flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"Kiểu tùy chỉnh XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"Đặt phía trước %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_notification",
+            "value":"Chỉ khả dụng với hình chìm mờ khung.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"Điều khiển thông minh cho phép bạn phóng to/thu nhỏ bằng cách vuốt trên cảm biến vân tay.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"Di chuyển ra xa hơn để có hiệu ứng làm mờ tốt hơn.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"Tông da %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"Chạm vào đây để xem thêm các chế độ ban đêm.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"Đã khóa tự động lấy nét.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"Không hỗ trợ thu phóng ở chế độ RAW.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"Hình chìm mờ khung",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"Chạm đúp để vào chế độ Xem trước hai màn hình",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"Chụp %d ảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_parameter",
+            "value":"Cài đặt máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"Chế độ Làm đẹp đang bật",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"Nháy sáng sau %d giây",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"Đèn flash đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"Làm đẹp đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"Bản đồ chòm sao đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_storage_space",
+            "value":"Không đủ bộ nhớ. Máy ảnh có thể bị giật trễ. Hãy giải phóng dung lượng để khôi phục hiệu suất.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"Thiên tài ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"Chạm đúp để kích hoạt hoặc chạm đúp và giữ để mở thêm các tùy chọn khác",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"Tự chụp thông minh bằng máy ảnh sau",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"Đặt phía trước %1$s, trên dòng %2$d, cột %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"Giới thiệu về chụp ảnh huỳnh quang",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"Tính năng Thu phóng không sử dụng được ở chế độ Toàn cảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"Mở Máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"big_text_s",
+            "value":"%ss",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"Đã ghi %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"Chỉ sử dụng máy ảnh trước.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pay",
+            "value":"Mở %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"Ảnh gần đây nhất",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"Chế độ Thu phóng âm thanh đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"Sắp cập nhật thêm các chế độ khác…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"Quyền này cho phép bạn xem trước máy ảnh và chụp ảnh, quay video từ đồng hồ. Bạn có thể quản lý quyền này trong ứng dụng Sức khỏe.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"Di chuyển thiết bị theo hướng mũi tên.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picture_watermark",
+            "value":"Hình ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"Tạo khối %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"Cài đặt chung",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"standard_style",
+            "value":"Chuẩn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"Chế độ Ban đêm cho phép bạn chụp được những hình ảnh sáng, sắc nét ngay cả trong điều kiện thiếu sáng, nhờ thuật toán giảm nhiễu nâng cao.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_speed",
+            "value":"Tốc độ màn trập",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"Đèn flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"Độ phơi sáng quá thấp.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"Tuyên bố quyền riêng tư",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"Thiết bị quá nóng. Đèn flash không khả dụng.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"Cân bằng trắng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"Chuyển sang máy ảnh trước",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_contact",
+            "value":"Liên hệ mới",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"Ngang",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"Chậm lại.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"Mới",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"Đã tắt đèn flash",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_night_view",
+            "value":"Ảnh đêm siêu đẹp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"replace",
+            "value":"Thay thế",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"Tăng tốc độ gấp %d lần",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"Điểm",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"Chuyên nghiệp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"Toàn màn hình | %1$s p",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"Tự động chụp ảnh khi mọi người cười.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_disabled",
+            "value":"Chính sách bảo mật cấm sử dụng máy ảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"Luôn bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"Nói to hơn để chụp ảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_Confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"Nút so sánh hiệu ứng làm đẹp. Chạm đúp và giữ để hiển thị hình ảnh không có hiệu ứng làm đẹp.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_agree",
+            "value":"Đồng ý",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"Độ phân giải",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"Chạm đúp và giữ để kéo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"Làm mịn %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"Kéo hình vuông để điều chỉnh điểm lấy nét và hình tròn để điều chỉnh đo sáng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"Chụp những hình ảnh sắc nét, sáng rõ trong điều kiện ánh sáng yếu nhờ một thuật toán giảm nhiễu nâng cao. Có hai chế độ chụp: Chụp đêm siêu đẹp và Chụp mặt trăng. Khi sử dụng máy ảnh trước, màn hình của thiết bị có thể tăng độ sáng để cung cấp thêm ánh sáng, cho phép khuôn mặt xuất hiện sáng và rõ ràng ngay cả trong bóng tối.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark",
+            "value":"Thêm hình chìm mờ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"Không thể khóa cài đặt này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"Không thể điều chỉnh khẩu độ ở độ dài tiêu cự này theo cách thủ công.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"Tiếp tục sử dụng máy ảnh?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"Đã mở khóa lấy nét",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"Tạo đường cong",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"Đã thêm kiểu tùy chỉnh mới.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"Mây",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"Mở điện thoại",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"Chế độ Mặt trăng đang bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"Không flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"Lạnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"Tạo bố cục bằng AI đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"AI có thể gợi ý khung hình tối ưu cho ảnh của bạn. Chỉ cần căn chỉnh thiết bị và chế độ thu phóng sẽ tự động điều chỉnh. Hoạt động tốt nhất với phong cảnh, tòa nhà và con người.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"Hỗ trợ hiển thị đang bật. Video vẫn sẽ được quay ở chế độ Log.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"festival_watermark",
+            "value":"Hình chìm mờ ngày lễ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"Pin cực kỳ yếu. Bản ghi đã tự động dừng và được lưu lại.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"Thiết bị của bạn quá nóng. Máy ảnh sẽ đóng sau %1$d giây.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format",
+            "value":"Định dạng ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details",
+            "value":"Kiểu màu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details",
+            "value":"Chế độ chụp ảnh Độ phân giải cao tăng mật độ điểm ảnh, giúp hình ảnh sắc nét và chi tiết hơn.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"global_exposure",
+            "value":"Phơi sáng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"Có flash",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"Đang lưu…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"Hoa nở",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"Mục đích của việc này là để bạn có thể xem chính xác vị trí chụp ảnh và quay video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"Quyền này dùng để hiển thị cũng như lưu trữ ảnh bạn chụp và video bạn quay.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"Vào Cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"Máy ảnh yêu cầu quyền truy cập Vị trí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"Video chiếm ít dung lượng hơn khoảng %1$s, nhưng có thể không phát trên các thiết bị khác.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"Nhấn nút trả lời trên tai nghe để chụp ảnh hoặc quay video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"Thủ công",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"Khoảng thời gian (%d ảnh)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"Khi bạn chụp ảnh tự chụp với gương, màn hình ngoài có thể hiển thị một hình ảnh được cá nhân hóa sẽ xuất hiện cùng bạn trong ảnh. Để thiết lập điều này, hãy đi tới menu nhanh trong Máy ảnh và chạm vào Xem trước kép.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"Chế độ Mặt trăng đã tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pre_record",
+            "value":"Quay trước",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"Chạm vào biểu tượng %s để nhanh chóng chuyển đổi phong cách XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"Chụp ảnh huỳnh quang là chế độ máy ảnh sử dụng đèn phụ UV. Khi phát xạ lại từ một số chất liệu, tia UV sẽ phát ra màu huỳnh quang có thể được chụp thành các bức ảnh cách điệu.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"Chế độ Ban đêm cho phép bạn chụp những bức ảnh sắc nét, sáng ngay cả trong điều kiện thiếu sáng, nhờ thuật toán giảm nhiễu nâng cao.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"Chụp ảnh sắc nét, tươi sáng trong điều kiện ánh sáng yếu nhờ thuật toán giảm nhiễu tiên tiến. Bốn chế độ chụp có sẵn: Chụp đêm siêu đẹp, Chụp mặt trăng, Bầu trời đầy sao và Ảnh chân dung đầy sao.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_speed",
+            "value":"Tốc độ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"Ứng dụng này yêu cầu quyền truy cập %1$s, %2$s và %3$s. Ứng dụng này cũng cần đọc ảnh và video để hiển thị ảnh bạn chụp và video bạn quay.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"Chụp siêu tốc",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"Chuyển sang chế độ chụp ảnh thường",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"request_location_msg",
+            "value":"Cho phép truy cập vị trí để Máy ảnh có thể gắn thẻ vị trí địa lý cho ảnh và video của bạn. Điều này cho phép bạn xem ảnh và video đã được chụp ở đâu trong Bộ sưu tập.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"Xóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"Bộ lọc hiện tại không có sẵn ở độ phân giải %1$s (%2$d khung hình/giây). Đã tự động chuyển sang %3$dp (%4$d khung hình/giây).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"Giữ thiết bị ổn định.\nĐợi đếm ngược hoặc chạm vào nút chụp để chụp ảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"Chế độ chụp ảnh Độ phân giải cao tăng mật độ điểm ảnh, giúp hình ảnh sắc nét và chi tiết hơn. Ở chế độ Độ phân giải cao, việc tạo ảnh có thể mất nhiều thời gian hơn một chút. Hãy giữ yên điện thoại cho đến khi quá trình này hoàn tất.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"Bộ nhớ thiết bị đã đầy.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"Thông tin bổ sung",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"Phong cách Chuẩn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"Chạm vào đây để nhập kiểu tùy chỉnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"Để vào Cài đặt %s, hãy chạm hoặc vuốt mũi tên ở cuối lên.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"Ứng dụng này chỉ có thể truy cập ảnh và video bạn chụp. Ứng dụng này không xem được hình ảnh trong khung ngắm. %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"Kéo các biểu tượng để điều chỉnh bố cục",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"Khi bật chế độ Ổn định hình ảnh, chất lượng hình ảnh sẽ tốt nhất khi có nhiều ánh sáng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"small_art_vision",
+            "value":"Celia Lens",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_watermark",
+            "value":"Thêm hình chìm mờ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"Hãy nói \"Cheese\" để chụp ảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"Thông báo Quyền hạn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"Bầu trời đầy sao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"Đơn sắc · Cổ điển, Đầy chiều sâu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

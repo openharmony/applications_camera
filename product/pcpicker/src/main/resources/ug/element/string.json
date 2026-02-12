@@ -1,0 +1,333 @@
+{
+    "string":[
+        {
+            "name":"timer_2_seconds",
+            "value":"%d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"سىن رامكا نىسبىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"رەسىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"ئادەم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"كېچە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"سىن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"\u200fAI بەك سۈزۈك ھالەت تولۇق يورۇتۇلغان مۇھىتتا تىنچ نىشاننى تارتىشقا ماس كېلىدۇ، يانفوننى مۇقىم تۇتۇپ تارتىش كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"microphone_permission_desc",
+            "value":"بۇ ئىجازەت سىن ئېلىش ۋە ئاۋازلىق بۇيرۇق ئارقىلىق رەسىم تارتىش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"ئۆزلۈكىدىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_name",
+            "value":"كامېرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"سىن ئېنىقلىقى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"پەقەت ئالدى كامېرادا ئىشلەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"got_it",
+            "value":"بىلدىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"رەسىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"تىنچ تارتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_effect",
+            "value":"ئۈنۈم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_permission_desc",
+            "value":"بۇ ئىجازەت رەسىم تارتىش ۋە سىن ئېلىشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"باشقىلار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"سۈكۈتكە قايتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_error_title",
+            "value":"كامېرا خاتالىقى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"ئۆزتارتىم تەسۋىرى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"سىن ئېلىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_photos_and_videos",
+            "value":"رەسىم ياكى سىن يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"جەزملەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"گۈزەل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"پايدىلىنىش سىزىقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"كامېرانى مۇقىم تۇتۇڭ.\nتەتۈر ساناق جەريانىدا قاپقىنى بېسىپ بالدۇر تارتسىڭىزمۇ بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"يېقىندا تېخىمۇ كۆپ چىقىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"restore_defaults",
+            "value":"سۈكۈتكە قايتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"رەسىم ۋە سىن تارتىلغان ئورۇن خاتىرىلىنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_photos_and_videos_desc",
+            "value":"كامېرا ئارقىلىق رەسىم ياكى سىن تارتسىڭىز بولىدۇ؛ ئامبارنى قۇلۇپ ئېچىپ كۆرەلەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_restore_message",
+            "value":"كامېرا تەڭشىكىنى سۈكۈتتىكى قىممەتكە قايتۇرامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"بەك ئېنىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"ئورتاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"سىنبەلگىلەرنى سۆرەپ رەتلەڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"كامېرا ھالىتىنى سۈكۈت لايىھەگە قايتۇرامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cannot_connect_camera",
+            "value":"كامېراغا ئۇلانمىدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"بوي نىسبىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"تەھرىرلەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"imagevideo_permission_desc",
+            "value":"بۇ ئىجازەت تارتقان رەسىم ۋە سىننى كۆرسىتىش ۋە ساقلاشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"قەرەللىك تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"تەڭشەك",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

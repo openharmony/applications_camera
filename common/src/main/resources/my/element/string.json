@@ -1,0 +1,5233 @@
+{
+    "string":[
+        {
+            "name":"option_exit_camera",
+            "value":"အက်ပ်မှ ထွက်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"AI Ultra Clarity သည် ငြိမ်နေသည့်အရာများနှင့် ရှုခင်းများကို အလင်းအားကောင်းသည့် အနေအထားတွင် ရိုက်ကူးရန်အတွက် အကောင်းဆုံး ဖြစ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"အရောင် အချက်အလက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"infinity_time",
+            "value":"ကန့်သတ်ချက် မရှိ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"အထားအသို ပိုကောင်းစေရန်အတွက် သင့်ဖုန်းကို ဒေါင်လိုက် ကိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"လ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"Starry Sky ၊ ခလုတ်၊ လုပ်ဆောင်ရန် နှစ်ချက်နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"နောက်သို့",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"မက်ထရစ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_on",
+            "value":"Ultra Steady ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"ရုပ်ပုံမှာ အလင်းဝင်မှု များလွန်းပါသည်။ အလင်းဝင်နှုန်း ဆက်တင်ကို ပုံသေအဖြစ် မူလအတိုင်း ပြန်ထားမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"ရွေ့လျား ရုပ်ပုံ ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"အရောင်အသွေးအဆင့် %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"အစက်အပြောက် လျှော့ချရေး အဆင့်မြင့် အယ်ဂိုရစ်သမ် အစွမ်းကြောင့် သင့်ဖုန်းသည် အလင်းရောင် နည်းပါးသော အခြေအနေများ၌ပင် လင်းထင်း၊ ပြတ်သားသော ရုပ်ပုံများကို ရိုက်ကူးပေးနိုင်သည်။ ဖန်တီးမှုအားကောင်းသော ရိုက်ချက်များရိုက်ရန် ရှပ်တာမြန်နှုန်းကို ကိုယ်တိုင်ချိန်ညှိနိုင်သည်။ အလှပုံ ရိုက်ရန် ရှေ့ကင်မရာ သုံးချိန်၌ ပုံရိုက်ခံသူတို့၏ မျက်နှာများပေါ်တွင် မလိုအပ်သော အရိပ်များ မကျနေစေရန် ဤဖုန်းက ဖြည့်စွက်အလင်းရောင် ပံ့ပိုးပေးသဖြင့် မျက်နှာများ ရှင်းလင်း၍ လင်းထင်းသော ပုံကို ရရှိစေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"ဖရိန်များအကြား ကြာချိန်- %1$ss\nကြယ်များကို ရိုက်ကူးရန် အသင့်တော်ဆုံး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"ကင်မရာနှင့် ကိုယ်ရေးအချက်အလက် လုံခြုံရေးအကြောင်း ထုတ်ပြန်ချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"စတိုင်ကျ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"မရွေးချယ်ထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"စိတ်ကြိုက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"%1$sK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_update_date",
+            "value":"နောက်ဆုံး အပ်ဒိတ်လုပ်ခဲ့မှု- %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"မှန်ပုံရိပ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"XMAGE စတိုင်များအကြား ပြောင်းရန် ဤနေရာကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star",
+            "value":"Star Trails",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"စိတ်ကြိုက်စတိုင်တစ်ခုကို ရွေးချယ်ရန် အစမ်းကြည့်ရှုမှု ဧရိယာတွင် ပွတ်ဆွဲပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"ပိုမိုလေ့လာရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"connect_wifi",
+            "value":"WLAN နှင့် ချိတ်ဆက်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_mode",
+            "value":"Stage",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"သဘောတူသည်ကို နှိပ်ခြင်းဖြင့် သင်သည် အထက်ပါ စည်းမျဉ်းများကို သဘောတူပါသည်။ သင့်ကိုယ်ရေး အချက်အလက်များကို စီမံလုပ်ဆောင်ပုံအကြောင်း နောက်ထပ်အသေးစိတ်အတွက် %1$sနှင့် %2$sကို ကိုးကားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"ဒေတာများကို ထည့်သွင်းရန် မအောင်မြင်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"ရှည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"မတူကွဲပြားနေသည့် အရောင်စတိုင်အမျိုးမျိုး သုံး၍ သင်၏ ဖန်တီးမှုနယ်ပယ်များကို ချဲ့ထွင်လိုက်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"ပုံသေ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"function_under_development",
+            "value":"လုပ်ဆောင်ချက်ကို မကြာမီ ရရှိပါမည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"ပုံမှန် ရေစာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_button",
+            "value":"ခလုတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"%1$d:%2$d (အကြံပြုထားမှု)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"အကြံပြုချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"film_style",
+            "value":"Film",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_not_detected",
+            "value":"ကင်မရာကို ရှာဖွေ မတွေ့ရှိပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"ဦးစွာ အလှစနစ်ကို ဖွင့်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"ဗီဒီယိုမုဒ်ဖြင့် ဓာတ်ပုံရိုက်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"နေ့အလင်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_background",
+            "value":"အနားသတ် စတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"ထပ်မပြပါနှင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"ဖော်ပြပါအဖြစ် သိမ်းဆည်းရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_portrait",
+            "value":"ဆဲလ်ဖီ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"သဘောတူသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy",
+            "value":"%s ကို ကူးယူရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"natural_style",
+            "value":"သဘာဝ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"film_duration_title",
+            "value":"နောက်ဆုံး ဗီဒီယို ကြာချိန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"Master AI က ကြိုဆိုပါသည်။ မြင်ကွင်းပေါ် အခြေပြု၍ အရောင်ကို အော်တိုချိန်ညှိပေးသည်။ စမ်းသုံးကြည့်ရန် နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"ဗီဒီယို ဆက်တင်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"low_angle",
+            "value":"အောက်မှပင့်ရိုက်ချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"တိုးမြှင့်ထားသော အရောင်နှင့် အလင်းအမှောင်ကို ခံစားပါ။ စက်နှင့် အက်ပ်ကို လိုက်၍ ကိုက်ညီမှုပိုင်းဆိုင်ရာ အပြောင်းအလဲရှိနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"ကုန်လွန်သွားသော အချိန်ကို အမြန်ပြကွက်ဖြင့် ပြသသော ဗီဒီယိုများဖြင့် ပြောင်းလဲမှု၏ အနှစ်သာရကို ရိုက်ကူးလိုက်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"ပြသမှုမျက်နှာပြင် အကူကို ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"keep_time_title",
+            "value":"ရိုက်ကူးမှု ကြာချိန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"နောက်ထပ် လေ့လာရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"%s ဤစနစ်ကို မသုံးမီ ဤအသိပေးချက်ကို အပြည့်အစုံ ဖတ်ရှုထားကြောင်း သေချာပါစေ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"ဓာတ်ပုံစနစ်တွင် %dMP ရုပ်ပုံများကို ရိုက်ကူးပါ။ ရုပ်ပုံများကို ဤရီဆိုလူးရှင်း၌ လုပ်ဆောင်ရသောကြောင့် အချိန်အနည်းငယ်ပိုကြာနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"%s ဤစနစ်ကို သုံးခြင်းဖြင့် သင်သည် ဤအသိပေးချက်တွင် ဖော်ပြထားသော စည်းမျဉ်းများအားလုံးကို ဖတ်ရှုနားလည်ပြီး သဘောတူလက်ခံကြောင်း ဖော်ပြပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"%1$s ဤကုန်ပစ္စည်းတွင် အသုံးပြုထားသော Fill Light သည် %2$s ဘေးကင်းလုံခြုံရေး စံသတ်မှတ်ချက်ကို လိုက်နာဆောင်ရွက်ထားပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"Circles",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"တုံ့ပြန်လုပ်ဆောင်ပုံအသစ်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"%1$s fps နှင့် %2$s fps ဗီဒီယိုများအတွက် အသုံးပြုရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_car",
+            "value":"Traffic Trails",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"%d စက္ကန့်ကြာပြီးနောက် ဖလက်ရှ်ဖွင့်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"ပြက္ခဒိန်တွင် ထည့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"ပုံမှန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword",
+            "value":"သော့ချက် စကားလုံးကို ပြောရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"အော်တို ဖလက်ရှ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"မိုက်ခရိုဖုန်းကို ပိတ်ဆို့ထားပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_jpg",
+            "value":"JPG",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"ဗီဒီယို",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"Warmth %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"ကြယ်စုတန်းကို အောင်မြင်စွာ ရိုက်ကူးပြီးပါပြီ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"မှတ်ချက်- တည်းဖြတ်နေစဉ် အမှန်တကယ် အလင်းဝင်ပေါက် ဆက်တင်ကို ချိန်ညှိ၍ မရနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"စိတ်ကြိုက် စတိုင်များသို့ ပြောင်းရန် ဘယ်ဘက်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"ရုပ်ပုံသည် မှုန်ဝါးနေသည်။ မှန်ဘီလူးများကို သုတ်ကြည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"ဘက်ထရီအား အလွန်နည်းသည်။ ဖလက်မီး မရနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"romantic_style",
+            "value":"Cinema",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pop_item_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"ရွေ့လျားသော ပုံရိပ်များ၏ ပိုမိုရှင်းလင်းသော ဓာတ်ပုံများကို ရိုက်ကူးနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"ဇူးမ်ကွင်းကို ယပ်တောင်သဏ္ဌာန် ဇူးမ်နှင့် အစားထိုးထားပါသည်။ ထို့အပြင် ရှပ်တာ ခလုတ်ကို နှိပ်၍ ဖိထားပြီးနောက် ဆက်တိုက်ရိုက်ကူးမှု လုပ်ရန် ဘယ်ဘက်သို့ ပွတ်ဆွဲပါ၊ ဗီဒီယို ရိုက်ကူးရန် ညာဘက်သို့ ပွတ်ပါ သို့မဟုတ် ဇူးမ်ချဲ့ရန် အပေါ်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"စိတ်ကြိုက် ကြိုတင်သတ်မှတ်မှု %1$d ၊ အရောင်ပမာဏ %2$d ၊ အရောင်အနုအရင့် %3$d ၊ အရောင်အသွေး %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"အမြန်သုံးမီနျူးကို ပိတ်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"သင့်စက်ကို ငြိမ်နေအောင် ထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"ငြင်းပယ်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"အလင်းချိန်ညှိမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinema_mode",
+            "value":"Cinematic",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"Eyes %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_intro",
+            "value":"နောက်ထပ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"ကြယ်စုတန်း မြေပုံကို ပိတ်ရန် ခလုတ်၊ လုပ်ဆောင်ရန် နှစ်ချက်နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"Swirl",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"Moody",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"ရုပ်ပုံအရည်အသွေးကို မြှင့်တင်ရန် ပတ်ဝန်းကျင်ပေါ်လိုက်၍ ဖရိန် နှုန်းကို အော်တို အလိုက်သင့် ပြောင်းလဲပါသည်။ အပိုင်းအခြား- %1$d – %2$d fps ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"စက်တွင်းသုံး အလင်းဝင်ပေါက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"အောက်သို့ နှိမ့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"အလင်းများ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"အသံများ ပို၍ရှင်းရှင်းလင်းလင်း ကြားရရန် ဗီဒီယို ရိုက်ကူးနေစဉ်အတောအတွင်း လေတိုးသံ လျှော့ချပေးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_design",
+            "value":"ပက်တန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"၎င်းသည် သင် ရိုက်ကူးသော ဓာတ်ပုံများနှင့် ဗီဒီယိုများကို ပြသရန်အလို့ငှာ ဤအက်ပ်သည်%1$s၊ %2$s၊ %3$s နှင့် %4$s ခွင့်ပြုချက်များကို လိုအပ်သကဲ့သို့ ရုပ်ပုံ၊ ဗီဒီယိုနှင့် တည်နေရာ အချက်အလက်တို့ကို ဖတ်ရှုရန်လည်း လိုအပ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"အလင်းနည်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"anime_style",
+            "value":"Anime",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"အရောင်အသွေး ပိတ်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"Anime စတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"Follow Focus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"ထောင်လိုက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"စိတ်ကြိုက်ပုံစံများ အသုံးပြုထားသော ဓာတ်ပုံများနှင့်သာ သက်ဆိုင်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"အိုကေ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"ဖရိန်များအကြား ကြာချိန်-%ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"ဦးတည်ရာဘက် ပြောင်းရန် မြားကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"ကင်မရာအကွက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"အလင်းတိုင်း စနစ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"ဆုံချက် အရန်မီးဖွင့်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_details",
+            "value":"အလှပုံစနစ်သည် နောက်ခံ၌ အဝါးအထူးပြုလုပ်ချက်ပါရှိသော လှပသည့် ဓာတ်ပုံများ ရိုက်ကူးနိုင်စေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"သဘာဝ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"အရောင်ရွေးချယ်မှု ခလုတ်၊ ဖွင့်ရန် နှစ်ချက်နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"သင့်စက်ကို ငြိမ်နေအောင် ထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"စိတ်ကြိုက် စတိုင်ကို အစားထိုးမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"ကြားအချိန် တိုင်မာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"အနောက်ကင်မရာဖြင့် ဆဲလ်ဖီများရိုက်ရန် နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"အပေါ်သို့ မြှောက်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"ဗီဒီယိုမှတ်တမ်းတင်ခြင်း ရပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"တည်းဖြတ်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"Beauty ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"Moon Shot",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"starry_portrait",
+            "value":"Starry Portrait",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"တိုင်မာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d စက္ကန့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"ဖရိန်နှုန်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"နှစ်ဖက်မြင် အစမ်းကြည့်ရှုမှု ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"%1$d. အရေးကြီး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"ဤစနစ်ဖြင့် ရိုက်ကူးစဉ် လူပုံများ ရိုက်ယူရန် ကင်မရာ၏ ဖလက်ရှ်ကို သုံးနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details",
+            "value":"အထူးသီးသန့် အလင်းနှင့် အမှောင် အထူးပြုလုပ်ချက်များကို ဖန်တီးပါ။ အသုံးအများဆုံး Light painting ရိုက်ကွက်များနှင့် အဆင်ပြေကိုက်ညီစေရန် ဖန်တီးထားသည့် ကြိုတင်သတ်မှတ်ထားသော စနစ်လေးမျိုး (Traffic Trails ၊ Light graffiti ၊ Silky water နှင့် Star Trails) မှ ရွေးချယ်နိုင်ပါသည်။ အကောင်းဆုံးရလဒ်များ ရရှိရန် သုံးချောင်းထောက်တစ်ခုကို သုံးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"သင်၏ အကောင်းဆုံး အခိုက်အတန့်များကို ရိုက်ကူးလိုက်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"ယပ်တောင်သဏ္ဌာန် ဇူးမ်အသစ်သည် ပိုမိုချောမွေ့ပြီး ပို၍ သုံးရလွယ်သော ဇူးမ်အတွေ့အကြုံကို ယူဆောင်လာပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_name",
+            "value":"စက်မော်ဒယ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"ဖလက်ရှ် အမြဲဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"Hearts",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"နည်းလမ်းအသစ်တစ်ခုလုံးဖြင့် အခိုက်အတန့်များကို ဖမ်းယူနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open",
+            "value":"%1$s ကို ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"စမတ် ထိန်းချုပ်ရေးတွင် လက်ဗွေ အာရုံခံ စနစ်ကို နှိပ်ရုံဖြင့် ဓာတ်ပုံများနှင့် ဗီဒီယိုများ ရိုက်ကူးနိုင်ရန် လုပ်ဆောင်ပေးထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"%s ရှေ့သို့ ရွှေ့မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"တည်နေရာ တဂ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"စတိတ်စင် စနစ်သည် တီးမှုတ်ဖျော်ဖြေပွဲများ၊ တေးဂီတဖျော်ဖြေပွဲများ၊ ပြဇာတ်များနှင့် အခြားသော ဖျော်ဖြေမှုများကို ရိုက်ကူးရန်အတွက် အလွန်ကောင်းမွန်သည်။ ၎င်းကို ရှုပ်ထွေးသော စတိတ်စင်မီးရောင်ရှိသည့် အခြေအနေများတွင် ကောင်းစွာ ဆောင်ရွက်နိုင်ရန် အကောင်းဆုံး ချိန်ညှိထားသဖြင့် ဖျော်ဖြေတင်ဆက်သူများကို ထင်ရှားပြတ်သားစွာ၊ အရောင်တောက်ပစွာ ရိုက်ကူးနိုင်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_an_email",
+            "value":"အီးမေးလ် ပို့မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"ထည့်သွင်းမှု အောင်မြင်ပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"ရုပ်ပုံများကို ပိုကောင်းအောင် မွမ်းမံရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"Moon Shot ၊ ခလုတ်၊ လုပ်ဆောင်ရန် နှစ်ချက်နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_soft",
+            "value":"Bright",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"တစ်ချက်တည်း ရိုက်ချက် AF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"Mono",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"ရိုမန်တစ် စတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"ပုံမှန် JPG ဖောမတ်သို့ ပြောင်းပြီး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"ပညာရှင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"ဓာတ်ပုံ သတ်မှတ်ချက်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"ကင်မရာသည် ဓာတ်ပုံများနှင့် ဗီဒီယိုများတွင် တည်နေရာ တက်ဂ်များ ပေါင်းထည့်ရန်အတွက် သင့်တည်နေရာ အချက်အလက်အား ဝင်ရောက် သုံးစွဲရန် လိုအပ်ပါသည်။\nခွင့်ပြုမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"%ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"အပူရှိန်ဖြင့်အလင်းဖြာသော",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"စိတ်ကြိုက်စတိုင်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"ဆက်တိုက် ရိုက်ချက် AF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"%s နောက်တွင် ထားလိုက်သည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"အလွန်နှေးကွေးသော ရှပ်တာမြန်နှုန်းများကို အသုံးပြု၍ အလင်းရောင်နှင့် Ethereal အထူးပြုလုပ်ချက်များကို ဖန်တီးနိုင်ပါသည်။ အသုံးများသော Light painting ရိုက်ကွက်များနှင့် အဆင်ပြေကိုက်ညီစေရန် ဖန်တီးထားသည့် ကြိုတင်သတ်မှတ်ထားသော စနစ်လေးမျိုး (Traffic Trails ၊ Light graffiti ၊ Silky water နှင့် Star Trails) ရှိပါသည်။ အကောင်းဆုံးရလဒ်များ ရရှိရန် သုံးချောင်းထောက်တစ်ခုကို သုံးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"%1$s စိတ်ကြိုက် စတိုင်။ နှစ်ချက်နှိပ်၍ ဖိထားပါ၊ ပြီးနောက် စတိုင်များ ပြောင်းရန် ဘယ်ဘက် သို့မဟုတ် ညာဘက်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"Slow-Mo %dx အထိသာ ရရှိနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"အရောင်အသွေး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"စိတ်ကြိုက် စတိုင်အမည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"ရုပ်ပုံများနှင့် ဗီဒီယိုများ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"end_shooting",
+            "value":"ရိုက်ကူးမှု အဆုံးသတ်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"ရွေးထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"Head %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"ပက်တန်များ ပြောင်းရန် ပွတ်ဆွဲပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"%d စက္ကန့်အကြာတွင် ဖလက်ရှ်ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"allow_access",
+            "value":"ရယူသုံးစွဲခွင့်ပြုရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"သင်ရိုက်ကူးမည့်သူလည်း အစမ်းကြည့်ရှုမှုကို မြင်ရစေရန် ဤနေရာကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"အငြိမ် ရိုက်ကူးမှုကို ပိတ်ထားပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"အလှအပ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"ဖုန်းကို ငြိမ်အောင် ထားလျက် ညွှန်ကြားသည့်အတိုင်း ညင်သာစွာ လှည့်ပါ။ ရိုက်ကူးမှု ပြီးစီးပြီးနောက် ကင်မရာသည် ရိုက်ကူးထားသော ရုပ်ပုံများကို မြင်ကွင်းကျယ်ဓာတ်ပုံတစ်ပုံအဖြစ် ပေါင်းစပ်ပါမည်။ ဤလုပ်ဆောင်ချက်သည် ရေမြေတောတောင် ရှုခင်းများ၊ မြို့ပြရှုခင်းများနှင့် အလားတူ မြင်ကွင်းများကို ရိုက်ကူးရန်အတွက် အကောင်းဆုံး ဖြစ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"အမြန်သုံးမီနျူး ဖွင့်သည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"သင်၏ လူရုပ်ပုံများကို အသားပေး ရိုက်ကူးရန်အတွက် နောက်ခံကို ဝါးထားပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"ဓာတ်ပုံ ဆက်တင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"အမည်ပြန်ပြောင်းရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"ဤအက်ပ်သည် %1$s၊ %2$sနှင့် %3$s ခွင့်ပြုချက်များကို လိုအပ်ပါသည်။ ၎င်းသည် သင် ရိုက်ကူးသော ဓာတ်ပုံများနှင့် ဗီဒီယိုများကို ပြသရန်အလို့ငှာ ရုပ်ပုံများ၊ ဗီဒီယိုများနှင့် တည်နေရာ အချက်အလက်တို့ကို ဖတ်ရှုရန်လည်း လိုအပ်ပါသည်။ ၎င်းသည် အသံဖမ်းရန်အတွက် မိုက်ခရိုဖုန်းကို သုံးရန်လည်း လိုအပ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"Modern",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"အလင်းဝင်နှုန်းကို လော့ခ်ချထားပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"အငြိမ် ရိုက်ကူးမှုကို ဖွင့်ထားပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse",
+            "value":"Time-lapse",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"%1$d. သတိပြုရန်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"ကောင်းကင်ပြာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"အလင်းဝင်နှုန်းနှင့် ဆုံချက်ကို လော့ခ်ချထားပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"ဖလက်ရှ် ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"ဤသို့ ခွင့်ပြုပေးခြင်းဖြင့် လက်ပတ်နာရီပေါ်မှတစ်ဆင့် ဓာတ်ပုံများနှင့် ဗီဒီယိုများ ရိုက်ကူးခြင်းကို လုပ်ဆောင်နိုင်စေပါသည်။ Health အက်ပ်တွင် ဤခွင့်ပြုချက်ကို စီမံနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"%d fps ဗီဒီယိုများအတွက်သာ အသုံးပြုရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"အိုကေ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot_details",
+            "value":"Super-focus ကင်မရာ စနစ်ကို XD Motion Engine နှင့် ပေါင်းစပ်ထားပြီး အနီးကပ် ရိုက်ကူးသည်ဖြစ်စေ၊ အဝေးမှ ရိုက်ကူးသည်ဖြစ်စေ အမြင့်ဆုံးမြန်နှုန်း %d km/h ဖြင့် ရွေ့လျားနေသော ပုံရိပ်များကို အမိအရ ရိုက်ကူးနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"ရွေ့လျား ရုပ်ပုံများကို ရိုက်ကူးသည့်အခါ ရှပ်တာသံကို ပိတ်ထားပါမည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"အလွန်နှေးကွေးသော ရှပ်တာမြန်နှုန်းများကို အသုံးပြု၍ အလင်းရောင်နှင့် Ethereal အထူးပြုလုပ်ချက်များကို ဖန်တီးနိုင်ပါသည်။ အသုံးများသော Light painting ရိုက်ကွက်များနှင့် အဆင်ပြေကိုက်ညီစေရန် ဖန်တီးထားသည့် ကြိုတင်သတ်မှတ်ထားသော စနစ်လေးမျိုး (Traffic Trails ၊ Light graffiti ၊ Silky water နှင့် Star Trails) ရှိပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"စိတ်ကြိုက်စတိုင်များ ပြောင်းရန် အစမ်းကြည့်ရှုမှု ဧရိယာတွင် ဘယ်ဘက်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"အမြန်သုံးမီနျူးကို ဖွင့်ရန် ထိပ်ပိုင်းရှိ မြားကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"အရောင်အသွေး ပိုစိုသော ဓာတ်ပုံတစ်ပုံ ရရှိရန်အတွက် အရောင်များနှင့် အသားအရောင်ကို ချိန်ညှိရန် AI က မြင်ကွင်းကို ခွဲခြားဖော်ထုတ်ပါမည်။ အထူးပြုလုပ်ချက်ကို ဖွင့်/ပိတ်ရန် AI အိုင်ကွန်ကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"သဘာဝ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"ကြယ်စုတန်း မြေပုံ ဖွင့်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"ဓာတ်ပုံများနှင့် ဗီဒီယိုများ ရိုက်ယူထားသည့် နေရာကို မှတ်တမ်းတင်ရန်နှင့် ရိုက်ကူးသည့် တည်နေရာ အချက်အလက်ကို ရေစာများတွင် ပြသရန် ၎င်းကို သုံးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"ဖြည်းဖြည်းရွှေ့ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset",
+            "value":"ပြန်လည်သတ်မှတ်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"ဖရိန်တွင် ရွေးထားသောလူရုပ်ပုံ ရွေ့သည့်အတိုင်း လမ်းကြောင်းလိုက်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"RAW စနစ်၌ ကြိုတင်သတ်မှတ်မှုများကို နှိပ်၍ သို့မဟုတ် ချုံ့ချဲ့လုပ်၍သာ ဇူးမ်ကို ချိန်ညှိနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description",
+            "value":"ဓာတ်ပုံများနှင့် ဗီဒီယိုများ ရိုက်ကူးရာနေရာကို မှတ်တမ်းတင်ရန်၊ ရိုက်ကူးသော တည်နေရာ အချက်အလက်ကို ရေစာများဖြင့် ပြသရန်နှင့် ကြယ်အစုအဝေးပြ မြေပုံ လုပ်ဆောင်ချက်ကို ပံ့ပိုးရန် ၎င်းကို သုံးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"အလှပုံစနစ်တွင် အလှအပအထူးပြုလုပ်ချက်များကို သုံးနိုင်ပြီး အလင်းဝင်ပေါက်ကို ချိန်ညှိခြင်းဖြင့် မတူညီသော အဝါး အမျိုးအစားများကို ရရှိနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"ဖလက်ရှ် အမြဲဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exits_same_card",
+            "value":"ဤအရောင် သတ်မှတ်ချက်များနှင့် ကြိုတင်သတ်မှတ်မှုတစ်ရပ် ရှိနှင့်ပြီးသား ဖြစ်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"အသံအော်ဒီယို ထိန်းချုပ်မှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"skip",
+            "value":"ကျော်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"အမြန် လျှပ်တပြက်ရိုက်ချက်ကို ကင်မရာဆက်တင်များမှ ပိတ်နိုင်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"မီးချောင်းအလင်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"%d စက္ကန့်ကြာပြီးနောက် ဖလက်ရှ်ဖွင့်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter",
+            "value":"အထူးပြုလုပ်ချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"အော်တို ဖလက်ရှ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"(%1$s:%2$s) %3$sp (အကြံပြုထားမှု)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"ဖလက်ရှ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_details",
+            "value":"မတူညီသော ကင်မရာ ရှုထောင့်များနှင့် အထူးပြုလုပ်ချက်များကို ပေါင်းစပ်ခြင်းဖြင့် အာရုံကို ဆွဲဆောင်သော Vlog များ ဖန်တီးလိုက်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"ရုပ်ပုံ ထည့်သွင်းရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"အရောင်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_on",
+            "value":"Super Macro ဖွင့်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"ပြသမှုမျက်နှာပြင် အကူကို ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"Classic",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"တတိယမြောက် ဓာတ်ပုံကို ရိုက်ရန် မြားညွှန်ရာအတိုင်း လှည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"မန်နျူရယ် ဆုံချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"ဆုံချက်ကို AF-C တွင်သာ လော့ခ်ချနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_zoom",
+            "value":"အော်ဒီယို ဇူးမ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"ဓာတ်ပုံ ရေစာများတွင် တည်နေရာ အချက်အလက်ကို ပြသရန် သုံးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"ပယ်ဖျက်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"ပိုမိုကောင်းမွန်သော ရလဒ်များကို ဤနေရာတွင် ကြည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"မျက်နှာပြင်ကို ထုတ်လွှင့်ပြသနေစဉ်တွင် မျက်နှာပြင်နှစ်ခုတွဲ အစမ်းကြည့်ရှုမှုကို မရရှိနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"အမြန်သုံးမီနျူးကို ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"အတိမ်အနက်နှင့် လှုပ်ရှားမှုဒေတာကို ထိန်းသိမ်းထားရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary",
+            "value":"ဆုံချက် အရန်မီး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"ရှေ့ကင်မရာ ကြိုတင်ကြည့်ရှုမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"%1$d:%2$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"စက်ဝိုင်းနှစ်ခု တစ်ထပ်တည်း ကျသည်အထိ သင့်စက်ကို စောင်းရွှေ့ကြည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"အလင်းဝင်နှုန်း မြင့်လွန်းနေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"အငြိမ် ရိုက်ကူးမှု ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_record_remind",
+            "value":"မှတ်တမ်းသွင်းသည့် အက်ပလီကေးရှင်းသည် နောက်ကွယ်တွင်အလုပ်လုပ်နေသည် (အသံဖမ်းစက်၊ ဖုန်းခေါ်ဆိုမှု)။ ဗီဒီယိုတစ်ခုအားရိုက်ကူးရန် အက်ပလီကေးရှင်းအား ဦးစွာပိတ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"%1$s ၏ အနောက်၊ အလျားလိုက် %2$d တန်း၊ ဒေါင်လိုက် %3$d တန်းတွင် ထားလိုက်သည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"ဓာတ်ပုံများနှင့် ဗီဒီယို ရိုက်ရန်အတွက် သုံးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"အရောင် အထူးပြုလုပ်ချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"အကောင်းဆုံး ရလဒ်များအတွက် အမှောင်ထဲတွင် ရိုက်ကူးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"အလျားလိုက် အနေအထား",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"အနောက်ကင်မရာသည် ရှင်းလင်းပြီး မည်သည်မျှ မဖုံးကာထားကြောင်း သေချာပါစေ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"ဖော်ပြထားသော ဦးတည်ရာဘက်သို့ သင့်စက်ကို လှည့်ပါ။ ကွင်းသည် အစက်နှင့် အံဝင်ခွင်ကျသွားသည့်အခါ ကင်မရာက ဓာတ်ပုံတစ်ပုံ ရိုက်ပါမည်။ အချိန်မရွေး ရှပ်တာကို နှိပ်၍ အဆုံးသတ်နိုင်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_details",
+            "value":"HD ဗီဒီယို ရိုက်ကူးသည့်အခါ ကင်မရာသည် အလင်းဝင်နှုန်းနှင့် အရောင်ကို အော်တို ချိန်ညှိပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"ကင်မရာအား သင့်တည်နေရာ အတိအကျ ရယူသုံးစွဲခွင့်ပြုမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"ဓာတ်ပုံ သို့မဟုတ် ဗီဒီယို ရိုက်ကူးရန် နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"%1$s၊ အရောင်ပမာဏ %2$d ၊ အရောင်အနုအရင့် %3$d ၊ အရောင်အသွေး %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"အနောက်ကင်မရာကို ကွယ်နေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"Fair",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"ဒေါင်လိုက် အနေအထား",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"ပယ်ဖျက်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"အငြိမ် ရိုက်ကူးမှုကို ဖွင့်ထားချိန်တွင် ဇူးမ်ကို ပံ့ပိုးပေးခြင်း မရှိပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"အလှပုံစနစ်တွင် အလှအပအထူးပြုလုပ်ချက်များကို သုံးနိုင်ပြီး အလင်းဝင်ပေါက်ကို ချိန်ညှိခြင်းဖြင့် မတူညီသော အဝါး အမျိုးအစားများကို ရရှိနိုင်ပါသည်။ ကောင်းနိုင်သမျှ အကောင်းဆုံး ဓာတ်ပုံများကို ရရှိစေရန် သင်ရိုက်ကူးနေစဉ်အတွင်း အလင်းဝင်နှုန်းနှင့် အရောင်တို့ကို အော်တိုချိန်ညှိပေးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"common_watermark",
+            "value":"ပုံမှန် ရေစာများ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_description",
+            "value":"ဖော်ပြချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition",
+            "value":"AI ကွန်ပိုစေးရှင်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"Nose %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"လူပုဂ္ဂိုလ်တစ်ယောက်၊ ကြောင်တစ်ကောင် သို့မဟုတ် ခွေးတစ်ကောင်ကို ဓာတ်ပုံစနစ်ဖြင့် ရိုက်ကူးသည့်အခါ နောက်ပိုင်းတည်းဖြတ်ရန်အတွက် အတိမ်အနက်နှင့် လှုပ်ရှားမှုဒေတာကို ထိန်းသိမ်းထားပါမည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"အဓိကအရာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_selfie",
+            "value":"အနောက်ကင်မရာဆဲလ်ဖီ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"ဗီဒီယို ရီဆိုလူးရှင်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"အထောက်အကူပြု အကွက်၊ ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Beauty_on",
+            "value":"ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"AI ကွန်ပိုစေးရှင်း ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"ရွေ့လျား ရုပ်ပုံ ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"Super Macro · ဖရိန်ထဲရှိ အကြောင်းအရာပေါ်တွင် ပို၍ပျံ့ပျံ့နှံ့နှံ့ ဆုံချက်ချိန်သည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"လုပ်ဆောင်ရန် နှစ်ချက်နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"ကင်မရာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"ကြိုတင်ရိုက်ကူးမှု ဖွင့်ထားသည်။ ရိုက်ကူးမှု မစတင်မီ အများဆုံး %d စက္ကန့်စာအထိ ဗီဒီယိုအကြမ်း ရိုက်ကူးရန် ရှပ်တာကို နှိပ်၍ ဖိထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_parameter",
+            "value":"အချိန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"မသုံး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"အော်တို",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aperture_mode",
+            "value":"အလင်းဝင်ပေါက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"တိုးမြှင့်ထားသော အငြိမ် ရိုက်ကူးမှု ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"Makeup %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"အရောင်အသွေးအဆင့် %1$d ၊ ချိန်ညှိနိုင်သော အပိုင်းအခြားမှာ %2$d မှ %3$d အထိ ဖြစ်သည်။ သုံးရန် နှစ်ချက်နှိပ်ပါ သို့မဟုတ် နှစ်ချက်နှိပ်၍ ဖိထားပြီးနောက် ပြောင်းလဲရန် အထက် သို့မဟုတ် အောက်သို့ ဆွဲရွှေ့ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"ကြယ်စုတန်းကို ရိုက်ကူး၍ မရပါ။ ရိုက်ကူးသည့် ရှုထောင့်ကို ပြောင်းပြီး ထပ်ကြိုးစားကြည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"ခွင့်ပြုရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"အလင်းဝင်နှုန်းနှင့် ဆုံချက်ကို လော့ခ်ချရန် နှိပ်၍ ဖိထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"Slow-Mo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama",
+            "value":"မြင်ကွင်းကျယ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_light",
+            "value":"Light graffiti",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"လက်ရှိ ဆက်တင်များသည် လုံလောက်သည့် အလင်းကို ဝင်ရောက်စေနိုင်မည် မဟုတ်ပါ။ ပုံသေ အလင်းဝင် ဆက်တင်များအတိုင်း ပြန်သတ်မှတ်မည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"ဓာတ်ပုံများနှင့် ဗီဒီယိုများတွင် တည်နေရာ အချက်အလက်များကို တက်ဂ်တွဲရန်အတွက် သုံးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"စိတ်ကြိုက် စတိုင်များကို ပြောင်းရန် ဤနေရာကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"ရီမု့(တ်)ရှပ်တာနှင့် ချိတ်ဆက်မှု ဖြုတ်ထားပြီး။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"ပုံသေ ပုံစံအတိုင်း ပြန်သတ်မှတ်မည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"live_photo",
+            "value":"ရွေ့လျား ရုပ်ပုံ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"စက် အပူချိန် မြင့်နေပါသည်။ Pic-in-Pic ကို မရရှိနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"မှန်ဘီလူး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"ပြောင်းရန် နှစ်ချက်နှိပ်ပါ၊ ဘယ်ဘက် သို့မဟုတ် ညာဘက် ဆွဲရွှေ့ရန် နှစ်ချက်နှိပ်ပြီး ဖိထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"ဤစိတ်ကြိုက် စတိုင်အမည်သည် ရှိပြီးသားအမည် ဖြစ်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"မြားကို အလယ်မျဉ်းတွင် ထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"သင့်စက်၏ ကင်မရာ သက်ဝင်လုပ်ဆောင်နေပြီဖြစ်သော်လည်း ဤအက်သည် သင်ရိုက်ကူးသော ရုပ်ပုံများကိုသာ ဝင်ရောက် သုံးစွဲနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"အမြန် လျှပ်တပြက် ရိုက်ကူးမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"စိတ်ကြိုက် စတိုင်များ အကြားပြောင်းရန် ဘယ်ဘက် သို့မဟုတ် ညာဘက်သို့ ပွတ်ဆွဲပါ။ အရောင်ကတ်ကို ပွတ်ဆွဲခြင်းဖြင့် သင့်ကိုယ်ပိုင်စတိုင်များ ဖန်တီးပါ သို့မဟုတ် တစ်စုံတစ်ယောက် ရိုက်ထားသော ဓာတ်ပုံတစ်ပုံကို ထည့်သွင်းခြင်းဖြင့် ထိုသူ၏ စတိုင်အတိုင်း လိုက်၍ တုပနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"စိတ်ကြိုက် စတိုင်များကို အမြန်ပြောင်းရန် %s အိုင်ကွန်ကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"အရောင်အနုအရင့် အဆင့် %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"%ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"အလှပုံ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"အော်ဒီယို ဇူးမ် ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"make_a_call",
+            "value":"ခေါ်ဆိုရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting",
+            "value":"Light painting",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"ရှပ်တာ အိုင်ကွန်ကို နှိပ်ပြီး စက်ကို ဘယ်မှ ညာသို့ ဖြည်းဖြည်းချင်း ရွှေ့ပေးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"ဇူးမ်ချဲ့အားများများဖြင့် သို့မဟုတ် အလင်းရောင်နည်းချိန်တွင် ရိုက်ကူးထားသော ဓာတ်ပုံများကို AI အသုံးပြု၍ ကြည်လင်ပြတ်သားအောင် လုပ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"ည",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"ဖရိန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"ကင်မရာ ခွင့်ပြုချက်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"ဆုံချက်စနစ် ပြောင်းရန် ဤနေရာကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun",
+            "value":"နေထွက်/နေဝင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"ဓာတ်ပုံ ရိုက်ရန် \"Cheese\"ဟု ပြောပေးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"မျက်နှာပြင်များ ပြောင်းရန် လှန်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"ရွေ့လျား ရုပ်ပုံကို ဖွင့်ထားချိန်တွင် ရရှိနိုင်မည် မဟုတ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"ပုံသေအဆင်အပြင်သို့ ပြန်ထားရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_color",
+            "value":"အနားသတ် အရောင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_water",
+            "value":"Silky water",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_and_shade",
+            "value":"အရောင်အသွေး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"အပူချိန် သတိပေးချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d စက္ကန့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"ညာဘက်သို့ ရွှေ့ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"ရုပ်ပုံ ထုတ်လုပ်နေသည်၊ သင့်စက်ကို ငြိမ်နေအောင် ထားပါ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"AI ကွန်ပိုစေးရှင်းကို %1$sx ဖြစ်စေ၊%2$sx ဖြစ်စေ၊ %3$sx ဖြစ်စေ ဤကင်မရာဇူးမ်များတွင် အသုံးပြုနိုင်ပါသည်။ ရှုခင်းများ၊ အဆောက်အအုံများနှင့် လူများကို ဓာတ်ပုံရိုက်သည့်အခါ အကောင်းဆုံးသော ရလဒ်များကို ရရှိပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"ဖရိန်၏ အလယ်ရှိ အနီးဆုံးမြင်သာသော အရာဝတ္ထုများကို ဆုံချက် ဦးစားပေးထားပါသည် (အနည်းဆုံး %d cm အကွာ)။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"အဝါသန်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_a_message",
+            "value":"မက်ဆေ့ချ် ပေးပို့ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"အလင်းဝင်နှုန်း ဆက်တင်ကို ပုံသေအဖြစ် မူလအတိုင်း ပြန်ထားမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"ဖရိန်များအကြား ကြာချိန်- %1$ss\nပွင့်လန်းနေသည့် ပန်းများကို ရိုက်ကူးရန် အသင့်တော်ဆုံး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"အငြိမ် ရိုက်ကူးမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"%1$s fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"သက်ဆိုင်ရာ တန်ဖိုးများကို လော့ခ်ချရန် EV·၊ AF·နှင့် WB·အိုင်ကွန်များကို နှိပ်၍ ဖိထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"HEIF ဖောမတ်သို့ ပြောင်းပြီး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"Showcase Focus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"HD မြင်ကွင်းကျယ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"စက်သည် ပူလွန်းနေပါသည်။ ကင်မရာကို %1$d စက္ကန့်အကြာတွင် ပိတ်ပါမည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"နောက်ကင်မရာဖြင့် ရိုက်ထားသည့် ဓာတ်ပုံများတွင် ရေစာ အော်တို ပေါင်းထည့်ပေးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_normal",
+            "value":"Original",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"ဇူးမ်အသစ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"%1$s အရှေ့၊ Line %2$d ၊ Column %3$d သို့ ရွှေ့ပြီး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"AI ကွန်ပိုစေးရှင်းကို %1$sx သို့မဟုတ် %2$sx ဇူးမ်တွင် အသုံးပြုနိုင်ပါသည်။ ရှုခင်းများ၊ အဆောက်အအုံများနှင့် လူများကို ရိုက်ကူးသည့်အခါ အကောင်းဆုံးသော ရလဒ်များကို ရရှိပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"details",
+            "value":"အသေးစိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"စိတ်ကြိုက်စတိုင်များ %s သို့ ပြောင်းရန် ညာဘက်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"ပုံသေ Beauty ဆက်တင်ကို ပြန်ထားမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"Dawn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"horizontal_level",
+            "value":"ရေပြင်ညီအဆင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"တိုးမြှင့်မှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"passion",
+            "value":"မြင်ကွင်းကျယ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"အထားအသို ပိုကောင်းစေရန်အတွက် သင့်ဖုန်းကို အလျားလိုက် ကိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"အော်တို",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"%d စက္ကန့်အကြာတွင် ဖလက်ရှ်ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_disabled",
+            "value":"ကင်မရာ ပိတ်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"သင်၏ လူရုပ်ပုံများကို အရောင်ဖြင့်ထား၍ ကျန်အရာအားလုံးကို အဖြူအမည်းပြောင်းပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"အနောက်ကင်မရာ အစမ်းကြည့်ရှုမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"ဖရိန်များအကြား ကြာချိန်- %1$ss\nနေထွက်/နေဝင်ချိန်ကို ရိုက်ကူးရန် အသင့်တော်ဆုံး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"ဘယ်ဘက်သို့ ရွှေ့ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"အလိုအလျောက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"ပိုမိုအဆင်ပြေစေရန် ပြောင်းရွှေ့နိုင်သည့် ရှပ်တာခလုတ်ကို ပေါင်းထည့်ပေးထားပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"တေးဂီတဖျော်ဖြေပွဲများနှင့် အခြားသော စတိတ်ဖျော်ဖြေမှုများကို ရိုက်ကူးရန်အတွက် ဤစနစ်ကို အကောင်းဆုံး ချိန်ညှိထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_angle",
+            "value":"ကျယ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"ဖလက်ရှ် ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"ဖုန်းကို ဖြန့်ပြီး လှန်ပြီးနောက် အနောက်ကင်မရာကို သင်မျက်နှာမူလိုက်လျှင် အနောက်ကင်မရာဆဲလ်ဖီစနစ်သို့ အော်တိုပြောင်းပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"Pure",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"Soften",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"အသံတိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"ပြောင်းရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"အထောက်အကူပြု အကွက်၊ ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details",
+            "value":"မြင်ကွင်းကျယ် ဓာတ်ပုံတစ်ပုံ ရိုက်ကူးရန် ကင်မရာကို အလျားလိုက် သို့မဟုတ် ဒေါင်လိုက် ရွှေ့ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"ပတ်ဝန်းကျင်သည် လင်းလွန်းနေပါသည်။ ကြယ်စုတန်းကို ရိုက်ကူး၍ မရပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"နူးညံ့",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"မီးချောင်းအလင်း အထူးပြုလုပ်ချက်သည် မှိန်‌သောကြောင့် အကောင်းဆုံးရလဒ်များကို အလွန်မှောင်သည့် ဝန်းကျင်တွင် ရရှိနိုင်ပါသည်။ ဤစနစ်ကို သုံးသည့်အခါ သတိနှင့် သုံးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"အလှအပအဆင့် %1$d ၊ ရွေးချယ်နိုင်သော အပိုင်းအခြားသည် %2$d မှ %3$d အထိ ဖြစ်သည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_on",
+            "value":"ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"အလင်းဝင်နှုန်းကို လော့ခ်မချထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"အလင်းဝင်မှုနှင့် ဆုံချက်ကို လော့ခ်ချထားပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"ဆက်တိုက်ရိုက်ကူးမှုဖြင့် ဓာတ်ပုံရိုက်ရန် ဘယ်ဘက်သို့ ပွတ်ဆွဲပါ၊ ဗီဒီယိုရိုက်ရန် ညာဘက်သို့ ပွတ်ဆွဲပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_off",
+            "value":"Super Macro ပိတ်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"စိတ်ကြိုက် ကိုယ်ပိုင် အမှတ်အသား",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_auto",
+            "value":"အလိုအလျောက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"ညရိုက်ကူးမှု မြှင့်တင်ရေး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_details",
+            "value":"ဗီဒီယိုအရှည်ကန့်သတ်ချက် မပါရှိသော စလိုးမိုးရှင်း ဗီဒီယိုကို ရိုက်ကူးလိုက်ပါ။ ဗီဒီယိုကို ဖရိန် နှုန်း အလွန်မြင့်မားစွာဖြင့် ကိုယ်တိုင်ဖြစ်စေ၊ အော်တိုဖြစ်စေ ရိုက်ကူးရာ၌ Super slow-mo ကို သုံးနိုင်ပါသည်။ ဤစနစ်သည် အလင်းရောင် ကောင်းစွာရသော ပတ်ဝန်းကျင်များ၌ အကောင်းဆုံး အလုပ်လုပ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_occupied",
+            "value":"တခြားအက်ပ်တစ်ခုက ကင်မရာကို သုံးနေပါသည်။ ထိုအက်ပ်ကို ပိတ်ပါ၊ ပြီးနောက် ဤအက်ပ်ကို ပြန်ဖွင့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"physical_aperture",
+            "value":"ပြင်ပ အလင်းဝင်ပေါက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"ဓာတ်ပုံကို ပြတ်သားအောင်ပြုလုပ်နေသည်... ကျေးဇူးပြု၍ သင်ကိရိယာအား တည်ငြိမ်စွာထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_title",
+            "value":"\"%1$s\" ကို ကင်မရာ သုံးစွဲခွင့်ပြုမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"အလှအပ ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"မှုန်ဝါးမှု အထူးပြုလုပ်ချက် ပိုမိုကောင်းမွန်စေရန်အတွက် အလင်းရောင်ပိုင်းဆိုင်ရာ အခြေအနေများကို မြှင့်တင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"ဖရိန် နှုန်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"တည်ငြိမ်သောအရာဝတ္ထုများအတွက်သာ ဖြစ်သည်။ ကင်မရာကို တည်ငြိမ်အောင် ထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"ဆုံချက်ကို လော့ခ်ချထားပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"Vivid · တောက်ပ၍ စိုလွင်သောစတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"jpg_description",
+            "value":"HEIF နှင့်စာလျှင် ပိုကောင်းသော ကိုက်ညီမှုကို ပေးစွမ်းပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"အနောက်ကင်မရာဖြင့် ဆဲလ်ဖီများရိုက်ရန် ဖုန်းကိုဖြန့်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_pause",
+            "value":"ခေတ္တရပ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"AI Ultra Clarity",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"ဓာတ်ပုံများသည် အရောင်ပိုစိုပြီး အသွင်အပြင် ပိုထင်ရှားပါသည်၊ အိမ်မွေးတိရစ္ဆာန်များနှင့် သဘာဝရှုခင်းကို ပိုမိုကောင်းမွန်စွာ ရိုက်ကူးနိုင်စေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_access",
+            "value":"သီးသန့်ဝင်ရောက်သုံးစွဲခွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"ငြင်းပယ်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"လေတိုးသံ လျှော့ချမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_not_detected",
+            "value":"ကင်မရာကို ချိတ်ဆက်ပြီး အက်ပ်ကို ပြန်ဖွင့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"မှောင်လွန်းသောကြောင့် ရွေ့လျား ရုပ်ပုံကို ပိတ်ထားသည်။ အလင်းရောင်ပိုရသော နေရာတစ်ခုခုကို ရှာကြည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"ဖရိန် နှုန်း အလိုက်သင့်ပြောင်းလဲရေး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details_more",
+            "value":"နီးကပ်သော ဆုံချက်အကွာအဝေးမှ ရိုက်ခြင်းသည် သင်ရိုက်ကူးသော ပုံရိပ်ကို အနုစိတ်ကျ၍ အသေးစိတ်ဆန်ဆန် ရိုက်ကူးစေနိုင်ပါသည်။ Super Macro ကို ဓာတ်ပုံနှင့် ဗီဒီယို ရိုက်ကူးမှု နှစ်မျိုးလုံး၌ သုံးနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"မိုက်ခရိုဖုန်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"AI Ultra Clarity သည် ငြိမ်နေသည့်အရာများနှင့် ရှုခင်းများအား အလင်းအားကောင်းသည့် အနေအထားတွင် ရိုက်ကူးရန်အတွက် အကောင်းဆုံး ဖြစ်ပါသည်။",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"လှုပ်ရှားမှု ထောက်လှမ်းခြင်း ရပ်သွားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"ဗီဒီယိုများ မှတ်တမ်းတင်ခြင်း၊ ရွေ့လျား ရုပ်ပုံများ ရိုက်ကူးခြင်း၊ အသံဖြင့် ထိန်းချုပ်မှု လုပ်ဆောင်ခြင်းတို့အတွက် သုံးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"ရေပြင်ညီ မြင်ကွင်းကျယ်သို့ ပြောင်းရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go",
+            "value":"ပေးချေရန် %1$s သို့ သွားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"ဒုတိယမြောက် ဓာတ်ပုံကို ရိုက်ရန် မြားညွှန်ရာအတိုင်း လှည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"စက်၏ ရေချိန်အဆင့်ကို ဤအတိုင်း ဆက်ထိန်းထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro",
+            "value":"Macro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"Light painting",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"%1$d. မိတ်ဆက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more",
+            "value":"နောက်ထပ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"ရှပ်တာအား နှိပ်ပြီး ကင်မရာအား မြှားအတိုင်း ဖြည်းဖြည်း ရွှေ့သွားပေးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"စတိတ်စင် စနစ်သည် တီးမှုတ်ဖျော်ဖြေပွဲများ၊ တေးဂီတဖျော်ဖြေပွဲများ၊ ပြဇာတ်များနှင့် အခြားသော ဖျော်ဖြေမှုများကို ရိုက်ကူးရန်အတွက် အလွန်ကောင်းမွန်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"ရေဒီယိုခလုတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"အစက်အပြောက် လျှော့ချမှု အဆင့်မြင့် အယ်လ်ဂိုရီသမ်ကြောင့် အလင်းရောင်နည်းသော အခြေအနေများတွင် စူးရှ၍ လင်းထင်းသော ပုံများကို ရိုက်ကူးနိုင်သည်။ ရိုက်ကူးမှုစနစ်နှစ်မျိုး - စူပါညရိုက်ကူးမှုနှင့် လ ရိုက်ကူးမှုကို ရရှိနိုင်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"အဖြူဘက်မျှမှုကို လော့ခ်ချထားပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"Hairline %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"ဖလက်ရှ် ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"စင်တာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"Super Macro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_heif",
+            "value":"HEIF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"ဘက်ထရီ အလွန်အမင်း အားနည်းနေပါသည်။ ရိုက်ကူးမှု စတင်၍ မရပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"ဂရစ်ကွက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"သဘောပေါက်ပါပြီ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"ဓာတ်ပုံများနှင့် ဗီဒီယိုများကို တည်နေရာ အချက်အလက်များနှင့် တက်ဂ်တွဲပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"ပုံသေ ကြိုတင်သတ်မှတ်မှု၊ အရောင်ပမာဏ %1$d ၊ အရောင်အနုအရင့် %2$d ၊ အရောင်အသွေး %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"နောက်ဘက် ကင်မရာသို့ ပြောင်းပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"တို",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"ဆုံချက်စနစ်ပြောင်းရန် ဤနေရာကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"သင့်စက်ကို တည်ငြိမ်အောင်ထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d စက္ကန့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details",
+            "value":"အစက်အပြောက် လျှော့ချရေး အဆင့်မြင့် အယ်ဂိုရစ်သမ် အစွမ်းကြောင့် သင့်ဖုန်းသည် အလင်းရောင် နည်းပါးသော အခြေအနေများ၌ပင် လင်းထင်း၊ ပြတ်သားသော ရုပ်ပုံများကို ရိုက်ကူးပေးနိုင်သည်။ ဖန်တီးမှုအားကောင်းသော ရိုက်ချက်များရိုက်ရန် ISO နှင့် ရှပ်တာမြန်နှုန်းတို့ကို ကိုယ်တိုင်ချိန်ညှိနိုင်သည်။ အလှပုံ ရိုက်ရန် ရှေ့ကင်မရာ သုံးချိန်၌ ပုံရိုက်ခံမည့်သူ မျက်နှာပေါ်တွင် မလိုအပ်သော အရိပ်များ မကျနေစေရန် ဤဖုန်းက ဖြည့်စွက်အလင်းရောင် ပံ့ပိုးပေးသည်။ ညအချိန် ရိုက်ကူးသော ဆဲလ်ဖီပုံများသည်လည်း ရှင်းလင်း၍ လင်းထင်းမည်ဖြစ်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"ဒေါင်လိုက် မြင်ကွင်းကျယ်သို့ ပြောင်းရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"ပြန်လည် သတ်မှတ်ပြီးပါပြီ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"ကင်မရာအား ပိတ်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details",
+            "value":"သင်လိုချင်သည့် ရိုက်ချက်ကို ရရှိရန် ကင်မရာ ဆင်တင်ကို အသေးစိတ် ချိန်ညှိလိုက်ပါ။ Pro စနစ်၌ တိုင်းတာစနစ်၊ ISO ၊ ရှပ်တာမြန်နှုန်း၊ အလင်းဝင်နှုန်း တန်ဖိုး (EV) ၊ အဖြူဘက်မျှမှုနှင့် ဆုံချက်စနစ်ကဲ့သို့ အဆင့်မြင့်ဆက်တင် စုစည်းမှုကို ချိန်ညှိခွင့် ပေးထားပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_raw",
+            "value":"RAW",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"တုံ့ပြန်လုပ်ဆောင်၍ မရပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"right_text",
+            "value":"စာသားကို ညာဘက်တွင်ထားရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_watermark",
+            "value":"ဗီဒီယိုများ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"ကြယ်စုတန်း မြေပုံ ဖွင့်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"မျက်နှာပြင်ကို ရိုက်ကူးနေစဉ်တွင် မျက်နှာပြင်နှစ်ခုတွဲ အစမ်းကြည့်ရှုမှုကို မရရှိနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"ထိရောက်သက်သာသည့် ဗီဒီယို ဖောမတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"ဤ ISO တန်ဖိုး၌ ဆက်တင်အချို့ကို မရရှိနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_location",
+            "value":"တည်နေရာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"အရောင် စပ်ရန် ဧရိယာ။ အရောင်ပမာဏကို ချိန်ညှိရန် အလျားလိုက်ဆွဲပါ သို့မဟုတ် အရောင်အနုအရင့်ကို ချိန်ညှိရန် ဒေါင်လိုက် ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"ဆက်တင်နှင့် အခြား လုပ်ဆောင်ချက်များအတွက် အောက်ခြေရှိ မြားကို နှိပ်ပါ သို့မဟုတ် အပေါ်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"မျက်နှာပြင် အပြည့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"%d စက္ကန့်အကြာတွင် ဖလက်ရှ်ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"အဆောက်အအုံအတွင်း ရှိနေစဉ် တည်နေရာ အချက်အလက်များကို ရယူရန် အင်တာနက် ချိတ်ဆက်ထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"AI ကွန်ပိုစေးရှင်းကို သုံးရန် အစက်ကို ကွင်းအတွင်း ဝင်အောင် ချိန်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"ရီမု့(တ်)ရှပ်တာနှင့် ချိတ်ဆက်ထားပြီး။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture",
+            "value":"အလင်းဝင်ပေါက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"Pink",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot",
+            "value":"Snapshot",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"စိတ်ကြိုက်စတိုင်များ %s သို့ ပြောင်းရန် ဘယ်ဘက်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"အငြိမ် ရိုက်ကူးမှု ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_applet",
+            "value":"%1$s မီနီပရိုဂရမ်ကို ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"AI Ultra Clarity သည် အလှပုံများကို အလင်းအားကောင်းသည့် အနေအထားတွင် ရိုက်ကူးရန်အတွက် အကောင်းဆုံး ဖြစ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_record",
+            "value":"ရိုက်ကူးမှု စတင်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"ဖလက်ရှ်မပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"မျက်နှာပြင်ကို ပိတ်ထားသည့်အခါ အသံတိုးခလုတ်ကို နှစ်ချက်နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"Original · လက်တွေ့ဘဝနှင့် အနီးစပ်ဆုံး သဘာဝအရောင်စတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"Starry Portrait ၊ ခလုတ်၊ လုပ်ဆောင်ရန် နှစ်ချက်နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_occupied",
+            "value":"ကင်မရာ မအားလပ်သေးပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"ရွေ့လျားနေသော အရာဝတ္ထုများကို ရှာဖွေနေဆဲ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"အလင်းရောင် ပိုရသော နေရာသို့ ရွှေ့ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"frame_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"%ds",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"Pro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"ဤဝန်ဆောင်မှုသည် ခွင့်ပြုချက် %d ခုကို လိုအပ်ပါသည်-",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"ဤတစ်ကြိမ်အတွက်သာ ခွင့်ပြုရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_camera",
+            "value":"ကင်မရာ ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"operate_frequently",
+            "value":"နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"အမြန်သုံးမီနျူး ပိတ်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"မျက်နှာပြင် အပြည့် | %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"အဖြူဘက်မျှမှုကို လော့ခ်မချထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"အချိုးအစား",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"ဇူးမ်အဆင့် ပြောင်းရန် အပေါ် သို့မဟုတ် အောက်သို့ ပွတ်ဆွဲပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"ဗီဒီယိုသို့ ပြောင်းရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"ကြိုတင်ရိုက်ကူးမှု ပိတ်ထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"အချိန်အကန့်အသတ်ဖြင့်သာ ရရှိနိုင်သော ရေစာများ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"Super Macro · ဖရိန်ထဲရှိ အဓိကအရာကို အာရုံစိုက်သည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"Pro စနစ်၌ သင်လိုချင်သည့် ရိုက်ချက်ကို ရရှိနိုင်ရန် အဆင့်မြင့် ကင်မရာဆက်တင် စုစည်းမှုကို လွတ်လပ်စွာ ချိန်ညှိနိုင်ပါသည်။ ဤစုစည်းမှု၌ တိုင်းတာစနစ်၊ ISO ၊ ရှပ်တာမြန်နှုန်း၊ အလင်းဝင်နှုန်း တန်ဖိုး (EV) ၊ အဖြူဘက်မျှမှု၊ ဆုံချက်စနစ်နှင့် အခြားအရာများစွာ ပါရှိပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_new",
+            "value":"Pro စနစ်၌ သင်လိုချင်သည့် ရိုက်ချက်ကို ရရှိနိုင်ရန် အဆင့်မြင့် သတ်မှတ်ချက်များကို လွတ်လပ်စွာ ချိန်ညှိနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"စမတ် ထိန်းချုပ်ရေးတွင် လက်ဗွေ အာရုံခံ စနစ်ကို ဖိထားရုံဖြင့် အလင်းဝင်နှုန်းနှင့် ဆုံချက်တို့ကို လော့ခ်ချနိုင်ရန် လုပ်ဆောင်ပေးထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_bright",
+            "value":"Vivid",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"%s နောက်သို့ ရွှေ့မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature",
+            "value":"Temperature",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"ဖရိန်များအကြား ကြာချိန်- %1$ss\nတိမ်တိုက်များကို ရိုက်ကူးရန် အသင့်တော်ဆုံး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"ကြယ်စုတန်း မြေပုံကို ဖွင့်ရန် ခလုတ်၊ လုပ်ဆောင်ရန် နှစ်ချက်နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"RAW သို့ ပြောင်းပြီး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"Bright · ကြော့ရှင်းလှပ၍ သစ်ဆန်းနေသည့်စတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"အလင်းဝင်ပေါက် ပိုကျယ်ခြင်းကြောင့် ရိုက်ကူးခံ ပုံရိပ်ကို အသေးစိတ်ကျကျ ရိုက်ကူးနိုင်ပြီး နောက်ခံတွင် နူးညံ့သော အဝါး အထူးပြုလုပ်ချက်ကို ဖန်တီးနိုင်သည်။ အကောင်းဆုံး ရလဒ်များ ရရှိစေရန်အတွက် ကင်မရာနှင့် ရိုက်ကူးခံ ပုံရိပ်အကြား အကွာအဝေးသည် %d မီတာထက် မပိုသင့်ပါ။ ဤစနစ်သည် တကယ့် အလင်းဝင်ပေါက်နှင့် ဗာကျူရယ် အလင်းဝင်ပေါက် နှစ်ခုလုံးကို ထိန်းချုပ်နိုင်စေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"အကြောင်းအရာကို ကလစ်ဘုတ်သို ကူးယူထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"မီး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"စကားကျယ်ကျယ် ပြောရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"အလင်းဝင်ရောက်မှု မလုံလောက်ပါ။ ပုံသေ အလင်းဝင်နှုန်း ဆက်တင်ကို ပြန်ထားမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"ခွင့်ပြုရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_more",
+            "value":"Pro စနစ်၌ သင်လိုချင်သည့် ရိုက်ချက်ကို ရရှိနိုင်ရန် အဆင့်မြင့် ကင်မရာဆက်တင် စုစည်းမှုကို လွတ်လပ်စွာ ချိန်ညှိနိုင်ပါသည်။ ဤစုစည်းမှု၌ တိုင်းတာစနစ်၊ ISO ၊ အလင်းဝင်ပေါက်၊ ရှပ်တာမြန်နှုန်း၊ အလင်းဝင်နှုန်း တန်ဖိုး (EV) ၊ အဖြူဘက်မျှမှု၊ ဆုံချက်စနစ်နှင့် အခြားအရာများစွာ ပါရှိပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"သွားဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"စိတ်ကြိုက် စတိုင်များကို ချိန်ညှိရန် ဤနေရာကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"တည်ငြိမ်သော အရာဝတ္ထုများအတွက်သာ ဖြစ်သည်။ ကင်မရာကို တည်ငြိမ်အောင် ထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"ကြယ်စုတန်း မြေပုံ ပိတ်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"မန်နျူရယ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"ရိုက်ကူးနေဆဲ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"အလှစနစ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_resume",
+            "value":"ဆက်လုပ်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"ဆဲလျူလွိုက် စတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"အစက်အပြောက် လျှော့ချရေး အဆင့်မြင့် အယ်ဂိုရစ်သမ် သုံးထား၍ အလင်းရောင် နည်းပါးသော အခြေအနေများ၌ပင် လင်းထင်း၊ ပြတ်သားသော ရုပ်ပုံများကို ရိုက်ကူးပေးနိုင်သည်။ ရိုက်ကူးရေး စနစ် လေးမျိုးကို ရရှိနိုင်သည်- Super Nightshot ၊ Moon Shot ၊ Starry Sky နှင့် Starry Portrait တို့ ဖြစ်သည်။ ရှေ့ကင်မရာကို သုံး၍ ရိုက်ကူးချိန်တွင် မှောင်နေသော အချိန်များ၌ပင် အလင်းပိုမိုရရှိပြီး မျက်နှာများ လင်းထင်း၍ ရှင်းလင်းသည့်အသွင် ပေါ်နေစေရန် စက်၏ မျက်နှာပြင်အလင်းကို တင်ပေးပါမည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gourmet_food",
+            "value":"Tasty",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"အလှအပ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"မြင်ကွင်းကျယ်ဓာတ်ပုံတစ်ပုံကို ရိုက်ရန် ကင်မရာကို ရေပြင်ညီအတိုင်း သို့မဟုတ် ဒေါင်လိုက် ဖြည်းဖြည်းချင်း လှည့်ပါ။ တောင်တန်းများ၊ ကောင်းကင်နှင့် မြေပြင်ကို ပိုင်းခြားထားသကဲ့သို့ ရှုခင်းများ စသည့် ကျယ်ပြောသော မြင်ကွင်းများကို အသေးစိတ်ဆန်ဆန် ရိုက်ကူးရန်အတွက် အကောင်းဆုံး ဖြစ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"floating_shutter",
+            "value":"Floating ရှပ်တာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"ကင်မရာကို သီးသန့်ဝင်ရောက်သုံးစွဲခွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"view",
+            "value":"%1$s ကို ကြည့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details",
+            "value":"အနောက်ကင်မရာဖြင့် အနီးကပ်ရိုက်ချက်များကို ရိုက်ကူးပြီး သင့်ဝန်းကျင်လောက၏ ထင်ရှားတောက်ပသော အနုစိတ်လက်ရာများကို ရိုက်ကူးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pop_item_on",
+            "value":"ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"မတူညီသည့် ဧရိယာ ရွေးချယ်ရန် ဖရိန်ကို ရွှေ့ပေးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"JPG ထက်စာလျှင် သိုလှောင်မှုနေရာယူမှု နည်းပြီး တူညီသည့် ရုပ်ပုံအရည်အသွေး ရရှိစေသည်။ JPG နှင့်ယှဉ်လျှင် ကိုက်ညီမှုပိုင်း၌ အကန့်အသတ်ရှိနိုင်သည်။ ပုံပြခန်းတွင်း၌ HEIF ကို JPG သို့ ပြောင်းနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_details",
+            "value":"မြင်ကွင်းကျယ် ဓာတ်ပုံ ရိုက်ရန် ညွှန်ကြားသည့်အတိုင်း ဖုန်းကို ညင်သာစွာ လှည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"ဖရိန်များအကြား ကြာချိန်-%1$ss\nကားများနှင့် လူအုပ်များကို ရိုက်ကူးရန် အသင့်တော်ဆုံး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"ဆက်တိုက်ရိုက်ကူးမှု သို့မဟုတ် ဗီဒီယိုအတွက် ဘေးဘက် ဘယ်၊ ညာသို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"HDR Vivid",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"ရုပ်ပုံအရည်အသွေးကို မြှင့်တင်ရန် Telephoto ဖလက်ရှ်ကို သုံးနေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"နှစ်ဖက်မြင် အစမ်းကြည့်ရှုမှု ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"အလင်းဝင်ပေါက် ပိုကျယ်ခြင်းကြောင့် ရိုက်ကူးခံ ပုံရိပ်ကို အသေးစိတ်ကျကျ ရိုက်ကူးနိုင်ပြီး နောက်ခံတွင် နူးညံ့သော အဝါး အထူးပြုလုပ်ချက်ကို ဖန်တီးနိုင်သည်။ အကောင်းဆုံး ရလဒ်များ ရရှိစေရန်အတွက် ကင်မရာနှင့် ရိုက်ကူးခံ ပုံရိပ်အကြား အကွာအဝေးသည် %d မီတာထက် မပိုသင့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"ကြယ်ရောင်စုံ အလှပုံရိုက်ရာ၌ အကောင်းဆုံးရလဒ်များ ရစေရန် ဖလက်ရှ်ဖွင့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"အလင်းအား နည်းလွန်းနေပါသည်။ အလင်းဝင်ပေါက်ကို အကောင်းဆုံး ချိန်ညှိနေဆဲ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"အရောင်ပမာဏ၊ အဆင့် %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"%1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"ဓာတ်ပုံ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_details",
+            "value":"ဓာတ်ပုံများ ရိုက်ကူးချိန်၌ အလင်းဝင်နှုန်းနှင့် အရောင်တို့ကို ကင်မရာက အော်တိုချိန်ညှိပေးသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"ကင်မရာကို အတတ်နိုင်ဆုံး အတည်ငြိမ်ဆုံးအနေအထားဖြင့် အလျားလိုက် သို့မဟုတ် ဒေါင်လိုက် ဖြည်းညင်းစွာ ဘယ်ညာ သို့မဟုတ် အပေါ်အောက် လှည့်သွားပါ။ မြားက အလယ်မျဉ်းတွင် ရှိနေပါစေ။ ရိုက်ကူးပြီးချိန်၌ ကင်မရာက သင်ရိုက်ကူးထားသော ပုံအားလုံးကို မြင်ကွင်းကျယ် ဓာတ်ပုံအဖြစ် အော်တိုပေါင်းစည်းပေးပါမည်။ ဤစနစ်သည် ရှုခင်းဓာတ်ပုံများနှင့် လူများစွာပါဝင်သော အုပ်စုပုံ ဓာတ်ပုံများ ရိုက်ကူးရာ၌ အထူးသင့်တော်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"မြားညွှန်ရာအတိုင်း လှည့်ပါ။ အစက်သည် ကွင်းနှင့် အံဝင်ခွင်ကျသွားသည့်အခါ ဓာတ်ပုံ အော်တိုရိုက်ကူးပါမည်။ အဆုံးသတ်ရန် အချိန်မရွေး ရှပ်တာကို နှိပ်နိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"အငြိမ် ရိုက်ကူးမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"ကြယ်စုတန်းများကို ခွဲခြားဖော်ထုတ်နေဆဲ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smile_capture",
+            "value":"ပြုံးသည့်အခါ ရိုက်ကူးမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"ရှေ့ကင်မရာသာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"တည်နေရာ တက်ဂ်ကို သီးသန့် ကင်မရာ စနစ်တွင် သုံး၍ မရနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_title",
+            "value":"တည်နေရာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"မန်နျူရယ် ဖလက်ရှ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"အဖြူဘက်မျှမှုကို AWB စနစ်တွင်သာ လော့ခ်ချနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"မန်နျူရယ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"XMAGE စတိုင်များကို သုံးသော ဓာတ်ပုံများတွင်သာ ပြသပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"ဖော်ပြပါက ကြိုဆိုပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"AI Ultra Clarity သည် အလှပုံများကို အလင်းအားကောင်းသည့် အနေအထားတွင် ရိုက်ကူးရန်အတွက် အကောင်းဆုံး ဖြစ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"နှစ်ဖက်မြင် အစမ်းကြည့်ရှုမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"Portrait Video",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"ဆုံချက်စနစ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_stage",
+            "value":"Live ဖျော်ဖြေပွဲကို ရိုက်ကူးနေပါသလား။ အကောင်းဆုံး ရလဒ်များ ရရှိရန် Stage စနစ်ကို ဖွင့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"Beauty- %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_mode",
+            "value":"Vlog",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"ဖုန်းသည် လွတ်ကျထားဟန်ပေါ်သောကြောင့် ကင်မရာကို ပြန်လည်ရုပ်သိမ်းထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"ကင်မရာ အစမ်းကြည့်ရှုမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"စိတ်ကြိုက်ရေစာများ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_text",
+            "value":"စာသား",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"AI အရောင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"ကင်မရာကို သက်ဝင်ရန် စခရင်ကို ထိပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"%1$dp (%2$d fps) တွင် လက်ရှိ အထူးပြုလုပ်ချက်ကို မရရှိနိုင်ပါ။ %3$dp (%4$d fps) သို့ ပြောင်းပြီးပါပြီ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"ပြောင်းရန် နှစ်ချက်နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"%s ကို ဆွဲယူနေပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"တည်နေရာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_off",
+            "value":"Ultra Steady ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"တေးဂီတဖျော်ဖြေပွဲများနှင့် အခြားသော စတိတ်ဖျော်ဖြေမှုများကို ရိုက်ကူးရန်အတွက် ဤစနစ်ကို အကောင်းဆုံး ချိန်ညှိထားသဖြင့် သင်သည် ဖျော်ဖြေတင်ဆက်သူများနှင့် အလင်း အထူးပြုလုပ်ချက်များကို ထင်ရှားပြတ်သားစွာ၊ အရောင်တောက်ပစွာ ရိုက်ကူးနိုင်သည်။ ဓာတ်ပုံနှင့် ဗီဒီယို နှစ်မျိုးစလုံးအတွက် ဤစနစ်ကို အသုံးပြုနိုင်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"ကန့်သတ်ချက်သို့ ရောက်သွားပါပြီ။ ယခု ဓာတ်ပုံများ သိမ်းဆည်းနေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"%1$s အနောက်၊ Line %2$d ၊ Column %3$d သို့ ရွှေ့ပြီး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"တည်းဖြတ်ရန် ထပ်နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"saturation",
+            "value":"အရောင်အသွေး စုံလင်မှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw",
+            "value":"ကြယ်စုတန်း မြေပုံ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"High-res",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"လောလောဆယ်တွင် ဇူးမ်ချဲ့ထားသော ဧရိယာသို့ ဦးတည်၍ အော်ဒီယို ဖမ်းယူနေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"ဆုံချက် အရန်မီးပိတ်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"စက်ပူလွန်းနေသည်။ ဖလက်ရှ်ကို သုံး၍ မရနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"ဤအက်ပ်ကို ပြန်ဖွင့်ပြီး ထပ်ကြိုးစားကြည့်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"စိတ်ကြိုက်စတိုင်များ ပြောင်းရန် အစမ်းကြည့်ရှုမှု ဧရိယာတွင် ညာဘက်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"ပုံမှန် အငြိမ် ရိုက်ကူးမှု ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"သိမ်းနေဆဲ… မထွက်လိုက်ပါနှင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"ဖလက်ရှ် ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_control_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"XMAGE စိတ်ကြိုက် စတိုင်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"%s ရှေ့သို့ ထားလိုက်သည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_notification",
+            "value":"ဖရိန် ရေစာဖြင့်သာ ရရှိနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"စမတ် ထိန်းချုပ်ရေးသည် လက်ဗွေ အာရုံခံ စနစ်ကို ပွတ်ဆွဲရုံဖြင့် ဇူးမ်ချုံ့/ဇူးမ်ချဲ့နိုင်ရန် လုပ်ဆောင်ပေးထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"ပို၍ကောင်းမွန်သော နောက်ခံအဝါး အထူးပြုလုပ်ချက်ကို ရရှိနိုင်ရန် အနောက်သို့ ထပ်ဆုတ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"Tone- %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"ညရိုက်ကူးမှု စနစ်များကို နောက်ထပ် တွေ့ရရန် ဤနေရာကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"အော်တိုဆုံချက်ကို လော့ခ်ချထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"RAW စနစ်တွင် ဇူးမ်ကို ပံ့ပိုးမထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"ဖရိန် ရေစာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"မျက်နှာပြင်နှစ်ခုတွဲ အစမ်းကြည့်ရှုမှုအတွက် နှစ်ချက် နှိပ်ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"ဓာတ်ပုံ %d ပုံ ရိုက်ကူးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_parameter",
+            "value":"ကင်မရာ ဆက်တင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"Beauty ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"%d စက္ကန့်ကြာပြီးနောက် ဖလက်ရှ်ဖွင့်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"ဖလက်ရှ် ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"အလှအပ ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"ကြယ်စုတန်း မြေပုံ ပိတ်ထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_storage_space",
+            "value":"သိုလှောင်မှု မလုံလောက်ပါ။ ကင်မရာ နှောင့်နှေးနိုင်ပါသည်။ စွမ်းဆောင်မှုကို မူလအတိုင်း ပြန်ထားရန် နေရာလွတ်ရအောင် ရှင်းပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"ဓာတ်ပုံ စွမ်းရည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"သက်ဝင်လုပ်ဆောင်ရန် နှစ်ချက်နှိပ်ပါ၊ သို့မဟုတ် နောက်ထပ်ရွေးချယ်စရာများကို ဖွင့်ရန် နှစ်ချက်နှိပ်ပြီး ဖိထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"စမတ် အနောက်ကင်မရာဆဲလ်ဖီ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"%1$s ၏ အရှေ့၊ လိုင်း %2$d ၊ Column %3$d တွင် ထားလိုက်သည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"Fluorescence Photography အကြောင်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"ဇူးမ်းကို မြင်ကွင်းကျယ် စနစ်တွင် မရရှိနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"ကင်မရာ ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"big_text_s",
+            "value":"%s စက္ကန့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"%1$s %2$s ရိုက်ကူးထားသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"ရှေ့ကင်မရာသာ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pay",
+            "value":"%1$s ကို ဖွင့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"မကြာသေးခင်က ဓာတ်ပုံ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"အော်ဒီယို ဇူးမ် ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"နောက်ထပ် စနစ်များစွာ မကြာမီလာမည်…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"ဤသို့ ခွင့်ပြုပေးခြင်းဖြင့် လက်ပတ်နာရီပေါ်တွင် ကင်မရာ အစမ်းကြည့်ရှုမှုကို ကြည့်ခြင်း၊ ဓာတ်ပုံများနှင့် ဗီဒီယိုများ ရိုက်ကူးခြင်းတို့ကို လုပ်ဆောင်နိုင်စေပါသည်။ Health အက်ပ်တွင် ဤခွင့်ပြုချက်ကို စီမံနိုင်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"သင့်စက်ကို မြားညွှန်ရာအတိုင်း ရွှေ့ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picture_watermark",
+            "value":"ပုံများ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"Contour %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"general",
+            "value":"အထွေထွေ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"standard_style",
+            "value":"ပုံမှန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"အစက်အပြောက် လျှော့ချရေး အဆင့်မြင့် အယ်ဂိုရစ်သမ်၏ အစွမ်းကြောင့် ညရိုက်ကူးမှု စနစ်ဖြင့်ဆိုလျှင် အလင်းရောင် နည်းပါးသော အခြေအနေများ၌ပင် ပြတ်သား၊ လင်းထင်းသော ရုပ်ပုံများကို ရိုက်ကူးနိုင်စေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_speed",
+            "value":"ရှပ်တာ အမြန်နှုန်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"ပယ်ဖျက်မည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"ဖလက်ရှ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"အလင်းဝင်နှုန်း နိမ့်လွန်းနေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"ကိုယ်ရေးအချက်အလက် လုံခြုံရေး ထုတ်ပြန်ချက်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"စက်ပူလွန်းနေသည်။ ဖလက်ရှ်ကို သုံး၍ မရနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"အဖြူဘက်မျှမှု",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"ရှေ့ဘက် ကင်မရာသို့ ပြောင်းပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_contact",
+            "value":"အဆက်အသွယ် အသစ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"အလျားလိုက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"ဖြည်းဖြည်းရွှေ့ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"အသစ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"ဖလက်ရှ် ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_night_view",
+            "value":"Super Nightshot",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"replace",
+            "value":"အစားထိုးရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"မြန်နှုန်း %d ဆ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"အစက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"Pro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"မျက်နှာပြင် အပြည့် | %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"လူများ ပြုံးသည့်အခါ ဓာတ်ပုံများကို အော်တို ရိုက်ကူးပေးပါမည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_disabled",
+            "value":"လုံခြုံရေး မူဝါဒသည် ကင်မရာ အသုံးပြုမှုကို တားမြစ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"အမြဲဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"ဓာတ်ပုံရိုက်ရန် သင့်အသံကို မြှင့်ပေးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_Confirm",
+            "value":"အိုကေ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"Beauty အထူးပြုလုပ်ချက်ကို ယှဉ်၍ ကြည့်သည့် ခလုတ်။ Beauty အထူးပြုလုပ်ချက် မပါဘဲ ရုပ်ပုံကို ပြသရန် နှစ်ချက်နှိပ်ပြီး ဖိထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_agree",
+            "value":"သဘောတူသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"ရီဆိုလူးရှင်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"နှစ်ချက်နှိပ်ပြီး ဖိထား၍ ဆွဲရွှေ့ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"Smooth %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"ဆုံချက်ကို ချိန်ညှိရန် လေးထောင့်ကွက်ကို ဆွဲရွှေ့ပြီး တိုင်းတာစနစ်ကို ချိန်ညှိရန် အဝိုင်းကွက်ကို ဆွဲရွှေ့ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"အစက်အပြောက် လျှော့ချမှု အဆင့်မြင့် အယ်လ်ဂိုရီသမ်ကြောင့် အလင်းရောင်နည်းသော အခြေအနေများတွင် စူးရှ၍ လင်းထင်းသော ပုံများကို ရိုက်ကူးနိုင်သည်။ ရိုက်ကူးမှုစနစ်နှစ်မျိုး - စူပါညရိုက်ကူးမှုနှင့် လ ရိုက်ကူးမှုကို ရရှိနိုင်သည်။ ရှေ့ကင်မရာကို သုံးသည့်အခါ ထပ်ဆောင်း အလင်းပေးရန် စက် မျက်နှာပြင်က ၎င်း၏ လင်းထင်းမှုကို တိုးမြှင့်နိုင်ပြီး အမှောင်ထဲတွင်ပင် မျက်နှာများကို လင်းထင်း၍ ရှင်းလင်းစွာ ပေါ်လာစေသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark",
+            "value":"ရေစာ ပေါင်းထည့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"ဤဆက်တင်ကို လော့ခ်ချ၍ မရနိုင်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"ဤဆုံချက်အလျားတွင် အလင်းဝင်ပေါက်ကို ကိုယ်တိုင် ချိန်ညှိ၍ မရပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"ကင်မရာကို ဆက်လက်၍ အသုံးပြုမည်လား။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"ဆုံချက်ကို လော့ခ်မချထားပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"Contour",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"စိတ်ကြိုက်စတိုင်အသစ် ထည့်ထားသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"တိမ်ထူသော",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"ဖုန်းကို ခေါက်ထားသည်မှ ပြန်ဖြန့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"လရိုက်ကူးမှု စနစ် ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"ဖလက်ရှ်မပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"အပြာသန်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"AI ကွန်ပိုစေးရှင်း ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"ရိုက်ကူးသည့်အရာ ဘေးပတ်လည်တွင် အနားအကွပ်ရှိသောအရာ ထား၍ ဝန်းရံပုံ အနေအထားကို သင့်ဓာတ်ပုံနှင့် အလိုက်ဖက်ဆုံးဖြစ်ရန် AI က အကြံပြုပေးနိုင်ပါသည်။ ရိုက်ကူးသည့် အရာဆီသို့ သင့်စက် ချိန်လိုက်ရုံပင်ဖြစ်ပြီး ဇူးမ်က အော်တို ချိန်ညှိသွားပါမည်။ ရှုခင်းများ၊ အဆောက်အအုံများနှင့် လူများကို ရိုက်ကူးခြင်းအတွက် အကောင်းဆုံးဖြစ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"ပြသမှုမျက်နှာပြင် အကူကို ဖွင့်ထားသည်။ ဗီဒီယိုကို Log ဖြင့်သာ ရိုက်ကူးနေပါမည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"festival_watermark",
+            "value":"အားလပ်ရက် ရေစာများ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"ဘက်ထရီ အလွန်အမင်း အားနည်းနေပါသည်။ ရိုက်ကူးမှုကို အော်တို ရပ်တန့်ပြီး သိမ်းဆည်းထားပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"စက်သည် ပူလွန်းနေပါသည်။ ကင်မရာကို %1$d စက္ကန့်အကြာတွင် ပိတ်ပါမည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format",
+            "value":"ဓာတ်ပုံ အမျိုးအစား",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details",
+            "value":"အရောင် စတိုင်များ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_res_details",
+            "value":"ရီဆိုလူးရှင်းမြင့် ဓာတ်ပုံသည် pixel သိပ်သည်းဆ ပိုမြင့်ပြီး ကြည်လင်ပြတ်သားမှုနှင့် အသေးစိတ်ကျနမှု ပိုကောင်းပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"global_exposure",
+            "value":"အလင်းဝင်ပေါက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"ဖလက်ရှ် ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"သိမ်းနေဆဲ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"Blossom",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"ဓာတ်ပုံနှင့် ဗီဒီယို၏ တည်နေရာ အတိအကျကို သင်ကြည့်နိုင်ရန် ဤသည်က ခွင့်ပြုပေးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"သင်ရိုက်ထားသော ဓာတ်ပုံများနှင့် ဗီဒီယိုများကို ပြသရန်နှင့် သိမ်းဆည်းရန်အတွက် သုံးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"ဆက်တင်သို့ သွားရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"ကင်မရာသည် တည်နေရာ ခွင့်ပြုချက် လိုအပ်ပါသည်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"ဗီဒီယိုများသည် နေရာလွတ် %1$s ခန့် လျှော့ယူသော်လည်း အခြားစက်များတွင် ဖွင့်၍ ရနိုင်မည် မဟုတ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"ဓာတ်ပုံရိုက်ရန် နားကြပ်ရှိ ဖုန်းဖြေကြားသည့်ခလုတ်အားနှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"မန်နျူရယ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"ကြားအချိန် (ဓာတ်ပုံ %d ပုံ)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"အနောက်ကင်မရာဖြင့် မိမိကိုယ်ကို ဆဲလ်ဖီပုံရိုက်သည့်အခါ ရိုက်ကူးမှုအတွင်း ကာဗာမျက်နှာပြင်တွင် သင့်နံဘေး၌ စိတ်ကြိုက်ဖန်တီးထားသောရုပ်ပုံတစ်ပုံကို ပြသပေးပါသည်။ ဤလုပ်ဆောင်ချက်ကို စီစဉ်သတ်မှတ်ရန် ကင်မရာရှိ အမြန်သုံးမီနျူးသို့ သွားပြီး နှစ်ဖက်မြင် အစမ်းကြည့်ရှုမှုကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"လရိုက်ကူးမှု စနစ် ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pre_record",
+            "value":"ကြိုတင်ရိုက်ကူး",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"XMAGE စတိုင်များကို အမြန်ပြောင်းရန် %s အိုင်ကွန်ကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"Fluorescence Photography သည် UV ဖြည့် အလင်းကို သုံးသော ကင်မရာစနစ်တစ်ခု ဖြစ်ပါသည်။ အချို့ပစ္စည်းများမှ ထပ်ဆင့်ထုတ်လွှတ်လိုက်သည့်အခါ UV အလင်းသည် ပုံစံကျနသော ဓာတ်ပုံများအဖြစ် ရိုက်ကူးနိုင်စေမည့် မီးချောင်းအလင်း အရောင်များကို ထုတ်ပေးပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"အစက်အပြောက် လျှော့ချရေး အဆင့်မြင့် အယ်ဂိုရစ်သမ်၏ အစွမ်းကြောင့် ညရိုက်ကူးမှု စနစ်ဖြင့်ဆိုလျှင် အလင်းရောင် နည်းပါးသော အခြေအနေများ၌ပင် ပြတ်သား၊ လင်းထင်းသော ရုပ်ပုံများကို ရိုက်ကူးနိုင်စေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"အစက်အပြောက် လျှော့ချရေး အဆင့်မြင့် အယ်ဂိုရစ်သမ် သုံးထား၍ အလင်းရောင် နည်းပါးသော အခြေအနေများ၌ပင် လင်းထင်း၊ ပြတ်သားသော ရုပ်ပုံများကို ရိုက်ကူးပေးနိုင်သည်။ ရိုက်ကူးရေး စနစ် လေးမျိုးကို ရရှိနိုင်သည်- Super Nightshot ၊ Moon Shot ၊ Starry Sky နှင့် Starry Portrait တို့ ဖြစ်သည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_speed",
+            "value":"ပြသနှုန်း",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"ဤအက်ပ်သည် %1$s၊ %2$sနှင့် %3$s ခွင့်ပြုချက်များကို လိုအပ်ပါသည်။ ၎င်းသည် သင် ရိုက်ကူးသော ဓာတ်ပုံများနှင့် ဗီဒီယိုများကို ပြသရန်အလို့ငှာ ဓာတ်ပုံများနှင့် ဗီဒီယိုများကို ဖတ်ရှုရန်လည်း လိုအပ်ပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"ဖွင့်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"အမြန် လျှပ်တပြက်ရိုက်ချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"ဓာတ်ပုံစနစ်သို့ ပြောင်းရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"request_location_msg",
+            "value":"သင့်ဓာတ်ပုံများနှင့် ဗီဒီယိုများကို ပထဝီတက်ဂ်ထည့်နိုင်ရန် ကင်မရာကို တည်နေရာ ဝင်ရောက်သုံးစွဲခွင့်ပေးပါ။ ဤသို့ပေးလိုက်လျှင် ပုံပြခန်းတွင်း၌ ၎င်းတို့ကို ရိုက်ကူးခဲ့သည့် နေရာကို ပြသပေးနိုင်စေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"ဖျက်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"လက်ရှိ Filter ကို %1$s (%2$d fps) တွင် မရရှိနိုင်ပါ။ %3$dp (%4$d) fps သို့ အော်တို ပြောင်းထားပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"စက်ကို ငြိမ်အောင်ထားပါ။\nအချိန်နောက်ပြန်ရေတွက်မှု ပြီးသည်အထိ စောင့်ပါ သို့မဟုတ် ဓာတ်ပုံရိုက်ရန် ရှပ်တာခလုတ်ကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"ရီဆိုလူးရှင်းမြင့် ဓာတ်ပုံသည် pixel သိပ်သည်းဆ ပိုမြင့်ပြီး ကြည်လင်ပြတ်သားမှုနှင့် အသေးစိတ်ကျနမှု ပိုကောင်းပါသည်။ High-res စနစ်တွင် ဓာတ်ပုံများကို ထုတ်လုပ်ရန် အနည်းငယ်ပိုကြာနိုင်ပါသည်။ လုပ်ဆောင်မှု ပြီးစီးသည်အထိ ဖုန်းကို ငြိမ်အောင် ကိုင်ထားပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"စက်တွင်း သိုလှောင်မှု ပြည့်နေပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"အချက်အလက်များအတွက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"ပုံမှန် စတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"စိတ်ကြိုက်စတိုင်တစ်ခုကို ထည့်သွင်းရန် ဤနေရာကို နှိပ်ပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"%s ဆက်တင်အတွက် အောက်ခြေရှိ မြားကို နှိပ်ပါ သို့မဟုတ် အပေါ်သို့ ပွတ်ဆွဲပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"ဤအက်ပ်သည် သင်ရိုက်ကူးထားသော ဓာတ်ပုံနှင့် ဗီဒီယိုများကိုသာ ဝင်ရောက် သုံးစွဲနိုင်ပါသည်။ Viewfinder တွင်း၌ ရှိနေသည့်အရာကို ကြည့်၍ မရနိုင်ပါ။ %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"အဆင်အပြင်ချိန်ညှိရန် အိုင်ကွန်များကို ဆွဲရွှေ့ပါ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"အငြိမ် ရိုက်ကူးမှုကို ဖွင့်ထားပြီး အလင်းရောင် လုံလောက်သော နေရာ၌ ရိုက်ကူးလျှင် ဓာတ်ပုံ အရည်အသွေးအကောင်းဆုံး ရရှိပါသည်။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"small_art_vision",
+            "value":"Celia Lens",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark",
+            "value":"ရေစာ ပေါင်းထည့်ရန်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"ဓာတ်ပုံ ရိုက်ရန် \"Cheese\"ဟု ပြောပေးပါ။",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"ခွင့်ပြုချက် အသိပေးချက်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"ပိတ်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"Starry Sky",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"Monochrome · အမြဲတမ်းခေတ်မီ၍ ထူးခြားကွဲထွက်နေသည့်စတိုင်",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"ဆက်တင်",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

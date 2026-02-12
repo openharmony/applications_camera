@@ -1,0 +1,124 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ຊູມ %s ເທົ່າ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ໄລຍະຫວ່າງ %f ວິ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ບັນທຶກແລ້ວ %d ວິນາທີ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ນ​າ​ທີ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ວິ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ທ່ານສາມາດມີຮູບແບບກຳນົດເອງສູງສຸດ %d ລາຍການໃນເວລາດຽວກັນ. ເລືອກອັນໜຶ່ງເພື່ອປ່ຽນແທນ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ຊູມ %f ເທົ່າ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%f ວິ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ຕອນນີ້ທ່ານສາມາດສ້າງຮູບແບບສີແບບເປັນສ່ວນຕົວສຳລັບຮູບຖ່າຍຂອງທ່ານໄດ້. ເລືອກຈາກ %1$s ຮູບແບບທີ່ຕັ້ງໄວ້ກ່ອນ ຫຼື ທົດລອງເພື່ອຊອກຫາຮູບຊົງທີ່ເປັນຂອງທ່ານຢ່າງແທ້ຈິງ.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d ນທ",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}
