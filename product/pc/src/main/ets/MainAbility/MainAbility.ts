@@ -192,9 +192,9 @@ export default class MainAbility extends UIAbility {
     });
     this.initCachePrefer();
     this.initModeListAndName(want);
-    if (<boolean> this.preferencesService.getPublicValue(PersistType.FOREVER, PublicTag.IS_INTRO_LOADED, false)) {
+    // if (<boolean> this.preferencesService.getPublicValue(PersistType.FOREVER, PublicTag.IS_INTRO_LOADED, false)) {
       this.mAction.initCamera(this.mInitMsg.position, this.mInitMsg.mode);
-    }
+    // }
     PlaySound.getInstance().init(); // 初始化音频池
     DisplayService.getInstance().init();
     AppStorage.setOrCreate('isOnHiddenCamera', false);

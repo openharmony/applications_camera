@@ -74,17 +74,39 @@ export class DrawZoomRenderNode extends RenderNode {
   }
 
   public initNode(mQuickZoomValArr: number[], mQuickEquivalentFocalArr: number[], mOpticalZoomValArr:
-    number[], mOpticalZoomDotIndexArr: number[], mCycleClickZoomArr:number[]): void {
+    number[], mOpticalZoomDotIndexArr: number[], mCycleClickZoomArr: number[]): void {
+    const cycleArr: number[] = mCycleClickZoomArr ?? [];
+    if (!this.isZoomArraySetValid(mQuickZoomValArr, mQuickEquivalentFocalArr, mOpticalZoomValArr,
+      mOpticalZoomDotIndexArr)) {
+      HiLog.w(TAG, 'initNode: invalid zoom arrays, skip native init and clear cache.');
+      this.quickZoomValArr = [];
+      this.quickEquivalentFocalArr = [];
+      this.opticalZoomValArr = [];
+      this.opticalZoomDotIndexArr = [];
+      this.cycleClickZoomArr = [];
+      return;
+    }
     this.quickZoomValArr = mQuickZoomValArr;
     this.quickEquivalentFocalArr = mQuickEquivalentFocalArr;
     this.opticalZoomValArr = mOpticalZoomValArr;
     this.opticalZoomDotIndexArr = mOpticalZoomDotIndexArr;
-    this.cycleClickZoomArr = mCycleClickZoomArr;
+    this.cycleClickZoomArr = cycleArr;
     HiLog.i(TAG, `quickZoomValArr: ${this.quickZoomValArr.toString()},
       quickEquivalentFocalArr: ${this.quickEquivalentFocalArr.toString()},
       opticalZoomValArr: ${this.opticalZoomValArr.toString()},
       opticalZoomDotIndexArr: ${this.opticalZoomDotIndexArr.toString()}.`);
     this.initNativeNodeData();
+  }
+
+  /** 与 native 约定：快捷/等效、光学/dot 下标须非空且两两长度一致，避免 native 越界 */
+  private isZoomArraySetValid(quick: number[], quickEq: number[], optical: number[], opticalDot: number[]): boolean {
+    if (!quick || !quickEq || !optical || !opticalDot) {
+      return false;
+    }
+    if (quick.length === 0 || quickEq.length === 0 || optical.length === 0 || opticalDot.length === 0) {
+      return false;
+    }
+    return quick.length === quickEq.length && optical.length === opticalDot.length;
   }
 
   public updateDirection(directionAngle: number): void {
@@ -106,9 +128,11 @@ export class DrawZoomRenderNode extends RenderNode {
   }
 
   private checkParamIsSecure(): boolean {
-    return this.zoomWidth && this.zoomHeight && this.zoomHeight && this.densityPixels &&
-      this.quickZoomValArr?.length > 0 && this.quickEquivalentFocalArr?.length > 0 &&
-      this.opticalZoomValArr?.length > 0 && this.opticalZoomDotIndexArr?.length > 0;
+    if (!this.zoomWidth || !this.zoomHeight || !this.drawHeight || !this.densityPixels) {
+      return false;
+    }
+    return this.isZoomArraySetValid(this.quickZoomValArr, this.quickEquivalentFocalArr, this.opticalZoomValArr,
+      this.opticalZoomDotIndexArr);
   }
 
   public execLandscapeSlideAnim(zoomValue: number, displacementDistance: number, animType: number): void {

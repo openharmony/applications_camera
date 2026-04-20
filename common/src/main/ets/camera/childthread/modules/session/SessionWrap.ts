@@ -366,7 +366,7 @@ export default class SessionWrap {
       // 仅能配流过程中使能,会导致底层重启流
       this.mIsDeferVideo = videoModule.enableDeferredVideoEnhance();
     }
-    if ((this.mCameraContext.isSupportPhotoOutput())) {
+    if (this.mCameraContext.isSupportPhotoOutput() && this.mPhotoOutput) {
       HiLog.i(TAG, 'createSession photo addOutput.');
       this.sessionAddOutputWrap(this.mPhotoOutput.getOutput());
       HiLog.i(TAG, 'createSession photo addOutput done.');

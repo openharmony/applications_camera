@@ -67,6 +67,7 @@ import lazy { CaptureActionType } from '../../redux/actions/CaptureActionType';
 import lazy { FeatureManager } from '../../function/core/FeatureManager';
 import lazy { LeftRightSwipeActionType } from '../../redux/actions/LeftRightSwipeActionType';
 import lazy { CameraProxy } from '../../camera/uithread/CameraProxy';
+import lazy { CameraRunningState } from '../../camera/uithread/CameraAction';
 
 /* instrument ignore file */
 const TAG: string = 'ThumbnailView';
@@ -76,6 +77,7 @@ const PHOTO_BUNDLE_NAME: string = 'com.ohos.photos';
 const PHOTO_ABILITY_NAME: string = 'com.ohos.photos.MainAbility';
 const ENTER_ROUND_THUMBNAIL_MAX_COUNT: number = 5;
 const THUMBNAIL_UPDATE_DURATION: number = 200;
+const COLD_START_THUMBNAIL_DELAY_MS: number = 320;
 const BORDER_WIDTH_ZERO: number = 0;
 const BORDER_WIDTH_NORMAL: number = 1.5;
 const BORDER_WIDTH_BOLD: number = 2;
@@ -211,7 +213,18 @@ export struct ThumbnailView {
       if (this.isLoadThumbnail) {
         return;
       }
-      this.loadThumbnail();
+      const coldDeferThumb: boolean = getStates().get<boolean>('cameraReducer', 'isColdStart') &&
+        getStates().get<CameraRunningState>('cameraReducer', 'cameraRunningState') !== CameraRunningState.STARTED;
+      if (coldDeferThumb) {
+        HiLog.i(TAG, `defer loadThumbnail ${COLD_START_THUMBNAIL_DELAY_MS}ms for cold start.`);
+        setTimeout((): void => {
+          if (!this.isLoadThumbnail) {
+            this.loadThumbnail();
+          }
+        }, COLD_START_THUMBNAIL_DELAY_MS);
+      } else {
+        this.loadThumbnail();
+      }
     }
     this.rotateAngle = getStates().get<number>('contextReducer', 'rotateAngle');
     this.mSubscriber = reduxSubscribe((state: OhCombinedState) => {

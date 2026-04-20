@@ -267,6 +267,10 @@ export class CameraService {
       HiLog.i(TAG, 'isCanReuseCameraInput camera is null');
       return false;
     }
+    if (!this.isCommit) {
+      HiLog.i(TAG, 'isCanReuseCameraInput: false (no successful commit yet; e.g. after ACTION_INIT only)');
+      return false;
+    }
     if (this.mCameraInput?.getIsDuringCloseDelay()) {
       HiLog.i(TAG, 'isCanReuseCameraInput getIsDuringCloseDelay');
       return false;
@@ -280,11 +284,18 @@ export class CameraService {
       HiLog.i(TAG, 'isCanReuseCameraInput isBackSelfie or is panorama');
       return false;
     }
-    const targetCamera: camera.CameraDevice =
+    const targetCamera: camera.CameraDevice | undefined =
       this.mCameraDeviceManager?.getCameraWithMessage(message.cameraInputMessage);
+    const curDevice: camera.CameraDevice | undefined = this.mCameraContext?.getCamera();
+    if (!targetCamera || !curDevice) {
+      HiLog.i(TAG, 'isCanReuseCameraInput target or cur device missing');
+      return false;
+    }
     HiLog.i(TAG, 'targetCamera: ' + targetCamera.cameraId);
-    HiLog.i(TAG, 'curCamera: ' + this.mCameraContext?.getCamera()?.cameraId);
-    return false;
+    HiLog.i(TAG, 'curCamera: ' + curDevice.cameraId);
+    const reuse: boolean = targetCamera.cameraId === curDevice.cameraId;
+    HiLog.i(TAG, `isCanReuseCameraInput RESULT: ${reuse}`);
+    return reuse;
   }
 
   public async createPreviewOutput(previewMessage: PreviewOutputMessage): Promise<void> {

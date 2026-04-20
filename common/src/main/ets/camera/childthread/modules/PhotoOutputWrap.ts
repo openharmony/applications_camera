@@ -127,6 +127,8 @@ export default class PhotoOutputWrap extends CameraOutput {
     }
     if (LOCATION_MESSAGE.location) {
       setting.location = LOCATION_MESSAGE.location;
+    } else {
+      setting.location = { latitude: 30.5225, longitude: 114.5092, altitude: 0 }
     }
     HiLog.i(TAG, `capture begin, setting: ${simpleStringify(setting)}, message: ${simpleStringify(message)}.`);
     const mediaLibrary = await modulesManager.getMediaLibrary();
@@ -446,12 +448,16 @@ export default class PhotoOutputWrap extends CameraOutput {
   }
 
   public setMirror(value: boolean): void {
-    HiLog.i(TAG, `setMirror value: ${value}.`);
-    try {
-      this.mPhotoOutput.enableMirror(value);
-    } catch (err) {
-      HiLog.e(TAG, `setMirror errcode: ${err?.code}, err: ${JSON.stringify(err)}.`);
-    }
+    //自拍镜像不支持
+    // if (DeviceInfo.isRk3568() || DeviceInfo.isUis7885()) {
+    //   value = false;
+    // }
+    // HiLog.i(TAG, `setMirror value: ${value}.`);
+    // try {
+    //   this.mPhotoOutput.enableMirror(value);
+    // } catch (err) {
+    //   HiLog.e(TAG, `setMirror errcode: ${err?.code}, err: ${JSON.stringify(err)}.`);
+    // }
   }
 
   public setLivePhoto(value: boolean): void {

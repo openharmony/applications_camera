@@ -54,7 +54,12 @@ export default class VideoModule {
       HiLog.i(TAG, 'isVideo, video create.');
       this.videoWrap = new VideoOutputWrap();
     }
-    await this.videoWrap?.init(message, tagMessage, manager, pickerInfo);
+    //TODO PC预览流定位到这里，因为这个任务的执行导致。怀疑是PC视频格式导致
+    try {
+      await this.videoWrap?.init(message, tagMessage, manager, pickerInfo);
+    }catch ( error) {
+      HiLog.e(TAG, `=====>>> video create error: ${error}`);
+    }
     HiLog.end(TAG, 'createOutput');
     return true;
   }
@@ -166,8 +171,15 @@ export default class VideoModule {
       HiLog.w(TAG, `addMaintainDebugMetaData videoWrap or avRecorder is not exit!`);
       return;
     }
-    const videoMetaTypes: number[] = this.videoWrap.getSupportedVideoMetaTypes();
-    if (!videoMetaTypes.length) {
+    let videoMetaTypes: number[]
+    try {
+      videoMetaTypes = this.videoWrap.getSupportedVideoMetaTypes();
+      HiLog.e(TAG, `getSupportedVideoMetaTypes: ${JSON.stringify(videoMetaTypes)}.`);
+    } catch (error) {
+      HiLog.e(TAG, `getSupportedVideoMetaTypes err: ${error}.`);
+      return;
+    }
+    if (!videoMetaTypes || !videoMetaTypes.length) {
       HiLog.w(TAG, `RECORD_TRACK addMaintainDebugMetaData there is no metaType supporting.`);
       return;
     }

@@ -331,10 +331,10 @@ struct Index {
       Navigation(this.pageInfos) {
         Stack({ alignContent: Alignment.Center }) {
           /*预授权启动页*/
-          if (!this.isIntroLoaded) {
-          } else {
+          // if (!this.isIntroLoaded) {
+          // } else {
             this.DefaultIndexLand();
-          }
+          // }
         }.width('100%').height('100%').backgroundColor(Color.Black)
       }
       .mode(NavigationMode.Stack)
@@ -436,7 +436,7 @@ struct Index {
       }
     }
     .width('100%').height('100%')
-    .visibility(this.isIntroLoaded ? Visibility.Visible : Visibility.Hidden)
+    //.visibility(this.isIntroLoaded ? Visibility.Visible : Visibility.Hidden)
   }
 
 

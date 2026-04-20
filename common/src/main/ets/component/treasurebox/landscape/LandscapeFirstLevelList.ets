@@ -182,9 +182,6 @@ export struct LandscapeFirstLevelList {
   }
 
   private TreasureBoxFilter(state: OhCombinedState) {
-    const featureManager: FeatureManager = FeatureManager.getInstance();
-    const formatValue: number = featureManager.getFunction(FunctionId.PHOTO_FORMAT).getValue();
-    const zoomValue: number = getStates().get<number>('zoomReducer', 'zoomRatio');
     const set = state.get<Map<RenderLocation, Set<FunctionId>>>('functionReducer', 'functionRenderMap')
       .get(RenderLocation.TREASURE_BOX) || new Set();
     this.mainList = Array.from(set).sort((a, b) => (this.isShowSemiCollapsed || this.isReverse ?

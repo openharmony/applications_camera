@@ -372,16 +372,9 @@ export default class MainAbility extends UIAbility {
       HiLog.i(TAG, 'preCreateCamera by call');
       return
     }
-    let isIntroLoad: boolean =
-      <boolean> this.preferencesService.getPublicValue(PersistType.FOREVER, PublicTag.IS_INTRO_LOADED, false)
-    if (isIntroLoad) {
-      const { mode, position }: StartMessage = this.getColdStartMessage();
-      if (mode !== undefined && position !== undefined) {
-        this.mAction.createAndOpenCameraInput(position, mode)
-      } else {
-        HiLog.i(TAG, 'preCreateCamera invalid mode' + mode + ', position' + position)
-      }
-    }
+    // Worker init must not run here when intro is already done: doColdStartUp() dispatches
+    // CameraAction.init (ACTION_INIT). createAndOpenCameraInput also posts ACTION_INIT and
+    // caused queue ACTION_INIT,ACTION_INIT → 7400109 / black screen (see cold-start logs).
   }
 
   private registerDataShare(): void {

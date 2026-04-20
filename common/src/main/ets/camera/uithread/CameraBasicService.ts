@@ -15,7 +15,7 @@
 
 import camera from '@ohos.multimedia.camera';
 import lazy { Action } from '../../redux/actions/Action';
-import lazy { CameraAction, CameraStartType, closeInfo } from './CameraAction';
+import lazy { CameraAction, CameraRunningState, CameraStartType, closeInfo } from './CameraAction';
 import lazy { HiLog } from '../../utils/HiLog';
 import lazy { CameraProxy } from './CameraProxy';
 import lazy { EventBusManager } from '../../worker/eventbus/EventBusManager';
@@ -204,30 +204,27 @@ export class CameraBasicService {
     this.mCameraPosition = data.cameraPosition;
     this.mCurrentMode = data.mode;
     this.mCurrentFlowingActon = CameraActionType.INIT;
-    if (data.isDeferred) {
-      let specialZoomRatio = ZoomOperation.getDefaultZoomRatio(this.mCurrentMode, this.mCameraPosition);
-      await this.startupCamera(specialZoomRatio);
-    } else {
-      let pickerInfo: PickerInfo | null = null;
-      try {
-        pickerInfo = GlobalContext.get().getObject('pickerInfo') as PickerInfo;
-        let parameters: object = GlobalContext.get().getCameraAbilityWant().parameters as object;
-        let callingTokenID: number = parameters['ohos.aafwk.param.callerToken'] as number;
-        pickerInfo.callingTokenID = callingTokenID;
-        HiLog.d(TAG, `initCamera ${pickerInfo.isPicker}, ${pickerInfo.callingTokenID}`);
-      } catch (err) {
-        HiLog.e(TAG, `get pickerInfo fail. ${err?.code}`);
-      }
-      const outputType: OutputType = OutputSwitcher.getInstance().getOutput();
-      const quickZoomArray: number[] =
-        CameraAppCapability.getInstance().getQuickZoomArray(data.cameraPosition, data.mode, outputType);
-      await this.mCameraProxy.initCamera({
-        cameraPosition: data.cameraPosition,
-        mode: data.mode,
-        cameraType: this.getCameraType(outputType, quickZoomArray, getStates().get<number>('zoomReducer', 'zoomRatio')),
-        zoomValue: getStates().get<number>('zoomReducer', 'zoomRatio'),
-      }, ContextManager.getInstance().getContextWithToken(), pickerInfo);
+    let pickerInfo: PickerInfo | null = null;
+    try {
+      pickerInfo = GlobalContext.get().getObject('pickerInfo') as PickerInfo;
+      let parameters: object = GlobalContext.get().getCameraAbilityWant().parameters as object;
+      let callingTokenID: number = parameters['ohos.aafwk.param.callerToken'] as number;
+      pickerInfo.callingTokenID = callingTokenID;
+      HiLog.d(TAG, `initCamera ${pickerInfo.isPicker}, ${pickerInfo.callingTokenID}`);
+    } catch (err) {
+      HiLog.e(TAG, `get pickerInfo fail. ${err?.code}`);
     }
+    const outputType: OutputType = OutputSwitcher.getInstance().getOutput();
+    const quickZoomArray: number[] =
+      CameraAppCapability.getInstance().getQuickZoomArray(data.cameraPosition, data.mode, outputType);
+    await this.mCameraProxy.initCamera({
+      cameraPosition: data.cameraPosition,
+      mode: data.mode,
+      cameraType: this.getCameraType(outputType, quickZoomArray, getStates().get<number>('zoomReducer', 'zoomRatio')),
+      zoomValue: getStates().get<number>('zoomReducer', 'zoomRatio'),
+    }, ContextManager.getInstance().getContextWithToken(), pickerInfo);
+    // isDeferred: only open camera input here; first full session/commit runs in startPreview once XComponent
+    // surface exists. Requires a single ACTION_INIT (see phone index skipIntro dedupe vs MainAbility).
     this.mCurrentFlowingActon = undefined;
     HiLog.i(TAG, 'initCamera end.');
   }
@@ -245,6 +242,26 @@ export class CameraBasicService {
     return camera.CameraType.CAMERA_TYPE_DEFAULT; // 逻辑镜头
   }
 
+  /** Cold / deferred XComponent: avoid START_UP + commitSession until preview surface exists (reduces 7400201 retries). */
+  private shouldDeferSessionUntilSurfaceReady(): boolean {
+    if (XComponentService.getInstance().getSurface()) {
+      return false;
+    }
+    if (!getStates().get<boolean>('cameraReducer', 'isColdStart')) {
+      return false;
+    }
+    const runningState = getStates().get<CameraRunningState>('cameraReducer', 'cameraRunningState');
+    return runningState !== CameraRunningState.STARTED;
+  }
+
+  private hasPreviewSurfaceInMessage(message: SessionMessage | undefined): boolean {
+    if (!message?.previewOutputMessage) {
+      return false;
+    }
+    const preview = message.previewOutputMessage;
+    return !!(preview.previewSurfaceId ?? preview.xComponentSurfaceId);
+  }
+
   private async warmStartup(): Promise<void> {
     // 如果停留在picker拍完照的确认界面，则需要拦截热启动
     if (getStates().get<boolean>('uiReducer', 'showPicker')) {
@@ -256,6 +273,13 @@ export class CameraBasicService {
     // this.disableUi();
     const zoomRatio = ZoomOperation.getInstance().getStartupZoom(this.mCurrentMode, this.mCameraPosition);
     this.mCurrentFlowingActon = CameraActionType.WARM_START;
+    if (this.shouldDeferSessionUntilSurfaceReady()) {
+      HiLog.i(TAG, 'warmStartup: defer startupCamera until XComponent surface is ready.');
+      this.mCurrentFlowingActon = undefined;
+      this.enableUi();
+      HiLog.i(TAG, 'warmStartup end (deferred).');
+      return;
+    }
     await this.startupCamera(zoomRatio);
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.WARM_START, zoomRatio));
@@ -281,6 +305,13 @@ export class CameraBasicService {
     CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
     this.mCurrentFlowingActon = CameraActionType.WARM_START_WITH_MODE_AND_POS;
     const zoomRatio = ZoomOperation.getInstance().getStartupZoom(this.mCurrentMode, this.mCameraPosition);
+    if (this.shouldDeferSessionUntilSurfaceReady()) {
+      HiLog.i(TAG, 'warmStartWithModeAPos: defer startupCamera until XComponent surface is ready.');
+      this.mCurrentFlowingActon = undefined;
+      this.enableUi();
+      HiLog.i(TAG, 'warmStartWithModeAPos end (deferred).');
+      return;
+    }
     await this.startupCamera(zoomRatio);
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.WARM_START_WITH_MODE_AND_POS, zoomRatio));
@@ -303,12 +334,13 @@ export class CameraBasicService {
     // } else {
     //   HiLog.i(TAG, `startupCamera success`);
     // }
-    // 增加循环重试防止黑屏
+    // 增加循环重试防止黑屏；无 surface 时不退避，交由 XComponent / startPreview 路径重试
     let retryCount = 0;
+    let lastSessionMessage: SessionMessage | undefined = undefined;
     while (retryCount < MAX_RETRY_COUNT) {
       try {
-        const sessionMessage = await this.getSessionMessage({ zoomRatio });
-        const sessionInfo = await this.mCameraProxy.startupCamera(sessionMessage);
+        lastSessionMessage = await this.getSessionMessage({ zoomRatio });
+        const sessionInfo = await this.mCameraProxy.startupCamera(lastSessionMessage);
         execDispatch(ZoomAction.updateStateZoomRatio(zoomRatio));
         if (sessionInfo) {
           HiLog.i(TAG, `startupCamera succeeded at ${retryCount + 1} attempt`);
@@ -316,13 +348,22 @@ export class CameraBasicService {
         } else {
           HiLog.i(TAG, `startupCamera failed, state reset to UNINITIALIZED.`);
           execDispatch(CameraAction.reset());
+          if (!this.hasPreviewSurfaceInMessage(lastSessionMessage)) {
+            HiLog.i(TAG, 'startupCamera: no preview surface; end retries (deferred surface will retry).');
+            break;
+          }
         }
       } catch (error) {
         HiLog.e(TAG, `startupCamera errored at attempt ${retryCount + 1}: ${error.code}`);
       }
-      // 增加指数退避策略
-      await new Promise(resolve => setTimeout(resolve, 100 * Math.pow(2, retryCount)));
       retryCount++;
+      if (retryCount >= MAX_RETRY_COUNT) {
+        break;
+      }
+      const backoffMs = this.hasPreviewSurfaceInMessage(lastSessionMessage) ? 100 * Math.pow(2, retryCount - 1) : 0;
+      if (backoffMs > 0) {
+        await new Promise(resolve => setTimeout(resolve, backoffMs));
+      }
     }
   }
 
@@ -520,6 +561,20 @@ export class CameraBasicService {
     this.mCurrentMode = data.mode;
     if (data.isToDefaultWarmStart || AppStorage.Get('restoreFlag')) {
       HiLog.w(TAG, 'toDefaultWarmStart or restoreFlag');
+      return;
+    }
+    // After ACTION_INIT only, worker still holds CameraInput with isCommit false. CHANGE_MODE uses
+    // restartPreview with isCanReuseCameraInput false → release + createCameraInput again → 7400109
+    // (see hilog cold start: redundant CAMERA_ACTION_CHANGE_MODE right after INIT).
+    const runningStateForMode = getStates().get<CameraRunningState>('cameraReducer', 'cameraRunningState');
+    if (runningStateForMode === CameraRunningState.INITIALIZED) {
+      HiLog.i(TAG, 'changeMode: skip worker while INITIALIZED (wait for startPreview / START_UP).');
+      CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
+      return;
+    }
+    if (this.shouldDeferSessionUntilSurfaceReady()) {
+      HiLog.i(TAG, 'changeMode: skip worker until preview surface (cold deferred).');
+      CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
       return;
     }
     this.disableUi();
@@ -1009,6 +1064,9 @@ export class CameraBasicService {
   }
 
   private getMetadataObjectTypeArr(): camera.MetadataObjectType[] {
+    if (this.mCurrentMode === ModeType.PHOTO) {
+      return undefined;
+    }
     let metadataObjectTypeArr: camera.MetadataObjectType[] = [];
     if (this.mCurrentMode !== ModeType.NONE &&
       !(OutputOperation.isPanVideoOutput(this.mCurrentMode) &&
@@ -1024,10 +1082,10 @@ export class CameraBasicService {
       // @ts-ignore
       metadataObjectTypeArr.push(camera.MetadataObjectType.HUMAN_HEAD);
     }
-    if (this.mCurrentMode === ModeType.PHOTO &&
-      this.mCameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK) {
-      metadataObjectTypeArr.push(7);
-    }
+    // if (this.mCurrentMode === ModeType.PHOTO &&
+    //   this.mCameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK) {
+    //   metadataObjectTypeArr.push(7);
+    // }
     return metadataObjectTypeArr.length > 0 ? metadataObjectTypeArr : undefined;
   }
 
@@ -1317,6 +1375,12 @@ export class CameraBasicService {
       return {
         isNeedSetPreviewRotation: true,
         previewRotation: camera.ImageRotation.ROTATION_0,
+        isDisplayLocked: false
+      };
+    } else if (DeviceInfo.isTablet()) {
+      return {
+        isNeedSetPreviewRotation: true,
+        previewRotation: camera.ImageRotation.ROTATION_270,
         isDisplayLocked: false
       };
     }

@@ -8,6 +8,7 @@
 -enable-toplevel-obfuscation
 -keep-global-name
 SettingFunction
+AssistiveGridFunction
 contextReducer
 cameraReducer
 previewReducer

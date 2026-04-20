@@ -69,6 +69,7 @@ export class DirectionFunction extends BaseFunction {
   private isUnRegisterMotion: boolean = false;
   private readonly RENDER_LOCATIONS: RenderLocation[] = [RenderLocation.NONE];
   private mMotionData: number = -1;
+  private lastPostedMotionSensorData: number = -999;
   private mTimer: number = Number.MIN_VALUE;
   private mTimeOutTask: number = Number.MIN_VALUE;
   private isLevel: boolean = false;
@@ -317,7 +318,10 @@ export class DirectionFunction extends BaseFunction {
     if (data !== -1 && this.isSensorDataReturn) { // 返回值data===-1表示状态未改变
       HiLog.i(TAG, 'onMotionSensor if mMotionData: ' + data);
       this.isLevel = false;
-      this.mStoreManager.postMessage(Action.motionDirectionChange(data));
+      if (this.lastPostedMotionSensorData !== data) {
+        this.mStoreManager.postMessage(Action.motionDirectionChange(data));
+        this.lastPostedMotionSensorData = data;
+      }
       let direction = this.motionMappingDirection(data);
       this.changeInstantDirection(direction);
       this.changeDirection(direction);
@@ -351,6 +355,7 @@ export class DirectionFunction extends BaseFunction {
 
   private onBackGround(): void {
     HiLog.i(TAG, 'onBackGround.');
+    this.lastPostedMotionSensorData = -999;
     this.isLevel = false;
     this.isSensorDataReturn = false;
     this.isSensorCallBackTimeOut = false;

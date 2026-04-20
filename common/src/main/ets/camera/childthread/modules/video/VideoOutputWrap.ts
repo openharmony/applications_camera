@@ -23,6 +23,7 @@ import RecorderWrap from './RecorderWrap';
 import type { TagMessage, VideoOutputMessage } from '../../../DataType';
 import lazy { simpleStringify } from '../../../../utils/SimpleStringify';
 import lazy { HideBugUtil } from '../../../../utils/HideBugUtil';
+import { DeviceInfo } from '../../../../component/deviceinfo/DeviceInfo';
 
 /* instrument ignore file */
 const TAG: string = 'VideoOutputWrap';
@@ -245,6 +246,9 @@ export default class VideoOutputWrap extends VideoOutputInterface {
 
   //判断能否开启镜像: 1、只有支持镜像设置才能设置；2、根据底层支持情况禁用设置页自拍镜像选项
   public isMirrorSupported(): boolean {
+    if (DeviceInfo.isUis7885()) {
+      return false;
+    }
     try {
       const isSupportedMirror: boolean = this.videoOutput.isMirrorSupported();
       HiLog.i(TAG, `video isSupportedMirror: ${isSupportedMirror}`);
@@ -295,10 +299,14 @@ export default class VideoOutputWrap extends VideoOutputInterface {
 
   public getSupportedVideoMetaTypes(): number[] {
     HiLog.i(TAG, 'getSupportedVideoMetaTypes E');
-    const videoMetaTypes: number[] = this.videoOutput.getSupportedVideoMetaTypes();
-    // const videoMetaTypes = [0];
-    HiLog.i(TAG, `getSupportedVideoMetaTypes videoMetaTypes: ${videoMetaTypes.toString()}`);
-    return videoMetaTypes;
+    try {
+      const videoMetaTypes: number[] = this.videoOutput.getSupportedVideoMetaTypes();
+      HiLog.i(TAG, `getSupportedVideoMetaTypes videoMetaTypes: ${videoMetaTypes.toString()}`);
+      return videoMetaTypes;
+    } catch (error) {
+      HiLog.e(TAG, `getSupportedVideoMetaTypes error: ${JSON.stringify(error)}.`);
+      return [];
+    }
   }
 
   public async attachMetaSurface(videoMetaType: number): Promise<void> {

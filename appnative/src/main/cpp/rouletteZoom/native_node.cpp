@@ -70,12 +70,18 @@ void NativeNode::NativeOnDraw(OH_Drawing_Canvas *canvas, double curZoomVal, doub
         }
 
         // 光学变焦点index,-1代表非光学变焦点
-        int selectedOpticalIndex =
-            ZoomCalculate::FindArrayIndex(state->opticalZoomDotIndexArr, i, state->opticalArrLength);
-        bool isCycleClickZoom = selectedOpticalIndex != -1 ? 
-        IsZoomValInCycleClickZoom(GetZoomState(), state->opticalZoomValArr[selectedOpticalIndex]) : false;
+        int selectedOpticalIndex = -1;
+        if (state->opticalArrLength > 0 && state->opticalZoomDotIndexArr != nullptr) {
+            selectedOpticalIndex =
+                ZoomCalculate::FindArrayIndex(state->opticalZoomDotIndexArr, i, state->opticalArrLength);
+        }
+        bool isCycleClickZoom =
+            selectedOpticalIndex != -1 && state->opticalZoomValArr != nullptr
+                ? IsZoomValInCycleClickZoom(GetZoomState(), state->opticalZoomValArr[selectedOpticalIndex])
+                : false;
         // sizeof([])返回数组总大小(以字节为单位);sizeof(int*)返回指针大小,不管它指向什么类型的数据;
-        if (i <= state->opticalZoomDotIndexArr[state->opticalArrLength - 1]) { // 仅实体点绘制刻度阴影
+        if (state->opticalArrLength > 0 && state->opticalZoomDotIndexArr != nullptr &&
+            i <= state->opticalZoomDotIndexArr[state->opticalArrLength - 1]) { // 仅实体点绘制刻度阴影
             if (state->scaleAllMatteScale > LAYER_OPT_8) {
                 GeneratePathByPenParam(tShadowPath_, curDotAngle, selectedOpticalIndex, i, state->opticalArrLength);
             }
@@ -86,7 +92,7 @@ void NativeNode::NativeOnDraw(OH_Drawing_Canvas *canvas, double curZoomVal, doub
             GeneratePathByPenParam(tOuterLinePath_, curDotAngle, selectedOpticalIndex, i, state->opticalArrLength);
         }
         
-        if (selectedOpticalIndex != -1) { // 变焦字符、等效焦距绘制
+        if (selectedOpticalIndex != -1 && state->opticalZoomValArr != nullptr) { // 变焦字符、等效焦距绘制
             DrawRatioTextAndShadow(curDotAngle, selectedOpticalIndex);
         }
     }
@@ -865,6 +871,10 @@ void NativeNode::DrawRedLineCycle(int outerX, int outerY, int innerY, double red
 void NativeNode::DrawLandscapeSlideSimuEquivalentFocal()
 {
     int index = state->landscapeSlideZoomIndex;
+    if (!ZoomCalculate::isIndexLegal(state->opticalArrLength, state->landscapeSlideZoomIndex) ||
+        state->opticalZoomValArr == nullptr) {
+        return;
+    }
     if ((state->isSupportedEquivalentFocalBigText || state->isSupportedCycleClickZoom)) {
         double roundZoomVal = state->opticalZoomValArr[state->landscapeSlideZoomIndex];
         int diff = ZoomCalculate::getFocalIndexDiff(GetZoomState(), roundZoomVal, state->littlePointCnt);
@@ -873,6 +883,9 @@ void NativeNode::DrawLandscapeSlideSimuEquivalentFocal()
         } else if (diff > ARRAY_ZERO) {
             index = index - diff;
         }
+    }
+    if (!ZoomCalculate::isIndexLegal(state->quickArrLength, index) || state->quickEquivalentFocalArr == nullptr) {
+        return;
     }
     std::stringstream ss2;
     ss2 << state->quickEquivalentFocalArr[index];
