@@ -127,6 +127,8 @@ export struct TreasureBox {
   @State isVdeLandscape: boolean = false;
   @State isVdeSemiCollapsed: boolean = false;
   private treasureBoxTimerId: number = Number.MIN_VALUE;
+  /** STARTED 时 FeatureManager 用 setTimeout(0) 更新 functionRenderMap；此处同延后一级列表刷新，避免闪光灯等项仍按旧镜头渲染 */
+  private cameraStartedListRefreshTimerId: number = -1;
   @StorageLink('enableScreenReader') enableScreenReader: boolean = false;
   private recordZoomRatio: number = 1;
   @Prop isHdr: boolean = false;
@@ -230,6 +232,10 @@ export struct TreasureBox {
   }
 
   aboutToDisappear() {
+    if (this.cameraStartedListRefreshTimerId !== -1) {
+      clearTimeout(this.cameraStartedListRefreshTimerId);
+      this.cameraStartedListRefreshTimerId = -1;
+    }
     this.renderLocation = RenderLocation.NONE;
     this.eventBus.clear(this.mBase.hashCode());
     this.subscriber.destroy();
@@ -320,7 +326,13 @@ export struct TreasureBox {
       return;
     }
     this.treasureBoxRefreshTriggerType = TreasureBoxRefreshTriggerType.START_CAMERA;
-    this.refreshTreasureBoxView();
+    if (this.cameraStartedListRefreshTimerId !== -1) {
+      clearTimeout(this.cameraStartedListRefreshTimerId);
+    }
+    this.cameraStartedListRefreshTimerId = setTimeout((): void => {
+      this.cameraStartedListRefreshTimerId = -1;
+      this.refreshTreasureBoxView();
+    }, 0);
   }
 
   private onRefreshTreasureBoxView(): void {

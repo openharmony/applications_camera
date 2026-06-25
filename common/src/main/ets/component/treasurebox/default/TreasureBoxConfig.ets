@@ -88,6 +88,8 @@ export class TreasureBoxConfig {
     let treasureBoxOrder = CameraAppCapability.getInstance().getTreasureBoxOrder();
     mainList = Array.from(set)
       .sort((a, b) => treasureBoxOrder.indexOf(a) - treasureBoxOrder.indexOf(b))
+      // 产品要求：屏蔽百宝箱内“录像帧率”入口（仅隐藏 UI，不影响底层能力与编码逻辑）
+      .filter((item: FunctionId) => item !== FunctionId.FRAME_RATE);
     if (getStates().get<boolean>('collapsReducer', 'isVdeCollapsed')) {
       if (!set.has(FunctionId.TIME_LAPSE)) {
         mainList.push(FunctionId.TIME_LAPSE);

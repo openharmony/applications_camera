@@ -461,6 +461,9 @@ export class CameraBasicService {
     this.lastSurfaceIsNull = false;
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.COLD_START));
+    // Redux CHANGE_MODE sets uiEnable false before worker runs; cold start can skip changeMode worker
+    // while INITIALIZED / deferred surface — re-enable toolbar/shutter after preview is up.
+    this.enableUi();
     HiLog.i(TAG, 'startPreview end.');
   }
 
@@ -559,8 +562,14 @@ export class CameraBasicService {
     this.lastSurfaceIsNull = false;
     // 如果是恢复默认热启动触发的，则不走后续配流流程
     this.mCurrentMode = data.mode;
-    if (data.isToDefaultWarmStart || AppStorage.Get('restoreFlag')) {
-      HiLog.w(TAG, 'toDefaultWarmStart or restoreFlag');
+    if (AppStorage.Get('restoreFlag')) {
+      HiLog.w(TAG, 'restoreFlag');
+      return;
+    }
+    if (data.isToDefaultWarmStart) {
+      HiLog.w(TAG, 'toDefaultWarmStart');
+      // CHANGE_MODE reducer already cleared uiEnable; no worker path to re-enable.
+      this.enableUi();
       return;
     }
     // After ACTION_INIT only, worker still holds CameraInput with isCommit false. CHANGE_MODE uses
@@ -570,11 +579,13 @@ export class CameraBasicService {
     if (runningStateForMode === CameraRunningState.INITIALIZED) {
       HiLog.i(TAG, 'changeMode: skip worker while INITIALIZED (wait for startPreview / START_UP).');
       CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
+      this.enableUi();
       return;
     }
     if (this.shouldDeferSessionUntilSurfaceReady()) {
       HiLog.i(TAG, 'changeMode: skip worker until preview surface (cold deferred).');
       CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
+      this.enableUi();
       return;
     }
     this.disableUi();

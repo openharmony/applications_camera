@@ -313,10 +313,10 @@ export class DirectionFunction extends BaseFunction {
   }
 
   private onMotionSensor(data: number): void {
-    HiLog.i(TAG, 'onMotionSensor mMotionData:' + data);
+    // HiLog.i(TAG, 'onMotionSensor mMotionData:' + data);
     this.mMotionData = data;
     if (data !== -1 && this.isSensorDataReturn) { // 返回值data===-1表示状态未改变
-      HiLog.i(TAG, 'onMotionSensor if mMotionData: ' + data);
+      // HiLog.i(TAG, 'onMotionSensor if mMotionData: ' + data);
       this.isLevel = false;
       if (this.lastPostedMotionSensorData !== data) {
         this.mStoreManager.postMessage(Action.motionDirectionChange(data));
@@ -390,13 +390,13 @@ export class DirectionFunction extends BaseFunction {
       HiLog.w(TAG, `isUnRegisterMotion or isShowPhotoBrowser is true  Don't changeDirection`);
       return;
     }
-    HiLog.i(TAG,
-      'this.mDirection:' + this.mDirection + ',' + direction + ',' + AppStorage.Get('settingAnimationDoing'));
+    // HiLog.i(TAG,
+    //   'this.mDirection:' + this.mDirection + ',' + direction + ',' + AppStorage.Get('settingAnimationDoing'));
     if ((AppStorage.Get('settingAnimationDoing')) || this.mDirection === direction) {
       let rotate: number = DirectionToAngleUtil.geViewRotate(direction);
       let diff: number = this.getDiffRotate(rotate);
       if (diff % 360 === 0) {
-        HiLog.w(TAG, `direction is  ${direction} not change , Don't changeDirection`);
+        // HiLog.w(TAG, `direction is  ${direction} not change , Don't changeDirection`);
         return;
       }
     }

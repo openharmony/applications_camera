@@ -184,7 +184,10 @@ export struct LandscapeFirstLevelList {
   private TreasureBoxFilter(state: OhCombinedState) {
     const set = state.get<Map<RenderLocation, Set<FunctionId>>>('functionReducer', 'functionRenderMap')
       .get(RenderLocation.TREASURE_BOX) || new Set();
-    this.mainList = Array.from(set).sort((a, b) => (this.isShowSemiCollapsed || this.isReverse ?
+    this.mainList = Array.from(set)
+      // 产品要求：屏蔽百宝箱内“录像帧率”入口（仅隐藏 UI，不影响底层能力与编码逻辑）
+      .filter((item: FunctionId) => item !== FunctionId.FRAME_RATE)
+      .sort((a, b) => (this.isShowSemiCollapsed || this.isReverse ?
       this.treasureBoxOrder.indexOf(a) - this.treasureBoxOrder.indexOf(b) : this.treasureBoxOrder.indexOf(b) -
       this.treasureBoxOrder.indexOf(a)))
   }

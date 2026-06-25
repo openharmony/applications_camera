@@ -39,6 +39,8 @@ import lazy { ActionType } from '../../redux/actions/ActionType';
 import lazy { getStates } from '../../redux';
 import lazy { CameraActionType } from '../../redux/actions/CameraActionType';
 import lazy { FunctionActionType } from '../../redux/actions/FunctionActionType';
+import lazy { StoreManager } from '../../worker/StoreManager';
+import lazy { TabBarAction } from '../../component/tabbar/TabBarAction';
 
 const TAG: string = 'FeatureManager';
 
@@ -51,6 +53,7 @@ export class FeatureManager {
   private static sInstanceFeatureManager: FeatureManager;
   private isInResolutionChange: boolean = false;
   private surfaceSize: image.Size = { height: 0, width: 0 };
+  private pendingAssembler: boolean = false;
 
   public static getInstance(): FeatureManager {
     if (!FeatureManager.sInstanceFeatureManager) {
@@ -76,7 +79,7 @@ export class FeatureManager {
     HiLog.i(TAG, 'init.');
     modeMap.initExtendFeatures(); // 动态添加拓展特性分段初始化
     this.mModeAssembler = ModeAssembler.getInstance().initMode(this.mFunctionsMap, modeMap);
-    this.managerAssembler();
+    this.managerAssembler(mode);
   }
 
   getFunction(functionId: FunctionId): BaseFunction {
@@ -92,13 +95,23 @@ export class FeatureManager {
       data.type === CameraStartType.COLD_START ||
       data.type === CameraStartType.COLLAPS_CHANGE
     ) { // 性能测试无明显影响;主干上暂以COLD_START去managerAssembler装载特性,可行性验证
-      this.managerAssembler();
+      // Defer assembler to next tick to reduce contention with first UI render / XComponent load.
+      if (this.pendingAssembler) {
+        return;
+      }
+      this.pendingAssembler = true;
+      setTimeout(() => {
+        this.pendingAssembler = false;
+        this.managerAssembler();
+      }, 0);
     }
   }
 
   private managerAssembler(mode?: ModeType): void {
     mode = mode || getStates().get<ModeType>('modeReducer', 'mode');
     this.mModeAssembler.assembler(mode, this.setModeFunctionIds.bind(this));
+    // TabBar reads functionRenderMap on STARTED before this deferred assembler runs; refresh tab bar list after map updates.
+    StoreManager.getInstance().postMessage(TabBarAction.updateTabBarArr());
   }
 
   public unLoadFunctions(): void {

@@ -110,6 +110,11 @@ const onMessageMap: Map<string, unknown> = new Map();
 const ARRAY_LENGTHS: number = 6;
 const DEFAULT_RATIO_RANGE: number[] = [1, ARRAY_LENGTHS];
 const TEMPLATE_MAX_NUMBER: number = 16;
+const FOCUS_MODE_CACHE_TTL_MS: number = 1500;
+const HEAVY_LOG_TASK_TYPES: Set<string> = new Set([
+  WorkerTask.ACTION_START_UP,
+  WorkerTask.ACTION_INIT
+]);
 
 export class CameraProxy {
   public static readonly EXPOSURE_BIAS_RANGE_4: number = 4;
@@ -130,6 +135,8 @@ export class CameraProxy {
   private isCompositionSuggestionSupported: boolean = false;
   private mIsLogAssistanceSupported: boolean = false;
   private isCustomFilterUpgrade: boolean = false;
+  private focusModeSupportedInFlight: Map<number, Promise<boolean>> = new Map();
+  private focusModeSupportedCache: Map<number, { value: boolean, time: number }> = new Map();
 
   public static getInstance(): CameraProxy {
     if (!CameraProxy.sInstanceCameraProxy) {
@@ -708,7 +715,7 @@ export class CameraProxy {
 
   private postMessageForPromise<T>(type: string, data: unknown, callback?: unknown): Promise<T> {
     HiLog.i(TAG, `postMessage: type = ${type}`);
-    HiLog.i(TAG, `postMessage: data = ${simpleStringify(data)}, is sync.`);
+    HiLog.i(TAG, `postMessage: data = ${this.getDataSummary(type, data)}, is sync.`);
     return new Promise<T>(function (resolve) {
       if (SYNC_TASK_TYPES.includes(type)) {
         taskManager.postMessageWithSync<T>({ hasResolve: true, type: type, data: data }, resolve, callback);
@@ -891,11 +898,36 @@ export class CameraProxy {
   }
 
   public isSupportedFocusStateDetect(focusMode: camera.FocusMode): Promise<boolean> {
-    return this.postMessageForPromise(WorkerTask.ACTION_IS_FOCUS_MODE_SUPPORTED, [focusMode]);
+    const key = Number(focusMode);
+    const cache = this.focusModeSupportedCache.get(key);
+    if (cache && Date.now() - cache.time < FOCUS_MODE_CACHE_TTL_MS) {
+      HiLog.d(TAG, `isSupportedFocusStateDetect: hit short cache, focusMode=${key}.`);
+      return Promise.resolve(cache.value);
+    }
+    if (this.focusModeSupportedInFlight.has(key)) {
+      return this.focusModeSupportedInFlight.get(key);
+    }
+    const inFlight = this.postMessageForPromise<boolean>(WorkerTask.ACTION_IS_FOCUS_MODE_SUPPORTED, [focusMode]);
+    this.focusModeSupportedInFlight.set(key, inFlight);
+    inFlight.then((supported) => {
+      this.focusModeSupportedCache.set(key, { value: supported, time: Date.now() });
+    });
+    inFlight.finally(() => {
+      this.focusModeSupportedInFlight.delete(key);
+    });
+    return inFlight;
   }
 
   public setFocus(focusData: FocusData): void {
     return this.postMessage(WorkerTask.ACTION_SET_FOCUS, [focusData]);
+  }
+
+  private getDataSummary(type: string, data: unknown): string {
+    if (HEAVY_LOG_TASK_TYPES.has(type)) {
+      const payloadLength = Array.isArray(data) ? data.length : 0;
+      return `taskSummary={type:${type},dataType:${typeof data},payloadLength:${payloadLength}}`;
+    }
+    return simpleStringify(data);
   }
 
   /* instrument ignore next */

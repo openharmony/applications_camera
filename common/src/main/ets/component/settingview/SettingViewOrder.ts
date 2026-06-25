@@ -16,13 +16,12 @@
 import lazy { FunctionId } from '../../function/core/functionproperty/FunctionId';
 
 export const SETTING_MENU_PHOTO_ORDER = [
-  FunctionId.ASPECT_RATIO,
 ];
 
 export const SETTING_MENU_VIDEO_ORDER = [
   FunctionId.VIDEO_RESOLUTION,
-  FunctionId.FRAME_RATE,
-  FunctionId.EFFICIENT_VIDEO,
+  // 帧率问题确认中,暂时关闭入口
+  // FunctionId.FRAME_RATE,
 ];
 
 export const SETTING_MENU_COMMON_ORDER = [

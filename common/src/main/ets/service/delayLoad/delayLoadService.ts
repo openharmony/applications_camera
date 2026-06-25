@@ -19,12 +19,16 @@ import lazy { HiLog } from "../../utils/HiLog";
 import lazy { BaseComponent } from "../../worker/BaseComponent";
 import lazy { EventBus } from "../../worker/eventbus/EventBus";
 import lazy { EventBusManager } from "../../worker/eventbus/EventBusManager";
-import lazy { AudioSessionService } from "../audioSessionService/AudioSessionService";
-import lazy { ContextManager } from "../context/ContextManager";
 import lazy { MemoryService } from "../Memory/MemoryService";
 
 /* instrument ignore file */
 const TAG: 'DelayLoadService' = 'DelayLoadService';
+
+type StartedTask = {
+  name: string;
+  delayMs: number;
+  task: () => void;
+};
 
 export class DelayLoadService {
   private static instance: DelayLoadService;
@@ -33,6 +37,9 @@ export class DelayLoadService {
   private isOnCreateExecuted: boolean = false;
   private isOnForegroundExecuted: boolean = false;
   private onEventBus: boolean = false;
+  private startedTasks: StartedTask[] = [];
+  private onCreateTs: number = 0;
+  private onForegroundTs: number = 0;
 
   public static getInstance(): DelayLoadService {
     if (!this.instance) {
@@ -58,18 +65,36 @@ export class DelayLoadService {
       this.mEventBus.clear(this.mBase.hashCode());
       this.onEventBus = false;
     }
+    this.startedTasks = [];
+    this.onCreateTs = 0;
+    this.onForegroundTs = 0;
   }
 
   public loadFromOnCreate(): void {
     HiLog.i(TAG, 'loadFromOnCreate');
     this.registerEventBus();
     this.isOnCreateExecuted = true;
+    this.onCreateTs = Date.now();
   }
 
   public loadFromOnForeground(): void {
     HiLog.i(TAG, 'loadFromOnForeground');
     this.registerEventBus();
     this.isOnForegroundExecuted = true;
+    this.onForegroundTs = Date.now();
+  }
+
+  /**
+   * Post a task to run AFTER CameraActionType.STARTED.
+   *
+   * The goal is to reduce cold/warm start critical path latency:
+   * keep onCreate/onForeground light, then defer non-critical work here.
+   */
+  public postAfterStarted(name: string, task: () => void, delayMs: number = 0): void {
+    if (!name || typeof task !== 'function') {
+      return;
+    }
+    this.startedTasks.push({ name, task, delayMs: Math.max(0, delayMs) });
   }
 
   private onStarted(): void {
@@ -77,6 +102,9 @@ export class DelayLoadService {
     // onCreate执行逻辑延后到started
     if (this.isOnCreateExecuted) {
       HiLog.begin(TAG, 'isOnCreateExecuted');
+      if (this.onCreateTs > 0) {
+        HiLog.i(TAG, `startupLatency(from onCreate to STARTED)=${Date.now() - this.onCreateTs}ms`);
+      }
       HiLog.end(TAG, 'isOnCreateExecuted');
     }
     this.isOnCreateExecuted = false;
@@ -84,11 +112,33 @@ export class DelayLoadService {
     // onForeground执行逻辑延后到started
     if (this.isOnForegroundExecuted) {
       HiLog.begin(TAG, 'isOnForegroundExecuted');
-      PlaySound.getInstance().loadSound();
-      MemoryService.getInstance().updateApplicationStorageSpace();
+      if (this.onForegroundTs > 0) {
+        HiLog.i(TAG, `completeLatency(from onForeground to STARTED)=${Date.now() - this.onForegroundTs}ms`);
+      }
       HiLog.end(TAG, 'isOnForegroundExecuted');
     }
     this.isOnForegroundExecuted = false;
+
+    if (this.startedTasks.length > 0) {
+      const tasks = this.startedTasks.slice();
+      this.startedTasks = [];
+      tasks.forEach((t: StartedTask) => {
+        setTimeout(() => {
+          HiLog.begin(TAG, `task:${t.name}`);
+          try {
+            t.task();
+          } catch (e) {
+            HiLog.e(TAG, `task:${t.name} failed: ${JSON.stringify(e)}`);
+          }
+          HiLog.end(TAG, `task:${t.name}`);
+        }, t.delayMs);
+      });
+    }
+
+    // Lightweight post-start defaults
+    setTimeout(() => {
+      MemoryService.getInstance().updateApplicationStorageSpace();
+    }, 200);
 
     this.unInit();
   }

@@ -56,6 +56,11 @@ const INITIATE_ACTION: string[] = [
   WorkerTask.ACTION_START_UP,
 ];
 
+const HEAVY_LOG_TASK_TYPES: Set<string> = new Set([
+  WorkerTask.ACTION_START_UP,
+  WorkerTask.ACTION_INIT
+]);
+
 export class WorkerTaskManager {
   private worker: worker.ThreadWorker;
   public taskQueue: { type: string, resolve: unknown, callback?: unknown }[] = [];
@@ -75,7 +80,7 @@ export class WorkerTaskManager {
   // 执行后需要返回结果的子线程任务
   public postMessage<T>(task: MessageInfo, resolve: ResolveType<T>, callback?: unknown): void {
     HiLog.i(TAG, `postMessage: task type = ${task.type}.`);
-    HiLog.i(TAG, `postMessage: data = ${simpleStringify(task.data)}`);
+    HiLog.i(TAG, `postMessage: data = ${this.getTaskDataSummary(task)}`);
     this.worker.postMessage(task);
     this.taskQueue.push({ type: task.type, resolve: resolve, callback: callback });
     HiLog.i(TAG, `postMessage: tasks length = ${this.taskQueue.length}, taskQueue = ${this.taskQueue.map(t => t.type)
@@ -85,7 +90,7 @@ export class WorkerTaskManager {
   // 需要按照下发顺序执行的子线程任务
   public postMessageWithSync<T>(task: MessageInfo, resolve: ResolveType<T>, callback?: unknown): void {
     HiLog.i(TAG, `postMessageWithSync: task type = ${task.type}.`);
-    HiLog.i(TAG, `postMessageWithSync: data = ${simpleStringify(task.data)}`);
+    HiLog.i(TAG, `postMessageWithSync: data = ${this.getTaskDataSummary(task)}`);
     this.closeActionResolute(task.type);
     if (this.isError && DeviceInfo.isPhone()) {
       if (INITIATE_ACTION.includes(task.type)) {
@@ -100,13 +105,13 @@ export class WorkerTaskManager {
     this.syncQueue.push({ task: task, resolve: resolve, time: 0, callback: callback });
     if (this.syncQueue.length === 1) {
       HiLog.i(TAG, `postMessage: syncTask type = ${task.type}.`);
-      HiLog.i(TAG, `postMessage: data = ${simpleStringify(task.data)}`);
+      HiLog.i(TAG, `postMessage: data = ${this.getTaskDataSummary(task)}`);
       this.worker.postMessage(task);
       this.syncQueue[0].time = currentTime;
       this.taskDuration();
     }
     const tasks: string = this.syncQueue.map(t => t.task.type).join(', ');
-    HiLog.i(TAG, `postMessage: syncTasks length = ${this.syncQueue.length}, queue = ${tasks}. task = ${JSON.stringify(task)}. `);
+    HiLog.i(TAG, `postMessage: syncTasks length = ${this.syncQueue.length}, queue = ${tasks}. ${this.getTaskBrief(task)}.`);
   }
 
   public closeActionResolute(type: string): void {
@@ -236,5 +241,19 @@ export class WorkerTaskManager {
       return true;
     }
     return false;
+  }
+
+  private getTaskDataSummary(task: MessageInfo): string {
+    if (HEAVY_LOG_TASK_TYPES.has(task.type)) {
+      return this.getTaskBrief(task);
+    }
+    return simpleStringify(task.data);
+  }
+
+  private getTaskBrief(task: MessageInfo): string {
+    if (!Array.isArray(task.data)) {
+      return `taskSummary={type:${task.type},dataType:${typeof task.data}}`;
+    }
+    return `taskSummary={type:${task.type},dataType:array,dataLength:${task.data.length}}`;
   }
 }

@@ -448,16 +448,12 @@ export default class PhotoOutputWrap extends CameraOutput {
   }
 
   public setMirror(value: boolean): void {
-    //自拍镜像不支持
-    // if (DeviceInfo.isRk3568() || DeviceInfo.isUis7885()) {
-    //   value = false;
-    // }
-    // HiLog.i(TAG, `setMirror value: ${value}.`);
-    // try {
-    //   this.mPhotoOutput.enableMirror(value);
-    // } catch (err) {
-    //   HiLog.e(TAG, `setMirror errcode: ${err?.code}, err: ${JSON.stringify(err)}.`);
-    // }
+    HiLog.i(TAG, `setMirror value: ${value}.`);
+    try {
+      this.mPhotoOutput.enableMirror(value);
+    } catch (err) {
+      HiLog.e(TAG, `setMirror errcode: ${err?.code}, err: ${JSON.stringify(err)}.`);
+    }
   }
 
   public setLivePhoto(value: boolean): void {

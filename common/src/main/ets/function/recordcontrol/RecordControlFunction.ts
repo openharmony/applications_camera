@@ -594,7 +594,9 @@ export class RecordControlFunction extends BaseFunction {
       }
     }).then(() => {
       const scene: ThumbnailUpdateScene = isInSwipeRecording ? ThumbnailUpdateScene.BURST : ThumbnailUpdateScene.RECORD;
-      // this.mStoreManager.postMessage(ThumbnailAction.received(this.thumbnail, scene)); TODO 这里更新屏蔽视频更新多次刷新
+      if (getStates().get<ModeType>('modeReducer', 'mode') === ModeType.PHOTO) { //TODO 这里更新屏蔽视频更新多次刷新
+        this.mStoreManager.postMessage(ThumbnailAction.received(this.thumbnail, scene));
+      }
     });
   }
 
