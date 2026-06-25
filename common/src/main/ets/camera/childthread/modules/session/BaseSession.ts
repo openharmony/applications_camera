@@ -49,8 +49,7 @@ export class BaseSession {
 
   on(type: 'error', callback: ErrorCallback<BusinessError<void>>): void;
 
-  // @ts-ignore
-  on(type: 'featureDetection', callback: AsyncCallback<SceneFeatureDetectionResult>, subType: camera.SceneFeatureType): void;
+  on(type: 'featureDetection', callback: AsyncCallback<camera.SceneFeatureDetectionResult>, subType: camera.SceneFeatureType): void;
 
   // @ts-ignore
   on(type: 'focusStateChange', callback: AsyncCallback<camera.FocusState, void>): void;
@@ -238,8 +237,7 @@ export class BaseSession {
 
   off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback<camera.SmoothZoomInfo, void>): void;
 
-  // @ts-ignore
-  off(type: 'featureDetection', callback?: AsyncCallback<SceneFeatureDetectionResult>): void;
+  off(type: 'featureDetection', callback?: AsyncCallback<camera.SceneFeatureDetectionResult>): void;
 
   // @ts-ignore
   off(type: 'macroStatusChanged', callback?: AsyncCallback<boolean, void>): void;

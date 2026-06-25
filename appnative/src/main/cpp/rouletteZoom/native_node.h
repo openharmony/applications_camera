@@ -183,8 +183,18 @@ private:
 
     void DrawRedLineTextAndShadow();
     
+    OH_Drawing_Rect* PrepareDrawState(OH_Drawing_Canvas *canvas, double curZoomVal, double curZoomAng);
+    
+    void GenerateAllScalePaths();
+    
+    void FinalizeDraw(OH_Drawing_Rect *bounds);
+
     void DrawLandscapeSlideSimuEquivalentFocal();
     
+    int ResolveLandscapeSlideIndex();
+    
+    void SetSimuRedTextPenAttribute(OH_Drawing_Filter **outFilter, OH_Drawing_MaskFilter **outMaskFilter);
+
     void SetCycleClickZoomPenAttribute(float x, float y);
     
     bool IsZoomValInCycleClickZoom(const ZoomStruct* state, double zoomValue);

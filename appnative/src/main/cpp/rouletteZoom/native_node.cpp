@@ -42,9 +42,13 @@ ZoomStruct* NativeNode::GetZoomState()
  */
 void NativeNode::NativeOnDraw(OH_Drawing_Canvas *canvas, double curZoomVal, double curZoomAng)
 {
-    /**
-     * 单位分界点,上述形参、变量定义均单位vp,仅drawing侧计算均需转换为px
-     */
+    OH_Drawing_Rect *bounds = PrepareDrawState(canvas, curZoomVal, curZoomAng);
+    GenerateAllScalePaths();
+    FinalizeDraw(bounds);
+}
+
+OH_Drawing_Rect* NativeNode::PrepareDrawState(OH_Drawing_Canvas *canvas, double curZoomVal, double curZoomAng)
+{
     cCanvas_ = canvas;
     state->curZoomValue = curZoomVal;
     state->curZoomAngle = curZoomAng == INVALID_ZOOM_ANGLE ? ZoomCalculate::CalZoomAngle(GetZoomState())
@@ -53,8 +57,8 @@ void NativeNode::NativeOnDraw(OH_Drawing_Canvas *canvas, double curZoomVal, doub
     DrawPhotoSphereAndShadow(); // 顶部光球绘制
     OH_Drawing_Rect *bounds =
         OH_Drawing_RectCreate(0, 0, state->width * state->densityPixels, state->height * state->densityPixels);
-    NativeNode::ZoomTextFadeNewLayer(bounds); // 新建图层实现文字渐影颜色混合滤波
-    NativeNode::ZoomScaleScaleNewLayer(bounds); // 新建图层实现焦圈缩放颜色混合滤波
+    ZoomTextFadeNewLayer(bounds); // 新建图层实现文字渐影颜色混合滤波
+    ZoomScaleScaleNewLayer(bounds); // 新建图层实现焦圈缩放颜色混合滤波
     
     if (state->scaleAllMatteScale > LAYER_OPT_8) {
         OH_Drawing_PathReset(tShadowPath_); // 重置各段Path路径
@@ -62,6 +66,11 @@ void NativeNode::NativeOnDraw(OH_Drawing_Canvas *canvas, double curZoomVal, doub
     OH_Drawing_PathReset(tOuterLinePath_);
     OH_Drawing_PathReset(tShortLinePath_);
     OH_Drawing_PathReset(tQuickLinePath_);
+    return bounds;
+}
+
+void NativeNode::GenerateAllScalePaths()
+{
     for (int i = 0; i < ZOOM_SCALE_COUNT; i++) {
         float curDotAngle = state->curZoomAngle + i * SCALE_GAP_ANGLE; // 当前刻度对应角度
         if (curDotAngle > HALF_SCALE_DRAW_COUNT * SCALE_GAP_ANGLE &&
@@ -79,7 +88,6 @@ void NativeNode::NativeOnDraw(OH_Drawing_Canvas *canvas, double curZoomVal, doub
             selectedOpticalIndex != -1 && state->opticalZoomValArr != nullptr
                 ? IsZoomValInCycleClickZoom(GetZoomState(), state->opticalZoomValArr[selectedOpticalIndex])
                 : false;
-        // sizeof([])返回数组总大小(以字节为单位);sizeof(int*)返回指针大小,不管它指向什么类型的数据;
         if (state->opticalArrLength > 0 && state->opticalZoomDotIndexArr != nullptr &&
             i <= state->opticalZoomDotIndexArr[state->opticalArrLength - 1]) { // 仅实体点绘制刻度阴影
             if (state->scaleAllMatteScale > LAYER_OPT_8) {
@@ -96,13 +104,16 @@ void NativeNode::NativeOnDraw(OH_Drawing_Canvas *canvas, double curZoomVal, doub
             DrawRatioTextAndShadow(curDotAngle, selectedOpticalIndex);
         }
     }
+}
 
+void NativeNode::FinalizeDraw(OH_Drawing_Rect *bounds)
+{
     if (state->scaleAllMatteScale > LAYER_OPT_8) {
         DrawZoomShadow(tShadowPath_); // 焦圈阴影绘制
     }
     DrawZoomScale(tOuterLinePath_, tShortLinePath_, tQuickLinePath_); // 变焦刻度绘制
-    NativeNode::ZoomScaleScaleSourceAnim(); // 焦圈缩放源数据执行动效
-    NativeNode::ZoomTextFadeSourceAnim(); // 文字渐影源数据执行动效
+    ZoomScaleScaleSourceAnim(); // 焦圈缩放源数据执行动效
+    ZoomTextFadeSourceAnim(); // 文字渐影源数据执行动效
     OH_Drawing_RectDestroy(bounds);
     DrawRedLineTextAndShadow(); // 焦圈中心刻度绘制
 }
@@ -870,21 +881,8 @@ void NativeNode::DrawRedLineCycle(int outerX, int outerY, int innerY, double red
  */
 void NativeNode::DrawLandscapeSlideSimuEquivalentFocal()
 {
-    int index = state->landscapeSlideZoomIndex;
-    if (!ZoomCalculate::isIndexLegal(state->opticalArrLength, state->landscapeSlideZoomIndex) ||
-        state->opticalZoomValArr == nullptr) {
-        return;
-    }
-    if ((state->isSupportedEquivalentFocalBigText || state->isSupportedCycleClickZoom)) {
-        double roundZoomVal = state->opticalZoomValArr[state->landscapeSlideZoomIndex];
-        int diff = ZoomCalculate::getFocalIndexDiff(GetZoomState(), roundZoomVal, state->littlePointCnt);
-        if (ZoomCalculate::isLittlePoint(GetZoomState(), roundZoomVal, diff)) {
-            return;
-        } else if (diff > ARRAY_ZERO) {
-            index = index - diff;
-        }
-    }
-    if (!ZoomCalculate::isIndexLegal(state->quickArrLength, index) || state->quickEquivalentFocalArr == nullptr) {
+    int index = ResolveLandscapeSlideIndex();
+    if (index == INVALID_INDEX) {
         return;
     }
     std::stringstream ss2;
@@ -896,20 +894,9 @@ void NativeNode::DrawLandscapeSlideSimuEquivalentFocal()
     OH_Drawing_Typography *mTypographyOptical_ =
         GetTypography(tempStr2, TEXT_MAX_WIDTH, opacityChannel, true, EQUIVALENT_FOCAL_FONT);
 
-    OH_Drawing_PenReset(cSimuRedTextPen_);
-    OH_Drawing_PenSetWidth(cSimuRedTextPen_, EQU_TEXT_PEN_WIDTH);
-    OH_Drawing_PenSetJoin(cSimuRedTextPen_, LINE_ROUND_JOIN);
-    OH_Drawing_PenSetColor(cSimuRedTextPen_,
-                           state->isBlueIcon
-                               ? OH_Drawing_ColorSetArgb(COLOR_CHANNEL_MAX, COLOR_CHANNEL_RED_NOVA,
-                                                         COLOR_CHANNEL_GREEN_NOVA, COLOR_CHANNEL_BLUE_NOVA)
-                               : OH_Drawing_ColorSetArgb(COLOR_CHANNEL_MAX, COLOR_CHANNEL_MAX, 0, 0));
-
-    OH_Drawing_Filter *tOpticalTextFilter_ = OH_Drawing_FilterCreate();
-    OH_Drawing_MaskFilter *tOpticalTextMaskFilter_ =
-        OH_Drawing_MaskFilterCreateBlur(OUTER, RATIO_TEXT_MASK_FILTER_SIGMA, true);
-    OH_Drawing_FilterSetMaskFilter(tOpticalTextFilter_, tOpticalTextMaskFilter_);
-    OH_Drawing_PenSetFilter(cSimuRedTextPen_, tOpticalTextFilter_);
+    OH_Drawing_Filter *tOpticalTextFilter_ = nullptr;
+    OH_Drawing_MaskFilter *tOpticalTextMaskFilter_ = nullptr;
+    SetSimuRedTextPenAttribute(&tOpticalTextFilter_, &tOpticalTextMaskFilter_);
 
     double *opticalPos = new double[ARRAY_TWO];
     opticalPos[ARRAY_ZERO] = (state->width / DIVIDE_BY_TWO) * state->densityPixels - TEXT_MAX_WIDTH / DIVIDE_BY_TWO;
@@ -928,4 +915,43 @@ void NativeNode::DrawLandscapeSlideSimuEquivalentFocal()
     OH_Drawing_DestroyTypography(mTypographyOptical_);
     OH_Drawing_FilterDestroy(tOpticalTextFilter_);
     OH_Drawing_MaskFilterDestroy(tOpticalTextMaskFilter_);
+}
+
+int NativeNode::ResolveLandscapeSlideIndex()
+{
+    int index = state->landscapeSlideZoomIndex;
+    if (!ZoomCalculate::isIndexLegal(state->opticalArrLength, state->landscapeSlideZoomIndex) ||
+        state->opticalZoomValArr == nullptr) {
+        return INVALID_INDEX;
+    }
+    if ((state->isSupportedEquivalentFocalBigText || state->isSupportedCycleClickZoom)) {
+        double roundZoomVal = state->opticalZoomValArr[state->landscapeSlideZoomIndex];
+        int diff = ZoomCalculate::getFocalIndexDiff(GetZoomState(), roundZoomVal, state->littlePointCnt);
+        if (ZoomCalculate::isLittlePoint(GetZoomState(), roundZoomVal, diff)) {
+            return INVALID_INDEX;
+        } else if (diff > ARRAY_ZERO) {
+            index = index - diff;
+        }
+    }
+    if (!ZoomCalculate::isIndexLegal(state->quickArrLength, index) || state->quickEquivalentFocalArr == nullptr) {
+        return INVALID_INDEX;
+    }
+    return index;
+}
+
+void NativeNode::SetSimuRedTextPenAttribute(OH_Drawing_Filter **outFilter, OH_Drawing_MaskFilter **outMaskFilter)
+{
+    OH_Drawing_PenReset(cSimuRedTextPen_);
+    OH_Drawing_PenSetWidth(cSimuRedTextPen_, EQU_TEXT_PEN_WIDTH);
+    OH_Drawing_PenSetJoin(cSimuRedTextPen_, LINE_ROUND_JOIN);
+    OH_Drawing_PenSetColor(cSimuRedTextPen_,
+                           state->isBlueIcon
+                               ? OH_Drawing_ColorSetArgb(COLOR_CHANNEL_MAX, COLOR_CHANNEL_RED_NOVA,
+                                                         COLOR_CHANNEL_GREEN_NOVA, COLOR_CHANNEL_BLUE_NOVA)
+                               : OH_Drawing_ColorSetArgb(COLOR_CHANNEL_MAX, COLOR_CHANNEL_MAX, 0, 0));
+
+    *outFilter = OH_Drawing_FilterCreate();
+    *outMaskFilter = OH_Drawing_MaskFilterCreateBlur(OUTER, RATIO_TEXT_MASK_FILTER_SIGMA, true);
+    OH_Drawing_FilterSetMaskFilter(*outFilter, *outMaskFilter);
+    OH_Drawing_PenSetFilter(cSimuRedTextPen_, *outFilter);
 }

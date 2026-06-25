@@ -277,7 +277,7 @@ int ZoomCalculate::getLittlePotCount(const ZoomStruct* state)
 int ZoomCalculate::getLittlePotCountInCycleClickZoom(const ZoomStruct* state)
 {
     int count = ARRAY_ZERO;
-    if (state->opticalArrLength < 2 || state->opticalZoomValArr == nullptr ||
+    if (state->opticalArrLength < ARRAY_TWO || state->opticalZoomValArr == nullptr ||
         state->cycleClickZoomValArr == nullptr) {
         return count;
     }
