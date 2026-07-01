@@ -1181,7 +1181,11 @@ export default class MainAbility extends UIAbility {
     if (!AppStorage.get('windowDisplayId')) {
       if(!DeviceInfo.isRk3568()){
         HiLog.i(TAG, 'onWindowStageCreate setDefaultDensityEnabled true E');
-        windowStage.setDefaultDensityEnabled(true);
+        try {
+          windowStage.setDefaultDensityEnabled(true);
+        } catch (e) {
+          HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`)
+        }
         AppStorage.setOrCreate('windowDisplayName', 'UNKNOWN');
         HiLog.i(TAG, 'onWindowStageCreate setDefaultDensityEnabled true X');
       }
