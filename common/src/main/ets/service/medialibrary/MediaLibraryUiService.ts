@@ -37,7 +37,6 @@ import fs from '@ohos.file.fs';
 import lazy { fileIO } from '../../utils/LazyImportUtil';
 import lazy { JSON } from '@kit.ArkTS';
 import json from '@ohos.util.json';
-import lazy { RecordController } from '../../function/recordcontrol/RecordController';
 import { PhotoFormatMode } from '../../function/enumbase/PhotoFormatMode';
 import { ModeType } from '../../mode/ModeType';
 
@@ -252,9 +251,6 @@ export default class MediaLibraryUiService {
         thumbnailInfo = await MediaLibraryUiService.getInstance().getThumbnailInfo(uri);
         if (thumbnailInfo && !ThumbnailService.getInstance().isDeregisterUri(uri)) {
           ThumbnailService.getInstance().deregisterUri(uri);
-        } else if (RecordController.getInstance().isMovieFile()) {
-          HiLog.i(TAG, 'handleMediaUriChange during getPhotoAsset isDeregisterUri, ignoreUriChange!');
-          return;
         }
       } else if (type === photoAccessHelper.NotifyType.NOTIFY_REMOVE) {
         thumbnailInfo = await MediaLibraryUiService.getInstance().getThumbnailInfo();

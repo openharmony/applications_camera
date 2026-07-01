@@ -20,11 +20,6 @@ import lazy { audio } from '@kit.AudioKit';
 import lazy { FeatureManager } from '../core/FeatureManager';
 import lazy { FunctionId } from '../core/functionproperty/FunctionId';
 import lazy { RecordActionType } from '../../redux/actions/RecordActionType';
-import lazy { ModeType } from '../../mode/ModeType';
-import lazy { getStates } from '../../redux';
-import lazy { CameraAppCapability } from '../../camera/CameraAppCapability';
-import lazy { OutputOperation } from '../outputswitcher/OutputOperation';
-import { GlobalContext } from '../../utils/GlobalContext';
 
 /* instrument ignore file */
 const TIP_DURING: number = 3000;
@@ -109,14 +104,6 @@ export class RecordController {
       return this.validateAudioAvailablePhoto();
     }
     let source: audio.SourceType = audio.SourceType.SOURCE_TYPE_CAMCORDER;
-    const mode: ModeType = getStates().get<ModeType>('modeReducer', 'mode');
-    const isPanVideoOutput: boolean = OutputOperation.isPanVideoOutput(mode);
-    // 普通录像，专业录像，微距录像，大光圈录像
-    if (this.isMovieFile() && isPanVideoOutput && (
-      mode === ModeType.VIDEO
-    )) {
-      source = audio.SourceType.SOURCE_TYPE_UNPROCESSED;
-    }
     const captureInfo: audio.AudioCapturerInfo = {
       source,
       capturerFlags: 0
@@ -127,16 +114,5 @@ export class RecordController {
     const isRecordingAvailable: boolean = streamManager?.isRecordingAvailable?.(captureInfo);
     HiLog.i(TAG, `validateAudioAvailable isRecordingAvailable: ${isRecordingAvailable}, source: ${source}`);
     return isRecordingAvailable;
-  }
-
-  public isMovieFile(): boolean {
-    const mode: ModeType = getStates().get<ModeType>('modeReducer', 'mode');
-    if (GlobalContext.get().getIsPicker()) {
-      return false;
-    }
-    if (!CameraAppCapability.getInstance().getIsSupportMovieFile()) {
-      return false;
-    }
-    return mode === ModeType.VIDEO;
   }
 }

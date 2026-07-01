@@ -19,7 +19,6 @@ import type worker from '@ohos.worker';
 import lazy { WorkerTask } from '../WorkerTask';
 import lazy { DeviceInfo } from '../../component/deviceinfo/DeviceInfo';
 import lazy { RestartService } from '../../service/restart/RestartService';
-import lazy { RecordController } from '../../function/recordcontrol/RecordController';
 import { simpleStringify } from '../../utils/SimpleStringify';
 
 /* instrument ignore file */
@@ -122,18 +121,8 @@ export class WorkerTaskManager {
     if (this.syncQueue.length <= 1) {
       return;
     }
-    if (!RecordController.getInstance().isMovieFile()) {
-      this.syncQueue = [this.syncQueue[0]];
-      return
-    }
-    let stopRecordIndex = 0;
-    for (let i = 1; i < this.syncQueue.length; i++) {
-      if (this.syncQueue[i].task.type === WorkerTask.ACTION_RECORD_STOP) {
-        stopRecordIndex = i;
-        break;
-      }
-    }
-    this.syncQueue = stopRecordIndex === 0 ? [this.syncQueue[0]] : [this.syncQueue[0], this.syncQueue[stopRecordIndex]];
+    this.syncQueue = [this.syncQueue[0]];
+    return;
   }
 
   public onMessage(result: MessageInfo): void {

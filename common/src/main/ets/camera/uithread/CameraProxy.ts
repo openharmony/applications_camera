@@ -75,7 +75,6 @@ import lazy { PickerAction } from '../../service/picker/PickerAction';
 import lazy { systemDateTime } from '@kit.BasicServicesKit';
 import lazy { RecordActionType } from '../../redux/actions/RecordActionType';
 import lazy { OutputOperation } from '../../function/outputswitcher/OutputOperation';
-import { RecordController } from '../../function/recordcontrol/RecordController';
 import lazy { CollaborateControlAction } from '../../service/collaborateControl/CollaborateControlAction'
 import lazy { CollaborateControlService } from '../../service/collaborateControl/CollaborateControlService'
 
@@ -294,7 +293,6 @@ export class CameraProxy {
       }
       HiLog.i(TAG, `CameraProxy on videoUri: ${uri}.`);
       thumbnailService.deregisterUri(uri);
-      storeManager.postMessage(RecordAction.videoOnSave(uri));
     });
     this.on(WorkerTask.ON_RECORD_ERROR, (data) => {
       storeManager.postMessage(RecordAction.error(data.errorCode, data.errorMsg));
@@ -868,9 +866,7 @@ export class CameraProxy {
 
   public stopRecording(validateThumbnail: boolean): Promise<void> {
     return this.postMessageForPromise<void>(WorkerTask.ACTION_RECORD_STOP, [validateThumbnail], () => {
-      if (!RecordController.getInstance().isMovieFile()) {
-        AppStorage.setOrCreate('thumbnailMediaUri', getStates().get<string>('recordReducer', 'videoUri'));
-      }
+      AppStorage.setOrCreate('thumbnailMediaUri', getStates().get<string>('recordReducer', 'videoUri'));
     });
   }
 

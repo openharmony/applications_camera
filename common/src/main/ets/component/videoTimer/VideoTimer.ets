@@ -191,18 +191,8 @@ export struct VideoTimer {
     });
     this.mAction.updateRecordingTimerComponentLargeState(true);
     this.setIntervalTimer();
-    if (RecordController.getInstance().isMovieFile()) {
-      this.mEventBus.on(RecordActionType.WILL_PAUSE, this.onPause.bind(this), this.mBase.hashCode());
-      this.mEventBus.on(WorkerTask.VIDEO_STATE_CHANGE, async (type: string) => {
-        HiLog.i(TAG, `RECORD_TRACK onVideoStateChanged, type: ${type}, uselessSeconds: ${this.uselessSeconds}.`);
-        if (type === 'recordingResume') {
-          await this.onResume();
-        }
-      }, this.mBase.hashCode());
-    } else {
-      this.mEventBus.on(RecordActionType.PAUSE, this.onPause.bind(this), this.mBase.hashCode());
-      this.mEventBus.on(RecordActionType.RESUME, this.onResume.bind(this), this.mBase.hashCode());
-    }
+    this.mEventBus.on(RecordActionType.PAUSE, this.onPause.bind(this), this.mBase.hashCode());
+    this.mEventBus.on(RecordActionType.RESUME, this.onResume.bind(this), this.mBase.hashCode());
 
     this.mEventBus.on(RecordActionType.STOP, this.onStop.bind(this), this.mBase.hashCode());
     this.mEventBus.on(ActionType.ACTION_RECORD_START_SECONDS, this.startToRecord.bind(this), this.mBase.hashCode());
@@ -806,7 +796,7 @@ export struct VideoTimer {
 
     const uselessTime: number = this.uselessSeconds + (this.startTime - this.stopTime) +
       // 经验值，后续待重构成优先用接口回调获取时间
-      (RecordController.getInstance().isMovieFile() ? 0 : 200);
+      200;
     execDispatch(Action.updateRecordUselessTime(uselessTime));
     this.setIntervalTimer();
   }

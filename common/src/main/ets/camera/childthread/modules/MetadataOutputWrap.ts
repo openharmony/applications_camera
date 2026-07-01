@@ -23,7 +23,6 @@ import lazy { OutputType } from '../../../function/outputswitcher/OutputType';
 import lazy { OutputOperation } from '../../../function/outputswitcher/OutputOperation';
 import lazy { workerCallback } from '../WorkerCallback';
 import lazy { simpleStringify } from '../../../utils/SimpleStringify';
-import lazy { FocusTrackingMetaInfo } from './video/MovieFileOutputCinemaWrap';
 
 const UPDATE_PRECISION: number = 0.002;
 const UPDATE_PRECISION_EYE: number = 0.0015;
@@ -62,7 +61,6 @@ export default class MetadataOutputWrap extends CameraOutput {
   private mIsVideoOutPut: boolean = false;
   private mCurrentZoomRatio: number = 1;
   private mIsSupportOnlyShowEye: boolean = false;
-  private isCinemaEmpty: boolean = false;
 
   constructor(cameraDeviceManager: CameraDeviceManager, cameraContext: CameraContext) {
     super(cameraDeviceManager, cameraContext);
@@ -96,21 +94,6 @@ export default class MetadataOutputWrap extends CameraOutput {
   public metadataOutputOn(): void {
     this.mMetadataOutput.on('metadataObjectsAvailable',
       (err, metadataObject: camera.MetadataObject[]) => this.metadataObjCallback(err, metadataObject));
-  }
-
-  private focusTrackingMetaInfoAvailableCallback(err, info: FocusTrackingMetaInfo): void {
-    if (err) {
-      HiLog.e(TAG, `handleCinemaTracking focusTrackingInfoAvailable, err: ${err}.`);
-      return;
-    }
-    const isEmpty = info.detectedObjects.length === 0 && (!info.trackingRegion?.width || !info.trackingRegion?.height);
-    if (isEmpty && this.isCinemaEmpty) {
-      HiLog.i(TAG, `MOVIE_TRACKING focusTrackingMetaInfoAvailable isEmpty, info: ${simpleStringify(info)}.`);
-      return;
-    }
-    this.isCinemaEmpty = isEmpty;
-    HiLog.i(TAG, `MOVIE_TRACKING focusTrackingMetaInfoAvailable FocusTrackingMetaInfo: ${simpleStringify(info)}.`);
-    workerCallback.updateFocusTrackingInfo(info);
   }
 
   private metadataObjCallback(err, metadataObjectArr: camera.MetadataObject[]): void {

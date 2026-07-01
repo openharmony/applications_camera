@@ -77,7 +77,6 @@ import lazy { DisplayService } from '../../service/UIAdaptive/DisplayService';
 import lazy { CommonConstants } from '../../statistics/CommonConstants';
 import lazy { WindowService } from '../../service/window/WindowService';
 import lazy { WindowActionType } from '../../redux/actions/WindowActionType';
-import lazy { RecordController } from '../../function/recordcontrol/RecordController';
 import { PhotoFormatMode } from '../../function/enumbase/PhotoFormatMode';
 import { CollaborateControlService } from '../../service/collaborateControl/CollaborateControlService';
 
@@ -1169,7 +1168,6 @@ export class CameraBasicService {
     }
     HiLog.i(TAG, `getVideoProfile end, VideoProfile: ${JSON.stringify(videoProfile)}.`);
 
-    const isMovie: boolean = RecordController.getInstance().isMovieFile();
     const config: media.AVRecorderConfig = isTempMessage ?
       RecorderConfigOperation.getDefaultConfig(videoProfile, frameRate) :
       RecorderConfigOperation.createVideoConfig(videoProfile, frameRate, isHdr);
@@ -1184,7 +1182,6 @@ export class CameraBasicService {
       isSupportVideoEdit:
       CameraAppCapability.getInstance().getIsSupportRecordingFlowing(),
       isSupportVideoWatermark: false,
-      isMovie,
       isFlowingVideo: false,
       preferencesMirror: <boolean> PreferencesService.getInstance()
         .getFunctionValue(PersistType.FOREVER, FunctionId.MIRROR, true),

@@ -16,12 +16,11 @@
 import lazy { HiLog } from '../../../../utils/HiLog';
 import camera from '@ohos.multimedia.camera';
 import type { PickerInfo } from '../../../../utils/types';
-import lazy { VideoOutputWrap, MovieFileOutputWrap } from '../../../../utils/LazyImportUtil';
+import lazy { VideoOutputWrap } from '../../../../utils/LazyImportUtil';
 import lazy { TagMessage, VideoOutputMessage } from '../../../DataType';
 import VideoOutputInterface from './VideoOutputInterface';
 import CameraContext from '../CameraContext';
 import lazy { ModeType } from '../../../../mode/ModeType';
-import MovieFileOutputCinemaWrap from './MovieFileOutputCinemaWrap';
 
 /* instrument ignore file */
 const TAG: string = 'VideoModule';
@@ -47,13 +46,8 @@ export default class VideoModule {
     HiLog.begin(TAG, 'createOutput');
     this.pickerInfo = pickerInfo;
     await this.release();
-    if (message.isMovie) {
-      HiLog.i(TAG, 'RECORD_TRACK isMovie, video create.');
-      this.videoWrap = new MovieFileOutputWrap();
-    } else {
-      HiLog.i(TAG, 'isVideo, video create.');
-      this.videoWrap = new VideoOutputWrap();
-    }
+    HiLog.i(TAG, 'isVideo, video create.');
+    this.videoWrap = new VideoOutputWrap();
     //TODO PC预览流定位到这里，因为这个任务的执行导致。怀疑是PC视频格式导致
     try {
       await this.videoWrap?.init(message, tagMessage, manager, pickerInfo);
