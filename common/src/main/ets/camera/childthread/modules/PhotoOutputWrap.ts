@@ -44,7 +44,6 @@ const ANGLE_90: number = 90;
 const ANGLE_270: number = 270;
 const ROTATION_1: number = 1;
 const ROTATION_3: number = 3;
-const RELEASE_OFFLINE_PHOTO_OUTPUT_DELAY: number = 100;
 
 // PhotoOutput包装类
 export default class PhotoOutputWrap extends CameraOutput {
@@ -74,12 +73,7 @@ export default class PhotoOutputWrap extends CameraOutput {
   private hasCaptureReady: boolean = false;
   private hasAvailablePhotoAsset: boolean = false;
   private hasCaptured: boolean = false;
-  public mOfflinePhotoReceiveCallBack: Function = () => {
-  };
-  public mOfflinePhotoFinishCallBack: Function = () => {
-  };
-  private offlineSupport: boolean = false;
-  // 是否支持离线拍照
+
   private mQuickThumbnailMap: Map<string, image.PixelMap>;
   private pcPickerPhotoMap: Map<string, image.PixelMap>;
 
@@ -186,7 +180,6 @@ export default class PhotoOutputWrap extends CameraOutput {
       this.unregisterListeners('photoAssetAvailable');
       this.unregisterListeners('quickThumbnail');
       this.unregisterListeners('photoAvailable');
-      this.unregisterListeners('offlineDeliveryFinished');
       this.unregisterListeners('frameShutterEnd');
       this.unregisterListeners('captureReady');
       this.unregisterListeners('estimatedCaptureDuration');
@@ -382,33 +375,6 @@ export default class PhotoOutputWrap extends CameraOutput {
     }
   }
 
-  public enableOffline(): void {
-    try { // commitConfig之后使能离线拍照
-      this.offlineSupport = this.mPhotoOutput.isOfflineSupported();
-      if (!this.isDeferEnabled) {
-        HiLog.i(TAG, 'SINGLE_STAGE does not support offline');
-        this.offlineSupport = false;
-      }
-      workerCallback.updateOfflineSupport(this.offlineSupport);
-      HiLog.i(TAG, `isOfflineSupported:${this.offlineSupport}.`);
-      if (this.offlineSupport) {
-        this.mPhotoOutput.enableOffline();
-        this.mPhotoOutput.on('offlineDeliveryFinished', () => this.offlineDeliveryFinished());
-        HiLog.i(TAG, 'enableOffline successful.');
-      }
-    } catch (err) {
-      HiLog.e(TAG, `enableOffline fail:${err}.`);
-    }
-  }
-
-  private async offlineDeliveryFinished(): Promise<void> {
-    // 处理完离线拍照的数据回调，释放离线photoOutput，需要使用setTimeOut异步，否则会死锁
-    HiLog.i(TAG, 'offlineDeliveryFinished');
-    setTimeout(() => {
-      this.mOfflinePhotoFinishCallBack();
-    }, RELEASE_OFFLINE_PHOTO_OUTPUT_DELAY);
-  }
-
   private queryAndEnableQuickThumbnail(mode: ModeType, outputType: OutputType): boolean {
     HiLog.i(TAG,
       `queryAndEnableQuickThumbnail isQuickThumbnailSupported ${this.mPhotoOutput.isQuickThumbnailSupported()}`);
@@ -496,10 +462,6 @@ export default class PhotoOutputWrap extends CameraOutput {
     return this.isQuickThumbnail;
   }
 
-  public getIsOfflineSupport(): boolean {
-    return this.offlineSupport;
-  }
-
   // -------- 下述注册相机框架监听回调方法 -------- //
 
   /*
@@ -511,7 +473,6 @@ export default class PhotoOutputWrap extends CameraOutput {
     if (!!err) {
       const error = `Camera_photoAssetAvailable failed: ${err?.code}}`;
       HiLog.e(TAG, error);
-      this.mOfflinePhotoReceiveCallBack(-1);
       return;
     }
     // @ts-ignore
@@ -522,7 +483,6 @@ export default class PhotoOutputWrap extends CameraOutput {
       this.mQuickThumbnailMap.delete(captureId);
     }
 
-    this.mOfflinePhotoReceiveCallBack(captureId);
     if (!this.mPickerInfo.isPicker) {
       workerCallback.minusPhotoCount();
     }

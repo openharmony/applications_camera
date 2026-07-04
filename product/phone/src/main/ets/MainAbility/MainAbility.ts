@@ -100,7 +100,6 @@ import lazy { PhotoBrowserManager } from '@ohos/common/src/main/ets/service/phot
 import lazy { TabBarAction } from '@ohos/common/src/main/ets/component/tabbar/TabBarAction';
 import lazy { dataShare } from '@kit.ArkData';
 import lazy { DelayLoadService } from '@ohos/common/src/main/ets/service/delayLoad/delayLoadService';
-import lazy { CommonConstants } from '@ohos/common/src/main/ets/statistics/CommonConstants';
 import lazy { TipService } from '@ohos/common/src/main/ets/component/tip/TipService';
 import lazy {
   AUTH_STATE,
@@ -1543,10 +1542,6 @@ export default class MainAbility extends UIAbility {
         HiLog.i(TAG, `onApplicationBackground: ${SuspendTaskUtil.getInstance().getAlreadyCloseCamera()}`);
         PhotoBrowserManager.getInstance().setViewVisibility();
         SuspendTaskUtil.getInstance().setIsInBackground(true);
-        if (SuspendTaskUtil.getInstance().isEnterOfflinePhoto()) { // 触发离线拍照的短时任务
-          SuspendTaskUtil.getInstance().requestSuspendDelay(CommonConstants.SUSPEND_DELAY_OFFLINE_REASON);
-          return;
-        }
         if (SuspendTaskUtil.getInstance().getAlreadyCloseCamera()) {
           return;
         }

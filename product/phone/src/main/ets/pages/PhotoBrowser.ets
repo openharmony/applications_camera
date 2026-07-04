@@ -391,7 +391,7 @@ struct PhotoBrowser {
 
   // 即将拉起大图组件时,根据80分图是否全部落盘完成状态,决定closeCamera时机
   private handleBrowserShowCloseCamera(isNeedWaitCloseCamera: boolean): void {
-    if (!isNeedWaitCloseCamera || ThumbnailService.getInstance().isOfflineSupported()) { // 离线拍照不需要等待
+    if (!isNeedWaitCloseCamera) {
       HiLog.i(TAG, 'handleBrowserShowCloseCamera isNeedWaitCloseCamera false.');
       this.mPhotoBrowserFlowState = PhotoBrowserFlowType.CLOSE;
       this.mTaskQueue.addTask(CameraTask.CLOSE);

@@ -634,24 +634,6 @@ export default class SessionWrap {
     return isHasFlash;
   }
 
-  public async offlineRemoveOutput(): Promise<void> {
-    HiLog.begin(TAG, 'offlineRemoveOutput');
-    try {
-      this.mSession.beginConfig();
-    } catch (e) {
-      HiLog.i(TAG, `beginConfig, err: ${simpleStringify(e)}.`);
-    }
-    try {
-      this.mSession.removeOutput(this.mPhotoOutput.getOutput());
-    } catch (e) {
-      HiLog.i(TAG, `offlineRemoveOutput, err: ${simpleStringify(e)}.`);
-    }
-    await this.mSession.commitConfig().catch(error => {
-      HiLog.e(TAG, `session commitConfig error: ${simpleStringify(error)}.`);
-    });
-    HiLog.end(TAG, 'offlineRemoveOutput');
-  }
-
   public async removeInput(): Promise<void> {
     HiLog.begin(TAG, 'removeInput');
     this.mSession.beginConfig();

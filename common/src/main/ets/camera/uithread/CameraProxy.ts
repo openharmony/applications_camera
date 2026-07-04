@@ -575,9 +575,7 @@ export class CameraProxy {
     this.on(WorkerTask.ACTION_ON_LENS_DIRTY, (data: { isCameraLensDirty: boolean }) => {
       storeManager.postMessage(CameraAction.onLensDirty(data.isCameraLensDirty));
     });
-    this.on(WorkerTask.UPDATE_OFFLINE_SUPPORT, (isSupport: boolean) => {
-      thumbnailService.updateOfflineSupport(isSupport);
-    });
+
     this.on(WorkerTask.OPEN_FAILED, (data: { failReason: string }) => {
       HiLog.e(TAG, 'camera Error, OPEN_FAILED onMessage.');
       AppStorage.setOrCreate('cameraError', true);
@@ -605,17 +603,7 @@ export class CameraProxy {
     this.on(WorkerTask.RESET_PHOTO_COUNT, () => {
       SuspendTaskUtil.getInstance().resetCount();
     });
-    this.on(WorkerTask.UPDATE_OFFLINE_CAPTURE_ARRAY,
-      (data: { captureIdList: number[], isEnterOffline: boolean, burstOfflineCount: number }) => {
-        SuspendTaskUtil.getInstance()
-          .updateOfflineCaptureArray(data.captureIdList, data.isEnterOffline, data.burstOfflineCount);
-      });
-    this.on(WorkerTask.ON_DEFER_PHOTO_SAVE_END, (data: { captureId: number, isBurstCapture: boolean }) => {
-      SuspendTaskUtil.getInstance().onDeferSavePhotoEnd(data.captureId, data.isBurstCapture);
-    });
-    this.on(WorkerTask.RESET_BURST_OFFLINE_COUNT, () => {
-      SuspendTaskUtil.getInstance().resetBurstOfflineCount();
-    });
+
     this.on(WorkerTask.SET_CAMERA_CLOSE_FLAG, (flag: boolean) => {
       SuspendTaskUtil.getInstance().setAlreadyCloseCamera(flag);
     });

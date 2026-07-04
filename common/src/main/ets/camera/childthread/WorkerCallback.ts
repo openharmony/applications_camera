@@ -149,14 +149,6 @@ export interface WorkerCallback {
 
   onLosePhoto(count: number): void;
 
-  enterOfflinePhoto(type: string, count: number): void;
-
-  onOfflinePhotoReceive(duration: number, offlineCount: number): void;
-
-  onOfflinePhotoFinish(isFinish: boolean, loseCount: number, duration: number): void;
-
-  updateOfflineSupport(isSupport: boolean): void;
-
   openCameraFailed(failReason: string): void;
 
   burstStartFailed(): void;
@@ -175,11 +167,7 @@ export interface WorkerCallback {
 
   resetPhotoCount(): void;
 
-  updateOfflineCaptureArray(captureIdList: number[], isEnterOffline: boolean, burstOfflineCount: number): void;
-
   onDeferPhotoSaveEnd(captureId: number, isBurstCapture: boolean): void;
-
-  resetBurstOfflineCount(): void;
 
   setCameraCloseFlag(flag: boolean): void;
 
@@ -637,34 +625,6 @@ export const workerCallback: WorkerCallback = {
       hasResolve: false
     });
   },
-  enterOfflinePhoto: (type: string, count: number) => {
-    workerPort.postMessage({
-      type: WorkerTask.REPORT_ENTER_OFFLINE_PHOTO,
-      data: { type: type, count: count },
-      hasResolve: false
-    });
-  },
-  onOfflinePhotoReceive: (duration: number, offlineCount: number) => {
-    workerPort.postMessage({
-      type: WorkerTask.REPORT_OFFLINE_PHOTO_RECEIVE,
-      data: { duration: duration, offlineCount: offlineCount },
-      hasResolve: false
-    });
-  },
-  onOfflinePhotoFinish: (isFinish: boolean, loseCount: number, duration: number) => {
-    workerPort.postMessage({
-      type: WorkerTask.REPORT_OFFLINE_FINISH,
-      data: { isFinish: isFinish, loseCount: loseCount, duration: duration },
-      hasResolve: false
-    });
-  },
-  updateOfflineSupport: (isSupport: boolean) => {
-    workerPort.postMessage({
-      type: WorkerTask.UPDATE_OFFLINE_SUPPORT,
-      data: isSupport,
-      hasResolve: false
-    });
-  },
   openCameraFailed: (failReason: string) => {
     workerPort.postMessage({
       type: WorkerTask.OPEN_FAILED,
@@ -714,25 +674,11 @@ export const workerCallback: WorkerCallback = {
       hasResolve: false
     });
   },
-  updateOfflineCaptureArray: (captureIdList: number[], isEnterOffline: boolean, burstOfflineCount: number) => {
-    workerPort.postMessage({
-      type: WorkerTask.UPDATE_OFFLINE_CAPTURE_ARRAY,
-      data: { captureIdList: captureIdList, isEnterOffline: isEnterOffline, burstOfflineCount: burstOfflineCount },
-      hasResolve: false
-    });
-  },
   onDeferPhotoSaveEnd: (captureId: number, isBurstCapture: boolean) => {
     workerPort.postMessage({
       type: WorkerTask.ON_DEFER_PHOTO_SAVE_END,
       data: { captureId: captureId, isBurstCapture: isBurstCapture },
       hasResolve: false
-    });
-  },
-  resetBurstOfflineCount: () => {
-    workerPort.postMessage({
-      type: WorkerTask.RESET_BURST_OFFLINE_COUNT,
-      data: {},
-      hasResolve: false,
     });
   },
   setCameraCloseFlag: (flag: boolean) => {

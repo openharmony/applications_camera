@@ -373,7 +373,6 @@ export class CameraTaskHandler {
     const outputType: OutputType | undefined = message.tagMessage.outputType;
     let photoProfile: camera.Profile = message.photoOutputMessage.photoProfile;
     const isPanVideoOutput = OutputOperation.isPanVideoOutput(mode, outputType);
-    await this.mCameraService.enterOfflinePhoto(restartType?.toString());
     // 切换模式等流复用不关input，先remove之后add，切换镜头不复用输入流先close之后创建新输入流
     let canReUseInput = this.canReUseInput(restartType, message.cameraInputMessage.cameraType, false);
     HiLog.i(TAG, `release camera canReUseInput: ${canReUseInput}, restartType: ${restartType}`);
@@ -435,7 +434,6 @@ export class CameraTaskHandler {
     const outputType: OutputType | undefined = message.tagMessage.outputType;
     let photoProfile: camera.Profile = message.photoOutputMessage.photoProfile;
     const isPanVideoOutput = OutputOperation.isPanVideoOutput(mode, outputType);
-    await this.mCameraService.enterOfflinePhoto(restartType?.toString());
     HiLog.i(TAG, `release camera canReUseInput: ${canReUseInput}, restartType: ${restartType}`);
 
     const executor: TaskExecutor = new TaskExecutor();
