@@ -1,0 +1,5233 @@
+{
+    "string":[
+        {
+            "name":"option_exit_camera",
+            "value":"الخروج من التطبيق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"وضع النقاوة الفائقة مناسب لتصوير المناظر الطبيعية والأجسام الثابتة في ظروف إضاءة جيدة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"بدون",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"معلومات الألوان",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"infinity_time",
+            "value":"بدون حد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"أمسك هاتفك بشكل رأسي للحصول على صورة أفضل.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"القمر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"السماء النجمية، زر، انقر مرتين للتفعيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"‏(%1$s‏:‏%2$s) %3$s بكسل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"رجوع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"مصفوفة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_on",
+            "value":"تم تشغيل ميزة التثبيت الفائق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"الصورة بها تعريض ضوئي زائد. هل تريد استعادة إعدادات التعريض الضوئي الافتراضية؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"وضع الصورة الحية مشغَّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"مستوى درجة الضوء %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"بفضل خوارزمية متقدمة لتقليل الضوضاء، يستطيع هاتفك التقاط صور واضحة ومشرقة حتى في ظروف الإضاءة المنخفضة. يمكن ضبط سرعة الغالق يدويًا للحصول على لقطات أكثر إبداعًا. عند استخدام الكاميرا الأمامية لالتقاط صور شخصية، يوفِّر الهاتف إضاءة مساعدة لإزالة الظلال غير المرغوبة، ما يضمن ظهور الوجوه واضحة ومشرقة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"الفاصل الزمني للإطار: %1$s ث\nمناسب لتصوير النجوم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"البيان المتعلق بالكاميرا والخصوصية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"عصري",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"غير محدد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"تخصيص",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"%1$sK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_update_date",
+            "value":"تاريخ آخر تحديث: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"عكس الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"انقر هنا للتبديل بين أنماط XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star",
+            "value":"آثار أضواء النجوم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"اسحب في منطقة المعاينة لتحديد نمط مخصص",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"معرفة المزيد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_wifi",
+            "value":"الاتصال بالشبكة اللاسلكية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_mode",
+            "value":"المسرح",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"بالنقر على \"أوافق\"، فأنت تعني بذلك موافقتك على البنود أعلاه. يمكنك الاطلاع على %1$s و%2$s لمعرفة المزيد من التفاصيل حول كيفية معالجة معلوماتك الشخصية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"تعذر استيراد البيانات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"طويلة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"وسّع آفاقك الإبداعية من خلال مجموعة متنوعة من أنماط الألوان الفريدة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"الافتراضية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"function_under_development",
+            "value":"ستتوفر الميزة قريبًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"العلامة المائية العادية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_button",
+            "value":"زر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"%1$d‏:‏%2$d (مُستحسن)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"تنويه",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_style",
+            "value":"فيلم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_not_detected",
+            "value":"لم تُكتشف أيّة كاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"شغِّل وضع التجميل أولًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"التقاط صورة من الفيديو",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"نهار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_background",
+            "value":"الإطار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"عدم الإظهار مرةً أخرى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"حفظ كـ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_portrait",
+            "value":"صورة ذاتية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"أوافق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy",
+            "value":"نسخ \u202a%s\u202c",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"natural_style",
+            "value":"طبيعي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_duration_title",
+            "value":"مدة الفيديو",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"مرحبًا بك في ميزة التصوير الذكي. حيث يمكن ضبط اللون تلقائيًا استنادًا إلى المشهد. انقر هنا لتجربتها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"إعدادات الفيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"low_angle",
+            "value":"لقطة بزاوية منخفضة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"تحسين الألوان والتباين. (جودة المؤثرات تعتمد على عتاد جهاز التشغيل وتوافقية البرامج).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"وثّق جوهر التغيّر بفيديوهات تُسرّع مرور الزمن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"تشغيل مساعدة العرض",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"keep_time_title",
+            "value":"مدة التسجيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"معرفة المزيد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"%s يُرجى التأكد من قراءة هذا الإشعار كاملًا قبل استخدام هذا الوضع.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"التقاط صور بدقة %d ميغابكسل في وضع التصوير «صورة». قد تستغرق معالجة الصور بهذه الدقة وقتًا أطول.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"%s باستخدام هذا الوضع، فأنت تعني بذلك أنك قرأت جميع البنود الواردة في هذا الإشعار واستوعبتها ووافقت عليها وقبلتها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"%1$s تتوافق الإضاءة المساعدة المُستَخدمة في هذا المنتج مع معيار الأمان %2$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"دوائر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"حيل جديدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"الاستخدام للفيديوهات بمعدل %1$s و%2$s إطارًا في الثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_car",
+            "value":"آثار أضواء السيارات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"سيومض بعد %d ثوانٍ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"إضافة إلى التقويم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"قياسي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword",
+            "value":"التعرف على كلمة التحكم الرئيسية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"فلاش تلقائي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"توجد عوائق على الميكروفون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_jpg",
+            "value":"‏JPG",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"فيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"الألوان %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"تم التقاط البُرج بنجاح",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"ملاحظة: لا يمكن تعديل إعدادات فتحة العدسة المادية أثناء التعديل.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"اسحب إلى اليمين للتبديل بين الأنماط المخصصة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"الصورة ضبابية، حاول مسح العدسة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"لا يمكن تشغيل الفلاش لأن مستوى طاقة البطارية منخفض جدًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"romantic_style",
+            "value":"سينما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_off",
+            "value":"إيقاف",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"التقاط صورًا أوضح للأشياء المتحركة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"تم استبدال حلقة التقريب/التبعيد بنمط تقريب/تبعيد جديد على شكل المروحة. بالإضافة إلى ذلك، يمكنك النقر مطولاً على زر التقاط الصور ثم السحب لليمين لالتقاط لقطة متتابعة، أو السحب لليسار لتسجيل الفيديو، أو السحب لأعلى للتقريب.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"إعداد مُسبق مُخصّص %1$d، حرارة الألوان %2$d، تشبع اللون %3$d، درجة الضوء %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"إغلاق القائمة السريعة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage",
+            "value":"مؤثرات XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"حافظ على ثبات جهازك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"رفض",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"درجة التعريض الضوئي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinema_mode",
+            "value":"سينمائي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"العينين %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_intro",
+            "value":"المزيد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"زر لإيقاف خريطة الأبراج، انقر مرتين للتفعيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"دوّامة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"رمادي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"ضبط معدل الإطارات تلقائيًا وفقًا للبيئة لتحسين جودة الصورة. النطاق: من %1$d إلى %2$d إطارًا في ثانية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"‏(%1$s‏:‏%2$s)‏ %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"العدسة الرقمية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"حرّك الكاميرا للأسفل.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"تعريض ضوئي عالٍ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"تقليل ضجيج الرياح أثناء تسجيل الفيديو لجعل الأصوات أكثر وضوحًا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_design",
+            "value":"النمط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"لعرض الصور والفيديوهات التي تلتقطها، يحتاج هذا التطبيق إلى منحه الإذن باستخدام/الوصول إلى %1$s و%2$s و%3$s و%4$s، كما يحتاج إلى قراءة الصور والفيديوهات ومعلومات الموقع.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"تعريض ضوئي منخفض",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"anime_style",
+            "value":"رسم متحرك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"ضبط درجة البشرة موقوف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"نمط أنمي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"متابعة التركيز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"رأسي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"لا يسري إلا على الصور المُلتقطة باستخدام الأنماط المُخصّصة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"حسنًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"الفاصل الزمني للإطار: %d ث",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"انقر على السهم لتغيير الاتجاه.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"الخطوط المساعدة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"وضع مقياس الضوء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"الإضاءة المساعدة للتركيز مشغّلة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details",
+            "value":"يتيح لك وضع البورتريه التقاط صور جميلة مع تأثير البوكيه في الخلفية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"طبيعي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"زر لوحة الألوان، انقر عليه نقرًا مزدوجًا لتنشيطه",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"حاول تثبيت جهازك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"هل تود استبدال نمط مخصص؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"التصوير المتقطّع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"انقر هنا لالتقاط صورة ذاتية (سيلفي) باستخدام الكاميرا الخلفية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"حرّك الكاميرا للأعلى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"إيقاف تسجيل الفيديو",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"تعديل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"وضع التجميل مغلق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"تصوير القمر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait",
+            "value":"البورتريه النجمي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"المؤقت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"معدل الإطار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"المعاينة المزدوجة مغلقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"%1$d. تنويه هام",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"يمكنك استخدام فلاش الكاميرا لالتقاط صور للأشخاص أثناء التصوير في هذا الوضع.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details",
+            "value":"أنشئ تأثيرات خاصة للضوء والظل. اختر من بين أربعة أوضاع معدّة مسبقًا (آثار أضواء السيارات، والكتابات ضوئية، وحركة المياه، وآثار أضواء النجوم.) مصممة لأكثر سيناريوهات وضع تصوير الإضاءة شيوعًا. للحصول على أفضل النتائج، يُنصح باستخدام حامل ثلاثي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"تصوير لحظاتك الجميلة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"يوفر لك نمط التقريب/التبعيد الجديد على شكل المروحة الجديد تجربة تقريب وتبعيد أكثر سلاسة وراحة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name",
+            "value":"موديل الجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"‏(%1$s‏:‏%2$s)‏ %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"الفلاش مضيء باستمرار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"قلوب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"التقط صورًا للحظات المميزة بطريقة جديدة كليًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open",
+            "value":"فتح %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"يسمح لك التحكم الذكي بالتقاط الصور والفيديوهات من خلال النقر على قارئ بصمات الأصابع.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"نقل أمام %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"وسم الموقع الجغرافي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"وضع المسرح رائع لتصوير العروض الموسيقية المباشرة والحفلات والمسرحيات والعروض الأخرى. تم تحسينه لتقديم أداء جيد في السيناريوهات ذات الإضاءة المسرحية المعقدة، حتى تتمكن من تصوير الفنانين بتفاصيل واضحة وألوان زاهية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_an_email",
+            "value":"إرسال بريد إلكتروني",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"نجح الاستيراد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"تحسين الصور",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"تصوير القمر، زر، انقر مرتين للتفعيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_soft",
+            "value":"ساطع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"التركيز التلقائي للقطة واحدة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"أحادي اللون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"نمط رومانسي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"تم التبديل إلى وضع JPG العادي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"احترافي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"مواصفات الصورة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"يحتاج تطبيق \"الكاميرا\" إلى معرفة معلومات موقعك الجغرافي لإرفاقها بالصور والفيديوهات التي يتم التقاطها. هل تسمح بذلك؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"متوهج",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"أنماط مخصصة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"التركيز التلقائي المستمر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"تم الوضع خلف %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"تتيح سرعات الغالق البطيئة للغاية إنشاء تأثيرات ضوئية ساحرة. تتوفر أربعة أوضاع جاهزة ومصممة خصيصًا لأكثر سيناريوهات وضع تصوير الإضاءة شيوعًا (آثار أضواء السيارات والكتابات الضوئية وحركة المياه وآثار أضواء النجوم). للحصول على أفضل النتائج، يُنصح باستخدام حامل ثلاثي.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"نمط مخصص %1$s. انقر مطولًا نقرًا مزدوجًا، ثم اسحب لليسار أو لليمين لتبديل الأنماط.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"يدعم الحركة البطيئة بمعدل %d أضعاف فقط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"لون البشرة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"اسم النمط المخصص",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"الصور والفيديوهات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_shooting",
+            "value":"إنهاء التصوير",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"محدد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"الرأس %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"اسحب لتبديل الأنماط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"سيعمل الفلاش بعد %d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_access",
+            "value":"السماح بالوصول",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"انقر هنا للسماح للشخص الذي تم تصويره بمشاهدة المعاينة أيضًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"وضع تثبيت الصورة مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"التجميل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"دوّر هاتفك بسلاسة حسب التوجيهات مع تثبيته. وبعد أن تنتهي من لقطتك، ستدمج الكاميرا الصور في صورة بانورامية. هذه الميزة رائعة لالتقاط صور المناظر الطبيعية ومناظر المدينة والمشاهد المشابهة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"القائمة السريعة مفتوحة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"تمويه الخلفية لإبراز الأشخاص.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"إعدادات الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"إعادة التسمية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"يحتاج هذا التطبيق إلى الحصول على أذونات %1$s و%2$s و%3$s، وذلك بغرض عرض الصور والفيديوهات التي تلتقطها، ويحتاج إلى قراءة الصور والفيديوهات ومعلومات الموقع. كما قد يحتاج أيضًا إلى استخدام الميكروفون لتسجيل الصوت.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"حديثة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"تم قفل التعريض الضوئي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"وضع تثبيت الصورة مشغَّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse",
+            "value":"اختزال الزمن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"%1$d. التحذيرات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"سماء زرقاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"التعريض الضوئي ووضع التركيز مقفلان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"الفلاش مُشغَّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"يسمح لك هذا الإذن بالتقاط الصور والفيديوهات من الساعة. ويمكنك إدارة هذا الإذن من تطبيق الصحة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"الاستخدام للفيديوهات بمعدل %d إطارًا في الثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"موافق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details",
+            "value":"نظام الكاميرا فائق التركيز يدمج محرك XD Motion لالتقاط الأجسام المتحركة بسرعة تصل إلى %d كم/ساعة، سواء كنت تلتقط الصور عن قرب أو من مسافة بعيدة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"كتم صوت زر التقاط الصور عند التقاط صور حية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"تتيح سرعات الغالق البطيئة للغاية إنشاء تأثيرات ضوئية ساحرة. تتوفر أربعة أوضاع جاهزة ومصممة خصيصًا لأكثر سيناريوهات وضع تصوير الإضاءة شيوعًا (آثار أضواء السيارات والكتابات الضوئية وحركة المياه وآثار أضواء النجوم).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"اسحب إلى اليمين في منطقة المعاينة للتبديل بين الأنماط المخصصة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"انقر على السهم في الأعلى لفتح القائمة السريعة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"يتعرف الذكاء الاصطناعي على المشهد تلقائيًا ويضبط الألوان ولون البشرة لتحسين حيوية الصورة. انقر على أيقونة AI لتشغيل أو إيقاف التأثير.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"طبيعي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"خريطة الأبراج مُشغَّلة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"يُستخدم هذا الإذن لتسجيل مكان التقاط الصور والفيديوهات، وعرض معلومات موقع التصوير في العلامات المائية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"حرّك الكاميرا ببطء.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_reset",
+            "value":"إعادة الضبط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"تتبع الكائن المحدد ضمن الإطار أثناء تحركه.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"في الوضع الأصلي RAW، لا يمكن ضبط التقريب/التبعيد إلا بالنقر على الإعدادات المسبقة أو ضم إبهامك والسبابة معًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_permission_description",
+            "value":"يُستخدَم هذا الإذن لتسجيل الأماكن التي التُقطَت فيها الصور ومقاطع الفيديو، وعرض معلومات موقع التصوير بصيغة علامات مائية، وتوفير ميزة خريطة النجوم.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"في وضع البورتريه، يمكنك استخدام تأثيرات التجميل والبوكيه المختلفة عن طريق ضبط فتحة العدسة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"الفلاش مضيء باستمرار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exits_same_card",
+            "value":"توجد إعدادات جاهزة للألوان هذه بالفعل.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"التحكم الصوتي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"skip",
+            "value":"تخطي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"يمكن إيقاف ميزة \"لقطة سريعة\" من إعدادات الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"متفتح",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"سيومض بعد %d ثانية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter",
+            "value":"فلاتر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"فلاش تلقائي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"‏(%1$s‏:‏%2$s) %3$s بكسل (مُستحسن)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"فلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_details",
+            "value":"أنشئ مدونات فيديو جذابة من خلال الجمع بين زوايا الكاميرا وتأثيراتها المختلفة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"استيراد صورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"الألوان",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_on",
+            "value":"تم تشغيل وضع اللقطة المقرَّبة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"إيقاف مساعدة العرض",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"كلاسيكي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"قم بالتدوير في اتجاه السهم لالتقاط الصورة الثالثة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"التركيز اليدوي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"يمكن قفل التركيز فقط في وضع التركيز التلقائي المستمر (AF-C)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_zoom",
+            "value":"تقريب الصوت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"يُستخدم هذا الإذن لعرض معلومات الموقع في العلامات المائية للصور.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"انظر إلى هنا للحصول على أفضل النتائج.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"المعاينة المزدوجة غير متاحة أثناء بث الشاشة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"فتح القائمة السريعة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"الحفاظ على بيانات العمق والحركة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"‏(%1$s‏:‏%2$s) %3$s بكسل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary",
+            "value":"الإضاءة المساعدة للتركيز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"معاينة الكاميرا الأمامية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"‏%1$d‏:‏%2$d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"قم بإمالة جهازك بحيث تنطبق الدائرتان.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"التعريض الضوئي عالٍ للغاية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"تثبيت الصورة موقوف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_record_remind",
+            "value":"أحد تطبيقات التسجيل مشغّل حاليًا في الخلفية (مسجل الصوت أو الاتصال). أغلق ذلك التطبيق أولًا لتتمكن من تسجيل فيديو.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"تم الوضع خلف %1$s، على السطر %2$d، العمود %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"يُستخدم هذا الإذن لالتقاط الصور وتسجيل الفيديوهات.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"تأثير لون",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"صوّر في الظلام للحصول على أفضل النتائج.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"العرض في الوضع الأفقي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"تأكد من نظافة الكاميرا الخلفية وخلوها من العوائق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"أدِر جهازك في الاتجاه الموضح. وستلتقط الكاميرا صورة عندما تتم محاذاة الحلقة مع النقطة. انقر على الغالق للإنهاء في أي وقت.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_details",
+            "value":"تضبط الكاميرا التعريض الضوئي واللون تلقائيًا عند تصوير فيديو عالي الدقة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"هل تسمح للكاميرا بالوصول إلى موقعك الدقيق؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"انقر لالتقاط صورة أو فيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"%1$s، حرارة الألوان %2$d، تشبع اللون %3$d، درجة اللون %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"الكاميرا الخلفية محجوبة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"شاحب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"العرض في الوضع الرأسي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"التكبير/التصغير غير مدعوم في وضع تثبيت المشهد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"في وضع البورتريه، يمكنك استخدام تأثيرات التجميل والبوكيه المختلفة عن طريق ضبط فتحة العدسة. يُضبط التعريض الضوئي واللون تلقائيًا أثناء التصوير، ليمنحك أفضل جودة ممكنة للصور.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"common_watermark",
+            "value":"العلامات المائية العادية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_description",
+            "value":"التفاصيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition",
+            "value":"التعريض الضوئي بالذكاء الاصطناعي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"الأنف %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"عندما تلتقط صورة لشخص أو قطة أو كلب في وضع الصورة، سيتم الاحتفاظ ببيانات العمق والحركة للسماح بالتعديل اللاحق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"إبراز الكائن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"back_selfie",
+            "value":"صورة ذاتية بالكاميرا الخلفية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"دقة الفيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"شبكة خطوط الكاميرا، مُشغَّلة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Beauty_on",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"التعريض الضوئي بالذكاء الاصطناعي مشغّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"‏(%1$s‏:‏%2$s) %3$s بكسل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"وضع الصورة الحية مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"لقطة مقرَّبة · التركيز على معظم المنظر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_off",
+            "value":"إيقاف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"انقر مرتين للتفعيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"تم تشغيل التسجيل المسبق، انقر مطولًا على زر التقاط الصور لالتقاط ما يصل إلى %d ثوانٍ من اللقطات قبل بدء التسجيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_parameter",
+            "value":"وقت التصوير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"بدون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"تلقائي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aperture_mode",
+            "value":"فتحة العدسة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"تثبيت الصورة المُحسن قيد التشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"مكياج %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"مستوى درجة الضوء %1$d، والنطاق القابل للتعديل من %2$d إلى %3$d. انقر مرتين للتطبيق، أو انقر مرتين ثم مطولاً، ثم اسحب لأعلى أو لأسفل للتغيير",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"تعذر التقاط الكوكبة، غيّر زاوية التصوير وحاول مجددًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"سماح",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"اضغط مطولًا لقفل التعريض الضوئي والتركيز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"الحركة البطيئة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama",
+            "value":"بانوراما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_light",
+            "value":"كتابات ضوئية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"لا تسمح الإعدادات الحالية بالحصول على ما يكفي من الإضاءة. هل تريد استعادة إعدادات التعريض الضوئي الافتراضية؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"يُستخدم هذا الإذن لإضافة وسم يحتوي على معلومات الموقع إلى الصور والفيديوهات.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"انقر هنا للتبديل بين الأنماط المخصصة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"انقطع اتصال التصوير عن بُعد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"هل تريد استعادة الترتيب الافتراضي للأيقونات؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"live_photo",
+            "value":"صورة حية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"ميزة صورة ضمن صورة غير مُتاحة بسبب ارتفاع درجة حرارة الجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"تكبير/تصغير",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"انقر مرتين للتبديل، وانقر مرتين مطولاً للسحب لليمين أو لليسار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"اسم النمط المخصص هذا موجود بالفعل.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"حرّك السهم بمستوى الخط الظاهر على الشاشة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"كاميرا جهازك نشطة، لكن هذا التطبيق يمكنه الوصول إلى الصور التي تلتقطها فقط.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"التقاط صور سريعة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"اسحب اليمين أو لليسار للتبديل بين الأنماط المخصصة. يمكنك إنشاء أنماط تناسب ذوقك عن طريق السحب على بطاقة لون، أو محاكاة أنماط شخص آخر عن طريق استيراد صورة التقطها.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"انقر على أيقونة %s للتبديل بسرعة بين الأنماط المخصصة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"مستوى تشبع اللون %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"بورتريه",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"تقريب الصوت مشغَّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"make_a_call",
+            "value":"مكالمة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting",
+            "value":"تصوير الإضاءة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"انقر على زر التقاط الصور وحرّك الجهاز ببطء من اليسار إلى اليمين.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"استخدام الذكاء الاصطناعي لتحسين الصور الملتقطة بتقريب عالٍ أو في ظروف الإضاءة المنخفضة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"الوضع الليلي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"المنظر بالكامل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"أذونات الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"انقر هنا لتغيير وضع التركيز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_sun",
+            "value":"شروق/غروب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"قُل \"Cheese\" أو لفظ مشابه في النطق لالتقاط صورة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"اقلب الهاتف لتبديل الشاشات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"غير مُتاح أثناء تشغيل وضع الصورة الحية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"استعادة الترتيب الافتراضي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"border_color",
+            "value":"لون الحد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_water",
+            "value":"حركة المياه",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_and_shade",
+            "value":"درجة اللون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"تنبيه ارتفاع درجة حرارة الجهاز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"حرّك الكاميرا لليمين.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"جارٍ إنشاء الصورة، حافظ على ثبات جهازك…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"يمكن استخدام التعريض الضوئي بالذكاء الاصطناعي عند استخدام تكبير الكاميرا بمقدار x%1$s، أو x%2$s، أو x%3$s، تكون النتائج أفضل عند التقاط صور المناظر الطبيعية والمباني والأشخاص",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"يتم منح أولوية التركيز على الكائنات القريبة الأمامية من منتصف الإطار (الموجودة على بعد %d سم على الأقل).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"دافئة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_a_message",
+            "value":"إرسال رسالة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"هل تريد استعادة إعدادات التعريض الضوئي الافتراضية؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"الفاصل الزمني للإطار: %1$s ث\nمناسب لتصوير تفتح الأزهار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"تثبيت الصورة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"%1$s إطارًا/ثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"انقر مطولًا على أيقونات EV·‎، وAF·‎، وWB·‎ لقفل قيمها",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"تم التبديل إلى تنسيق HEIF",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"إبراز الكائن القريب",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"بانوراما عالية الدقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"الجهاز ساخن للغاية. سيُغلق تطبيق الكاميرا بعد %1$d ثوانٍ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"إضافة العلامة المائية تلقائيًا إلى الصور الملتقطة بواسطة الكاميرا الخلفية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_normal",
+            "value":"أصلي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"نمط تقريب وتبعيد جديد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"تم نقله إلى أمام %1$s، في السطر %2$d، والعمود %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"يمكن استخدام التعريض الضوئي بالذكاء الاصطناعي عند التكبير بمقدار %1$sx أو %2$sx. تكون النتائج أفضل عند تصوير المناظر الطبيعية والمباني والأشخاص.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"details",
+            "value":"التفاصيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"اسحب إلى اليسار للتبديل إلى الأنماط المخصصة %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"هل تريد استعادة إعدادات التجميل الافتراضية؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"شروق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"horizontal_level",
+            "value":"موازنة الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"محسّن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"passion",
+            "value":"بانوراما",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"أمسك هاتفك بشكل أفقي للحصول على صورة أفضل.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"تلقائي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"سيعمل الفلاش بعد %d ثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_disabled",
+            "value":"الكاميرا مغلقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"الاحتفاظ بصور الأشخاص ملونة والأشياء الأخرى باللون الأبيض والأسود.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"معاينة الكاميرا الخلفية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"الفاصل الزمني للإطار: %1$s ث\nمناسب لتصوير الشروق/الغروب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"حرّك الكاميرا لليسار.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"تلقائي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"إظهار زر عائم لالتقاط الصور لتسهيل الاستخدام.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"تم تحسين هذا الوضع لتصوير الحفلات الموسيقية والعروض المسرحية الأخرى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_angle",
+            "value":"زاوية واسعة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"الفلاش موقوف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"التبديل تلقائيًا إلى وضع الصورة الذاتية بالكاميرا الخلفية إذا كنت مواجهًا للكاميرا الخلفية بعد فرد الهاتف وقلبه.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"نقي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"تنعيم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"كتم صوت الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"تبديل إلى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"شبكة خطوط الكاميرا، موقوفة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details",
+            "value":"تحريك الكاميرا أفقيًا أو رأسيًا لالتقاط صورة بانورامية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"تعذر التقاط الكوكبة بسبب شدة سطوع البيئية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"رقيق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"نظرًا لأن التأثير الفلوري ضعيف نسبيًا، يُستحسن استخدامه في البيئات المظلمة جدًا لتحقيق أفضل النتائج. كما يُرجى توخي الحذر عند استخدام هذا الوضع.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"مستوى التجميل %1$d، النطاق القابل للتحديد من %2$d إلى %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_on",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"تم فتح قفل التعريض الضوئي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"تم تثبيت مستوى التعريض الضوئي والتركيز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"اسحب لليمين لالتقاط صورة متتابعة، واسحب لليسار لتسجيل فيديو",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_off",
+            "value":"تم إغلاق وضع اللقطة المقرَّبة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"التوقيع الشخصي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_auto",
+            "value":"تلقائي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"تعزيز التصوير الليلي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_details",
+            "value":"التقاط فيديو بالحركة البطيئة بلا حدود. يتيح لك وضع الحركة البطيئة للغاية تسجيل الفيديو بمعدلات إطارات فائقة السرعة يدويًا أو تلقائيًا. يُنصح باستخدام هذا الوضع في البيئات المضيئة جيدًا للحصول على أفضل النتائج.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_occupied",
+            "value":"هناك تطبيق آخر يستخدم الكاميرا حاليًا. أغلق هذا التطبيق وأعد تشغيل تطبيق الكاميرا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"physical_aperture",
+            "value":"العدسة الفعلية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"جارٍ زيادة وضوح الصورة… يُرجى تثبيت الجهاز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_title",
+            "value":"هل تسمح لتطبيق \"%1$s\" باستخدام/الوصول إلى الكاميرا؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"تم إيقاف وضع التجميل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"تحسين ظروف الإضاءة للحصول على تأثير تشتت أفضل.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"معدل الإطار",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"هذا الإعداد مفعّل عند تصوير الأجسام الثابتة فقط، يُرجى عدم تحريك الكاميرا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"تم قفل التركيز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"حيوي · غني وقوي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"jpg_description",
+            "value":"يوفر توافقًا أفضل من HEIF.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"افرد الهاتف لالتقاط صورة ذاتية (سيلفي) باستخدام الكاميرا الخلفية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_pause",
+            "value":"إيقاف مؤقت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"النقاوة الفائقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"صور أكثر حيوية ووضوحًا في التفاصيل، لتوثّق لحظاتك مع الحيوانات الأليفة والمناظر الطبيعية بشكل أفضل.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_access",
+            "value":"الوصول الخاص",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"رفض",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"تقليل ضجيج الرياح",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_not_detected",
+            "value":"يُرجى توصيل الكاميرا وإعادة تشغيل هذا التطبيق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"تم إغلاق ميزة الصورة الحية لأن المكان مظلم للغاية، يُرجى الانتقال إلى مكان أكثر إضاءة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"معدل الإطار التكيفي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_details_more",
+            "value":"تتيح لك مسافة التركيز الأقرب التقاط أدق تفاصيل الهدف. يمكن استخدام وضع اللقطة المقرَّبة في الصور والفيديوهات.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"الميكروفون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"وضع النقاوة الفائقة مناسب لتصوير المشاهد والأجسام الثابتة في ظروف إضاءة جيدة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"تم إيقاف خاصية اكتشاف الحركة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"يُستخدم هذا الإذن لتصوير الفيديوهات والتقاط الصور المتحركة والتحكم الصوتي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"تبديل إلى وضع البانوراما الأفقي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go",
+            "value":"انتقل إلى %1$s للدفع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"قم بالتدوير في اتجاه السهم لالتقاط الصورة الثانية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"أبقِ جهازك في وضعٍ مستوٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro",
+            "value":"التصوير المُقرّب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"تصوير الإضاءة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"%1$d. مقدمة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"المزيد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"انقر على زر التقاط الصور وحرّك الكاميرا ببطء في اتجاه السهم.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_rate",
+            "value":"%d إطارًا في ثانية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"وضع المسرح رائع لتصوير العروض الموسيقية المباشرة والحفلات والمسرحيات والعروض الأخرى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"زر اختيار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"يمكنك التقاط صور حادة ومشرقة في ظروف الإضاءة الخافتة بفضل خوارزمية متقدمة لتقليل الضجيج. يتوفر وضعان للتصوير: التصوير الليلي الفائق، وتصوير القمر.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"تم قفل توازن اللون الأبيض",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"الشعر %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"مع الفلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"مركزي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"لقطة مقرَّبة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_heif",
+            "value":"‏HEIF",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"البطارية منخفضة للغاية، يتعذّر بدء التسجيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"شبكة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"حسنًا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"إضافة وسم يحتوي على معلومات الموقع الجغرافي على الصور والفيديوهات التي تلتقطها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"الإعداد المُسبق الافتراضي، حرارة الألوان %1$d، تشبع اللون %2$d، درجة الضوء %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"التبديل إلى الكاميرا الخلفية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"قصيرة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"انقر هنا لتبديل وضع التركيز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"حاول أن تثبّت جهازك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_details",
+            "value":"بفضل خوارزمية متقدمة لتقليل الضوضاء، يستطيع هاتفك التقاط صور واضحة ومشرقة حتى في ظروف الإضاءة المنخفضة. يمكن ضبط ISO وسرعة الغالق يدويًا للحصول على لقطات أكثر إبداعًا. عند استخدام الكاميرا الأمامية لالتقاط صور شخصية، يوفِّر الهاتف إضاءة مساعدة لإزالة الظلال غير المرغوب فيها عن وجه الشخص، ما يجعل الصور الذاتية (السيلفي) الملتقطة أثناء الليل واضحة ومشرقة أيضًا.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"تبديل إلى وضع البانوراما الرأسي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"اكتملت إعادة الضبط",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"إغلاق الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details",
+            "value":"اضبط إعدادات الكاميرا بدقة للحصول على الصورة التي تريدها تمامًا. يتيح لك الوضع الاحترافي التحكم في العديد من الإعدادات المتقدمة مثل مقياس الضوء، وISO، وسرعة الغالق، وقيمة التعريض الضوئي، وتوازن اللون الأبيض، ووضع التركيز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_raw",
+            "value":"الأصلي (RAW)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"غير تفاعلي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"right_text",
+            "value":"النص على اليمين",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_watermark",
+            "value":"الفيديوهات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"تم تشغيل خريطة الأبراج",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"المعاينة المزدوجة غير متاحة أثناء تسجيل الشاشة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"تنسيق الفيديو الأمثل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"إغلاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"بعض الإعدادات غير متوفرة عند قيمة ISO هذه",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_location",
+            "value":"الموقع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"منطقة ضبط الألوان. اسحب أفقيًا لضبط حرارة الألوان أو رأسيًا لضبط تشبع اللون.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"بالنسبة إلى الإعدادات والميزات الأخرى، انقر على السهم الموجود في الأسفل أو اسحبه لأعلى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"ملء الشاشة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"سيعمل الفلاش بعد %d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"تأكد من الاتصال بالإنترنت للحصول على معلومات الموقع أثناء التواجد في الأماكن المغلقة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"لاستخدام التعريض الضوئي المدعوم بالذكاء الاصطناعي، حرّك النقطة إلى داخل الحلقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"ميزة التصوير عن بُعد متصلة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture",
+            "value":"فتحة العدسة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"وردي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot",
+            "value":"لقطة سريعة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"اسحب إلى اليمين للتبديل إلى الأنماط المخصصة %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"تثبيت الصورة موقوف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_applet",
+            "value":"فتح برنامج %1$s الصغير",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"ميزة النقاوة الفائقة رائعة لالتقاط صور البورتريه في ظروف الإضاءة الجيدة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_record",
+            "value":"بدء التسجيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"إغلاق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"دون فلاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"النقر مرتين على زر خفض الصوت عندما تكون الشاشة مُطفأة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"أصلي · طبيعي وحقيقي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"البورتريه النجمي، زر، انقر مرتين للتفعيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_occupied",
+            "value":"الكاميرا مشغولة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"جارٍ البحث عن العناصر المتحركة…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"انتقل إلى منطقة مضاءة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"frame_rate",
+            "value":"%d إطارًا في ثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"%d ثانية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"احترافي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"تحتاج هذه الخدمة إلى استخدام/الوصول إلى %d أذونات:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"السماح لمرة واحدة فقط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera",
+            "value":"فتح الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"إغلاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"operate_frequently",
+            "value":"يُرجى إعادة المحاولة لاحقًا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"القائمة السريعة مغلقة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"شاشة كاملة |‏ %1$s بكسل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"تم فتح قفل توازن اللون الأبيض",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"أبعاد الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"اسحب للأعلى أو للأسفل لتغيير مستوى التكبير/التصغير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"تبديل إلى الفيديو",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"تم إيقاف التسجيل المسبق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"العلامات المائية المتاحة لفترة محدودة فقط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"لقطة مقرَّبة · التركيز على الكائن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"في الوضع الاحترافي، يمكنك ضبط مجموعة من إعدادات الكاميرا المتقدمة بحرية للحصول على الصورة التي تريدها تمامًا. وتشمل هذه الإعدادات مقياس الضوء، وISO، وسرعة الغالق، وقيمة التعريض الضوئي، وتوازن اللون الأبيض، ووضع التركيز، والمزيد غير ذلك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_new",
+            "value":"في الوضع الاحترافي، يمكنك ضبط مجموعة من إعدادات الكاميرا المتقدمة بحرية للحصول على الصورة التي تريدها تمامًا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"يسمح لك التحكم الذكي بقفل التعريض الضوئي والتركيز عن طريق إبقاء إصبعك على قارئ بصمات الأصابع.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_bright",
+            "value":"زاهٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"نقل خلف %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature",
+            "value":"حرارة الألوان",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"الفاصل الزمني للإطار: %1$s ث\nمناسب لتصوير السُحب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"زر لتشغيل خريطة الأبراج، انقر مرتين للتفعيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"تم التبديل إلى تنسيق RAW",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"مشرق · أنيق ومنعش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"‏(%1$s‏:‏%2$s) %3$s بكسل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"بفضل فتحة العدسة الواسعة، يمكنك التقاط تفاصيل دقيقة للهدف مع تأثير بوكيه ناعم في الخلفية. للحصول على أفضل النتائج، يجب ألا تزيد المسافة بين الكاميرا والهدف عن مترين. يتيح لك هذا الوضع التحكم في كل من فتحات العدسة الفعلية والافتراضية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"تم نسخ المحتوى إلى الحافظة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"الفلوري",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"التكلم بصوت مرتفع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"الإضاءة خافتة جدًا. هل تريد استعادة إعدادات التعريض الضوئي الافتراضية؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"سماح",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more",
+            "value":"في الوضع الاحترافي، يمكنك ضبط مجموعة من إعدادات الكاميرا المتقدمة بحرية للحصول على الصورة التي تريدها تمامًا. وتشمل هذه الإعدادات مقياس الضوء وISO وفتحة العدسة وسرعة الغالق وقيمة التعريض الضوئي وتوازن اللون الأبيض ووضع التركيز، والمزيد غير ذلك.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"انقر هنا لضبط الأنماط المخصصة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"هذا الإعداد متاح عند تصوير الأجسام الثابتة فقط، يُرجى عدم تحريك الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"خريطة الأبراج موقوفة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"يدوي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"جارٍ التسجيل…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"وضع التجميل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resume",
+            "value":"استئناف",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"نمط السيلولويد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"يمكنك التقاط صور حادة ومشرقة في ظروف الإضاءة الخافتة بفضل خوارزمية متقدمة لتقليل الضجيج. تتوفر أربعة أوضاع للتصوير: التصوير الليلي الفائق، وتصوير القمر، والسماء النجمية، والبورتريه النجمي. عند استخدام الكاميرا الأمامية، سترفع شاشة الجهاز درجة سطوعها لتوفير إضاءة إضافية، ما يسمح بظهور الوجوه مشرقةً وواضحة حتى في الظلام.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gourmet_food",
+            "value":"شهي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"التجميل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"أدِر الكاميرا ببطء إما أفقيًا أو رأسيًا لالتقاط صورة بانورامية. وهذا خيار ممتاز لالتقاط مشاهد شاملة، مثل الجبال وخطوط الأفق بتفاصيل رائعة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter",
+            "value":"زر التقاط الصور العائم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"الوصول الخاص إلى الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"view",
+            "value":"عرض %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details",
+            "value":"التقاط لقطات قريبة جدًا من الكاميرا الخلفية مع الحصول على التفاصيل الدقيقة والحيوية للبيئة من حولك.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_on",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"حرّك الإطار لتحديد منطقة مختلفة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"يستخدم مساحة تخزين أقل من تنسيق JPG مع الحفاظ على الجودة البصرية نفسها. وقد يكون التوافق محدودًا مقارنةً بتنسيق JPG. يمكنك تحويل تنسيق HEIF إلى JPG في المعرض.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details",
+            "value":"دوّر الهاتف بسلاسة حسب التوجيهات لالتقاط صورة بانورامية.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"الفاصل الزمني للإطار: %1$s ث\nمناسب لتصوير السيارات والزحام",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"اسحب إلى الجانبين للتصوير المتتابع أو لتسجيل فيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"وضع HDR Vivid",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"يُستخدم الفلاش المقرّب لتحسين جودة الصورة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"المعاينة المزدوجة مشغّلة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"بفضل فتحة العدسة الواسعة، يمكنك التقاط تفاصيل دقيقة للهدف مع تأثير بوكيه ناعم في الخلفية. للحصول على أفضل النتائج، يجب ألا تزيد المسافة بين الكاميرا والهدف عن مترين.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"للحصول على أفضل النتائج لصور البورتريه النجمي، شغّل الفلاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"الإضاءة المحيطة خافتة جدًا، جاري تحسين مستوى التعريض الضوئي للصورة...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"حرارة الألوان، المستوى %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"%1$s بكسل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"صورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_details",
+            "value":"تضبط الكاميرا التعريض الضوئي والألوان تلقائيًا عند التقاط الصور.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"حرّك الكاميرا ببطء أفقيًا أو رأسيًا مع الحفاظ على ثباتها قدر الإمكان. حافظ على السهم بمستوى الخط الظاهر على الشاشة. عند الانتهاء من التصوير، ستدمج الكاميرا تلقائيًا ما التقطته في صورة بانورامية. هذا الوضع مثالي للمناظر الطبيعية والصور الجماعية الكبيرة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"قم بالتدوير في اتجاه السهم. عندما تتم محاذاة النقطة مع الحلقة، سيتم التقاط الصورة تلقائيًا. اضغط على الغالق في أي وقت للإنهاء.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"تثبيت الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"جارٍ التعرف على الأبراج…",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture",
+            "value":"تصوير الوجوه المبتسمة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"تعمل هذه الميزة مع الكاميرا الأمامية فقط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"يتعذر استخدام وسم الموقع في وضع الكاميرا الخاص.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_title",
+            "value":"الموقع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"فلاش يدوي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"يمكن قفل توازن اللون الأبيض فقط في وضع توازن اللون الأبيض التلقائي (AWB)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"يدوي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"لا يسري إلا على الصور التي تستخدم أنماط XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"مرحبًا بك في",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"وضع النقاوة الفائقة ممتاز لالتقاط صور البورتريه في ظروف الإضاءة الجيدة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"معاينة مزدوجة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"فيديو بورتريه",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"وضع التركيز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_stage",
+            "value":"هل تصوّر عرضًا مباشرًا؟ شغّل وضع المسرح للحصول على أفضل النتائج",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"مستوى التجميل:‏ %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_mode",
+            "value":"فيديو قصير",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"تم سحب الكاميرا للداخل لحمايتها بسبب تعرض الهاتف للسقوط.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"معاينة الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"العلامة المائية المُخصّصة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_text",
+            "value":"النص",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"تلوين ذكي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"انقر على الشاشة لتنشيط الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"الفلتر الحالي غير متوفر مع الدقة %1$d بكسل (%2$d إطارًا/ثانية). تم التبديل إلى الدقة %3$d بكسل (%4$d إطارًا/ثانية).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"انقر مرتين للتبديل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"جارٍ سحب %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"الموقع",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_off",
+            "value":"ميزة التثبيت الفائق، مغلقة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"تم تحسين هذا الوضع لتصوير الحفلات الموسيقية والعروض المسرحية الأخرى، حتى تتمكن من تصوير الفنانين وتأثيرات الإضاءة بتفاصيل واضحة وألوان زاهية. يمكن استخدام هذا الوضع للصور ومقاطع الفيديو.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"بلغ التصوير المتتابع الحد الأقصى، جارٍ حفظ الصور الآن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"تم نقله إلى خلف %1$s، في السطر %2$d، والعمود %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"انقر هنا مرةً أخرى للتعديل.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saturation",
+            "value":"التشبع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw",
+            "value":"خريطة الأبراج",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"دقة عالية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"يركز التقاط الصوت حاليًا على المنطقة المقرّبة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"الإضاءة المساعدة للتركيز مغلقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"الجهاز ساخن للغاية، لا يمكن تشغيل الفلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"يُرجى إعادة تشغيل هذا التطبيق والمحاولة مجددًا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"اسحب إلى اليسار في منطقة المعاينة للتبديل بين الأنماط المخصصة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"تثبيت الصورة القياسي قيد التشغيل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"جارٍ الحفظ… يُرجى عدم الخروج",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"مشغّلة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"الفلاش مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control_off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"أنماط XMAGE المخصصة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"تم الوضع أمام %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"إيقاف",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_notification",
+            "value":"متوفرة فقط مع العلامة المائية للإطار.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"يسمح لك التحكم الذكي بالتكبير/التصغير عبر السحب على قارئ بصمات الأصابع.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"ابتعد للحصول على تأثير تشتت أفضل.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"لون البشرة %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"انقر هنا للمزيد من الأوضاع الليلية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"تم قفل التركيز التلقائي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"التقريب/التبعيد غير مدعوم في الوضع الأصلي RAW.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"علامة مائية مبروزة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"انقر مرتين واسحب للمعاينة المزدوجة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"التقاط %d صور.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_parameter",
+            "value":"إعدادات الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"وضع التجميل مشغّل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"سيومض بعد %d ثوانٍ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"الفلاش مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"تم تشغيل وضع التجميل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"تم إيقاف تشغيل خريطة الأبراج",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_storage_space",
+            "value":"مساحة التخزين غير كافية، قد يحدث بطء في الكاميرا، يُرجى تفريغ مساحة لاستعادة الأداء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"التصوير الذكي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"انقر مرتين للتفعيل، أو انقر مرتين واضغط مطولاً لفتح المزيد من الخيارات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"صورة ذاتية بالكاميرا الخلفية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"تم الوضع أمام %1$s، على السطر %2$d، العمود %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"نبذة عن التصوير الفلوري",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"التقريب/التبعيد غير متاح في وضع التصوير البانورامي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"فتح الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"big_text_s",
+            "value":"%s ث",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"تم تسجيل %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"تعمل هذه الميزة مع الكاميرا الأمامية فقط.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pay",
+            "value":"فتح %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"أحدث صورة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"تقريب الصوت مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"المزيد من الأوضاع قادمة قريبًا…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"يتيح لك ذلك عرض معاينة الكاميرا والتقاط الصور والفيديوهات من الساعة. يمكنك إدارة هذا الإذن من خلال تطبيق الصحة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"حرّك جهازك في اتجاه السهم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picture_watermark",
+            "value":"الصور",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"الملامح %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"إعدادات عامة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"standard_style",
+            "value":"طبيعية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"يتيح لك وضع التصوير الليلي التقاط صور واضحة ومشرقة حتى في ظروف الإضاءة المنخفضة، بفضل خوارزمية متقدمة لتقليل الضوضاء.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_speed",
+            "value":"سرعة الغالق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"الفلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"التعريض الضوئي منخفض للغاية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"بيانات الخصوصية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"الجهاز ساخن للغاية. لا يمكن تشغيل الفلاش.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"توازن اللون الأبيض",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"التبديل إلى الكاميرا الأمامية",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_contact",
+            "value":"جهة اتصال جديدة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"أفقي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"حرّك الكاميرا ببطء",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"جديد",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"الفلاش مغلق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_night_view",
+            "value":"التصوير الليلي الفائق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"replace",
+            "value":"استبدال",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"السرعة %d أضعاف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"نقطة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"احترافي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"ملء الشاشة |‏ %1$s بكسل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"التقاط الصور آليًا عند العثور على أشخاص مبتسمين.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_disabled",
+            "value":"سياسة الأمان تحظر استخدام الكاميرا.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"تشغيل دائم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"ارفع صوتك لالتقاط صورة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_Confirm",
+            "value":"موافق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"زر مقارنة تأثير التجميل. انقر مرتين ثم مطولاً لإظهار الصورة دون تأثير التجميل.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_agree",
+            "value":"أوافق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"مؤثرات XMAGE",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"الدقة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"انقر مرتين ثم مطولاً للسحب",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"تنعيم البشرة %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"اسحب المربع لضبط التركيز، والدائرة لضبط مقياس الضوء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"يمكنك التقاط صور حادة ومشرقة في ظروف الإضاءة الخافتة بفضل خوارزمية متقدمة لتقليل الضجيج. يتوفر وضعان للتصوير: التصوير الليلي الفائق، وتصوير القمر. عند استخدام الكاميرا الأمامية، سترفع شاشة الجهاز درجة سطوعها لتوفير إضاءة إضافية، ما يسمح بظهور الوجوه مشرقةً وواضحة حتى في الظلام.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark",
+            "value":"إضافة علامة مائية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"يتعذر قفل هذا الإعداد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"يتعذر ضبط فتحة العدسة يدويًا بهذا الطول البؤري",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"هل تريد متابعة استخدام الكاميرا؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"تم فتح قفل التركيز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"تنحيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"تمت إضافة نمط مخصص جديد",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"غائم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"افرد الهاتف",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"وضع القمر مشغّل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"بدون فلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"باردة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"التعريض الضوئي بالذكاء الاصطناعي مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"يمكن أن يقترح الذكاء الاصطناعي الإطار الأمثل لصورتك. ما عليك سوى ضبط استقامة جهازك وسيُضبط التكبير/التصغير تلقائيًا. ويعمل على أفضل نحو عند تصوير المناظر الطبيعية، والمباني، والأشخاص.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"مساعدة العرض مشغّلة، سيستمر تصوير الفيديو بتنسيق Log",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"festival_watermark",
+            "value":"العلامات المائية للعطلات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"البطارية منخفضة للغاية، تم إيقاف التسجيل تلقائيًا وحفظه",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"الجهاز ساخن للغاية. سيُغلق تطبيق الكاميرا بعد %1$d ثوانٍ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format",
+            "value":"تنسيق الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details",
+            "value":"أنماط الألوان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details",
+            "value":"التصوير بدقة عالية يمنحك كثافة بكسلات أكبر لصور أوضح وتفاصيل أدق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"global_exposure",
+            "value":"التعريض الضوئي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"مع فلاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"جارٍ الحفظ…",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"زهرة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"يتيح لك هذا عرض مواقع الصور والفيديوهات بدقة.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"يُستخدم هذا الإذن لعرض وتخزين الصور والفيديوهات التي تلتقطها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"الإعدادات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"تحتاج الكاميرا إلى منحها إذن الموقع",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"استخدام التنسيق المثالي لحفظ الفيديو بجودة عالية وحجم أقل بنحو %1$s (قد يتسبب هذا في تعذر تشغيله على الأجهزة أخرى)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"اضغط على زر الرد على المكالمات الموجود في السماعة لالتقاط الصور أو الفيديوهات.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"يدوي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"التصوير المتقطّع (%d صور)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"عند التقاط صورة ذاتية أمام المرآة، يمكنك جعل شاشة الغطاء تعرض صورة مخصصة ستظهر بجانبك في اللقطة. لإعداد ذلك، انتقل إلى القائمة السريعة في الكاميرا وانقر على المعاينة المزدوجة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"وضع القمر مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pre_record",
+            "value":"تسجيل مسبق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"انقر على أيقونة %s للتبديل بسرعة بين أنماط XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"التصوير الفلوري وضع في الكاميرا يستخدم ضوء مساعد من الأشعة فوق البنفسجية. حيث تعطي الأشعة فوق البنفسجية عند انعكاسها من بعض المواد ألوانًا فلورية يمكن التقاطها كصور فوتوغرافية منمقة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"يتيح لك الوضع الليلي التقاط صور واضحة وساطعة حتى في ظروف الإضاءة الضعيفة، وذلك بفضل خوارزمية تقليل التغبُّش المتقدمة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"يمكنك التقاط صور حادة ومشرقة في ظروف الإضاءة الخافتة بفضل خوارزمية متقدمة لتقليل الضجيج. تتوفر أربعة أوضاع للتصوير: التصوير الليلي الفائق، وتصوير القمر، والسماء النجمية، والبورتريه النجمي.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_speed",
+            "value":"السرعة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"يحتاج هذا التطبيق إلى منحه الإذن باستخدام/الوصول إلى %1$s و%2$s و%3$s. ويحتاج أيضًا إلى قراءة الصور والفيديوهات من أجل عرض الصور والفيديوهات التي تلتقطها.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"تشغيل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"لقطة سريعة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"تبديل إلى وضع الصورة",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"request_location_msg",
+            "value":"اسمح بالوصول إلى الموقع كي تتمكن الكاميرا من إضافة وسم يحتوي على الموقع الجغرافي إلى صورك وفيديوهاتك، مما يتيح لك معرفة أماكن التقاطها في المعرض.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"حذف",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"عامل التصفية الحالي غير متوفر مع الدقة %1$s (%2$d إطارًا في الثانية). تم التبديل تلقائيًا إلى الدقة %3$d بكسلًا (%4$d) إطارًا في الثانية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"لا تحرّك جهازك أثناء التصوير.\nانتظر العد التنازلي أو انقر على زر التقاط الصور لالتقاط صورة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"التصوير بدقة عالية يمنحك كثافة بكسلات أكبر لصور أوضح وتفاصيل أدق. في وضع الدقة العالية، قد يستغرق إنتاج الصور وقتًا أطول قليلًا. تأكد من إمساك الهاتف بثبات حتى اكتمال العملية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"السعة التخزينية للجهاز ممتلئة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"المزيد من المعلومات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"نمط قياسي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"انقر هنا لاستيراد نمط مخصص.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"للوصول إلى \"الإعدادات\" %s، انقر على السهم الموجود في الأسفل أو اسحبه لأعلى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"يمكن لهذا التطبيق فقط الوصول إلى الصور والفيديوهات التي تلتقطها، ولا يمكنه الوصول إلى أي محتوى آخر في شاشة تحديد المنظر. %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"اسحب الأيقونات لضبط الترتيب",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"عند تشغيل تثبيت الصورة، تصبح جودة الصورة أفضل عند وجود الكثير من الضوء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"small_art_vision",
+            "value":"عدسة Celia",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_watermark",
+            "value":"إضافة علامة مائية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"قُل \"Cheese\" أو لفظ مشابه في النطق لالتقاط صورة.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"إشعار الأذونات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"إغلاق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"السماء النجمية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"أحادي اللون · لمسة خالدة وأجواء ساحرة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"الإعدادات",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

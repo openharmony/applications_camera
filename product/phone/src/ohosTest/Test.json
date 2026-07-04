@@ -1,0 +1,49 @@
+{
+  "description": "Configuration for demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "300000",
+    "bundle-name": "com.ohos.camera",
+    "module-name": "phone_test",
+    "shell-timeout": "3600000",
+    "testcase-timeout": "180000",
+    "compile-mode": "esmodule",
+    "coverage": true,
+    "package-tool-path": "D:\\Local\\coverage2.0\\node_modules\\@ohos\\coverage"
+  },
+  "kits": [
+    {
+      "run-command": [
+        "mount -o remount,rw /",
+        "target mount",
+        "hilog -G 10240000 param set persist.ace.debug.enable 0"
+      ],
+      "type": "ShellKit"
+    },
+    {
+      "push": ["../../CameraPicker.hap->/system/app/Camera/CameraPicker.hap", "D:\\PerfectDemo.hap->/system/app/Camera/PerfectDemo.hap"],
+      "pre-push": "mount -o rw,remount /",
+      "type": "PushKit",
+      "post-push": [
+        "bm install -p /system/app/Camera/CameraPicker.hap",
+        "bm install -p /system/app/Camera/PerfectDemo.hap",
+        "power-shell wakeup",
+        "power-shell display -s 0",
+        "uinput -T -m 300 2700 280 200",
+        "hilog -r",
+        "hilog -b I",
+        "power-shell setmode -o 600000",
+        "bm clean -n com.ohos.camera -c",
+        "bm clean -n com.ohos.camera -d"
+      ]
+    },
+    {
+      "test-file-name": [
+        "camera_override.hap",
+        "camera_overrideTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

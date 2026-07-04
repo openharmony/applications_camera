@@ -31,6 +31,20 @@
     ]
   },
   {
+    "settingIcon": "/res/image/ic_camera_video_frame_rate.svg",
+    "settingTitle": "",
+    "settingAlias": "VideoFrameRate",
+    "settingValue": "",
+    "settingChildren": [
+      {
+        "itemValue": "30fps"
+      },
+      {
+        "itemValue": "60fps"
+      }
+    ]
+  },
+  {
     "settingIcon": "res/image/ic_camera_setting_timer.svg",
     "settingTitle": "",
     "settingAlias": "RecordingSize",

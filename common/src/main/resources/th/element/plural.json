@@ -1,0 +1,124 @@
+{
+    "plural":[
+        {
+            "name":"accessibility_tips_zoom_scale",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ซูม %s เท่า",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_interval_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ช่วงเวลา %f วินาที",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_recorded_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"บันทึกแล้ว %d วินาที",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_min",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d น.",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_sec",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%ds",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"preset_replacement_content_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"คุณสามารถมีสไตล์ที่กำหนดเองได้สูงสุด %d สไตล์ต่อครั้ง เลือกหนึ่งรายการเพื่อแทนที่",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"accessibility_tips_zoom_scale_new",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"ซูม %f เท่า",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"timer_sub_seconds",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%f วินาที",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"xmage_custom_styles_desc",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"คุณสามารถสร้างสไตล์สีเฉพาะตัวสําหรับภาพถ่ายของคุณได้แล้ว เลือกจากสไตล์ที่ตั้งค่าไว้ล่วงหน้า %1$s สไตล์ หรือทดลองปรับเพื่อค้นหาลุคที่เป็นเอกลักษณ์ในแบบของคุณเอง",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d นาที",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

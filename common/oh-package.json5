@@ -1,9 +1,20 @@
 {
   "license": "ISC",
+  "types": "",
   "devDependencies": {},
   "name": "@ohos/common",
   "description": "common feature",
-  "repository": {},
+  "main": "index.ets",
   "version": "1.0.0",
-  "dependencies": {}
+  "dependencies": {
+//    "@ohos-paf/ui-widget-base": "14.16.8-314",
+//    "@ohos-paf/ui-widget-consent": "14.16.8-314",
+//    "@ohos-paf/ui-widget-permission": "14.16.8-314",
+//    "@ohos-paf/ui-widget-webview": "14.16.8-314",
+//    "@ohos-paf/ui-widget-permissiondesc": "14.16.8-314",
+//    "@ohos-paf/ui-widget-permission-v2": "14.17.4-310",
+//    "@ohos-paf/ui-widget-base-v2": "14.17.4-310",
+    "appnative": "file:../appnative",
+//    "@ohos/pickersheet":"6.0.0-331",
+  }
 }

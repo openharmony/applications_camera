@@ -1,0 +1,200 @@
+{
+    "string":[
+        {
+            "name":"confirm",
+            "value":"موافق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"معدل الإطار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"صورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"إعدادات الفيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"الخطوط المساعدة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_desc",
+            "value":"يُستخدم هذا الإذن لتسجيل الفيديوهات وتشغيل ميزة التحكم الصوتي.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_name",
+            "value":"الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_defaults",
+            "value":"استعادة الإعدادات الافتراضية",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"دقة الفيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"إضافة وسم يحتوي على معلومات الموقع الجغرافي على الصور والفيديوهات التي تلتقطها.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"تعمل هذه الميزة مع الكاميرا الأمامية فقط",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"off",
+            "value":"مغلق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"إعدادات الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm_restore_message",
+            "value":"ستستعيد إعدادات الكاميرا الافتراضية.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"إعدادات عامة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"كتم صوت الكاميرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_permission_desc",
+            "value":"يُستخدم هذا الإذن لالتقاط الصور وتسجيل الفيديوهات.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"أبعاد الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"إلغاء",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imagevideo_permission_desc",
+            "value":"يُستخدم هذا الإذن لعرض وتخزين الصور والفيديوهات التي تلتقطها.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d ثوانٍ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"عكس الصورة",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"المؤقت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"الإعدادات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"فيديو",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

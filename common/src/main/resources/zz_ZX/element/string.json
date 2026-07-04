@@ -1,8 +1,3336 @@
 {
-  "string": [
-    {
-      "name": "noticeitem",
-      "value": "noticeitem"
-    }
-  ]
+    "string":[
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"[TS_1119479]_Dual preview is not available while casting the screen."
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"[TS_1119478]_Dual preview is not available while recording the screen."
+        },
+        {
+            "name":"photo_mode",
+            "value":"[TS_800566]_Photo"
+        },
+        {
+            "name":"video_mode",
+            "value":"[TS_800590]_Video"
+        },
+        {
+            "name":"night_mode",
+            "value":"[TS_873418]_Night"
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"[TS_916986]_High-res"
+        },
+        {
+            "name":"portrait_mode",
+            "value":"[TS_851014]_Portrait"
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"[TS_802744]_Flash off"
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"[TS_802746]_Auto flash"
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"[TS_802745]_Flash on"
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"[TS_802743]_Flash always on"
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"[TS_806875]_(%1$s:%2$s) %3$sp"
+        },
+        {
+            "name":"frame_rate",
+            "value":"[TS_808190]_%d fps"
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"[TS_806876]_%1$d:%2$d"
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"[TS_806873]_(%1$s:%2$s) %3$sp"
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"[TS_856622]_Full screen | %1$sp"
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"[TS_856623]_Full screen | %1$sp"
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"[TS_856624]_Full screen"
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"[TS_806874]_%1$d:%2$d (Recommended)"
+        },
+        {
+            "name":"video_pause",
+            "value":"[TS_813904]_Pause"
+        },
+        {
+            "name":"video_resume",
+            "value":"[TS_813905]_Resume"
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"[TS_841037]_Auto"
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"[TS_841038]_Always on"
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"[TS_841039]_Flash"
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"[TS_841040]_Resolution"
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"[TS_841041]_Frame rate"
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"[TS_841045]_Off"
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"[TS_841047]_%1$sp"
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"[TS_841049]_On"
+        },
+        {
+            "name":"horizontal_level",
+            "value":"[TS_841067]_Horizontal level"
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"[TS_851006]_Camera needs to access your location to add location tags to photos and videos. Allow?"
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"[TS_851018]_To obtain location information while indoors, make sure to maintain an Internet connection."
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"[TS_851013]_Deny"
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"[TS_851004]_Allow"
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"[TS_851019]_Location tag"
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"[TS_851016]_Beauty off"
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"[TS_851003]_Beauty"
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"[TS_851009]_Soften"
+        },
+        {
+            "name":"pop_item_on",
+            "value":"[TS_851010]_On"
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"[TS_851007]_(%1$s:%2$s) %3$sp"
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"[TS_851001]_Contour"
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"[TS_851015]_(%1$s:%2$s) %3$sp"
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"[TS_851017]_Turn on Beauty mode first"
+        },
+        {
+            "name":"pop_item_off",
+            "value":"[TS_851011]_Off"
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"[TS_851012]_Beauty on"
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"[TS_851002]_Tone"
+        },
+        {
+            "name":"mirror_off",
+            "value":"[TS_853769]_Off"
+        },
+        {
+            "name":"mirror_on",
+            "value":"[TS_853768]_On"
+        },
+        {
+            "name":"wide_angle",
+            "value":"[TS_854359]_Wide"
+        },
+        {
+            "name":"floating_shutter",
+            "value":"[TS_868372]_Floating shutter"
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"[TS_868374]_Add a movable shutter button for extra convenience."
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"[TS_868385]_Privacy statements"
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"[TS_868378]_Microphone"
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"[TS_868379]_Camera permissions"
+        },
+        {
+            "name":"xmage_bright",
+            "value":"[TS_871045]_Vivid"
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"[TS_915560]_Mono"
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"[TS_868380]_This is used to display and store photos and videos you take."
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"[TS_871051]_(%1$s:%2$s) %3$s"
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"[TS_868388]_Capture your best moments."
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"[TS_871049]_(%1$s:%2$s) %3$s"
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"[TS_868381]_Camera"
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"[TS_868376]_Welcome to"
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"[TS_871053]_%1$sK"
+        },
+        {
+            "name":"security_update_date",
+            "value":"[TS_871047]_Last updated: %s"
+        },
+        {
+            "name":"dialog_agree",
+            "value":"[TS_871054]_Agree"
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"[TS_871044]_XMAGE"
+        },
+        {
+            "name":"xmage_soft",
+            "value":"[TS_871043]_Bright"
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"[TS_868371]_OK"
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"[TS_868382]_By tapping Agree, you agree to the above terms. For more details about how your personal information is processed, refer to the %1$s and %2$s."
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"[TS_868383]_This service requires %d permissions:"
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"[TS_868373]_This is used to take photos and record video."
+        },
+        {
+            "name":"xmage_normal",
+            "value":"[TS_871048]_Original"
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"[TS_868387]_Cancel"
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"[TS_868377]_Permissions Notice"
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"[TS_868389]_Images & videos"
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"[TS_868375]_Agree"
+        },
+        {
+            "name":"audio_control",
+            "value":"[TS_872484]_Audio control"
+        },
+        {
+            "name":"audio_control_off",
+            "value":"[TS_872483]_Off"
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"[TS_881718]_Say \"Cheese\" to take a photo."
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"[TS_880519]_High efficiency format"
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"[TS_880520]_Videos take up about %1$s less space, but may not play on other devices."
+        },
+        {
+            "name":"back_selfie",
+            "value":"[TS_881092]_Rear selfie"
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"[TS_881091]_Tap to take selfies with the rear camera."
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"[TS_881094]_Flip to switch screens"
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"[TS_881093]_Uncollaps to take selfies with the rear camera"
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"[TS_879556]_Steady shot"
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"[TS_879558]_Steady shot off"
+        },
+        {
+            "name":"time_parameter",
+            "value":"[TS_876527]_Time"
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"[TS_879559]_Steady shot on"
+        },
+        {
+            "name":"super_macro_off",
+            "value":"[TS_873729]_Super macro off"
+        },
+        {
+            "name":"shutter_auto",
+            "value":"[TS_875221]_Auto"
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"[TS_872488]_Raise your voice to take a photo."
+        },
+        {
+            "name":"watermark",
+            "value":"[TS_876529]_Add watermark"
+        },
+        {
+            "name":"already_on",
+            "value":"[TS_876531]_On"
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"[TS_880522]_Enjoy enhanced color and contrast. Compatibility varies by device and app."
+        },
+        {
+            "name":"super_macro_on",
+            "value":"[TS_873728]_Super macro on"
+        },
+        {
+            "name":"capture_parameter",
+            "value":"[TS_876526]_Camera settings"
+        },
+        {
+            "name":"watermark_notification",
+            "value":"[TS_882055]_Only available with the frame watermark."
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"[TS_872486]_Speak loudly"
+        },
+        {
+            "name":"Say_keyword",
+            "value":"[TS_872485]_Say keyword"
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"[TS_876530]_Automatically add a watermark to photos taken with the rear camera."
+        },
+        {
+            "name":"shutter_speed",
+            "value":"[TS_873417]_Shutter speed"
+        },
+        {
+            "name":"add_watermark",
+            "value":"[TS_876528]_Add watermark"
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"[TS_879557]_Zoom is not supported when Steady shot is on."
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"[TS_880521]_HDR Vivid"
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"[TS_884556]_Say \"Cheese\" to take a photo."
+        },
+        {
+            "name":"no_record_remind",
+            "value":"[TS_895524]_A recording app is already running in the background (Recorder, Call). To record a video, close the app first."
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"[TS_904771]_Moon mode on"
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"[TS_904772]_Moon mode off"
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"[TS_899628]_Drag the square to adjust focus, and the circle to adjust metering."
+        },
+        {
+            "name":"physical_aperture",
+            "value":"[TS_899876]_Physical aperture"
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"[TS_899877]_Virtual aperture"
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"[TS_904806]_Sharpening… Please steady your device."
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"[TS_903947]_Tap the screen to activate the camera"
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"[TS_907354]_Location tag can't be used in private camera mode."
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"[TS_907356]_This lets you view exact photo and video locations."
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"[TS_907355]_Go to Settings"
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"[TS_907357]_Allow Camera to access your precise location?"
+        },
+        {
+            "name":"edit",
+            "value":"[TS_872126]_Edit"
+        },
+        {
+            "name":"more",
+            "value":"[TS_872125]_More"
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"[TS_872124]_Restore default layout"
+        },
+        {
+            "name":"more_tip_context",
+            "value":"[TS_872123]_Drag icons to adjust layout"
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"[TS_917827]_Pro"
+        },
+        {
+            "name":"m_Confirm",
+            "value":"[TS_917823]_OK"
+        },
+        {
+            "name":"professional_mode",
+            "value":"[TS_917835]_Pro"
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"[TS_917836]_Focus assist light on"
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"[TS_917826]_Current settings are not letting in enough light. Restore default exposure settings?"
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"[TS_917833]_Focus assist light off"
+        },
+        {
+            "name":"photo_format",
+            "value":"[TS_917830]_Photo format"
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"[TS_917828]_Switched to RAW"
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"[TS_917829]_Capture %dMP images in Photo mode. Images may take slightly longer to process at this resolution."
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"[TS_917825]_Cancel"
+        },
+        {
+            "name":"auxiliary",
+            "value":"[TS_917837]_Focus assist light"
+        },
+        {
+            "name":"high_quality",
+            "value":"[TS_917831]_Enhance images"
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"[TS_917824]_Switched to Standard JPG"
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"[TS_917832]_Professional"
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"[TS_918885]_Moving picture off"
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"[TS_918888]_Moving picture on"
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"[TS_918884]_Shutter sound is muted when taking moving pictures."
+        },
+        {
+            "name":"live_photo",
+            "value":"[TS_918886]_Moving picture"
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"[TS_918887]_Not available when Moving picture is on."
+        },
+        {
+            "name":"photo_jpg",
+            "value":"[TS_919981]_JPG"
+        },
+        {
+            "name":"photo_raw",
+            "value":"[TS_919982]_RAW"
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"[TS_920914]_Auto"
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"[TS_921367]_Scanning for moving objects…"
+        },
+        {
+            "name":"mode_slow",
+            "value":"[TS_915050]_Slow-mo"
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"[TS_921368]_Saving… Please don't exit"
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"[TS_920915]_Manual"
+        },
+        {
+            "name":"motion_speed",
+            "value":"[TS_921369]_Speed"
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"[TS_921370]_Recording..."
+        },
+        {
+            "name":"macro_mode",
+            "value":"[TS_920916]_Super macro"
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"[TS_921391]_%1$s fps"
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"[TS_921366]_Keep your device steady."
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"[TS_921365]_Only %dx slow-mo is available."
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"[TS_924898]_Moody"
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"[TS_924899]_Pink"
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"[TS_924905]_Pure"
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"[TS_924903]_None"
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"[TS_924900]_Dual preview"
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"[TS_924906]_Natural"
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"[TS_924907]_Blossom"
+        },
+        {
+            "name":"camera_filter",
+            "value":"[TS_924908]_Filters"
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"[TS_924904]_Classic"
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"[TS_924902]_Fair"
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"[TS_924901]_Dawn"
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"[TS_916987]_AI Ultra Clarity is great for shooting still objects and scenery in good light."
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"[TS_1070797]_AI Ultra Clarity is great for shooting still objects and scenery in good light."
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"[TS_873415]_Keep the device steady.\nWait for the countdown or tap the shutter to capture a photo."
+        },
+        {
+            "name":"skip",
+            "value":"[TS_915834]_Skip"
+        },
+        {
+            "name":"open_camera",
+            "value":"[TS_915831]_Open Camera"
+        },
+        {
+            "name":"details",
+            "value":"[TS_915836]_Details"
+        },
+        {
+            "name":"more_intro",
+            "value":"[TS_915826]_More"
+        },
+        {
+            "name":"time_lapse",
+            "value":"[TS_915053]_Time lapse"
+        },
+        {
+            "name":"snapshot",
+            "value":"[TS_926792]_Snapshot"
+        },
+        {
+            "name":"panorama",
+            "value":"[TS_926783]_Panorama"
+        },
+        {
+            "name":"light_painting",
+            "value":"[TS_926772]_Light painting"
+        },
+        {
+            "name":"macro",
+            "value":"[TS_926782]_Macro"
+        },
+        {
+            "name":"wide_aperture",
+            "value":"[TS_926787]_Aperture"
+        },
+        {
+            "name":"night_view_details",
+            "value":"[TS_926775]_Thanks to an advanced noise-reduction algorithm, your phone can capture sharp, bright images even in low-light conditions. ISO and shutter speed can be adjusted manually for more creative shots. When using the front camera to take portraits, the phone provides fill lighting to eliminate unwanted shadows on the subject's face. Selfies taken at night also come out clear and bright."
+        },
+        {
+            "name":"snapshot_details",
+            "value":"[TS_926788]_The super-focus camera system integrates the XD Motion engine to capture subjects moving at speeds of up to %d km/h, whether you are shooting up close or from a distance."
+        },
+        {
+            "name":"portrait_details",
+            "value":"[TS_926784]_Portrait mode allows you to take beautiful photos with a bokeh effect in the background."
+        },
+        {
+            "name":"photo_details",
+            "value":"[TS_926791]_The camera automatically adjusts the exposure and color when you take photos."
+        },
+        {
+            "name":"video_details",
+            "value":"[TS_926793]_The camera automatically adjusts the exposure and color when you shoot HD video."
+        },
+        {
+            "name":"professional_details",
+            "value":"[TS_926786]_Fine-tune your camera settings to get just the shot you're looking for. Pro mode lets you adjust a host of advanced settings such as metering, ISO, shutter speed, exposure value (EV), white balance, and focus mode."
+        },
+        {
+            "name":"slow_details",
+            "value":"[TS_926779]_Capture slow-motion video without length restrictions. Super slow-mo can be used to manually or automatically capture video at ultra-high frame rates. This mode works best in brightly lit environments."
+        },
+        {
+            "name":"panorama_details",
+            "value":"[TS_926794]_Move the camera horizontally or vertically to take a panoramic photo."
+        },
+        {
+            "name":"light_painting_details",
+            "value":"[TS_926790]_Create special light and shadow effects. Choose from four preset modes (traffic trails, light graffiti, silky water, and star trails) tailored to the most common light painting scenarios. For best results, use a tripod."
+        },
+        {
+            "name":"macro_details",
+            "value":"[TS_926778]_Take extreme close-ups with the rear camera, and capture the vivid details of the world around you."
+        },
+        {
+            "name":"high_res_details",
+            "value":"[TS_926774]_High resolution photography has a higher pixel density, for greater clarity and detail."
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"[TS_926781]_With a wider aperture, you can capture your subject in detail while creating a soft bokeh effect in the background. For best results, the distance between the camera and the subject should be no more than %d meters."
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"[TS_931550]_To display the photos and videos you take, this app requires the %1$s, %2$s, %3$s, and %4$s permissions, and needs to read image, video, and location information."
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"[TS_924094]_White balance locked"
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"[TS_924095]_Exposure locked"
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"[TS_924096]_Some settings aren't available at this ISO value."
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"[TS_924098]_This setting can't be locked."
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"[TS_924100]_Saving…"
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"[TS_924101]_White balance unlocked"
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"[TS_924102]_Focus can only be locked in AF-C."
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"[TS_924103]_White balance can only be locked in AWB mode."
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"[TS_924105]_Exposure unlocked"
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"[TS_924106]_Can't manually adjust aperture at this focal length."
+        },
+        {
+            "name":"function_under_development",
+            "value":"[TS_924097]_Feature coming soon."
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"[TS_924492]_Your device is too hot. Camera will close in %1$d seconds."
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"[TS_928761]_Private access to camera"
+        },
+        {
+            "name":"security_access",
+            "value":"[TS_928760]_Private access"
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"[TS_928758]_Your device's camera is active, but this app can only access the images that you capture."
+        },
+        {
+            "name":"gps_title",
+            "value":"[TS_930491]_Location"
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"[TS_930490]_Location"
+        },
+        {
+            "name":"aperture_mode",
+            "value":"[TS_928759]_Aperture"
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"[TS_924918]_Move the frame to select a different area."
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"[TS_936834]_Device too hot. Flash is not available."
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"[TS_939765]_Swipe sideways for burst shot or video."
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"[TS_915832]_Capture the essence of change with videos that speed up the passage of time."
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"[TS_926776]_Motion detection stopped."
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"[TS_941139]_Manual flash"
+        },
+        {
+            "name":"light_painting_star",
+            "value":"[TS_941165]_Star trails"
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"[TS_941160]_Tip"
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"[TS_941177]_Light painting"
+        },
+        {
+            "name":"light_painting_car",
+            "value":"[TS_941155]_Traffic trails"
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"[TS_941150]_Flash off"
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"[TS_941164]_With flash"
+        },
+        {
+            "name":"light_painting_light",
+            "value":"[TS_941178]_Light graffiti"
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"[TS_941168]_Off"
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"[TS_941152]_Without flash"
+        },
+        {
+            "name":"light_painting_water",
+            "value":"[TS_941156]_Silky water"
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"[TS_941157]_Manual"
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"[TS_924099]_Focus locked"
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"[TS_924104]_Focus unlocked"
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"[TS_941136]_Got it"
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"[TS_941138]_Flash after %ds"
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"[TS_941145]_%ds"
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"[TS_941149]_Keep your device steady"
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"[TS_941151]_%ds"
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"[TS_941161]_You can use the camera's flash to capture people while shooting in this mode."
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"[TS_941163]_Image is overexposed. Restore default exposure settings?"
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"[TS_941169]_Flash after %ds"
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"[TS_941170]_Don't show again"
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"[TS_941173]_Flash after %ds"
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"[TS_941174]_%ds"
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"[TS_941175]_Off"
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"[TS_941166]_Manual"
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"[TS_941158]_Flash off"
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"[TS_941153]_Flash after %d seconds"
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"[TS_941148]_With flash"
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"[TS_941146]_Flash after %d seconds"
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"[TS_941144]_Flash after %d seconds"
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"[TS_941142]_Without flash"
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"[TS_943090]_Make sure the rear camera is clean and unobstructed."
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"[TS_942426]_Move right."
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"[TS_942423]_Slow down."
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"[TS_942420]_Tap the shutter icon and move the device slowly from left to right."
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"[TS_942419]_Move down."
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"[TS_942417]_Move left."
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"[TS_942416]_Move up."
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"[TS_942414]_Keep the arrow on the center line."
+        },
+        {
+            "name":"small_art_vision",
+            "value":"[TS_943243]_Celia Lens"
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"[TS_942399]_CLOSE CAMERA"
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"[TS_941741]_Device too hot. Flash is not available."
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"[TS_941740]_Your device is too hot. Camera will close in %1$d seconds."
+        },
+        {
+            "name":"self_portrait",
+            "value":"[TS_944276]_Selfie"
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"[TS_942415]_Switch to horizontal panorama"
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"[TS_942425]_Switch to vertical panorama"
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"[TS_944594]_Zoom is not available in Panorama mode."
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"[TS_851008]_Beauty"
+        },
+        {
+            "name":"shutter",
+            "value":"[TS_873414]_Auto"
+        },
+        {
+            "name":"infinity_time",
+            "value":"[TS_945551]_No limit"
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"[TS_945556]_Rear camera preview"
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"[TS_945565]_Frame interval: %1$ss\nIdeal for sunrise/sunset"
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"[TS_945560]_Frame interval: %1$ss\nIdeal for stars"
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"[TS_945563]_Double-tap to switch"
+        },
+        {
+            "name":"film_duration_title",
+            "value":"[TS_945558]_Final video length"
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"[TS_945550]_(%1$s:%2$s) %3$sp (Recommended)"
+        },
+        {
+            "name":"keep_time_title",
+            "value":"[TS_945552]_Recording duration"
+        },
+        {
+            "name":"resolution_rate",
+            "value":"[TS_945557]_%d fps"
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"[TS_945553]_Double-tap to activate"
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"[TS_945561]_%d times speed"
+        },
+        {
+            "name":"scene_none",
+            "value":"[TS_945564]_Frame interval: %ds"
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"[TS_945554]_Frame interval: %1$ss\nIdeal for clouds"
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"[TS_945555]_Not enough light is getting in. Restore default exposure settings?"
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"[TS_945548]_Frame interval: %1$ss\nIdeal for blooming flowers"
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"[TS_945549]_Frame interval: %1$ss\nIdeal for cars and crowds"
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"[TS_951139]_Tap here to let your subject see the preview too."
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"[TS_950906]_As the fluorescent effect is faint, best results are achieved in very dark environments. Please exercise caution when using this mode."
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"[TS_950893]_%1$d. Precautions"
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"[TS_950909]_Learn more"
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"[TS_950904]_%s Please ensure that you read this notice in full before using this mode."
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"[TS_950891]_%s By using this mode, you indicate that you have read, understood, agreed to, and accepted all terms stated in this notice."
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"[TS_950910]_%1$s The fill light used in this product complies with the %2$s safety standard."
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"[TS_950897]_%1$d. Introduction"
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"[TS_950892]_About fluorescence photography"
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"[TS_950913]_Shoot in the dark for the best results."
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"[TS_950902]_Image is blurry. Try wiping the lens."
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"[TS_951137]_Dual preview off"
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"[TS_950901]_%1$d. Important"
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"[TS_950915]_Fluorescence photography is a camera mode which uses a UV fill light. When re-emitted from certain materials, the UV light gives off fluorescent colors which can be captured as stylized photographs."
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"[TS_950905]_Fluorescence"
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"[TS_950890]_Capture moments in a whole new way."
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"[TS_951138]_Dual preview on"
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"[TS_949562]_Extremely low lighting. Optimizing exposure…"
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"[TS_945996]_Zoom is not supported in RAW mode."
+        },
+        {
+            "name":"smile_capture",
+            "value":"[TS_949124]_Capture smiles"
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"[TS_953476]_Tap the shutter and move the camera slowly in the direction of the arrow."
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"[TS_949123]_Automatically take photos when people smile."
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"[TS_950894]_Slowly pan the camera either horizontally or vertically, while keeping it as steady as possible. Keep the arrow level with the center line. When you finish shooting, the camera will automatically combine everything you've captured into a panoramic photo. This mode is great for landscapes and big group photos."
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"[TS_950887]_Extra-slow shutter speeds allow you to create ethereal effects with light. There are four preset modes, tailored to common light painting scenarios (Traffic trails, Light graffiti, Silky water, and Star trails)."
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"[TS_950912]_Photos are more vivid and textured, allowing you to better capture pets and scenery."
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"[TS_950888]_In Portrait mode, you can use beauty effects and get different kinds of bokeh by adjusting the aperture."
+        },
+        {
+            "name":"macro_details_more",
+            "value":"[TS_950919]_A closer focus distance allows you to capture your subject in minute detail. Super macro can be used for both photos and videos."
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"[TS_950895]_New tricks"
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"[TS_950889]_Capture clearer pictures of subjects in motion."
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"[TS_950918]_In Portrait mode, you can use beauty effects and get different kinds of bokeh by adjusting the aperture. Exposure and color are adjusted automatically as you shoot, to give you the best possible photos."
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"[TS_950914]_The zoom ring has been replaced with fan zoom. In addition, you can touch & hold the shutter button and then swipe left to take a burst shot, swipe right to record video, or swipe up to zoom."
+        },
+        {
+            "name":"xmage",
+            "value":"[TS_950899]_XMAGE"
+        },
+        {
+            "name":"professional_details_new",
+            "value":"[TS_950896]_In Pro mode, you can freely adjust advanced parameters to get just the shot you're looking for."
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"[TS_950911]_The new fan zoom brings you a smoother, more convenient zoom experience."
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"[TS_950900]_Temperature alert"
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"[TS_950907]_High resolution photography has a higher pixel density, for greater clarity and detail. In High-res mode, photos may take a little longer to produce. Hold the phone steady until the process is complete."
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"[TS_950903]_New zoom"
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"[TS_950908]_Extra-slow shutter speeds allow you to create ethereal effects with light. There are four preset modes, tailored to common light painting scenarios (Traffic trails, Light graffiti, Silky water, and Star trails). For best results, use a tripod."
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"[TS_951847]_Limit reached. Saving photos now."
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"[TS_950916]_Night mode allows you to capture sharp, bright images even in low-light conditions, thanks to an advanced noise-reduction algorithm."
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"[TS_950917]_With a wider aperture, you can capture your subject in detail while creating a soft bokeh effect in the background. For best results, the distance between the camera and the subject should be no more than %d meters. This mode lets you control both physical and virtual apertures."
+        },
+        {
+            "name":"professional_details_more",
+            "value":"[TS_950898]_In Pro mode, you can freely adjust a host of advanced camera settings to get just the shot you're looking for. These include metering, ISO, aperture, shutter speed, exposure value (EV), white balance, and focus mode, among others."
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"[TS_950059]_In RAW mode, zoom can only be adjusted by tapping the presets or pinching."
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"[TS_941171]_Auto flash"
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"[TS_941159]_Flash"
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"[TS_941167]_Flash off"
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"[TS_941143]_Flash always on"
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"[TS_952892]_Device temperature high. Pic-in-Pic unavailable."
+        },
+        {
+            "name":"tripod_on",
+            "value":"[TS_956537]_Ultra steady on"
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"[TS_956045]_Focus mode"
+        },
+        {
+            "name":"tripod_off",
+            "value":"[TS_956538]_Ultra steady off"
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"[TS_956053]_Manual focus"
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"[TS_956048]_Open quick menu"
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"[TS_956044]_Close quick menu"
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"[TS_956069]_Exposure compensation"
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"[TS_956043]_White balance"
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"[TS_956040]_Underexposure"
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"[TS_956050]_Metering mode"
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"[TS_956041]_Stop recording video"
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"[TS_956059]_Single-shot AF"
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"[TS_956051]_Continuous AF"
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"[TS_956042]_Matrix"
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"[TS_956046]_Fluorescent"
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"[TS_956066]_Center"
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"[TS_956062]_Switch to rear camera"
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"[TS_956067]_Switch to front camera"
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"[TS_956038]_Spot"
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"[TS_956039]_Incandescent"
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"[TS_956060]_More info"
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"[TS_958380]_Default"
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"[TS_954817]_Exposure is too low."
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"[TS_954819]_This is used to tag location information to photos and videos."
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"[TS_954820]_Camera requires the Location permission"
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"[TS_954818]_Beauty mode"
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"[TS_954821]_Restore default exposure settings?"
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"[TS_954816]_Photo specifications"
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"[TS_958975]_Exposure and focus are locked."
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"[TS_956047]_Daylight"
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"[TS_956055]_Cloudy"
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"[TS_956061]_Switch to video"
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"[TS_958379]_Swirl"
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"[TS_958378]_Hearts"
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"[TS_959370]_Beauty level %1$d, selectable range is from %2$d to %3$d"
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"[TS_959371]_Overexposure"
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"[TS_959372]_Zoom"
+        },
+        {
+            "name":"device_name",
+            "value":"[TS_956199]_Device model"
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"[TS_956057]_Selected"
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"[TS_956068]_Switch to"
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"[TS_956063]_Not selected"
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"[TS_956052]_Standard watermark"
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"[TS_956058]_Frame watermark"
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"[TS_956054]_Radio button"
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"[TS_957026]_Exposure is too high."
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"[TS_956049]_Not interactive"
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"[TS_956065]_Switch to Photo mode"
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"[TS_956064]_Most recent photo"
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"[TS_961283]_Battery level too low. Flash is not available."
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"[TS_959369]_Color effect"
+        },
+        {
+            "name":"option_exit_camera",
+            "value":"[TS_967798]_Exit app"
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"[TS_969311]_Open Camera"
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"[TS_969313]_Double-press the Volume down button when the screen is off."
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"[TS_969312]_Take a snapshot"
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"[TS_969310]_Ultra Snapshot"
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"[TS_973428]_Automatically switch to rear selfie mode if you're facing the rear camera after uncollapsing and flipping the phone."
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"[TS_973427]_Smart rear selfie"
+        },
+        {
+            "name":"title_disabled",
+            "value":"[TS_967799]_Camera disabled"
+        },
+        {
+            "name":"content_occupied",
+            "value":"[TS_967800]_Another app is using the camera. Close that app, then relaunch this app."
+        },
+        {
+            "name":"title_not_detected",
+            "value":"[TS_967793]_No camera detected"
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"[TS_967797]_Please relaunch this app and try again."
+        },
+        {
+            "name":"content_not_detected",
+            "value":"[TS_967803]_Connect the camera and relaunch this app."
+        },
+        {
+            "name":"photo_heif",
+            "value":"[TS_967794]_HEIF"
+        },
+        {
+            "name":"title_occupied",
+            "value":"[TS_967801]_Camera busy"
+        },
+        {
+            "name":"content_disabled",
+            "value":"[TS_967802]_Security policy prohibits use of the camera."
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"[TS_967796]_Switched to HEIF"
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"[TS_967795]_Uses less storage space than JPG while preserving the same visual quality. Compatibility may be limited compared to JPG. You can convert HEIF to JPG in Gallery."
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"[TS_973669]_Blue sky"
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"[TS_973855]_Learn more"
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"[TS_975510]_Front camera preview"
+        },
+        {
+            "name":"scene_sun",
+            "value":"[TS_973668]_Sunrise/Sunset"
+        },
+        {
+            "name":"gourmet_food",
+            "value":"[TS_973671]_Tasty"
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"[TS_976425]_Touch & hold the EV·, AF·, and WB· icons to lock their values."
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"[TS_973854]_This app can only access the photos and videos that you take. It can't view what's in the viewfinder. %1$s"
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"[TS_976773]_Quick menu open"
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"[TS_976774]_Quick menu closed"
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"[TS_973434]_This app requires the %1$s, %2$s, and %3$s permissions. It also needs to read photos and videos in order to display photos and videos you take."
+        },
+        {
+            "name":"audio_zoom",
+            "value":"[TS_974598]_Audio zoom"
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"[TS_974601]_Audio zoom off"
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"[TS_974602]_Audio zoom on"
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"[TS_973667]_Moon"
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"[TS_973670]_Night enhance"
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"[TS_974599]_Audio pick-up is currently focused on the zoomed area."
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"[TS_974600]_Microphone obstructed."
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"[TS_979376]_Off"
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"[TS_979378]_Subject"
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"[TS_979380]_Super macro · Keep more of the frame in focus"
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"[TS_979377]_Super macro · Emphasize subject"
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"[TS_979379]_Frame"
+        },
+        {
+            "name":"accessibility_button",
+            "value":"[TS_979732]_Button"
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"[TS_981601]_Delicate"
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"[TS_981599]_Stylish"
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"[TS_981600]_Custom"
+        },
+        {
+            "name":"art_signature",
+            "value":"[TS_1062963]_Personalized signature"
+        },
+        {
+            "name":"beauty_reset",
+            "value":"[TS_981758]_Reset"
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"[TS_981598]_Natural"
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"[TS_981968]_Uncollaps the phone"
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"[TS_981312]_Moving picture was disabled because it's too dark. Find somewhere with more light."
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"[TS_981760]_Off"
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"[TS_981313]_In Pro mode, you can freely adjust a host of advanced camera settings to get just the shot you're looking for. These include metering, ISO, shutter speed, exposure value (EV), white balance, and focus mode, among others."
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"[TS_981759]_On"
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"[TS_982687]_Expand your creative boundaries with a range of distinctive color styles."
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"[TS_982691]_Vivid · Rich, Intense"
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"[TS_986802]_For Settings and other features, tap or swipe up on the arrow at the bottom."
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"[TS_982690]_AI Ultra Clarity is great for shooting portraits in good light."
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"[TS_1089016]_AI Ultra Clarity is great for shooting portraits in good light."
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"[TS_982692]_Original · True-to-life, Natural"
+        },
+        {
+            "name":"open_screen_details",
+            "value":"[TS_982688]_Color styles"
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"[TS_982689]_Bright · Elegant, Fresh"
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"[TS_982693]_Monochrome · Timeless, Atmospheric"
+        },
+        {
+            "name":"allow_access",
+            "value":"[TS_990523]_Allow access"
+        },
+        {
+            "name":"request_location_msg",
+            "value":"[TS_990524]_Allow location access so Camera can geotag your photos and videos. This lets you see where they were taken in Gallery."
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"[TS_995869]_Current filter unavailable at %1$dp (%2$d fps). Switched to %3$dp (%4$d fps)."
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"[TS_995870]_Double-tap and hold to drag"
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"[TS_999242]_Photo genius"
+        },
+        {
+            "name":"accessibility_description",
+            "value":"[TS_998006]_Description"
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"[TS_999240]_AI will identify the scene to adjust colors and skin tone for a more vivid photo. Tap the AI icon to turn the effect on/off."
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"[TS_999241]_Welcome to Master AI. Auto-adjust color based on the scene. Tap to try it out."
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"[TS_999300]_Tap here to change the focus mode."
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"[TS_999301]_Static objects only. Keep the camera steady."
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"[TS_998005]_Statement About Camera and Privacy"
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"[TS_1001355]_Moved behind %1$s, on line %2$d, column %3$d"
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"[TS_1001356]_Moved in front of %1$s, on line %2$d, column %3$d"
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"[TS_1064364]_Move behind %s"
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"[TS_1064363]_Move in front of %s"
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"[TS_1064367]_Placed behind %s"
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"[TS_1064368]_%s is being dragged"
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"[TS_1064362]_Placed in front of %s"
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"[TS_1064366]_Placed in front of %1$s, on line %2$d, column %3$d"
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"[TS_1064365]_Placed behind %1$s, on line %2$d, column %3$d"
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"[TS_1008698]_Static objects only. Keep the camera steady."
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"[TS_1008697]_Tap here to switch the focus mode."
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"[TS_1007052]_Front camera only."
+        },
+        {
+            "name":"global_exposure",
+            "value":"[TS_1009040]_Exposure"
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"[TS_1006104]_Adaptive frame rate"
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"[TS_1006105]_Automatically adapt the frame rate to the environment to improve image quality. Range: %1$d–%2$d fps."
+        },
+        {
+            "name":"connect_wifi",
+            "value":"[TS_1004706]_Connect to WLAN"
+        },
+        {
+            "name":"copy",
+            "value":"[TS_1004703]_Copy %s"
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"[TS_1004708]_Add to Calendar"
+        },
+        {
+            "name":"operate_frequently",
+            "value":"[TS_1004175]_Try again later."
+        },
+        {
+            "name":"open",
+            "value":"[TS_1004711]_Open %1$s"
+        },
+        {
+            "name":"send_an_email",
+            "value":"[TS_1004707]_Send email"
+        },
+        {
+            "name":"pay",
+            "value":"[TS_1004712]_Open %1$s"
+        },
+        {
+            "name":"add_new_contact",
+            "value":"[TS_1004709]_New contact"
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"[TS_1004174]_Continue using the camera?"
+        },
+        {
+            "name":"make_a_call",
+            "value":"[TS_1004714]_Call"
+        },
+        {
+            "name":"send_a_message",
+            "value":"[TS_1004704]_Send message"
+        },
+        {
+            "name":"go",
+            "value":"[TS_1004710]_Go to %1$s to pay"
+        },
+        {
+            "name":"open_applet",
+            "value":"[TS_1006635]_Open %1$s mini program"
+        },
+        {
+            "name":"view",
+            "value":"[TS_1004705]_View %1$s"
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"[TS_1010772]_Beauty off"
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"[TS_1010771]_Beauty: %d"
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"[TS_1010773]_Beauty on"
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"[TS_1015917]_Deny"
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"[TS_1015856]_Remote shutter connected."
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"[TS_1015915]_Allow this time only"
+        },
+        {
+            "name":"big_text_s",
+            "value":"[TS_1015572]_%ss"
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"[TS_1015916]_Allow"
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"[TS_1015857]_Remote shutter disconnected."
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"[TS_1015853]_Press the answer key on the headset to take photos or videos."
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"[TS_1011256]_Assistive grid, off"
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"[TS_1013995]_AI ultra clarity"
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"[TS_1016292]_Limited-time only watermarks"
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"[TS_1011257]_Assistive grid, on"
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"[TS_1013994]_Use AI to sharpen photos taken at high zoom or in low light."
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"[TS_1017248]_Look here for better results."
+        },
+        {
+            "name":"permission_uiextension_reason",
+            "value":"[TS_1014360]_This permission is used to call camera picker by UIExtension on lock screen."
+        },
+        {
+            "name":"sports_health_title",
+            "value":"[TS_1015855]_Allow \"%1$s\" to use the camera?"
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"[TS_1015854]_This allows you to view the camera preview and take photos and videos from the watch. You can manage this permission in the Health app."
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"[TS_1021086]_Take photo in video"
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"[TS_1022805]_None"
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"[TS_1022803]_Keep your subjects in color but make everything else black & white."
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"[TS_1022799]_Follow focus"
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"[TS_1022806]_Blur the background to emphasize your subjects."
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"[TS_1022801]_Portrait video"
+        },
+        {
+            "name":"vlog_mode",
+            "value":"[TS_1022807]_Vlog"
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"[TS_1022802]_AI color"
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"[TS_1022800]_Track a selected subject in the frame as they move."
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"[TS_1022808]_Focus priority is given to foreground objects in the center of the frame (at least %d cm away)."
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"[TS_1022804]_Showcase focus"
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"[TS_1023563]_Use for %1$s fps and %2$s fps videos"
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"[TS_1023566]_Use for %d fps videos only"
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"[TS_1023932]_Content copied to clipboard."
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"[TS_1033334]_To use AI composition, position the dot inside the ring."
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"[TS_1023564]_Pre-recording off."
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"[TS_1026203]_Telephoto flash is being used to improve image quality."
+        },
+        {
+            "name":"ai_composition",
+            "value":"[TS_1033333]_AI composition"
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"[TS_1033484]_AI composition on"
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"[TS_1023562]_Pre-recording on. Touch & hold the shutter to capture up to %d seconds of footage before the recording starts."
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"[TS_1033485]_AI composition off"
+        },
+        {
+            "name":"pre_record",
+            "value":"[TS_1023565]_Pre-record"
+        },
+        {
+            "name":"film_style",
+            "value":"[TS_1034405]_Film"
+        },
+        {
+            "name":"romantic_style",
+            "value":"[TS_1034413]_Cinema"
+        },
+        {
+            "name":"anime_style",
+            "value":"[TS_1034414]_Anime"
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"[TS_1034415]_Replace custom style?"
+        },
+        {
+            "name":"color_temperature",
+            "value":"[TS_1034411]_Temperature"
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"[TS_1034410]_Custom styles"
+        },
+        {
+            "name":"saturation",
+            "value":"[TS_1034407]_Saturation"
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"[TS_1034403]_Import image"
+        },
+        {
+            "name":"standard_style",
+            "value":"[TS_1034409]_Standard"
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"[TS_1034406]_New"
+        },
+        {
+            "name":"replace",
+            "value":"[TS_1034416]_Replace"
+        },
+        {
+            "name":"light_and_shade",
+            "value":"[TS_1034408]_Tone"
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"[TS_1034412]_Delete"
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"[TS_1033361]_Wind noise reduction"
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"[TS_1033362]_Reduce wind noise during video recording to make voices sound clearer."
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"[TS_1040340]_New custom style added."
+        },
+        {
+            "name":"passion",
+            "value":"[TS_1043064]_Panorama"
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"[TS_1040339]_The camera was retracted because it appears the phone was dropped."
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"[TS_1036458]_Device storage full."
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"[TS_1038952]_Tone off"
+        },
+        {
+            "name":"already_off",
+            "value":"[TS_800571]_Off"
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"[TS_800582]_Front camera only."
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"[TS_800584]_Tag photos and videos with location information."
+        },
+        {
+            "name":"timer",
+            "value":"[TS_800565]_Timer"
+        },
+        {
+            "name":"off",
+            "value":"[TS_800589]_Off"
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"[TS_800596]_%d seconds"
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"[TS_800572]_%d seconds"
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"[TS_800599]_%d seconds"
+        },
+        {
+            "name":"assistive_grid",
+            "value":"[TS_800593]_Assistive grid"
+        },
+        {
+            "name":"settings",
+            "value":"[TS_800575]_Settings"
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"[TS_801976]_Frame rate"
+        },
+        {
+            "name":"pic_title",
+            "value":"[TS_802001]_Photo settings"
+        },
+        {
+            "name":"video_title",
+            "value":"[TS_802000]_Video settings"
+        },
+        {
+            "name":"general",
+            "value":"[TS_800591]_General"
+        },
+        {
+            "name":"cancel",
+            "value":"[TS_800602]_Cancel"
+        },
+        {
+            "name":"self_mirror",
+            "value":"[TS_800568]_Mirror reflection"
+        },
+        {
+            "name":"sound_mute",
+            "value":"[TS_800579]_Mute"
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"[TS_800595]_Aspect ratio"
+        },
+        {
+            "name":"video_resolution",
+            "value":"[TS_800567]_Video resolution"
+        },
+        {
+            "name":"jpg_description",
+            "value":"[TS_1045817]_Offers better compatibility than HEIF."
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"[TS_1042087]_Tap on the arrow at the top to open the quick menu."
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"[TS_1044829]_Back"
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"[TS_1044821]_Failed to import data"
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"[TS_1045044]_Long"
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"[TS_1045037]_Keep your device level."
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"[TS_1045036]_Grid"
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"[TS_1045038]_Short"
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"[TS_1044827]_Reset completed"
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"[TS_1045699]_Anime style"
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"[TS_1045033]_Portrait"
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"[TS_1045040]_Tap the arrow to change the direction."
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"[TS_1045698]_Celluloid style"
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"[TS_1045697]_Romantic style"
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"[TS_1048947]_Modern"
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"[TS_1045042]_Move your device in the direction of the arrow."
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"[TS_1045030]_Landscape"
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"[TS_1045043]_Slow down."
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"[TS_1045031]_Generating image, keep your device steady…"
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"[TS_1045700]_Standard style"
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"[TS_1045599]_Swipe left in the preview area to switch custom styles."
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"[TS_1044826]_Tone level %1$d"
+        },
+        {
+            "name":"stage_mode",
+            "value":"[TS_1045597]_Stage"
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"[TS_1045596]_Hairline %d"
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"[TS_1045598]_Warmth %d"
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"[TS_1044830]_Default preset, color temperature %1$d, saturation %2$d, tone %3$d"
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"[TS_1044823]_Custom preset %1$d, color temperature %2$d, saturation %3$d, tone %4$d"
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"[TS_1045601]_Eyes %d"
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"[TS_1044822]_Color tuning area. Drag horizontally to adjust the color temperature or vertically to adjust the saturation."
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"[TS_1044825]_Import successful"
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"[TS_1044820]_%1$s custom style. Double tap and hold, then swipe left or right to switch styles."
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"[TS_1044819]_Color temperature, level %1$d"
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"[TS_1045595]_Head %d"
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"[TS_1045818]_Swipe right in the preview area to switch custom styles."
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"[TS_1045594]_Nose %d"
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"[TS_1045602]_Makeup %d"
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"[TS_1044828]_Tone level %1$d, adjustable range %2$d to %3$d. Double tap to apply, or double tap and hold, then drag up or down to change"
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"[TS_1045600]_Smooth %d"
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"[TS_1045041]_Saturation level %1$d"
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"[TS_1044142]_Current filter is unavailable at %1$s (%2$d fps). Automatically switched to %3$dp (%4$d) fps."
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"[TS_1050106]_Swipe to switch patterns"
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"[TS_1053050]_Camera preview"
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"[TS_1052623]_When you're taking a mirror selfie, you can have the cover screen display a personalized image that will appear alongside you in the shot. To set this up, go to the quick menu in Camera and tap Dual preview."
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"[TS_1049525]_Move to a brighter location."
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"[TS_1050796]_Keep your device steady"
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"[TS_1048270]_Moon shot"
+        },
+        {
+            "name":"starry_portrait",
+            "value":"[TS_1048271]_Starry portrait"
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"[TS_1048272]_For best results with starry portrait, turn on the flash."
+        },
+        {
+            "name":"super_night_view",
+            "value":"[TS_1048269]_Super nightshot"
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"[TS_1048268]_Starry sky"
+        },
+        {
+            "name":"vlog_details",
+            "value":"[TS_1054998]_Craft captivating vlogs by combining different camera angles and effects."
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"[TS_1050458]_Ultra Snapshot can be disabled in Camera settings."
+        },
+        {
+            "name":"stitching_details",
+            "value":"[TS_1046109]_Smoothly rotate the phone as guided to take a panorama shot."
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"[TS_1046110]_Smoothly rotate your phone as guided while keeping it steady. After you've completed your shot, the camera will combine the captured images into a panoramic photo. This feature is great for shooting landscapes, cityscapes, and similar scenes."
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"[TS_1051057]_Tilt your device so the two circles align."
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"[TS_1055762]_Rename"
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"[TS_1055760]_Save as"
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"[TS_1052565]_Tone %d"
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"[TS_1052571]_Contour %d"
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"[TS_1053555]_Beauty effect comparison button. Double-tap and hold to show the image without the beauty effect."
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"[TS_1048946]_Cool"
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"[TS_1048945]_Warm"
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"[TS_1053045]_Swipe up or down to change zoom level"
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"[TS_1053047]_Smart control lets you lock exposure and focus by holding your finger on the fingerprint sensor."
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"[TS_1053049]_Go enable"
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"[TS_1053043]_Smart control lets you take photos and videos by tapping the fingerprint sensor."
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"[TS_1053048]_Exposure and focus locked"
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"[TS_1053044]_Smart control lets you zoom in/out by swiping on the fingerprint sensor."
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"[TS_1053051]_Tap to take a photo or video"
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"[TS_1053046]_Touch & hold to lock exposure and focus"
+        },
+        {
+            "name":"star_name_vulpecula",
+            "value":"[TS_1053332]_Vulpecula"
+        },
+        {
+            "name":"star_name_aries",
+            "value":"[TS_1053327]_Aries"
+        },
+        {
+            "name":"star_name_eridanus",
+            "value":"[TS_1053288]_Eridanus"
+        },
+        {
+            "name":"star_name_lynx",
+            "value":"[TS_1053265]_Lynx"
+        },
+        {
+            "name":"star_name_telescopium",
+            "value":"[TS_1053289]_Telescopium"
+        },
+        {
+            "name":"star_name_musca",
+            "value":"[TS_1053285]_Musca"
+        },
+        {
+            "name":"star_name_sextans",
+            "value":"[TS_1053297]_Sextans"
+        },
+        {
+            "name":"star_name_horologium",
+            "value":"[TS_1053277]_Horologium"
+        },
+        {
+            "name":"star_name_gemini",
+            "value":"[TS_1053299]_Gemini"
+        },
+        {
+            "name":"star_name_pegasus",
+            "value":"[TS_1053266]_Pegasus"
+        },
+        {
+            "name":"star_name_draco",
+            "value":"[TS_1053329]_Draco"
+        },
+        {
+            "name":"star_name_andromeda",
+            "value":"[TS_1053322]_Andromeda"
+        },
+        {
+            "name":"star_name_microscopium",
+            "value":"[TS_1053260]_Microscopium"
+        },
+        {
+            "name":"star_name_ara",
+            "value":"[TS_1053314]_Ara"
+        },
+        {
+            "name":"star_name_volans",
+            "value":"[TS_1053337]_Volans"
+        },
+        {
+            "name":"star_name_coma_berenices",
+            "value":"[TS_1053291]_Coma Berenices"
+        },
+        {
+            "name":"star_name_sculptor",
+            "value":"[TS_1053264]_Sculptor"
+        },
+        {
+            "name":"star_name_carina",
+            "value":"[TS_1053300]_Carina"
+        },
+        {
+            "name":"star_name_perseus",
+            "value":"[TS_1053325]_Perseus"
+        },
+        {
+            "name":"star_name_crux",
+            "value":"[TS_1053271]_Crux"
+        },
+        {
+            "name":"star_name_scutum",
+            "value":"[TS_1053282]_Scutum"
+        },
+        {
+            "name":"star_name_serpens",
+            "value":"[TS_1053316]_Serpens"
+        },
+        {
+            "name":"star_name_canes_venatici",
+            "value":"[TS_1053304]_Canes Venatici"
+        },
+        {
+            "name":"star_name_triangulum",
+            "value":"[TS_1053296]_Triangulum"
+        },
+        {
+            "name":"star_name_virgo",
+            "value":"[TS_1053261]_Virgo"
+        },
+        {
+            "name":"star_name_bootes",
+            "value":"[TS_1053263]_Bootes"
+        },
+        {
+            "name":"star_name_crater",
+            "value":"[TS_1053339]_Crater"
+        },
+        {
+            "name":"star_name_equuleus",
+            "value":"[TS_1053318]_Equuleus"
+        },
+        {
+            "name":"star_name_grus",
+            "value":"[TS_1053302]_Grus"
+        },
+        {
+            "name":"star_name_reticulum",
+            "value":"[TS_1053268]_Reticulum"
+        },
+        {
+            "name":"star_name_ursa_major",
+            "value":"[TS_1053286]_Ursa Major"
+        },
+        {
+            "name":"star_name_triangulum_australe",
+            "value":"[TS_1053317]_Triangulum Australe"
+        },
+        {
+            "name":"star_name_hercules",
+            "value":"[TS_1053471]_Hercules"
+        },
+        {
+            "name":"star_name_hydrus",
+            "value":"[TS_1053272]_Hydrus"
+        },
+        {
+            "name":"star_name_centaurus",
+            "value":"[TS_1053312]_Centaurus"
+        },
+        {
+            "name":"star_name_phoenix",
+            "value":"[TS_1053307]_Phoenix"
+        },
+        {
+            "name":"star_name_corona_australis",
+            "value":"[TS_1053290]_Corona Australis"
+        },
+        {
+            "name":"star_name_taurus",
+            "value":"[TS_1053309]_Taurus"
+        },
+        {
+            "name":"star_name_leo",
+            "value":"[TS_1053270]_Leo"
+        },
+        {
+            "name":"star_name_lupus",
+            "value":"[TS_1053292]_Lupus"
+        },
+        {
+            "name":"star_name_cepheus",
+            "value":"[TS_1053310]_Cepheus"
+        },
+        {
+            "name":"star_name_chamaeleon",
+            "value":"[TS_1053321]_Chamaeleon"
+        },
+        {
+            "name":"star_name_caelum",
+            "value":"[TS_1053333]_Caelum"
+        },
+        {
+            "name":"star_name_lyra",
+            "value":"[TS_1053319]_Lyra"
+        },
+        {
+            "name":"star_name_pavo",
+            "value":"[TS_1053295]_Pavo"
+        },
+        {
+            "name":"star_name_cancer",
+            "value":"[TS_1053311]_Cancer"
+        },
+        {
+            "name":"star_name_piscis_austrinus",
+            "value":"[TS_1053278]_Piscis Austrinus"
+        },
+        {
+            "name":"star_name_tucana",
+            "value":"[TS_1053275]_Tucana"
+        },
+        {
+            "name":"star_name_pyxis",
+            "value":"[TS_1053305]_Pyxis"
+        },
+        {
+            "name":"star_name_leo_minor",
+            "value":"[TS_1053331]_Leo Minor"
+        },
+        {
+            "name":"star_name_libra",
+            "value":"[TS_1053308]_Libra"
+        },
+        {
+            "name":"star_name_columba",
+            "value":"[TS_1053279]_Columba"
+        },
+        {
+            "name":"star_name_cassiopeia",
+            "value":"[TS_1053284]_Cassiopeia"
+        },
+        {
+            "name":"star_name_sagitta",
+            "value":"[TS_1053340]_Sagitta"
+        },
+        {
+            "name":"star_name_delphinus",
+            "value":"[TS_1053280]_Delphinus"
+        },
+        {
+            "name":"star_name_pictor",
+            "value":"[TS_1053269]_Pictor"
+        },
+        {
+            "name":"star_name_corona_borealis",
+            "value":"[TS_1053341]_Corona Borealis"
+        },
+        {
+            "name":"star_name_pisces",
+            "value":"[TS_1053303]_Pisces"
+        },
+        {
+            "name":"star_name_corvus",
+            "value":"[TS_1053274]_Corvus"
+        },
+        {
+            "name":"star_name_monoceros",
+            "value":"[TS_1053301]_Monoceros"
+        },
+        {
+            "name":"star_name_aquarius",
+            "value":"[TS_1053323]_Aquarius"
+        },
+        {
+            "name":"star_name_canis_major",
+            "value":"[TS_1053315]_Canis Major"
+        },
+        {
+            "name":"star_name_norma",
+            "value":"[TS_1053273]_Norma"
+        },
+        {
+            "name":"star_name_hydra",
+            "value":"[TS_1053262]_Hydra"
+        },
+        {
+            "name":"star_name_auriga",
+            "value":"[TS_1053324]_Auriga"
+        },
+        {
+            "name":"star_name_indus",
+            "value":"[TS_1053287]_Indus"
+        },
+        {
+            "name":"star_name_cetus",
+            "value":"[TS_1053336]_Cetus"
+        },
+        {
+            "name":"star_name_fornax",
+            "value":"[TS_1053335]_Fornax"
+        },
+        {
+            "name":"star_name_lacerta",
+            "value":"[TS_1053338]_Lacerta"
+        },
+        {
+            "name":"star_name_octans",
+            "value":"[TS_1053326]_Octans"
+        },
+        {
+            "name":"star_name_apus",
+            "value":"[TS_1053283]_Apus"
+        },
+        {
+            "name":"star_name_ursa_minor",
+            "value":"[TS_1053334]_Ursa Minor"
+        },
+        {
+            "name":"star_name_mensa",
+            "value":"[TS_1053294]_Mensa"
+        },
+        {
+            "name":"star_name_cygnus",
+            "value":"[TS_1053276]_Cygnus"
+        },
+        {
+            "name":"star_name_circinus",
+            "value":"[TS_1053267]_Circinus"
+        },
+        {
+            "name":"star_name_lepus",
+            "value":"[TS_1053342]_Lepus"
+        },
+        {
+            "name":"star_name_orion",
+            "value":"[TS_1053330]_Orion"
+        },
+        {
+            "name":"star_name_sagittarius",
+            "value":"[TS_1053313]_Sagittarius"
+        },
+        {
+            "name":"star_name_dorado",
+            "value":"[TS_1053293]_Dorado"
+        },
+        {
+            "name":"star_name_camelopardalis",
+            "value":"[TS_1053281]_Camelopardalis"
+        },
+        {
+            "name":"star_name_aquila",
+            "value":"[TS_1053328]_Aquila"
+        },
+        {
+            "name":"star_name_antlia",
+            "value":"[TS_1053320]_Antlia"
+        },
+        {
+            "name":"star_name_canis_minor",
+            "value":"[TS_1053875]_Canis Minor"
+        },
+        {
+            "name":"star_name_scorpius",
+            "value":"[TS_1053877]_Scorpius"
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"[TS_1053556]_Capture sharp, bright images in low-light conditions thanks to an advanced noise-reduction algorithm. Four shooting modes are available: Super nightshot, Moon shot, Starry sky, and Starry portrait. When the front camera is used, the device's screen will increase its brightness to provide extra light, allowing faces to appear bright and clear even in the dark."
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"[TS_1113036]_Capture sharp, bright images in low-light conditions thanks to an advanced noise-reduction algorithm. Two shooting modes are available: Super nightshot and Moon shot. When the front camera is used, the device's screen can increase its brightness to provide extra light, allowing faces to appear bright and clear even in the dark."
+        },
+        {
+            "name":"star_name_capricornus",
+            "value":"[TS_1053298]_Capricornus"
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"[TS_1053554]_Capture sharp, bright images in low-light conditions thanks to an advanced noise-reduction algorithm. Four shooting modes are available: Super nightshot, Moon shot, Starry sky, and Starry portrait."
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"[TS_1113034]_Capture sharp, bright images in low-light conditions thanks to an advanced noise-reduction algorithm. Two shooting modes are available: Super nightshot and Moon shot."
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"[TS_1056553]_Display assist on"
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"[TS_1056555]_Display assist off"
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"[TS_1056554]_Display assist is on. Video will still be filmed in Log."
+        },
+        {
+            "name":"low_angle",
+            "value":"[TS_1056500]_Low-angle shot"
+        },
+        {
+            "name":"natural_style",
+            "value":"[TS_1058206]_Natural"
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"[TS_1055761]_Custom style name"
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"[TS_1056619]_Button to turn off Constellation map, double tap to activate"
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"[TS_1056617]_Button to turn on Constellation map, double tap to activate"
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"[TS_1056620]_Constellation map is off"
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"[TS_1056616]_Constellation map is on"
+        },
+        {
+            "name":"constellation_draw",
+            "value":"[TS_1056618]_Constellation map"
+        },
+        {
+            "name":"popup_stage",
+            "value":"[TS_1058853]_Shooting a live performance? Turn on stage mode to get the best results."
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"[TS_1054563]_Moon shot, button, double tap to activate"
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"[TS_1054603]_Starry sky, button, double tap to activate"
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"[TS_1054601]_Starry portrait, button, double tap to activate"
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"[TS_1058739]_Constellation map on"
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"[TS_1058737]_Tap here for more night modes."
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"[TS_1058738]_Constellation map off"
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"[TS_1057963]_HD panorama"
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"[TS_1068058]_Rotate in the direction of the arrow. When the dot is aligned with the ring, the photo will be taken automatically. Tap the shutter at any time to end."
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"[TS_1068057]_Rotate in the direction of the arrow to take the 2nd photo."
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"[TS_1068059]_Rotate in the direction of the arrow to take the 3rd photo."
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"[TS_1088391]_Rotate your device in the direction shown. When the ring aligns with the dot, the camera will take a photo. Tap the shutter to end at any time."
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"[TS_1063373]_Color info"
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"[TS_1063374]_Only applies to photos using XMAGE styles."
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"[TS_1122293]_Only applies to photos using custom styles."
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"[TS_1056556]_This allows you to take photos and videos from the watch. You can manage this permission in the Health app."
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"[TS_1058445]_Recorded %1$s %2$s"
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"[TS_1062964]_Thanks to an advanced noise-reduction algorithm, your phone can capture sharp, bright images even in low-light conditions. Shutter speed can be adjusted manually for more creative shots. When using the front camera to take portraits, the phone provides fill lighting to eliminate unwanted shadows, ensuring that faces come out clear and bright."
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"[TS_1065121]_Color palette button, double tap to activate"
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"[TS_1066568]_Slowly rotate the camera either horizontally or vertically to take a panoramic photo. This is great for capturing sweeping scenes, like mountains and skylines, in striking detail."
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"[TS_1066566]_AI can suggest the optimal framing for your photo. Simply line your device up and the zoom will adjust automatically. Works best with scenery, buildings, and people."
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"[TS_1079738]_Environment too bright. Could not capture constellation"
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"[TS_1079736]_Constellation successfully captured."
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"[TS_1079739]_Identifying constellations..."
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"[TS_1079737]_Could not capture constellation. Change your shooting angle and try again."
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"[TS_1066567]_Swipe left or right to switch between custom styles. Create your own styles by swiping on the color card, or emulate someone else's by importing a photo they took."
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"[TS_1066565]_AI composition can be used at %1$sx, %2$sx, or %3$sx camera zoom. Results are best when taking photos of scenery, buildings, and people."
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"[TS_1072996]_When Steady shot is on, picture quality is best when there is plenty of light."
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"[TS_1070488]_Night mode allows you to capture sharp, bright images even in low-light conditions, thanks to an advanced noise-reduction algorithm."
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"[TS_1071624]_Swipe in the preview area to select a custom style"
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"[TS_1074019]_%1$s, color temperature %2$d, saturation %3$d, tone %4$d"
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"[TS_1073156]_This custom style name already exists."
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"[TS_1071625]_Tap here to import a custom style."
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"[TS_1075358]_XMAGE custom styles"
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"[TS_1075357]_AI composition can be used at %1$sx or %2$sx zoom. Results are best with scenery, buildings, and people."
+        },
+        {
+            "name":"exits_same_card",
+            "value":"[TS_1066193]_A preset with these color parameters already exists."
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"[TS_1053306]_Double tap to switch, double tap and hold to drag left or right"
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"[TS_1089396]_Tap here to switch between XMAGE styles."
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"[TS_1091750]_Swipe left to switch to custom styles %s."
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"[TS_1091751]_Tap the %s icon to quickly switch XMAGE styles."
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"[TS_1115084]_Tap the %s icon to quickly switch custom styles."
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"[TS_1091749]_Swipe right to switch to custom styles %s."
+        },
+        {
+            "name":"end_shooting",
+            "value":"[TS_1091002]_End shooting"
+        },
+        {
+            "name":"more_development",
+            "value":"[TS_872122]_More modes coming soon…"
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"[TS_874310]_Restore the default layout?"
+        },
+        {
+            "name":"confirm",
+            "value":"[TS_800570]_OK"
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"[TS_1084002]_Colors"
+        },
+        {
+            "name":"border_background",
+            "value":"[TS_1089518]_Border style"
+        },
+        {
+            "name":"right_text",
+            "value":"[TS_1089515]_Text on right"
+        },
+        {
+            "name":"video_watermark",
+            "value":"[TS_1089524]_Videos"
+        },
+        {
+            "name":"capture_location",
+            "value":"[TS_1089522]_Location"
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"[TS_1089519]_Custom watermarks"
+        },
+        {
+            "name":"picture_watermark",
+            "value":"[TS_1089517]_Images"
+        },
+        {
+            "name":"common_watermark",
+            "value":"[TS_1089520]_Standard watermarks"
+        },
+        {
+            "name":"festival_watermark",
+            "value":"[TS_1089523]_Holiday watermarks"
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"[TS_1089521]_Preserve depth and motion data"
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"[TS_1089516]_When you take a photo of a person, cat, or dog in Photo mode, depth and motion data will be retained to allow for post editing."
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"[TS_1090707]_Swipe left to take a burst photo, swipe right to record a video"
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"[TS_1095846]_Landscape orientation"
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"[TS_1095842]_Portrait orientation"
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"[TS_1098157]_Restore default beauty settings?"
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"[TS_1095847]_Improve lighting conditions for a better blurring effect."
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"[TS_1095841]_Standard"
+        },
+        {
+            "name":"cinema_mode",
+            "value":"[TS_1095844]_Cinematic"
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"[TS_1095839]_Standard steady shot on"
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"[TS_1095840]_Move farther away for a better blurring effect."
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"[TS_1095845]_Steady shot off"
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"[TS_1095843]_Enhanced steady shot on"
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"[TS_1101211]_Steady shot off"
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"[TS_1101210]_Steady shot"
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"[TS_1101212]_Enhanced"
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"[TS_1102205]_Battery extremely low. Recording automatically stopped and saved."
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"[TS_1102206]_Battery extremely low. Unable to start recording."
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"[TS_1101195]_This is used to display location info in photo watermarks."
+        },
+        {
+            "name":"start_record",
+            "value":"[TS_1097748]_Start recording"
+        },
+        {
+            "name":"watermark_text",
+            "value":"[TS_1104229]_Text"
+        },
+        {
+            "name":"border_color",
+            "value":"[TS_1104228]_Border color"
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"[TS_868384]_This is used for recording videos, taking moving pictures, and audio control."
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"[TS_868386]_This app requires the %1$s, %2$s, and %3$s permissions. To display the photos and videos you take, it needs to read images, videos, and location information. It may also need to use the microphone to record audio."
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"[TS_1109970]_Note: Physical aperture settings can't be adjusted during editing."
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"[TS_1112914]_Rear camera obstructed."
+        },
+        {
+            "name":"watermark_design",
+            "value":"[TS_1109971]_Pattern"
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"[TS_1112912]_This mode is optimized for shooting concerts and other stage performances."
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"[TS_1112913]_Stage mode is great for shooting gigs, concerts, plays, and other performances."
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"[TS_1112911]_Stage mode is great for shooting gigs, concerts, plays, and other performances. It's optimized to perform well in scenarios with complex stage lighting, so you can capture performers in crisp detail and vivid color."
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"[TS_1113035]_This mode is optimized for shooting concerts and other stage performances, so you can capture performers and lighting effects in crisp detail and vivid color. This mode can be used for both photos and videos."
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"[TS_1115055]_Interval timer"
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"[TS_1115053]_Takes %d photos."
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"[TS_1115052]_Interval (%d photos)"
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"[TS_1120314]_Circles"
+        },
+        {
+            "name":"Beauty_on",
+            "value":"[TS_1120443]_On"
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"[TS_1117945]_Autofocus locked on."
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"[TS_1118656]_Double-tap for Dual preview"
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"[TS_1122055]_Hold your phone vertically for a better composition."
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"[TS_1122056]_Hold your phone horizontally for a better composition."
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"[TS_1120843]_Swipe left to switch to custom styles."
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"[TS_1120844]_Tap here to switch custom styles."
+        },
+        {
+            "name":"device_storage_space",
+            "value":"[TS_1122640]_Insufficient storage. Camera may lag. Free up space to restore performance."
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"[TS_1125394]_This is used to record where photos and videos were taken and show location information in watermarks."
+        },
+        {
+            "name":"location_permission_description",
+            "value":"[TS_1125396]_This is used to record where photos and videos were taken, show location information in watermarks, and provide the star map feature."
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"[TS_1125395]_Double-tap to activate, or double-tap and hold to open more options"
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"[TS_1123922]_Tap here to adjust custom styles."
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"[TS_1128999]_For Settings %s, tap or swipe up on the arrow at the bottom."
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"[TS_1133266]_Tap again to edit."
+        }
+    ]
 }

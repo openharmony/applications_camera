@@ -1,0 +1,473 @@
+{
+    "string":[
+        {
+            "name":"audio_control",
+            "value":"Điều khiển âm thanh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"Tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"Tốc độ khung hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"Ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"Ảnh chân dung",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_change_mode",
+            "value":"Vuốt lên hoặc xuống để chuyển đổi chế độ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"Ban đêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"Cài đặt video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"Độ nét AI siêu rõ là lựa chọn tuyệt vời khi chụp đối tượng tĩnh và phong cảnh ở điều kiện ánh sáng tốt.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"microphone_permission_desc",
+            "value":"Quyền này dùng để quay video và bật điều khiển âm thanh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"Tự động",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_title",
+            "value":"Hướng dẫn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"app_name",
+            "value":"Máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"Độ phân giải video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"Chỉ sử dụng máy ảnh trước.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Tắt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"Thủ công",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"got_it",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"Cài đặt ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"user_guide_start",
+            "value":"Bắt đầu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"Chụp ảnh %d MP ở chế độ Ảnh. Hình ảnh có thể mất nhiều thời gian hơn để xử lý ở độ phân giải này.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_change_lens",
+            "value":"Chạm đúp để chuyển đổi máy ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_app_lock_tip",
+            "value":"Bộ sưu tập đã bị khóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"Tắt tiếng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_effect",
+            "value":"Hiệu ứng",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_permission_desc",
+            "value":"Quyền này dùng để chụp ảnh và quay video.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Thêm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"Khôi phục bố cục mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_app_lock_go_to_photo",
+            "value":"Mở khóa và truy cập",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_error_title",
+            "value":"Lỗi Máy ảnh",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"Chuyên nghiệp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"Phản chiếu gương",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"Video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"Siêu macro",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_photos_and_videos",
+            "value":"Không có ảnh hay video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"Cải thiện hình ảnh",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"Chuyên nghiệp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"Làm đẹp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"Lưới hỗ trợ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"Giữ thiết bị ổn định.\nĐợi đếm ngược hoặc chạm vào nút chụp để chụp ảnh.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"Kéo hình vuông để điều chỉnh điểm lấy nét và hình tròn để điều chỉnh đo sáng.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"restore_defaults",
+            "value":"Khôi phục mặc định",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"Chuyển động chậm",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"Gắn thẻ thông tin vị trí cho ảnh và video.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"no_photos_and_videos_desc",
+            "value":"Chụp ảnh và quay video bằng máy ảnh, hoặc mở khóa thiết bị của bạn để truy cập Bộ sưu tập.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"Chuyên nghiệp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm_restore_message",
+            "value":"Cài đặt Máy ảnh sẽ được khôi phục về các giá trị mặc định.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"Độ phân giải cao",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d giây",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_take_photo",
+            "value":"Chạm để chụp ảnh hoặc quay video",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"Cài đặt chung",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"Kéo các biểu tượng để điều chỉnh bố cục",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cannot_connect_camera",
+            "value":"Không thể kết nối với máy ảnh.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"semi_collapsed_guide_capture",
+            "value":"Xoay điện thoại để có kết quả tốt nhất",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"Tỷ lệ khung hình",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"HDR Vivid",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"Sửa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"imagevideo_permission_desc",
+            "value":"Quyền này dùng để hiển thị cũng như lưu trữ ảnh bạn chụp và video bạn quay.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"user_guide_next",
+            "value":"Tiếp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"Bộ hẹn giờ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

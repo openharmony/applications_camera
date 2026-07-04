@@ -1,0 +1,5233 @@
+{
+    "string":[
+        {
+            "name":"option_exit_camera",
+            "value":"Quitter l'application",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"Le mode Ultra clarté IA est idéal pour des photos de sujets immobiles ou de paysages avec de bonnes conditions de lumière.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"Aucune",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"Infos de couleur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"infinity_time",
+            "value":"Pas de limite",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"Veuillez tenir votre téléphone verticalement pour une meilleure composition.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"Lune",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"Ciel étoilé, bouton, toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"Retour",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"Matrice",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_on",
+            "value":"Ultra stabilité activée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"L'image est surexposée. Restaurer les paramètres d'exposition par défaut ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"Fonction Image dynamique activée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"Niveau de teinte %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"Grâce à un algorithme de réduction du bruit de dernière génération, votre téléphone est capable de capturer des images nettes et lumineuses, même en conditions de faible luminosité. La vitesse d'obturation peut être réglée manuellement pour des prises de vue plus créatives. Lors de la prise de portraits avec l'appareil photo avant, un éclairage d'appoint est activé afin d'éliminer les ombres indésirables, garantissant un rendu clair et lumineux des visages.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"Intervalle entre les images : %1$s s\nIdéal pour les étoiles",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"Déclaration relative à la vie privée Appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"Stylé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"Non sélectionné",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"Personnalisé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"%1$sK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_update_date",
+            "value":"Dernière mise à jour : %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"Réflexion miroir",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"Toucher ici permet de basculer entre les styles XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_star",
+            "value":"Traînées d'étoiles",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"Faire glisser dans la zone d'aperçu permet de sélectionner un style personnalisé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"En savoir plus",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_wifi",
+            "value":"Se connecter au WLAN",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_mode",
+            "value":"Scène",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"En touchant Accepter, vous acceptez le contenu ci-dessus. Pour en savoir plus sur la façon dont vos informations/données personnelles sont traitées, veuillez consulter la %1$s et l'%2$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"Le transfert des données a échoué",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"Long",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"Repousser les limites de la créativité avec une gamme de styles de couleurs unique.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"Par défaut",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"function_under_development",
+            "value":"Fonctionnalité prochainement disponible.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"Filigrane standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_button",
+            "value":"Bouton",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"%1$d:%2$d (recommandé)",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"Remarque",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_style",
+            "value":"Film",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_not_detected",
+            "value":"Aucun appareil photo détecté",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"Veuillez tout d'abord activer le mode embellissement",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"Prendre des photos en mode vidéo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"Lumière du jour",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_background",
+            "value":"Style de bordure",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"Ne plus afficher",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"Enregistrer sous",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_portrait",
+            "value":"Selfie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"Accepter",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"copy",
+            "value":"Copier %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"natural_style",
+            "value":"Naturel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_duration_title",
+            "value":"Longueur finale de la vidéo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"Bienvenue dans Master IA. La couleur s'ajuste automatiquement en fonction de la scène. Vous pouvez toucher pour essayer.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"Vidéo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"low_angle",
+            "value":"Contre-plongée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"Les couleurs et le contraste sont renforcés. Les effets dépendent de l'appareil de lecture et de la compatibilité logicielle.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"Capture de l'essence du changement avec des vidéos qui accélèrent le passage du temps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"Assistance à l'affichage activée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"keep_time_title",
+            "value":"Durée d'enregistrement",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"En savoir plus",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"%s Veuillez lire cet avis en entier avant d'utiliser ce mode.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"Capture des images de %d Mpx en mode photo. Avec cette résolution, le traitement des images pourrait prendre un peu plus de temps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"%s L'utilisation de ce mode implique que vous avez lu, compris et accepté les conditions précisées dans cet avis.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"%1$s La lumière de remplissage utilisée dans ce produit est conforme à la norme de sécurité %2$s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"Cercles",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"Nouveautés",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"Utiliser pour les vidéos %1$s fps et %2$s fps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_car",
+            "value":"Traînées lumineuses",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"Flash après %d secondes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"Ajouter à Agenda",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"Standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword",
+            "value":"Dire un mot clé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"Flash automatique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"Micro obstrué.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_jpg",
+            "value":"JPG",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"Vidéo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"Ton %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"La constellation a été capturée.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"Remarque : les paramètres d'ouverture physique ne peuvent pas être ajustés lors de la modification.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"Veuillez faire glisser vers la gauche pour passer aux styles personnalisés.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"L'image est floue. Veuillez essayer d'essuyer la lentille.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"Le niveau de la batterie est trop faible. Le flash n'est pas disponible.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"romantic_style",
+            "value":"Cinéma",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"Capture d'images plus nettes de sujets en mouvement.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"L'anneau de zoom a été remplacé par un zoom en éventail. De plus, vous pouvez toucher et maintenir le bouton de l'obturateur, puis faire glisser vers la gauche pour prendre des photos en rafale, faire glisser vers la droite pour enregistrer une vidéo ou vers le haut pour zoomer.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"Préréglage personnalisé %1$d, température de couleur %2$d, saturation %3$d, teinte %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"Fermer le menu rapide",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"Veuillez maintenir l'appareil immobile",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"Refuser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"Compensation d'exposition",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinema_mode",
+            "value":"Cinématique",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"Yeux %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_intro",
+            "value":"Plus",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"Bouton de désactivation de la carte des constellations, toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"Tourbillon",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"Lunatique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"La fréquence d'images s'adapte automatiquement à l'environnement pour améliorer la qualité de l'image. Plage : %1$d-%2$d fps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"Ouverture virtuelle",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"Veuillez déplacer vers le bas.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"Surexposition",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"Réduction du bruit du vent pendant l'enregistrement vidéo pour rendre les voix plus claires.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_design",
+            "value":"Motif",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"Pour afficher les photos et vidéos prises, cette application a besoin d'accéder à %1$s, au %2$s, aux %3$s et aux %4$s ; ainsi que de lire les informations sur les images, les vidéos et les informations de localisation.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"Sous-exposition",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"anime_style",
+            "value":"Animé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"Teinte désactivée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"Style anime",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"Mise au point suivie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"Portrait",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"Ne s'applique qu'aux photos utilisant des styles personnalisés.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"Intervalle entre les images : %d s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"Toucher la flèche pour changer de sens.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"Grille de composition",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"Mode de mesure",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"Lumière d'assistance pour la mise au point activée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details",
+            "value":"Le mode Portrait vous permet de prendre de belles photos avec un effet bokeh en arrière-plan.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"Naturel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"Bouton de palette de couleurs, veuillez toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"Veuillez maintenir l'appareil immobile",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"Remplacer le style personnalisé ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"Minuteur d'intervalle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"Toucher ici permet de prendre des selfies avec l'appareil photo arrière.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"Veuillez déplacer vers le haut.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"Arrêter l'enregistrement vidéo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"Modifier",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"Embellissement désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"Cliché de la lune",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait",
+            "value":"Portrait étoilé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"Minuteur",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d secondes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"Fréquence d'images",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"Double aperçu désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"%1$d. Important",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"Vous pouvez utiliser le flash de l'appareil photo pour photographier des personnes avec ce mode.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details",
+            "value":"Création d'effets d'ombre et de lumière spéciaux. Vous pouvez choisir parmi quatre modes prédéfinis (traînées lumineuses, graffiti lumineux, eau de soie et poussières d'étoiles) adaptés aux scénarios de peinture lumineuse les plus courants. Un trépied est conseillé pour obtenir des résultats optimaux.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"Vos meilleurs moments immortalisés.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"Le nouveau zoom en éventail vous offre une expérience de zoom plus fluide et plus pratique.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name",
+            "value":"Modèle de l'appareil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"Flash toujours allumé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"Cœurs",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"Capture de moments d'une toute nouvelle façon.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open",
+            "value":"Ouvrir %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"Contrôle intelligent vous permet de prendre des photos et des vidéos en touchant le capteur d'empreinte digitale.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"Déplacer en face de %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"Étiquette de localisation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"Le mode scène est idéal pour immortaliser des concerts, des pièces de théâtre et d'autres spectacles. Il est optimisé pour fonctionner correctement dans des scénarios avec un éclairage de scène complexe, pour vous permettre de capturer les artistes avec des détails nets et des couleurs vives.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_an_email",
+            "value":"Envoyer un e-mail",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"Importation effectuée avec succès",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"Amélioration des images",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"Plan lunaire, bouton, toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_soft",
+            "value":"Clair",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"Autofocus pour une photo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"Monochrome",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"Style romantique",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"Passé en format JPG standard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"Professionnel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"Spécifications photo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"Appareil photo a besoin d'accéder à vos informations de localisation pour pouvoir illustrer d'éléments associés vos photos/vidéos. Autoriser ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"%d s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"Incandescent",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"Styles personnalisés",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"Autofocus continu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"Placé derrière %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"Activé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"Les vitesses d'obturation extrêmement lentes vous permettent de créer des effets éthérés avec la lumière. Quatre modes prédéfinis sont disponibles, adaptés aux scénarios de peinture lumineuse courants (traînées lumineuses, graffiti lumineux, eau de soie et poussières d'étoiles). Un trépied est conseillé pour obtenir des résultats optimaux.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"%1$s style personnalisé. Veuillez toucher deux fois et maintenir, puis faire glisser vers la gauche ou la droite pour changer de style.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"Seul le ralenti %dx est disponible.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"Teint",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"Nom de style personnalisé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"Images et vidéos",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"end_shooting",
+            "value":"Terminer la prise de la vidéo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"Sélectionné",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"Tête %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"Veuillez faire glisser pour changer de motif",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"Flash après %d s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_access",
+            "value":"Autoriser",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"Toucher ici permet au sujet de voir aussi l'aperçu.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"Fonctionnalité de stabilisation d'image désactivée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"Embellissement",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"Pour ce mode, il vous suffit de faire pivoter doucement votre téléphone comme indiqué tout en le maintenant stable. Une fois la prise de vue terminée, l'appareil photo combinera les images capturées pour créer une photo panoramique. Ce mode est idéal pour photographier des paysages naturels et urbains, ainsi que des scènes similaires.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"Menu rapide ouvert",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"Cette fonction permet de flouter l'arrière-plan pour mettre en valeur les sujets.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"Photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"Renommer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"Cette application a besoin d'accéder aux éléments suivants : %1$s, %2$s et %3$s. Pour afficher les photos et les vidéos que vous prenez, elle a besoin de lire les images, les vidéos et les informations de localisation. Elle peut également avoir besoin d'utiliser le microphone pour enregistrer l'audio.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"Moderne",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"Exposition verrouillée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"Fonctionnalité de stabilisation d'image activée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse",
+            "value":"Time lapse",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"%1$d. Précautions",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"Ciel bleu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"Exposition et mise au point verrouillées",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"Flash activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"Cela vous permet de prendre des photos et des vidéos à partir de la montre. Vous pouvez gérer cette autorisation dans l'application Santé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"Utiliser pour les vidéos %d fps uniquement",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details",
+            "value":"Le système d'appareil photo super-focus intègre le moteur XD Motion pour capturer des sujets se déplaçant à des vitesses allant jusqu'à %d km/h, que vous photographiez de près ou de loin.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"Le son de l'obturateur est mis en silence lors de la prise d'images dynamiques.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"Les vitesses d'obturation extrêmement lentes vous permettent de créer des effets éthérés avec la lumière. Quatre modes prédéfinis sont disponibles, adaptés aux scénarios de peinture lumineuse courants (traînées lumineuses, graffiti lumineux, eau de soie et poussières d'étoiles).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"Faire glisser vers la gauche dans la zone d'aperçu permet de changer de style personnalisé.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"Veuillez toucher la flèche en haut pour ouvrir le menu rapide.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"L'IA identifiera la scène pour ajuster les couleurs et le teint de la peau pour une photo plus vive. Vous pouvez toucher l'icône IA pour activer/désactiver l'effet.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"Naturel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"La carte des constellations est activée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"Ceci est utilisé pour enregistrer lorsque des photos et des vidéos sont prises et pour afficher les informations de localisation de la prise de vue dans les filigranes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"Veuillez ralentir.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_reset",
+            "value":"Réinitialiser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"Cette fonction permet de suivre un sujet sélectionné dans le cadre lorsqu'il se déplace.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"En mode RAW, le zoom ne peut être ajusté qu'en touchant les préréglages ou en pinçant.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_permission_description",
+            "value":"Ceci est utilisé pour enregistrer le lieu de prise des photos et des vidéos, afficher les informations de localisation dans les filigranes et activer la fonctionnalité de carte céleste.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"En mode Portrait, vous pouvez utiliser des effets d'embellissement et obtenir différents types d'effet bokeh en ajustant l'ouverture.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"Flash toujours allumé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exits_same_card",
+            "value":"Un préréglage avec ces paramètres de couleur existe déjà.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"Contrôle audio",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"skip",
+            "value":"Ignorer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"Ultra instantané peut être désactivé à partir des paramètres d'Appareil photo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"Fluorescent",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"Flash après %d secondes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter",
+            "value":"Filtres",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"Flash automatique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"(%1$s:%2$s) %3$sp (recommandé)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"Flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_details",
+            "value":"Vous pouvez créer des vlogs captivants en combinant différents angles d'appareil photo et effets.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"Importer une image",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"Couleurs",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_on",
+            "value":"Super macro activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"Assistance à l'affichage désactivée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"Classique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"Tourner dans le sens de la flèche pour prendre la 3e photo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"Mise au point manuelle",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"La mise au point ne peut être verrouillée qu'en AF-C.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_zoom",
+            "value":"Zoom audio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"Ceci est utilisé pour afficher les informations de localisation dans les filigranes photo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"Veuillez regarder ici pour de meilleurs résultats.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"L'aperçu double n'est pas disponible lors de la projection de l'écran.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"Ouvrir le menu rapide",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"Conservation des données de profondeur et de mouvement",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary",
+            "value":"Lumière d'assistance pour la mise au point",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"Aperçu de l'appareil photo avant",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"%1$d:%2$d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"Veuillez incliner votre appareil pour que les deux cercles soient alignés.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"L'exposition est trop importante.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"Fonctionnalité de stabilisation d'image désactivée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_record_remind",
+            "value":"Une application d'enregistrement fonctionne déjà en arrière-plan (Enregistreur sonore, Téléphone). Pour prendre une vidéo, veuillez d'abord fermer cette application.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"Placé derrière %1$s, sur la ligne %2$d, colonne %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"Ceci est utilisé pour prendre des photos et vidéos.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"Effet couleur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"Veuillez prendre une photo dans l'obscurité pour de meilleurs résultats.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"Orientation paysage",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"Veuillez vous assurer que l'appareil photo arrière soit propre et non obstrué.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"Veuillez faire pivoter votre appareil dans la direction indiquée. Lorsque l'anneau s'aligne avec le point, l'appareil photo prendra une photo. Vous pouvez toucher l'obturateur pour terminer à tout moment.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_details",
+            "value":"L'appareil photo ajuste automatiquement l'exposition et la couleur lorsque vous filmez une vidéo HD.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"Accès aux informations de localisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"Veuillez toucher pour prendre une photo ou une vidéo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"%1$s, température de couleur %2$d, saturation %3$d, tonalité %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"Appareil photo arrière obstrué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"Pâle",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"Orientation portrait",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"Annuler",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"Le zoom n'est pas disponible lorsque la fonctionnalité de stabilisation d'image est activée.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"En mode Portrait, vous pouvez utiliser des effets d'embellissement et obtenir différents types d'effet bokeh en réglant l'ouverture. L'exposition et la couleur sont ajustées automatiquement lors de la prise de vue, pour vous donner les meilleures photos possibles.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"common_watermark",
+            "value":"Filigranes standard",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_description",
+            "value":"Description",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition",
+            "value":"Composition IA",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"Nez %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"Lorsque vous prenez une photo d'une personne, d'un chat ou d'un chien en mode Photo, les données de profondeur et de mouvement sont conservées pour le post-traitement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"Sujet",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"back_selfie",
+            "value":"Selfie arrière",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"Résolution vidéo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"Grille de composition, activée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Beauty_on",
+            "value":"Activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"Composition IA activée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"Fonction Image dynamique désactivée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"Super macro · Mise au point sur une plus grande partie de l'image",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_off",
+            "value":"Désactivée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"Toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"Appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"Pré-enregistrement activé. Veuillez toucher et maintenir l'obturateur pour capturer jusqu'à %d secondes de métrage avant le début de l'enregistrement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_parameter",
+            "value":"Date/heure de capture",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"Aucun",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"Automatique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aperture_mode",
+            "value":"Ouverture",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"Fonctionnalité de stabilisation d'image améliorée activée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"Maquillage %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"Niveau de teinte %1$d, plage ajustable de %2$d à %3$d. Toucher deux fois pour appliquer, ou toucher deux fois et maintenir, puis déplacer vers le haut ou vers le bas pour modifier",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"La capture de la constellation a échoué. Veuillez modifier l'angle de prise de vue et réessayez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"Autoriser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"Veuillez toucher et maintenir pour verrouiller l'exposition et la mise au point",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"Ralenti",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama",
+            "value":"Panoramique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_light",
+            "value":"Graffiti lumineux",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"Les paramètres actuels ne laissent pas entrer suffisamment de lumière. Restaurer les paramètres d'exposition par défaut ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"Ceci est utilisé pour marquer les informations de localisation des photos et vidéos.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"Veuillez toucher ici pour changer de style personnalisé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"Obturateur à distance déconnecté.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"Restaurer la disposition par défaut ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"live_photo",
+            "value":"Image dynamique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"La température de l'appareil est élevée. L'incrustation d'image n'est pas disponible.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"Zoomer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"Toucher deux fois pour changer, toucher deux fois et maintenir pour déplacer vers la gauche ou la droite",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"Ce nom de style personnalisé existe déjà.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"Veuillez maintenir la flèche sur la ligne centrale.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"L'appareil photo de votre appareil est actif, mais cette application ne peut accéder qu'aux images que vous capturez.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"Prendre une photo rapide",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"Faire glisser vers la gauche ou vers la droite pour passer entre les styles personnalisés. Créer vos propres styles en faisant glisser votre doigt sur la carte de couleurs, ou imiter ceux d'autres en important une photo qu'ils ont prise.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"Veuillez toucher l'icône %s pour changer rapidement de style personnalisé.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"Niveau de saturation %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"%d s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"Portrait",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"Zoom audio activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"make_a_call",
+            "value":"Appeler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting",
+            "value":"Light Painting",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"Veuillez toucher l'icône de l'obturateur, puis déplacez l'appareil lentement de gauche à droite.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"Amélioration de la netteté des photos prises avec un niveau de zoom élevé ou dans des conditions de faible luminosité via IA.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"Cliché nocturne",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"Image",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"Autorisations d'Appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"Toucher ici pour changer le mode de mise au point.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_sun",
+            "value":"Lever/coucher de soleil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"Dire \"Cheese\" pour prendre une photo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"Veuillez retourner le téléphone pour changer d'écran",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"Indisponible lorsque la fonction Image dynamique est activée.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"Restaurer la disposition par défaut",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"border_color",
+            "value":"Couleur de bordure",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_water",
+            "value":"Eau soyeuse",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_and_shade",
+            "value":"Ton",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"Alerte de température",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d secondes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"Veuillez bouger vers la droite.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"Génération de l'image en cours, veuillez maintenir votre appareil stable.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"La composition IA peut être utilisée à un zoom d'appareil photo de %1$sx, %2$sx ou %3$sx. Les meilleurs résultats sont obtenus pour les photos de paysages, bâtiments et personnes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"La mise au point se fait en priorité sur les objets au premier plan au centre du cadre (à au moins %d cm).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"Chaud",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_a_message",
+            "value":"Envoyer un message",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"Restaurer les paramètres d'exposition par défaut ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"Intervalle entre les images : %1$s s\nIdéal pour les floraisons",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"Fonctionnalité de stabilisation d'image",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"%1$s fps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"Toucher et maintenir les icônes EV·, AF· et WB· pour verrouiller leurs valeurs.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"Passé en format HEIF",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"Mise au point valorisante",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"Panorama HD",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"Votre appareil est trop chaud. Appareil photo va se fermer dans %1$d secondes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"Un filigrane est automatiquement ajouté sur les photos prises avec l'appareil photo arrière.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_normal",
+            "value":"Original",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"Nouveau zoom",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"Déplacé devant %1$s, sur la ligne %2$d, colonne %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"La Composition IA peut être utilisée à %1$sx, ou %2$sx zoom. Les résultats sont optimaux avec des paysages, des bâtiments et des personnes.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"details",
+            "value":"Détails",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"Veuillez faire glisser vers la droite pour passer aux styles personnalisés %s.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"Restaurer les paramètres embellissement par défaut ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"Aube",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"horizontal_level",
+            "value":"Niveau horizontal",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"Optimisé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"passion",
+            "value":"Panoramique",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"Veuillez tenir votre téléphone horizontalement pour une meilleure composition.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"Automati\u200bque",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"Flash après %d s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_disabled",
+            "value":"Appareil photo désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"Cette fonction permet de faire ressortir vos sujets en les conservant en couleur alors que le reste de la photo demeure en noir et blanc.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"Aperçu de l'appareil photo arrière",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"Intervalle entre les images : %1$s s\nIdéal pour le lever/coucher du soleil",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"Veuillez bouger vers la gauche.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"Automati\u200bque",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"Un bouton d'obturateur mobile est ajouté pour plus de commodité.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"Ce mode est optimisé pour immortaliser des concerts et d'autres spectacles sur scène.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_angle",
+            "value":"Large",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"Flash désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"Le mode selfie arrière est automatiquement activé si vous prenez un selfie avec l'appareil photo arrière après avoir déplié et retourné le téléphone.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"Pur",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"Adoucir",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"Silencieux",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"Passer à",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"Grille de composition, désactivée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details",
+            "value":"Déplacer l'appareil photo horizontalement ou verticalement pour prendre une photo panoramique.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"Environnement trop lumineux. La capture de la constellation a échoué",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"Délicat",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"Compte tenu du fait que l'effet de fluorescence est faible, les meilleurs résultats sont obtenus dans des environnements très sombres. Veuillez être vigilant lors de l'utilisation de ce mode.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"Niveau d'embellissement défini sur %1$d, la plage pouvant être sélectionnée va de %2$d à %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_on",
+            "value":"Activée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"Exposition déverrouillée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"L'exposition et la mise au point sont verrouillées.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"Veuillez faire glisser vers la gauche pour prendre des photos en rafale ou faire glisser vers la droite pour enregistrer une vidéo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_off",
+            "value":"Super macro désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"Signature personnalisée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_auto",
+            "value":"Automati\u200bque",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"Amélioration nocturne",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"slow_details",
+            "value":"Prise de vidéos au ralenti sans restriction de longueur. Le mode Super ralenti peut être utilisé pour capturer manuellement ou automatiquement des vidéos à des fréquences d'images ultra-élevées. Ce mode fonctionne mieux dans les environnements bien éclairés.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_occupied",
+            "value":"Une autre application utilise actuellement l'appareil photo. Veuillez fermer celle-ci, puis relancez cette application.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"physical_aperture",
+            "value":"Ouverture physique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"Amélioration de la netteté en cours. Veuillez stabiliser votre appareil.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_title",
+            "value":"Autoriser \"%1$s\" à utiliser l'appareil photo ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"Embellissement désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"Veuillez améliorer les conditions d'éclairage pour un meilleur effet de flou.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"Fréquence d'images",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"Cela ne s'applique qu'aux objets statiques. Veuillez garder l'appareil photo stable.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"Mise au point verrouillée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"Vif · Riche et intense",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"jpg_description",
+            "value":"Ce format offre une meilleure compatibilité que le format HEIF.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"Veuillez déplier le téléphone pour prendre des selfies avec l'appareil photo arrière",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_pause",
+            "value":"Pause",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"Ultra clarté IA",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"Les photos sont plus vives et texturées, vous permettant de mieux capturer les animaux de compagnie et les paysages.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_access",
+            "value":"Accès privé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"Refuser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"Réduction du bruit du vent",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_not_detected",
+            "value":"Veuillez connecter l'appareil photo, puis relancez cette application.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"La fonction Image dynamique a été désactivée car l'environnement est trop sombre. Veuillez vous déplacer vers un endroit avec plus de lumière.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"Fréquence d'images adaptative",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_details_more",
+            "value":"Une distance de mise au point plus proche vous permet de capturer votre sujet dans les moindres détails. Le mode Super macro peut être utilisé pour les photos et les vidéos.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"Micro",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"Le mode Ultra clarté IA est idéal pour des photos de sujets immobiles ou de paysages avec de bonnes conditions de lumière.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"Détection de mouvement arrêtée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"Ceci est utilisé pour l'enregistrement de vidéos, la prise d'images en mouvement et le contrôle audio.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"Passer au panoramique horizontal",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go",
+            "value":"Accéder à %1$s pour payer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"Tourner dans le sens de la flèche pour prendre la 2e photo.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"Veuillez tenir votre appareil droit.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro",
+            "value":"Macro",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"Light Painting",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"%1$d. Présentation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"Plus",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"Veuillez toucher l'icône de l'obturateur, puis déplacez l'appareil lentement dans le sens de la flèche.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"Le mode scène est idéal pour immortaliser des concerts, des pièces de théâtre et d'autres spectacles.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"Bouton radio",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"Vous pouvez capturer des images nettes et lumineuses dans des conditions de faible luminosité grâce à un algorithme avancé de réduction du bruit. Deux modes de prise de vue sont disponibles : Super cliché de nuit et Cliché de lune.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"Balance des blancs verrouillée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"Racine des cheveux %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"Avec flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"Centre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"Super macro",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_heif",
+            "value":"HEIF",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"Le niveau de batterie est extrêmement bas. Le démarrage de l'enregistrement a échoué.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"Grille",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"Les informations de localisation sont ajoutées aux photos et vidéos prises.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"Préréglage par défaut, température de couleur %1$d, saturation %2$d, teinte %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"Passer à l'appareil photo arrière",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"Court",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"Toucher ici permet de changer le mode de mise au point.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"Veuillez maintenir l'appareil immobile.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d secondes",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_details",
+            "value":"Grâce à un algorithme de réduction du bruit de dernière génération, votre téléphone est capable de capturer des images nettes et lumineuses, même en conditions de faible luminosité. L'ISO et la vitesse d'obturation peuvent être réglés manuellement pour des prises de vue plus créatives. Lors de la prise de portraits avec l'appareil photo avant, un éclairage d'appoint est activé afin d'éliminer les ombres indésirables sur le visage du sujet, garantissant un rendu net et lumineux des selfies pris la nuit.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"Passer au panoramique vertical",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"Réinitialisation terminée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"FERMER APPAREIL PHOTO",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details",
+            "value":"Réglage avec précision des paramètres de votre appareil photo pour obtenir exactement la photo que vous recherchez. Le mode Pro vous permet de régler un éventail de paramètres avancés tels que la mesure, l'ISO, la vitesse d'obturation, la valeur d'exposition (EV), la balance des blancs et le mode de mise au point.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_raw",
+            "value":"RAW",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"Pas interactif",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"right_text",
+            "value":"Texte à droite",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_watermark",
+            "value":"Vidéos",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"Carte des constellations activée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"L'aperçu double n'est pas disponible lors de l'enregistrement de l'écran.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"Format vidéo efficient",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"Certains paramètres ne sont pas disponibles avec cette valeur ISO.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_location",
+            "value":"Localisation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"Zone de réglage des couleurs. Faire glisser le doigt horizontalement pour ajuster la température de couleur et verticalement pour ajuster la saturation.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"Pour accéder aux Paramètres et aux autres fonctionnalités, veuillez toucher ou faire glisser la flèche en bas.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"Plein écran",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"Flash après %d s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"Pour obtenir des informations de localisation lorsque vous êtes en intérieur, veuillez vous assurer de maintenir une connexion Internet.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"Pour utiliser la Composition IA, veuillez positionner le point à l'intérieur de l'anneau.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"Obturateur à distance connecté.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture",
+            "value":"Ouverture",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"Rose",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot",
+            "value":"Instantané",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"Veuillez faire glisser vers la gauche pour passer aux styles personnalisés %s.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"Fonctionnalité de stabilisation d'image désactivée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_applet",
+            "value":"Ouvrir le mini programme %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"Le mode Ultra clarté IA est idéal pour les portraits dans de bonnes conditions de lumière.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_record",
+            "value":"Démarrer l'enregistrement",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"Sans flash",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"Avec l'écran éteint, appuyer deux fois sur le bouton du volume bas.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"Original · Réaliste et naturel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"Portrait étoilé, bouton, toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_occupied",
+            "value":"Appareil photo occupé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"Recherche d'objet en mouvement en cours.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"Veuillez vous déplacer vers un endroit plus lumineux.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"frame_rate",
+            "value":"%d fps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"%d s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"Pro",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"Ce service a besoin d'accéder à %d éléments :",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"Autoriser seulement cette fois",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera",
+            "value":"Ouvrir Appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"operate_frequently",
+            "value":"Veuillez réessayer ultérieurement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"Menu rapide fermé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"Plein écran | %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"Balance des blancs déverrouillée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"Format d'image",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"Veuillez faire glisser vers le haut ou le bas pour changer le niveau de zoom",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"Passer en mode vidéo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"Pré-enregistrement désactivé.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"Filigranes à durée limitée uniquement",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"Super macro · Mise en valeur du sujet",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"En mode Pro, vous pouvez régler librement les paramètres avancés de l'appareil photo pour obtenir exactement la photo que vous recherchez. Ceux-ci incluent notamment la mesure, l'ISO, la vitesse d'obturation, la valeur d'exposition (EV), la balance des blancs et le mode de mise au point.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_new",
+            "value":"En mode Pro, vous pouvez ajuster librement les paramètres avancés pour obtenir exactement la photo que vous recherchez.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"Contrôle intelligent vous permet de verrouiller l'exposition et la mise au point en maintenant votre doigt sur le capteur d'empreinte digitale.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_bright",
+            "value":"Vif",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"Déplacer derrière %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature",
+            "value":"Température",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"Intervalle entre les images : %1$s s\nIdéal pour les nuages",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"Bouton d'activation de la carte des constellations, toucher deux fois pour activer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"Passé en format RAW",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"Lumineux · Élégant et frais",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"Avec une ouverture plus large, vous pouvez capturer votre sujet en détail tout en créant un effet bokeh doux en arrière-plan. Pour de meilleurs résultats, la distance entre l'appareil photo et le sujet ne doit pas dépasser %d mètres. Ce mode vous permet de contrôler à la fois les ouvertures physiques et virtuelles.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"Contenu copié dans le presse-papier.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"Fluorescence",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"Parler fort",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"La quantité de lumière entrante n'est pas suffisante. Restaurer les paramètres d'exposition par défaut ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"Autoriser",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more",
+            "value":"En mode Pro, vous pouvez régler librement les paramètres avancés de l'appareil photo pour obtenir exactement la photo que vous recherchez. Ceux-ci incluent notamment la mesure, l'ISO, l'ouverture, la vitesse d'obturation, la valeur d'exposition (EV), la balance des blancs et le mode de mise au point.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"Activer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"Toucher ici pour ajuster les styles personnalisés.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"Ne s'applique qu'aux objets statiques. Veuillez garder l'appareil photo stable.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"La carte des constellations est désactivée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"Manuel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"Enregistrement en cours.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"Mode embellissement",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resume",
+            "value":"Reprendre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"Style film",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"Capturez des images nettes et lumineuses dans des conditions de faible luminosité grâce à un algorithme avancé de réduction du bruit. Quatre modes de prise de vue sont disponibles : Super cliché de nuit, Cliché de lune, Ciel étoilé et Portrait étoilé. Lorsque l'appareil photo avant est utilisé, l'écran de l'appareil augmente sa luminosité pour fournir de la lumière supplémentaire, permettant aux visages d'apparaître lumineux et clairs même dans le noir.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gourmet_food",
+            "value":"Foodie",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"Embellissement",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"Déplacer lentement l'appareil photo horizontalement ou verticalement pour prendre une photo panoramique. Ceci est idéal pour capturer des paysages panoramiques, comme des montagnes et des horizons, avec un niveau de détail exceptionnel.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"floating_shutter",
+            "value":"Obturateur flottant",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"Accès privé à l'appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"view",
+            "value":"Afficher %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details",
+            "value":"Prise de très gros plans avec l'appareil photo arrière et mise en valeur de détails saisissants du monde qui vous entoure.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_on",
+            "value":"Activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"Veuillez déplacer le cadre pour sélectionner une autre zone.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"Ce format utilise moins d'espace de stockage que le format JPG tout en conservant la même qualité visuelle. La compatibilité peut être limitée par rapport au format JPG. Vous pouvez convertir une photo en format HEIF au format JPG dans Galerie.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details",
+            "value":"Faites pivoter doucement le téléphone comme indiqué pour prendre une photo panoramique.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"Intervalle entre les images : %1$s s\nIdéal pour les voitures et les foules",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"Veuillez faire glisser latéralement pour prendre des photos en rafale ou enregistrer une vidéo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"HDR Vivid",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"Le flash téléobjectif est utilisé pour améliorer la qualité de l'image.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"Double aperçu activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"Avec une ouverture plus large, vous pouvez capturer votre sujet en détail tout en créant un effet bokeh doux en arrière-plan. Pour de meilleurs résultats, la distance entre l'appareil photo et le sujet ne doit pas dépasser %d mètres.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"Pour obtenir de meilleurs résultats avec le mode Portrait étoilé, veuillez activer le flash.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"Luminosité extrêmement réduite. Optimisation des paramètres d'exposition en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"Température de couleur, niveau %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"%1$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"Photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_details",
+            "value":"L'exposition et les couleurs sont automatiquement ajustées par l'appareil photo lors de la prise de photos.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"Déplacer lentement l'appareil horizontalement ou verticalement tout en le maintenant aussi stable que possible. Maintenir le niveau de la flèche sur la ligne médiane. Lorsque vous avez terminé la prise de vue, l'appareil photo combine automatiquement tout ce que vous avez capturé en une photo panoramique. Ce mode est idéal pour les paysages et les photos de groupe.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"veuillez tourner dans le sens de la flèche. Lorsque le point est aligné avec l'anneau, la photo sera prise automatiquement. Veuillez toucher l'obturateur à tout moment pour arrêter.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"Stabilisation d'image",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"Identification des constellations en cours.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture",
+            "value":"Capturer des sourires",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"Appareil photo avant seulement.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"Les étiquettes de localisation ne peuvent pas être utilisées en mode appareil photo privé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_title",
+            "value":"Informations de localisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"Flash manuel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"La balance des blancs ne peut être verrouillée qu'en mode AWB.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"Manuel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"Ne s'applique qu'aux photos prises en utilisant des styles XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"Bienvenue dans",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"Le mode Ultra clarté IA est idéal pour les portraits dans de bonnes conditions de lumière.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"Double aperçu",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"Vidéo portrait",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"Mode mise au point",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_stage",
+            "value":"Capturer une performance en direct ? Activer le mode scène permet d'obtenir les meilleurs résultats.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"Embellissement : %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_mode",
+            "value":"Vlog",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"L'appareil photo s'est rétracté car il semble que le téléphone soit tombé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"Aperçu de l'appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"Filigranes personnalisés",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_text",
+            "value":"Texte",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"Couleur IA",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"Veuillez toucher l'écran pour activer l'appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"Le filtre actuel n'est pas disponible en %1$dp (%2$d fps). La résolution est passée sur %3$dp (%4$d fps).",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"Toucher deux fois pour changer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"%s est déplacé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"Localisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_off",
+            "value":"Ultra stabilité désactivée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"Ce mode est optimisé pour immortaliser des concerts et d'autres spectacles sur scène, pour vous permettre de capturer des artistes et des effets d'éclairage avec des détails nets et des couleurs vives. Ce mode peut être utilisé pour les photos et les vidéos.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"Limite atteinte. Enregistrement des photos en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"Déplacé derrière %1$s, sur la ligne %2$d, colonne %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"Toucher à nouveau pour modifier.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saturation",
+            "value":"Saturation",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw",
+            "value":"Carte des constellations",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"Haute résolution",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"La prise de son est actuellement concentrée sur la zone zoomée.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"Lumière d'assistance pour la mise au point désactivée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"L'appareil est trop chaud. Le flash n'est pas disponible.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"Veuillez relancer cette application, puis réessayez.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"Faire glisser vers la droite dans la zone d'aperçu permet de changer de style personnalisé.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"Fonctionnalité de stabilisation d'image standard activée",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"Enregistrement en cours. Veuillez ne pas quitter",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"Activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"Flash désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"Styles personnalisés XMAGE",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"Placé en face de %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_notification",
+            "value":"Uniquement disponible avec le filigrane cadre.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"Contrôle intelligent vous permet de zoomer/dézoomer en faisant glisser votre doigt sur le capteur d'empreinte digitale.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"Veuillez reculer un peu plus pour un meilleur effet de flou.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"Teint %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"Toucher ici permet d'afficher d'autres modes de prise de vue nocturne.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"Mise au point automatique verrouillée.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"Le zoom n'est pas disponible avec le format RAW.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"Filigrane cadre",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"Veuillez toucher deux fois pour un aperçu double",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"Prise de %d photos en rafale.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_parameter",
+            "value":"Paramètres de l'appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"Embellissement activé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"Flash après %d secondes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"Flash désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"Embellissement activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"Carte des constellations désactivée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_storage_space",
+            "value":"Le stockage est insuffisant. L'appareil photo risque d'être lent. Veuillez libérer de l'espace pour restaurer les performances.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"Génie de la photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"Toucher deux fois pour activer, ou toucher deux fois et maintenir pour ouvrir plus d'options",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"Selfie arrière intelligent",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"Placé en face de %1$s, sur la ligne %2$d, colonne %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"À propos de la photographie par fluorescence",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"Le zoom n'est pas disponible en mode panoramique.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"Ouvrir Appareil photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"big_text_s",
+            "value":"%s s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"Enregistrement effectué %1$s %2$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"Appareil photo avant seulement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pay",
+            "value":"Ouvrir %1$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"Photo la plus récente",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"Zoom audio désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"Plus de modes disponibles prochainement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"Ceci vous permet de voir l'aperçu de l'appareil photo et de prendre des photos et vidéos depuis la montre. Cette autorisation peut être gérée depuis l'application Santé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"Veuillez déplacer l'appareil photo dans le sens de la flèche.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picture_watermark",
+            "value":"Images",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"Affiner %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"Général",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"standard_style",
+            "value":"Standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"Le mode Nuit permet de capturer des images nettes et lumineuses même en conditions de faible luminosité, grâce à un algorithme avancé de réduction de bruit.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter_speed",
+            "value":"Vitesse d'obturation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Annuler",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"Flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"L'exposition est trop faible.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"Déclarations relatives à la vie privée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"L'appareil est trop chaud. Le flash n'est pas disponible.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"Balance des blancs",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"Passer à l'appareil photo avant",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_contact",
+            "value":"Nouveau contact",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"Paysage",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"Veuillez ralentir.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"Nouveau",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"Flash désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_night_view",
+            "value":"Super nightshot",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"replace",
+            "value":"Remplacer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"Vitesse %d fois",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"Spot",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"Pro",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"Plein écran | %1$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"Prise de photo automatique lorsque les personnes sourient.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_disabled",
+            "value":"La politique de sécurité interdit l'utilisation de l'appareil photo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"Toujours allumé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"Élever la voix pour prendre une photo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_Confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"Bouton de comparaison des effets d'embellissement. Toucher deux fois et maintenir pour afficher l'image sans l'effet d'embellissement.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_agree",
+            "value":"Accepter",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"XMAGE",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"Résolution",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"Toucher deux fois et maintenir pour déplacer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"Lisse %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"Veuillez faire glisser le carré pour ajuster la mise au point et le cercle pour ajuster la mesure.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"Vous pouvez capturer des images nettes et lumineuses dans des conditions de faible luminosité grâce à un algorithme avancé de réduction du bruit. Deux modes de prise de vue sont disponibles : Super cliché de nuit et Cliché de lune. Lorsque l'appareil photo avant est utilisé, l'écran de l'appareil peut augmenter sa luminosité pour fournir un éclairage supplémentaire, permettant ainsi aux visages d'apparaître clairs et nets, même dans l'obscurité.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark",
+            "value":"Ajout d'un filigrane",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"Ce paramètre ne peut pas être verrouillé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"L'ouverture ne peut pas être manuellement ajustée à cette distance focale.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"Continuer à utiliser l'appareil photo ?",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"Mise au point déverrouillée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"Affiner",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"Un nouveau style personnalisé a été ajouté.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"Nuageux",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"Veuillez déplier le téléphone",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"Mode lune activé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"Sans flash",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"Froid",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"Composition IA désactivée",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"L'IA peut vous suggérer le cadrage optimal pour votre photo. Il suffit d'aligner votre appareil et le zoom s'ajustera automatiquement. Fonctionne mieux avec les paysages, les bâtiments et les personnes.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"L'assistance à l'affichage est activée. La vidéo restera filmée en mode Log.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"festival_watermark",
+            "value":"Filigranes de fêtes",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"Niveau de batterie extrêmement bas. Enregistrement arrêté et sauvegardé automatiquement.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"Votre appareil est trop chaud. Appareil photo va se fermer dans %1$d secondes.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format",
+            "value":"Format photo",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details",
+            "value":"Styles de couleurs",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details",
+            "value":"La photographie haute résolution a une densité de pixels plus élevée, pour plus de clarté et de détails.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"global_exposure",
+            "value":"Exposition",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"Avec flash",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"Enregistrement en cours.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"Éclosion",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"L'accès aux informations de localisation permet à Appareil photo de marquer les photos/vidéos avec la localisation exacte où elles ont été prises. Autoriser depuis Paramètres ?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"Ceci est utilisé pour afficher et stocker les photos et vidéos prises.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"Accéder aux Paramètres",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"Appareil photo doit être autorisé à accéder aux informations de localisation",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"Les vidéos sont %1$s moins volumineuses, mais pourraient ne pas être lisibles sur d'autres appareils.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"Appuyez sur le bouton Répondre sur les écouteurs pour photographier ou filmer.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"Manuel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"Intervalle (%d photos)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"Lorsque vous prenez un selfie miroir, vous pouvez afficher une image personnalisée sur l'écran de couverture qui apparaît à côté de vous dans la prise de vue. Pour configurer cette fonction, veuillez accéder au menu rapide de l'Appareil photo et toucher Double aperçu.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"Mode lune désactivé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pre_record",
+            "value":"Pré-enregistrer",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"Veuillez toucher l'icône %s pour changer rapidement de style XMAGE.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"La photographie par fluorescence est un mode de l'appareil photo qui utilise une lumière de remplissage UV. Le réfléchissement de cette lumière UV sur certains matériaux produit des couleurs fluorescentes, ce qui offre l'opportunité de créer des photos stylisées.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"Le Mode nuit permet de capturer des images nettes et lumineuses même en conditions de faible luminosité, grâce à un algorithme avancé de réduction de bruit.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"Capturez des images nettes et lumineuses dans des conditions de faible luminosité grâce à un algorithme avancé de réduction du bruit. Quatre modes de prise de vue sont disponibles : Super cliché de nuit, Cliché de lune, Ciel étoilé et Portrait étoilé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_speed",
+            "value":"Vitesse",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"Cette application a besoin d'accéder à %1$s, au %2$s et aux %3$s. Elle a également besoin de lire les photos/vidéos afin d'afficher et stocker les photos et vidéos prises.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"Allumé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"Ultra instantané",
+            "attr":{
+                "priority":"customer"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"Passer en mode photo",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"request_location_msg",
+            "value":"Appareil photo doit être autorisé à accéder aux informations de localisation pour géolocaliser vos photos et vidéos. Cela vous permet de voir où elles ont été prises dans Galerie.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"Supprimer",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"Le filtre actuel n'est pas disponible en %1$s (%2$d fps). La résolution est automatiquement passée sur %3$dp (%4$d) fps.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"Veuillez maintenir l'appareil immobile.\nPatientez jusqu'à la fin du compte à rebours, ou touchez l'obturateur pour prendre une photo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"La photographie haute résolution a une densité de pixels plus élevée, pour plus de clarté et de détails. En mode Haute résolution, le traitement des photos peut prendre un peu plus de temps. Il est conseillé de maintenir le téléphone stable jusqu'à ce que le processus soit terminé.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"L'espace de stockage de l'appareil est plein.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"Plus d'informations",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"Style standard",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"Toucher ici permet d'importer un style personnalisé.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"Pour accéder aux Paramètres %s, veuillez toucher ou faire glisser vers le haut sur la flèche en bas.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"Cette application peut uniquement accéder aux photos et vidéos que vous prenez. Elle ne peut pas accéder au contenu capturé par l'écran du viseur. %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"Veuillez déplacer les icônes pour modifier la disposition",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"Lorsque la fonctionnalité Stabilisation d'image est activée, la qualité de l'image est meilleure lorsque la lumière est intense.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"small_art_vision",
+            "value":"Celia Lens",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_watermark",
+            "value":"Ajout d'un filigrane",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"Dire \"Cheese\" pour prendre une photo.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"Avis relatif aux autorisations",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"Désactivé",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"Ciel étoilé",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"Monochrome · Intemporel et atmosphérique",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"Paramètres",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "portrait",
+      "label": "$string:portrait_mode",
+      "icon": "$media:ic_short_cut_portrait",
+      "wants": [
+        {
+          "bundleName": "com.ohos.camera",
+          "moduleName": "phone",
+          "abilityName": "com.ohos.camera.MainAbility",
+          "parameters": {
+            "startByShortCut": "true",
+            "mode": "portrait"
+          }
+        }
+      ]
+    },
+    {
+      "shortcutId": "night",
+      "label": "$string:night_mode",
+      "icon": "$media:ic_short_cut_night",
+      "wants": [
+        {
+          "bundleName": "com.ohos.camera",
+          "moduleName": "phone",
+          "abilityName": "com.ohos.camera.MainAbility",
+          "parameters": {
+            "startByShortCut": "true",
+            "mode": "night"
+          }
+        }
+      ]
+    },
+    {
+      "shortcutId": "video",
+      "label": "$string:video_mode",
+      "icon": "$media:ic_short_cut_video",
+      "wants": [
+        {
+          "bundleName": "com.ohos.camera",
+          "moduleName": "phone",
+          "abilityName": "com.ohos.camera.MainAbility",
+          "parameters": {
+            "startByShortCut": "true",
+            "mode": "video"
+          }
+        }
+      ]
+    },
+    {
+      "shortcutId": "self_portrait",
+      "label": "$string:self_portrait",
+      "icon": "$media:ic_short_cut_self_portrait",
+      "wants": [
+        {
+          "bundleName": "com.ohos.camera",
+          "moduleName": "phone",
+          "abilityName": "com.ohos.camera.MainAbility",
+          "parameters": {
+            "startByShortCut": "true",
+            "mode": "self_portrait"
+          }
+        }
+      ]
+    }
+  ]
+}

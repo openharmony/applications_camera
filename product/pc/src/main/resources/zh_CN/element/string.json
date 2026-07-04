@@ -1,0 +1,208 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "相机",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "photo_mode",
+      "value": "拍照",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_mode",
+      "value": "录像",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "pic_title",
+      "value": "照片",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_title",
+      "value": "视频",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "settings",
+      "value": "设置",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "value": "照片比例",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "default_value",
+      "value": " "
+    },
+    {
+      "name": "video_resolution",
+      "value": "视频分辨率",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer",
+      "value": "定时拍摄",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "already_off",
+      "value": "已关闭",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "off",
+      "value": "关闭",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer_2_seconds",
+      "value": "%d 秒",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer_5_seconds",
+      "value": "%d 秒",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "timer_10_seconds",
+      "value": "%d 秒",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "restore_defaults",
+      "value": "恢复默认值",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "cancel",
+      "value": "取消",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "confirm",
+      "value": "确定",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "assistive_grid",
+      "value": "参考线",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "general",
+      "value": "通用",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "sound_mute",
+      "value": "拍摄静音",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "self_mirror",
+      "value": "自拍镜像",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "geo_location_desp",
+      "value": "用于记录照片或视频拍摄地点信息",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "self_mirror_desp",
+      "value": "仅在前置自拍和前置录像时生效",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "confirm_restore_message",
+      "value": "是否将相机设置恢复为默认值？",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "video_frame_rate",
+      "value": "视频帧率",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "imagevideo_permission_desc",
+      "value": "用于展示并保存拍摄的图片和视频",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "camera_permission_desc",
+      "value": "用于拍照和录像",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "microphone_permission_desc",
+      "value": "用于录像和声控拍照",
+      "attr": {
+        "priority": "translate"
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px"
+     height="24px"
+     viewBox="0 0 24 24"
+     version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic_camera_mode_video</title>
+    <defs>
+        <path
+            d="M3.5,5 C2.67175,5 2,5.6715 2,6.5 L2,16.5 C2,17.32825 2.67175,18 3.5,18 L15.75,18 C16.5785,18 17.25,17.32825 17.25,16.5 L17.25,14.76225 L20.64175,16.313 C20.7615,16.359 20.88275,16.38025 21.001,16.38025 C21.53025,16.38025 22,15.95275 22,15.3795 L22,7.614 C22,7.04075 21.53,6.61325 21.001,6.613 C20.88225,6.613 20.7605,6.63475 20.64025,6.681 L17.25,8.23775 L17.25,6.5 C17.25,5.6715 16.5785,5 15.75,5 L3.5,5 Z"
+            id="path-1"></path>
+    </defs>
+    <g
+        id="ic_camera_mode_video"
+        stroke="none"
+        stroke-width="1"
+        fill="none"
+        fill-rule="evenodd">
+        <mask
+            id="mask-2"
+            fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use
+            id="圆屏录像模式"
+            fill="#FFFFFF"
+            fill-rule="evenodd"
+            xlink:href="#path-1"></use>
+    </g>
+</svg>

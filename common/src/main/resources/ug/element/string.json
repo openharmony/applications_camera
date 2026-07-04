@@ -1,0 +1,5233 @@
+{
+    "string":[
+        {
+            "name":"option_exit_camera",
+            "value":"كامېرادىن چېكىنىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_pixel_desc_common",
+            "value":"\u200fAI بەك سۈزۈك ھالەت تولۇق يورۇتۇلغان مۇھىتتا تىنچ نىشاننى تارتىشقا ماس كېلىدۇ، يانفوننى مۇقىم تۇتۇپ تارتىش كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_value_off",
+            "value":"يوق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_parameters",
+            "value":"رەڭ كارتىسى ئۆلچىمى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"infinity_time",
+            "value":"چەك يوق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_vertically",
+            "value":"يانفوننى تىكبوي تۇتۇپ تارتسىڭىز، ئۈنۈمى ئەڭ ياخشى چىقىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_the_moon",
+            "value":"ئاي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky_description",
+            "value":"كۆركەم يۇلتۇزلۇق، كۇنۇپكا، بىر بارماقتا قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description",
+            "value":"\u200f(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_back",
+            "value":"قايتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_matrix_metering",
+            "value":"ئۇل",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tripod_on",
+            "value":"تىرەك ھالەت ئوچۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"overexposed_dialog_need_content",
+            "value":"كۆرۈنۈش بەك يورۇق، ئەسلى ئۆلچەمگە قايتۇرامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_live_photo_on",
+            "value":"ھەرىكەتچان رەسىم ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_level",
+            "value":"سايە دەرىجىسى %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_view_no_iso",
+            "value":"ئالاھىدە شاۋقۇنسىزلاش تېخنىكىسى ئارقىلىق كېچىدە تارتقان رەسىم سۈزۈك ۋە يورۇقلاشتۇرۇلىدۇ. يورۇتۇش ۋاقتىنى قولدا تەڭشەشكە بولىدۇ. كېچىدە ئالدى كامېرادا رەسىم تارتسىڭىز، ئادەم يۈزىگە يورۇقلۇق تولۇقلىنىپ، سۈزۈك ۋە ئوچۇق تارتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_galaxy_tip",
+            "value":"رامكا ئارىلىقى: %1$s سېكۇنت\nسامانيولى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_intro",
+            "value":"كامېرا ۋە مەخپىيەتلىك ھەققىدە بايانات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Stylish",
+            "value":"گىرىملىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_unchecked",
+            "value":"تاللانمىدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_Custom",
+            "value":"ئۆزلەشتۈرمە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_description",
+            "value":"%1$sK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_update_date",
+            "value":"يېڭىلانغان ۋاقىت: %s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror",
+            "value":"ئۆزتارتىم تەسۋىرى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_hint",
+            "value":"بۇ سىنبەلگىنى چېكىپ XMAGE ئۇسلۇب ئۈنۈملىرىنى ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_star",
+            "value":"يۇلتۇز ئىزى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_card_swipe_tip",
+            "value":"ئۈستىدىكى كۆرەك رايوننى سىيرىپ رەڭ كارتىسى تاللايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_learn_more",
+            "value":"تەپسىلات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"connect_wifi",
+            "value":"\u200fWLAN ئۇلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_mode",
+            "value":"سەھنە",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_agree_statement",
+            "value":"«قوشۇلىمەن» نى چەكسىڭىز، يۇقىرىقىلارغا قوشۇلغان بولىسىز. شەخسىي ئۇچۇر بىر تەرەپ قىلىش ھەققىدىكى تەپسىلاتلارنى «%1$s» ۋە «%2$s» ئارقىلىق كۆرۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_import_fail",
+            "value":"كىرگۈزۈلمىدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_long_scroll",
+            "value":"كۆپ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_desc",
+            "value":"خۇاۋېي ئىشلىگەن ھەرخىل ئۈنۈم ۋە ئۇسلۇبلار تەمىنلەندى، تاللاپ ئىشلەتسىڭىز بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_lightspot_circle",
+            "value":"سۈكۈت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"function_under_development",
+            "value":"بۇ ئىقتىدار ئىشلىنىۋاتىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_common_watermark",
+            "value":"ئۆلچەملىك سۇباسما",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_button",
+            "value":"كۇنۇپكا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description_recommended",
+            "value":"%1$d:%2$d (تەۋسىيە)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_title",
+            "value":"چىراق ئەسكەرتمىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_style",
+            "value":"فىلىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_not_detected",
+            "value":"كامېرا بايقالمىدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"turn_on_beauty_tip",
+            "value":"گۈزەللەشتۈرۈش ھالىتىنى ئېچىڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_take_photo_in_video",
+            "value":"سىنغا ئېلىۋاتقاندا رەسىمگە تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_daylight",
+            "value":"ئاپتاپ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_background",
+            "value":"رامكا تەگلىكى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_no_more",
+            "value":"قايتا ئەسكەرتمەڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"save_custom_parameters",
+            "value":"باشقا ساقلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_portrait",
+            "value":"ئۆزتارتىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_AGREE_security",
+            "value":"قوشۇلىمەن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"copy",
+            "value":"كۆچۈرۈش: %s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"natural_style",
+            "value":"تەبىئىي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"film_duration_title",
+            "value":"سىن ئۇزۇنلۇقى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_ai_master",
+            "value":"\u200fAI ئۇستا ئىقتىدارى كۆرۈنۈشنى AI ئارقىلىق ئېنىقلاپ، رەڭ تەڭشەپ بېرىدۇ. چېكىپ، AI ئۈنۈم بىلەن ئەسلى ئۈنۈم ئارا ئالماشتۇرالايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_title",
+            "value":"سىن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"low_angle",
+            "value":"تۆۋەن بۇلۇڭدىن تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hdr_vivid_desp",
+            "value":"رەڭ ۋە سېلىشتۇرما ياخشىلىنىدۇ، ئۈسكۈنە/يۇمشاق دېتال بۇ ئىقتىدارنى قوللىمىسا، ئۈنۈمى ياخشى چىقماسلىقى مۇمكىن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse_details",
+            "value":"سىنلارنى قىسقا سىن قىلىپ بىرىكتۈرۈپ، ئۇزاق مەزگىللىك ئۆزگىرىشلەرنى قىسقا ۋاقىت ئىچىدە تېز كۆرەلەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_on",
+            "value":"ياردەمچى كۆزەتكۈچ ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"keep_time_title",
+            "value":"ئۇزۇنلۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"distributed_mode_learn_more",
+            "value":"تەپسىلات",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage1",
+            "value":"%s قانۇنىي ھوقۇق-مەنپەئەتىڭىزنى قوغداش ئۈچۈن بۇ ئىقتىدارنى ئىشلىتىشتىن بۇرۇن ئىقتىدار چۈشەندۈرۈشى، بىلدۈرگۈ ۋە ئىشلىتىش باياناتىنى ئەستايىدىل ئوقۇڭ. بۇ ئىقتىدارنى ئىشلەتكەندە دىققەت قىلىدىغان ئىشلارغا ئەمەل قىلىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_quality_desp",
+            "value":"رەسىم تارتىش ھالىتىدە %dMP رەسىم تارتىلىدۇ، رەسىم قۇرۇشقا ئۇزۇنراق ۋاقىت كېتىشى مۇمكىن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage3",
+            "value":"%s بۇ ئىقتىدارنى ئىشلەتسىڭىز، بىلدۈرگۈ ۋە ئىشلىتىش باياناتىنىڭ بارلىق شەرت ۋە مەزمۇنىنى ئوقۇغان، چۈشەنگەن، قوبۇل قىلغان ۋە قوشۇلغان بولىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_usage2",
+            "value":"%1$s بۇ مەھسۇلاتنىڭ يورۇقلۇق تولۇقلاش دەرىجىسى بىخەتەرلىك ئۆلچىمى (%2$s) گە ئۇيغۇن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_capture_time_sub_screen_new_title",
+            "value":"يۇمىلاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interactions",
+            "value":"يېڭى ئۆزئارالىق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_both",
+            "value":"پەقەت %1$sfps ۋە %2$sfps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_car",
+            "value":"قاتناش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_five",
+            "value":"%d سېكۇنتتىن كېيىن چاقنايدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_schedule",
+            "value":"كۈنتەرتىپ قوشۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization",
+            "value":"ئۆلچەملىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword",
+            "value":"بۇيرۇق تونۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_auto",
+            "value":"ئۆزلۈكىدىن ئايلانما يورۇتۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_microphone_blocked",
+            "value":"مىكروفون توسۇلۇپ قالغان.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_jpg",
+            "value":"\u200fJPG",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_mode",
+            "value":"سىن ئېلىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tonebright",
+            "value":"ئاق %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_succeeded",
+            "value":"يۇلتۇز تۈركۈمى ئېنىقلاندى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cinematic_video_physics_aperture_edit_not_supported_toast",
+            "value":"تەھرىرلەۋاتقاندا ماددىي يورۇقلۇق چەمبىرى ۋە فوكۇس ئۈنۈمى تەڭشەلمەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_operation_tips",
+            "value":"كۆرەك رايوننى ئوڭغا سىيرىپ رەڭ كارتىسىنى تېز ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"is_dirty_lens",
+            "value":"كۆرۈنۈش سۈزۈك ئەمەس، كامېرانى سۈرتۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_FlashOff_BatteryLowTips",
+            "value":"توك مىقدارى تۆۋەن، چاقنىغۇچ ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"romantic_style",
+            "value":"كىنو",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot_details_new",
+            "value":"ھەرىكەتتىكى نىشاننى سۈزۈك تارتىشقا بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_interaction_desc",
+            "value":"فوكۇسلاش ھالقىسى قانات فوكۇسقا ئۆزگەرتىلدى. يەنە قاپقا كۇنۇپكىسىنى بېسىپ تۇرۇپ سولغا سىيرىپ ئۇلاپ تارتىش، ئوڭغا سىيرىپ سىن ئېلىش، ئۈستىگە سىيرىپ فوكۇسلاشقا بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_custom_template",
+            "value":"ئۆزلەشتۈرمە تەييار تەڭشەك %1$d، رەڭ تېمپېراتۇرىسى %2$d، تويۇنۇشچانلىق %3$d، سايە %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaps",
+            "value":"تىزگىن سۇپىنى يىغىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage",
+            "value":"\u200fXMAGE",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_submode_capture_desc",
+            "value":"تارتىش جەريانىدا كامېرانى مۇقىم تۇتۇڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_deny",
+            "value":"چەكلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_exposure_compensation_tile",
+            "value":"نۇر تولۇقلاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cinema_mode",
+            "value":"كىنو",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_big_eyes",
+            "value":"كۆز %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_intro",
+            "value":"كۆپرەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close_description",
+            "value":"يۇلتۇز تۈركۈمى سىزمىسىنى ئېتىش كۇنۇپكىسى، بىر بارماقتا قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_rotate",
+            "value":"ئايلانما فوكۇس",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_huidiao",
+            "value":"بوزراق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_description",
+            "value":"مۇھىتقا قاراپ رامكا نىسبىتى %1$dfps دىن %2$dfps گىچە تەڭشىلىپ، كۆرۈنۈش سۈپىتى ياخشىلىنىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_description",
+            "value":"\u200f(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"virtual_aperture",
+            "value":"مەۋھۇم يورۇقلۇق چەمبىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetUpPrompt",
+            "value":"تۆۋەنگە يۆتكەڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_overexposure",
+            "value":"زىيادە نۇرلىنىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression_detail",
+            "value":"سىن ئالغاندا شامال ئاۋازىنى توسۇپ، ئاۋازنى سۈزۈكلەشتۈرىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_design",
+            "value":"شەكىل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_new",
+            "value":"بۇ ئەپ %1$s، %2$s، %3$s، %4$s ئىجازىتى ئالىدۇ؛ ئورۇن ئۇچۇرى، رەسىم ۋە سىن ئوقۇپ، تارتقان رەسىم ۋە سىننى كۆرسىتىش ئۈچۈن ئىشلىتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_underexposure",
+            "value":"نۇرلىنىش يېتەرسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"anime_style",
+            "value":"كارتون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_skin_tone_off",
+            "value":"تېرە رەڭگى ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_anim",
+            "value":"كارتون ئۇسلۇب",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus",
+            "value":"نىشان ئىزلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_portrait",
+            "value":"تىكبوي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_watermark_description",
+            "value":"پەقەت ئۆزلەشتۈرمە رەڭ كارتىسى ئىشلەتكەن رەسىمدە كۆرۈنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_ok_security",
+            "value":"بىلدىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_none",
+            "value":"رامكا ئارىلىقى: %d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_switch_direction",
+            "value":"كۆرسەتكۈچنى چېكىپ تارتىش يۆنىلىشىنى ئالماشتۇرالايسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"assistive_grid",
+            "value":"پايدىلىنىش سىزىقى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_metering_mode_tile",
+            "value":"نۇر ئۆلچەش ئۇسۇلى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"auxiliary_mode_on",
+            "value":"فوكۇس چىراق ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details",
+            "value":"ئادەم ھالىتىدە دىققەت نۇقتىسى ئادەمگە قارىتىلىپ، ئارقا كۆرۈنۈش تۇتۇقلاشتۇرۇلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Natural",
+            "value":"تەبىئىي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_color_palette",
+            "value":"رەڭ تاختىسى كۇنۇپكىسى، بىر بارماقتا قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_capture_tip",
+            "value":"كامېرانى مۇقىم تۇتۇڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"preset_replacement_title",
+            "value":"بۇ رەڭ كارتىسىنى ئالماشتۇرامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture",
+            "value":"ئارىلىقلىق تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"back_as_front_guide_tips",
+            "value":"ئارقا كامېرا ئارقىلىق ئۆزتارتىم تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetDownPrompt",
+            "value":"ئۈستىگە يۆتكەڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_stop_recording_video",
+            "value":"سىنغا ئېلىشنى توختىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"edit",
+            "value":"تەھرىرلەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_portrait_off",
+            "value":"گۈزەللەشتۈرۈش ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"world_chases_moon",
+            "value":"ئالەمدە ئاي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait",
+            "value":"يۇلتۇزلۇق تىكبوي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer",
+            "value":"قەرەللىك تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_2_seconds",
+            "value":"%d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_frame_rate",
+            "value":"سىن رامكا نىسبىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_disabled",
+            "value":"قوش ئېكران ھالىتى ئېتىلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_usage_title",
+            "value":"%1$d. ئىشلىتىش چۈشەندۈرۈشى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_text",
+            "value":"بۇ ھالەتتە چىراق ئارقىلىق ئادەم ۋە نەرسىلەرنى يورۇتۇپ كۆرۈنۈشكە كىرگۈزەلەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details",
+            "value":"قاتناش ئېقىمى، تېز سىزما، دولقۇن ۋە ئاقار يۇلتۇز قاتارلىق تۆت خىل يورۇقلۇق ئۈنۈمىدە تارتىشقا بولىدۇ، ئۈچپۇت ئىشلىتىشنى تەۋسىيە قىلىمىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_function",
+            "value":"گۈزەل ئەسلىمىلەرنى خاتىرىلەڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom_desc",
+            "value":"يېڭى قانات فوكۇس ئىقتىدارى ئارقىلىق فوكۇسلاش تېخىمۇ ياخشىلاندى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_name",
+            "value":"ئۈسكۈنە تىپى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_4K_proportion_tabbar_description",
+            "value":"\u200f(%1$s:%2$s) %3$s",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_always_on",
+            "value":"ئىزچىل ئايلانما يورۇتۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lightspot_heart",
+            "value":"يۈرەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"click_new_mode_guide",
+            "value":"يېڭى ھالەت ئارقىلىق ئەسەر قۇرۇڭ!",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open",
+            "value":"\u200f«%1$s» نى ئېچىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_light_touch",
+            "value":"ئاڭلىق تارتىش ھالىتىدە يېنىك تۇتۇپ رەسىم/سىن تارتىشقا بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front_bar",
+            "value":"‏%s نىڭ ئالدىغا يۆتكەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_menu_location_title",
+            "value":"جۇغراپىيەلىك خەتكۈچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_more_nova",
+            "value":"كۈلدۈرگە، ناخشا-مۇزىكا كېچىلىكى، دىراما، livehouse قاتارلىق سەھنە كۆرۈنۈشلىرىنى تارتىشقا ماس كېلىدۇ. بۇ ھالەت سەھنە چىراقلىرى بار ئەھۋال ئۈچۈن لايىھەلەنگەن بولۇپ، سەھنىدىكى شەخسنى گەۋدىلەندۈرۈپ تارتىدۇ؛ سۈرەت قاتلاملىرى ئېنىق ۋە جانلىق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"send_an_email",
+            "value":"تورخەت يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_replace_success",
+            "value":"كىرگۈزۈلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"high_quality",
+            "value":"كۈچەيمە رەسىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"world_chases_moon_description",
+            "value":"ئالەمدە ئاي، كۇنۇپكا، بىر بارماقتا قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_soft",
+            "value":"يورۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_s",
+            "value":"يالغۇز ئاپتوماتىك فوكۇس",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"xmage_black_white",
+            "value":"رەڭسىز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_romantic",
+            "value":"رومانتىك ئۇسلۇب",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_jpg",
+            "value":"سۈكۈت JPG غا ئالماشتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_video_mode",
+            "value":"كەسپىي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_specifications_title",
+            "value":"رەسىم ئۆلچىمى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_content",
+            "value":"كامېرا ئورۇن ئۇچۇرىنى ئوقۇپ، تارتقان رەسىم ياكى سىنغا ئورۇن ئۇچۇرى قوشىدۇ. رۇخسەتمۇ؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_five",
+            "value":"%d س",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_whitebalance_entry_incandescent",
+            "value":"يالقۇن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_value",
+            "value":"ئۆزلەشتۈرمە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_af_c",
+            "value":"ئاپتوماتىك فوكۇسنى داۋاملاشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_bar",
+            "value":"‏%s نىڭ ئارقىغا قويۇلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_on",
+            "value":"گۈزەللەشتۈرۈش ئوچۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_details_more",
+            "value":"ئاقما ھالەتتە قاينام-تاشقىن، نۇر سىزما، يىپەك ئاقما ۋە يۇلتۇز ئىزى قاتارلىق تۆت خىل يورۇقلۇق ئۈنۈمىدە تارتىشقا بولىدۇ، ئۈچپۇت ئىشلىتىشنى تەۋسىيە قىلىمىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_preview",
+            "value":"‏%1$s رەڭ كارتىسى، قوش بېسىپ تۇرۇپ ئوڭ-سولغا سىيرىپ رەڭ كارتىسى ئالماشتۇرىسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_front_camera_tips",
+            "value":"پەقەت %dx ئاستا ھەرىكەتنى قوللايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"casio_skin_color",
+            "value":"تېرە رەڭگى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_filter_template_name",
+            "value":"رەڭ كارتىسىنىڭ نامى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_storage_car",
+            "value":"رەسىم ۋە سىن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"end_shooting",
+            "value":"تارتىشنى ئاياغلاشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_checked",
+            "value":"تاللاندى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_head_shrink",
+            "value":"باش %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mirror_selfie_guide_outer",
+            "value":"سىيرىپ رەسىم ئالماشتۇرۇڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_five",
+            "value":"%d سېكۇنتتىن كېيىن چاقنايدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"allow_access",
+            "value":"رۇخسەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_recommend_tip",
+            "value":"قوش ئېكرانلىق ھالەتتە تارتىلغۇچى قوشۇمچە ئېكراندا كۆرۈنۈشنى كۆرەلەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Steadyshot_is_off",
+            "value":"ھەرىكەت ھالىتى ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_beauty",
+            "value":"گۈزەل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details_more",
+            "value":"كۆرسەتمە بويىچە يانفوننى بۇراپ تارتىسىز. يانفون تىترىمەسلىكى كېرەك. مەركىزىي دۈگىلەكنى تەۋسىيەلىك ئورۇنغا توغرىلىسىڭىز، تارتىپ بولغاندا كامېرا ئۆزلۈكىدىن كۆرۈنۈش بىرىكتۈرۈپ، تېخىمۇ چوڭ پۈتۈن كۆرۈنۈشلۈك رەسىم ھاسىل قىلىدۇ. تاغ-دەريا، شەھەر كۆرۈنۈشى قاتارلىقلارنى تارتىشقا ماس كېلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_open",
+            "value":"خۇرجۇن يېيىلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur_tip",
+            "value":"نىشاننى گەۋدىلەندۈرۈپ ئارقا كۆرۈنۈشنى تۇتۇقلايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pic_title",
+            "value":"رەسىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_rename",
+            "value":"نام ئۆزگەرتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed",
+            "value":"بۇ ئەپ ئۈچۈن %1$s، %2$s، %3$s ئىجازىتى كېرەك؛ ئۇ يەنە ئورۇن ئۇچۇرى، رەسىم ۋە سىن ئوقۇيدۇ؛ ئۈسكۈنىدە ئۈن ئېلىشى مۇمكىن؛ يۇقىرىقىلار تارتقان رەسىم ۋە سىننى كۆرسىتىش ئۈچۈن ئىشلىتىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_modern",
+            "value":"زامانىۋى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_value_negative",
+            "value":"يورۇتۇش قۇلۇپلاق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Steadyshot_is_on",
+            "value":"ھەرىكەت ھالىتى ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"time_lapse",
+            "value":"كېچىكمە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice_title",
+            "value":"%1$d. بىلدۈرگۈ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_tips_sky",
+            "value":"كۆك ئاسمان",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_locked",
+            "value":"يورۇتۇش ۋە فوكۇسلاش مۇقىم.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_on",
+            "value":"چىراق ئوچۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents_UnSmart",
+            "value":"بۇ ئىجازەت سائەت ئارقىلىق يىراقتىن تىزگىنلەپ رەسىم ۋە سىن تارتىش ئۈچۈن ئىشلىتىلىدۇ. «تەنتەربىيە-ساغلاملىق» ئەپىدە ئىجازەت باشقۇرالايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate_30",
+            "value":"پەقەت %dfps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"جەزملەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"snapshot_details",
+            "value":"ئالىي فوكۇس سىستېمىسى XD Motion موتورى ئارقىلىق %dkm/h تېزلىكتە ھەرىكەت قىلىۋاتقان نىشاننى يىراقتىن ۋە يېقىندىن ئوچۇق رەسىمگە تارتالايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"menu_remark_mute_disable",
+            "value":"ھەرىكەتچان رەسىم ھالىتىدە تىنچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_details_new",
+            "value":"قاينام-تاشقىن، نۇر سىزما، يىپەك ئاقما ۋە يۇلتۇز ئىزى قاتارلىق تۆت خىل يورۇقلۇق ئۈنۈمىدە تارتىشقا بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_action_tip",
+            "value":"كۆرەك رايوننى ئوڭغا سىيرىپ رەڭ كارتىسى ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_outer_treasure_box",
+            "value":"ئۈستىدىكى كۆرسەتكۈچلۈك رايوننى چېكىپ تىزگىن سۇپىنى ئاچىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_ai_master_desc",
+            "value":"ئەمەلىي ئەسلىگە كەلتۈرۈش ئۈنۈمى بويىچە، AI كۆرۈنۈشنى تونۇپ رەڭ تەڭشەيدۇ. مەسىلەن، ئادەمنى تارتقاندا گەۋدىنى تېخىمۇ ئۈچ ئۆلچەملەشتۈرۈپ، تېرە رەڭگىنى جانلاندۇرىدۇ. AI كۆرۈنۈش تاللانمىسىنى چېكىپ، AI ئۈنۈم بىلەن ئەسلى ئۈنۈم ئارا ئالماشتۇرالايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_ziran",
+            "value":"تەبىئىي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open",
+            "value":"يۇلتۇز تۈركۈمى سىزمىسىنى ئېچىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_description_without_starry_sky",
+            "value":"رەسىم ۋە سىن تارتقان ئورۇن خاتىرىلەش ۋە تارتقان ئورۇننى سۇباسما قىلىپ قوشۇش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Toast_Panorama_MovingFastPrompt",
+            "value":"ئاستىراق يۆتكەڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset",
+            "value":"قايتا بەلگىلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_focus_tip",
+            "value":"كامېرا بېكىتكەن كىشىنى ئىزلاپ تارتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"raw_format_zoom_only_supported_pinch",
+            "value":"خام RAW ھالەتتە يان سىيرىگۈچنى چېكىش ياكى قوش بارماقتا چوڭ-كىچىكلىتىش ئارقىلىق فوكۇس تەڭشەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_permission_description",
+            "value":"رەسىم ۋە سىن تارتقان ئورۇننى خاتىرىلەش، تارتقان ئورۇننى سۇباسما قىلىپ قوشۇش، يۇلتۇزلۇق ئاسمان سىزما قاتارلىقلار ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_portrait_desc",
+            "value":"ئادەم ھالىتىدە گۈزەل ۋە ئارقا كۆرۈنۈش تۇتۇقلاشقان رەسىم تارتىشقا بولىدۇ، يەنە يورۇقلۇق چەمبىرى ۋە ئارقا كۆرۈنۈش تۇتۇقلۇقى تەڭشىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_torch",
+            "value":"ئىزچىل يورۇتۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"exits_same_card",
+            "value":"ئوخشاش رەڭ كارتىسى بار.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_control",
+            "value":"ئاۋازلىق تىزگىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"skip",
+            "value":"ئاتلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_rapid_prompt_close",
+            "value":"ئېتىك ئېكراندا تارتىش ئىقتىدارىنى كامېرا تەڭشىكىدىن ئېتەلەيسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_fluorescent",
+            "value":"پارقىراق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_fifteen",
+            "value":"%d سېكۇنتتىن كېيىن چاقنايدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter",
+            "value":"سۈزگۈچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_auto",
+            "value":"ئۆزلۈكىدىن يورۇتۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond_new",
+            "value":"\u200f[%1$s:%2$s] ئېنىقلىقى %3$sp (تەۋسىيە)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_light_entry",
+            "value":"چىراق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_details",
+            "value":"كۆپ لىنزا ھالىتىدە تارتىشقا بولىدۇ، بىر جايدىلا مول ۋە سۈپەتلىك سىن ئىشلەپ چىقالايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"import_style_template_parameters",
+            "value":"رەسىم كىرگۈزۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"coloring_button_name",
+            "value":"رەڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_on",
+            "value":"بەك يېقىن ھالەت ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_off",
+            "value":"ياردەمچى كۆزەتكۈچ ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_jingdian",
+            "value":"كىلاسسىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_third_shoot",
+            "value":"تۈزبوي تۇتۇپ، كۆرسەتكۈچ يۆنىلىشى بويىچە چۆرۈپ 3-پارچە تارتىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_manual",
+            "value":"قول فوكۇسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_unlock_able",
+            "value":"فوكۇس پەقەت AF-C ھالەتتە مۇقىملىنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"audio_zoom",
+            "value":"ئاۋاز فوكۇس",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_watermark_location_request_dialog_content",
+            "value":"بۇ ئىجازەت سۇباسمىدا رەسىم تارتقان ئورۇن ئۇچۇرىنى كۆرسىتىش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"front_camera_location_tip",
+            "value":"كامېراغا قارىسىڭىز ئۈنۈمى تېخىمۇ ياخشى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"screen_mirroring_not_support_collaboration_desc",
+            "value":"ئېكران سۇنۇۋاتقاندا قوش ئېكرانلىق ھالەت ئېچىلمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_uncollaps",
+            "value":"تىزگىن سۇپىنى يېيىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_motion_title",
+            "value":"چوڭقۇرلۇق ۋە ھەرىكەت ساقلاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_recommond",
+            "value":"\u200f(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary",
+            "value":"فوكۇس چىراق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_front_preview",
+            "value":"ئالدى كامېرادىن كۆرەك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_resolution_description",
+            "value":"%1$d:%2$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pitch_angle_intro_text",
+            "value":"يانفوننىڭ قىيسىيىش بۇلۇڭىنى توغرىلاپ، ئىككى دۈگىلەكنى ئۇدۇللاڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_overexposed_dialog_need_content",
+            "value":"نۆۋەتتىكى كۆرۈنۈش ئارتۇق يورۇتۇلغان.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Off_stabilization_desc",
+            "value":"مۇقىملىغۇچ ئېتىك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"no_record_remind",
+            "value":"ئۈنئالغۇ ئالدىراش (ئارقا سۇپىدا ئۈنئالغۇ ياكى چاقىرىق يۈرۈۋاتىدۇ)، سىن ئېلىش ئۈچۈن ئۈن ئېلىۋاتقان ئەپنى ئېتىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_back_grid",
+            "value":"‏%1$s نىڭ ئارقىغا قويۇلدى، %2$d-قۇر %3$d-رەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_permission_introduction_security",
+            "value":"بۇ ئىجازەت رەسىم تارتىش ۋە سىن ئېلىشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pref_camera_coloreffect_title",
+            "value":"رەڭ ئۈنۈمى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_use_tip",
+            "value":"بەك قاراڭغۇ مۇھىتتا تارتىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_horizontal",
+            "value":"تۈزبوي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_blocking_tip",
+            "value":"ئارقا كامېرا توسۇلۇپ قالغان ياكى پاكىز ئەمەس، دەرھال سۈرتۈڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint",
+            "value":"كۆرسەتكۈچ يۆنىلىشى بويىچە چۆرۈڭ. دۈگىلەك چېكىت ھالقىغا ئۇدۇللاشقاندا ئۆزلۈكىدىن رەسىم تارتىلىدۇ، قاپقىنى بېسىپ تارتىشنى بالدۇر ئاياغلاشتۇرۇشقا بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_details",
+            "value":"كامېرا يورۇقلۇق ۋە رەڭنى ئۆزلۈكىدىن تەڭشەپ، سۈزۈك سىن ئالىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_title",
+            "value":"كامېرا ئۈچۈن ئېنىق ئورۇن ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_light_touch",
+            "value":"تۇتۇپ رەسىم تارتىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_template",
+            "value":"‏%1$s، رەڭ تېمپېراتۇرىسى %2$d، تويۇنۇشچانلىق %3$d، شولا %4$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_lans_blocking_tip",
+            "value":"ئارقا كامېرا توسۇلۇپ قالغان، تازىلاڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_baixi",
+            "value":"ئاقۇچ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_direction_vertical",
+            "value":"تىكبوي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"m_CANCEL_security",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Steadyshot_zoom_is_not_supported",
+            "value":"ھەرىكەت ھالىتى فوكۇسلاشنى قوللىمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_details_more",
+            "value":"ئادەم ھالىتىدە گۈزەل ۋە ئارقا كۆرۈنۈش تۇتۇقلاشقان رەسىم تارتىشقا بولىدۇ. كامېرا يورۇقلۇق ۋە رەڭنى ئۆزى تەڭشەيدۇ. يورۇقلۇق چەمبىرى ۋە ئارقا كۆرۈنۈش تۇتۇقلۇقىنى تەڭشەشكە بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"common_watermark",
+            "value":"ئورتاق سۇباسما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_description",
+            "value":"چۈشەندۈرۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition",
+            "value":"\u200fAI رەسىم تۈزۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_nose_slender",
+            "value":"بۇرۇن %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_motion_desc",
+            "value":"رەسىم تارتىش ھالىتىدە ئادەم ياكى ئىت-مۈشۈك قاتارلىق نىشانلارنى تارتقاندا چوڭقۇرلۇق ۋە ھەرىكەت ئۇچۇرى ئۆزلۈكىدىن ساقلىنىدۇ، بۇ ئارقىلىق كېيىن ھەرىكەت ۋە تۇتۇقلاش ئۈنۈملىرىنى تەڭشەشكە بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_off",
+            "value":"گەۋدىلىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"back_selfie",
+            "value":"ئارقا ئۆزتارتىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resolution",
+            "value":"سىن ئېنىقلىقى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_on",
+            "value":"پايدىلانما سىزىق ئوچۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Beauty_on",
+            "value":"ئېچىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_on",
+            "value":"\u200fAI رەسىم تۈزۈش ئوچۇق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_description_tabbar_recommond",
+            "value":"\u200f(%1$s:%2$s) %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_live_photo_off",
+            "value":"ھەرىكەتچان رەسىم ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on_tip",
+            "value":"بەك يېقىن - كېڭەيتمە",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_clickable",
+            "value":"قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_camera_security",
+            "value":"كامېرا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_pre_record_on",
+            "value":"ئالدىن خاتىرىلەش ئوچۇق. سىن ئېلىشنى بېسىپ تۇرسىڭىز، كۆپىدە %d سېكۇنت بۇرۇنقى مەزمۇن خاتىرىلىنىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_parameter",
+            "value":"تارتقان ۋاقىت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_none",
+            "value":"ئەسلى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_flash_auto",
+            "value":"ئۆزلۈكىدىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"aperture_mode",
+            "value":"نۇر چەمبىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Motion_stabilization_desc",
+            "value":"ھەرىكەت ھالىتى ئوچۇق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_face_makeup",
+            "value":"گىرىم %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_shadow_slide_bar",
+            "value":"سايە دەرىجىسى %1$d، بۇ %2$d دىن %3$d گىچە تەڭشىلىدۇ، بىر بارماقتا قوش چەكسىڭىز ئالمىشىدۇ، قوش بېسىپ تۇرۇپ ئۈستى-ئاستىغا تارتسىڭىز بولىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_few_stars",
+            "value":"يۇلتۇز ئاز، يۇلتۇز تۈركۈمى ئېنىقلانمىدى، تارتىش بۇلۇڭىنى ئۆزگەرتىپ قايتا سىناڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_enable",
+            "value":"ئىزچىل رۇخسەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_on_long_touch",
+            "value":"تۇتۇپ تۇرۇپ يورۇتۇش ۋە فوكۇسلاشقا بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mode_slow",
+            "value":"ئاستا ھەرىكەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama",
+            "value":"پۈتۈن كۆرۈنۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_light",
+            "value":"سىزما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"underexposure_dialog_need_content",
+            "value":"نۆۋەتتىكى تەڭشەكتە يورۇتۇش يېتەرسىز، سۈكۈت يورۇتۇش تەڭشىكىگە قايتۇرامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_content",
+            "value":"بۇ ئىجازەت رەسىم ۋە سىن تارتىلغان ئورۇن ئۇچۇرىنى خاتىرىلەش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tips",
+            "value":"سىنبەلگىنى چېكىپ رەڭ كارتىسى ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_disconnect_tip",
+            "value":"يىراقتىن تارتىش ئۈزۈلدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_confirm_restore_message",
+            "value":"كامېرا ھالىتىنى سۈكۈت لايىھەگە قايتۇرامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"live_photo",
+            "value":"ھەرىكەتچان رەسىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_no_show_pip_in_hot_temperature",
+            "value":"ئۈسكۈنە قىزىپ كەتتى، رەسىمدىكى رەسىم ئىقتىدارى ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"volume_key_type_zoom",
+            "value":"نىسبىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_slider_description",
+            "value":"بىر بارماقتا قوش چەكسىڭىز ئالمىشىدۇ، قوش بېسىپ تۇرۇپ ئوڭ-سولغا سۆرەيسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_template_same_name_hint",
+            "value":"بۇ ناملىق رەڭ كارتىسى بار.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_VerticalPoint",
+            "value":"كۆرسەتكۈچ مەركەزدىكى سىزىقتا تۇرسۇن.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_content",
+            "value":"كامېرا كۆرۈنۈش ئېلىۋاتىدۇ، ئەمما ئەپ پەقەت تارتىلغان رەسىمنى كۆرەلەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_starts_take_photos",
+            "value":"كامېرانى ئېچىش ۋە رەسىم تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_desc",
+            "value":"كۆرۈنۈشنى ئوڭ-سولغا سىيرىپ رەڭ كارتىسى ئالماشتۇرالايسىز. رەڭ تاختىسىدا سىيرىپ ئۆزلەشتۈرمە ئۇسلۇب بېكىتەلەيسىز، يەنە باشقىلار تارتقان رەسىمنى كىرگۈزۈپ ئۇسلۇبىنى تەقلىد قىلىشقا بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_card",
+            "value":"ئۆزلەشتۈرمە رەڭ كارتىسى ئۈنۈملىرىنى %s ئارقىلىق ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_saturation_level",
+            "value":"تويۇنۇشچانلىق دەرىجىسى %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_ten",
+            "value":"%d س",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_mode",
+            "value":"ئادەم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_on",
+            "value":"ئاۋاز فوكۇس ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"make_a_call",
+            "value":"چاقىرىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting",
+            "value":"ئاقما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama",
+            "value":"قاپقىنى بېسىپ، ئاستا ئوڭغا يۆتكەڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance_description",
+            "value":"غۇۋا ۋە يۇقىرى نىسبەتلىك ئەھۋالدا رەسىم سۈزۈكلۈكىنى ياخشىلايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_mode",
+            "value":"كېچە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_on",
+            "value":"سۈزۈكلۈك كېڭەيتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_authority_title",
+            "value":"«كامېرا» ئىجازەتلىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_entry_tip",
+            "value":"بۇ يەردىن يېقىن ئارىلىق ئۈنۈمىنى ئالماشتۇرۇپ، كۆرۈنۈشتىكى سۈزۈك دائىرىنى كېڭەيتەلەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"scene_sun",
+            "value":"كۈن چىقىش-پېتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_with_cheese",
+            "value":"«رەسىم تارت!» ياكى «چىــــــــــز» (Cheese) دەپ توۋلىسىڭىز رەسىم تارتىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"off",
+            "value":"ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_switch_another_screen",
+            "value":"يانفوننى ئۆرۈپ، يەنە بىر ئېكرانغا ئۆتۈڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"menu_remark_voice_capture_disable",
+            "value":"ھەرىكەتچان رەسىم ھالىتىدە ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_restore_layout",
+            "value":"سۈكۈتكە قايتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"border_color",
+            "value":"رامكا رەڭگى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_water",
+            "value":"يىپەك سۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_and_shade",
+            "value":"نۇر",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Temperature_control_title",
+            "value":"تېمپېراتۇرا ئەسكەرتمىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_5_seconds",
+            "value":"%d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetLeftPrompt",
+            "value":"ئوڭغا يۆتكەڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_remain_steady",
+            "value":"رەسىم تارتىلىۋاتىدۇ، مۇقىم تۇتۇڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast",
+            "value":"نۆۋەتتە AI رەسىم تۈزۈش ھالىتى ئوچۇق، فوكۇس %1$sx / %2$sx / %3$sx بولسا مۇۋاپىق؛ مەنزىرە، قۇرۇلۇش ۋە ئادەم رەسىملىرىنى تارتىشقا بەك ماس كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus_tip",
+            "value":"مەركەزدىكى يېقىن نىشان فوكۇسلىنىدۇ، قوللايدىغان ئەڭ يېقىن ئارىلىق %d سانتىمېتىر.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_warm",
+            "value":"ئىللىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"send_a_message",
+            "value":"ئۇچۇر يوللاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_title",
+            "value":"يورۇقلۇق ئۆلچەملىرىنى ئەسلىگە قايتۇرامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_flowers_tip",
+            "value":"رامكا ئارىلىقى: %1$s سېكۇنت\nچېچەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Stabilization",
+            "value":"مۇقىملىغۇچ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_frame_rate",
+            "value":"\u200f%1$sfps",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pro_popup_text_long_press",
+            "value":"ئۆلچەم قۇلۇپلاش ئۈچۈن ‎EV· / AF· / WB·‎ بەلگىلىرىنى بېسىپ تۇرۇڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format_heif",
+            "value":"نۆۋەتتە HEIF ھالەتكە ئالماشتى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_near_focus",
+            "value":"يېقىن فوكۇس",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama",
+            "value":"بەك سۈزۈك پۈتۈن كۆرۈنۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips_new",
+            "value":"ئۈسكۈنە قىزىپ كەتتى، كامېرا %1$d سېكۇنتتىن كېيىن ئېتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_watermark_description",
+            "value":"ئارقا كامېرادا تارتقان رەسىمگە ئۆزلۈكىدىن سۇباسما قوشىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_normal",
+            "value":"ئەسلى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"guidance_new_zoom",
+            "value":"يېڭى فوكۇس",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_front",
+            "value":"نۆۋەتتە %1$s نىڭ ئالدىغا يۆتكەلدى، %2$d-قۇر %3$d-رەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"ai_composition_open_intro_toast_2",
+            "value":"نۆۋەتتە AI رەسىم تۈزۈش ھالىتى ئوچۇق، فوكۇس %1$sx ياكى %2$sx بولسا مۇۋاپىق؛ مەنزىرە، قۇرۇلۇش ۋە ئادەم رەسىملىرىنى تارتىشقا بەك ماس كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"details",
+            "value":"تەپسىلات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip_right",
+            "value":"كۆرەك رايوننى سولغا سىيرىپ %s رەڭ كارتىسى ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_reset_desc",
+            "value":"گۈزەللىك ئۆلچەملىرىنى سۈكۈت ھالەتكە قايتۇرامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"camera_filter_dawn",
+            "value":"تاڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"horizontal_level",
+            "value":"تۈزلۈك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Enhanced",
+            "value":"ھەرىكەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"passion",
+            "value":"پۈتۈن كۆرۈنۈش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"rotation_suggestion_guide_horizontal",
+            "value":"يانفوننى تۈزبوي تۇتۇپ تارتسىڭىز، ئۈنۈمى ئەڭ ياخشى چىقىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_focus_auto",
+            "value":"ئۆزلۈكىدىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_fifteen",
+            "value":"%d سېكۇنتتىن كېيىن چاقنايدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"title_disabled",
+            "value":"كامېرا ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color_tip",
+            "value":"نىشان رەڭلىك، باشقا نەرسىلەر رەڭسىز چىقىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_back_preview",
+            "value":"ئارقا كامېرا كۆرۈنۈشى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_sun_tip",
+            "value":"رامكا ئارىلىقى: %1$s سېكۇنت\nكۈن چىقىش ۋە پېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Toast_Panorama_OffsetRightPrompt",
+            "value":"سولغا يۆتكەڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"shutter",
+            "value":"ئۆزلۈكىدىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter_description",
+            "value":"خالىغانچە يۆتكىلىدىغان لەيلىمە قاپقا كۇنۇپكىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stage_details_flagship",
+            "value":"بۇ ھالەت كېچىلىك قاتارلىق سەھنە كۆرۈنۈشلىرىنى تارتىش ئۈچۈن ئىشلەنگەن.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_angle",
+            "value":"كەڭ بۇلۇڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_off",
+            "value":"چىراق ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie_description",
+            "value":"قاتلاقنى ئېچىپ ئۆرۈسىڭىز، يۈزىڭىز قارىغان تەرەپ بويىچە، ئۆزلۈكىدىن ئارقا ئۆزتارتىم ھالىتىگە ئالمىشىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_qingchun",
+            "value":"ساپ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_smooth",
+            "value":"سىلىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sound_mute",
+            "value":"تىنچ تارتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to",
+            "value":"ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_assistive_grid_off",
+            "value":"پايدىلانما سىزىق ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"panorama_details",
+            "value":"كامېرانى تۈز ياكى تىك يۆنىلىشتە ئاستا يۆتكەپ پۈتۈن كۆرۈنۈشنى رەسىمگە ئالالايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_matching_fails_for_bright",
+            "value":"مۇھىت بەك يورۇق، يۇلتۇز تۈركۈمى ئېنىقلانمىدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_Delicate",
+            "value":"چىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_notice",
+            "value":"«يالتىراق» ئۈنۈمنىڭ ئىنكاسى سەل ئاجىز، شۇڭا مۇھىت قاراڭغۇ بولۇشى كېرەك.\nسەزگۈرلۈكى يۇقىرى كىشىلەر بىئارام بولۇشى مۇمكىن، ئېھتىيات بىلەن ئىشلىتىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_beauty_level_scope_value",
+            "value":"گۈزەللەشتۈرۈش دەرىجىسى %1$d، دەرىجە %2$d دىن %3$d گىچە تەڭشىلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"mirror_on",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_ev_profession_locking",
+            "value":"يورۇتۇش ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"exposure_focus_locked",
+            "value":"يورۇقلۇقى ۋە فۇكۇسى مۇقىملاندى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_camera_swipe_tip",
+            "value":"ئوڭغا سىيرىپ ئۇلاپ تارتىسىز، سولغا سىيرىپ سىن ئالىسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_macro_off",
+            "value":"بەك يېقىن ھالەت ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"art_signature",
+            "value":"ئىمزا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"shutter_auto",
+            "value":"ئۆزلۈكىدىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_enhancement",
+            "value":"كېچە كۈچەيتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slow_details",
+            "value":"ۋاقىت چەكلەنمەيدىغان ئاستا ھەرىكەتلىك سىن ئېلىشقا بولىدۇ، قولدا ياكى ئۆزلۈكىدىن تارتىشنى قوللايدۇ، بۇ ھالەتنىڭ ئۈنۈمى يورۇق مۇھىتتا ياخشىراق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_occupied",
+            "value":"باشقا ئەپ كامېرا ئىشلىتىۋاتىدۇ، شۇ ئەپنى ئېتىپ، ئاندىن كامېرانى قايتا ئېچىڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"physical_aperture",
+            "value":"يورۇقلۇق چەمبىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"long_exposure_tips",
+            "value":"تارتىش سۈپىتىنى ياخشىلاۋاتىدۇ، ئۈسكۈنىنى مۇقىم تۇتۇڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_title",
+            "value":"\u200f«%1$s» ئۈچۈن كامېرا ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_off",
+            "value":"گۈزەللەشتۈرۈش ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"improved_light_for_better_blurring",
+            "value":"يورۇقلۇق ياخشىلانسا تۇتۇقلاش ئۈنۈمى تېخىمۇ ياخشى چىقىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_frame_rate",
+            "value":"رامكا نىسبىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_clear_toast",
+            "value":"تىنچ ھالەتتە تارتقاندا ئىشلەيدۇ، يانفوننى مۇقىم تۇتۇڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_af_locking",
+            "value":"فوكۇس قۇلۇپلاق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_vivid",
+            "value":"يارقىن - رەڭ قويۇق ۋە ئوبيېكت گەۋدىلىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"jpg_description",
+            "value":"ماسلىقى تېخىمۇ ياخشى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flip_tip_for_back_as_front",
+            "value":"ئارقا كامېرا ئارقىلىق ئۆزتارتىم تارتىش ئۈچۈن قاتلاقنى ئېچىڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_pause",
+            "value":"تورمۇزلاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aigc_enhance",
+            "value":"\u200fAI سۈزۈك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_xmage_desc",
+            "value":"رەسىم رەڭلىرى تېخىمۇ جانلىق ۋە يارقىن، ئەرمەك ۋە سەپەر مەنزىللىرىنى تېخىمۇ گۈزەل تارتىشقا بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_access",
+            "value":"بىخەتەر ئىجازەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_disable",
+            "value":"چەكلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Wind_noise_suppression",
+            "value":"شامال شاۋقۇنسىزلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_not_detected",
+            "value":"كامېرا ئۇلاپ، ئاندىن كامېرا ئەپىنى قايتا ئېچىڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"front_long_exposure_conflict_livePhoto",
+            "value":"مۇھىت بەك قاراڭغۇ، ھەرىكەتچان رەسىم ئېتىلدى، يورۇق جايدا ئىشلىتىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dynamic_frame_rate",
+            "value":"ھەرىكەتچان رامكا نىسبىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_details_more",
+            "value":"يېقىن ئارىلىقتىن ئىنچىكە تەپسىلاتلار بىلەن رەسىم ۋە سىن تارتىشقا ماس كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_audio_security",
+            "value":"مىكروفون",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_desc",
+            "value":"\u200fAI بەك سۈزۈك ھالەت تولۇق يورۇتۇلغان مۇھىتتا تىنچ نىشاننى تارتىشقا ماس كېلىدۇ، يانفوننى مۇقىم تۇتۇپ تارتىش كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"motion_detectition_stop",
+            "value":"ھەرىكەت بايقاش توختىدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"record_permission_introduction_security",
+            "value":"بۇ ئىجازەت سىن ئېلىش، ھەرىكەتچان رەسىم ۋە ئاۋازلىق بۇيرۇق ئارقىلىق رەسىم تارتىش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_horizontal",
+            "value":"تۈزبوي ھالەتكە ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"go",
+            "value":"\u200f%1$s ئارقىلىق تۆلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_second_shoot",
+            "value":"تۈزبوي تۇتۇپ، كۆرسەتكۈچ يۆنىلىشى بويىچە چۆرۈپ 2-پارچە تارتىڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_keep_level",
+            "value":"تەكشى ھالەتنى ساقلاڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro",
+            "value":"يېقىن",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_mode",
+            "value":"ئاقما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_introduce_title",
+            "value":"%1$d. ئىقتىدار چۈشەندۈرۈشى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more",
+            "value":"باشقىلار",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"hint_when_enter_panorama_follow_arrow_new",
+            "value":"قاپقىنى بېسىپ كۆرسەتكۈچ يۆنىلىشىدە ئاستا يۆتكەڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_rate",
+            "value":"\u200f%dfps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_nova",
+            "value":"كۈلدۈرگە، ناخشا-مۇزىكا كېچىلىكى، دىراما، livehouse قاتارلىق سەھنە كۆرۈنۈشلىرىنى تارتىشقا ماس كېلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_radio_button",
+            "value":"بىر تاللىغۇچ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_two_view_details_short",
+            "value":"ئالاھىدە شاۋقۇنسىزلاش تېخنىكىسى ئارقىلىق كېچىدە تارتقان رەسىم سۈزۈك ۋە يورۇقلاشتۇرۇلىدۇ. (چەكسىز كېچە، ئالەمدە ئاي دېگەن) ئىككى خىل ھالەتتە تارتىشنى قوللايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_locking",
+            "value":"ئاق تەڭپۇڭلۇق قۇلۇپلاق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_hair_line",
+            "value":"چاچ %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_use_flash",
+            "value":"چىراقلىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_centre_weighted_metering",
+            "value":"مەركەز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_mode",
+            "value":"بەك يېقىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_heif",
+            "value":"\u200fHEIF",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_unable",
+            "value":"توك بەك ئاز، سىن ئالغىلى بولمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_type_grid_scroll",
+            "value":"كاتەك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_help_ok_button",
+            "value":"بىلدىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"geo_location_desp",
+            "value":"رەسىم ۋە سىن تارتىلغان ئورۇن خاتىرىلىنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_default_template",
+            "value":"سۈكۈت تەڭشەك، رەڭ تېمپېراتۇرىسى %1$d، تويۇنۇشچانلىق %2$d، سايە %3$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_front",
+            "value":"ئارقا كامېراغا ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_type_painting_scroll",
+            "value":"ئۈچ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"depth_fusion_first_enter_tip",
+            "value":"بۇ يەردىن يېقىن ئارىلىق ئۈنۈمىنى ئالماشتۇرۇپ، كۆرۈنۈشتىكى سۈزۈك دائىرىنى كېڭەيتەلەيسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_keep_steady_tip",
+            "value":"كامېرانى مۇقىم تۇتۇڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_10_seconds",
+            "value":"%d سېكۇنت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_details",
+            "value":"ئالاھىدە شاۋقۇنسىزلاش تېخنىكىسى ئارقىلىق كېچىدە تارتقان رەسىم سۈزۈك ۋە يورۇقلاشتۇرۇلىدۇ. ISO ۋە يورۇتۇش ۋاقتىنى قولدا تەڭشەشكە بولىدۇ. كېچىدە ئالدى كامېرادا رەسىم تارتسىڭىز، ئادەم يۈزىگە يورۇقلۇق تولۇقلىنىپ، سۈزۈك ۋە ئوچۇق تارتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_panorama_vertical",
+            "value":"تىكبوي ھالەتكە ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_reset_success",
+            "value":"قايتا تەڭشەلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_comform_exit_new",
+            "value":"چېكىنىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details",
+            "value":"يورۇقلۇق ئۆلچەش، ISO سەزگۈچ، قاپقا، يورۇقلۇق تولۇقلاش، فوكۇسلاش ئۇسۇلى ۋە ئاقلىق تەڭپۇڭلۇقى قاتارلىق ئالىي ئىقتىدارلارنى قولدا ئۆزگەرتىپ، ئۆز ئېھتىياجىڭىز بويىچە تەڭشەشكە بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_raw",
+            "value":"\u200fRAW",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_not_clickable",
+            "value":"ئىشلىمەيدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"right_text",
+            "value":"ئوڭ تېكىست",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"video_watermark",
+            "value":"سىن سۇباسما",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_drawing_on_tip",
+            "value":"يۇلتۇز تۈركۈمى سىزمىسى ئېچىلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"screen_recording_not_support_collaboration_desc",
+            "value":"ئېكران خاتىرىلەۋاتقاندا قوش ئېكرانلىق ھالەت ئېچىلمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format",
+            "value":"ئۈنۈملۈك فورمات",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_super_macro_off",
+            "value":"يېقىن ھالەتنى ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_iso_value",
+            "value":"نۆۋەتتىكى ISO ھالەتتە بەزى ئۆلچەملەر تەڭشەلمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_location",
+            "value":"ئورۇن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_matrix_area",
+            "value":"رەڭ كارتىسى تەڭشەش رايونى، تۈزبوي سىيرىپ رەڭ تېمپېراتۇرىسىنى تەڭشەيسىز، تىكبوي سىيرىپ تويۇنۇشچانلىقنى تەڭشەيسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"set_entrance_tweak_box",
+            "value":"تەڭشەك ئېغىزى تىزگىن سۇپىغا تەڭشەلدى. ئاستىدىكى كۆرسەتكۈچلۈك رايوننى چېكىپ ياكى ئۈستىگە سىيرىپ تىزگىن سۇپىنى ئېچىپ، بىر قولدا مەشغۇلات قىلسىڭىز بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"box_resolution_full_screen_proportion_description",
+            "value":"تولۇق ئېكران",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_auto_ten",
+            "value":"%d سېكۇنتتىن كېيىن چاقنايدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_summary",
+            "value":"ئۆي ئىچىدە جۇغراپىيەلىك ئورۇن ئۇچۇرى ئېلىش ئۈچۈن تور ئۇلاق تۇرسۇن (ئېقىم ھەققى كېلىشى مۇمكىن).",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_aiming_toast",
+            "value":"يانفون كامېراسىنى تارتىدىغان نۇقتىغا توغرىلىسىڭىز، AI رەسىم تۈزۈش باشلىنىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_connect_tip",
+            "value":"يىراقتىن تارتىش ئۇلاندى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture",
+            "value":"نۇر چەمبىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_fendiao",
+            "value":"ھالرەڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"snapshot",
+            "value":"تېز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_style_operation_tip",
+            "value":"كۆرەك رايوننى ئوڭغا سىيرىپ %s رەڭ كارتىسى ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_stabilization_off_desc",
+            "value":"مۇقىملىغۇچ ئېتىك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_applet",
+            "value":"\u200f%1$s ئەپچىسى ئارقىلىق تۆلەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc",
+            "value":"\u200fAI بەك سۈزۈك ھالەت تولۇق يورۇتۇلغان مۇھىتتا ئادەمنى تارتىشقا ماس كېلىدۇ، يانفوننى مۇقىم تۇتۇپ تارتىش كېرەك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"start_record",
+            "value":"سىن ئېلىشنى باشلاش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_beauty_off",
+            "value":"گۈزەللەشتۈرۈش ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_not_used",
+            "value":"چىراقسىز ئۈنۈم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_lock_screen",
+            "value":"ئېكران قۇلۇپلاق ھالەتتە ئۈن كۇنۇپكىسىنى قوش چېكىڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"open_screen_details_original",
+            "value":"ئەسلى - كۆرۈنۈش ئەينەن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"starry_portrait_description",
+            "value":"يۇلتۇزلۇق تىكبوي، كۇنۇپكا، بىر بارماقتا قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"title_occupied",
+            "value":"كامېرا ئالدىراش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_scanning_objects_tip",
+            "value":"ھەرىكەتلىك نىشان ئىزدەۋاتىدۇ...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light",
+            "value":"مۇھىت يورۇق بولسۇن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"frame_rate",
+            "value":"\u200f%dfps",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_auto_fifteen",
+            "value":"%d س",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_mode",
+            "value":"كەسپىي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail",
+            "value":"بۇ مۇلازىمەت ئۈچۈن تۆۋەندىكى %d ئىجازەت كېرەك:",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"sports_health_dialog_need_once",
+            "value":"بۇ قېتىم رۇخسەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_camera",
+            "value":"كامېرانى ئېچىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"operate_frequently",
+            "value":"تەكرار مەشغۇلات قىلماڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_treature_box_closed",
+            "value":"خۇرجۇن يىغىلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"tabbar_resolution_full_screen_proportion_description",
+            "value":"[تولۇق ئېكران] %1$sp",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_profession_wb_vest",
+            "value":"ئاق تەڭپۇڭلۇق ئوچۇق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"aspect_ratio",
+            "value":"بوي نىسبىتى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_on_slide",
+            "value":"ئۈستى-ئاستىغا سىيرىپ لىنزا نىسبىتىنى تەڭشەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_video",
+            "value":"سىنغا ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_pre_record_off",
+            "value":"ئالدىن خاتىرىلەش ئېتىك.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_limit_watermark",
+            "value":"چەكلىك سۇباسما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_off_tip",
+            "value":"بەك يېقىن - گەۋدىلىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more_without_A",
+            "value":"كەسپىي ھالەتتە يورۇقلۇق ئۆلچەش (M)، يورۇقلۇق سەزگۈچ (ISO)، قاپقا (S)، يورۇقلۇق تولۇقلاش (EV)، فوكۇسلاش (AF) ۋە ئاقلىق تەڭپۇڭلۇقى (WB) قاتارلىق ئالىي ئىقتىدارلارنى قولدا ئۆزگەرتىپ، ئۆز ئېھتىياجىڭىز بويىچە تەڭشەشكە بولىدۇ؛ EV· / AF· / WB· قاتارلىق چېكىتلىك سىنبەلگىلەرنى بېسىپ تۇرۇپ ئۆلچەم قۇلۇپلايسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_details_new",
+            "value":"كەسپىي ھالەتتە كامېرا ۋە تارتىش ئۆلچەملىرىنى ئۆزىڭىزنىڭ ئېھتىياجى بويىچە تەڭشىيەلەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_long_touch",
+            "value":"ئاڭلىق تارتىش ھالىتىدە تۇتۇپ تۇرۇپ يورۇتۇش ۋە فوكۇسلاشقا بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_bright",
+            "value":"جانلىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back_bar",
+            "value":"‏%s نىڭ ئارقىغا يۆتكەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"color_temperature",
+            "value":"تېمپېراتۇرا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_cloud_tip",
+            "value":"رامكا ئارىلىقى: %1$s سېكۇنت\nبۇلۇت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_open_description",
+            "value":"يۇلتۇز تۈركۈمى سىزمىسىنى ئېچىش كۇنۇپكىسى، بىر بارماقتا قوش چەكسىڭىز يۈرگۈزۈلىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_format_raw",
+            "value":"\u200fRAW ھالەتكە ئالماشتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_bright",
+            "value":"يورۇق - كۆرۈنۈش تېخىمۇ ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_1080p_proportion_tabbar_description",
+            "value":"\u200f[%1$s:%2$s] %3$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"wide_aperture_details_more",
+            "value":"چوڭ نۇر چەمبىرى ئىقتىدارى ئارقىلىق تەگلىك تۇتۇقلاشقان ئۈنۈمدە تارتىشقا بولىدۇ. تەگلىك تۇتۇقلاش ئۈنۈمى بىرىكمە ھېسابلاش ئۇسۇلى ئارقىلىق تەڭشىلىدۇ. كامېرا بىلەن نىشان ئارىلىقى %d مېتىر ئىچىدە بولۇشىنى تەۋسىيە قىلىمىز. بۇ ھالەتتە ماددىي ۋە مەۋھۇم يورۇقلۇق چەمبىرىنىڭ ھەر ئىككىسىنى تىزگىنلەشكە بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_copy_rate_both",
+            "value":"مەزمۇن كېسىش تاختىسىغا كۆچۈرۈلدى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"capture_mode_fluorescence",
+            "value":"يالتىراق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly",
+            "value":"ئۈنلۈك ئاۋاز تونۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hint_under_exposure",
+            "value":"يورۇقلۇق يېتەرسىز، ئەسلى ئۆلچەمگە قايتۇرامسىز؟",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gps_attention_dialog_need_enable",
+            "value":"رۇخسەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"professional_details_more",
+            "value":"كەسپىي ھالەتتە يورۇقلۇق ئۆلچەش (M)، يورۇقلۇق سەزگۈچ (ISO)، يورۇقلۇق چەمبىرى (A)، قاپقا (S)، يورۇقلۇق تولۇقلاش (EV)، فوكۇسلاش (AF) ۋە ئاقلىق تەڭپۇڭلۇقى (WB) قاتارلىق ئالىي ئىقتىدارلارنى قولدا ئۆزگەرتىپ، ئۆز ئېھتىياجىڭىز بويىچە تەڭشەشكە بولىدۇ؛ EV· / AF· / WB· قاتارلىق چېكىتلىك سىنبەلگىلەرنى بېسىپ تۇرۇپ ئۆلچەم قۇلۇپلايسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_control_switch_on",
+            "value":"ئېچىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"color_card_evocation",
+            "value":"بۇ يەردىن رەڭ كارتىسى ئېچىپ، ئۇسلۇب ئۆلچەملىرىنى تەڭشەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"depth_fusion_preview_tip",
+            "value":"تىنچ ھالەتتە تارتقاندا ئىشلەيدۇ، يانفوننى مۇقىم تۇتۇڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_draw_close",
+            "value":"يۇلتۇز تۈركۈمى سىزمىسىنى ئېتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_treasure_box_flash_manual",
+            "value":"قولدا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"super_motion_recording_tip",
+            "value":"سىن ئېلىۋاتىدۇ...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_status",
+            "value":"گۈزەللىك ھالىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"video_resume",
+            "value":"داۋاملاشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_film",
+            "value":"فىلىم ئۇسلۇب",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"new_night_view_details",
+            "value":"ئالاھىدە شاۋقۇنسىزلاش تېخنىكىسى ئارقىلىق كېچىدە تارتقان رەسىم سۈزۈك ۋە يورۇقلاشتۇرۇلىدۇ. (چەكسىز كېچە، ئالەمدە ئاي، كۆركەم يۇلتۇزلۇق ۋە يۇلتۇزلۇق تىكبوي قاتارلىق) تۆت خىل ھالەتتە تارتىشنى قوللايدۇ. كېچىدە ئالدى كامېرادا رەسىم تارتسىڭىز، ئادەم يۈزىگە يورۇقلۇق تولۇقلىنىپ، سۈزۈك ۋە ئوچۇق تارتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gourmet_food",
+            "value":"تەملىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"portrait_beauty",
+            "value":"گۈزەل",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_definition_panorama_desc",
+            "value":"كامېرانى تۈزبوي ياكى تىكبوي ھالەتتە چۆرۈپ پۈتۈن كۆرۈنۈشلۈك رەسىم تارتالايسىز. تەبىئەت، شەھەر مەنزىرىسى، ھەيۋەتلىك زال دېگەندەك كۆرۈنۈشلەرنى ئىنچىكە تەپسىلاتلار بىلەن سۈپەتلىك تارتىشقا ماس كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"floating_shutter",
+            "value":"لەيلىمە قاپقا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_popup_title",
+            "value":"بىخەتەر كامېرا ئىجازىتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"view",
+            "value":"كۆرۈش: %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"macro_details",
+            "value":"يېقىن ئارىلىقتىن ئىنچىكە تەپسىلاتلار بىلەن رەسىم تارتىشقا ماس كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pop_item_on",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"slow_motion_first_toast",
+            "value":"رامكىنى يۆتكەپ ھەرىكەت بايقايدىغان رايوننى ئۆزگەرتسىڭىز بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"setting_heif_description",
+            "value":"بۇ فورمات JPG بىلەن ئوخشاش سۈپەتلىك، ئەمما بوشلۇق تېجەيدۇ، ماسلاشمايدىغان ئۈسكۈنە/ئەپتە ئاچقاندا ياخشى كۆرۈنمەسلىكى مۇمكىن، ئامبار > چوڭ رەسىم > باشقىلار دېگەن ئورۇندىن JPG غا ئايلاندۇرالايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_details",
+            "value":"كۆرسەتمە بويىچە يانفوننى چۆرۈپ چوڭ رەسىم تارتىشقا بولىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"scene_traffic_crowd",
+            "value":"رامكا ئارىلىقى: %1$s سېكۇنت\nقاتناش ۋە ئادەم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"left_right_swipe_toast",
+            "value":"سىيرىپ ئۇلاپ تارتىش ياكى سىن ھالىتىگە كىرىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"hdr_vivid",
+            "value":"\u200fHDR Vivid",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tele_flash_opening_tips",
+            "value":"يىراق فوكۇس چىراق ئوچۇق، يىراقتىن تارتقاندا يورۇقلۇق تولۇقلاش ئۈنۈمى ياخشى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"collaborate_enabled",
+            "value":"قوش ئېكران ھالىتى ئېچىلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"wide_aperture_details",
+            "value":"نۇر چەمبىرى ئىقتىدارى ئارقىلىق ئارقا كۆرۈنۈش تۇتۇقلاشقان رەسىم تارتىشقا بولىدۇ، نىشان %d مېتىر ئىچىدە بولسا ئۈنۈمى ئەڭ ياخشى.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_star_tip",
+            "value":"يۇلتۇزلۇق تىكبوي ھالەتتە چىراق ئوچۇق بولسا ئۈنۈمى تېخىمۇ ياخشى چىقىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"time_lapse_video",
+            "value":"مۇھىت قاراڭغۇ، يورۇتۇشنى ياخشىلاۋاتىدۇ...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessbility_custom_filter_color_temperature_level",
+            "value":"رەڭ تېمپېراتۇرىسى دەرىجىسى %1$d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"resolution_1080p_description",
+            "value":"\u200f%1$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_mode",
+            "value":"رەسىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_details",
+            "value":"كامېرا يورۇقلۇق ۋە رەڭنى ئۆزلۈكىدىن تەڭشەپ، ئەڭ ياخشى ھالەتتە رەسىم تارتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"panorama_details_more",
+            "value":"كامېرانى تۈزبوي ياكى تىكبوي شەكىلدە ئاستا ئايلاندۇرۇڭ، كۆرسەتكۈچ مەركىزىي سىزىقتا تۇرسۇن. تارتقان بارلىق كۆرۈنۈش بىر پۈتۈن كۆرۈنۈشلۈك رەسىم قىلىپ بىرىكتۈرۈلىدۇ. مەنزىرە ۋە كوللېكتىپ رەسىم تارتىشقا ماس كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_rotate_hint_first_time",
+            "value":"تۈزبوي تۇتۇپ، كۆرسەتكۈچ يۆنىلىشى بويىچە چۆرۈڭ. دۈگىلەك چېكىت ھالقىغا ئۇدۇللاشقاندا ئۆزلۈكىدىن رەسىم تارتىلىدۇ، قاپقىنى باسسىڭىز تارتىش ئاياغلىشىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_Steadyshot",
+            "value":"ھەرىكەت",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"looking_for_stars",
+            "value":"يۇلتۇز تۈركۈمى تونۇلۇۋاتىدۇ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture",
+            "value":"كۈلۈمسىرەشنى تارتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"self_mirror_desp",
+            "value":"پەقەت ئالدى كامېرادا ئىشلەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"secure_camera_location_disabled_info",
+            "value":"بىخەتەر كامېرا ھالىتىدە جۇغراپىيەلىك ئورۇن تاللانمىسى ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"gps_title",
+            "value":"ئورۇن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_manual",
+            "value":"قولدا يورۇتۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_no_awb_vest",
+            "value":"پەقەت ئۆزلۈكىدىن ئاق تەڭپۇڭلۇق ھالىتىدە مۇقىملىنىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_pop_item_manual",
+            "value":"قولدا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_watermark_description",
+            "value":"پەقەت XMAGE ئۇسلۇبتا تارتقان رەسىمدە كۆرۈنىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"security_confirm_welcome",
+            "value":"خۇش كەلدىڭىز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_pixel_front_desc_common",
+            "value":"تولۇق يورۇتۇلغان مۇھىتتا ئۈسكۈنىنى مۇقىم تۇتۇپ، AI بەك سۈزۈك ھالەت ئارقىلىق ئادەم رەسىمى تارتسىڭىز ئۈنۈمى ياخشى چىقىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_collaboration_entry",
+            "value":"قوش ئېكران",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_portrait_blur",
+            "value":"تەگلىك تۇتۇقلاش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_focus_mode_title",
+            "value":"فوكۇس شەكلى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"popup_stage",
+            "value":"سەھنە ئۈنۈمىنى ئاچسىڭىز تېخىمۇ ياخشى چىقىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_skin_degree",
+            "value":"گۈزەل %d",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"vlog_mode",
+            "value":"قىسقا سىن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_description",
+            "value":"يانفون چۈشۈپ كېتىپ، كامېرا ئۆزلۈكىدىن يىغىلغان.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"collaboration_entry_preview",
+            "value":"كۆرەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"individuality_watermark",
+            "value":"ئۆزلەشتۈرمە سۇباسما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_text",
+            "value":"يېزىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"vlog_tool_ai_color",
+            "value":"ئادەم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"save_power_mode_title",
+            "value":"ئېكراننى چېكىپ كامېرانى ئويغىتىڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rate_tip",
+            "value":"نۆۋەتتىكى سۈزگۈچ %1$dp لىق %2$dfps ھالەتتە ئىشلىمەيدۇ، %3$dp لىق %4$dfps ھالەتكە ئالماشتى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_clickable_switch",
+            "value":"بىر بارماقتا قوش چەكسىڭىز ئالمىشىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_dragged",
+            "value":"‏%s سۆرەلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pref_camera_gps_title",
+            "value":"ئورۇن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"tripod_off",
+            "value":"تىرەك ھالەت ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stage_details_more_flagship",
+            "value":"بۇ ھالەت كېچىلىك قاتارلىق سەھنە كۆرۈنۈشلىرىنى تارتىش ئۈچۈن ئىشلەنگەن. بۇ ھالەتتە سەھنىدىكى شەخسنى تېخىمۇ ئوچۇق تارتىشقا بولىدۇ؛ كۆرۈنۈش جانلىق ۋە قاتلاملىرى ئېنىق چىقىدۇ؛ رەسىم ۋە سىن تارتىشنى قوللايدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cannot_burst_toast",
+            "value":"چەك توشتى، رەسىم ساقلىنىۋاتىدۇ...",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_move_to_back",
+            "value":"نۆۋەتتە %1$s نىڭ ئارقىسىغا يۆتكەلدى، %2$d-قۇر %3$d-رەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark_guide_popup",
+            "value":"يەنە بىر چېكىپ تەھرىرلەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"saturation",
+            "value":"تويۇنۇشچانلىق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"constellation_draw",
+            "value":"يۇلتۇز سىزما",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"highPixel_mode",
+            "value":"بەك ئېنىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_change",
+            "value":"ئاۋاز فوكۇس بويىچە كۈچەيتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auxiliary_mode_off",
+            "value":"فوكۇس چىراق ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips",
+            "value":"ئۈسكۈنە قىزىپ كەتتى، چىراق ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_unable_connect",
+            "value":"كامېرا ئۇلانمىدى، چېكىنىپ قايتا سىناڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_style_action_tip_right",
+            "value":"كۆرەك رايوننى سولغا سىيرىپ رەڭ كارتىسى ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_Standard_stabilization_desc",
+            "value":"ئۆلچەملىك مۇقىملىغۇچ ئوچۇق.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_motion_saving_tip",
+            "value":"ساقلاۋاتىدۇ... كامېرادىن چېكىنمەڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"already_on",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"flash_mode_off",
+            "value":"چىراق ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"audio_control_off",
+            "value":"ئېتىش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"xmage_custom_styles",
+            "value":"\u200fXMAGE ئۆزلەشتۈرمە رەڭ كارتىسى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_bar",
+            "value":"‏%s نىڭ ئالدىغا قويۇلدى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watermark_notification",
+            "value":"پەقەت سۇباسما رامكىدا ئىشلەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smart_control_off_slide",
+            "value":"ئاڭلىق تارتىش ھالىتىدە سىيرىپ لىنزا نىسبىتىنى ئالماشتۇرۇشقا بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"quectel_point_for_better_blurring",
+            "value":"يىراقراق بولسا تۇتۇقلاش ئۈنۈمى تېخىمۇ ياخشى چىقىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_skin_tone",
+            "value":"تېرە %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"change_mode_tip",
+            "value":"باشقا كېچە ھالىتىگە ئالماشتۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"auto_focus_tracking_lock_toast",
+            "value":"ئۆزلۈكىدىن فوكۇسلاش مۇقىملاندى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"Raw_format_zoom_is_not_supported",
+            "value":"\u200fRAW ھالەتتە فوكۇسلاش ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_frame_watermark",
+            "value":"رامكا سۇباسما",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"double_click_active_collaborate",
+            "value":"چەكسىڭىز قوش ئېكرانلىق كۆرۈنىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"timer_burst_capture_total_number",
+            "value":"جەمئىي %d پارچە تارتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"capture_parameter",
+            "value":"تارتىش ئۆلچەملىرى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_portrait_on",
+            "value":"گۈزەللەشتۈرۈش ئوچۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_mode_ten",
+            "value":"%d سېكۇنتتىن كېيىن چاقنايدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"light_painting_flash_mode_off",
+            "value":"چىراق ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"portrait_beauty_on",
+            "value":"گۈزەللەشتۈرۈش ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"constellation_drawing_off_tip",
+            "value":"يۇلتۇز تۈركۈمى سىزمىسى ئېتىلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"device_storage_space",
+            "value":"ئۈسكۈنىدە بوشلۇق يېتەرسىز. كامېرا قېتىۋېلىشى مۇمكىن، بوشلۇق تازىلاڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_ai_master_title",
+            "value":"\u200fAI ئۇستا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_desc",
+            "value":"قوش چەكسىڭىز يۈرگۈزۈلىدۇ، قوش چېكىپ تۇرسىڭىز باشقا تاللانمىلار چىقىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"smart_back_selfie",
+            "value":"ئاڭلىق ئارقا ئۆزتارتىم",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_placed_front_grid",
+            "value":"‏%1$s نىڭ ئالدىغا قويۇلدى، %2$d-قۇر %3$d-رەت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"fluorescence_instructions_title",
+            "value":"يالتىراق ئۈنۈم ھەققىدە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"finger_pinch_not_zoom",
+            "value":"پۈتۈن كۆرۈنۈشلۈك ھالەتتە فوكۇسلانمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"start_up_only_camera",
+            "value":"كامېرانىلا قوزغىتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"big_text_s",
+            "value":"%s س",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_recording_duration",
+            "value":"%1$s %2$s خاتىرىلەندى",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"self_mirror_desp_photo",
+            "value":"ئالدى كامېرادا ئۆزتارتقاندىلا ئىشلەيدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"pay",
+            "value":"\u200f%1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_review_thumbnail",
+            "value":"يېقىندا تارتقان رەسىم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"toast_audio_zoom_off",
+            "value":"ئاۋاز فوكۇس ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_development",
+            "value":"يېقىندا تېخىمۇ كۆپ چىقىدۇ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"sports_health_contents",
+            "value":"بۇ ئىجازەت سائەتتە ئالدىن كۆرۈش، يىراقتىن رەسىم ۋە سىن تارتىش ئۈچۈن ئىشلىتىلىدۇ. «تەنتەربىيە-ساغلاملىق» ئەپىدە ئىجازەت باشقۇرالايسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_hint_move_arrow",
+            "value":"كۆرسەتكۈچ بويىچە بۇراڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"picture_watermark",
+            "value":"رەسىم سۇباسما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_face_slender",
+            "value":"ئورۇق %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"general",
+            "value":"ئورتاق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"standard_style",
+            "value":"ئۆلچەملىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_details_short",
+            "value":"ئالاھىدە شاۋقۇنسىزلاش تېخنىكىسى ئارقىلىق كېچىدە تارتقان رەسىم سۈزۈك ۋە يورۇقلاشتۇرۇلىدۇ. ISO ۋە يورۇتۇش ۋاقتىنى قولدا تەڭشەشكە بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"shutter_speed",
+            "value":"قاپقا تېزلىكى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"بىكار قىلىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light",
+            "value":"يورۇتۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"recover_underexposure_dialog_need_content",
+            "value":"يورۇقلۇق يېتەرسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_privacy_with_cloud_photo",
+            "value":"مەخپىيەتلىك باياناتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_flash_off_tips_new",
+            "value":"ئۈسكۈنە قىزىپ كەتتى، چىراق ئىشلىمەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_white_balance",
+            "value":"ئاق تەڭپۇڭلۇق",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_camera_picker_back",
+            "value":"ئالدى كامېراغا ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"add_new_contact",
+            "value":"ئالاقىداش قۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stitching_direction_landscape",
+            "value":"تۈزبوي",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"stitching_hint_slow_down",
+            "value":"ئاستىلاڭ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"create_custom_parameters",
+            "value":"ئۆزلەشتۈرمە ئۆلچەم قۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_ring_light_off",
+            "value":"ئايلانما يورۇتۇش ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"super_night_view",
+            "value":"چەكسىز كېچە",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"replace",
+            "value":"ئالماشتۇرۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_times_speed",
+            "value":"تېزلىك %d ھەسسە",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_m_spot_metering",
+            "value":"نۇقتا",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"professional_photo_mode",
+            "value":"كەسپىي",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"resolution_full_screen_proportion_description",
+            "value":"[تولۇق ئېكران] %1$sp",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"smile_capture_desp",
+            "value":"كۈلۈمسىرىگەندە ئۆزلۈكىدىن رەسىم تارتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"content_disabled",
+            "value":"بىخەتەرلىك تۈزۈمى كامېرا ئىشلىتىشنى چەكلەيدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_always_on",
+            "value":"ئىزچىل ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Speak_loudly_desp",
+            "value":"ئۈنلۈك سۆزلەپ رەسىم تارتىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"m_Confirm",
+            "value":"جەزملەش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_compare_switch_desc",
+            "value":"گۈزەللىك سېلىشتۇرۇش كۇنۇپكىسى، قوش بېسىپ تۇرۇپ گۈزەللىك قوشمىغان ئۈنۈمنى كۆرەلەيسىز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_agree",
+            "value":"قوشۇلىمەن",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_xmage_style",
+            "value":"\u200fXMAGE",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"treasure_box_resolution",
+            "value":"ئېنىقلىق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_double_click_drag",
+            "value":"قوش چېكىپ تۇرۇپ سۆرەيسىز",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"beauty_smooth",
+            "value":"سىلىق %d",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"part_change_exposure_focus",
+            "value":"رامكا ۋە دۈگىلەكنى ئايرىم سۆرەپ فوكۇس ۋە يورۇقلۇق ئۆلچەشنى ئايرىم تەڭشەشكە بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_two_view_details",
+            "value":"ئالاھىدە شاۋقۇنسىزلاش تېخنىكىسى ئارقىلىق كېچىدە تارتقان رەسىم سۈزۈك ۋە يورۇقلاشتۇرۇلىدۇ. (چەكسىز كېچە، ئالەمدە ئاي دېگەن) ئىككى خىل ھالەتتە تارتىشنى قوللايدۇ. كېچىدە ئالدى كامېرادا رەسىم تارتسىڭىز، ئادەم يۈزىگە يورۇقلۇق تولۇقلىنىپ، سۈزۈك ۋە ئوچۇق تارتىلىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"watermark",
+            "value":"سۇباسما",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_unlock_able",
+            "value":"بۇ ئۆلچەم مۇقىملاشنى قوللىمايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Aperture_adjustment_is_not_supported",
+            "value":"بۇ فوكۇس ھالىتىدە نۇر چەمبىرى قولدا تەڭشەلمەيدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"stellar_drop_protection_confirm_title",
+            "value":"كامېرانى چىقىرىشنى داۋاملاشتۇرامسىز؟",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_profession_af_vest",
+            "value":"فوكۇس ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_me_set_beauty_tooth",
+            "value":"ئورۇق يۈز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"custom_parameter_added",
+            "value":"يېڭى رەڭ كارتىسى قوشۇلدى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_pro_mode_wb_cloud",
+            "value":"بۇلۇت",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"uncollaps_tips",
+            "value":"يانفون قاتلىقىنى ئېچىڭ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_moon_on",
+            "value":"ئاي ھالىتى ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_help_content_donot_use_flash",
+            "value":"چىراقسىز",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"beauty_tone_cold",
+            "value":"سوغۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_off",
+            "value":"\u200fAI رەسىم تۈزۈش ئېتىك.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"ai_composition_desc",
+            "value":"رەسىم تارتقاندا AI ئەڭ ياخشى كۆرۈنۈشنى تاللاپ تەۋسىيە قىلىدۇ ھەمدە يانفوننى تارتىدىغان نۇقتىغا توغرىلىسىڭىز، فوكۇس تەڭشەپ، سۈپەتلىك رەسىم تارتىشقا ياردەم بېرىدۇ. بۇ ھالەت مەنزىرە، قۇرۇلۇش ۋە ئادەم قاتارلىقلارنى تارتىشقا ماس كېلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"log_assistance_tip",
+            "value":"ياردەمچى كۆزەتكۈچنى ئاچسىڭىزمۇ Log ئۈنۈمى چىقىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"festival_watermark",
+            "value":"بايراملىق سۇباسما",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"battery_desc_stop",
+            "value":"توك بەك ئاز، ھۆججەت يوقىلىشتىن ساقلىنىش ئۈچۈن سىن ئېلىشنى توختىتىپ ئۆزلۈكىدىن ساقلىدۇق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"device_hot_exit_tips",
+            "value":"ئۈسكۈنە قىزىپ كەتتى، كامېرا %1$d سېكۇنتتىن كېيىن ئېتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"photo_format",
+            "value":"رەسىم فورماتى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details",
+            "value":"رەڭ ئۇسلۇبى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details",
+            "value":"بۇ ھالەتتە يۇقىرى پىكسېللىق رەسىم تارتىلىدۇ، رەسىم تېخىمۇ ئېنىق ۋە تەپسىلىي چىقىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"global_exposure",
+            "value":"نۇرلىنىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_light_painting_flash_effect_used",
+            "value":"چىراقلىق ئۈنۈم",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"photo_capture_raw",
+            "value":"ساقلاۋاتىدۇ...",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_filter_senxi",
+            "value":"ئورمان",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fine_location_request_dialog_content",
+            "value":"بۇ ئىجازەت سىن ۋە رەسىم تارتقان ئېنىق ئورۇننى خاتىرىلەش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_detail_media_file_lite",
+            "value":"بۇ ئىجازەت تارتقان رەسىم ۋە سىننى كۆرسىتىش ۋە ساقلاشقا ئىشلىتىلىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_dialog_goto_setting_button",
+            "value":"تەڭشەك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"camera_location_request_dialog_title",
+            "value":"«كامېرا» ئۈچۈن ئورۇن ئىجازىتى كېرەك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"efficient_video_encoding_format_description",
+            "value":"بۇ ‎%1$s بوشلۇق تېجەيدۇ، ئەمما بۇ فورماتلىق سىن باشقا ئۈسكۈنىدە قويۇلماسلىقى مۇمكىن.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"headset_snap_shot_hint",
+            "value":"تىڭشىغۇچنىڭ قوبۇل قىلىش كۇنۇپكىسىنى بېسىپ سۈرەتكە تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"macro_focus_manual",
+            "value":"قولدا",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"timer_burst_capture_number",
+            "value":"ئارىلىقلىق تارتىش (%d پارچە)",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"guidance_collaboration_desc",
+            "value":"كامېرا بېتىدە ئاستىدىكى كۆرسەتكۈچنى چېكىپ تىزگىن سۇپىنى ئېچىپ، ئاندىن قوش ئېكران كۇنۇپكىسىنى چېكىپ، تاشقى ئېكران رەسىمى تاللاپ، يېڭى ئەينەك تارتىم ھالىتىنى ئىشلىتەلەيسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"watch_moon_off",
+            "value":"ئاي ھالىتى ئېتىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"pre_record",
+            "value":"ئالدىن خاتىرىلەش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_icon_tip",
+            "value":"سىنبەلگە %s نى چېكىپ XMAGE ئۇسلۇب ئۈنۈملىرىنى ئالماشتۇرىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"fluorescence_introduce",
+            "value":"«يالتىراق» ئۈنۈم ھالىتى ئۇلترا نۇرلۇق چىراقنىڭ ئىنكاسى ئارقىلىق رەسىم تارتىدۇ. بۇ ئارقىلىق تارتقان رەسىم ئۆزگىچە كۆرۈنمە ئۈنۈمدە چىقىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"night_view_no_iso_short",
+            "value":"ئالاھىدە شاۋقۇنسىزلاش تېخنىكىسى ئارقىلىق كېچىدە تارتقان رەسىم سۈزۈك ۋە يورۇقلاشتۇرۇلىدۇ. يورۇتۇش ۋاقتىنى قولدا تەڭشەشكە بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"new_night_view_details_short",
+            "value":"ئالاھىدە شاۋقۇنسىزلاش تېخنىكىسى ئارقىلىق كېچىدە تارتقان رەسىم سۈزۈك ۋە يورۇقلاشتۇرۇلىدۇ. (چەكسىز كېچە، ئالەمدە ئاي، كۆركەم يۇلتۇزلۇق ۋە يۇلتۇزلۇق تىكبوي قاتارلىق) تۆت خىل ھالەتتە تارتىشنى قوللايدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"motion_speed",
+            "value":"تېزلىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_permissions_needed_pc",
+            "value":"بۇ ئەپ %1$s، %2$s، %3$s ئىجازىتى ئالىدۇ؛ رەسىم ۋە سىن ئوقۇپ، تارتقان رەسىم ۋە سىننى كۆرسىتىش ئۈچۈن ئىشلىتىدۇ.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"treasure_box_flash_on",
+            "value":"ئوچۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"breath_quick_shot",
+            "value":"ئېكرانسىز تېز تارتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_switch_to_camera",
+            "value":"رەسىم ھالىتىگە ئالماشتۇرۇش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"request_location_msg",
+            "value":"رەسىم/سىن تارتقان ئورۇننى خاتىرىلەش ۋە ئامبار تۈرلەش ئۈچۈن كامېرا ئورۇن ئۇچۇرى ئىشلىتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"remove_custom_parameters",
+            "value":"ئۆچۈرۈش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"filter_drop_frame_rates_tip",
+            "value":"نۆۋەتتىكى سۈزگۈچ %1$s لىق %2$dfps ھالەتتە ئىشلىمەيدۇ، %3$dp لىق %4$dfps ھالەتكە ئالماشتى.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"night_capture_desc",
+            "value":"كامېرانى مۇقىم تۇتۇڭ.\nتەتۈر ساناق جەريانىدا قاپقىنى بېسىپ بالدۇر تارتسىڭىزمۇ بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"high_res_details_more",
+            "value":"يۇقىرى پىكسېللىق رەسىم تارتىلىدۇ، رەسىم تېخىمۇ ئېنىق ۋە تەپسىلىي چىقىدۇ. بۇ ھالەتتە رەسىم تارتىشقا سەل ئۇزۇنراق ۋاقىت كېتىشى مۇمكىن، تارتقاندا يانفوننى مۇقىم تۇتۇڭ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"internal_storage_full",
+            "value":"ئىچكى بوشلۇق توشۇق.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"accessibility_information_tips",
+            "value":"ئۇچۇر ئەسكەرتىش",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"accessibility_custom_filter_style_standard",
+            "value":"ئۆلچەملىك ئۇسلۇب",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"custom_filter_card_more_button_tip",
+            "value":"بۇ يەردىن رەڭ كارتىسى كىرگۈزىسىز.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settingView_entry_prompt_information",
+            "value":"تەڭشەك %s ئېغىزى تىزگىن سۇپىغا تەڭشەلدى. ئاستىدىكى كۆرسەتكۈچلۈك رايوننى چېكىپ ياكى ئۈستىگە سىيرىپ تىزگىن سۇپىنى ئېچىپ، بىر قولدا مەشغۇلات قىلسىڭىز بولىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"picker_security_camera_banner_content",
+            "value":"ئەپ پەقەت تارتىپ بولغان رەسىم/سىننى زىيارەت قىلالايدۇ، كامېرا كۆرۈنۈشىنى كۆرەلمەيدۇ. %1$s",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"more_tip_context",
+            "value":"سىنبەلگىلەرنى سۆرەپ رەتلەڭ",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"please_improve_ambient_light_new",
+            "value":"ھەرىكەت ھالىتى ئوچۇق، يورۇقلۇق يېتەرلىك بولسا رەسىم سۈپىتى ياخشى چىقىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"small_art_vision",
+            "value":"شياۋيى نەزەر",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"add_watermark",
+            "value":"ئۆزلۈكىدىن سۇباسما قوشۇش",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"Say_keyword_desp_only_cheese",
+            "value":"«چىــــــــــز» (Cheese) دەپ توۋلىسىڭىز رەسىم تارتىدۇ.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"security_confirm_authority_refence",
+            "value":"ئىجازەت ئىشلىتىش كۆرسەتمىسى",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"light_painting_lp_pop_item_off",
+            "value":"ئېتىك",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"gorgeous_starry_sky",
+            "value":"كۆركەم يۇلتۇزلۇق",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"open_screen_details_black_and_white",
+            "value":"رەڭسىز - يورۇق ۋە قاراڭغۇلۇق گەۋدىلىك",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"settings",
+            "value":"تەڭشەك",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

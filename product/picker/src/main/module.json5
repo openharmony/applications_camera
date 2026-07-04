@@ -1,0 +1,253 @@
+/*
+ * Copyright (c) Huawei Device Co., Ltd. 2023-2025. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "picker",
+    "type": "feature",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
+    "description": "$string:entry_desc",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "dependencies": [
+      {
+        "bundleName": "com.ohos.security.pickersheet",
+        "moduleName": "pickersheetlibrary"
+      }
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "true"
+      },
+      {
+        "name": "client_id",
+        "value": "110873395"
+      },
+      {
+        "name": "action.settings.app.can_not_disable",
+        "value": "true"
+      },
+      {
+        "name": "ohos.graphics2d.text.adapter_text_height"
+      },
+      {
+        "name": "license_file_path",
+        "value": "/system/etc/noticeFile/Camera_OpenSource.html"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.CALLED_BELOW_LOCK_SCREEN"
+      },
+      {
+        "name": "ohos.permission.MODIFY_AUDIO_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:camera_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.ExtensionPickerAbility",
+            "PickerAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "$string:microphone_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.ExtensionPickerAbility",
+            "PickerAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.VIBRATE"
+      },
+      {
+        "name": "ohos.permission.RUNNING_STATE_OBSERVER"
+      },
+      {
+        "name": "ohos.permission.PERMISSION_USED_STATS"
+      },
+      {
+        "name": "ohos.permission.POWER_MANAGER"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.READ_IMAGEVIDEO",
+        "reason": "$string:imagevideo_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.ExtensionPickerAbility",
+            "PickerAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_IMAGEVIDEO",
+        "reason": "$string:imagevideo_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.ExtensionPickerAbility",
+            "PickerAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.PROXY_AUTHORIZATION_URI"
+      },
+      {
+        "name": "ohos.permission.PRIVACY_WINDOW",
+        "reason": "$string:camera_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.ExtensionPickerAbility",
+            "PickerAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.ACCESS_LEARN_MORE_DIALOG",
+        "reason": "$string:camera_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.ExtensionPickerAbility",
+            "PickerAbility"
+          ]
+        }
+      },
+      {
+        'name': "ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN",
+        "reason": "$string:permission_uiextension_reason",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.ExtensionPickerAbility"
+          ]
+        }
+      },
+      {
+        'name': "ohos.permission.CAMERA_CONTROL",
+        "reason": "$string:camera_permission_desc",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.camera.ExtensionPickerAbility",
+            "PickerAbility"
+          ]
+        }
+      }
+    ],
+    "abilities": [
+      {
+        "name": "PickerAbility",
+        "srcEntry": "./ets/pickerability/PickerAbility.ts",
+        "launchType": "singleton",
+        "description": "$string:mainability_description",
+        "icon": "$media:adaptive_icon_phone_launcher",
+        "orientation": "follow_desktop",
+        "startWindowIcon": "$media:backSplash",
+        "startWindowBackground": "$color:index_background",
+        "label": "$string:app_name",
+        "visible": true,
+        "skills": [
+          {
+            "actions": [
+              "ohos.want.action.imageCapture",
+              "ohos.want.action.videoCapture"
+            ],
+            "uris": [
+              {
+                "scheme": "file",
+                "pathStartWith": "file:\/\/"
+              },
+              {
+                "scheme": "",
+                "type": ""
+              }
+            ]
+          }
+        ],
+        "metadata": [
+          {
+            "name": "collaborationService",
+            "value": "true",
+            "resource": "$profile:collaboration_service"
+          }
+        ],
+        "removeMissionAfterTerminate": true,
+        "supportWindowMode": [
+          "fullscreen",
+          "floating"
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "com.ohos.camera.ExtensionPickerAbility",
+        "srcEntry": "./ets/pickerability/ExtensionPickerAbility.ts",
+        "description": "PickerAbility",
+        "visible": true,
+        "type": "sys/commonUI",
+        "icon": "$media:adaptive_icon_phone_launcher",
+        "skills": [
+          {
+            "actions": [
+              "ohos.want.action.imageCapture",
+              "ohos.want.action.videoCapture"
+            ],
+            "uris": [
+              {
+                "scheme": "file",
+                "pathStartWith": "file:\/\/"
+              },
+              {
+                "scheme": "",
+                "type": ""
+              }
+            ]
+          }
+        ],
+        "metadata": [
+          {
+            "name": "collaborationService",
+            "value": "true",
+            "resource": "$profile:collaboration_service"
+          }
+        ],
+        "extensionProcessMode": "instance"
+      },
+      {
+        "name": "com.ohos.camera.VideoEffectsExtAbility",
+        "srcEntry": "./ets/uiextensionability/VideoEffectsExtAbility.ets",
+        "description": "UIExtensionAbility",
+        "type": "sys/commonUI",
+        "exported": true,
+        "extensionProcessMode": "bundle"
+      }
+    ]
+  }
+}

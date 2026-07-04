@@ -1,0 +1,553 @@
+{
+  "version": "v2",
+  "cameraCapability": [
+    {
+      "cameraType": 1,
+      "cameraTypeData": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "VIDEO SNAPSHOT",
+              "modeData": {
+                "photoProfiles": [
+                  {
+                    "ratio": "4K",
+                    "profileWidth": 1280,
+                    "profileHeight": 960,
+                    "format": [
+                      "JPEG"
+                    ]
+                  },
+                  {
+                    "ratio": "full",
+                    "profileWidth": 1280,
+                    "profileHeight": 960,
+                    "format": [
+                      "JPEG"
+                    ]
+                  },
+                  {
+                    "ratio": "16:9 1080p",
+                    "profileWidth": 1280,
+                    "profileHeight": 960,
+                    "format": [
+                      "JPEG"
+                    ]
+                  },
+                  {
+                    "ratio": "16:9 720p",
+                    "profileWidth": 1280,
+                    "profileHeight": 960,
+                    "format": [
+                      "JPEG"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "defaultData": {
+            "photoProfiles": [
+              {
+                "ratio": "4:3",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "JPEG"
+                ]
+              },
+              {
+                "ratio": "1:1",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "JPEG"
+                ]
+              },
+              {
+                "ratio": "full",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "JPEG"
+                ]
+              }
+            ],
+            "photoPreviewProfiles": [
+              {
+                "ratio": "4:3",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "1:1",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "full",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              }
+            ],
+            "videoProfiles": [
+              {
+                "ratio": "4K",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ],
+                "frameRateArray": [
+                  30,
+                  60
+                ]
+              },
+              {
+                "ratio": "full",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ],
+                "frameRateArray": [
+                  30,
+                  60
+                ]
+              },
+              {
+                "ratio": "16:9 1080p",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ],
+                "frameRateArray": [
+                  30,
+                  60
+                ]
+              },
+              {
+                "ratio": "16:9 720p",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ],
+                "frameRateArray": [
+                  30,
+                  60
+                ]
+              }
+            ],
+            "videoPreviewProfiles": [
+              {
+                "ratio": "4K",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "full",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "16:9 1080p",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "16:9",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "cameraType": 2,
+      "cameraTypeData": [
+        {
+          "collapsState": 2,
+          "collapsStateData": [
+            {
+              "modeName": "VIDEO SNAPSHOT",
+              "modeData": {
+                "photoProfiles": [
+                  {
+                    "ratio": "4K",
+                    "profileWidth": 1280,
+                    "profileHeight": 960,
+                    "format": [
+                      "JPEG"
+                    ]
+                  },
+                  {
+                    "ratio": "full",
+                    "profileWidth": 1280,
+                    "profileHeight": 960,
+                    "format": [
+                      "JPEG"
+                    ]
+                  },
+                  {
+                    "ratio": "16:9 1080p",
+                    "profileWidth": 1280,
+                    "profileHeight": 960,
+                    "format": [
+                      "JPEG"
+                    ]
+                  },
+                  {
+                    "ratio": "16:9 720p",
+                    "profileWidth": 1280,
+                    "profileHeight": 960,
+                    "format": [
+                      "JPEG"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "defaultData": {
+            "photoProfiles": [
+              {
+                "ratio": "4:3",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "JPEG"
+                ]
+              },
+              {
+                "ratio": "1:1",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "JPEG"
+                ]
+              },
+              {
+                "ratio": "full",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "JPEG"
+                ]
+              }
+            ],
+            "photoPreviewProfiles": [
+              {
+                "ratio": "4:3",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "1:1",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "full",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              }
+            ],
+            "videoProfiles": [
+              {
+                "ratio": "4K",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ],
+                "frameRateArray": [
+                  30,
+                  60
+                ]
+              },
+              {
+                "ratio": "full",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ],
+                "frameRateArray": [
+                  30,
+                  60
+                ]
+              },
+              {
+                "ratio": "16:9 1080p",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ],
+                "frameRateArray": [
+                  30,
+                  60
+                ]
+              },
+              {
+                "ratio": "16:9 720p",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ],
+                "frameRateArray": [
+                  30,
+                  60
+                ]
+              }
+            ],
+            "videoPreviewProfiles": [
+              {
+                "ratio": "4K",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "full",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "16:9 1080p",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              },
+              {
+                "ratio": "16:9",
+                "profileWidth": 1280,
+                "profileHeight": 960,
+                "format": [
+                  "YUV_420_SP"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "zoomParameter": [
+    {
+      "cameraType": 1,
+      "cameraTypeData": [],
+      "defaultData": [
+        {
+          "modeName": "PHOTO",
+          "quickZoomArray": [
+            0.49,
+            1,
+            3.5,
+            10
+          ],
+          "opticalZoomArray": [
+            0.49,
+            1,
+            3.5,
+            10,
+            100
+          ]
+        },
+        {
+          "modeName": "VIDEO",
+          "quickZoomArray": [
+            0.49,
+            1,
+            4,
+            10
+          ],
+          "opticalZoomArray": [
+            0.49,
+            1,
+            4,
+            10,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "cameraType": 2,
+      "cameraTypeData": [],
+      "defaultData": [
+        {
+          "modeName": "PHOTO",
+          "quickZoomArray": [
+            0.67,
+            0.8,
+            1
+          ],
+          "opticalZoomArray": [
+            0.67,
+            0.8,
+            1
+          ]
+        },
+        {
+          "modeName": "VIDEO",
+          "quickZoomArray": [
+            0.67,
+            0.8,
+            1
+          ],
+          "opticalZoomArray": [
+            0.67,
+            0.8,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "supportedMode": {
+    "modeBarList": [
+      "PHOTO",
+      "VIDEO"
+    ],
+    "moreModeList": [],
+    "filteredModeList": []
+  },
+  "startupGuidancePages": [],
+  "metadata": {
+    "photoBrowserDisabled": true,
+    "isSupportedSuperMacroTelephoto": false,
+    "isSupportHDRVividFunction": false,
+    "isSupportedXmageFunction": false,
+    "isSupportedFrontZoomSlide": false,
+    "isSupportedHighQualityPhotoFunction": false,
+    "highQualityPhotoFuncDefaultValue": false,
+    "isSupportedLivePhotoFunction": false,
+    "livePhotoFuncDefaultValue": false,
+    "isSupportedWatermarkFunction": false,
+    "isSupportedVideoWaterMark": false,
+    "limitTimeWatermarkDuration": "",
+    "isSupportedLiveFilterFunction": false,
+    "isSupportedRealTimeFilterFunction": false,
+    "isDisAbleSlowMotionSwitch": false,
+    "isSupportedLrSwipeFunction": false,
+    "isSupportedRightSwipeRecordSwapSurface": false,
+    "burstMaxNum": 80,
+    "superSlowMoFrameRate": 960,
+    "isSupportedAugmentedStabilizationFunction": false,
+    "isSupportedTimingWaterMark": false,
+    "isSupportedOverHotHidePip": false,
+    "isSupportedHeifPhotoFormat": false,
+    "isHeifFormatFuncDefaultValue": false,
+    "isSupportedStabilizationWithHDRVivid": false,
+    "isSupportedEnhancedBackSelfie": false,
+    "isSupportedHeifStraightOut": false,
+    "isSupportedSmartBackSelfieFunction": false,
+    "frontSwingZoomRatio": 0.96,
+    "backSwingZoomRatio": 0.55,
+    "backVideoEisStabilizeRatio": 0.82,
+    "frontVideoEisStabilizeRatio": 0.8,
+    "isSupportedCollaborationFunction": false,
+    "isSupportedDepthFusion": false,
+    "supportedXmageStylesNum": 3,
+    "is60fpsDefaultCloseEfficientVideo": false,
+    "isShortExposureDuration": false,
+    "isCloseThermalDialog": false,
+    "isSupportedNightFrontZoom": false,
+    "isSupportedApertureVideoResolutionChanged": false,
+    "isSupportedBeautyThemeFunction": false,
+    "is60fpsSupportHdrVivid": false,
+    "isNotSupportedWideZoom60fpsVideoBack": false,
+    "superMacroLivePhotoFuncDefaultValue": false,
+    "isSupportedCustomColorStyle": false,
+    "isSupportedDynamicFramerate": false,
+    "isSupportedNightSubMode": false,
+    "isDeviceLowConfig": false,
+    "isSupportedConstellationDraw": false,
+    "isSupportGlobalExposure": false,
+    "ringLightConfigBrightness": 1,
+    "isNeedRemoveFlashFunc": false,
+    "isNeedRemoveAiMaster": false,
+    "isSupportedFestivalWatermark": false,
+    "videoBitrateH264": 2000000,
+    "videoBitrateH265": 2000000,
+    "isSupportedEffectWhenNotEnableCapture": false,
+    "isDisAbleTabletNightSwitch": false,
+    "isSupportedHighColorSpace": false,
+    "isSupportedScanCode": false,
+    "isSupportedAIComposition": false,
+    "isSupportedLogStyle": false,
+    "isNotSupportedWatchMoonPictureInPicture": false,
+    "isSupportPortraitBeautyPro": false,
+    "isNotSupportVideoBeautyPro": false,
+    "isSupportEnableStableQuality": false,
+    "beautyProDefaultValue": [
+      5,
+      5,
+      0,
+      5,
+      5,
+      5,
+      5,
+      5,
+      0
+    ],
+    "isSupportsAntiShakeSnapshot": false,
+    "smartPosition": 230,
+    "isDisAbleRealTimeLapsePro": false,
+    "isObtainStabilizationSupportFromCameraProfiles": false,
+    "isSupportedStabilization": false,
+    "isSupportMergedCustomColorStyle": false,
+    "isPanoramaSupportHeif": false,
+    "isDisableFrontVideoMirror": false,
+    "isSupportedIntervalPhotoCapture": false
+  },
+  "customColorStyleSupportedMode": [
+    "PHOTO",
+    "PORTRAIT",
+    "STAGE"
+  ]
+}

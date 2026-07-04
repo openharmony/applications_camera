@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) Huawei Device Co., Ltd. 2024-2025. All rights reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,19 @@
  * limitations under the License.
  */
 
-import abilityTest from './Ability.test'
+import abilityTest from './basic/Ability.test';
+import basicMoreTest from './BasicMore.test';
+import basicPhotoTest from './basic/BasicPhoto.test';
+import basicVideoTest from './basic/BasicVideo.test';
+import zoomTest from './basic/Zoom.test';
 
 export default function testsuite() {
-  abilityTest()
+  abilityTest();
+  basicPhotoTest();
+  basicVideoTest();
+  zoomTest();
+  basicMoreTest();
 }
+
+
+

@@ -1,0 +1,11 @@
+{
+    "string":[
+        {
+            "name":"app_name",
+            "value":"相机",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+{
+  "serviceType": "CameraAbility",
+  "resource": [
+    "camera"
+  ]
+}

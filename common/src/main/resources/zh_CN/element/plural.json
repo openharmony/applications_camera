@@ -1,0 +1,124 @@
+{
+  "plural": [
+    {
+      "name": "minute",
+      "value": [
+        {
+          "quantity": "other",
+          "value": "%d 分钟",
+          "attr": {
+            "priority": "translate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "accessibility_tips_zoom_scale",
+      "value": [
+        {
+          "quantity": "other",
+          "value": "缩放 %s 倍",
+          "attr": {
+            "priority": "translate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "accessibility_tips_zoom_scale_new",
+      "value": [
+        {
+          "quantity": "other",
+          "value": "缩放 %f 倍",
+          "attr": {
+            "priority": "translate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "preset_replacement_content_new",
+      "value": [
+        {
+          "quantity": "other",
+          "value": "最多支持添加 %d 个自定义色卡，请选择其中一个色卡进行替换。",
+          "attr": {
+            "priority": "translate"
+          }
+        }
+      ]
+    },
+    {
+      "name":"accessibility_recorded_seconds",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"已录制 %d 秒",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    },
+    {
+      "name":"accessibility_min",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"%d 分钟",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    },
+    {
+      "name":"accessibility_sec",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"%d 秒",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    },
+    {
+      "name":"xmage_custom_styles_desc",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"XMAGE 再升级，带来全新个性色卡，%1$s 种预设风格，配合调色盘，自定义拍摄参数，轻松打造专属您的色彩配方；色号可分享，作品更出圈。",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    },
+    {
+      "name":"timer_interval_seconds",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"间隔 %f 秒",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    },
+    {
+      "name":"timer_sub_seconds",
+      "value":[
+        {
+          "quantity":"other",
+          "value":"%f 秒",
+          "attr":{
+            "priority":"translate"
+          }
+        }
+      ]
+    }
+  ]
+}

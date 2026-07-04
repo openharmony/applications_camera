@@ -1,23 +1,40 @@
 {
   "forms": [
     {
-      "name": "widget",
-      "displayName": "This is a service widget.",
-      "description": "This is a service widget.",
-      "src": "./js/widget/pages/index/index",
+      "name": "CameraWidget2x2",
+      "description": "$string:app_name",
+      "src": "./ets/camerawidget/pages/CameraWidgetCard.ets",
+      "uiSyntax": "arkts",
       "window": {
         "designWidth": 720,
         "autoDesignWidth": true
       },
       "colorMode": "auto",
+      "isDynamic": false,
       "isDefault": true,
-      "updateEnabled": true,
+      "updateEnabled": false,
       "scheduledUpdateTime": "10:30",
       "updateDuration": 1,
-      "formConfigAbility": "ability://com.ohos.camera.MainAbility",
-      "defaultDimension": "1*2",
+      "defaultDimension": "2*2",
+      "metadata": [
+        {
+          "name": "needBlurBackgroundForLauncher",
+          "value": "true"
+        },
+        {
+          "name": "exteCoverFACard",
+          "value": "com.ohos.camera"
+        },
+        {
+          "name": "SHOW_WHEN_LOCKED",
+          "value": "true"
+        }
+      ],
       "supportDimensions": [
-        "1*2"
+        "2*2"
+      ],
+      "supportShapes": [
+        "circle"
       ]
     }
   ]

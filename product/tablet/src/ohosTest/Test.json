@@ -1,0 +1,42 @@
+{
+  "description": "Configuration for demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "450000",
+    "bundle-name": "com.ohos.camera",
+    "module-name": "entry_test",
+    "shell-timeout": "600000",
+    "testcase-timeout": "90000",
+    "compile-mode": "esmodule",
+    "coverage": true,
+    "package-tool-path": "D:\\Local\\coverage\\node_modules\\@ohos\\coverage"
+  },
+  "kits": [
+    {
+      "run-command": [
+        "mount -o remount,rw /",
+        "hilog -G 10240000 param set persist.ace.debug.enable 1"
+      ],
+      "type": "ShellKit"
+    },
+    {
+      "push": "camera.hap->/system/app/Camera/camera.hap",
+      "type": "PushKit",
+      "post-push": [
+        "bm install -p /system/app/Camera/camera.hap",
+        "reboot",
+        "power-shell wakeup",
+        "power-shell display -s 0",
+        "uinput -T -g 100 100 500 500",
+        "power-shell setmode 602"
+      ]
+    },
+    {
+      "test-file-name": [
+        "cameraTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

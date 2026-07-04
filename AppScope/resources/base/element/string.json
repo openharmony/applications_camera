@@ -1,16 +1,19 @@
 {
-  "string": [
-    {
-      "name": "app_name",
-      "value": "Camera"
-    },
-    {
-      "name": "mainability_description",
-      "value": "JS_Phone_Empty Feature Ability"
-    },
-    {
-      "name": "entry_desc",
-      "value": "entry_desc Feature Ability"
-    }
-  ]
+    "string":[
+        {
+            "name":"app_name",
+            "value":"Camera",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"mainability_description",
+            "value":"JS_Phone_Empty Feature Ability"
+        },
+        {
+            "name":"entry_desc",
+            "value":"entry_desc Feature Ability"
+        }
+    ]
 }
