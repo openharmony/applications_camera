@@ -170,9 +170,9 @@ export struct PcSettingMenuItem {
 
   private sortFuncMenuItem(funId: FunctionId[]): void {
     switch (this.menuLocation) {
-      case RenderLocation.SETTING_MENU_PHOTO:
-        funId.sort((a, b) => (SETTING_MENU_PHOTO_ORDER.indexOf(a) - SETTING_MENU_PHOTO_ORDER.indexOf(b)));
-        break;
+      // case RenderLocation.SETTING_MENU_PHOTO:
+      //   funId.sort((a, b) => (SETTING_MENU_PHOTO_ORDER.indexOf(a) - SETTING_MENU_PHOTO_ORDER.indexOf(b)));
+      //   break;
       case RenderLocation.SETTING_MENU_VIDEO:
         funId.sort((a, b) => (SETTING_MENU_VIDEO_ORDER.indexOf(a) - SETTING_MENU_VIDEO_ORDER.indexOf(b)));
         break;

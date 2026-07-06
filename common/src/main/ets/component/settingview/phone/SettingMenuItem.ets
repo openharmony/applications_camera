@@ -77,6 +77,10 @@ export struct SettingMenuItem {
     this.settingFunctions = settingFunctionIds ? Array.from(settingFunctionIds) : [];
     this.settingFunctions = this.settingFunctions
       .filter(item => FeatureManager.getInstance().getFunction(item).isAvailable());
+    // 产品要求隐藏部分设置入口（仅隐藏 UI，不影响底层能力与编码逻辑）
+    this.settingFunctions = this.settingFunctions.filter(item => item !== FunctionId.EFFICIENT_VIDEO);
+    this.settingFunctions = this.settingFunctions.filter(item => item !== FunctionId.ASPECT_RATIO);
+    this.settingFunctions = this.settingFunctions.filter(item => item !== FunctionId.FRAME_RATE);
     this.sortFuncMenuItem(this.settingFunctions);
   }
 
@@ -165,8 +169,8 @@ export struct SettingMenuItem {
 
   private sortFuncMenuItem(funId: FunctionId[]): FunctionId[] {
     switch (this.menuLocation) {
-      case RenderLocation.SETTING_MENU_PHOTO:
-        return funId.sort((a, b) => (SETTING_MENU_PHOTO_ORDER.indexOf(a) - SETTING_MENU_PHOTO_ORDER.indexOf(b)));
+      // case RenderLocation.SETTING_MENU_PHOTO:
+      //   return funId.sort((a, b) => (SETTING_MENU_PHOTO_ORDER.indexOf(a) - SETTING_MENU_PHOTO_ORDER.indexOf(b)));
       case RenderLocation.SETTING_MENU_VIDEO:
         return funId.sort((a, b) => (SETTING_MENU_VIDEO_ORDER.indexOf(a) - SETTING_MENU_VIDEO_ORDER.indexOf(b)));
       case RenderLocation.SETTING_MENU_COMMON:

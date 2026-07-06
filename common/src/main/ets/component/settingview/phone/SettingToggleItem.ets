@@ -37,6 +37,7 @@ import lazy { SettingFuncDialogItemIndex } from '../SettingFuncDialogItemIndex';
 import lazy { CameraAppCapability } from '../../../camera/CameraAppCapability';
 import lazy { ActionType } from '../../../redux/actions/ActionType';
 import lazy { FunctionActionType } from '../../../redux/actions/FunctionActionType';
+import { camera } from '@kit.CameraKit';
 
 /* instrument ignore file */
 const TAG: string = 'SettingToggleItem';
@@ -82,6 +83,11 @@ export struct SettingToggleItem {
     HiLog.i(TAG, 'aboutToAppear end.');
   }
 
+  protected isFrontCamera(): boolean {
+    return getStates().get<camera.CameraPosition>('cameraReducer', 'cameraPosition') ===
+      camera.CameraPosition.CAMERA_POSITION_FRONT;
+  }
+
   aboutToDisappear() {
     HiLog.i(TAG, 'aboutToDisappear start.');
     this.mEventBus.clear(this.mBase.hashCode());
@@ -97,7 +103,8 @@ export struct SettingToggleItem {
       this.uiElement = uiElementTemp;
     }
     if (this.functionId === FunctionId.MIRROR) { // 自拍镜像禁用置灰，开关默认关闭
-      this.itemEnable = this.isMirrorSupported || (!conflictParam || !conflictParam.disabled);
+      const isFront = this.isFrontCamera();
+      this.itemEnable = this.isMirrorSupported || (!conflictParam || !conflictParam.disabled) && isFront;
       this.functionValue = this.itemEnable ? this.function.getValue() : false;
       if (this.itemEnable) { // 镜像支持使能不展示描述
         this.uiElement.desc = '';

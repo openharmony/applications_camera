@@ -347,7 +347,10 @@ export struct PickerView {
 
   private async onConfirmClicked(): Promise<void> {
     HiLog.i(TAG, 'Confirm button clicked.');
-    if (!getStates().get<boolean>('uiReducer', 'showPicker')) {
+    const showPickerUi = getStates().get<boolean>('uiReducer', 'showPicker');
+    const hasCaptured = !!(this.state.resourceUri || this.state.videoUri ||
+    PickerUiService.getInstance().getUri());
+    if (!showPickerUi && !(GlobalContext.get().getIsPicker() && hasCaptured)) {
       HiLog.i(TAG, 'hidden PickerView: showPicker=false');
       return;
     }

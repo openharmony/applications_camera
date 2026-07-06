@@ -159,10 +159,18 @@ export class SaveGeoLocationFunction extends BaseFunction {
   }
 
   /* instrument ignore next */
-  private async requestPermissionsFromUser(fromModul?: number, isPhotoRequest?: boolean): Promise<void> {
+  private async invokeRuntimeLocationPermissionRequest(): Promise<PermissionRequestResult> {
     AppStorage.setOrCreate('isPermissionShow', true);
-    const results: PermissionRequestResult = await abilityAccessCtrl.createAtManager().requestPermissionsFromUser(
-      ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
+    try {
+      return await abilityAccessCtrl.createAtManager().requestPermissionsFromUser(
+        ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
+    } finally {
+      AppStorage.setOrCreate('isPermissionShow', false);
+    }
+  }
+
+  private applyRuntimeLocationPermissionResult(results: PermissionRequestResult, fromModul?: number,
+    isPhotoRequest?: boolean): void {
     let isSuccess: boolean = results.authResults[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
     let isSuccessPrecisely: boolean = results.authResults[1] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
     HiLog.i(TAG, `CAMERA_LOCATION PERMISSION for camera check end, isSuccess: ${isSuccess},
@@ -171,8 +179,13 @@ export class SaveGeoLocationFunction extends BaseFunction {
     AppStorage.setOrCreate('isRequestedPermission', true);
     PreferencesService.getInstance().putPropValue(PersistType.FOREVER, PropTag.IS_REQUESTED_PERMISSION, true);
     this.setLocationSwitch(isSuccess, 0, isPhotoRequest);
-    AppStorage.setOrCreate('isPermissionShow', false);
     this.updateGeoFunctionValue(isSuccess, fromModul);
+  }
+
+  /* instrument ignore next */
+  private async requestPermissionsFromUser(fromModul?: number, isPhotoRequest?: boolean): Promise<void> {
+    const results: PermissionRequestResult = await this.invokeRuntimeLocationPermissionRequest();
+    this.applyRuntimeLocationPermissionResult(results, fromModul, isPhotoRequest);
   }
 
   private updateGeoFunctionValue(isSuccess: boolean, fromModul?: number): void {
@@ -189,21 +202,34 @@ export class SaveGeoLocationFunction extends BaseFunction {
     HiLog.i(TAG, `requestPermissionOnSetting begin isRequestOnSetting:${data?.isRequestOnSetting}
       fromModul:${data?.scene}.`);
     if (data?.isRequestOnSetting) {
-      try {
-        let result: abilityAccessCtrl.GrantStatus[] =
-          await abilityAccessCtrl.createAtManager()
-            .requestPermissionOnSetting(ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
-        const isSuccess: boolean = result[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
-        HiLog.i(TAG, `requestPermissionOnSetting isSuccess: ${isSuccess}`);
-        StoreManager.getInstance().postMessage(Action.sendPermissionState(isSuccess));
-        if (isSuccess) {
-          this.setLocationSwitch(true, data?.scene, data?.isPhotoRequest);
+      // 依据 dialogShownResults：禁止等策略下系统不弹运行时窗(false)→再 requestPermissionOnSetting；用户取消/拒绝后不跳转权限设置页。
+      const results: PermissionRequestResult = await this.invokeRuntimeLocationPermissionRequest();
+      const isGranted: boolean = results.authResults[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
+      if (isGranted) {
+        this.applyRuntimeLocationPermissionResult(results, data?.scene, data?.isPhotoRequest);
+        HiLog.i(TAG, `requestPermissionOnSetting granted at runtime dialog.`);
+      } else {
+        const runtimeDialogShown: boolean = results.dialogShownResults?.[0] === true;
+        HiLog.i(TAG, `requestPermissionOnSetting runtimeDialogShown: ${runtimeDialogShown}, auth[0]: ${results.authResults[0]}`);
+        if (runtimeDialogShown) {
+          this.applyRuntimeLocationPermissionResult(results, data?.scene, data?.isPhotoRequest);
         } else {
-          StoreManager.getInstance().postMessage(FunctionAction.changeFunctionValue(this.getFunctionId(), false));
+          try {
+            let result: abilityAccessCtrl.GrantStatus[] =
+              await abilityAccessCtrl.createAtManager()
+                .requestPermissionOnSetting(ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
+            const isSuccess: boolean = result[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
+            HiLog.i(TAG, `requestPermissionOnSetting from settings page isSuccess: ${isSuccess}`);
+            StoreManager.getInstance().postMessage(Action.sendPermissionState(isSuccess));
+            if (isSuccess) {
+              this.setLocationSwitch(true, data?.scene, data?.isPhotoRequest);
+            } else {
+              StoreManager.getInstance().postMessage(FunctionAction.changeFunctionValue(this.getFunctionId(), false));
+            }
+          } catch (err) {
+            HiLog.e(TAG, `requestPermissionOnSetting catch err code: ${err?.code}`);
+          }
         }
-      } catch (err) {
-        HiLog.e(TAG, `requestPermissionOnSetting catch err code: ${err?.code}`);
-        this.requestPermissionsFromUser(data?.scene, data?.isPhotoRequest);
       }
     }
     HiLog.i(TAG, `requestPermissionOnSetting end.}`);

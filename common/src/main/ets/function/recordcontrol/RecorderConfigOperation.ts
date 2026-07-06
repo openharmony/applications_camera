@@ -63,7 +63,7 @@ export class RecorderConfigOperation {
 
   public static createVideoConfig(profile: camera.VideoProfile, frameRate: number,
     isHdr: boolean): media.AVRecorderConfig {
-    const isDefault: boolean = DeviceInfo.isDefault();
+    const isDefault: boolean = DeviceInfo.isUis7885() || DeviceInfo.isDefault() || DeviceInfo.isDayu300();
     // 默认使用 video/avc，rk 设备不兼容 video/mp4v-es
     // const videoCodec: media.CodecMimeType = isDefault ? media.CodecMimeType.VIDEO_MPEG4 :
     const videoCodec: media.CodecMimeType = isDefault ? media.CodecMimeType.VIDEO_AVC :

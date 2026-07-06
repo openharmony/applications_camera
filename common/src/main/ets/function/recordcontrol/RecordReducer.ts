@@ -133,12 +133,6 @@ function setRecordReducerMap(): void {
     };
   });
 
-  recordReducerMap.set(RecordActionType.VIDEO_ON_SAVE, (action: ActionData) => {
-    return {
-      videoUri: action.data.videoUri
-    };
-  });
-
   recordReducerMap.set(RecordActionType.UPDATE_RECORDING_TIMER_COMPONENT_LARGE_STATE, (action: ActionData) => {
     return {
       isRecordTimeComponentLarge: action.data.isRecordTimeComponentLarge

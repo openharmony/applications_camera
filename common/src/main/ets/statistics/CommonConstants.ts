@@ -73,11 +73,6 @@ export class CommonConstants {
 
   public static readonly INVALID_ID: number = -1;
 
-  // 离线拍照触发短时任务
-  public static readonly SUSPEND_DELAY_OFFLINE_REASON: string = 'Suspend task for offline saving 80 grade photo';
-
-  public static readonly OFFLINE_TIME_OUT_DELAY = 10000; //离线拍照释放photoOutput超时时间(ms)
-
   /**
    * 根据字体倍数获取对应padding数据
    */

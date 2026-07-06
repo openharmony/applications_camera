@@ -89,6 +89,8 @@ export struct LandscapeTreasureBox {
   @State @Watch('refreshTreasureBoxView') isNightStarPortraitFlashShow: boolean = false;
   @State superIsoValue: number = 0;
   private lastRefreshTime: number = 0;
+  /** 与竖屏 TreasureBox 一致：待 FeatureManager 延迟 assembler 后再刷新一级列表 */
+  private cameraStartedListRefreshTimerId: number = -1;
   private mDispatch: Dispatch = (data) => data;
   private recordZoomRatio: number = 1;
   @State mode: ModeType = ModeType.NONE;
@@ -115,9 +117,16 @@ export struct LandscapeTreasureBox {
         data.type === CameraStartType.SWITCH_CAMERA ||
         data.type === CameraStartType.SWITCH_CAMERA_CHANGE_MODE ||
         data.type === CameraStartType.WARM_START_WITH_MODE_AND_POS;
-      if (isReset) {
-        this.refreshTreasureBoxView();
+      if (!isReset) {
+        return;
       }
+      if (this.cameraStartedListRefreshTimerId !== -1) {
+        clearTimeout(this.cameraStartedListRefreshTimerId);
+      }
+      this.cameraStartedListRefreshTimerId = setTimeout((): void => {
+        this.cameraStartedListRefreshTimerId = -1;
+        this.refreshTreasureBoxView();
+      }, 0);
     }, this.mBase.hashCode());
     this.mEventBus.on(FunctionActionType.ACTION_CHANGE_FUNCTION_VAL, (data: FunctionValueType) =>
     this.refreshingInterface(data), this.mBase.hashCode());
@@ -155,6 +164,10 @@ export struct LandscapeTreasureBox {
   }
 
   aboutToDisappear() {
+    if (this.cameraStartedListRefreshTimerId !== -1) {
+      clearTimeout(this.cameraStartedListRefreshTimerId);
+      this.cameraStartedListRefreshTimerId = -1;
+    }
     if (this.selector !== FunctionId.NONE) {
       this.selector = FunctionId.NONE;
       landscapeTreasureBoxConfig.setListOffset(0);

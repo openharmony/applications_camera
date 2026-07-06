@@ -1003,14 +1003,14 @@
         },
         {
             "name":"menu_remark_voice_capture_disable",
-            "value":"动态照片模式下始终关闭",
+            "value":"照片模式下始终关闭",
             "attr":{
                 "priority":"translate"
             }
         },
         {
             "name":"menu_remark_mute_disable",
-            "value":"动态照片模式下始终静音",
+            "value":"照片模式下始终静音",
             "attr":{
                 "priority":"translate"
             }
@@ -5788,7 +5788,7 @@
         },
         {
             "name":"location_permission_description_without_starry_sky",
-            "value":"用于记录图片或视频拍摄地点信息、在水印中添加拍摄地点",
+            "value":"用于记录图片或视频拍摄地点信息",
             "attr":{
                 "priority":"translate"
             }

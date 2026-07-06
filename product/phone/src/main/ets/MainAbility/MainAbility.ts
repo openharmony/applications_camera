@@ -100,7 +100,6 @@ import lazy { PhotoBrowserManager } from '@ohos/common/src/main/ets/service/phot
 import lazy { TabBarAction } from '@ohos/common/src/main/ets/component/tabbar/TabBarAction';
 import lazy { dataShare } from '@kit.ArkData';
 import lazy { DelayLoadService } from '@ohos/common/src/main/ets/service/delayLoad/delayLoadService';
-import lazy { CommonConstants } from '@ohos/common/src/main/ets/statistics/CommonConstants';
 import lazy { TipService } from '@ohos/common/src/main/ets/component/tip/TipService';
 import lazy {
   AUTH_STATE,
@@ -114,18 +113,18 @@ import lazy {
 
 const TAG: string = 'MainAbility';
 const CAMERA_SHOT_KEY_SIZE = 13; // 针对拼接时间戳长度
-const START_DELAY_WITH_PICKER = 300;
-const START_DELAY_WINDOW_SETTING = 180;
-const DELAY_UPDATE_TABBAR = 50;
+const START_DELAY_WITH_PICKER = 200; // 优化：从 300 减到 200
+const START_DELAY_WINDOW_SETTING = 100; // 优化：从 180 减到 100
+const DELAY_UPDATE_TABBAR = 30; // 优化：从 50 减到 30
 const SCREEN_COLLAPSED: number = 0;
 const SCREEN_EXPANDED: number = 1;
 const SCREEN_UNDEFINED: number = -1;
-const ULTRA_SNAP_SHOT_DELAY: number = 500;
+const ULTRA_SNAP_SHOT_DELAY: number = 300; // 优化：从 500 减到 300
 const CAMERA_BUNDLE_NAME: string = 'com.ohos.camera';
 const CAMERA_ABILITY_NAME: string = 'com.ohos.camera.MainAbility';
 const DOUBLE_TAP_PACKAGE = 'com.ohos.quickaccessmenu';
 const TELEPHOTO_PACKAGE = 'com.ohos.baseexperience';
-const FRESH_OPEN_TOUCH_GUIDE_DELAY: number = 1000;
+const FRESH_OPEN_TOUCH_GUIDE_DELAY: number = 600; // 优化：从 1000 减到 600
 
 type StartMessage = {
   mode: ModeType;
@@ -180,6 +179,7 @@ class AbilityDispatcher {
   }
 
   public foreground(): void {
+    PlaySound.getInstance().loadSound();
     this.mDispatch(ContextAction.abilityOnForeground());
   }
 
@@ -308,6 +308,8 @@ export default class MainAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     HiLog.begin(TAG, 'onCreate');
+    // Perf anchor for cold start latency (used by DelayLoadService STARTED log)
+    AppStorage.setOrCreate('camera_onCreate_ts', Date.now());
     DelayLoadService.getInstance().loadFromOnCreate();
     if (!want) {
       HiLog.e(TAG, 'onCreate want is empty');
@@ -317,12 +319,15 @@ export default class MainAbility extends UIAbility {
     this.onWantReceived(want);
     AppStorage.setOrCreate('Destroyed', false);
     ContextManager.getInstance().setAbilityContext(this.context);
-    try {
-      const cameraMananger = camera.getCameraManager(this.context)
-      cameraMananger.getSupportedCameras();
-    } catch (e) {
-      HiLog.e(TAG, 'pre getSupportedCameras error')
-    }
+    // Avoid blocking cold start critical path with cameraManager queries.
+    DelayLoadService.getInstance().postAfterStarted('preGetSupportedCameras', () => {
+      try {
+        const cameraMananger = camera.getCameraManager(this.context);
+        cameraMananger.getSupportedCameras();
+      } catch (e) {
+        HiLog.e(TAG, 'pre getSupportedCameras error');
+      }
+    }, 0);
     this.preCreateCamera(launchParam);
     AppLockUtil.getInstance().registerAppLock(this.AppLockCallback);
     this.launchParam = launchParam;
@@ -340,19 +345,29 @@ export default class MainAbility extends UIAbility {
     this.mGlobalContext.setObject('permissionFlag', false);
     const { mode, position }: StartMessage = this.getColdStartMessage();
     HiLog.i(TAG, `cold start mode: ${mode}, position: ${position}, isVisitedByShortCut: ${this.isVisitedByShortCut}.`);
-    CameraAppCapability.getInstance().queryCapability(position, mode);
+    // Defer heavy capability/feature init until stream started to shorten cold start.
+    DelayLoadService.getInstance().postAfterStarted('queryCapability', () => {
+      CameraAppCapability.getInstance().queryCapability(position, mode);
+    }, 0);
+    // Feature functions are required by UI (e.g. PreviewArea aboutToAppear subscriber) before STARTED.
+    // Keep init lightweight (FeatureManager.init no longer triggers managerAssembler synchronously).
     FeatureManager.getInstance().init(mode, new ModeMap());
     this.doColdStartUp(position, mode, launchParam);
     this.setDefaultConfigValue();
     this.moreModeConfig.mixPersistAndDefaultModeList();
     const modeList = this.moreModeConfig.processGlobalModeListAndName(mode);
     this.modeListManger.init(modeList);
-    PlaySound.getInstance().init(); // 初始化音频池
-    DisplayService.getInstance().init();
+    // Defer non-critical services to post-start to avoid blocking first UI/frame.
+    DelayLoadService.getInstance().postAfterStarted('playSoundInit', () => {
+      PlaySound.getInstance().init();
+    }, 100);
+    DelayLoadService.getInstance().postAfterStarted('displayServiceInit', () => {
+      DisplayService.getInstance().init();
+    }, 120);
     AppStorage.setOrCreate('settingAnimationDoing', false);
     AppStorage.setOrCreate('lastDirection', WindowDirection.TOP);
     AppStorage.setOrCreate('startOrUserChangeToModeLast', [ModeType.NONE, mode]);
-
+    
     CommonEventManager.getInstance().publishCommonEventMg(CUSTOM_EVENTS.PREEMPTION, { isPicker: false, active: true });
     this.initRemoteCaptureSvs(want);
     this.subscribeStateChange();
@@ -363,7 +378,9 @@ export default class MainAbility extends UIAbility {
     if (!isUpdatedWaterMarkStatus) {
       this.preferencesService.putPropValue(PersistType.FOREVER, PropTag.IS_UPDATED_WATERMARK_STATUS, true);
     }
-    TipService.getInstance(); // 触发TipService的监听
+    DelayLoadService.getInstance().postAfterStarted('tipServiceInit', () => {
+      TipService.getInstance(); // 触发TipService的监听
+    }, 150);
     HiLog.end(TAG, 'onCreate');
   }
 
@@ -372,16 +389,9 @@ export default class MainAbility extends UIAbility {
       HiLog.i(TAG, 'preCreateCamera by call');
       return
     }
-    let isIntroLoad: boolean =
-      <boolean> this.preferencesService.getPublicValue(PersistType.FOREVER, PublicTag.IS_INTRO_LOADED, false)
-    if (isIntroLoad) {
-      const { mode, position }: StartMessage = this.getColdStartMessage();
-      if (mode !== undefined && position !== undefined) {
-        this.mAction.createAndOpenCameraInput(position, mode)
-      } else {
-        HiLog.i(TAG, 'preCreateCamera invalid mode' + mode + ', position' + position)
-      }
-    }
+    // Worker init must not run here when intro is already done: doColdStartUp() dispatches
+    // CameraAction.init (ACTION_INIT). createAndOpenCameraInput also posts ACTION_INIT and
+    // caused queue ACTION_INIT,ACTION_INIT → 7400109 / black screen (see cold-start logs).
   }
 
   private registerDataShare(): void {
@@ -586,14 +596,19 @@ export default class MainAbility extends UIAbility {
     HiLog.i(TAG, 'onForeground');
     AppStorage.setOrCreate('closeFromWindowPaused', false);
     DelayLoadService.getInstance().loadFromOnForeground();
-    this.checkWindowSize();
     // 起流前设置窗口，并主动获取一次窗口状态，解决窗口状态回调滞后，获取CameraProfiles配置不正确问题
     // 问题场景：展开态悬浮窗&分屏，照片比例全屏，息屏亮屏后预览拉伸
     if (!this.isOnCreateLoaded) {
       const windowService: WindowService = WindowService.getInstance();
       windowService.reSetWin(this.mMainWindow);
     }
+    // Keep cameraReducer.isColdStart until preview surface is ready.
+    // Dispatching ABILITY_ON_FOREGROUND too early can break deferred-surface startup and lead to 7400201 / black screen.
+    AppStorage.setOrCreate<boolean>('isBackground', false);
     this.foreGroundToWarmStart();
+
+    // Non-critical work continues after warm start.
+    this.checkWindowSize();
 
     PhotoBrowserManager.getInstance().setViewVisibility();
     GlobalContext.get().setIsPicker(false);
@@ -607,7 +622,6 @@ export default class MainAbility extends UIAbility {
     const isShowPrivacyPolicyView: boolean = AppStorage.get('isShowPrivacyPolicyView');
     WindowService.getInstance().setSpecificSystemNavigationEnabled(true, true, isShowPrivacyPolicyView ||
     getStates().get<boolean>('settingViewReducer', 'isShowSettingView'));
-    AppStorage.setOrCreate<boolean>('isBackground', false);
     WindowService.getInstance().setWindowBackGround(false);
     AppStorage.setOrCreate('enterCameraTime', Date.now());
     this.securityHandler();
@@ -617,6 +631,7 @@ export default class MainAbility extends UIAbility {
       this.mAction.updateModeBar();
     }
     AppStorage.setOrCreate<boolean>('isMainForeground', true);
+    // Dispatch ABILITY_ON_FOREGROUND after warm start is initiated to avoid breaking deferred-surface flow.
     this.mAction.foreground();
     AppStorage.setOrCreate('settingAnimationDoing', false);
     if (getStates().get<boolean>('collapsReducer', 'isShowSemiCollapsed') || AppStorage.get('isPSDCollaps')) {
@@ -626,9 +641,12 @@ export default class MainAbility extends UIAbility {
     this.getHighContrastTextState();
     this.ultraSnapshotUnlock();
     WindowService.getInstance().setFullScreen();
-    let isOpenTouchGuide: boolean = accessibility.isOpenTouchGuideSync(); // 无障碍 浏览模式
-    GlobalContext.get().setOpenTouchGuide(isOpenTouchGuide);
-    AppStorage.setOrCreate('isOpenTouchGuide', isOpenTouchGuide);
+    // Avoid blocking foreground path with synchronous accessibility query.
+    setTimeout(() => {
+      let isOpenTouchGuide: boolean = accessibility.isOpenTouchGuideSync(); // 无障碍 浏览模式
+      GlobalContext.get().setOpenTouchGuide(isOpenTouchGuide);
+      AppStorage.setOrCreate('isOpenTouchGuide', isOpenTouchGuide);
+    }, 0);
     HiLog.end(TAG, 'onForeground');
     FrameLockScene.getInstance().apsSetScene('PreviewArea', true); // 进入相机开始锁帧
   }
@@ -687,7 +705,12 @@ export default class MainAbility extends UIAbility {
 
   // 热启动的起流过程
   public foreGroundToWarmStart(): void {
+    // Avoid blocking/crash before FeatureManager functions are ready.
     OverTimeFuncSv.resetFuncDefaultVal();
+    // Ensure the reset can still happen after STARTED when functions are available.
+    DelayLoadService.getInstance().postAfterStarted('resetFuncDefaultVal', () => {
+      OverTimeFuncSv.resetFuncDefaultVal();
+    }, 0);
     const state = getStates();
     let isIntroLoad: boolean =
       <boolean> this.preferencesService.getPublicValue(PersistType.FOREVER, PublicTag.IS_INTRO_LOADED, false);
@@ -1157,7 +1180,11 @@ export default class MainAbility extends UIAbility {
     if (!AppStorage.get('windowDisplayId')) {
       if(!DeviceInfo.isRk3568()){
         HiLog.i(TAG, 'onWindowStageCreate setDefaultDensityEnabled true E');
-        windowStage.setDefaultDensityEnabled(true);
+        try {
+          windowStage.setDefaultDensityEnabled(true);
+        } catch (e) {
+          HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`)
+        }
         AppStorage.setOrCreate('windowDisplayName', 'UNKNOWN');
         HiLog.i(TAG, 'onWindowStageCreate setDefaultDensityEnabled true X');
       }
@@ -1180,6 +1207,10 @@ export default class MainAbility extends UIAbility {
     // @ts-ignore
     windowStage.setUIContent(this.context, this.getUIContent(), new LocalStorage());
     HiLog.end(TAG, 'setUIContent');
+    const ts = AppStorage.get('camera_onCreate_ts');
+    if (typeof ts === 'number' && ts > 0) {
+      HiLog.i(TAG, `startupLatency(from onCreate to setUIContent)=${Date.now() - ts}ms`);
+    }
 
     HiLog.begin(TAG, 'getMainWindowSync');
     try {
@@ -1511,10 +1542,6 @@ export default class MainAbility extends UIAbility {
         HiLog.i(TAG, `onApplicationBackground: ${SuspendTaskUtil.getInstance().getAlreadyCloseCamera()}`);
         PhotoBrowserManager.getInstance().setViewVisibility();
         SuspendTaskUtil.getInstance().setIsInBackground(true);
-        if (SuspendTaskUtil.getInstance().isEnterOfflinePhoto()) { // 触发离线拍照的短时任务
-          SuspendTaskUtil.getInstance().requestSuspendDelay(CommonConstants.SUSPEND_DELAY_OFFLINE_REASON);
-          return;
-        }
         if (SuspendTaskUtil.getInstance().getAlreadyCloseCamera()) {
           return;
         }

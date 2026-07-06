@@ -25,7 +25,6 @@ import lazy { PickerVideoController } from './PickerVideoController';
 import PickerVideoUtils from './PickerVideoUtils';
 import lazy { RecordActionType } from '../../redux/actions/RecordActionType';
 import lazy { CameraAppCapability } from '../../camera/CameraAppCapability';
-import lazy { RecordController } from '../../function/recordcontrol/RecordController';
 
 const TAG: string = 'VideoPlayer';
 
@@ -51,11 +50,7 @@ export struct VideoPlayer {
     if (getStates().get<RecordingState>('recordReducer', 'recordingState') === RecordingState.READY) {
       this.onVideoReady();
     }
-    if (RecordController.getInstance().isMovieFile()) {
-      this.eventBus.on(RecordActionType.SAVE_MOVIE_INFO_ASSET_DONE, () => this.onVideoReady(), this.base.hashCode());
-    } else {
-      this.eventBus.on(RecordActionType.STOPPED, () => this.onVideoReady(), this.base.hashCode());
-    }
+    this.eventBus.on(RecordActionType.STOPPED, () => this.onVideoReady(), this.base.hashCode());
   }
 
   aboutToDisappear(): void {
