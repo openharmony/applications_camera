@@ -341,12 +341,11 @@ export struct FirstListButton {
     }
     if (functionImpl.getRenderType(RenderLocation.TREASURE_BOX) === RenderType.TOGGLE_TREASURE_BOX_ITEM) {
       let value: ValueType = functionImpl.getValue();
-      //zy-20251210-这里辅助线和设置的点击，直接通过getValue拿到的boolen值永远都是最初设置好的，这里点击事件，应该对拿到的值取反，然后在去setValue
-      if (functionImpl.constructor.name === "AssistiveGridFunction" ||
-        functionImpl.constructor.name === "SettingFunction") {
-        value = !value
+      // 参考线、设置：百宝箱内 getValue 与点击意图不一致需取反；用 FunctionId 判断，避免 Picker 混淆后 constructor.name 失效
+      if (this.functionId === FunctionId.ASSISTIVE_GRID || this.functionId === FunctionId.SETTING) {
+        value = !(value as boolean);
       }
-      HiLog.i(TAG, `mainListBuilder onClick functionId is ${this.functionId}, change value to ${value}. functionImp is ${functionImpl.constructor.name}`);
+      HiLog.i(TAG, `mainListBuilder onClick functionId is ${this.functionId}, change value to ${value}.`);
       if (this.enableScreenReader && this.isOpenTouchGuide && this.functionId === FunctionId.ASSISTIVE_GRID) {
         HiLog.i(TAG, `enableScreenReader onClick FunctionId.ASSISTIVE_GRID, change value to ${value}.`);
         AccessibilityUtils.sendAnnounceAccessibilityEvent(`${ResGetter.getStringSafe(this.abilityTitle)} ${

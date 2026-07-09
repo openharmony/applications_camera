@@ -991,6 +991,7 @@ export struct DefaultIndex {
     } else {
       // 地理位置权限二次确认弹窗
       this.createLocationConfirmDialog();
+      // this.mAction.changeFunctionValue(FunctionId.SAVE_GEO_LOCATION, true);
     }
   }
 

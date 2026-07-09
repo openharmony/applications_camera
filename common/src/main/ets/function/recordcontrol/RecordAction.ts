@@ -112,14 +112,6 @@ export class RecordAction {
     };
   }
 
-  public static videoOnSave(videoUri: string): ActionData {
-    return {
-      type: RecordActionType.VIDEO_ON_SAVE,
-      data: { videoUri: videoUri },
-      isEvent: true
-    };
-  }
-
   public static updateRecordingTimerComponentLargeState(isLarge: boolean): ActionData {
     return {
       type: RecordActionType.UPDATE_RECORDING_TIMER_COMPONENT_LARGE_STATE,

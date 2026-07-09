@@ -524,7 +524,11 @@ export default class MainAbility extends UIAbility {
 
   async onWindowStageCreate(windowStage): Promise<void> {
     HiLog.begin(TAG, 'onWindowStageCreate.');
-    windowStage.setDefaultDensityEnabled(true);
+    try {
+      windowStage.setDefaultDensityEnabled(true);
+    } catch (e) {
+      HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`)
+    }
     GlobalContext.get().setWindowStage(windowStage);
     if (GlobalContext.get().getT('isSecurityCamera') || this.isSelfieStick) {
       this.setShowOnLockScreen(true);

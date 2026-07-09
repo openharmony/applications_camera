@@ -1003,14 +1003,14 @@
         },
         {
             "name":"menu_remark_voice_capture_disable",
-            "value":"Not available when Moving picture is on.",
+            "value":"Not available when picture is on.",
             "attr":{
                 "priority":"LT"
             }
         },
         {
             "name":"menu_remark_mute_disable",
-            "value":"Shutter sound is muted when taking moving pictures.",
+            "value":"Shutter sound is muted when taking pictures.",
             "attr":{
                 "priority":"LT"
             }
@@ -5788,7 +5788,7 @@
         },
         {
             "name":"location_permission_description_without_starry_sky",
-            "value":"This is used to record where photos and videos were taken and show location information in watermarks.",
+            "value":"This is used to record where photos and videos were taken.",
             "attr":{
                 "priority":"translate"
             }

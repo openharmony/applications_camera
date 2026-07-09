@@ -34,13 +34,6 @@ export class FrameRateOperation {
   private static readonly FRAME_RATE_30FPS: SettingFuncDialogItemIndex = SettingFuncDialogItemIndex.INDEX_FIR;
   private static readonly FRAME_RATE_60FPS: SettingFuncDialogItemIndex = SettingFuncDialogItemIndex.INDEX_SEC;
 
-  static {
-    if (DeviceInfo.isRk3568() || DeviceInfo.isUis7885()) {
-      FrameRateOperation.FRAME_FPS_RATE_30 = 5;
-      FrameRateOperation.FRAME_FPS_RATE_60 = 10;
-    }
-  }
-
   public static getVideoFrameRate(frameRate: SettingFuncDialogItemIndex): number {
     const index = FrameRateOperation.getIndex(frameRate);
     if (DeviceInfo.isPc() && !hasCameraProfiles()) {

@@ -161,6 +161,12 @@ void ZoomCalculate::UpdateLandscapeSlideDistance(ZoomStruct *state, int32_t zoom
  */
 std::string ZoomCalculate::GetRedText(const ZoomStruct* state)
 {
+    if (state->quickArrLength == 0 || state->quickZoomValArr == nullptr) {
+        double zoomVal = floor(state->curZoomValue * ZOOM_RATIO_MAGNIFY_TEN) / ZOOM_RATIO_MAGNIFY_TEN;
+        std::stringstream ss;
+        ss << std::fixed << std::setprecision(1) << zoomVal;
+        return ss.str() + "x";
+    }
     bool firstQuickIsOneDecimalPlace =
         state->quickZoomValArr[0] == std::floor(state->quickZoomValArr[0] * MULTIPLY_BY_TEN) / DIVIDE_BY_TEN;
     if (state->quickZoomValArr[0] <= state->quickMaxZoomVarW &&
@@ -202,6 +208,10 @@ bool ZoomCalculate::isIndexLegal(int arrayLength, int index)
  */
 float ZoomCalculate::CalZoomAngle(const ZoomStruct* state)
 {
+    if (state->opticalArrLength == 0 || state->opticalZoomValArr == nullptr ||
+        state->opticalZoomDotIndexArr == nullptr) {
+        return 0;
+    }
     if (state->curZoomValue <= state->opticalZoomValArr[0]) {
         return 0;
     } else if (state->curZoomValue >= state->opticalZoomValArr[state->opticalArrLength - 1]) {
@@ -249,6 +259,9 @@ int ZoomCalculate::getLittlePotCount(const ZoomStruct* state)
     if (state->isSupportedCycleClickZoom) {
         return ZoomCalculate::getLittlePotCountInCycleClickZoom(state);
     }
+    if (state->opticalArrLength == 0 || state->opticalZoomValArr == nullptr) {
+        return count;
+    }
     for (int i = 0; i < state->opticalArrLength; i++) {
         if (state->opticalZoomValArr[i] == POINT_ZOOM_ONE || state->opticalZoomValArr[i] == POINT_ZOOM_THREE ||
             (state->opticalZoomValArr[i] == POINT_ZOOM_TWO && i != state->opticalArrLength - 1)) {
@@ -264,8 +277,12 @@ int ZoomCalculate::getLittlePotCount(const ZoomStruct* state)
 int ZoomCalculate::getLittlePotCountInCycleClickZoom(const ZoomStruct* state)
 {
     int count = ARRAY_ZERO;
-    for (int i = 0; i < state->opticalArrLength - 1; i++) {
-        for (int j = 0; j < state->cycleClickZoomLength; j++) {
+    if (state->opticalArrLength < ARRAY_TWO || state->opticalZoomValArr == nullptr ||
+        state->cycleClickZoomValArr == nullptr) {
+        return count;
+    }
+    for (int i = 0; i < static_cast<int>(state->opticalArrLength) - 1; i++) {
+        for (int j = 0; j < static_cast<int>(state->cycleClickZoomLength); j++) {
             if (state->opticalZoomValArr[i] == state->cycleClickZoomValArr[j]) {
                 count++;
                 break;
@@ -353,7 +370,9 @@ bool ZoomCalculate::isLittlePoint(const ZoomStruct* state, double zoomValue, int
 bool ZoomCalculate::isLandscapeSlideAnim(const ZoomStruct* state)
 {
     int diff = 0;
-    if (state->isSupportedEquivalentFocalBigText || state->isSupportedCycleClickZoom) {
+    if ((state->isSupportedEquivalentFocalBigText || state->isSupportedCycleClickZoom) &&
+        state->opticalArrLength > 0 &&
+        isIndexLegal(state->opticalArrLength, state->landscapeSlideZoomIndex)) {
         diff =
             getFocalIndexDiff(state, state->opticalZoomValArr[state->landscapeSlideZoomIndex], state->littlePointCnt);
     }

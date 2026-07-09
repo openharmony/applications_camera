@@ -67,7 +67,7 @@ export class AspectRatioFunction extends BaseFunction {
     SettingFuncDialogItemIndex.INDEX_SEC, SettingFuncDialogItemIndex.INDEX_THR, SettingFuncDialogItemIndex.INDEX_THR];
   private static mValueMap: Map<string, number> = new Map(); // 全量缓存数据
   private readonly RENDER_LOCATIONS: RenderLocation[] = [
-    RenderLocation.TREASURE_BOX, RenderLocation.SETTING_MENU_PHOTO
+    /*RenderLocation.TREASURE_BOX,*/ RenderLocation.SETTING_MENU_PHOTO
   ];
   private static ASPECT_VALUE_VDE: number[] =
     [SettingFuncDialogItemIndex.INDEX_FIR, SettingFuncDialogItemIndex.INDEX_SEC];

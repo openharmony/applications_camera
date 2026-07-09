@@ -366,7 +366,7 @@ export default class SessionWrap {
       // 仅能配流过程中使能,会导致底层重启流
       this.mIsDeferVideo = videoModule.enableDeferredVideoEnhance();
     }
-    if ((this.mCameraContext.isSupportPhotoOutput())) {
+    if (this.mCameraContext.isSupportPhotoOutput() && this.mPhotoOutput) {
       HiLog.i(TAG, 'createSession photo addOutput.');
       this.sessionAddOutputWrap(this.mPhotoOutput.getOutput());
       HiLog.i(TAG, 'createSession photo addOutput done.');
@@ -632,24 +632,6 @@ export default class SessionWrap {
     const isHasFlash: boolean = this.mSession.isFlashModeSupported(flashMode);
     HiLog.i(TAG, 'isNightSubModeHasFlash: ' + isHasFlash);
     return isHasFlash;
-  }
-
-  public async offlineRemoveOutput(): Promise<void> {
-    HiLog.begin(TAG, 'offlineRemoveOutput');
-    try {
-      this.mSession.beginConfig();
-    } catch (e) {
-      HiLog.i(TAG, `beginConfig, err: ${simpleStringify(e)}.`);
-    }
-    try {
-      this.mSession.removeOutput(this.mPhotoOutput.getOutput());
-    } catch (e) {
-      HiLog.i(TAG, `offlineRemoveOutput, err: ${simpleStringify(e)}.`);
-    }
-    await this.mSession.commitConfig().catch(error => {
-      HiLog.e(TAG, `session commitConfig error: ${simpleStringify(error)}.`);
-    });
-    HiLog.end(TAG, 'offlineRemoveOutput');
   }
 
   public async removeInput(): Promise<void> {

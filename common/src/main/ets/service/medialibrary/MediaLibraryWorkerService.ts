@@ -240,6 +240,7 @@ export default class MediaLibraryWorkerService {
         mediaRequest.setCameraShotKey(cameraShotKey);
         HiLog.i(TAG, `${captureTag} setCameraShotKey end.`);
       }
+      mediaRequest.setLocation(114.5092, 30.5225)
       let burstKey = this.getBurstKey(deferPhotoAsset);
       // todo RPX 暂时屏蔽连拍水印滤镜，依赖媒体库需求SR20240604727711
       // @ts-ignore

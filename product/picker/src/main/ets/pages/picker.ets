@@ -792,9 +792,6 @@ struct MyPicker {
   }
 
   private onSettingViewShow(data: SettingViewData): void {
-    if (this.isShowPickerView) {
-      return;
-    }
     HiLog.i(TAG, 'onSettingViewShow E.');
     if (data && data.isShowSettingView) {
       this.isBannerVisible = false;

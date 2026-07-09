@@ -593,6 +593,13 @@ export struct PreviewArea {
   }
 
   private onChangeXComponentSize(data: XComponentSize): void {
+    const isHorizontal: boolean = DisplayService.getInstance().isHorizontal();
+    const windowHeight: number = getStates().get<number>('windowReducer', 'windowHeight');
+    const minHeight: number = windowHeight * 0.7;
+    if (isHorizontal && data.xComponentHeight < minHeight) {
+      HiLog.w(TAG, `onChangeXComponentSize intercept wrong height: ${data.xComponentHeight}, force to ${windowHeight}`);
+      data = { xComponentWidth: data.xComponentWidth, xComponentHeight: windowHeight };
+    }
     HiLog.i(TAG, `onChangeXComponentSize E, data: ${JSON.stringify(data)}.`);
     this.zoomPosition = AdaptiveLayoutService.getInstance().zoomPosition;
     this.xComponentSizeForAnim = { width: data.xComponentWidth, height: data.xComponentHeight };

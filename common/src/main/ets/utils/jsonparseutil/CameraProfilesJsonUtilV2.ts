@@ -77,10 +77,12 @@ export default class CameraProfilesJsonUtilV2 extends CapabilityInterface {
       let mV2DiffCapability: V2Capability = undefined; // 差异配置临时数据容器
 
       HiLog.begin(TAG, 'getOneCfgFile');
-      if (DeviceInfo.getChipType() == 'uis7885') {
+      if (DeviceInfo.isUis7885()) {
         json = this.getCameraProfilesToString('DefaultPhoneCameraProfiles_v2_uis7885.json')
-      } else if (DeviceInfo.getChipType() == 'rk3568') {
+      } else if (DeviceInfo.isRk3568()) {
         json = this.getCameraProfilesToString('DefaultPhoneCameraProfiles_v2_rk3568.json')
+      } else if (DeviceInfo.isDayu300()) {
+        json = this.getCameraProfilesToString('DefaultPhoneCameraProfiles_v2_dayu300.json')
       } else {
         // 默认配置，从设备本地获取
         const relPath: string = 'etc/camera/CameraProfiles.json';

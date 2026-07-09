@@ -39,6 +39,8 @@ export class VibratorService {
   public static readonly BURST_CAPTURE_CONTINUOUS = 'haptic.camera.shutter.continuous';
   public static readonly MORE_MODE_DRAG: string = 'haptic.drag';
   public static readonly VIBRATOR_USAGE_UNKNOWN: Usage = 'unknown';
+  /** 默认触觉场景：避免 usage=unknown 被 Miscdevice VibrationPriorityManager 判低优先级而直接忽略 */
+  public static readonly VIBRATOR_USAGE_DEFAULT: Usage = 'physicalFeedback';
   public static readonly CAMERA_BURST_DOWN_OGG_TIME = 70; //一次连拍声音长度为70ms
   private static readonly DELAY_TIME: number = 40;
   private static sInstanceVibrator: VibratorService;
@@ -97,17 +99,14 @@ export class VibratorService {
   async triggerVibrator(effectId: string, usage?: Usage): Promise<void> {
     VibratorService.throttle(() => {
       HiLog.d(TAG, 'triggerVibrator begin.');
-      usage ? usage : (usage = VibratorService.VIBRATOR_USAGE_UNKNOWN);
+      const resolvedUsage: Usage = usage ?? VibratorService.VIBRATOR_USAGE_DEFAULT;
       this.stopVibrator();
       try {
         vibrator.startVibration({
           type: 'time',
-          duration: 10
-          // type: 'preset',
-          // effectId: effectId,
-          // count: 1,
+          duration:10
         }, {
-          usage: usage
+          usage: resolvedUsage
         }, (error) => {
           if (error) {
             HiLog.e(TAG, `error: ${JSON.stringify(error.message)}.`);
@@ -216,8 +215,7 @@ export class VibratorService {
     HiLog.i(TAG, 'handleZoomVibrator begin.');
     HiLog.i(TAG, 'handleZoomVibrator  effectId ' + effectId + ' isSmallVibrator ' + this.isSmallVibrator +
       ' isLargeVibrator ' + this.isLargeVibrator + ' this.largeVibratorNumber ' + this.largeVibratorNumber);
-    usage ? usage : (usage = VibratorService.VIBRATOR_USAGE_UNKNOWN);
-    let usageValue = usage as Usage;
+    const usageValue = (usage ? usage : VibratorService.VIBRATOR_USAGE_DEFAULT) as Usage;
     const currentTime = Date.now();
     if (effectId === VibratorService.CAMERA_GEAR_SLIP_LIGHT_ID) {
       this.isSmallVibrator = true;

@@ -74,35 +74,41 @@ export class GeoLocationService {
     }
   }
 
-  private async requestPermissionsFromUser(): Promise<boolean> {
+  private async requestPermissionsFromUserWithResult(): Promise<PermissionRequestResult> {
     let result: PermissionRequestResult = {} as PermissionRequestResult;
     try {
       result = await abilityAccessCtrl.createAtManager().requestPermissionsFromUser(
         ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
     } catch (error) {
-      HiLog.i(TAG, `requestPermissionDialog message: ${error.message}`);
+      HiLog.i(TAG, `requestPermissionsFromUserWithResult message: ${error.message}`);
     }
     const isSuccess: boolean = result?.authResults[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
     const isSuccessPrecisely: boolean = result?.authResults[1] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
-    HiLog.i(TAG, `requestPermissionsFromUser, isSuccess: ${isSuccess}, isSuccessPrecisely: ${isSuccessPrecisely}.`);
-
-    return isSuccess;
-}
+    HiLog.i(TAG, `requestPermissionsFromUserWithResult, isSuccess: ${isSuccess}, isSuccessPrecisely: ${isSuccessPrecisely}.`);
+    return result;
+  }
 
   // 拉起授权模态框
   public async requestPermissionDialog(isRequest: boolean): Promise<void> {
+    HiLog.i(TAG, `requestPermissionDialog isRequest: ${JSON.stringify(isRequest)}`);
     let isSuccess: boolean = false;
     if (isRequest) {
-      let result: abilityAccessCtrl.GrantStatus[] = [];
-      try {
-        result = await abilityAccessCtrl.createAtManager().requestPermissionOnSetting(
-          ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
-        isSuccess = result[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
-      } catch (error) {
-        HiLog.i(TAG, `requestPermissionDialog message: ${error.message}`);
-        isSuccess = await this.requestPermissionsFromUser();
+      const results: PermissionRequestResult = await this.requestPermissionsFromUserWithResult();
+      isSuccess = results?.authResults[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
+      if (!isSuccess) {
+        const runtimeDialogShown: boolean = results.dialogShownResults?.[0] === true;
+        HiLog.i(TAG, `requestPermissionDialog runtimeDialogShown: ${runtimeDialogShown}, auth[0]: ${results.authResults[0]}`);
+        if (!runtimeDialogShown && results.dialogShownResults?.[0] === false) {
+          try {
+            let result: abilityAccessCtrl.GrantStatus[] =
+              await abilityAccessCtrl.createAtManager().requestPermissionOnSetting(
+                ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
+            isSuccess = result[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
+          } catch (error) {
+            HiLog.i(TAG, `requestPermissionDialog requestPermissionOnSetting message: ${error.message}`);
+          }
+        }
       }
-
       HiLog.i(TAG, `requestPermissionDialog isSuccess: ${isSuccess}`);
     }
     this.permissionCallback(isSuccess);

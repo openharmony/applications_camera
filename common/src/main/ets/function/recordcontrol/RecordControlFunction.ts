@@ -528,7 +528,6 @@ export class RecordControlFunction extends BaseFunction {
     this.mEventBus.on(ContextActionType.ABILITY_ON_FOREGROUND, this.onForeground.bind(this), code);
     this.mEventBus.on(ActionType.ACTION_TIME_LAPSE_TRY_AE_DONE, this.updateStartTimeAfterTryAe.bind(this), code);
     this.mEventBus.on(ActionType.ACTION_BUFFER_RECEIVED_TIMELAPSE, this.bufferReceivedInTimeLapse.bind(this), code);
-    this.mEventBus.on(RecordActionType.VIDEO_ON_SAVE, this.videoOnSave.bind(this), code);
     this.mEventBus.on(RecordActionType.VIDEO_FRAME_END, this.handleVideoFrameEnd.bind(this), code);
   }
 
@@ -570,13 +569,6 @@ export class RecordControlFunction extends BaseFunction {
     await this.mCameraProxy.pauseRecording();
     this.mStoreManager.postMessage(RecordAction.paused());
     this.mStoreManager.postMessage(Action.updateShowBigTextFlag(true));
-    const isMovie: boolean = RecordController.getInstance().isMovieFile();
-    if (isMovie) {
-      HiLog.i(TAG, `pauseRecording isMovie ${isMovie}`);
-      setTimeout((): void => {
-        this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
-      }, DELAY_500);
-    }
     HiLog.i(TAG, 'pauseRecording X.');
   }
 
@@ -594,7 +586,9 @@ export class RecordControlFunction extends BaseFunction {
       }
     }).then(() => {
       const scene: ThumbnailUpdateScene = isInSwipeRecording ? ThumbnailUpdateScene.BURST : ThumbnailUpdateScene.RECORD;
-      // this.mStoreManager.postMessage(ThumbnailAction.received(this.thumbnail, scene)); TODO 这里更新屏蔽视频更新多次刷新
+      if (getStates().get<ModeType>('modeReducer', 'mode') === ModeType.PHOTO) { //TODO 这里更新屏蔽视频更新多次刷新
+        this.mStoreManager.postMessage(ThumbnailAction.received(this.thumbnail, scene));
+      }
     });
   }
 
@@ -628,17 +622,14 @@ export class RecordControlFunction extends BaseFunction {
     }
     SuspendTaskUtil.getInstance().onRecordStopped();
 
-    const isMovieFile = RecordController.getInstance().isMovieFile();
-    if (!isMovieFile && this.isUpdateThumbnail(cameraShotKey, recordTimerNULL)) {
+    if (this.isUpdateThumbnail(cameraShotKey, recordTimerNULL)) {
       if (AppStorage.get('isLemCollaps')) {
         await this.rotateImg(this.thumbnail);
       }
       await this.toUpdateThumbnail(isInSwipeRecording);
     }
     this.mIsBufferReceivedTimelapse = false;
-    if (!isMovieFile) {
-      this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
-    }
+    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
     MicrophoneService.getInstance().microphoneUnsubscribe();
     if (AppStorage.get('enableScreenReader')) {
       WindowService.getInstance().setWindowKeepScreenOn(false);
@@ -679,21 +670,6 @@ export class RecordControlFunction extends BaseFunction {
       return false;
     }
     return true;
-  }
-
-  private async videoOnSave(data: { videoUri: string }): Promise<void> {
-    if (!RecordController.getInstance().isMovieFile()) {
-      return;
-    }
-    HiLog.i(TAG, `videoOnSave, movieFile updateThumbnail, thumbnail: ${this.thumbnail}.`);
-    if (this.isUpdateThumbnail(GlobalContext.get().getCameraShotKey(), true)) {
-      if (AppStorage.get('isLemCollaps')) {
-        await this.rotateImg(this.thumbnail);
-      }
-      this.mStoreManager.postMessage(ThumbnailAction.received(this.thumbnail, ThumbnailUpdateScene.RECORD));
-    }
-    AppStorage.setOrCreate('thumbnailMediaUri', data.videoUri);
-    this.enableUiWithMode(UiStateMode.EXCLUDE_PREVIEW);
   }
 
   private isNeedUpdateThumbnailInTimelapse(): boolean {

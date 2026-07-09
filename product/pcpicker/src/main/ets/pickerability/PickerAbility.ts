@@ -243,7 +243,11 @@ export default class PickerAbility extends UIAbility {
 
   onWindowStageCreate(windowStage): void {
     HiLog.begin(TAG, 'onWindowStageCreate');
-    windowStage.setDefaultDensityEnabled(true);
+    try {
+      windowStage.setDefaultDensityEnabled(true);
+    } catch (e) {
+      HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`)
+    }
     GlobalContext.get().setWindowStage(windowStage);
     // Main window is created, set main page for this ability
     try {

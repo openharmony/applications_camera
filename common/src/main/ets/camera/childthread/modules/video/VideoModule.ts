@@ -16,12 +16,11 @@
 import lazy { HiLog } from '../../../../utils/HiLog';
 import camera from '@ohos.multimedia.camera';
 import type { PickerInfo } from '../../../../utils/types';
-import lazy { VideoOutputWrap, MovieFileOutputWrap } from '../../../../utils/LazyImportUtil';
+import lazy { VideoOutputWrap } from '../../../../utils/LazyImportUtil';
 import lazy { TagMessage, VideoOutputMessage } from '../../../DataType';
 import VideoOutputInterface from './VideoOutputInterface';
 import CameraContext from '../CameraContext';
 import lazy { ModeType } from '../../../../mode/ModeType';
-import MovieFileOutputCinemaWrap from './MovieFileOutputCinemaWrap';
 
 /* instrument ignore file */
 const TAG: string = 'VideoModule';
@@ -47,14 +46,14 @@ export default class VideoModule {
     HiLog.begin(TAG, 'createOutput');
     this.pickerInfo = pickerInfo;
     await this.release();
-    if (message.isMovie) {
-      HiLog.i(TAG, 'RECORD_TRACK isMovie, video create.');
-      this.videoWrap = new MovieFileOutputWrap();
-    } else {
-      HiLog.i(TAG, 'isVideo, video create.');
-      this.videoWrap = new VideoOutputWrap();
+    HiLog.i(TAG, 'isVideo, video create.');
+    this.videoWrap = new VideoOutputWrap();
+    //TODO PC预览流定位到这里，因为这个任务的执行导致。怀疑是PC视频格式导致
+    try {
+      await this.videoWrap?.init(message, tagMessage, manager, pickerInfo);
+    }catch ( error) {
+      HiLog.e(TAG, `=====>>> video create error: ${error}`);
     }
-    await this.videoWrap?.init(message, tagMessage, manager, pickerInfo);
     HiLog.end(TAG, 'createOutput');
     return true;
   }
@@ -166,8 +165,15 @@ export default class VideoModule {
       HiLog.w(TAG, `addMaintainDebugMetaData videoWrap or avRecorder is not exit!`);
       return;
     }
-    const videoMetaTypes: number[] = this.videoWrap.getSupportedVideoMetaTypes();
-    if (!videoMetaTypes.length) {
+    let videoMetaTypes: number[]
+    try {
+      videoMetaTypes = this.videoWrap.getSupportedVideoMetaTypes();
+      HiLog.e(TAG, `getSupportedVideoMetaTypes: ${JSON.stringify(videoMetaTypes)}.`);
+    } catch (error) {
+      HiLog.e(TAG, `getSupportedVideoMetaTypes err: ${error}.`);
+      return;
+    }
+    if (!videoMetaTypes || !videoMetaTypes.length) {
       HiLog.w(TAG, `RECORD_TRACK addMaintainDebugMetaData there is no metaType supporting.`);
       return;
     }

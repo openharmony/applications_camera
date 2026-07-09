@@ -38,7 +38,7 @@ export class ThumbnailService {
   private mLastCapturePhotoMediaUri: string = ''; // 拍照后延迟落盘后最新uri记录
   private mIsNeedWaitReleasePhotoOutput: boolean = false; // 防丢图机制: 是否等待上图落盘后再执行重启流操作
   private mMaxWaitReleasePhotoOutputTimer: number = Number.MIN_VALUE; // 重启流防丢图机制最长等待时间定时器
-  private offlineSupported: boolean = false; // 是否支持离线拍照
+
 
   public static getInstance(): ThumbnailService {
     if (!ThumbnailService.sInstanceCapability) {
@@ -147,24 +147,13 @@ export class ThumbnailService {
     }
   }
 
-  public isOfflineSupported(): boolean {
-    HiLog.i(TAG, `isOfflineSupported: ${this.offlineSupported}`);
-    return this.offlineSupported;
-  }
 
-  public updateOfflineSupport(isSupport: boolean): void {
-    this.offlineSupported = isSupport;
-  }
 
   /*
    * 获取用户重启流操作时,是否需启动防丢图机制
    * 规格: 缩略图已更新,80分图还未上报/落盘完成时启动
    */
   public getIsNeedWaitReleasePhotoOutput(): boolean {
-    if (this.offlineSupported) {
-      HiLog.i(TAG, 'offlineSupported,noNeedWaitReleasePhotoOutput');
-      return false;
-    }
     let isNeedWait = this.mPictureWaitRefreshCount > this.mThumbnailWaitRefreshCount;
     if (isNeedWait) {
       this.clearOutputTimer();

@@ -243,6 +243,12 @@ export struct PreviewAreaLand {
       this.getIsUpdateAspectRatio.bind(this), code);
     this.afterShowPreview();
     HiLog.i(TAG, 'aboutToAppear X.');
+    //PC这里必须需要刷新一下宽高比，否则会黑屏
+    setTimeout(() => {
+      let featureManager = FeatureManager.getInstance();
+      this.mAction.changeFunctionValue(FunctionId.ASPECT_RATIO, featureManager.getFunction(FunctionId.ASPECT_RATIO)
+        .getDefaultValue() as number);
+    }, 200)
   }
 
   aboutToDisappear(): void {

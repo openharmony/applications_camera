@@ -61,7 +61,7 @@ export class MirrorFunction extends BaseFunction {
   getUiElements(): Map<string | number, UiElement> {
     let uiElements = new Map();
     const isDisableFrontVideoMirror = CameraAppCapability.getInstance().getIsDisableFrontVideoMirror();
-    if (DeviceInfo.isPc() || isDisableFrontVideoMirror) { // 当前设备禁用前置录像镜像，仅支持自拍镜像
+    if (DeviceInfo.isPc() || DeviceInfo.isPhone() || isDisableFrontVideoMirror) { // 当前设备禁用前置录像镜像，仅支持自拍镜像
       uiElements.set(UiElement.DEFAULT, new UiElement().setTitle($r('app.string.self_mirror'))
         .setIcon($r('app.media.ic_camera_mirrow_reflection'))
         .setDesc($r('app.string.self_mirror_desp_photo'))
