@@ -64,7 +64,9 @@ export default class CameraDeviceManager {
         if (item.cameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK &&
           item.cameraType === camera.CameraType.CAMERA_TYPE_WIDE_ANGLE) {
           // @ts-ignore
-          this.mainLensEquivalentFocalLength = item?.lensEquivalentFocalLength[0];
+          if(item?.lensEquivalentFocalLength != undefined) {
+            this.mainLensEquivalentFocalLength = item?.lensEquivalentFocalLength[0];
+          }
         }
       })
       this.mPhysicalCameras =
