@@ -333,13 +333,12 @@ export class CameraBasicService {
         if (sessionInfo) {
           HiLog.i(TAG, `startupCamera succeeded at ${retryCount + 1} attempt`);
           break;
-        } else {
-          HiLog.i(TAG, `startupCamera failed, state reset to UNINITIALIZED.`);
-          execDispatch(CameraAction.reset());
-          if (!this.hasPreviewSurfaceInMessage(lastSessionMessage)) {
-            HiLog.i(TAG, 'startupCamera: no preview render; end retries (deferred render will retry).');
-            break;
-          }
+        }
+        HiLog.i(TAG, `startupCamera failed, state reset to UNINITIALIZED.`);
+        execDispatch(CameraAction.reset());
+        if (!this.hasPreviewSurfaceInMessage(lastSessionMessage)) {
+          HiLog.i(TAG, 'startupCamera: no preview render; end retries (deferred render will retry).');
+          break;
         }
       } catch (error) {
         HiLog.e(TAG, `startupCamera errored at attempt ${retryCount + 1}: ${error.code}`);
@@ -580,9 +579,12 @@ export class CameraBasicService {
       CameraBasicOperation.saveReconfigFlowData(CameraActionType.CHANGE_MODE, data);
       return;
     }
+    await this.executeChangeMode();
+  }
+
+  private async executeChangeMode(): Promise<void> {
     HiLog.i(TAG, 'changeMode begin.');
     this.mStoreManager.postMessage(Action.onPreviewFrameStart(false));
-    this.mCurrentMode = data.mode;
     CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
     const zoomRatio = ZoomOperation.getInstance().getStartupZoom(this.mCurrentMode, this.mCameraPosition);
     BlurAnimateUtil.setValidFrameFlag(false);

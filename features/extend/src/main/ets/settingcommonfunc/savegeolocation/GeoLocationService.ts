@@ -92,25 +92,28 @@ export class GeoLocationService {
   public async requestPermissionDialog(isRequest: boolean): Promise<void> {
     HiLog.i(TAG, `requestPermissionDialog isRequest: ${JSON.stringify(isRequest)}`);
     let isSuccess: boolean = false;
-    if (isRequest) {
-      const results: PermissionRequestResult = await this.requestPermissionsFromUserWithResult();
-      isSuccess = results?.authResults[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
-      if (!isSuccess) {
-        const runtimeDialogShown: boolean = results.dialogShownResults?.[0] === true;
-        HiLog.i(TAG, `requestPermissionDialog runtimeDialogShown: ${runtimeDialogShown}, auth[0]: ${results.authResults[0]}`);
-        if (!runtimeDialogShown && results.dialogShownResults?.[0] === false) {
-          try {
-            let result: abilityAccessCtrl.GrantStatus[] =
-              await abilityAccessCtrl.createAtManager().requestPermissionOnSetting(
-                ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
-            isSuccess = result[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
-          } catch (error) {
-            HiLog.i(TAG, `requestPermissionDialog requestPermissionOnSetting message: ${error.message}`);
-          }
+    if (!isRequest) {
+      this.permissionCallback(isSuccess);
+      this.permissionCallback = null;
+      return;
+    }
+    const results: PermissionRequestResult = await this.requestPermissionsFromUserWithResult();
+    isSuccess = results?.authResults[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
+    if (!isSuccess) {
+      const runtimeDialogShown: boolean = results.dialogShownResults?.[0] === true;
+      HiLog.i(TAG, `requestPermissionDialog runtimeDialogShown: ${runtimeDialogShown}, auth[0]: ${results.authResults[0]}`);
+      if (!runtimeDialogShown && results.dialogShownResults?.[0] === false) {
+        try {
+          let result: abilityAccessCtrl.GrantStatus[] =
+            await abilityAccessCtrl.createAtManager().requestPermissionOnSetting(
+              ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
+          isSuccess = result[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
+        } catch (error) {
+          HiLog.i(TAG, `requestPermissionDialog requestPermissionOnSetting message: ${error.message}`);
         }
       }
-      HiLog.i(TAG, `requestPermissionDialog isSuccess: ${isSuccess}`);
     }
+    HiLog.i(TAG, `requestPermissionDialog isSuccess: ${isSuccess}`);
     this.permissionCallback(isSuccess);
     this.permissionCallback = null;
   }

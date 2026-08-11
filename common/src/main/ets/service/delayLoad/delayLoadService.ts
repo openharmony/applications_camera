@@ -108,7 +108,6 @@ export class DelayLoadService {
       HiLog.end(TAG, 'isOnCreateExecuted');
     }
     this.isOnCreateExecuted = false;
-
     // onForeground执行逻辑延后到started
     if (this.isOnForegroundExecuted) {
       HiLog.begin(TAG, 'isOnForegroundExecuted');
@@ -118,28 +117,31 @@ export class DelayLoadService {
       HiLog.end(TAG, 'isOnForegroundExecuted');
     }
     this.isOnForegroundExecuted = false;
-
-    if (this.startedTasks.length > 0) {
-      const tasks = this.startedTasks.slice();
-      this.startedTasks = [];
-      tasks.forEach((t: StartedTask) => {
-        setTimeout(() => {
-          HiLog.begin(TAG, `task:${t.name}`);
-          try {
-            t.task();
-          } catch (e) {
-            HiLog.e(TAG, `task:${t.name} failed: ${JSON.stringify(e)}`);
-          }
-          HiLog.end(TAG, `task:${t.name}`);
-        }, t.delayMs);
-      });
+    if (this.startedTasks.length <= 0) {
+      // Lightweight post-start defaults
+      setTimeout(() => {
+        MemoryService.getInstance().updateApplicationStorageSpace();
+      }, 200);
+      this.unInit();
+      return;
     }
-
+    const tasks = this.startedTasks.slice();
+    this.startedTasks = [];
+    tasks.forEach((t: StartedTask) => {
+      setTimeout(() => {
+        HiLog.begin(TAG, `task:${t.name}`);
+        try {
+          t.task();
+        } catch (e) {
+          HiLog.e(TAG, `task:${t.name} failed: ${JSON.stringify(e)}`);
+        }
+        HiLog.end(TAG, `task:${t.name}`);
+      }, t.delayMs);
+    });
     // Lightweight post-start defaults
     setTimeout(() => {
       MemoryService.getInstance().updateApplicationStorageSpace();
     }, 200);
-
     this.unInit();
   }
 }

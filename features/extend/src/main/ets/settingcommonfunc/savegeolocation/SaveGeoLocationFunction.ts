@@ -201,38 +201,42 @@ export class SaveGeoLocationFunction extends BaseFunction {
     }
     HiLog.i(TAG, `requestPermissionOnSetting begin isRequestOnSetting:${data?.isRequestOnSetting}
       fromModul:${data?.scene}.`);
-    if (data?.isRequestOnSetting) {
-      // 依据 dialogShownResults：禁止等策略下系统不弹运行时窗(false)→再 requestPermissionOnSetting；用户取消/拒绝后不跳转权限设置页。
-      const results: PermissionRequestResult = await this.invokeRuntimeLocationPermissionRequest();
-      const isGranted: boolean = results.authResults[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
-      if (isGranted) {
-        this.applyRuntimeLocationPermissionResult(results, data?.scene, data?.isPhotoRequest);
-        HiLog.i(TAG, `requestPermissionOnSetting granted at runtime dialog.`);
-      } else {
-        const runtimeDialogShown: boolean = results.dialogShownResults?.[0] === true;
-        HiLog.i(TAG, `requestPermissionOnSetting runtimeDialogShown: ${runtimeDialogShown}, auth[0]: ${results.authResults[0]}`);
-        if (runtimeDialogShown) {
-          this.applyRuntimeLocationPermissionResult(results, data?.scene, data?.isPhotoRequest);
-        } else {
-          try {
-            let result: abilityAccessCtrl.GrantStatus[] =
-              await abilityAccessCtrl.createAtManager()
-                .requestPermissionOnSetting(ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
-            const isSuccess: boolean = result[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
-            HiLog.i(TAG, `requestPermissionOnSetting from settings page isSuccess: ${isSuccess}`);
-            StoreManager.getInstance().postMessage(Action.sendPermissionState(isSuccess));
-            if (isSuccess) {
-              this.setLocationSwitch(true, data?.scene, data?.isPhotoRequest);
-            } else {
-              StoreManager.getInstance().postMessage(FunctionAction.changeFunctionValue(this.getFunctionId(), false));
-            }
-          } catch (err) {
-            HiLog.e(TAG, `requestPermissionOnSetting catch err code: ${err?.code}`);
-          }
-        }
-      }
+    if (!data?.isRequestOnSetting) {
+      HiLog.i(TAG, `requestPermissionOnSetting end.`);
+      return;
     }
-    HiLog.i(TAG, `requestPermissionOnSetting end.}`);
+    // 依据 dialogShownResults：禁止等策略下系统不弹运行时窗(false)→再 requestPermissionOnSetting；用户取消/拒绝后不跳转权限设置页。
+    const results: PermissionRequestResult = await this.invokeRuntimeLocationPermissionRequest();
+    const isGranted: boolean = results.authResults[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
+    if (isGranted) {
+      this.applyRuntimeLocationPermissionResult(results, data?.scene, data?.isPhotoRequest);
+      HiLog.i(TAG, `requestPermissionOnSetting granted at runtime dialog.`);
+      HiLog.i(TAG, `requestPermissionOnSetting end.`);
+      return;
+    }
+    const runtimeDialogShown: boolean = results.dialogShownResults?.[0] === true;
+    HiLog.i(TAG, `requestPermissionOnSetting runtimeDialogShown: ${runtimeDialogShown}, auth[0]: ${results.authResults[0]}`);
+    if (runtimeDialogShown) {
+      this.applyRuntimeLocationPermissionResult(results, data?.scene, data?.isPhotoRequest);
+      HiLog.i(TAG, `requestPermissionOnSetting end.`);
+      return;
+    }
+    try {
+      let result: abilityAccessCtrl.GrantStatus[] =
+        await abilityAccessCtrl.createAtManager()
+          .requestPermissionOnSetting(ContextManager.getInstance().getContextWithToken(), PERMISSION_LIST);
+      const isSuccess: boolean = result[0] === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED;
+      HiLog.i(TAG, `requestPermissionOnSetting from settings page isSuccess: ${isSuccess}`);
+      StoreManager.getInstance().postMessage(Action.sendPermissionState(isSuccess));
+      if (isSuccess) {
+        this.setLocationSwitch(true, data?.scene, data?.isPhotoRequest);
+      } else {
+        StoreManager.getInstance().postMessage(FunctionAction.changeFunctionValue(this.getFunctionId(), false));
+      }
+    } catch (err) {
+      HiLog.e(TAG, `requestPermissionOnSetting catch err code: ${err?.code}`);
+    }
+    HiLog.i(TAG, `requestPermissionOnSetting end.`);
   }
 
   // 设置地理位置开关
