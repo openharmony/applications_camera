@@ -79,7 +79,7 @@ export default class PickerSettingAbility extends UIAbility {
     try {
       windowStage.setDefaultDensityEnabled(true);
     } catch (e) {
-      HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`)
+      HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`);
     }
     windowStage.getMainWindow().then((win) => {
       try {

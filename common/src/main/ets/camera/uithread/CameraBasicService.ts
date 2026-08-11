@@ -223,7 +223,7 @@ export class CameraBasicService {
       zoomValue: getStates().get<number>('zoomReducer', 'zoomRatio'),
     }, ContextManager.getInstance().getContextWithToken(), pickerInfo);
     // isDeferred: only open camera input here; first full session/commit runs in startPreview once XComponent
-    // surface exists. Requires a single ACTION_INIT (see phone index skipIntro dedupe vs MainAbility).
+    // render exists. Requires a single ACTION_INIT (see phone index skipIntro dedupe vs MainAbility).
     this.mCurrentFlowingActon = undefined;
     HiLog.i(TAG, 'initCamera end.');
   }
@@ -241,7 +241,7 @@ export class CameraBasicService {
     return camera.CameraType.CAMERA_TYPE_DEFAULT; // 逻辑镜头
   }
 
-  /** Cold / deferred XComponent: avoid START_UP + commitSession until preview surface exists (reduces 7400201 retries). */
+  /** Cold / deferred XComponent: avoid START_UP + commitSession until preview render exists (reduces 7400201 retries). */
   private shouldDeferSessionUntilSurfaceReady(): boolean {
     if (XComponentService.getInstance().getSurface()) {
       return false;
@@ -268,12 +268,10 @@ export class CameraBasicService {
     }
     HiLog.i(TAG, 'warmStartup begin.');
     this.lastSurfaceIsNull = false;
-    //zy-20251209-息屏进入后，调用到这里，会改变按钮的enable，让按钮不可点击
-    // this.disableUi();
     const zoomRatio = ZoomOperation.getInstance().getStartupZoom(this.mCurrentMode, this.mCameraPosition);
     this.mCurrentFlowingActon = CameraActionType.WARM_START;
     if (this.shouldDeferSessionUntilSurfaceReady()) {
-      HiLog.i(TAG, 'warmStartup: defer startupCamera until XComponent surface is ready.');
+      HiLog.i(TAG, 'warmStartup: defer startupCamera until XComponent render is ready.');
       this.mCurrentFlowingActon = undefined;
       this.enableUi();
       HiLog.i(TAG, 'warmStartup end (deferred).');
@@ -305,7 +303,7 @@ export class CameraBasicService {
     this.mCurrentFlowingActon = CameraActionType.WARM_START_WITH_MODE_AND_POS;
     const zoomRatio = ZoomOperation.getInstance().getStartupZoom(this.mCurrentMode, this.mCameraPosition);
     if (this.shouldDeferSessionUntilSurfaceReady()) {
-      HiLog.i(TAG, 'warmStartWithModeAPos: defer startupCamera until XComponent surface is ready.');
+      HiLog.i(TAG, 'warmStartWithModeAPos: defer startupCamera until XComponent render is ready.');
       this.mCurrentFlowingActon = undefined;
       this.enableUi();
       HiLog.i(TAG, 'warmStartWithModeAPos end (deferred).');
@@ -323,17 +321,8 @@ export class CameraBasicService {
     this.mStoreManager.postMessage(Action.onPreviewFrameStart(false));
     this.mCameraProxy.checkThreadSyncTaskAndRecovery();
     ThumbnailService.getInstance().clearOutputTimerAndClearData();
-    // const sessionInfo = await this.mCameraProxy.startupCamera(await this.getSessionMessage({
-    //   zoomRatio: zoomRatio
-    // }));
-    // execDispatch(ZoomAction.updateStateZoomRatio(zoomRatio));
-    // if (!sessionInfo) {
-    //   HiLog.i(TAG, `startupCamera failed, state reset to UNINITIALIZED.`);
-    //   execDispatch(CameraAction.reset());
-    // } else {
-    //   HiLog.i(TAG, `startupCamera success`);
-    // }
-    // 增加循环重试防止黑屏；无 surface 时不退避，交由 XComponent / startPreview 路径重试
+    // Add loop retry to prevent black screen; when no render occurs,
+    // do not back off — delegate retry to the XComponent / startPreview path
     let retryCount = 0;
     let lastSessionMessage: SessionMessage | undefined = undefined;
     while (retryCount < MAX_RETRY_COUNT) {
@@ -348,7 +337,7 @@ export class CameraBasicService {
           HiLog.i(TAG, `startupCamera failed, state reset to UNINITIALIZED.`);
           execDispatch(CameraAction.reset());
           if (!this.hasPreviewSurfaceInMessage(lastSessionMessage)) {
-            HiLog.i(TAG, 'startupCamera: no preview surface; end retries (deferred surface will retry).');
+            HiLog.i(TAG, 'startupCamera: no preview render; end retries (deferred render will retry).');
             break;
           }
         }
@@ -461,7 +450,7 @@ export class CameraBasicService {
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.COLD_START));
     // Redux CHANGE_MODE sets uiEnable false before worker runs; cold start can skip changeMode worker
-    // while INITIALIZED / deferred surface — re-enable toolbar/shutter after preview is up.
+    // while INITIALIZED / deferred render — re-enable toolbar/shutter after preview is up.
     this.enableUi();
     HiLog.i(TAG, 'startPreview end.');
   }
@@ -559,7 +548,6 @@ export class CameraBasicService {
     isToDefaultWarmStart: boolean
   }): Promise<void> {
     this.lastSurfaceIsNull = false;
-    // 如果是恢复默认热启动触发的，则不走后续配流流程
     this.mCurrentMode = data.mode;
     if (AppStorage.Get('restoreFlag')) {
       HiLog.w(TAG, 'restoreFlag');
@@ -582,7 +570,7 @@ export class CameraBasicService {
       return;
     }
     if (this.shouldDeferSessionUntilSurfaceReady()) {
-      HiLog.i(TAG, 'changeMode: skip worker until preview surface (cold deferred).');
+      HiLog.i(TAG, 'changeMode: skip worker until preview render (cold deferred).');
       CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
       this.enableUi();
       return;
@@ -606,7 +594,6 @@ export class CameraBasicService {
     await this.mCameraProxy.changeMode(sessionMessage, RestartPreviewType.CHANGE_MODE);
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.CHANGE_MODE, zoomRatio));
-
     const isRestoreFlag = AppStorage.get('restoreFlag');
     // 设置页恢复默认值触发的changeMode流程结束时，恢复初始值
     if (isRestoreFlag) {
@@ -1092,10 +1079,6 @@ export class CameraBasicService {
       // @ts-ignore
       metadataObjectTypeArr.push(camera.MetadataObjectType.HUMAN_HEAD);
     }
-    // if (this.mCurrentMode === ModeType.PHOTO &&
-    //   this.mCameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK) {
-    //   metadataObjectTypeArr.push(7);
-    // }
     return metadataObjectTypeArr.length > 0 ? metadataObjectTypeArr : undefined;
   }
 

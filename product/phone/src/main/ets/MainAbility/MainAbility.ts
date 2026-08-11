@@ -602,8 +602,8 @@ export default class MainAbility extends UIAbility {
       const windowService: WindowService = WindowService.getInstance();
       windowService.reSetWin(this.mMainWindow);
     }
-    // Keep cameraReducer.isColdStart until preview surface is ready.
-    // Dispatching ABILITY_ON_FOREGROUND too early can break deferred-surface startup and lead to 7400201 / black screen.
+    // Keep cameraReducer.isColdStart until preview render is ready.
+    // Dispatching ABILITY_ON_FOREGROUND too early can break deferred-render startup and lead to 7400201 / black screen.
     AppStorage.setOrCreate<boolean>('isBackground', false);
     this.foreGroundToWarmStart();
 
@@ -631,7 +631,7 @@ export default class MainAbility extends UIAbility {
       this.mAction.updateModeBar();
     }
     AppStorage.setOrCreate<boolean>('isMainForeground', true);
-    // Dispatch ABILITY_ON_FOREGROUND after warm start is initiated to avoid breaking deferred-surface flow.
+    // Dispatch ABILITY_ON_FOREGROUND after warm start is initiated to avoid breaking deferred-render flow.
     this.mAction.foreground();
     AppStorage.setOrCreate('settingAnimationDoing', false);
     if (getStates().get<boolean>('collapsReducer', 'isShowSemiCollapsed') || AppStorage.get('isPSDCollaps')) {
@@ -641,7 +641,7 @@ export default class MainAbility extends UIAbility {
     this.getHighContrastTextState();
     this.ultraSnapshotUnlock();
     WindowService.getInstance().setFullScreen();
-    // Avoid blocking foreground path with synchronous accessibility query.
+    // Avoid blocking foreground path with synchronous assistive query.
     setTimeout(() => {
       let isOpenTouchGuide: boolean = accessibility.isOpenTouchGuideSync(); // 无障碍 浏览模式
       GlobalContext.get().setOpenTouchGuide(isOpenTouchGuide);

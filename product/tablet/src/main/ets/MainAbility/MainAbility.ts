@@ -527,7 +527,7 @@ export default class MainAbility extends UIAbility {
     try {
       windowStage.setDefaultDensityEnabled(true);
     } catch (e) {
-      HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`)
+      HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`);
     }
     GlobalContext.get().setWindowStage(windowStage);
     if (GlobalContext.get().getT('isSecurityCamera') || this.isSelfieStick) {
