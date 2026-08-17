@@ -15,7 +15,7 @@
 
 import camera from '@ohos.multimedia.camera';
 import lazy { Action } from '../../redux/actions/Action';
-import lazy { CameraAction, CameraStartType, closeInfo } from './CameraAction';
+import lazy { CameraAction, CameraRunningState, CameraStartType, closeInfo } from './CameraAction';
 import lazy { HiLog } from '../../utils/HiLog';
 import lazy { CameraProxy } from './CameraProxy';
 import lazy { EventBusManager } from '../../worker/eventbus/EventBusManager';
@@ -77,7 +77,6 @@ import lazy { DisplayService } from '../../service/UIAdaptive/DisplayService';
 import lazy { CommonConstants } from '../../statistics/CommonConstants';
 import lazy { WindowService } from '../../service/window/WindowService';
 import lazy { WindowActionType } from '../../redux/actions/WindowActionType';
-import lazy { RecordController } from '../../function/recordcontrol/RecordController';
 import { PhotoFormatMode } from '../../function/enumbase/PhotoFormatMode';
 import { CollaborateControlService } from '../../service/collaborateControl/CollaborateControlService';
 
@@ -204,30 +203,27 @@ export class CameraBasicService {
     this.mCameraPosition = data.cameraPosition;
     this.mCurrentMode = data.mode;
     this.mCurrentFlowingActon = CameraActionType.INIT;
-    if (data.isDeferred) {
-      let specialZoomRatio = ZoomOperation.getDefaultZoomRatio(this.mCurrentMode, this.mCameraPosition);
-      await this.startupCamera(specialZoomRatio);
-    } else {
-      let pickerInfo: PickerInfo | null = null;
-      try {
-        pickerInfo = GlobalContext.get().getObject('pickerInfo') as PickerInfo;
-        let parameters: object = GlobalContext.get().getCameraAbilityWant().parameters as object;
-        let callingTokenID: number = parameters['ohos.aafwk.param.callerToken'] as number;
-        pickerInfo.callingTokenID = callingTokenID;
-        HiLog.d(TAG, `initCamera ${pickerInfo.isPicker}, ${pickerInfo.callingTokenID}`);
-      } catch (err) {
-        HiLog.e(TAG, `get pickerInfo fail. ${err?.code}`);
-      }
-      const outputType: OutputType = OutputSwitcher.getInstance().getOutput();
-      const quickZoomArray: number[] =
-        CameraAppCapability.getInstance().getQuickZoomArray(data.cameraPosition, data.mode, outputType);
-      await this.mCameraProxy.initCamera({
-        cameraPosition: data.cameraPosition,
-        mode: data.mode,
-        cameraType: this.getCameraType(outputType, quickZoomArray, getStates().get<number>('zoomReducer', 'zoomRatio')),
-        zoomValue: getStates().get<number>('zoomReducer', 'zoomRatio'),
-      }, ContextManager.getInstance().getContextWithToken(), pickerInfo);
+    let pickerInfo: PickerInfo | null = null;
+    try {
+      pickerInfo = GlobalContext.get().getObject('pickerInfo') as PickerInfo;
+      let parameters: object = GlobalContext.get().getCameraAbilityWant().parameters as object;
+      let callingTokenID: number = parameters['ohos.aafwk.param.callerToken'] as number;
+      pickerInfo.callingTokenID = callingTokenID;
+      HiLog.d(TAG, `initCamera ${pickerInfo.isPicker}, ${pickerInfo.callingTokenID}`);
+    } catch (err) {
+      HiLog.e(TAG, `get pickerInfo fail. ${err?.code}`);
     }
+    const outputType: OutputType = OutputSwitcher.getInstance().getOutput();
+    const quickZoomArray: number[] =
+      CameraAppCapability.getInstance().getQuickZoomArray(data.cameraPosition, data.mode, outputType);
+    await this.mCameraProxy.initCamera({
+      cameraPosition: data.cameraPosition,
+      mode: data.mode,
+      cameraType: this.getCameraType(outputType, quickZoomArray, getStates().get<number>('zoomReducer', 'zoomRatio')),
+      zoomValue: getStates().get<number>('zoomReducer', 'zoomRatio'),
+    }, ContextManager.getInstance().getContextWithToken(), pickerInfo);
+    // isDeferred: only open camera input here; first full session/commit runs in startPreview once XComponent
+    // render exists. Requires a single ACTION_INIT (see phone index skipIntro dedupe vs MainAbility).
     this.mCurrentFlowingActon = undefined;
     HiLog.i(TAG, 'initCamera end.');
   }
@@ -245,6 +241,26 @@ export class CameraBasicService {
     return camera.CameraType.CAMERA_TYPE_DEFAULT; // 逻辑镜头
   }
 
+  /** Cold / deferred XComponent: avoid START_UP + commitSession until preview render exists (reduces 7400201 retries). */
+  private shouldDeferSessionUntilSurfaceReady(): boolean {
+    if (XComponentService.getInstance().getSurface()) {
+      return false;
+    }
+    if (!getStates().get<boolean>('cameraReducer', 'isColdStart')) {
+      return false;
+    }
+    const runningState = getStates().get<CameraRunningState>('cameraReducer', 'cameraRunningState');
+    return runningState !== CameraRunningState.STARTED;
+  }
+
+  private hasPreviewSurfaceInMessage(message: SessionMessage | undefined): boolean {
+    if (!message?.previewOutputMessage) {
+      return false;
+    }
+    const preview = message.previewOutputMessage;
+    return !!(preview.previewSurfaceId ?? preview.xComponentSurfaceId);
+  }
+
   private async warmStartup(): Promise<void> {
     // 如果停留在picker拍完照的确认界面，则需要拦截热启动
     if (getStates().get<boolean>('uiReducer', 'showPicker')) {
@@ -252,10 +268,15 @@ export class CameraBasicService {
     }
     HiLog.i(TAG, 'warmStartup begin.');
     this.lastSurfaceIsNull = false;
-    //zy-20251209-息屏进入后，调用到这里，会改变按钮的enable，让按钮不可点击
-    // this.disableUi();
     const zoomRatio = ZoomOperation.getInstance().getStartupZoom(this.mCurrentMode, this.mCameraPosition);
     this.mCurrentFlowingActon = CameraActionType.WARM_START;
+    if (this.shouldDeferSessionUntilSurfaceReady()) {
+      HiLog.i(TAG, 'warmStartup: defer startupCamera until XComponent render is ready.');
+      this.mCurrentFlowingActon = undefined;
+      this.enableUi();
+      HiLog.i(TAG, 'warmStartup end (deferred).');
+      return;
+    }
     await this.startupCamera(zoomRatio);
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.WARM_START, zoomRatio));
@@ -281,6 +302,13 @@ export class CameraBasicService {
     CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
     this.mCurrentFlowingActon = CameraActionType.WARM_START_WITH_MODE_AND_POS;
     const zoomRatio = ZoomOperation.getInstance().getStartupZoom(this.mCurrentMode, this.mCameraPosition);
+    if (this.shouldDeferSessionUntilSurfaceReady()) {
+      HiLog.i(TAG, 'warmStartWithModeAPos: defer startupCamera until XComponent render is ready.');
+      this.mCurrentFlowingActon = undefined;
+      this.enableUi();
+      HiLog.i(TAG, 'warmStartWithModeAPos end (deferred).');
+      return;
+    }
     await this.startupCamera(zoomRatio);
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.WARM_START_WITH_MODE_AND_POS, zoomRatio));
@@ -293,36 +321,36 @@ export class CameraBasicService {
     this.mStoreManager.postMessage(Action.onPreviewFrameStart(false));
     this.mCameraProxy.checkThreadSyncTaskAndRecovery();
     ThumbnailService.getInstance().clearOutputTimerAndClearData();
-    // const sessionInfo = await this.mCameraProxy.startupCamera(await this.getSessionMessage({
-    //   zoomRatio: zoomRatio
-    // }));
-    // execDispatch(ZoomAction.updateStateZoomRatio(zoomRatio));
-    // if (!sessionInfo) {
-    //   HiLog.i(TAG, `startupCamera failed, state reset to UNINITIALIZED.`);
-    //   execDispatch(CameraAction.reset());
-    // } else {
-    //   HiLog.i(TAG, `startupCamera success`);
-    // }
-    // 增加循环重试防止黑屏
+    // Add loop retry to prevent black screen; when no render occurs,
+    // do not back off — delegate retry to the XComponent / startPreview path
     let retryCount = 0;
+    let lastSessionMessage: SessionMessage | undefined = undefined;
     while (retryCount < MAX_RETRY_COUNT) {
       try {
-        const sessionMessage = await this.getSessionMessage({ zoomRatio });
-        const sessionInfo = await this.mCameraProxy.startupCamera(sessionMessage);
+        lastSessionMessage = await this.getSessionMessage({ zoomRatio });
+        const sessionInfo = await this.mCameraProxy.startupCamera(lastSessionMessage);
         execDispatch(ZoomAction.updateStateZoomRatio(zoomRatio));
         if (sessionInfo) {
           HiLog.i(TAG, `startupCamera succeeded at ${retryCount + 1} attempt`);
           break;
-        } else {
-          HiLog.i(TAG, `startupCamera failed, state reset to UNINITIALIZED.`);
-          execDispatch(CameraAction.reset());
+        }
+        HiLog.i(TAG, `startupCamera failed, state reset to UNINITIALIZED.`);
+        execDispatch(CameraAction.reset());
+        if (!this.hasPreviewSurfaceInMessage(lastSessionMessage)) {
+          HiLog.i(TAG, 'startupCamera: no preview render; end retries (deferred render will retry).');
+          break;
         }
       } catch (error) {
         HiLog.e(TAG, `startupCamera errored at attempt ${retryCount + 1}: ${error.code}`);
       }
-      // 增加指数退避策略
-      await new Promise(resolve => setTimeout(resolve, 100 * Math.pow(2, retryCount)));
       retryCount++;
+      if (retryCount >= MAX_RETRY_COUNT) {
+        break;
+      }
+      const backoffMs = this.hasPreviewSurfaceInMessage(lastSessionMessage) ? 100 * Math.pow(2, retryCount - 1) : 0;
+      if (backoffMs > 0) {
+        await new Promise(resolve => setTimeout(resolve, backoffMs));
+      }
     }
   }
 
@@ -420,6 +448,9 @@ export class CameraBasicService {
     this.lastSurfaceIsNull = false;
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.COLD_START));
+    // Redux CHANGE_MODE sets uiEnable false before worker runs; cold start can skip changeMode worker
+    // while INITIALIZED / deferred render — re-enable toolbar/shutter after preview is up.
+    this.enableUi();
     HiLog.i(TAG, 'startPreview end.');
   }
 
@@ -516,10 +547,31 @@ export class CameraBasicService {
     isToDefaultWarmStart: boolean
   }): Promise<void> {
     this.lastSurfaceIsNull = false;
-    // 如果是恢复默认热启动触发的，则不走后续配流流程
     this.mCurrentMode = data.mode;
-    if (data.isToDefaultWarmStart || AppStorage.Get('restoreFlag')) {
-      HiLog.w(TAG, 'toDefaultWarmStart or restoreFlag');
+    if (AppStorage.Get('restoreFlag')) {
+      HiLog.w(TAG, 'restoreFlag');
+      return;
+    }
+    if (data.isToDefaultWarmStart) {
+      HiLog.w(TAG, 'toDefaultWarmStart');
+      // CHANGE_MODE reducer already cleared uiEnable; no worker path to re-enable.
+      this.enableUi();
+      return;
+    }
+    // After ACTION_INIT only, worker still holds CameraInput with isCommit false. CHANGE_MODE uses
+    // restartPreview with isCanReuseCameraInput false → release + createCameraInput again → 7400109
+    // (see hilog cold start: redundant CAMERA_ACTION_CHANGE_MODE right after INIT).
+    const runningStateForMode = getStates().get<CameraRunningState>('cameraReducer', 'cameraRunningState');
+    if (runningStateForMode === CameraRunningState.INITIALIZED) {
+      HiLog.i(TAG, 'changeMode: skip worker while INITIALIZED (wait for startPreview / START_UP).');
+      CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
+      this.enableUi();
+      return;
+    }
+    if (this.shouldDeferSessionUntilSurfaceReady()) {
+      HiLog.i(TAG, 'changeMode: skip worker until preview render (cold deferred).');
+      CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
+      this.enableUi();
       return;
     }
     this.disableUi();
@@ -527,9 +579,12 @@ export class CameraBasicService {
       CameraBasicOperation.saveReconfigFlowData(CameraActionType.CHANGE_MODE, data);
       return;
     }
+    await this.executeChangeMode();
+  }
+
+  private async executeChangeMode(): Promise<void> {
     HiLog.i(TAG, 'changeMode begin.');
     this.mStoreManager.postMessage(Action.onPreviewFrameStart(false));
-    this.mCurrentMode = data.mode;
     CameraAppCapability.getInstance().queryCapability(this.mCameraPosition, this.mCurrentMode);
     const zoomRatio = ZoomOperation.getInstance().getStartupZoom(this.mCurrentMode, this.mCameraPosition);
     BlurAnimateUtil.setValidFrameFlag(false);
@@ -541,7 +596,6 @@ export class CameraBasicService {
     await this.mCameraProxy.changeMode(sessionMessage, RestartPreviewType.CHANGE_MODE);
     this.mCurrentFlowingActon = undefined;
     this.mStoreManager.postMessage(CameraAction.started(CameraStartType.CHANGE_MODE, zoomRatio));
-
     const isRestoreFlag = AppStorage.get('restoreFlag');
     // 设置页恢复默认值触发的changeMode流程结束时，恢复初始值
     if (isRestoreFlag) {
@@ -1009,6 +1063,9 @@ export class CameraBasicService {
   }
 
   private getMetadataObjectTypeArr(): camera.MetadataObjectType[] {
+    if (this.mCurrentMode === ModeType.PHOTO) {
+      return undefined;
+    }
     let metadataObjectTypeArr: camera.MetadataObjectType[] = [];
     if (this.mCurrentMode !== ModeType.NONE &&
       !(OutputOperation.isPanVideoOutput(this.mCurrentMode) &&
@@ -1023,10 +1080,6 @@ export class CameraBasicService {
       metadataObjectTypeArr.push(camera.MetadataObjectType.HUMAN_BODY);
       // @ts-ignore
       metadataObjectTypeArr.push(camera.MetadataObjectType.HUMAN_HEAD);
-    }
-    if (this.mCurrentMode === ModeType.PHOTO &&
-      this.mCameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK) {
-      metadataObjectTypeArr.push(7);
     }
     return metadataObjectTypeArr.length > 0 ? metadataObjectTypeArr : undefined;
   }
@@ -1100,7 +1153,6 @@ export class CameraBasicService {
     }
     HiLog.i(TAG, `getVideoProfile end, VideoProfile: ${JSON.stringify(videoProfile)}.`);
 
-    const isMovie: boolean = RecordController.getInstance().isMovieFile();
     const config: media.AVRecorderConfig = isTempMessage ?
       RecorderConfigOperation.getDefaultConfig(videoProfile, frameRate) :
       RecorderConfigOperation.createVideoConfig(videoProfile, frameRate, isHdr);
@@ -1115,7 +1167,6 @@ export class CameraBasicService {
       isSupportVideoEdit:
       CameraAppCapability.getInstance().getIsSupportRecordingFlowing(),
       isSupportVideoWatermark: false,
-      isMovie,
       isFlowingVideo: false,
       preferencesMirror: <boolean> PreferencesService.getInstance()
         .getFunctionValue(PersistType.FOREVER, FunctionId.MIRROR, true),
@@ -1317,6 +1368,12 @@ export class CameraBasicService {
       return {
         isNeedSetPreviewRotation: true,
         previewRotation: camera.ImageRotation.ROTATION_0,
+        isDisplayLocked: false
+      };
+    } else if (DeviceInfo.isTablet()) {
+      return {
+        isNeedSetPreviewRotation: true,
+        previewRotation: camera.ImageRotation.ROTATION_270,
         isDisplayLocked: false
       };
     }

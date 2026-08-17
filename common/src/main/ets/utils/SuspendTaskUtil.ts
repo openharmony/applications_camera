@@ -19,7 +19,6 @@ import lazy { CameraAction } from '../camera/uithread/CameraAction';
 import lazy { Dispatch, getDispatch } from '../redux';
 import lazy { HiLog } from './HiLog';
 import lazy { DeviceInfo } from '../component/deviceinfo/DeviceInfo';
-import lazy { CommonConstants } from '../statistics/CommonConstants';
 
 const TAG: string = 'SuspendTaskUtil';
 
@@ -45,8 +44,7 @@ export class SuspendTaskUtil {
   private mAction: SuspendTaskDispatcher = new SuspendTaskDispatcher();
   private isInBackground: boolean = false;
   private savePhotoTask: number = -1;
-  private offlineCaptureArray: Set<number> = new Set(); // 待返回80分图 captureIds
-  private burstOfflineCount: number = 0; // 连拍计数
+
 
   public static getInstance(): SuspendTaskUtil {
     if (!this.mSuspendTaskInstance) {
@@ -66,24 +64,14 @@ export class SuspendTaskUtil {
       this.requestId = delayInfo.requestId;
       delayTime = delayInfo.actualDelayTime;
       HiLog.i(TAG, 'suspend delay task: ' + this.requestId + ' start, delay time: ' + delayTime);
-      if (reason === CommonConstants.SUSPEND_DELAY_OFFLINE_REASON) {
-        HiLog.i(TAG, 'suspend delay task offline');
-        this.savePhotoTask = setTimeout(() => {
-          HiLog.w(TAG, 'save photo timeout, release offlineOutput');
-          this.resetOfflineCaptureArray();
-          CameraProxy.getInstance().resetWorkerPhotoCount();
-          this.stopDelayTask();
-        }, CommonConstants.OFFLINE_TIME_OUT_DELAY);
-      } else {
-        this.savePhotoTask = setTimeout(() => {
-          HiLog.w(TAG, 'save photo timeout, close camera');
-          SuspendTaskUtil.getInstance().resetCount();
-          CameraProxy.getInstance().resetWorkerPhotoCount();
-          this.mAction.close();
-          this.stopDelayTask();
-          this.setAlreadyCloseCamera(true);
-        }, this.SUSPEND_TASK_DELAY);
-      }
+      this.savePhotoTask = setTimeout(() => {
+        HiLog.w(TAG, 'save photo timeout, close camera');
+        SuspendTaskUtil.getInstance().resetCount();
+        CameraProxy.getInstance().resetWorkerPhotoCount();
+        this.mAction.close();
+        this.stopDelayTask();
+        this.setAlreadyCloseCamera(true);
+      }, this.SUSPEND_TASK_DELAY);
     } catch (e) {
       HiLog.e(TAG, `suspend delay task err. ${JSON.stringify(e)}`);
     }
@@ -119,65 +107,8 @@ export class SuspendTaskUtil {
     }
   }
 
-  /**
-   * 进入离线拍照或者超时释放拍照流时 更新captureIdList;连拍场景更新burstOfflineCount
-   *
-   * @param captureIdList captureIdList
-   * @param isEnterOffline isEnterOffline
-   * @param burstOfflineCount burstOfflineCount
-   */
-  public updateOfflineCaptureArray(captureIdList: number[], isEnterOffline: boolean, burstOfflineCount: number): void {
-    this.burstOfflineCount = burstOfflineCount;
-    if (captureIdList?.length <= 0) {
-      HiLog.w(TAG, `updateOfflineCaptureArray captureIdList empty`);
-      return;
-    }
-    if (isEnterOffline) {
-      captureIdList.forEach((item) => {
-        this.offlineCaptureArray.add(item);
-      });
-    } else {
-      captureIdList.forEach((item) => {
-        this.offlineCaptureArray.delete(item);
-      });
-    }
-    HiLog.i(TAG,
-      `updateOfflineCaptureArray: ${this.offlineCaptureArray.size}, ${isEnterOffline}, ${burstOfflineCount}`);
-  }
 
-  /**
-   * 80分图保存结束
-   *
-   * @param captureId captureId
-   * @param isBurstCapture isBurstCapture
-   */
-  public onDeferSavePhotoEnd(captureId: number, isBurstCapture: boolean): void {
-    this.offlineCaptureArray.delete(captureId);
-    if (this.burstOfflineCount > 0) {
-      --this.burstOfflineCount;
-    }
-    if (isBurstCapture) {
-      this.burstOfflineCount = 0;
-    }
-    HiLog.i(TAG,
-      `onDeferSavePhotoEnd,captureId: ${captureId}, isInBackground: ${this.isInBackground}, ${this.offlineCaptureArray.size}, ${this.burstOfflineCount}`);
-    // 80分图全部保存完成，结束短时任务
-    if (this.isInBackground && this.offlineCaptureArray.size === 0 && this.burstOfflineCount === 0) {
-      HiLog.i(TAG, 'all photo received and saved, stop suspend task');
-      this.clearSavePhotoTask();
-      this.stopDelayTask();
-    }
-  }
 
-  public resetBurstOfflineCount(): void {
-    this.burstOfflineCount = 0;
-  }
-
-  // 是否在离线拍照流程
-  public isEnterOfflinePhoto(): boolean {
-    HiLog.i(TAG, `isEnterOfflinePhoto:${this.offlineCaptureArray.size}, ${this.burstOfflineCount}`);
-    return this.offlineCaptureArray.size > 0 || this.burstOfflineCount > 0;
-  }
 
   public onRecordStopped(): void {
     HiLog.i(TAG, `onRecordStopped isbg: ${this.isInBackground} alreadyCloseCamera: ${this.alreadyCloseCamera}`);
@@ -194,11 +125,8 @@ export class SuspendTaskUtil {
     return this.thumbnailWithoutPhotoCount;
   }
 
-  public resetOfflineCaptureArray(): void {
-    HiLog.i(TAG, 'reset offlineCaptureArray');
-    this.offlineCaptureArray.clear();
-    this.burstOfflineCount = 0;
-  }
+
+
 
   public resetCount(): void {
     HiLog.i(TAG, 'reset thumbnailWithoutPhotoCount');

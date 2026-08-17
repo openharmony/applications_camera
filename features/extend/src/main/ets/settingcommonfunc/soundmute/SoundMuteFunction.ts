@@ -54,7 +54,7 @@ export class SoundMuteFunction extends BaseFunction {
     let uiElements = new Map();
     uiElements.set(UiElement.DEFAULT, new UiElement().setTitle($r('app.string.sound_mute'))
       .setIcon($r('app.media.ic_camera_sound_mute'))
-      .setDesc($r('app.string.menu_remark_mute_disable'))
+      // .setDesc($r('app.string.menu_remark_mute_disable'))
       .setAccessibilityTitle($r('app.string.sound_mute')));
     return uiElements;
   }

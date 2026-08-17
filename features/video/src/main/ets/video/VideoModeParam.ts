@@ -32,7 +32,7 @@ export class VideoModeParam {
     [FunctionId.SOUND_MUTE, [RenderLocation.SETTING_MENU_COMMON]],
     [FunctionId.ASPECT_RATIO, [RenderLocation.SETTING_MENU_PHOTO]],
     [FunctionId.VIDEO_RESOLUTION, [RenderLocation.TREASURE_BOX, RenderLocation.SETTING_MENU_VIDEO, RenderLocation.TAB_BAR_LIST]],
-    [FunctionId.FRAME_RATE, [RenderLocation.TREASURE_BOX, RenderLocation.SETTING_MENU_VIDEO, RenderLocation.TAB_BAR_LIST]],
+    [FunctionId.FRAME_RATE, [RenderLocation.TREASURE_BOX, RenderLocation.SETTING_MENU_VIDEO]],//产品要求：屏蔽百宝箱内“录像帧率”入口（仅隐藏 UI，不影响底层能力与编码逻辑）
     [FunctionId.EFFICIENT_VIDEO, [RenderLocation.SETTING_MENU_VIDEO]],
     [FunctionId.SETTING, [RenderLocation.TREASURE_BOX]],
     [FunctionId.DIRECTION, [RenderLocation.NONE]],

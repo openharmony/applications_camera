@@ -255,7 +255,6 @@
         ],
         "supportWindowMode": [
           "fullscreen",
-          'split',
           'floating'
         ],
         "preferMultiWindowOrientation": "portrait"

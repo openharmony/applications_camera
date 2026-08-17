@@ -14,6 +14,7 @@
  */
 
 import deviceInfo from '@ohos.deviceInfo';
+import { HiLog } from '../../utils/HiLog';
 
 const TAG = 'DeviceInfo';
 
@@ -102,10 +103,14 @@ export class DeviceInfo {
   }
 
   static isRk3568(): boolean {
-    return DeviceInfo.getChipType() == 'rk3568';
+    return DeviceInfo.getChipType() === 'rk3568';
   }
 
   static isUis7885() : boolean {
-    return DeviceInfo.getChipType() == 'uis7885';
+    return DeviceInfo.getChipType() === 'uis7885';
+  }
+
+  static isDayu300() : boolean {
+    return DeviceInfo.getChipType() === 'dayu300';
   }
 }

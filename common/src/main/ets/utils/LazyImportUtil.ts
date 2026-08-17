@@ -44,7 +44,7 @@ import configPolicy from '@ohos.configPolicy';
 import fs from '@ohos.file.fs';
 import fileIO from '@ohos.fileio';
 import dataObserver from './dataObserver';
-import MovieFileOutputWrap from '../camera/childthread/modules/video/MovieFileOutputWrap';
+
 import audio from '@ohos.multimedia.audio';
 import lottie, { AnimationItem } from '@ohos/lottie';
 // @ts-ignore
@@ -111,7 +111,6 @@ export { fileIO };
 
 export { dataObserver };
 
-export { MovieFileOutputWrap };
 
 export { audio };
 

@@ -29,8 +29,14 @@ export class OverTimeFuncSv {
     const preferencesService: PreferencesService = PreferencesService.getInstance();
     const isOverDefaultTime = preferencesService.isExpire(EXPIRE_MINUTE_TIME_15, FLUSH_TIMESTAMP);
     if (isOverDefaultTime) {
-      mFeatureManger.getFunction(FunctionId.EXPOSURE).resetValue();
-      HiLog.i(TAG, 'over 15 min into foreground, reset func default val.');
+      const exposureFunc = mFeatureManger.getFunction(FunctionId.EXPOSURE) as unknown as { resetValue?: () => void } | undefined;
+      if (exposureFunc && typeof exposureFunc.resetValue === 'function') {
+        exposureFunc.resetValue();
+        HiLog.i(TAG, 'over 15 min into foreground, reset func default val.');
+      } else {
+        // Feature functions may not be ready before camera STARTED; avoid crash.
+        HiLog.w(TAG, 'over 15 min but exposure function not ready, skip reset.');
+      }
     }
   }
 }

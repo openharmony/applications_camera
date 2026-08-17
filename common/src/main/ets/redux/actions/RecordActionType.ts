@@ -31,7 +31,6 @@ export class RecordActionType {
   public static readonly RELEASE = PREFIX + 'RELEASE'; // 预留
   public static readonly RELEASED = PREFIX + 'RELEASED'; // 预留
   public static readonly ERROR = PREFIX + 'ERROR';
-  public static readonly VIDEO_ON_SAVE = PREFIX + 'VIDEO_ON_SAVE';
   public static readonly RESET_PRE_RECORD_STATE = PREFIX + 'RESET_PRE_RECORD_STATE';
   public static readonly EMIT_VIDEO_AUTO_FRAME_RATE = PREFIX + 'EMIT_VIDEO_AUTO_FRAME_RATE';
   public static readonly RECORD_PAUSED = PREFIX + 'RECORD_PAUSED';

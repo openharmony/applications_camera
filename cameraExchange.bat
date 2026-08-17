@@ -18,8 +18,15 @@ hdc shell mount -o remount,rw /
 
 hdc shell rm system/app/com.ohos.camera/Camera.hap
 hdc shell rm system/app/com.ohos.camera/cameraPicke.hap
-hdc file send %HOME%product\phone\build\default\outputs\default\phone-default-signed.hap /system/app/com.ohos.camera/Camera.hap
-hdc file send %HOME%product\picker\build\default\outputs\default\picker-phone-default-signed.hap /system/app/com.ohos.camera/cameraPicke.hap
+:: Phone
+:: hdc file send %HOME%product\phone\build\default\outputs\default\phone-default-signed.hap /system/app/com.ohos.camera/Camera.hap
+:: hdc file send %HOME%product\picker\build\default\outputs\default\picker-phone-default-signed.hap /system/app/com.ohos.camera/cameraPicke.hap
+:: PC
+hdc file send %HOME%product\pc\build\default\outputs\default\pc-default-signed.hap /system/app/com.ohos.camera/Camera.hap
+hdc file send %HOME%product\pcpicker\build\default\outputs\default\pcpicker-phone-default-signed.hap  /system/app/com.ohos.camera/cameraPicke.hap
+:: pad
+:: hdc file send %HOME%product\tablet\build\default\outputs\default\pc-default-signed.hap /system/app/com.ohos.camera/Camera.hap
+:: hdc file send %HOME%product\picker\build\default\outputs\default\picker-phone-default-signed.hap /system/app/com.ohos.camera/cameraPicke.hap
 
 hdc shell rm -rf /data/*
 hdc shell chown root:root system/app/com.ohos.camera/Camera.hap

@@ -1100,7 +1100,12 @@ struct Index {
     let applicationContext = ContextManager.getInstance().getApplicationContext();
     applicationContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     if (DeviceInfo.isPc()) {
-      execDispatch(CameraAction.init(camera.CameraPosition.CAMERA_POSITION_FRONT, ModeType.PHOTO, false));
+      const pcCamState = getStates().get<CameraRunningState>('cameraReducer', 'cameraRunningState');
+      if (pcCamState === CameraRunningState.UNINITIALIZED) {
+        execDispatch(CameraAction.init(camera.CameraPosition.CAMERA_POSITION_FRONT, ModeType.PHOTO, false));
+      } else {
+        HiLog.i(TAG, 'skipIntro: MainAbility already dispatched CameraAction.init, skip duplicate (PC).');
+      }
       return;
     }
     let newMode = PreferencesService.getInstance()
@@ -1109,7 +1114,12 @@ struct Index {
       PreferencesService.getInstance().getPropValue(PersistType.FOR_AWHILE, PropTag.CAMERA_POSITION,
         camera.CameraPosition.CAMERA_POSITION_BACK) as camera.CameraPosition;
     HiLog.i(TAG, `intro start camera. newMode: ${newMode}, cameraPos: ${cameraPos}`);
-    execDispatch(CameraAction.init(cameraPos, newMode, true));
+    const phoneCamState = getStates().get<CameraRunningState>('cameraReducer', 'cameraRunningState');
+    if (phoneCamState === CameraRunningState.UNINITIALIZED) {
+      execDispatch(CameraAction.init(cameraPos, newMode, true));
+    } else {
+      HiLog.i(TAG, 'skipIntro: MainAbility already dispatched CameraAction.init, skip duplicate (phone).');
+    }
     execDispatch(Action.introConfirm());
     HiLog.i(TAG, 'intro confirm end');
   }

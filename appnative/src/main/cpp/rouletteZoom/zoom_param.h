@@ -136,6 +136,7 @@ const int DIVIDE_BY_FOUR = 4;
 const int DIVIDE_BY_TEN = 10;
 const int MULTIPLY_BY_TWO = 2;
 const int MULTIPLY_BY_TEN = 10;
+const int INVALID_INDEX = -1;
 const int ARRAY_ZERO = 0;
 const int ARRAY_ONE = 1;
 const int ARRAY_TWO = 2;

@@ -37,8 +37,8 @@ import fs from '@ohos.file.fs';
 import lazy { fileIO } from '../../utils/LazyImportUtil';
 import lazy { JSON } from '@kit.ArkTS';
 import json from '@ohos.util.json';
-import lazy { RecordController } from '../../function/recordcontrol/RecordController';
 import { PhotoFormatMode } from '../../function/enumbase/PhotoFormatMode';
+import { ModeType } from '../../mode/ModeType';
 
 const TAG: string = 'MediaLibraryUiService';
 
@@ -251,9 +251,6 @@ export default class MediaLibraryUiService {
         thumbnailInfo = await MediaLibraryUiService.getInstance().getThumbnailInfo(uri);
         if (thumbnailInfo && !ThumbnailService.getInstance().isDeregisterUri(uri)) {
           ThumbnailService.getInstance().deregisterUri(uri);
-        } else if (RecordController.getInstance().isMovieFile()) {
-          HiLog.i(TAG, 'handleMediaUriChange during getPhotoAsset isDeregisterUri, ignoreUriChange!');
-          return;
         }
       } else if (type === photoAccessHelper.NotifyType.NOTIFY_REMOVE) {
         thumbnailInfo = await MediaLibraryUiService.getInstance().getThumbnailInfo();
@@ -297,7 +294,9 @@ export default class MediaLibraryUiService {
     const isDeregisterUri: boolean = ThumbnailService.getInstance().isDeregisterUri(data.uris[0]);
     if (isDeregisterUri) {
       HiLog.i(TAG, 'validateUriChange, isDeregisterUri: true, ignoreUriChange: true.');
-      // return true; TODO 阻塞视频更新
+      if (getStates().get<ModeType>('modeReducer', 'mode') === ModeType.PHOTO) { //TODO 这里更新屏蔽视频更新多次刷新
+        return true
+      }
     }
     HiLog.i(TAG,
       'validateUriChange, ignoreUriChange: false, isQuickThumbnailSupported: false, isDng: false, isDeregisterUri: false.');

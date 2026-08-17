@@ -292,7 +292,11 @@ export default class PickerAbility extends UIAbility {
   async onWindowStageCreate(windowStage): Promise<void> {
     HiLog.begin(TAG, 'onWindowStageCreate');
     if(!DeviceInfo.isRk3568()){
-      windowStage.setDefaultDensityEnabled(true);
+      try {
+        windowStage.setDefaultDensityEnabled(true);
+      } catch (e) {
+        HiLog.e(TAG, `windowStage setDefaultDensityEnabled: ${e.code}`)
+      }
     }
     GlobalContext.get().setWindowStage(windowStage);
     this.windowStageCreate(windowStage);

@@ -165,7 +165,6 @@ export class CameraTaskHandler {
     [WorkerTask.ACTION_NEED_DELETE_ONE_PIC, this.setNeedDeleteOnePhoto.bind(this)],
     // [WorkerTask.ACTION_SHUTTER_BUTTON_UP, this.setUltraPhoto.bind(this)]
   ]);
-  buttonup
   private mCameraService: CameraService;
 
   public constructor() {
@@ -344,6 +343,9 @@ export class CameraTaskHandler {
     if (OutputOperation.isPanVideoOutput(mode, message.tagMessage.outputType)) {
       executor.addTask(this.mCameraService.createVideoOutput(message.videoOutputMessage, message.tagMessage));
     }
+    // 与 restartPreview 一致：releaseOutput 后必须重建 photoOutput，否则 commitSession 时 mPhotoOutput 为空
+    // （跳过 INITIALIZED 态 CHANGE_MODE 时仅走本路径，此前依赖 restartPreview 隐式创建）
+    this.createPhotoOutputWhenRestartPreview(executor, message, photoProfile);
     await executor.executeTasks();
 
     await this.changeFormat(!!photoProfile, message);
@@ -371,7 +373,6 @@ export class CameraTaskHandler {
     const outputType: OutputType | undefined = message.tagMessage.outputType;
     let photoProfile: camera.Profile = message.photoOutputMessage.photoProfile;
     const isPanVideoOutput = OutputOperation.isPanVideoOutput(mode, outputType);
-    await this.mCameraService.enterOfflinePhoto(restartType?.toString());
     // 切换模式等流复用不关input，先remove之后add，切换镜头不复用输入流先close之后创建新输入流
     let canReUseInput = this.canReUseInput(restartType, message.cameraInputMessage.cameraType, false);
     HiLog.i(TAG, `release camera canReUseInput: ${canReUseInput}, restartType: ${restartType}`);
@@ -433,7 +434,6 @@ export class CameraTaskHandler {
     const outputType: OutputType | undefined = message.tagMessage.outputType;
     let photoProfile: camera.Profile = message.photoOutputMessage.photoProfile;
     const isPanVideoOutput = OutputOperation.isPanVideoOutput(mode, outputType);
-    await this.mCameraService.enterOfflinePhoto(restartType?.toString());
     HiLog.i(TAG, `release camera canReUseInput: ${canReUseInput}, restartType: ${restartType}`);
 
     const executor: TaskExecutor = new TaskExecutor();

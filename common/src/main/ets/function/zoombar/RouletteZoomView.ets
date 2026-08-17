@@ -1330,12 +1330,22 @@ export struct RouletteZoomView {
 
   // 更新等效焦距范围
   private updateEquivalentFocalArray(): void {
+    if (!this.quickZoomValArr?.length || !this.opticalZoomValArr?.length ||
+      this.opticalZoomValArr.length !== this.opticalZoomDotIndexArr.length) {
+      HiLog.w(TAG, 'updateEquivalentFocalArray: skip initNode, zoom arrays empty or length mismatch.');
+      this.quickEquivalentFocalArr = [];
+      return;
+    }
     this.quickEquivalentFocalArr = [];
     let zoomPointInfo: ZoomPointInfo = CameraProxy.getInstance().getZoomPointInfo();
     this.quickZoomValArr.forEach((zoomVal: number) => {
       this.quickEquivalentFocalArr.push(Math.round(zoomVal * zoomPointInfo?.equivalentFocalLength / 1));
       // 临时规避框架bug Math.round(zoomVal * zoomPointInfo.equivalentFocalLength / zoomPointInfo.zoomRatio));
     });
+    if (this.quickEquivalentFocalArr.length !== this.quickZoomValArr.length) {
+      HiLog.w(TAG, 'updateEquivalentFocalArray: equivalent focal length mismatch, skip initNode.');
+      return;
+    }
     this.mNodeController?.initNode(this.quickZoomValArr, this.quickEquivalentFocalArr, this.opticalZoomValArr,
       this.opticalZoomDotIndexArr);
   }

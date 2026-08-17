@@ -57,7 +57,6 @@ import lazy { JSON } from '@kit.ArkTS';
 import lazy { ModeTransform } from '../../mode/ModeTransform';
 import lazy { colorSpaceManager } from '@kit.ArkGraphics2D';
 import lazy { media } from '@kit.MediaKit';
-import OfflinePhotoOutput from './modules/OfflinePhotoOutput';
 import lazy { geoLocationManager } from '@kit.LocationKit';
 import lazy { ExposureData } from '../../component/focusExposure/FocusExposureHelper';
 import lazy { HideBugUtil } from '../../utils/HideBugUtil';
@@ -86,8 +85,6 @@ const TIME_LAPSE_DELAY_100 = 100;
 const TIME_LAPSE_DELAY_200 = 200;
 const TIME_LAPSE_DELAY_500 = 500;
 const TIME_LAPSE_DELAY_1000 = 1000;
-
-const CLOSE_CAMERA = 'CLOSE_CAMERA';
 
 export enum VlogTool {
   VALUE_OFF,
@@ -140,7 +137,6 @@ export class CameraService {
   // @ts-ignore
   private mNightSubMode: camera.NightSubModeType[] = [];
   private vlogIndex: number = -1;
-  private offlineOutputArr: Map<number, OfflinePhotoOutput> = new Map();
   private closeCameraAfterCapture: boolean = false;
 
   public constructor() {
@@ -267,6 +263,10 @@ export class CameraService {
       HiLog.i(TAG, 'isCanReuseCameraInput camera is null');
       return false;
     }
+    if (!this.isCommit) {
+      HiLog.i(TAG, 'isCanReuseCameraInput: false (no successful commit yet; e.g. after ACTION_INIT only)');
+      return false;
+    }
     if (this.mCameraInput?.getIsDuringCloseDelay()) {
       HiLog.i(TAG, 'isCanReuseCameraInput getIsDuringCloseDelay');
       return false;
@@ -280,11 +280,18 @@ export class CameraService {
       HiLog.i(TAG, 'isCanReuseCameraInput isBackSelfie or is panorama');
       return false;
     }
-    const targetCamera: camera.CameraDevice =
+    const targetCamera: camera.CameraDevice | undefined =
       this.mCameraDeviceManager?.getCameraWithMessage(message.cameraInputMessage);
+    const curDevice: camera.CameraDevice | undefined = this.mCameraContext?.getCamera();
+    if (!targetCamera || !curDevice) {
+      HiLog.i(TAG, 'isCanReuseCameraInput target or cur device missing');
+      return false;
+    }
     HiLog.i(TAG, 'targetCamera: ' + targetCamera.cameraId);
-    HiLog.i(TAG, 'curCamera: ' + this.mCameraContext?.getCamera()?.cameraId);
-    return false;
+    HiLog.i(TAG, 'curCamera: ' + curDevice.cameraId);
+    const reuse: boolean = targetCamera.cameraId === curDevice.cameraId;
+    HiLog.i(TAG, `isCanReuseCameraInput RESULT: ${reuse}`);
+    return reuse;
   }
 
   public async createPreviewOutput(previewMessage: PreviewOutputMessage): Promise<void> {
@@ -545,25 +552,11 @@ export class CameraService {
       return;
     }
     HiLog.i(TAG, 'releasePhotoOutput begin.');
-    if (!this.isOfflineSupported()) {
-      await this.mPhotoOutput.release();
-    }
+    await this.mPhotoOutput.release();
     this.mPhotoOutput = null;
     HiLog.i(TAG, 'releasePhotoOutput end.');
   }
 
-
-  public isOfflineSupported(): boolean {
-    const isOfflineSupported: boolean = this.mPhotoOutput?.getIsOfflineSupport();
-    const inPhotoAssetSaveCount: number = this.getOfflinePhotoCount();
-    HiLog.i(TAG, `isOfflineSupported: ${isOfflineSupported}, inPhotoAssetSaveCount: ${inPhotoAssetSaveCount}`);
-    return isOfflineSupported && inPhotoAssetSaveCount > 0;
-  }
-
-  private getOfflinePhotoCount(): number {
-    let count = 0;
-    return count;
-  }
 
   public async switchCollaborate(previewMessage: PreviewOutputMessage, tagMessage: TagMessage): Promise<void> {
     HiLog.i(TAG, `switchCollaborate previewMsg: ${previewMessage}, mCollaborate: ${this.mCollaboratePreviewOutput}.`);
@@ -1254,28 +1247,7 @@ export class CameraService {
     await this.releaseCollaborateOutput();
   }
 
-  // 重启流时移除photoOutput 使能离线拍照
-  public async enterOfflinePhoto(type: string): Promise<void> {
-    if (!this.isOfflineSupported()) {
-      return;
-    }
-    try {
-      const isBurstCapture: boolean = this.mPhotoOutput?.getIsBurstCapture();
-      let captureIdList: number[] = [];
-      const startTime: number = Date.now();
-      this.mPhotoOutput.mOfflinePhotoReceiveCallBack = (captureId: number) => {
-      };
-      this.mPhotoOutput.mOfflinePhotoFinishCallBack = () => {
-      };
-      await this.mSession?.offlineRemoveOutput();
-    } catch (err) {
-      HiLog.e(TAG, `enterOfflinePhoto, err: ${err?.code}.`);
-    }
-  }
 
-  public minusOffline(startTime: number): void {
-    this.offlineOutputArr.delete(startTime);
-  }
 
   public async releaseCamera(isNeedDelayClose?: boolean): Promise<void> {
     if (!this.mSession) {
@@ -1289,9 +1261,7 @@ export class CameraService {
     executor.addTaskFunction(async () => {
       await this.stopOutput();
       await this.stopSession();
-      if (this.isOfflineSupported()) {
-        await this.enterOfflinePhoto(CLOSE_CAMERA);
-      }
+
       await this.releaseOutput();
       HiLog.i(TAG, `releaseSession isNeedDelayClose: ${!isNeedDelayClose},
      isRetractable: ${!this.mCameraContext.getCamera()?.isRetractable}`);

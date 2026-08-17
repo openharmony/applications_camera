@@ -45,7 +45,6 @@ export type PhotoOutputMessage = {
 
 export type VideoOutputMessage = {
   videoProfile: camera.VideoProfile;
-  isMovie?: boolean;
   config?: media.AVRecorderConfig;
   filter?: string;
   isPreRecord?: boolean;

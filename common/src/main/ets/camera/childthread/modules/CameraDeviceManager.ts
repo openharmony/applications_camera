@@ -53,34 +53,37 @@ export default class CameraDeviceManager {
     this.mCameras = cameraManager.getSupportedCameras();
     if (!this.mCameras) {
       HiLog.e(TAG, 'getSupportedCameras error, cameras is null.');
-    } else {
-      this.mCameras.forEach((device, index) => {
-        HiLog.i(TAG, `forEach ${index}, id: ${device.cameraId}, cameraPosition: ${device.cameraPosition
-          }, cameraType: ${device.cameraType}`);
+      HiLog.end(TAG, 'getSupportedCameras');
+      return;
+    }
+    this.mCameras.forEach((device, index) => {
+      HiLog.i(TAG, `forEach ${index}, id: ${device.cameraId}, cameraPosition: ${device.cameraPosition
+        }, cameraType: ${device.cameraType}`);
+      // @ts-ignore
+      HiLog.i(TAG, `forEach lensEquivalentFocalLength: ${device?.lensEquivalentFocalLength}.`);
+    });
+    this.mCameras.forEach(item => {
+      if (item.cameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK &&
+        item.cameraType === camera.CameraType.CAMERA_TYPE_WIDE_ANGLE) {
         // @ts-ignore
-        HiLog.i(TAG, `forEach lensEquivalentFocalLength: ${device?.lensEquivalentFocalLength}.`);
-      });
-      this.mCameras.forEach(item => {
-        if (item.cameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK &&
-          item.cameraType === camera.CameraType.CAMERA_TYPE_WIDE_ANGLE) {
-          // @ts-ignore
+        if(item?.lensEquivalentFocalLength != undefined) {
           this.mainLensEquivalentFocalLength = item?.lensEquivalentFocalLength[0];
         }
-      })
+      }
+    })
+    this.mPhysicalCameras =
+      this.mCameras.filter(item => item.cameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK &&
+        // @ts-ignore
+      physicalDeviceList.includes(item.cameraType) && item?.lensEquivalentFocalLength !== undefined &&
+        // @ts-ignore
+        item?.lensEquivalentFocalLength?.length > 0)
+      // @ts-ignore
+        .sort((a, b) => a?.lensEquivalentFocalLength[0] - b?.lensEquivalentFocalLength[0]);
+    if (!this.mPhysicalCameras || this.mPhysicalCameras.length < 1) {
       this.mPhysicalCameras =
         this.mCameras.filter(item => item.cameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK &&
-          // @ts-ignore
-        physicalDeviceList.includes(item.cameraType) && item?.lensEquivalentFocalLength !== undefined &&
-          // @ts-ignore
-          item?.lensEquivalentFocalLength?.length > 0)
-        // @ts-ignore
-          .sort((a, b) => a?.lensEquivalentFocalLength[0] - b?.lensEquivalentFocalLength[0]);
-      if (!this.mPhysicalCameras || this.mPhysicalCameras.length < 1) {
-        this.mPhysicalCameras =
-          this.mCameras.filter(item => item.cameraPosition === camera.CameraPosition.CAMERA_POSITION_BACK &&
-            item.cameraType !== camera.CameraType.CAMERA_TYPE_DEFAULT)
-            .sort((a, b) => physicalDeviceList.indexOf(a.cameraType) - physicalDeviceList.indexOf(b.cameraType));
-      }
+          item.cameraType !== camera.CameraType.CAMERA_TYPE_DEFAULT)
+          .sort((a, b) => physicalDeviceList.indexOf(a.cameraType) - physicalDeviceList.indexOf(b.cameraType));
     }
     HiLog.end(TAG, 'getSupportedCameras');
   }

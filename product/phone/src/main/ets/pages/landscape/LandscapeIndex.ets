@@ -1560,6 +1560,9 @@ export struct LandscapeIndex {
     } else {
       // 地理位置权限二次确认弹窗
       this.createLocationConfirmDialog();
+      // this.mAction.resetSaveModeTimer();
+      // this.mAction.changeFunctionValue(FunctionId.SAVE_GEO_LOCATION, false);
+      // HiLog.i(TAG, 'locationConfirmDialog ConfirmDialogView cancel');
     }
   }
 

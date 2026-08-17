@@ -65,13 +65,6 @@ export class FrameRateFunction extends BaseFunction {
   private isConflictHdr: boolean = false;
   private static mValueMap: Map<string, number> = new Map(); // 全量缓存数据
 
-  static {
-    if (DeviceInfo.isRk3568() || DeviceInfo.isUis7885()) {
-      FrameRateFunction.RATE_30_FPS = 5;
-      FrameRateFunction.RATE_60_FPS = 10;
-    }
-  }
-
   constructor() {
     super();
     FrameRateFunction.frameRate = this.getPersistedValueJudgment();
