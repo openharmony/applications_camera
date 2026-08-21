@@ -71,7 +71,7 @@ import lazy { BaseComponent } from '@ohos/common/src/main/ets/worker/BaseCompone
 import window from '@ohos.window';
 import lazy { MoreModeConfig } from '@ohos/common/src/main/ets/mode/MoreModeConfig';
 
-import { NAVIGATION_BAR_HEIGHT,SettingView } from './SettingView';
+import lazy { NAVIGATION_BAR_HEIGHT, SettingView } from './SettingView';
 import lazy { SettingViewData } from '@ohos/common/src/main/ets/function/setting/SettingFunction';
 import lazy { CustomTransition, TitleAnimation } from '@ohos/common/src/main/ets/animation/CustomNavigationUtils';
 // import lazy { PafUiWidget } from '@ohos-paf/ui-widget-base';
@@ -1455,7 +1455,9 @@ struct Index {
             .height('100%')
             .zIndex(ZIndex.SKETCH_INDEX)
           }
-          GeoLocationSetting();
+          if (this.isStarted) {
+            GeoLocationSetting();
+          }
         }
         .accessibilityLevel(CommonConstants.ACCESSIBILITY_LEVEL_YES)
         .key('Navigation_content_stack')
