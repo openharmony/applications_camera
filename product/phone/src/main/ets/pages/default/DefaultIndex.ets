@@ -1925,9 +1925,8 @@ export struct DefaultIndex {
 
       if (this.firstLevelLoaded) {
         this.bigTextBuilder();
+        this.zoomBarBuilder();
       }
-
-      this.zoomBarBuilder();
 
       if (this.firstLevelLoaded) {
         if (!this.isCustomFilterImmersive) {
@@ -1938,9 +1937,9 @@ export struct DefaultIndex {
 
       this.modeBarBuilder(); // 模式切换
       this.footBarBuilder(); // 触发modeBar动效
-      this.treasureBoxBuilder(); // 百宝箱
 
       if (this.firstLevelLoaded) {
+        this.treasureBoxBuilder(); // 百宝箱
         this.TreasureBoxGestureGroundBuilder();
         if (!this.isPicker) {
         }
