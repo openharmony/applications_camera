@@ -130,10 +130,13 @@ export struct SmallVideoTimer {
       this.mAction.updateSpotVisible(!this.state.isRecordingSpotVisible)
       if (this.state.isThirdPartyCall && GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration) {
         try {
-          let videoDuration: number = Number.parseInt(GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration as string)
-          Log.info(`${this.TAG} videoDuration is ${videoDuration}`);
-          if (this.state.recordingTime >= videoDuration) {
-            this.mAction.stopRecording();
+          let videoDurationText: string = GlobalContext.get().getCameraAbilityWant().parameters?.videoDuration as string
+          if (/^\d+$/.test(videoDurationText)) {
+            let videoDuration: number = Number.parseInt(videoDurationText, 10)
+            Log.info(`${this.TAG} videoDuration is ${videoDuration}`);
+            if (this.state.recordingTime >= videoDuration) {
+              this.mAction.stopRecording();
+            }
           }
         } catch (error) {
           Log.info(`${this.TAG} picker videoDuration --> ${JSON.stringify(error)}}`)
